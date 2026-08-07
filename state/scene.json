@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": "Wei has delivered his permanent six-man special operations squad proposal to Hiruzen. No approval or roster decision has been issued; the 09:00 Academy assignment remains active.",
+  "decision_required": "Wei has Hiruzen's provisional roster critique. No permanent special-operations squad is approved. Wei has stated he still intends to take Team Fujin at 09:00 and seeks to hold both responsibilities if the second team is approved.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "pc_wei_tang",
@@ -11,42 +11,50 @@
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "Does Wei remain to request immediate discussion, leave for the Academy assignment, or use the remaining time another way?"
+      "Does Wei challenge or refine Hiruzen's provisional roster assessment, ask for a formal personnel review, or leave for the 09:00 Team Fujin assignment?"
     ],
     "approaching_consequences": [
-      "The 09:00 Academy team assignment remains in force unless command explicitly changes it.",
-      "Hiruzen's later review of the proposal may require checking candidate availability, current duties, command capacity, and village needs."
+      "The 09:00 Team Fujin assignment remains in force unless command explicitly changes it.",
+      "Any future approval of a second permanent team must resolve schedule, physical-presence, deputy-authority, and member-assignment conflicts.",
+      "A formal personnel review may change which special-operations candidates are actually available."
     ],
     "available_reports": [],
     "current_scene_type": "hokage_office_proposal",
-    "current_tension": "controlled_uncertainty",
+    "current_tension": "professional_scrutiny",
     "known_clues": [
-      "Hiruzen Sarutobi personally received Wei's written proposal for a permanent six-person special operations squad.",
-      "The proposal is a request only; no roster or command authorization has been granted.",
+      "Hiruzen considers the permanent six-person general-purpose special-operations concept defensible but has not approved it.",
+      "Hiruzen provisionally prefers the second roster as the cleanest starting point for authorization.",
+      "The first roster is tactically strong but collides with Yugao's ANBU duty and Aoba's intelligence function and carries more sword-assault overlap than Hiruzen wants.",
+      "Hiruzen believes Wei is underestimating Kosuke, Hayama, and Hoheto and overstates Hayate as a pursuit specialist.",
+      "Hiruzen objects to the fourth roster's removal of both Daikoku and Suzume from Academy instruction.",
+      "Wei has told Hiruzen he intends to keep the 09:00 Team Fujin Genin assignment even if a second permanent team is approved.",
       "The 09:00 Academy assignment remains scheduled."
     ],
-    "last_major_choice": "Wei chose to visit the Hokage's office and personally deliver his permanent six-man special operations squad proposal.",
-    "last_scene_summary": "At 07:20, Wei reached the Hokage Tower and delivered his written squad proposal to Hiruzen Sarutobi. Hiruzen has received it; no decision has been made. The 09:00 Academy assignment remains active.",
+    "last_major_choice": "Wei asked Hiruzen for immediate criticism of the permanent special-operations proposal and explicitly declared his intent to keep Team Fujin as a separate Genin responsibility.",
+    "last_scene_summary": "From 07:20 to 07:45, Wei and Hiruzen discussed the permanent special-operations proposal. Hiruzen gave a provisional critique: roster two is the cleanest authorization baseline; roster one is strongest but institutionally expensive; roster three is stronger than Wei labels it; roster four improperly raids Academy staff. No team was approved. Wei stated that he still intends to accept Team Fujin at 09:00 and wants the special-operations squad as a second command.",
     "pending_information_paths": [
-      "Hiruzen's command review of Wei's proposed rosters and candidate availability."
+      "Formal Konoha personnel availability and duty-conflict review for Wei's proposed special-operations candidates.",
+      "Possible outside candidate review after current-list cross-swaps are considered."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Hiruzen is present at the Hokage Tower and has the proposal."
+      "Hiruzen provisionally favors roster two over roster one for institutional practicality.",
+      "Dual-team command is primarily a scheduling and coverage problem rather than a raw span-of-command problem."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "Permanent six-man special operations squad proposal awaiting command review",
+      "Permanent six-man special operations squad proposal awaiting formal command review",
+      "Potential dual-team command and coverage structure",
       "09:00 Academy team assignment",
       "ANBU candidacy remains separate and inactive"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_hokage_office_proposal_delivery",
-  "scene_summary": "Wei is at the Hokage Tower. Hiruzen Sarutobi has personally received Wei's permanent six-man special operations squad proposal. No approval or roster decision has been issued, and the 09:00 Academy assignment remains active.",
+  "scene_id": "scene_hokage_office_roster_review",
+  "scene_summary": "Wei remains at the Hokage Tower after a provisional roster review with Hiruzen. No special-operations squad is approved. Hiruzen currently views roster two as the cleanest starting point and has identified assignment conflicts in roster one and Academy-staff conflicts in roster four. Wei has declared that he still intends to take Team Fujin at 09:00 and seeks any special-operations squad as a second team.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T07:20:00",
+  "world_time": "SE-0061-02-05T07:45:00",
   "known_clock_boundaries": [
     {
       "due_at": "SE-0061-02-05T09:00:00",
@@ -55,7 +63,8 @@
     }
   ],
   "observable_pressures": [
-    "The squad proposal is delivered but not approved.",
+    "The special-operations proposal remains unapproved pending deeper personnel review.",
+    "Wei has declared intent to retain Team Fujin even if a second team is approved, so schedule and coverage are now material command questions.",
     "Team assignment begins at 09:00 and may require Wei in person.",
     "Wei remains a Jonin on the Special Missions roster and is not active ANBU.",
     "Any action crossing 09:00 is interrupted by the assignment event unless a lawful cause prevents attendance."

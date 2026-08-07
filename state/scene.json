@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": "Wei has Hiruzen's provisional roster critique. No permanent special-operations squad is approved. Wei has stated he still intends to take Team Fujin at 09:00 and seeks to hold both responsibilities if the second team is approved.",
+  "decision_required": "Hiruzen has named his current preferred five-person complement to Wei for the proposed permanent special-operations squad. No roster or second command is approved. Wei must still decide whether to accept or challenge that recommendation, seek a formal personnel review, or turn to the approaching 09:00 Team Fujin assignment.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "pc_wei_tang",
@@ -11,35 +11,38 @@
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "Does Wei challenge or refine Hiruzen's provisional roster assessment, ask for a formal personnel review, or leave for the 09:00 Team Fujin assignment?"
+      "Does Wei accept Hiruzen's preferred five, challenge a selection, ask for outside candidates or formal availability review, or leave for the 09:00 Team Fujin assignment?"
     ],
     "approaching_consequences": [
       "The 09:00 Team Fujin assignment remains in force unless command explicitly changes it.",
       "Any future approval of a second permanent team must resolve schedule, physical-presence, deputy-authority, and member-assignment conflicts.",
-      "A formal personnel review may change which special-operations candidates are actually available."
+      "A formal personnel review may still change which recommended special-operations candidates are actually available."
     ],
     "available_reports": [],
     "current_scene_type": "hokage_office_proposal",
     "current_tension": "professional_scrutiny",
     "known_clues": [
       "Hiruzen considers the permanent six-person general-purpose special-operations concept defensible but has not approved it.",
-      "Hiruzen provisionally prefers the second roster as the cleanest starting point for authorization.",
-      "The first roster is tactically strong but collides with Yugao's ANBU duty and Aoba's intelligence function and carries more sword-assault overlap than Hiruzen wants.",
-      "Hiruzen believes Wei is underestimating Kosuke, Hayama, and Hoheto and overstates Hayate as a pursuit specialist.",
-      "Hiruzen objects to the fourth roster's removal of both Daikoku and Suzume from Academy instruction.",
+      "Hiruzen's current preferred five-person complement to Wei is Ensui Nara, Muta Aburame, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo.",
+      "Hiruzen chooses the hybrid roster for restraint, complementary reconnaissance and tracking, engineering and sabotage, and a credible field deputy rather than maximum immediate sword-assault power.",
+      "Hiruzen considers Muta and Hoheto complementary rather than redundant because their reconnaissance and sensing methods cover different problems.",
+      "Hiruzen prefers Hayama as the likely field deputy if Wei is also responsible for Team Fujin.",
+      "Aoba's Intelligence function, Yugao's ANBU duty, and Daikoku and Suzume's Academy duties remain reasons not to transfer them without a stronger institutional case.",
+      "Suzaku Nara is Hiruzen's first restraint/control alternate if Ensui is unavailable; Kosuke Maruboshi is a high-value veteran alternate if roster needs change.",
       "Wei has told Hiruzen he intends to keep the 09:00 Team Fujin Genin assignment even if a second permanent team is approved.",
       "The 09:00 Academy assignment remains scheduled."
     ],
-    "last_major_choice": "Wei asked Hiruzen for immediate criticism of the permanent special-operations proposal and explicitly declared his intent to keep Team Fujin as a separate Genin responsibility.",
-    "last_scene_summary": "From 07:20 to 07:45, Wei and Hiruzen discussed the permanent special-operations proposal. Hiruzen gave a provisional critique: roster two is the cleanest authorization baseline; roster one is strongest but institutionally expensive; roster three is stronger than Wei labels it; roster four improperly raids Academy staff. No team was approved. Wei stated that he still intends to accept Team Fujin at 09:00 and wants the special-operations squad as a second command.",
+    "last_major_choice": "Wei asked Hiruzen to name the five candidates he considers best suited for the proposed permanent special-operations squad.",
+    "last_scene_summary": "From 07:45 to 07:55, Wei asked Hiruzen for his own preferred five candidates. Hiruzen recommended Ensui Nara, Muta Aburame, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo as the best-balanced permanent complement to Wei, with Hayama as the likely deputy. He named Suzaku Nara and Kosuke Maruboshi as strong alternates. The recommendation is provisional; no transfers, roster, second team, or permanent command have been authorized.",
     "pending_information_paths": [
-      "Formal Konoha personnel availability and duty-conflict review for Wei's proposed special-operations candidates.",
-      "Possible outside candidate review after current-list cross-swaps are considered."
+      "Formal Konoha personnel availability and duty-conflict review for Hiruzen's recommended five and Wei's proposed alternatives.",
+      "Possible outside candidate review if Wei asks command to search beyond the currently evaluated pool."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Hiruzen provisionally favors roster two over roster one for institutional practicality.",
-      "Dual-team command is primarily a scheduling and coverage problem rather than a raw span-of-command problem."
+      "Hiruzen's preferred team is a hybrid: Ensui, Muta, Hoheto, Tekuno, and Hayama beside Wei.",
+      "Hiruzen regards Hayama's deputy capability as particularly valuable because Wei intends to carry Team Fujin concurrently.",
+      "Suzaku and Kosuke are Hiruzen's strongest currently named alternates for control and veteran utility respectively."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
@@ -51,10 +54,10 @@
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
   "scene_id": "scene_hokage_office_roster_review",
-  "scene_summary": "Wei remains at the Hokage Tower after a provisional roster review with Hiruzen. No special-operations squad is approved. Hiruzen currently views roster two as the cleanest starting point and has identified assignment conflicts in roster one and Academy-staff conflicts in roster four. Wei has declared that he still intends to take Team Fujin at 09:00 and seeks any special-operations squad as a second team.",
+  "scene_summary": "Wei remains at the Hokage Tower after Hiruzen named his preferred five-person complement for the proposed permanent special-operations squad: Ensui Nara, Muta Aburame, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo. The recommendation is provisional and no second team or transfer is approved. Team Fujin remains scheduled for 09:00.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T07:45:00",
+  "world_time": "SE-0061-02-05T07:55:00",
   "known_clock_boundaries": [
     {
       "due_at": "SE-0061-02-05T09:00:00",
@@ -63,8 +66,8 @@
     }
   ],
   "observable_pressures": [
-    "The special-operations proposal remains unapproved pending deeper personnel review.",
-    "Wei has declared intent to retain Team Fujin even if a second team is approved, so schedule and coverage are now material command questions.",
+    "The special-operations proposal remains unapproved pending formal personnel and dual-command review.",
+    "Hiruzen has supplied a preferred five-person complement, but none of those shinobi has been transferred or committed.",
     "Team assignment begins at 09:00 and may require Wei in person.",
     "Wei remains a Jonin on the Special Missions roster and is not active ANBU.",
     "Any action crossing 09:00 is interrupted by the assignment event unless a lawful cause prevents attendance."

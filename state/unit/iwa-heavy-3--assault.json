@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_heavy_3.assault",
+  "name": "Iwa Heavy Assault Company, Third Tactical Team — Assault Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_heavy_3",
+  "troop_type": "heavy_assault",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 10
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 5,
+    "genin": 3,
+    "special_jonin": 2
+  },
+  "condition": {
+    "healthy": 9,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.assault",
+  "training": "train.iwa.assault",
+  "cohesion": 79,
+  "morale": 73,
+  "readiness": 89,
+  "location": "loc_earth_western_front",
+  "mission": "western heavy assault readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/iwa-heavy-3--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-heavy-3--assault.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

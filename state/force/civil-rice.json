@@ -1,0 +1,100 @@
+{
+  "schema": "force.v38",
+  "id": "force.civil.rice",
+  "name": "Rice conventional forces",
+  "total": 30000,
+  "unit_claims": [],
+  "availability": {
+    "deployed": 3600,
+    "ready_24h": 5400,
+    "mobilizable_7d": 8400,
+    "mobilizable_30d": 6600,
+    "training_or_instruction": 2400,
+    "medical_or_recovery": 600,
+    "essential_fixed_duty": 3000
+  },
+  "all_personnel_real": true,
+  "large_unit_policy": "Strategic manpower remains accounting-only until organized into real units; materially equivalent real units may be vectorized only as ephemeral computation.",
+  "military_identity": [
+    "small agrarian state military"
+  ],
+  "home_establishment_ref": "establishment.force.civil.rice",
+  "formation_library_ref": "formation.conventional.standard",
+  "reconstitution_policy_ref": "reconstitution.conventional",
+  "standing_procedure_ref": "procedure.conventional.standard",
+  "troop_pools": [
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.rice.standing",
+      "count": 9000,
+      "quality": "regular",
+      "role": "standing",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.rice.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "small agrarian state military"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "standing",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/civil-rice-standing.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.rice.garrison",
+      "count": 7800,
+      "quality": "regular",
+      "role": "garrison",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.rice.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "small agrarian state military"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "garrison",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/civil-rice-garrison.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.rice.trained_reserve",
+      "count": 8700,
+      "quality": "militia",
+      "role": "trained_reserve",
+      "loadout": "load.civil.militia",
+      "doctrine": "doc.civil.rice.militia",
+      "training": "train.civil.militia",
+      "specialties": [
+        "small agrarian state military"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "trained_reserve",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/civil-rice-trained-reserve.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.rice.emergency_levy",
+      "count": 4500,
+      "quality": "raw_levy",
+      "role": "emergency_levy",
+      "loadout": "load.civil.raw_levy",
+      "doctrine": "doc.civil.rice.raw_levy",
+      "training": "train.civil.raw_levy",
+      "specialties": [
+        "small agrarian state military"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "emergency_levy",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/civil-rice-emergency-levy.json"
+    }
+  ],
+  "accounting_only": true
+}

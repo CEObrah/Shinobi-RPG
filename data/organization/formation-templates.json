@@ -1,0 +1,224 @@
+{
+  "schema": "formation-library.v1",
+  "authority": "Formation templates are learned/predefined arrangements. They are not active formations until instantiated for an operation.",
+  "libraries": {
+    "formation.shinobi_village.standard": {
+      "templates": [
+        {
+          "id": "shinobi_patrol_column",
+          "purpose": "route movement and contact security",
+          "roles": [
+            "lead_recon",
+            "main_body",
+            "rear_security"
+          ],
+          "default_use": "travel_or_patrol"
+        },
+        {
+          "id": "shinobi_sensor_search_web",
+          "purpose": "distributed search around sensor coverage",
+          "roles": [
+            "sensor_core",
+            "search_pairs",
+            "relay"
+          ],
+          "default_use": "search_tracking"
+        },
+        {
+          "id": "shinobi_four_corner_containment",
+          "purpose": "capture and escape denial",
+          "roles": [
+            "four_control_elements",
+            "reserve"
+          ],
+          "default_use": "capture"
+        },
+        {
+          "id": "shinobi_ambush_wedge",
+          "purpose": "short decisive first-contact ambush",
+          "roles": [
+            "trigger",
+            "assault",
+            "cutoff"
+          ],
+          "default_use": "ambush"
+        },
+        {
+          "id": "shinobi_extraction_diamond",
+          "purpose": "protect casualty, principal, or prisoner during movement",
+          "roles": [
+            "point",
+            "flanks",
+            "rear",
+            "protected_center"
+          ],
+          "default_use": "extraction"
+        },
+        {
+          "id": "shinobi_defensive_perimeter",
+          "purpose": "all-direction local defense",
+          "roles": [
+            "sectors",
+            "mobile_reserve"
+          ],
+          "default_use": "camp_or_hold"
+        },
+        {
+          "id": "shinobi_pursuit_screen",
+          "purpose": "pursue while protecting against reversal",
+          "roles": [
+            "trackers",
+            "fast_element",
+            "support"
+          ],
+          "default_use": "pursuit"
+        },
+        {
+          "id": "shinobi_relay_echelon",
+          "purpose": "maintain communication across dispersed elements",
+          "roles": [
+            "relay_nodes",
+            "mobile_links"
+          ],
+          "default_use": "wide_area_operation"
+        }
+      ]
+    },
+    "formation.samurai.standard": {
+      "templates": [
+        {
+          "id": "samurai_ordered_line",
+          "purpose": "disciplined frontal engagement",
+          "roles": [
+            "front_line",
+            "support_line",
+            "reserve"
+          ]
+        },
+        {
+          "id": "samurai_guard_box",
+          "purpose": "principal or convoy protection",
+          "roles": [
+            "front",
+            "flanks",
+            "rear",
+            "protected_center"
+          ]
+        },
+        {
+          "id": "samurai_countercharge_wedge",
+          "purpose": "concentrated reserve counterattack",
+          "roles": [
+            "wedge",
+            "support",
+            "screen"
+          ]
+        },
+        {
+          "id": "samurai_fighting_withdrawal",
+          "purpose": "ordered disengagement",
+          "roles": [
+            "rear_guard",
+            "main_body",
+            "reserve"
+          ]
+        }
+      ]
+    },
+    "formation.conventional.standard": {
+      "templates": [
+        {
+          "id": "conventional_march_column",
+          "purpose": "road movement",
+          "roles": [
+            "vanguard",
+            "main_body",
+            "train",
+            "rear_guard"
+          ]
+        },
+        {
+          "id": "conventional_battle_line",
+          "purpose": "general field battle",
+          "roles": [
+            "center",
+            "wings",
+            "missile",
+            "reserve"
+          ]
+        },
+        {
+          "id": "conventional_defensive_camp",
+          "purpose": "camp or fixed-position defense",
+          "roles": [
+            "perimeter",
+            "gate_reserve",
+            "logistics_center"
+          ]
+        },
+        {
+          "id": "conventional_convoy_screen",
+          "purpose": "protect supplies or civilians",
+          "roles": [
+            "advance_guard",
+            "flanks",
+            "rear_guard",
+            "convoy"
+          ]
+        },
+        {
+          "id": "conventional_fighting_withdrawal",
+          "purpose": "ordered retreat",
+          "roles": [
+            "rear_guard",
+            "main_body",
+            "reserve"
+          ]
+        }
+      ]
+    },
+    "formation.house_tang.standard": {
+      "templates": [
+        {
+          "id": "court_pair",
+          "size": 2,
+          "purpose": "paired escort and mutual support"
+        },
+        {
+          "id": "court_team",
+          "size": 4,
+          "purpose": "small response and capture"
+        },
+        {
+          "id": "escort_knot",
+          "size": 6,
+          "purpose": "principal escort with 360-degree coverage"
+        },
+        {
+          "id": "court_section",
+          "size_range": [
+            8,
+            12
+          ],
+          "purpose": "institutional patrol/interdiction"
+        },
+        {
+          "id": "manor_response_group",
+          "size_range": [
+            12,
+            24
+          ],
+          "purpose": "rapid manor defense"
+        },
+        {
+          "id": "court_wing",
+          "size_range": [
+            25,
+            40
+          ],
+          "purpose": "large House field element"
+        }
+      ]
+    }
+  }
+}

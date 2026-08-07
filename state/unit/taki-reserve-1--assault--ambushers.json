@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_taki_reserve_1.assault.ambushers",
+  "name": "Taki Elite Reserve, First Tactical Team — Assault Unit — Ambushers Unit",
+  "owner": "force_taki_shinobi",
+  "parent_force": "force_taki_shinobi",
+  "parent_team": "team_taki_reserve_1",
+  "troop_type": "ambushers",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 7
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 4,
+    "jonin": 1
+  },
+  "condition": {
+    "healthy": 7
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.taki.assault",
+  "training": "train.taki.assault",
+  "cohesion": 67,
+  "morale": 67,
+  "readiness": 77,
+  "location": "loc_taki",
+  "mission": "elite reserve readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.09",
+  "stats_ref": "state/unit-capability/taki-reserve-1--assault--ambushers.json",
+  "battle_kernel_ref": "state/unit-kernel/taki-reserve-1--assault--ambushers.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

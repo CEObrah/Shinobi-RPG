@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_barrier_1.support.logistics",
+  "name": "Konoha Barrier Corps, First Response Team — Logistics Support Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_barrier_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "chunin": 2
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.logistics",
+  "training": "train.konoha.logistics",
+  "cohesion": 81,
+  "morale": 77,
+  "readiness": 82,
+  "location": "loc_konoha_perimeter",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/konoha-barrier-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-barrier-1--support--logistics.json",
+  "loadout_standard": "loadout_konoha_flak"
+}

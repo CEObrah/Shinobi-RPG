@@ -1,0 +1,2 @@
+# Training, recovery, and development narration
+Make progress physical and temporal: repetition, correction, fatigue, bruises, failed attempts, instructor availability, facility limits, chakra expenditure, rest, and incremental competence. Summarize routine blocks and expand breakthroughs, setbacks, injuries, changed methods, or relationship moments. Recovery is not instant; medical success, pain, mobility, rehabilitation, and readiness may differ.

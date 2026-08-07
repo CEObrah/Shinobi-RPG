@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_puppet_2.ranged_control",
+  "name": "Suna Puppet Corps, Second Field Team — Ranged Control Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_puppet_2",
+  "troop_type": "poison_specialists",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.ranged_control",
+  "training": "train.suna.ranged_control",
+  "cohesion": 74,
+  "morale": 76,
+  "readiness": 86,
+  "location": "loc_suna",
+  "mission": "puppet field deployment readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.09",
+  "stats_ref": "state/unit-capability/suna-puppet-2--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-puppet-2--ranged_control.json",
+  "loadout_standard": "loadout_suna_desert"
+}

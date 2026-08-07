@@ -1,0 +1,89 @@
+{
+  "schema": "home_establishment_owner.v2",
+  "record": {
+    "id": "establishment.force.civil.water",
+    "owner_id": "force.civil.water",
+    "owner_type": "world_force",
+    "source_force_ref": "state/force/civil-water.json",
+    "category": "conventional",
+    "formation_library_ref": "formation.conventional.standard",
+    "reconstitution_policy_ref": "reconstitution.conventional",
+    "unit_series": [
+      {
+        "series_id": "est.force.civil.water.standing",
+        "source_manpower_id": "civil.water.standing",
+        "role": "standing",
+        "unit_count": 57,
+        "nominal_strength": 500,
+        "final_unit_strength": 500,
+        "stable_unit_id_pattern": "est.force.civil.water.standing.{ordinal:03d}",
+        "doctrine": "doc.civil.water.regular",
+        "training": "train.civil.regular",
+        "loadout_standard": "load.civil.regular",
+        "troop_type": "line_infantry",
+        "duty_status": "standing",
+        "readiness_class": "standing"
+      },
+      {
+        "series_id": "est.force.civil.water.garrison",
+        "source_manpower_id": "civil.water.garrison",
+        "role": "garrison",
+        "unit_count": 50,
+        "nominal_strength": 500,
+        "final_unit_strength": 200,
+        "stable_unit_id_pattern": "est.force.civil.water.garrison.{ordinal:03d}",
+        "doctrine": "doc.civil.water.regular",
+        "training": "train.civil.regular",
+        "loadout_standard": "load.civil.regular",
+        "troop_type": "line_infantry",
+        "duty_status": "garrison",
+        "readiness_class": "garrison"
+      },
+      {
+        "series_id": "est.force.civil.water.trained_reserve",
+        "source_manpower_id": "civil.water.trained_reserve",
+        "role": "trained_reserve",
+        "unit_count": 28,
+        "nominal_strength": 1000,
+        "final_unit_strength": 550,
+        "stable_unit_id_pattern": "est.force.civil.water.trained_reserve.{ordinal:03d}",
+        "doctrine": "doc.civil.water.militia",
+        "training": "train.civil.militia",
+        "loadout_standard": "load.civil.militia",
+        "troop_type": "line_infantry",
+        "duty_status": "trained_reserve",
+        "readiness_class": "trained_reserve"
+      },
+      {
+        "series_id": "est.force.civil.water.emergency_levy",
+        "source_manpower_id": "civil.water.emergency_levy",
+        "role": "emergency_levy",
+        "unit_count": 15,
+        "nominal_strength": 1000,
+        "final_unit_strength": 250,
+        "stable_unit_id_pattern": "est.force.civil.water.emergency_levy.{ordinal:03d}",
+        "doctrine": "doc.civil.water.raw_levy",
+        "training": "train.civil.raw_levy",
+        "loadout_standard": "load.civil.raw_levy",
+        "troop_type": "line_infantry",
+        "duty_status": "emergency_levy",
+        "readiness_class": "emergency_levy"
+      }
+    ],
+    "standing_procedure_ref": "procedure.conventional.standard",
+    "command_structure": {
+      "home_command": "institutional",
+      "unit_command": "materialize from appointments/qualified cadre when causally relevant",
+      "succession": "follow owner doctrine and valid appointment authority",
+      "default_commander_profile_ref": "command_profile.shinobi_unit_standard"
+    },
+    "series_rule_ref": "establishment.rule.standard",
+    "default_combat_tendencies": {
+      "aggression": 45,
+      "initiative": 40,
+      "caution": 55,
+      "adaptability": 35,
+      "objective_focus": 60
+    }
+  }
+}

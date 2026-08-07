@@ -1,0 +1,36 @@
+{
+  "schema": "guardian-current-mechanics.v38",
+  "global_fixed_profile": true,
+  "ceiling": {
+    "instant_impulse_score": 180,
+    "pressure_score": 180,
+    "sustained_force_score": 165,
+    "simultaneous_contact_budget": 360,
+    "reset_seconds": 0.05,
+    "protected_envelope_cm": 3
+  },
+  "resolution": {
+    "below_or_equal_ceiling": "ordinary harmful external bodily contact/knockback is prevented",
+    "above_ceiling": "overflow_fraction=(incoming-ceiling)/incoming; only overflow continues to ordinary protection/injury resolution"
+  },
+  "non_protection": [
+    "genjutsu",
+    "mental_control",
+    "possession",
+    "internal poison already inside body",
+    "internal drug effect",
+    "oxygen deprivation",
+    "water confinement",
+    "sealing enclosure",
+    "space-time removal",
+    "chakra suppression/drain",
+    "objective or ally loss"
+  ],
+  "forbidden_extensions": [
+    "offense",
+    "flight",
+    "ally protection",
+    "intent reading",
+    "automatic equipment protection"
+  ]
+}

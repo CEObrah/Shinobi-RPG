@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iron_samurai_7.ranged_control",
+  "name": "Iron Longbow Corps, First Support Team — Ranged Control Unit",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "parent_team": "team_iron_samurai_7",
+  "troop_type": "archers",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "samurai": 1,
+    "senior_samurai": 1,
+    "support": 1
+  },
+  "condition": {
+    "healthy": 2,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iron.ranged_control",
+  "training": "train.iron.ranged_control",
+  "cohesion": 67,
+  "morale": 73,
+  "readiness": 78,
+  "location": "loc_iron_northern_pass",
+  "mission": "pass archery support readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/iron-samurai-7--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/iron-samurai-7--ranged_control.json",
+  "loadout_standard": "loadout_iron_archer"
+}

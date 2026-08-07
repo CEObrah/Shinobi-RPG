@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_maritime_1.recon.sensors",
+  "name": "Kiri Maritime Corps, First Boarding Team — Recon Unit — Sensors Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_maritime_1",
+  "troop_type": "sensors",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.recon",
+  "training": "train.kiri.recon",
+  "cohesion": 71,
+  "morale": 69,
+  "readiness": 84,
+  "location": "loc_kiri_harbor",
+  "mission": "boarding and harbor response readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/kiri-maritime-1--recon--sensors.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-maritime-1--recon--sensors.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

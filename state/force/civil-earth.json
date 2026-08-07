@@ -1,0 +1,110 @@
+{
+  "schema": "force.v38",
+  "id": "force.civil.earth",
+  "name": "Earth conventional forces",
+  "total": 150000,
+  "unit_claims": [],
+  "availability": {
+    "deployed": 18000,
+    "ready_24h": 27000,
+    "mobilizable_7d": 42000,
+    "mobilizable_30d": 33000,
+    "training_or_instruction": 12000,
+    "medical_or_recovery": 3000,
+    "essential_fixed_duty": 15000
+  },
+  "all_personnel_real": true,
+  "large_unit_policy": "Strategic manpower remains accounting-only until organized into real units; materially equivalent real units may be vectorized only as ephemeral computation.",
+  "military_identity": [
+    "heavy infantry",
+    "engineering and fortification",
+    "siege and defensive warfare"
+  ],
+  "home_establishment_ref": "establishment.force.civil.earth",
+  "formation_library_ref": "formation.conventional.standard",
+  "reconstitution_policy_ref": "reconstitution.conventional",
+  "standing_procedure_ref": "procedure.conventional.standard",
+  "troop_pools": [
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.earth.standing",
+      "count": 45000,
+      "quality": "regular",
+      "role": "standing",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.earth.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "heavy infantry",
+        "engineering and fortification",
+        "siege and defensive warfare"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "standing",
+      "accounting_only": true,
+      "accounting_scale": "strategic_10k",
+      "capability_ref": "state/manpower-capability/civil-earth-standing.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.earth.garrison",
+      "count": 39000,
+      "quality": "regular",
+      "role": "garrison",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.earth.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "heavy infantry",
+        "engineering and fortification",
+        "siege and defensive warfare"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "garrison",
+      "accounting_only": true,
+      "accounting_scale": "strategic_10k",
+      "capability_ref": "state/manpower-capability/civil-earth-garrison.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.earth.trained_reserve",
+      "count": 43500,
+      "quality": "militia",
+      "role": "trained_reserve",
+      "loadout": "load.civil.militia",
+      "doctrine": "doc.civil.earth.militia",
+      "training": "train.civil.militia",
+      "specialties": [
+        "heavy infantry",
+        "engineering and fortification",
+        "siege and defensive warfare"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "trained_reserve",
+      "accounting_only": true,
+      "accounting_scale": "strategic_10k",
+      "capability_ref": "state/manpower-capability/civil-earth-trained-reserve.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "civil.earth.emergency_levy",
+      "count": 22500,
+      "quality": "raw_levy",
+      "role": "emergency_levy",
+      "loadout": "load.civil.raw_levy",
+      "doctrine": "doc.civil.earth.raw_levy",
+      "training": "train.civil.raw_levy",
+      "specialties": [
+        "heavy infantry",
+        "engineering and fortification",
+        "siege and defensive warfare"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "emergency_levy",
+      "accounting_only": true,
+      "accounting_scale": "strategic_10k",
+      "capability_ref": "state/manpower-capability/civil-earth-emergency-levy.json"
+    }
+  ],
+  "accounting_only": true
+}

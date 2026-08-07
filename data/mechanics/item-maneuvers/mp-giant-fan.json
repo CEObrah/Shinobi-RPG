@@ -1,0 +1,115 @@
+{
+  "schema": "item-maneuvers-shard.v1",
+  "maneuver_packages": {
+    "MP_GIANT_FAN": {
+      "weapon_family": "giant_war_fan",
+      "maneuvers": {
+        "closed_strike": {
+          "name": "Closed strike",
+          "base_startup_s": 0.78,
+          "contact_window_s": 0.14,
+          "base_recovery_s": 0.62,
+          "geometry": "medium_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 1,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "open_sweep": {
+          "name": "Open sweep",
+          "base_startup_s": 1.1,
+          "contact_window_s": 0.22,
+          "base_recovery_s": 0.86,
+          "geometry": "wide_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 2,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "block": {
+          "name": "Block",
+          "base_startup_s": 0.28,
+          "contact_window_s": 0.25,
+          "base_recovery_s": 0.48,
+          "geometry": "large_defensive_plane",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 4,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "open_fan": {
+          "name": "Open fan",
+          "base_startup_s": 0.48,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.28,
+          "geometry": "self_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "wind_focus": {
+          "name": "Wind focus posture",
+          "base_startup_s": 0.62,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.34,
+          "geometry": "self_focus",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "wind method follows",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

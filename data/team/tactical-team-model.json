@@ -1,0 +1,8 @@
+{
+  "schema": "tactical_team_model.v1",
+  "id": "model.shinobi.tactical_team",
+  "organization_rule": "A tactical team combines homogeneous units. Each unit has one troop type and one intended standard loadout. Commanders are separate people and never folded into unit soldier averages.",
+  "commander_materialization_rule": "A cold commander slot must materialize from the team conserved command_personnel or another lawful conserved person source. Never create a free person.",
+  "command_personnel_rule": "Command personnel are people assigned to command/control duties, not a combat unit. They may be exact/lite or conserved aggregate command personnel until causally important.",
+  "resolution": "Load unit state for organization; load stats_ref only for units whose capabilities are actually needed. Load command.json only for command-span/order resolution."
+}

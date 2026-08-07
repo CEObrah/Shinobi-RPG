@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_earth_4.assault",
+  "name": "Iwa Eastern Earthwork Company, First Tactical Team — Assault Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_earth_4",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 2,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 6
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.assault",
+  "training": "train.iwa.assault",
+  "cohesion": 84,
+  "morale": 79,
+  "readiness": 82,
+  "location": "loc_earth_eastern_border",
+  "mission": "eastern fortification readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/iwa-earth-4--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-earth-4--assault.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

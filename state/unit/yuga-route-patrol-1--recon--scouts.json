@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_yuga_route_patrol_1.recon.scouts",
+  "name": "Yuga Hot-Springs Route Patrol, First Tactical Team — Recon Unit — Scouts Unit",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "parent_team": "team_yuga_route_patrol_1",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 7
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 4,
+    "special_jonin": 1,
+    "chunin": 2
+  },
+  "condition": {
+    "healthy": 7
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.yuga.recon",
+  "training": "train.yuga.recon",
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_hot_water_trade_route",
+  "mission": "commercial route patrol readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/yuga-route-patrol-1--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/yuga-route-patrol-1--recon--scouts.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

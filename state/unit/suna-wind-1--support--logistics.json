@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_wind_1.support.logistics",
+  "name": "Suna Wind Corps, First Suppression Team — Logistics Support Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_wind_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "special_jonin": 1,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.logistics",
+  "training": "train.suna.logistics",
+  "cohesion": 80,
+  "morale": 75,
+  "readiness": 82,
+  "location": "loc_suna",
+  "mission": "range control and wind suppression readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/suna-wind-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-wind-1--support--logistics.json",
+  "loadout_standard": "loadout_suna_desert"
+}

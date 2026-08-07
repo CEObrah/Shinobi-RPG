@@ -1,0 +1,204 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_konoha_rapid_2",
+  "name": "Konoha Rapid Response Company, Second Assault Team",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_konoha_rapid_2.assault.capture-specialists.kit-loadout-konoha-flak",
+    "unit_konoha_rapid_2.assault.capture-specialists.kit-loadout-standard-shinobi",
+    "unit_konoha_rapid_2.assault.line-combatants.kit-loadout-konoha-flak",
+    "unit_konoha_rapid_2.assault.line-combatants.kit-loadout-standard-shinobi",
+    "unit_konoha_rapid_2.communications",
+    "unit_konoha_rapid_2.ranged_control.kit-loadout-konoha-flak",
+    "unit_konoha_rapid_2.ranged_control.kit-loadout-standard-shinobi",
+    "unit_konoha_rapid_2.recon.scouts",
+    "unit_konoha_rapid_2.recon.sensors.kit-loadout-konoha-flak",
+    "unit_konoha_rapid_2.recon.sensors.kit-loadout-standard-shinobi",
+    "unit_konoha_rapid_2.support.medics",
+    "unit_konoha_rapid_2.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.konoha.field",
+  "training": "train.konoha.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 74,
+  "morale": 79,
+  "readiness": 85,
+  "location": "loc_konoha",
+  "mission": "regional reinforcement readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 1,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1
+        },
+        "loadout": "loadout_konoha_flak",
+        "condition": {
+          "healthy": 1
+        },
+        "readiness": 85,
+        "capability": {
+          "attributes.awareness": [
+            70.333,
+            5.437,
+            63.0,
+            76.0
+          ],
+          "attributes.composure": [
+            62.667,
+            6.236,
+            56.0,
+            71.0
+          ],
+          "attributes.intelligence": [
+            57.667,
+            3.859,
+            54.0,
+            63.0
+          ],
+          "attributes.presence": [
+            69.333,
+            6.128,
+            65.0,
+            78.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            70.333,
+            3.399,
+            67.0,
+            75.0
+          ],
+          "chakra_dimensions.control": [
+            66.667,
+            2.867,
+            63.0,
+            70.0
+          ],
+          "chakra_dimensions.multitasking": [
+            67.0,
+            6.481,
+            61.0,
+            76.0
+          ],
+          "operational_skills.leadership": [
+            58.667,
+            4.714,
+            52.0,
+            62.0
+          ],
+          "operational_skills.tactics": [
+            66.0,
+            4.546,
+            61.0,
+            72.0
+          ],
+          "operational_skills.team_coordination": [
+            63.667,
+            0.471,
+            63.0,
+            64.0
+          ]
+        }
+      },
+      {
+        "count": 1,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1
+        },
+        "loadout": "loadout_standard_shinobi",
+        "condition": {
+          "healthy": 1
+        },
+        "readiness": 85,
+        "capability": {
+          "attributes.awareness": [
+            70.333,
+            5.437,
+            63.0,
+            76.0
+          ],
+          "attributes.composure": [
+            62.667,
+            6.236,
+            56.0,
+            71.0
+          ],
+          "attributes.intelligence": [
+            57.667,
+            3.859,
+            54.0,
+            63.0
+          ],
+          "attributes.presence": [
+            69.333,
+            6.128,
+            65.0,
+            78.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            70.333,
+            3.399,
+            67.0,
+            75.0
+          ],
+          "chakra_dimensions.control": [
+            66.667,
+            2.867,
+            63.0,
+            70.0
+          ],
+          "chakra_dimensions.multitasking": [
+            67.0,
+            6.481,
+            61.0,
+            76.0
+          ],
+          "operational_skills.leadership": [
+            58.667,
+            4.714,
+            52.0,
+            62.0
+          ],
+          "operational_skills.tactics": [
+            66.0,
+            4.546,
+            61.0,
+            72.0
+          ],
+          "operational_skills.team_coordination": [
+            63.667,
+            0.471,
+            63.0,
+            64.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_desert_2.ranged_control.wind-skirmishers",
+  "name": "Suna Western Oasis Guard, First Tactical Team — Ranged Control Unit — Wind Skirmishers Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_desert_2",
+  "troop_type": "wind_skirmishers",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 7
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 2,
+    "support": 1,
+    "special_jonin": 1,
+    "chunin": 3
+  },
+  "condition": {
+    "healthy": 6,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.ranged_control",
+  "training": "train.suna.ranged_control",
+  "cohesion": 73,
+  "morale": 77,
+  "readiness": 79,
+  "location": "loc_wind_western_oasis",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/suna-desert-2--ranged_control--wind-skirmishers.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-desert-2--ranged_control--wind-skirmishers.json",
+  "loadout_standard": "loadout_suna_desert"
+}

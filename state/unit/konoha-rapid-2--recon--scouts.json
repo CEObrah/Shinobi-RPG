@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_rapid_2.recon.scouts",
+  "name": "Konoha Rapid Response Company, Second Assault Team — Recon Unit — Scouts Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_rapid_2",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 4
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4
+  },
+  "condition": {
+    "healthy": 2,
+    "light_healing_injury": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.recon",
+  "training": "train.konoha.recon",
+  "cohesion": 74,
+  "morale": 79,
+  "readiness": 85,
+  "location": "loc_konoha",
+  "mission": "regional reinforcement readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.02",
+  "stats_ref": "state/unit-capability/konoha-rapid-2--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-rapid-2--recon--scouts.json",
+  "loadout_standard": "loadout_konoha_flak"
+}

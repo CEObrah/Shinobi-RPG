@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_wind_palace_guard.recon",
+  "name": "Land of Wind Daimyo Guard, First Palace Team — Recon Unit",
+  "owner": "force_land_wind_civilian_security",
+  "parent_force": "force_land_wind_civilian_security",
+  "parent_team": "team_land_wind_palace_guard",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "guard": 2
+  },
+  "condition": {
+    "healthy": 1,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.recon",
+  "training": "train.civil.recon",
+  "cohesion": 67,
+  "morale": 72,
+  "readiness": 82,
+  "location": "loc_land_wind_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/land-wind-palace-guard--recon.json",
+  "battle_kernel_ref": "state/unit-kernel/land-wind-palace-guard--recon.json",
+  "loadout_standard": "loadout_civil_guard"
+}

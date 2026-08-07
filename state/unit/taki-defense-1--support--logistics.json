@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_taki_defense_1.support.logistics",
+  "name": "Taki Waterfall Guard, First Defense Team — Logistics Support Unit",
+  "owner": "force_taki_shinobi",
+  "parent_force": "force_taki_shinobi",
+  "parent_team": "team_taki_defense_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 4
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 1
+  },
+  "condition": {
+    "light_healing_injury": 1,
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.taki.logistics",
+  "training": "train.taki.logistics",
+  "cohesion": 74,
+  "morale": 74,
+  "readiness": 86,
+  "location": "loc_taki_hidden_approach",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/taki-defense-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/taki-defense-1--support--logistics.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

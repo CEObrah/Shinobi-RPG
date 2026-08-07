@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_strategic_guard_1.recon.scouts",
+  "name": "Kumo Strategic Asset Guard, First Tactical Team — Recon Unit — Scouts Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_strategic_guard_1",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "chunin": 2
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.recon",
+  "training": "train.kumo.recon",
+  "cohesion": 79,
+  "morale": 75,
+  "readiness": 86,
+  "location": "loc_kumo_secure_compound",
+  "mission": "strategic asset protection readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/kumo-strategic-guard-1--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-strategic-guard-1--recon--scouts.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

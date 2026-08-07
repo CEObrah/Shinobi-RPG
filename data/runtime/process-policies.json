@@ -1,0 +1,303 @@
+{
+  "schema": "process-policy-registry.v1",
+  "source_contract_schema": "owner_class_resolution",
+  "contract_id_format": "derived from owner_id when an exception is persisted",
+  "contract_defaults": {
+    "status": "active",
+    "successor_plan_required": true,
+    "execution_mode": "scheduled_or_causal_wakeup"
+  },
+  "policy_templates": {
+    "autonomous_owner_v1": {
+      "authority_scope": "saved role, office, command, custody and legal authority only",
+      "knowledge_rule": "act only on saved or validly delivered information",
+      "material_trigger_rule": "Combat, movement, casualty, shortage, leadership change, discovery, delivery, contract change, political decision or threshold crossing creates an exact event or information-path record.",
+      "plan_lifecycle": [
+        "proposed",
+        "active",
+        "blocked",
+        "completed",
+        "failed",
+        "abandoned",
+        "superseded"
+      ],
+      "policy_revision": 1,
+      "replanning_policy": "After each settled interval, reassess goals, authority, knowledge, health, resources, dependencies, opposition, and risks. Complete, block, fail, continue, or supersede the current plan and create a lawful successor plan when autonomy permits.",
+      "result_requirement": "Every crossed interval resolves as progress, maintenance, recovery, decline, loss, transformation, closure, blockage, or explicit no material change with a causal reason.",
+      "safe_compaction_policy": "Multiple crossed routine intervals may share one span receipt only when each interval is internally resolved in order and no material event, threshold, player dependency, or causal interruption is skipped."
+    },
+    "featured_original_v1": {
+      "authority_scope": "saved role, office, command, custody and legal authority only",
+      "knowledge_rule": "act only on saved or validly delivered information",
+      "material_trigger_rule": "Combat, movement, casualty, promotion, retirement, relationship change, discovery or threshold crossing creates an exact event.",
+      "plan_lifecycle": [
+        "proposed",
+        "active",
+        "blocked",
+        "completed",
+        "failed",
+        "abandoned",
+        "superseded"
+      ],
+      "policy_revision": 1,
+      "replanning_policy": "Reassess concrete goals, assignment, location, relationships, health, resources, knowledge, opposition and age stage; never repeat a numbered placeholder plan.",
+      "result_requirement": "Every interval has a causal semantic result.",
+      "safe_compaction_policy": "Only compact equivalent routine intervals without a threshold or material event."
+    },
+    "named_life_course_v1": {
+      "authority_scope": "automatic age updates and autonomous NPC life-course only; no player life choices",
+      "knowledge_rule": "offscreen events remain hidden until a valid information path",
+      "material_trigger_rule": "Birthday, promotion, deployment, injury, retirement or death creates an exact transaction.",
+      "plan_lifecycle": [
+        "active",
+        "completed",
+        "blocked"
+      ],
+      "policy_revision": 1,
+      "replanning_policy": "Each NPC receives concrete age-stage and circumstance-based review. Wei receives age updates only.",
+      "result_requirement": "Every monthly review records exact birthday and life-course changes.",
+      "safe_compaction_policy": "Monthly boundaries may be compacted only after birthdays and material events are processed in order."
+    },
+    "team_doctrine_training_v1": {
+      "authority_scope": "only approved team doctrine and training schedules; never creates a team or member commitment",
+      "knowledge_rule": "uses saved roster, authority, location, health, instructors, facilities and equipment",
+      "material_trigger_rule": "Doctrine approval, roster change, injury, facility loss, evaluation or deconfliction failure creates an exact event.",
+      "plan_lifecycle": [
+        "active",
+        "blocked",
+        "completed"
+      ],
+      "policy_revision": 1,
+      "replanning_policy": "Training plans change only through approved doctrine revisions or causal blockers.",
+      "result_requirement": "Verified attendance produces exact member credits, cohesion and deconfliction evidence; missing evidence produces blockage.",
+      "safe_compaction_policy": "Weekly cycles may compact only when membership, schedule, attendance inputs and blockers are unchanged."
+    }
+  },
+  "routine_profiles": {
+    "ROUTINE_CANON_SERVICE": {
+      "risks": [
+        "injury",
+        "fatigue",
+        "mission interruption",
+        "information limits"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_CIVIL_FORCE": {
+      "risks": [
+        "casualties",
+        "shortage",
+        "political redirection",
+        "readiness erosion"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_CLAN_INSTITUTION": {
+      "risks": [
+        "staff shortage",
+        "resource shortage",
+        "political interference",
+        "security breach"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_COUNTRY_GOVERNMENT": {
+      "risks": [
+        "court conflict",
+        "route disruption",
+        "treasury pressure",
+        "foreign pressure"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_INSTITUTION": {
+      "risks": [
+        "staff shortage",
+        "resource shortage",
+        "political interference",
+        "security breach"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_INSTITUTIONAL_STOCK": {
+      "risks": [
+        "depletion",
+        "custody loss",
+        "damage",
+        "unfunded procurement"
+      ],
+      "standing_orders": [
+        "reconcile_stock"
+      ]
+    },
+    "ROUTINE_LIFE_COURSE_BATCH": {
+      "risks": [
+        "aging",
+        "injury",
+        "retirement",
+        "death"
+      ],
+      "standing_orders": [
+        "process_birthdays",
+        "process_careers",
+        "process_deployments",
+        "process_injuries_and_status"
+      ]
+    },
+    "ROUTINE_MAJOR_FORCE": {
+      "risks": [
+        "casualties",
+        "shortage",
+        "political redirection",
+        "readiness erosion"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_PLAYER_CONTROLLED": {
+      "risks": [
+        "player decision required"
+      ],
+      "standing_orders": []
+    },
+    "ROUTINE_TEAM_DOCTRINE": {
+      "risks": [
+        "attendance failure",
+        "injury",
+        "mission interruption",
+        "missing instructor or facility"
+      ],
+      "standing_orders": [
+        "settle_approved_team_training_only"
+      ]
+    },
+    "ROUTINE_WORLD_PRESSURE": {
+      "risks": [
+        "opposition response",
+        "premature exposure",
+        "resource constraint",
+        "prerequisite failure"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    },
+    "ROUTINE_HOUSE_MEMBER": {
+      "risks": [
+        "injury",
+        "fatigue",
+        "duty interruption",
+        "relationship or assignment change"
+      ],
+      "standing_orders": [
+        "maintain_current_house_role_and_life_course"
+      ]
+    },
+    "ROUTINE_GENERIC": {
+      "risks": [
+        "resource constraint",
+        "assignment change",
+        "injury or disruption",
+        "information limits"
+      ],
+      "standing_orders": [
+        "maintain_current_duties_when_authorized"
+      ]
+    },
+    "ROUTINE_TACTICAL_TEAM": {
+      "risks": [
+        "casualty",
+        "fatigue",
+        "supply loss",
+        "mission reassignment"
+      ],
+      "standing_orders": [
+        "maintain_current_duties"
+      ]
+    }
+  },
+  "resolution_rules": [
+    {
+      "match": "pc_wei_tang",
+      "template_id": "named_life_course_v1",
+      "routine_profile_id": "ROUTINE_PLAYER_CONTROLLED",
+      "player_protection": true
+    },
+    {
+      "match_prefix": "ht.m",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_HOUSE_MEMBER"
+    },
+    {
+      "match_prefix": "team_",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_TACTICAL_TEAM"
+    },
+    {
+      "match_prefix": "force",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_MAJOR_FORCE"
+    },
+    {
+      "match_prefix": "stock_",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_INSTITUTIONAL_STOCK"
+    },
+    {
+      "match_prefix": "canon_",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_CANON_SERVICE"
+    },
+    {
+      "match_prefix": "char.",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_CANON_SERVICE"
+    },
+    {
+      "match_prefix": "support.",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_CANON_SERVICE"
+    },
+    {
+      "match_prefix": "faction.",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_INSTITUTION"
+    },
+    {
+      "match_prefix": "org_",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_CLAN_INSTITUTION"
+    },
+    {
+      "match_prefix": "land_",
+      "template_id": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_COUNTRY_GOVERNMENT"
+    },
+    {
+      "fallback": "autonomous_owner_v1",
+      "routine_profile_id": "ROUTINE_GENERIC"
+    }
+  ],
+  "stable_seed_rule": "sha256(world_seed + owner_id) first 64 bits; do not store repetitive per-owner seeds",
+  "goal_rule": "Use the owner’s saved goal/current_plan/assignment/standing orders. Do not duplicate generic goals in the contract registry.",
+  "contracts": {},
+  "metrics": {
+    "explicit_exception_contract_count": 0,
+    "resolution_rule_count": 12,
+    "former_per_owner_contracts_removed": 272
+  },
+  "autonomous_world_contract": "data/runtime/autonomous-world-simulation.json",
+  "autonomous_action_rule": "Autonomous reviews and causal wake-ups may select lawful missions, movement, conflict, diplomacy, trade, recovery, recruitment or other material actions from current owner state. Material actions must be instantiated before outcome resolution.",
+  "authority": "reusable_process_policy_not_mutable_campaign_state"
+}

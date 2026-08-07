@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kusa_border_1.recon.infiltrators",
+  "name": "Kusa Northern Border Watch, First Tactical Team — Recon Unit — Infiltrators Unit",
+  "owner": "force_kusa_shinobi",
+  "parent_force": "force_kusa_shinobi",
+  "parent_team": "team_kusa_border_1",
+  "troop_type": "infiltrators",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "jonin": 1,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kusa.recon",
+  "training": "train.kusa.recon",
+  "cohesion": 70,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_grass_northern_border",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/kusa-border-1--recon--infiltrators.json",
+  "battle_kernel_ref": "state/unit-kernel/kusa-border-1--recon--infiltrators.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

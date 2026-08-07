@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "count",
+    "prefix_index"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unit-routing-index.v2"
+    },
+    "authority": {
+      "const": false
+    },
+    "count": {
+      "type": "integer"
+    },
+    "prefix_index": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

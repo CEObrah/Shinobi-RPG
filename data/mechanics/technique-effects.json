@@ -1,0 +1,7 @@
+{
+  "schema": "technique-effects-index.v2",
+  "authority": "routing index only; exact deterministic effect profiles live at direct profile paths",
+  "profile_path_template": "data/mechanics/technique-effects/profiles/{technique_id}.json",
+  "manifest": "data/mechanics/technique-effects-manifest.json",
+  "rule": "Technique record contains exact effect_profile_path; do not load this index if that path is already known."
+}

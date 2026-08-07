@@ -1,0 +1,89 @@
+{
+  "schema": "summon-registry.v38",
+  "profiles": {
+    "summon.kakashi_ninken_pack": {
+      "kind": "pack",
+      "count": 8,
+      "body_scale": "dog",
+      "combat": 85,
+      "tracking": 175,
+      "coordination": 170,
+      "durability": 70,
+      "contract_owner": "canon_kakashi"
+    },
+    "summon.enma": {
+      "kind": "exact",
+      "count": 1,
+      "body_scale": "large_primate",
+      "combat": 170,
+      "strength": 180,
+      "toughness": 180,
+      "transform_staff": true,
+      "contract_owner": "canon_hiruzen"
+    },
+    "summon.katsuyu_fraction": {
+      "kind": "scalable_entity",
+      "count": 1,
+      "body_scale": "variable_slug_fraction",
+      "combat": 55,
+      "medical": 190,
+      "acid": 150,
+      "durability": 180,
+      "contract_owner": "canon_tsunade"
+    },
+    "summon.jiraiya_toad_pool": {
+      "kind": "contract_pool",
+      "count": 1,
+      "body_scale": "variable_toad",
+      "combat": 160,
+      "coordination": 150,
+      "contract_owner": "canon_jiraiya",
+      "major_entity": "Gamabunta when contract/availability allows"
+    },
+    "summon.orochimaru_snake_pool": {
+      "kind": "contract_pool",
+      "count": 1,
+      "body_scale": "variable_giant_snake",
+      "combat": 165,
+      "constriction": 175,
+      "contract_owner": "canon_orochimaru"
+    },
+    "summon.kisame_shark_pool": {
+      "kind": "swarm",
+      "count": 12,
+      "body_scale": "large_shark",
+      "combat": 110,
+      "water_mobility": 190,
+      "contract_owner": "canon_kisame"
+    },
+    "summon.tayuya_doki": {
+      "kind": "group",
+      "count": 3,
+      "body_scale": "large_humanoid_demon",
+      "combat": 120,
+      "durability": 130,
+      "contract_owner": "canon_tayuya"
+    },
+    "summon.nagato_animal_path": {
+      "kind": "contract_pool",
+      "count": 1,
+      "body_scale": "variable_giant_animal",
+      "combat": 165,
+      "special_shared_vision": true,
+      "contract_owner": "canon_nagato"
+    },
+    "summon.ibiki_torture_chamber": {
+      "kind": "constructed_object",
+      "count": 1,
+      "combat": 0,
+      "restraint": 160,
+      "contract_owner": "canon_ibiki"
+    }
+  },
+  "resolution": {
+    "summoning_cost": "technique registered chakra cost * entity size factor",
+    "availability": "must be true in this registry or exact current scene state",
+    "injuries_persist": true,
+    "no_unregistered_summon": true
+  }
+}

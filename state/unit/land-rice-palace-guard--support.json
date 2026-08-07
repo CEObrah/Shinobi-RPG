@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_rice_palace_guard.support",
+  "name": "Land of Rice Fields Daimyo Guard, First Palace Team — Logistics Support Unit",
+  "owner": "force_land_rice_civilian_security",
+  "parent_force": "force_land_rice_civilian_security",
+  "parent_team": "team_land_rice_palace_guard",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "guard": 2
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.logistics",
+  "training": "train.civil.logistics",
+  "cohesion": 71,
+  "morale": 72,
+  "readiness": 82,
+  "location": "loc_land_rice_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/land-rice-palace-guard--support.json",
+  "battle_kernel_ref": "state/unit-kernel/land-rice-palace-guard--support.json",
+  "loadout_standard": "loadout_civil_guard"
+}

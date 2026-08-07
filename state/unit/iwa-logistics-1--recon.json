@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_logistics_1.recon",
+  "name": "Iwa Logistics Corps, First Field Support Team — Recon Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_logistics_1",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.recon",
+  "training": "train.iwa.recon",
+  "cohesion": 78,
+  "morale": 81,
+  "readiness": 83,
+  "location": "loc_iwa_logistics_yard",
+  "mission": "siege and supply support readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.05",
+  "stats_ref": "state/unit-capability/iwa-logistics-1--recon.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-logistics-1--recon.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

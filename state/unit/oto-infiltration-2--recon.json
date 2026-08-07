@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_oto_infiltration_2.recon",
+  "name": "Oto Field Network, Second Infiltration Team — Recon Unit",
+  "owner": "force_oto_network",
+  "parent_force": "force_oto_network",
+  "parent_team": "team_oto_infiltration_2",
+  "troop_type": "infiltrators",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 8
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 5,
+    "genin": 1,
+    "special_jonin": 2
+  },
+  "condition": {
+    "healthy": 7,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.oto.recon",
+  "training": "train.oto.recon",
+  "cohesion": 70,
+  "morale": 74,
+  "readiness": 86,
+  "location": "loc_rice_fields",
+  "mission": "distributed infiltration readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/oto-infiltration-2--recon.json",
+  "battle_kernel_ref": "state/unit-kernel/oto-infiltration-2--recon.json",
+  "loadout_standard": "loadout_oto_infiltration"
+}

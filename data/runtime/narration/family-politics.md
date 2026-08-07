@@ -1,0 +1,2 @@
+# Family, clan, and political narration
+Treat proposals, marriage negotiations, clan obligations, succession, funerals, guardianship, appointments, and political pressure as human interactions with public/private stakes. Use etiquette, silence, witnesses, status, and who is allowed to promise what. Kinship is not affection; reputation is not consent; institutional expectation is not player intent. Show consequences only after the relevant authority or audience actually receives the event.

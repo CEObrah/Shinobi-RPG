@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "effect_profile"
+  ],
+  "properties": {
+    "schema": {
+      "const": "technique-effect-profile.v1"
+    }
+  },
+  "additionalProperties": true
+}

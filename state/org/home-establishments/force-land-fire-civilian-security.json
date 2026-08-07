@@ -1,0 +1,23 @@
+{
+  "schema": "home_establishment_owner.v2",
+  "record": {
+    "id": "establishment.force_land_fire_civilian_security",
+    "owner_id": "force_land_fire_civilian_security",
+    "owner_type": "world_force",
+    "category": "institutional_security",
+    "formation_library_ref": "formation.conventional.standard",
+    "reconstitution_policy_ref": "reconstitution.conventional",
+    "unit_series": [],
+    "standing_procedure_ref": "procedure.shinobi_village.standard",
+    "command_structure": {
+      "home_command": "institutional",
+      "unit_command": "materialize from appointments/qualified cadre when causally relevant",
+      "succession": "follow owner doctrine and valid appointment authority",
+      "default_commander_profile_ref": "command_profile.shinobi_unit_standard"
+    },
+    "materialized_team_refs": [
+      "team_land_fire_palace_guard"
+    ],
+    "series_rule_ref": "establishment.rule.standard"
+  }
+}

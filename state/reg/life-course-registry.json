@@ -1,0 +1,27 @@
+{
+  "owner_id": "life_course_registry",
+  "owner_type": "life_course_registry",
+  "process_state": {
+    "birthday_events": 0,
+    "career_events": 0,
+    "completed_reviews": 0,
+    "deaths": 0,
+    "id": "process_named_character_life_course",
+    "injury_events": 0,
+    "last_settled_at": "SE-0061-02-05T07:00:00",
+    "location_events": 0,
+    "retirements": 0,
+    "family_events": 0
+  },
+  "rules": {
+    "birthdays_exact_when_birth_date_known": true,
+    "career_and_mission_changes_require_autonomous_npc_authority": true,
+    "monthly_batch": true,
+    "no_player_life_choice": true,
+    "player_age_updates_only": true,
+    "family_lifecycle_ref": "data/mechanics/family.json",
+    "family_events_use_existing_life_course_clock": true,
+    "player_marriage_parenthood_choices_protected": true
+  },
+  "schema": "life-course-registry.v38"
+}

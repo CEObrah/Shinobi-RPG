@@ -1,0 +1,52 @@
+{
+  "schema": "item-maneuvers-shard.v1",
+  "maneuver_packages": {
+    "MP_SENBON": {
+      "weapon_family": "senbon",
+      "maneuvers": {
+        "precision_throw": {
+          "name": "Precision throw",
+          "base_startup_s": 0.36,
+          "contact_window_s": 0.02,
+          "base_recovery_s": 0.2,
+          "geometry": "projectile_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 2,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "projectile range and travel",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "multi_senbon_throw": {
+          "name": "Multiple senbon throw",
+          "base_startup_s": 0.58,
+          "contact_window_s": 0.05,
+          "base_recovery_s": 0.34,
+          "geometry": "narrow_projectile_fan",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "multiple ready senbon",
+          "accuracy_modifier": -1,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

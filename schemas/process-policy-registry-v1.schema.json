@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "policy_templates",
+    "routine_profiles",
+    "resolution_rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "process-policy-registry.v1"
+    }
+  },
+  "additionalProperties": true
+}

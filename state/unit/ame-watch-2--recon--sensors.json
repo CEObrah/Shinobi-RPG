@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_watch_2.recon.sensors",
+  "name": "Ame Eastern Bridge Command, First Control Team — Recon Unit — Sensors Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_watch_2",
+  "troop_type": "sensors",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.recon",
+  "training": "train.ame.recon",
+  "cohesion": 65,
+  "morale": 71,
+  "readiness": 85,
+  "location": "loc_ame_eastern_bridge",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/ame-watch-2--recon--sensors.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-watch-2--recon--sensors.json",
+  "loadout_standard": "loadout_ame_urban"
+}

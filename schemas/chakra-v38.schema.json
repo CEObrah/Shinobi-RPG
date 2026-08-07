@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "resource_shape",
+    "formulas",
+    "control_margin_bands",
+    "resource_rules",
+    "exhaustion_thresholds"
+  ],
+  "properties": {
+    "schema": {
+      "const": "chakra-mechanics.v38"
+    },
+    "resource_shape": {
+      "type": "object"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "control_margin_bands": {
+      "type": "object"
+    },
+    "resource_rules": {
+      "type": "array"
+    },
+    "exhaustion_thresholds": {
+      "type": "object"
+    }
+  }
+}

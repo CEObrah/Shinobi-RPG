@@ -1,0 +1,30 @@
+{
+  "schema": "genjutsu-mechanics.v38",
+  "formulas": {
+    "attack_score": "method_mastery + 0.35*chakra_control + 0.25*Intelligence + 0.20*genjutsu_domain + 0.20*feature_or_delivery_bonus - fatigue - injury",
+    "resistance_score": "0.30*Composure + 0.25*Awareness + 0.20*chakra_control + 0.15*genjutsu_domain + 0.10*relevant_sensory_mastery + preparation",
+    "margin": "attack_score-resistance_score",
+    "self_release_score": "0.35*chakra_control + 0.30*Composure + 0.20*genjutsu_domain + 0.15*recognition_evidence + release_method_bonus",
+    "self_release_margin": "self_release_score - illusion_hold_score",
+    "ally_release_score": "ally_method_mastery + 0.35*ally_chakra_control + 0.20*ally_awareness - interference_penalty"
+  },
+  "margin_bands": {
+    "<=-20": "detected_and_resisted",
+    "-19_to_-1": "detected_or_weak_partial",
+    "0_to_14": "functional_illusion",
+    "15_to_29": "strong_control",
+    "30_plus": "deep_control_subject_to_technique_limits"
+  },
+  "release_methods": [
+    "self_disruption with sufficient awareness/control",
+    "ally chakra disruption",
+    "registered pain/disruption if technique permits",
+    "specific counter-technique"
+  ],
+  "rule": "No genjutsu can create knowledge the caster does not possess or ignore its registered delivery channel.",
+  "release_margin_bands": {
+    "<0": "release_fails",
+    "0_to_14": "release_after_registered_delay",
+    "15_plus": "clean_release"
+  }
+}

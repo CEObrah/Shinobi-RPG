@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_mist_4.assault",
+  "name": "Kiri Southern Island Patrol, First Mist Team — Assault Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_mist_4",
+  "troop_type": "mist_assault",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 9
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 5,
+    "genin": 2,
+    "special_jonin": 2
+  },
+  "condition": {
+    "healthy": 8,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.assault",
+  "training": "train.kiri.assault",
+  "cohesion": 73,
+  "morale": 65,
+  "readiness": 80,
+  "location": "loc_water_southern_islands",
+  "mission": "southern island patrol readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/kiri-mist-4--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-mist-4--assault.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

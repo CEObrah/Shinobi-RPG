@@ -1,0 +1,138 @@
+{
+  "schema": "force.v38",
+  "id": "force_yuga_service",
+  "name": "Force Yuga Service",
+  "total": 600,
+  "unit_claims": [
+    {
+      "source": "migrated_v31_tactical_units",
+      "count": 50
+    }
+  ],
+  "availability": {
+    "deployed": 50,
+    "ready_24h": 99,
+    "mobilizable_7d": 176,
+    "mobilizable_30d": 121,
+    "training_or_instruction": 66,
+    "medical_or_recovery": 0,
+    "essential_fixed_duty": 88
+  },
+  "all_personnel_real": true,
+  "military_identity": [
+    "declining military tradition",
+    "local security emphasis"
+  ],
+  "home_establishment_ref": "establishment.force_yuga_service",
+  "formation_library_ref": "formation.shinobi_village.standard",
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "standing_procedure_ref": "procedure.shinobi_village.standard",
+  "troop_pools": [
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.field_ready",
+      "count": 165,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_yuga_service.field_ready",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "accounting_only": true,
+      "accounting_scale": "operational_100",
+      "capability_ref": "state/manpower-capability/force-yuga-service-field-ready.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.garrison_security",
+      "count": 121,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_yuga_service.garrison_security",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "accounting_only": true,
+      "accounting_scale": "operational_100",
+      "capability_ref": "state/manpower-capability/force-yuga-service-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.intelligence_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_yuga_service.intelligence_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "accounting_only": true,
+      "accounting_scale": "tactical_25",
+      "capability_ref": "state/manpower-capability/force-yuga-service-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.medical_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_yuga_service.medical_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "accounting_only": true,
+      "accounting_scale": "tactical_25",
+      "capability_ref": "state/manpower-capability/force-yuga-service-medical-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.logistics_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_yuga_service.logistics_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "accounting_only": true,
+      "accounting_scale": "tactical_25",
+      "capability_ref": "state/manpower-capability/force-yuga-service-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.training_instruction",
+      "count": 77,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_yuga_service.training_instruction",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "accounting_only": true,
+      "accounting_scale": "tactical_25",
+      "capability_ref": "state/manpower-capability/force-yuga-service-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_yuga_service.reserve_recovery",
+      "count": 121,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_yuga_service.reserve_recovery",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "accounting_only": true,
+      "accounting_scale": "operational_100",
+      "capability_ref": "state/manpower-capability/force-yuga-service-reserve-recovery.json"
+    }
+  ],
+  "accounting_only": true
+}

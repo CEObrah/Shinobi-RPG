@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_capture_2.assault.line-combatants",
+  "name": "Konoha Capture Division, Second Tactical Team — Assault Unit — Line Combatants Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_capture_2",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "special_jonin": 1,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 5,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.assault",
+  "training": "train.konoha.assault",
+  "cohesion": 72,
+  "morale": 77,
+  "readiness": 86,
+  "location": "loc_konoha",
+  "mission": "capture and prisoner transport readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/konoha-capture-2--assault--line-combatants.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-capture-2--assault--line-combatants.json",
+  "loadout_standard": "loadout_konoha_flak"
+}

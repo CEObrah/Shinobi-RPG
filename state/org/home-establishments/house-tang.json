@@ -1,0 +1,22 @@
+{
+  "schema": "home_establishment_owner.v2",
+  "record": {
+    "id": "establishment.house.tang",
+    "owner_id": "house.tang",
+    "owner_type": "house",
+    "category": "house_institutional_force",
+    "source_force_ref": "state/house/units.json",
+    "formation_library_ref": "formation.house_tang.standard",
+    "reconstitution_policy_ref": "reconstitution.house_tang",
+    "unit_series": [],
+    "player_exception": "pc_wei_tang personal units and raw personnel explicitly assigned for Wei to organize are not predefined.",
+    "standing_procedure_ref": "procedure.house_tang.standard",
+    "command_structure": {
+      "home_command": "institutional",
+      "unit_command": "materialize from appointments/qualified cadre when causally relevant",
+      "succession": "follow owner doctrine and valid appointment authority",
+      "default_commander_profile_ref": "command_profile.shinobi_unit_standard"
+    },
+    "series_rule_ref": "establishment.rule.standard"
+  }
+}

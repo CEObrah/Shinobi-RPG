@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability.v1",
+  "id": "capability.civil.water.trained_reserve",
+  "pool_id": "civil.water.trained_reserve",
+  "source_owner": "force.civil.water",
+  "stats": {
+    "attributes": {
+      "strength": 40,
+      "endurance": 42,
+      "awareness": 37
+    },
+    "skills": {
+      "weapons": 42,
+      "formation": 41,
+      "tactics": 28
+    },
+    "morale": 56,
+    "discipline": 50,
+    "experience": 38
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 169,
+      "sd": 5.9
+    },
+    "weight_kg": {
+      "mean": 63,
+      "sd": 7.4
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 86,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

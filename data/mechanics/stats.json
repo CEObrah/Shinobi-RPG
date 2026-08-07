@@ -1,0 +1,22 @@
+{
+  "schema": "stats-mechanics.v38",
+  "attribute_scale": {
+    "minimum": 0,
+    "ordinary_reference_max": 200
+  },
+  "formulas": {
+    "attribute_support": "floor(10*sqrt(attribute/10))",
+    "universal_action_score": "relevant_skill_or_method_mastery + primary_attribute_support + floor(secondary_attribute_support/2) + equipment + preparation + position + team - fatigue - injury - external_load - disruption - environment"
+  },
+  "margin_bands": {
+    "<=-30": "severe_counter",
+    "-29_to_-15": "failure_with_positional_loss",
+    "-14_to_-5": "weak_or_deflected",
+    "-4_to_4": "glancing_or_contested",
+    "5_to_14": "solid",
+    "15_to_29": "precise",
+    "30_to_44": "decisive",
+    "45_plus": "overwhelming_if_physically_possible"
+  },
+  "rule": "Use a subsystem-specific resolver whenever one exists. The universal action score is only the registered fallback for actions without a more specific mechanical kernel."
+}

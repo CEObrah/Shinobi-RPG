@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_yuga_route_patrol_1.support.logistics",
+  "name": "Yuga Hot-Springs Route Patrol, First Tactical Team — Logistics Support Unit",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "parent_team": "team_yuga_route_patrol_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 4
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 2,
+    "chunin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 3,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.yuga.logistics",
+  "training": "train.yuga.logistics",
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_hot_water_trade_route",
+  "mission": "commercial route patrol readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/yuga-route-patrol-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/yuga-route-patrol-1--support--logistics.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_2.recon.sensors",
+  "name": "Kumo Capital Guard, First Shock Team — Recon Unit — Sensors Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_2",
+  "troop_type": "sensors",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "support": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.recon",
+  "training": "train.kumo.recon",
+  "cohesion": 76,
+  "morale": 73,
+  "readiness": 86,
+  "location": "loc_kumo_perimeter",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/kumo-assault-2--recon--sensors.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-2--recon--sensors.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

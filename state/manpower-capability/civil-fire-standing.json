@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability.v1",
+  "id": "capability.civil.fire.standing",
+  "pool_id": "civil.fire.standing",
+  "source_owner": "force.civil.fire",
+  "stats": {
+    "attributes": {
+      "strength": 55,
+      "endurance": 56,
+      "awareness": 50
+    },
+    "skills": {
+      "weapons": 56,
+      "formation": 58,
+      "tactics": 44
+    },
+    "morale": 60,
+    "discipline": 56,
+    "experience": 36
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 166,
+      "sd": 6.8
+    },
+    "weight_kg": {
+      "mean": 62,
+      "sd": 7.7
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 103,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

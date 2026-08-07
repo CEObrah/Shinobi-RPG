@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_oto_laboratory_security_1",
+  "name": "Oto Laboratory Network, First Security Team",
+  "owner": "force_oto_network",
+  "parent_force": "force_oto_network",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_oto_laboratory_security_1.assault.experimental-combatants",
+    "unit_oto_laboratory_security_1.assault.retrieval",
+    "unit_oto_laboratory_security_1.recon",
+    "unit_oto_laboratory_security_1.support.medics",
+    "unit_oto_laboratory_security_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.oto.field",
+  "training": "train.oto.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 74,
+  "morale": 66,
+  "readiness": 81,
+  "location": "loc_oto_hidden_laboratory",
+  "mission": "laboratory security readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 2
+        },
+        "loadout": "loadout_oto_infiltration",
+        "condition": {
+          "healthy": 1,
+          "light_healing_injury": 1
+        },
+        "readiness": 81,
+        "capability": {
+          "attributes.awareness": [
+            69.0,
+            4.0,
+            65.0,
+            73.0
+          ],
+          "attributes.composure": [
+            70.0,
+            1.0,
+            69.0,
+            71.0
+          ],
+          "attributes.intelligence": [
+            72.5,
+            4.5,
+            68.0,
+            77.0
+          ],
+          "attributes.presence": [
+            62.0,
+            8.0,
+            54.0,
+            70.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            69.5,
+            0.5,
+            69.0,
+            70.0
+          ],
+          "chakra_dimensions.control": [
+            73.0,
+            1.0,
+            72.0,
+            74.0
+          ],
+          "chakra_dimensions.multitasking": [
+            69.5,
+            2.5,
+            67.0,
+            72.0
+          ],
+          "operational_skills.leadership": [
+            61.0,
+            4.0,
+            57.0,
+            65.0
+          ],
+          "operational_skills.tactics": [
+            67.0,
+            2.0,
+            65.0,
+            69.0
+          ],
+          "operational_skills.team_coordination": [
+            71.0,
+            4.0,
+            67.0,
+            75.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

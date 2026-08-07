@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_oasis_1.support.medics",
+  "name": "Suna Oasis Defense Command, First Guard Team — Support Unit — Medics Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_oasis_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.medical",
+  "training": "train.suna.medical",
+  "cohesion": 71,
+  "morale": 70,
+  "readiness": 84,
+  "location": "loc_wind_major_oasis",
+  "mission": "water-source and oasis defense",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/suna-oasis-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-oasis-1--support--medics.json",
+  "loadout_standard": "loadout_suna_desert"
+}

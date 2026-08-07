@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_wind_1.support.medics",
+  "name": "Suna Wind Corps, First Suppression Team — Support Unit — Medics Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_wind_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.medical",
+  "training": "train.suna.medical",
+  "cohesion": 80,
+  "morale": 75,
+  "readiness": 82,
+  "location": "loc_suna",
+  "mission": "range control and wind suppression readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/suna-wind-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-wind-1--support--medics.json",
+  "loadout_standard": "loadout_suna_desert"
+}

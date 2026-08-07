@@ -1,0 +1,63 @@
+{
+  "schema": "injury-mechanics.v38",
+  "scale": "0-200 severity channels",
+  "formulas": {
+    "armor_integrity_factor": "clamp(current_integrity / integrity_max, 0, 1)",
+    "effective_armor_protection": "armor.protection * armor_integrity_factor",
+    "post_protection_severity": "max(0, incoming_severity - 6*effective_armor_protection - situational_barrier_reduction)",
+    "bleeding_rate": "wound_bleed_base * vascular_location_factor * (1 - treatment_fraction)",
+    "shock_load": "0.45*pain + 0.35*blood_loss_percent + 0.20*organ_trauma",
+    "blood_loss_percent_per_minute": "100 * bleeding_rate_ml_per_min / blood_volume_ml",
+    "blood_volume_ml": "70 * body_mass_kg",
+    "location_function_loss": "wound_tier_penalty * location_importance_factor",
+    "consciousness_score": "Composure + Endurance - shock_load - brain_injury_penalty - oxygen_deprivation_penalty"
+  },
+  "wound_tiers": {
+    "0-9": "none_or_superficial",
+    "10-24": "minor",
+    "25-49": "moderate",
+    "50-79": "serious",
+    "80-119": "severe",
+    "120-159": "critical",
+    "160-200": "catastrophic"
+  },
+  "required_channels": [
+    "cut",
+    "pierce",
+    "blunt",
+    "burn",
+    "electrical",
+    "crush",
+    "organ_trauma",
+    "fracture",
+    "tendon_joint",
+    "chakra_pathway",
+    "pain",
+    "bleeding",
+    "shock",
+    "consciousness"
+  ],
+  "incapacitation": {
+    "shock_100": "major impairment",
+    "shock_140": "collapse check becomes deterministic against composure+endurance",
+    "shock_180": "unconscious unless specific state prevents",
+    "blood_loss_40_percent": "critical",
+    "blood_loss_50_percent": "normally fatal without immediate exceptional intervention"
+  },
+  "functional_penalties": {
+    "none_or_superficial": 0,
+    "minor": 3,
+    "moderate": 10,
+    "serious": 22,
+    "severe": 40,
+    "critical": 65,
+    "catastrophic": 100
+  },
+  "consciousness_bands": {
+    "<0": "unconscious",
+    "0_to_29": "barely_conscious",
+    "30_to_59": "severely_impaired",
+    "60_plus": "conscious_subject_to_specific_injury"
+  },
+  "death_rule": "Death requires a registered lethal anatomical state, irreversible physiology, or a dying-clock expiry. Narrative severity alone cannot kill or spare a character."
+}

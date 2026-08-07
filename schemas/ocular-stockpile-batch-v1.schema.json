@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "unique_asset_count",
+    "available_ordinal_ranges",
+    "id_template",
+    "prototype",
+    "allocation_rule",
+    "regeneration_forbidden"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ocular-stockpile-batch.v1"
+    },
+    "unique_asset_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "available_ordinal_ranges": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "prototype": {
+      "type": "object"
+    },
+    "regeneration_forbidden": {
+      "const": true
+    }
+  },
+  "additionalProperties": true
+}

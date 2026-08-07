@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_route_denial_1.ranged_control",
+  "name": "Iwa Route-Denial Command, First Tactical Team — Ranged Control Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_route_denial_1",
+  "troop_type": "demolition",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3
+  },
+  "condition": {
+    "healthy": 2,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.ranged_control",
+  "training": "train.iwa.ranged_control",
+  "cohesion": 79,
+  "morale": 76,
+  "readiness": 84,
+  "location": "loc_earth_mountain_routes",
+  "mission": "mountain route denial readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/iwa-route-denial-1--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-route-denial-1--ranged_control.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

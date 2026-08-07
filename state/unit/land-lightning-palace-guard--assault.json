@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_lightning_palace_guard.assault",
+  "name": "Land of Lightning Daimyo Guard, First Palace Team — Assault Unit",
+  "owner": "force_land_lightning_civilian_security",
+  "parent_force": "force_land_lightning_civilian_security",
+  "parent_team": "team_land_lightning_palace_guard",
+  "troop_type": "guards",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 16
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "guard": 14,
+    "senior_guard": 1,
+    "support": 1
+  },
+  "condition": {
+    "healthy": 16
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.assault",
+  "training": "train.civil.assault",
+  "cohesion": 71,
+  "morale": 68,
+  "readiness": 82,
+  "location": "loc_land_lightning_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/land-lightning-palace-guard--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/land-lightning-palace-guard--assault.json",
+  "loadout_standard": "loadout_civil_guard"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_mist_3.support.logistics",
+  "name": "Kiri Capital Canal Guard, First Mist Team — Logistics Support Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_mist_3",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 2,
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.logistics",
+  "training": "train.kiri.logistics",
+  "cohesion": 72,
+  "morale": 66,
+  "readiness": 89,
+  "location": "loc_kiri_capital_canals",
+  "mission": "capital canal defense readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/kiri-mist-3--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-mist-3--support--logistics.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

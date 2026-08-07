@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_anbu_2.assault.line-combatants",
+  "name": "Konoha ANBU Operations, Second Tactical Team — Assault Unit — Line Combatants Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_anbu_2",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "anbu_qualified",
+  "rank_distribution": {
+    "special_jonin_or_anbu_specialist": 3,
+    "anbu_operatives": 3
+  },
+  "condition": {
+    "healthy": 5,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.assault",
+  "training": "train.konoha.assault",
+  "cohesion": 81,
+  "morale": 73,
+  "readiness": 83,
+  "location": "loc_konoha_anbu_headquarters",
+  "mission": "ANBU-qualified covert operations readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.16",
+  "stats_ref": "state/unit-capability/konoha-anbu-2--assault--line-combatants.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-anbu-2--assault--line-combatants.json",
+  "loadout_standard": "loadout_anbu"
+}

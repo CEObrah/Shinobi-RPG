@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_ame_watch_4",
+  "name": "Ame Drainage Network Watch, First Control Team",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_ame_watch_4.assault.bridge-control",
+    "unit_ame_watch_4.assault.rooftop-assault",
+    "unit_ame_watch_4.recon.sensors",
+    "unit_ame_watch_4.recon.surveillance",
+    "unit_ame_watch_4.support.medics",
+    "unit_ame_watch_4.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.ame.field",
+  "training": "train.ame.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 67,
+  "morale": 65,
+  "readiness": 87,
+  "location": "loc_ame_drainage_network",
+  "mission": "drainage network surveillance readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 2
+        },
+        "loadout": "loadout_ame_urban",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 87,
+        "capability": {
+          "attributes.awareness": [
+            51.0,
+            0.0,
+            51.0,
+            51.0
+          ],
+          "attributes.composure": [
+            57.5,
+            5.5,
+            52.0,
+            63.0
+          ],
+          "attributes.intelligence": [
+            65.5,
+            1.5,
+            64.0,
+            67.0
+          ],
+          "attributes.presence": [
+            56.0,
+            0.0,
+            56.0,
+            56.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            56.5,
+            0.5,
+            56.0,
+            57.0
+          ],
+          "chakra_dimensions.control": [
+            50.0,
+            3.0,
+            47.0,
+            53.0
+          ],
+          "chakra_dimensions.multitasking": [
+            58.5,
+            4.5,
+            54.0,
+            63.0
+          ],
+          "operational_skills.leadership": [
+            58.0,
+            1.0,
+            57.0,
+            59.0
+          ],
+          "operational_skills.tactics": [
+            61.5,
+            2.5,
+            59.0,
+            64.0
+          ],
+          "operational_skills.team_coordination": [
+            62.5,
+            0.5,
+            62.0,
+            63.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "chakra-mechanics.v38",
+  "resource_shape": {
+    "chakra": [
+      "capacity",
+      "current"
+    ],
+    "health": [
+      "capacity",
+      "current"
+    ],
+    "fatigue": [
+      "capacity",
+      "current"
+    ],
+    "strain": [
+      "safe_capacity",
+      "current"
+    ]
+  },
+  "formulas": {
+    "technique_control_score": "method_mastery + 0.35*chakra_control + 0.25*casting_stability + 0.20*relevant_domain + 0.20*relevant_attribute_support - fatigue_penalty - injury_penalty - disruption_penalty",
+    "technique_control_margin": "technique_control_score - control_demand",
+    "technique_output_score": "0.45*chakra_output + 0.30*method_mastery + 0.25*relevant_domain - fatigue_penalty - injury_penalty - suppression_penalty",
+    "technique_output_margin": "technique_output_score - output_demand",
+    "chakra_efficiency_factor": "clamp(1 + (100-chakra_efficiency)/250 + max(0,control_demand-chakra_control)/400,0.55,1.50)",
+    "startup_chakra_cost": "base_chakra_load * chakra_efficiency_factor * subsystem_cost_multiplier",
+    "sustain_chakra_cost_per_6s": "sustained_chakra_per_6s * chakra_efficiency_factor * subsystem_cost_multiplier",
+    "chakra_fraction": "current_chakra / chakra_capacity",
+    "rest_recovery_per_hour": "chakra_capacity * clamp(0.03 + Endurance/1000 + recovery_quality/1000,0.03,0.20)"
+  },
+  "control_margin_bands": {
+    "<=-20": "fails_before_stable_release",
+    "-19_to_-1": "unstable_or_partial_if_technique_allows",
+    "0_to_14": "functional",
+    "15_to_29": "clean",
+    "30_plus": "high_control_within_registered_limits"
+  },
+  "resource_rules": [
+    "Costs are paid before release at the registered resolution phase.",
+    "Current chakra may not become negative; insufficient chakra prevents legal release unless a registered sacrifice mechanic explicitly overrides.",
+    "Subsystem multipliers include dōjutsu transplant inefficiency, seals, transformations, or other registered mechanics and default to 1.0.",
+    "High mastery never makes a technique free unless its registered base cost is zero."
+  ],
+  "exhaustion_thresholds": {
+    "0_to_0.05": "critical_chakra_exhaustion",
+    "0.05_to_0.20": "severe_chakra_fatigue",
+    "0.20_to_0.40": "noticeable_chakra_fatigue",
+    "0.40_to_1.00": "no_automatic_chakra_exhaustion_penalty"
+  }
+}

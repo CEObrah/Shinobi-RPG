@@ -1,0 +1,139 @@
+{
+  "schema": "force.v38",
+  "id": "force_kumo_shinobi",
+  "name": "Force Kumo Shinobi",
+  "total": 10000,
+  "unit_claims": [
+    {
+      "source": "migrated_v31_tactical_units",
+      "count": 325
+    }
+  ],
+  "availability": {
+    "deployed": 325,
+    "ready_24h": 1741,
+    "mobilizable_7d": 3096,
+    "mobilizable_30d": 2128,
+    "training_or_instruction": 1161,
+    "medical_or_recovery": 0,
+    "essential_fixed_duty": 1549
+  },
+  "all_personnel_real": true,
+  "military_identity": [
+    "military investment",
+    "lightning assault",
+    "physical conditioning"
+  ],
+  "home_establishment_ref": "establishment.force_kumo_shinobi",
+  "formation_library_ref": "formation.shinobi_village.standard",
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "standing_procedure_ref": "procedure.shinobi_village.standard",
+  "troop_pools": [
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.field_ready",
+      "count": 2902,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_kumo_shinobi.field_ready",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-field-ready.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.garrison_security",
+      "count": 2128,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_kumo_shinobi.garrison_security",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.intelligence_support",
+      "count": 387,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_kumo_shinobi.intelligence_support",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.medical_support",
+      "count": 387,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_kumo_shinobi.medical_support",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-medical-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.logistics_support",
+      "count": 387,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_kumo_shinobi.logistics_support",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.training_instruction",
+      "count": 1355,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_kumo_shinobi.training_instruction",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_kumo_shinobi.reserve_recovery",
+      "count": 2129,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_kumo_shinobi.reserve_recovery",
+      "doctrine": "doc.force_kumo_shinobi.field",
+      "training": "train.force_kumo_shinobi.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-kumo-shinobi-reserve-recovery.json"
+    }
+  ],
+  "accounting_only": true
+}

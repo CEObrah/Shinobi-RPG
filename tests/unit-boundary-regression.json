@@ -1,0 +1,49 @@
+{
+  "schema": "unit-boundary-regression.v1",
+  "game": "shinobi",
+  "cases": [
+    {
+      "id": "partial_loadout_requires_split",
+      "given": {
+        "troop_type": "general_shinobi",
+        "count": 40,
+        "loadout": "A"
+      },
+      "order": "give 10 a different standard loadout B",
+      "expected_units": [
+        {
+          "count": 30,
+          "troop_type": "general_shinobi",
+          "loadout": "A"
+        },
+        {
+          "count": 10,
+          "troop_type": "general_shinobi",
+          "loadout": "B"
+        }
+      ],
+      "conservation": [
+        "personnel=40",
+        "no free equipment"
+      ]
+    },
+    {
+      "id": "commander_can_control_multiple_units",
+      "given": [
+        "30 general_shinobi",
+        "10 sensors"
+      ],
+      "expected": "two units may share one commander/team; never merge troop types"
+    },
+    {
+      "id": "medical_not_default_assault",
+      "given": "medical_nin unit attached to team",
+      "expected": "treatment/extraction support; no default assault frontage; self-defense/explicit commitment remains legal"
+    },
+    {
+      "id": "split_no_quality_selection",
+      "given": "aggregate unit with no named selected members",
+      "expected": "deterministic proportional partition; no child silently receives the best personnel"
+    }
+  ]
+}

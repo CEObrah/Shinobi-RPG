@@ -1,0 +1,81 @@
+{
+  "schema": "effect-resolvers.v38",
+  "version": "3.8",
+  "authority": "Deterministic action-level effect resolvers for technique effect profiles.",
+  "resolvers": {
+    "qualification_only": {
+      "standalone_action": false,
+      "resolution": "Satisfies only explicitly registered prerequisites or passive state. Direct activation as an action returns invalid_action.",
+      "output_fields": [
+        "prerequisite_satisfied"
+      ]
+    },
+    "equipment_qualification": {
+      "standalone_action": false,
+      "resolution": "Technique records proficiency/compatibility only. Weapon physics and unique functions resolve from the named-item registry and unique-item module registry.",
+      "output_fields": [
+        "equipment_proficiency_available"
+      ]
+    },
+    "operational_check": {
+      "standalone_action": true,
+      "capacity_formula": "0.50*method_mastery + 0.30*primary_skill + 0.20*primary_attribute - fatigue_penalty - injury_penalty",
+      "contested_margin": "capacity - opposing_capacity",
+      "unopposed_margin": "capacity - (base_difficulty + registered_environment_modifier)",
+      "margin_bands": {
+        "<0": "failure",
+        "0..14": "functional",
+        "15..29": "clean",
+        ">=30": "superior"
+      },
+      "rule": "The opposing capacity or environment modifier must be a saved numeric input before resolution; model prose may not substitute an unrecorded modifier."
+    },
+    "communication_action": {
+      "standalone_action": true,
+      "capacity_formula": "0.50*method_mastery + 0.30*team_coordination + 0.20*intelligence - interference",
+      "success": "capacity >= control_demand and receiver/channel are valid",
+      "delivery_time_formula": "startup_seconds + base_seal_seconds + release_seconds",
+      "rule": "Message content is player/NPC intent, never created by the resolver."
+    },
+    "medical_action": {
+      "standalone_action": true,
+      "capacity_formula": "0.45*method_mastery + 0.35*medicine + 0.20*intelligence",
+      "margin_formula": "capacity + facility_support + assistant_support - procedure_difficulty",
+      "authority": "data/mechanics/medical.json"
+    },
+    "movement_action": {
+      "standalone_action": true,
+      "capacity_formula": "0.45*method_mastery + 0.30*movement + 0.25*coordination - fatigue_penalty - injury_penalty",
+      "authority": "data/mechanics/body.json",
+      "rule": "No movement method becomes teleportation unless its effect profile explicitly says spacetime_transport=true."
+    },
+    "close_combat_method": {
+      "standalone_action": true,
+      "attack_control_formula": "0.45*method_mastery + 0.35*relevant_martial_skill + 0.20*coordination + technique_control_bonus",
+      "effect": "After contact, apply registered impact/penetration/chakra-disruption parameters through data/mechanics/injury.json."
+    },
+    "entity_control_action": {
+      "standalone_action": true,
+      "capacity_formula": "0.50*method_mastery + 0.30*chakra_control + 0.20*multitasking_support",
+      "rule": "Every physical entity/clone/puppet/summon/swarm must resolve to a registered entity state and conserved resources before it acts."
+    },
+    "terrain_action": {
+      "standalone_action": true,
+      "capacity_formula": "0.45*method_mastery + 0.30*chakra_control + 0.25*relevant_domain - fatigue_penalty",
+      "rule": "Terrain change is limited to the exact geometry, displacement, integrity and force in the technique effect profile."
+    },
+    "sensory_action": {
+      "standalone_action": true,
+      "authority": "data/mechanics/perception.json",
+      "rule": "Detection can reveal only information supported by the registered sensory channel."
+    },
+    "special_system": {
+      "standalone_action": true,
+      "rule": "Resolve only through the effect profile system_ref/special_case parameters. Missing required special state returns invalid_action."
+    },
+    "primitive_passthrough": {
+      "standalone_action": true,
+      "rule": "Use the technique mechanical_base primitive plus the full registered physical_profile. No additional narrative effect is legal."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_watch_4.recon.surveillance",
+  "name": "Ame Drainage Network Watch, First Control Team — Recon Unit — Surveillance Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_watch_4",
+  "troop_type": "surveillance",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 8
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "jonin": 1,
+    "special_jonin": 2,
+    "chunin": 3,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 6,
+    "light_healing_injury": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.recon",
+  "training": "train.ame.recon",
+  "cohesion": 67,
+  "morale": 65,
+  "readiness": 87,
+  "location": "loc_ame_drainage_network",
+  "mission": "drainage network surveillance readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.06",
+  "stats_ref": "state/unit-capability/ame-watch-4--recon--surveillance.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-watch-4--recon--surveillance.json",
+  "loadout_standard": "loadout_ame_urban"
+}

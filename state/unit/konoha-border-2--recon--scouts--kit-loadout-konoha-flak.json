@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_border_2.recon.scouts.kit-loadout-konoha-flak",
+  "name": "Konoha Eastern Border Company, Second Tactical Team — Recon Unit — Scouts Unit — loadout_konoha_flak",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_border_2",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "support": 1
+  },
+  "condition": {
+    "light_healing_injury": 2,
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.recon",
+  "training": "train.konoha.recon",
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 91,
+  "location": "loc_fire_eastern_border",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/konoha-border-2--recon--scouts--kit-loadout-konoha-flak.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-border-2--recon--scouts--kit-loadout-konoha-flak.json",
+  "loadout_standard": "loadout_konoha_flak"
+}

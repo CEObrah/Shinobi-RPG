@@ -1,0 +1,56 @@
+{
+  "schema": "faction-owner.v1",
+  "faction": {
+    "id": "faction.ame_security_network",
+    "name": "Ame Security Network",
+    "status": "active",
+    "leadership_ids": [
+      "canon_nagato"
+    ],
+    "key_member_ids": [
+      "canon_konan"
+    ],
+    "goal": "maintain Ame control, intelligence, and response capability",
+    "current_plan": "Maintain surveillance and rapid suppression capacity without exposing more leadership information than necessary.",
+    "resources": [
+      "local security cells",
+      "surveillance contacts",
+      "urban terrain familiarity"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.kumo_military_intelligence",
+        "relationship_type": "regional_intelligence_watch",
+        "stance": "wary",
+        "intensity": 45
+      },
+      {
+        "target_id": "faction.iwa_engineering_command",
+        "relationship_type": "regional_security_pressure",
+        "stance": "wary",
+        "intensity": 48
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "development_process_id": "process_living_world_monthly",
+    "notes": [
+      "Ordinary Ame capability remains distinct from its named-character ceiling."
+    ],
+    "goals": [
+      "protect current Ame leadership and internal control",
+      "detect infiltration and organized dissent"
+    ],
+    "constraints": [
+      "resource limits",
+      "weather and infrastructure",
+      "internal secrecy"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-02-05T07:00:00",
+      "wake_policy": "monthly review or immediate causal trigger/information delivery"
+    },
+    "scope": "Amegakure internal security, surveillance, urban response, and leadership protection",
+    "leadership_model": "centralized_security_network"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "rulers-domain-tests.v1",
+  "cases": [
+    {
+      "case": "outside_radius",
+      "distance_m": 10.01,
+      "expected": "no_domain_effect"
+    },
+    {
+      "case": "inside_radius",
+      "distance_m": 9.0,
+      "expected": "opposed_resistance_not_freeze"
+    },
+    {
+      "case": "focused_restraint",
+      "expected": "one_target_opposed_restraint_plus_extra_cost_and_weaker_broad_control"
+    },
+    {
+      "case": "projectile",
+      "expected": "no_automatic_neutralization"
+    },
+    {
+      "case": "unprotected_ally",
+      "expected": "ally_is_affected"
+    },
+    {
+      "case": "underground",
+      "expected": "atmospheric_field_does_not_control_underground_path"
+    }
+  ]
+}

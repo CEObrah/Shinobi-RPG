@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "primary_cycle",
+    "opposed_resolution",
+    "combined_natures",
+    "environment",
+    "rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "element-mechanics.v38"
+    },
+    "primary_cycle": {
+      "type": "object"
+    },
+    "opposed_resolution": {
+      "type": "object"
+    },
+    "combined_natures": {
+      "type": "object"
+    },
+    "environment": {
+      "type": "object"
+    },
+    "rule": {
+      "type": "string"
+    }
+  }
+}

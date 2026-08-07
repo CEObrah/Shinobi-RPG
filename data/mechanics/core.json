@@ -1,0 +1,36 @@
+{
+  "schema": "mechanics-core.v38",
+  "version": "3.8",
+  "rounding": "round_half_up_to_3_decimals_unless_integer_field",
+  "deterministic_by_default": true,
+  "rng": {
+    "allowed_only_for": "genuinely unresolved microscopic uncertainty with no owned causal fact",
+    "algorithm": "sha256_counter_u64",
+    "seed_source": "state.meta.world_seed + transaction_id + named_rng_stream",
+    "must_record_seed_and_draw_index": true,
+    "model_sampling_forbidden": true
+  },
+  "resolution_order": [
+    "validate_legality",
+    "lock_action_and_state_snapshot",
+    "perception_target_acquisition",
+    "pay_startup_costs",
+    "timing_interruptions",
+    "movement",
+    "contact",
+    "defense_counter",
+    "effect",
+    "protection",
+    "injury_status",
+    "displacement",
+    "equipment_damage",
+    "chakra_fatigue_strain",
+    "morale_triggers",
+    "knowledge_update",
+    "advance_time",
+    "settle_due_processes",
+    "validate_invariants",
+    "commit",
+    "narrate_committed_result"
+  ]
+}

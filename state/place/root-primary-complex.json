@@ -1,0 +1,163 @@
+{
+  "schema": "place.v38",
+  "id": "place.root.primary_complex",
+  "name": "Root Primary Complex",
+  "owner": "faction.root",
+  "visibility": "hidden_until_information_path",
+  "player_knowledge": {
+    "known_zones": [],
+    "known_access_routes": [],
+    "facility_known": false
+  },
+  "zones": [
+    {
+      "id": "root.zone.outer_approach",
+      "function": "concealed approach and patrol screen",
+      "access_tier": 0
+    },
+    {
+      "id": "root.zone.entry_checkpoint",
+      "function": "identity challenge, seal verification, and controlled entry",
+      "access_tier": 1
+    },
+    {
+      "id": "root.zone.operations_relay",
+      "function": "internal messages, mission routing, and compartment transfer",
+      "access_tier": 2
+    },
+    {
+      "id": "root.zone.training",
+      "function": "operative conditioning and controlled drills",
+      "access_tier": 2
+    },
+    {
+      "id": "root.zone.detention",
+      "function": "secure holding and interrogation support",
+      "access_tier": 3
+    },
+    {
+      "id": "root.zone.medical",
+      "function": "trauma care and controlled biological procedures",
+      "access_tier": 3
+    },
+    {
+      "id": "root.zone.biological_storage",
+      "function": "preserved biological assets and controlled custody",
+      "access_tier": 4
+    },
+    {
+      "id": "root.zone.archives",
+      "function": "compartmented records and original documents",
+      "access_tier": 4
+    },
+    {
+      "id": "root.zone.command",
+      "function": "Danzō command and highest-level briefings",
+      "access_tier": 4
+    },
+    {
+      "id": "root.zone.service_escape",
+      "function": "maintenance route and emergency egress",
+      "access_tier": 3
+    }
+  ],
+  "connections": [
+    [
+      "root.zone.outer_approach",
+      "root.zone.entry_checkpoint"
+    ],
+    [
+      "root.zone.entry_checkpoint",
+      "root.zone.operations_relay"
+    ],
+    [
+      "root.zone.operations_relay",
+      "root.zone.training"
+    ],
+    [
+      "root.zone.operations_relay",
+      "root.zone.detention"
+    ],
+    [
+      "root.zone.operations_relay",
+      "root.zone.medical"
+    ],
+    [
+      "root.zone.medical",
+      "root.zone.biological_storage"
+    ],
+    [
+      "root.zone.operations_relay",
+      "root.zone.archives"
+    ],
+    [
+      "root.zone.archives",
+      "root.zone.command"
+    ],
+    [
+      "root.zone.medical",
+      "root.zone.service_escape"
+    ],
+    [
+      "root.zone.command",
+      "root.zone.service_escape"
+    ]
+  ],
+  "security_elements": [
+    {
+      "id": "root.security.outer_patrol",
+      "zone_id": "root.zone.outer_approach",
+      "operator_owner_id": "faction.root",
+      "mechanic_ref": "data/mechanics/perception.json",
+      "strength": 118,
+      "readiness": 85,
+      "purpose": "detect repeated or poorly concealed approach patterns"
+    },
+    {
+      "id": "root.security.entry_seal",
+      "zone_id": "root.zone.entry_checkpoint",
+      "operator_owner_id": "support.root.seals.renji_kuroda",
+      "technique_ref": "root_seal_protocols",
+      "strength": 145,
+      "readiness": 95,
+      "purpose": "authenticate access and record tampering"
+    },
+    {
+      "id": "root.security.alarm_barrier",
+      "zone_id": "root.zone.operations_relay",
+      "operator_owner_id": "support.root.seals.renji_kuroda",
+      "technique_ref": "alarm_barrier",
+      "strength": 135,
+      "readiness": 90,
+      "purpose": "raise internal alarm when the barrier condition is violated"
+    },
+    {
+      "id": "root.security.archive_custody",
+      "zone_id": "root.zone.archives",
+      "operator_owner_id": "support.root.archives.misaki_takeda",
+      "mechanic_ref": "data/mechanics/sealing.json",
+      "strength": 150,
+      "readiness": 92,
+      "purpose": "restrict and log access to compartmented records"
+    },
+    {
+      "id": "root.security.biological_custody",
+      "zone_id": "root.zone.biological_storage",
+      "operator_owner_id": "support.root.medical.shiro_kasuga",
+      "mechanic_ref": "data/mechanics/medical.json",
+      "strength": 142,
+      "readiness": 95,
+      "purpose": "control biological custody and preservation access"
+    },
+    {
+      "id": "root.security.command_guard",
+      "zone_id": "root.zone.command",
+      "operator_owner_id": "canon_danzo",
+      "mechanic_ref": "data/mechanics/combat-profile-templates.json",
+      "strength": 155,
+      "readiness": 90,
+      "purpose": "protect command access with preexisting Root personnel and doctrine"
+    }
+  ],
+  "fixed_state_rule": "Topology, zone functions, access tiers, and seeded security exist before player tactics. Changes require a canonical causal transaction and may not be invented retroactively after Wei reveals a plan."
+}

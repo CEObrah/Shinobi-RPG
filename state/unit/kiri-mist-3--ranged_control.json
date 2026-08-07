@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_mist_3.ranged_control",
+  "name": "Kiri Capital Canal Guard, First Mist Team — Ranged Control Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_mist_3",
+  "troop_type": "water_control",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "genin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 6
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.ranged_control",
+  "training": "train.kiri.ranged_control",
+  "cohesion": 72,
+  "morale": 66,
+  "readiness": 89,
+  "location": "loc_kiri_capital_canals",
+  "mission": "capital canal defense readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.06",
+  "stats_ref": "state/unit-capability/kiri-mist-3--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-mist-3--ranged_control.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

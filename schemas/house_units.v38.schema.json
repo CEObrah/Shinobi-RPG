@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: house units.v38",
+  "type": "object",
+  "required": [
+    "id",
+    "note",
+    "owner",
+    "permanent_units",
+    "schema",
+    "unassigned_members"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "permanent_units": {
+      "type": "array"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "unassigned_members": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "force.v38",
+  "id": "force_iron_samurai",
+  "name": "Force Iron Samurai",
+  "total": 20000,
+  "unit_claims": [
+    {
+      "source": "migrated_v31_tactical_units",
+      "count": 200
+    }
+  ],
+  "availability": {
+    "deployed": 200,
+    "ready_24h": 3564,
+    "mobilizable_7d": 6336,
+    "mobilizable_30d": 4356,
+    "training_or_instruction": 2376,
+    "medical_or_recovery": 0,
+    "essential_fixed_duty": 3168
+  },
+  "all_personnel_real": true,
+  "military_identity": [
+    "armored samurai",
+    "kenjutsu discipline",
+    "seal-interruption pressure"
+  ],
+  "home_establishment_ref": "establishment.force_iron_samurai",
+  "formation_library_ref": "formation.samurai.standard",
+  "reconstitution_policy_ref": "reconstitution.samurai",
+  "standing_procedure_ref": "procedure.samurai.standard",
+  "troop_pools": [
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.field_ready",
+      "count": 5940,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_iron_samurai.field_ready",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.field_ready",
+      "troop_type": "samurai_line",
+      "readiness_class": "field_ready",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.garrison_security",
+      "count": 4356,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_iron_samurai.garrison_security",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.garrison_security",
+      "troop_type": "samurai_line",
+      "readiness_class": "garrison_security",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.intelligence_support",
+      "count": 792,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_iron_samurai.intelligence_support",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.medical_support",
+      "count": 792,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_iron_samurai.medical_support",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.medical_support",
+      "troop_type": "medical_staff",
+      "readiness_class": "medical_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.logistics_support",
+      "count": 792,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_iron_samurai.logistics_support",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.training_instruction",
+      "count": 2772,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_iron_samurai.training_instruction",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool.v1",
+      "id": "force_iron_samurai.reserve_recovery",
+      "count": 4356,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_iron_samurai.reserve_recovery",
+      "doctrine": "doc.force_iron_samurai.field",
+      "training": "train.force_iron_samurai.reserve_recovery",
+      "troop_type": "samurai_line",
+      "readiness_class": "reserve_recovery",
+      "accounting_only": true,
+      "accounting_scale": "macro_1k",
+      "capability_ref": "state/manpower-capability/force-iron-samurai-reserve-recovery.json"
+    }
+  ],
+  "accounting_only": true
+}

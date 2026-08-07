@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_hunter_3.assault",
+  "name": "Kiri Hunter-Nin Corps, Third Pursuit Team — Assault Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_hunter_3",
+  "troop_type": "capture_specialists",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.assault",
+  "training": "train.kiri.assault",
+  "cohesion": 77,
+  "morale": 71,
+  "readiness": 87,
+  "location": "loc_water_outer_islands",
+  "mission": "outer-island pursuit readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/kiri-hunter-3--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-hunter-3--assault.json",
+  "loadout_standard": "loadout_kiri_hunter"
+}

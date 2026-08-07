@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: team doctrine registry v38",
+  "type": "object",
+  "required": [
+    "active_teams",
+    "owner_id",
+    "owner_type",
+    "process_state",
+    "schema",
+    "team_creation_rule",
+    "training_receipt_authority",
+    "doctrine_template_ref"
+  ],
+  "properties": {
+    "active_teams": {
+      "type": "array"
+    },
+    "owner_id": {
+      "type": "string"
+    },
+    "owner_type": {
+      "type": "string"
+    },
+    "process_state": {
+      "type": "object"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "team_creation_rule": {
+      "type": "string"
+    },
+    "training_receipt_authority": {
+      "type": "string"
+    },
+    "doctrine_template_ref": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

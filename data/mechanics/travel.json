@@ -1,0 +1,38 @@
+{
+  "schema": "travel-mechanics.v38",
+  "version": "3.8",
+  "authority": "Deterministic travel-time authority for registered routes.",
+  "formulas": {
+    "reference_travel_days": "(travel_days_band_min + travel_days_band_max) / 2",
+    "party_speed_multiplier": "clamp(0.50,1.80, 0.65 + average_movement/200 + average_endurance/500)",
+    "travel_hours": "reference_travel_days * 24 * route_status_multiplier * weather_multiplier * burden_multiplier / party_speed_multiplier",
+    "burden_multiplier": "1 + 0.25 * average_effective_burden",
+    "supply_days_required": "travel_hours / 24"
+  },
+  "route_status_multipliers": {
+    "open": 1.0,
+    "open_controlled": 1.0,
+    "open_guarded": 1.0,
+    "guarded": 1.05,
+    "restricted": 1.2,
+    "open_but_criminally_pressured": 1.05,
+    "weather_dependent": 1.0
+  },
+  "weather_multipliers": {
+    "clear": 1.0,
+    "light_rain": 1.05,
+    "heavy_rain": 1.2,
+    "strong_wind": 1.15,
+    "storm": 1.5,
+    "snow": 1.25,
+    "blizzard": 1.75,
+    "extreme_heat": 1.15,
+    "fog": 1.1
+  },
+  "rules": [
+    "Travel uses an existing route or a separately registered off-route path.",
+    "Criminal pressure changes encounter risk, not hidden travel speed beyond the registered route multiplier.",
+    "Weather must be current saved world/environment state; the resolver may not invent a modifier after seeing desired arrival time.",
+    "If an interrupting encounter occurs, settle travel only through the encounter time and resume from the resulting state."
+  ]
+}

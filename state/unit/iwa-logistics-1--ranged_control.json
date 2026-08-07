@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_logistics_1.ranged_control",
+  "name": "Iwa Logistics Corps, First Field Support Team — Ranged Control Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_logistics_1",
+  "troop_type": "demolition",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.ranged_control",
+  "training": "train.iwa.ranged_control",
+  "cohesion": 78,
+  "morale": 81,
+  "readiness": 83,
+  "location": "loc_iwa_logistics_yard",
+  "mission": "siege and supply support readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/iwa-logistics-1--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-logistics-1--ranged_control.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

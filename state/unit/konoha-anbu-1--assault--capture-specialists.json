@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_anbu_1.assault.capture-specialists",
+  "name": "Konoha ANBU Operations, First Tactical Team — Assault Unit — Capture Specialists Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_anbu_1",
+  "troop_type": "capture_specialists",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 8
+  },
+  "quality": "anbu_qualified",
+  "rank_distribution": {
+    "jonin": 2,
+    "anbu_operatives": 5,
+    "special_jonin_or_anbu_specialist": 1
+  },
+  "condition": {
+    "healthy": 7,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.assault",
+  "training": "train.konoha.assault",
+  "cohesion": 81,
+  "morale": 77,
+  "readiness": 86,
+  "location": "loc_konoha_anbu_headquarters",
+  "mission": "ANBU-qualified covert operations readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.15",
+  "stats_ref": "state/unit-capability/konoha-anbu-1--assault--capture-specialists.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-anbu-1--assault--capture-specialists.json",
+  "loadout_standard": "loadout_anbu"
+}

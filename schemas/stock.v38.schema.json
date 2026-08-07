@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: stock.v38",
+  "type": "object",
+  "required": [
+    "id",
+    "issue_policy",
+    "items",
+    "no_internal_shop",
+    "owner",
+    "schema"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "issue_policy": {
+      "type": "string"
+    },
+    "items": {
+      "type": "object"
+    },
+    "no_internal_shop": {
+      "type": "boolean"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

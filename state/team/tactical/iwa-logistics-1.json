@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_iwa_logistics_1",
+  "name": "Iwa Logistics Corps, First Field Support Team",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_iwa_logistics_1.assault",
+    "unit_iwa_logistics_1.ranged_control",
+    "unit_iwa_logistics_1.recon",
+    "unit_iwa_logistics_1.support.earthwork-specialists",
+    "unit_iwa_logistics_1.support.medics",
+    "unit_iwa_logistics_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.iwa.field",
+  "training": "train.iwa.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 78,
+  "morale": 81,
+  "readiness": 83,
+  "location": "loc_iwa_logistics_yard",
+  "mission": "siege and supply support readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 2
+        },
+        "loadout": "loadout_iwa_heavy",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 83,
+        "capability": {
+          "attributes.awareness": [
+            70.0,
+            5.0,
+            65.0,
+            75.0
+          ],
+          "attributes.composure": [
+            69.5,
+            8.5,
+            61.0,
+            78.0
+          ],
+          "attributes.intelligence": [
+            72.5,
+            0.5,
+            72.0,
+            73.0
+          ],
+          "attributes.presence": [
+            68.0,
+            1.0,
+            67.0,
+            69.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            74.0,
+            4.0,
+            70.0,
+            78.0
+          ],
+          "chakra_dimensions.control": [
+            66.0,
+            0.0,
+            66.0,
+            66.0
+          ],
+          "chakra_dimensions.multitasking": [
+            69.5,
+            4.5,
+            65.0,
+            74.0
+          ],
+          "operational_skills.leadership": [
+            66.5,
+            2.5,
+            64.0,
+            69.0
+          ],
+          "operational_skills.tactics": [
+            65.5,
+            0.5,
+            65.0,
+            66.0
+          ],
+          "operational_skills.team_coordination": [
+            71.0,
+            4.0,
+            67.0,
+            75.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

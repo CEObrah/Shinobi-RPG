@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_yuga_route_patrol_1",
+  "name": "Yuga Hot-Springs Route Patrol, First Tactical Team",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_yuga_route_patrol_1.assault",
+    "unit_yuga_route_patrol_1.recon.infiltrators",
+    "unit_yuga_route_patrol_1.recon.scouts",
+    "unit_yuga_route_patrol_1.support.medics",
+    "unit_yuga_route_patrol_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.yuga.field",
+  "training": "train.yuga.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_hot_water_trade_route",
+  "mission": "commercial route patrol readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "support": 1
+        },
+        "loadout": "loadout_minor_village_field",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 81,
+        "capability": {
+          "attributes.awareness": [
+            58.5,
+            0.5,
+            58.0,
+            59.0
+          ],
+          "attributes.composure": [
+            70.0,
+            3.0,
+            67.0,
+            73.0
+          ],
+          "attributes.intelligence": [
+            51.5,
+            2.5,
+            49.0,
+            54.0
+          ],
+          "attributes.presence": [
+            59.0,
+            3.0,
+            56.0,
+            62.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            52.5,
+            3.5,
+            49.0,
+            56.0
+          ],
+          "chakra_dimensions.control": [
+            60.0,
+            3.0,
+            57.0,
+            63.0
+          ],
+          "chakra_dimensions.multitasking": [
+            55.5,
+            8.5,
+            47.0,
+            64.0
+          ],
+          "operational_skills.leadership": [
+            46.0,
+            3.0,
+            43.0,
+            49.0
+          ],
+          "operational_skills.tactics": [
+            60.5,
+            0.5,
+            60.0,
+            61.0
+          ],
+          "operational_skills.team_coordination": [
+            63.5,
+            0.5,
+            63.0,
+            64.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

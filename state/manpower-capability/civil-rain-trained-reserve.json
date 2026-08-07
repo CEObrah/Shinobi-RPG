@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability.v1",
+  "id": "capability.civil.rain.trained_reserve",
+  "pool_id": "civil.rain.trained_reserve",
+  "source_owner": "force.civil.rain",
+  "stats": {
+    "attributes": {
+      "strength": 40,
+      "endurance": 44,
+      "awareness": 36
+    },
+    "skills": {
+      "weapons": 42,
+      "formation": 42,
+      "tactics": 29
+    },
+    "morale": 56,
+    "discipline": 54,
+    "experience": 40
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 165,
+      "sd": 6.5
+    },
+    "weight_kg": {
+      "mean": 69,
+      "sd": 7.6
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 86,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

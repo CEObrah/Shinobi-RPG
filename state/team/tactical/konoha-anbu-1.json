@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_konoha_anbu_1",
+  "name": "Konoha ANBU Operations, First Tactical Team",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_konoha_anbu_1.assault.capture-specialists",
+    "unit_konoha_anbu_1.assault.line-combatants",
+    "unit_konoha_anbu_1.recon.sensors",
+    "unit_konoha_anbu_1.recon.trackers",
+    "unit_konoha_anbu_1.support.medics",
+    "unit_konoha_anbu_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.konoha.field",
+  "training": "train.konoha.anbu",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 81,
+  "morale": 77,
+  "readiness": 86,
+  "location": "loc_konoha_anbu_headquarters",
+  "mission": "ANBU-qualified covert operations readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "anbu_qualified",
+        "rank_distribution": {
+          "jonin": 1,
+          "special_jonin_or_anbu_specialist": 1
+        },
+        "loadout": "loadout_anbu",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 86,
+        "capability": {
+          "attributes.awareness": [
+            71.5,
+            4.5,
+            67.0,
+            76.0
+          ],
+          "attributes.composure": [
+            68.0,
+            4.0,
+            64.0,
+            72.0
+          ],
+          "attributes.intelligence": [
+            71.5,
+            3.5,
+            68.0,
+            75.0
+          ],
+          "attributes.presence": [
+            65.5,
+            2.5,
+            63.0,
+            68.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            77.5,
+            4.5,
+            73.0,
+            82.0
+          ],
+          "chakra_dimensions.control": [
+            80.0,
+            4.0,
+            76.0,
+            84.0
+          ],
+          "chakra_dimensions.multitasking": [
+            75.0,
+            8.0,
+            67.0,
+            83.0
+          ],
+          "operational_skills.leadership": [
+            64.0,
+            3.0,
+            61.0,
+            67.0
+          ],
+          "operational_skills.tactics": [
+            76.0,
+            3.0,
+            73.0,
+            79.0
+          ],
+          "operational_skills.team_coordination": [
+            70.5,
+            2.5,
+            68.0,
+            73.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

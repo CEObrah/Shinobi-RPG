@@ -1,0 +1,142 @@
+{
+  "schema": "home_establishment_owner.v2",
+  "record": {
+    "id": "establishment.force_kumo_shinobi",
+    "owner_id": "force_kumo_shinobi",
+    "owner_type": "world_force",
+    "source_force_ref": "state/force/kumo-shinobi.json",
+    "category": "shinobi",
+    "formation_library_ref": "formation.shinobi_village.standard",
+    "reconstitution_policy_ref": "reconstitution.shinobi_village",
+    "unit_series": [
+      {
+        "series_id": "est.force_kumo_shinobi.field_ready",
+        "source_manpower_id": "force_kumo_shinobi.field_ready",
+        "role": "field_ready",
+        "unit_count": 117,
+        "nominal_strength": 25,
+        "final_unit_strength": 2,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.field_ready.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.field_ready",
+        "loadout_standard": "load.force_kumo_shinobi.field_ready",
+        "troop_type": "general_shinobi",
+        "duty_status": "field_ready"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.garrison_security",
+        "source_manpower_id": "force_kumo_shinobi.garrison_security",
+        "role": "garrison_security",
+        "unit_count": 86,
+        "nominal_strength": 25,
+        "final_unit_strength": 3,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.garrison_security.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.garrison_security",
+        "loadout_standard": "load.force_kumo_shinobi.garrison_security",
+        "troop_type": "general_shinobi",
+        "duty_status": "garrison_security"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.intelligence_support",
+        "source_manpower_id": "force_kumo_shinobi.intelligence_support",
+        "role": "intelligence_support",
+        "unit_count": 20,
+        "nominal_strength": 20,
+        "final_unit_strength": 7,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.intelligence_support.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.intelligence_support",
+        "loadout_standard": "load.force_kumo_shinobi.intelligence_support",
+        "troop_type": "intelligence_specialist",
+        "duty_status": "intelligence_support"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.medical_support",
+        "source_manpower_id": "force_kumo_shinobi.medical_support",
+        "role": "medical_support",
+        "unit_count": 20,
+        "nominal_strength": 20,
+        "final_unit_strength": 7,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.medical_support.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.medical_support",
+        "loadout_standard": "load.force_kumo_shinobi.medical_support",
+        "troop_type": "medical_nin",
+        "duty_status": "medical_support"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.logistics_support",
+        "source_manpower_id": "force_kumo_shinobi.logistics_support",
+        "role": "logistics_support",
+        "unit_count": 20,
+        "nominal_strength": 20,
+        "final_unit_strength": 7,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.logistics_support.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.logistics_support",
+        "loadout_standard": "load.force_kumo_shinobi.logistics_support",
+        "troop_type": "logistics_support",
+        "duty_status": "logistics_support"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.training_instruction",
+        "source_manpower_id": "force_kumo_shinobi.training_instruction",
+        "role": "training_instruction",
+        "unit_count": 68,
+        "nominal_strength": 20,
+        "final_unit_strength": 15,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.training_instruction.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.training_instruction",
+        "loadout_standard": "load.force_kumo_shinobi.training_instruction",
+        "troop_type": "training_personnel",
+        "duty_status": "training_instruction"
+      },
+      {
+        "series_id": "est.force_kumo_shinobi.reserve_recovery",
+        "source_manpower_id": "force_kumo_shinobi.reserve_recovery",
+        "role": "reserve_recovery",
+        "unit_count": 86,
+        "nominal_strength": 25,
+        "final_unit_strength": 4,
+        "stable_unit_id_pattern": "est.force_kumo_shinobi.reserve_recovery.{ordinal:03d}",
+        "doctrine": "doc.force_kumo_shinobi.field",
+        "training": "train.force_kumo_shinobi.reserve_recovery",
+        "loadout_standard": "load.force_kumo_shinobi.reserve_recovery",
+        "troop_type": "general_shinobi",
+        "duty_status": "reserve_recovery"
+      }
+    ],
+    "standing_procedure_ref": "procedure.shinobi_village.standard",
+    "command_structure": {
+      "home_command": "institutional",
+      "unit_command": "materialize from appointments/qualified cadre when causally relevant",
+      "succession": "follow owner doctrine and valid appointment authority",
+      "default_commander_profile_ref": "command_profile.shinobi_unit_standard"
+    },
+    "materialized_team_refs": [
+      "team_kumo_assault_1",
+      "team_kumo_assault_2",
+      "team_kumo_assault_3",
+      "team_kumo_assault_4",
+      "team_kumo_assault_5",
+      "team_kumo_logistics_1",
+      "team_kumo_mountain_1",
+      "team_kumo_pursuit_1",
+      "team_kumo_relay_1",
+      "team_kumo_relay_2",
+      "team_kumo_relay_3",
+      "team_kumo_strategic_guard_1",
+      "team_kumo_taijutsu_1"
+    ],
+    "series_rule_ref": "establishment.rule.standard",
+    "default_combat_tendencies": {
+      "aggression": 55,
+      "initiative": 60,
+      "caution": 55,
+      "adaptability": 60,
+      "objective_focus": 75
+    }
+  }
+}

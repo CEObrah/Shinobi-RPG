@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_2.support.logistics",
+  "name": "Kumo Capital Guard, First Shock Team — Logistics Support Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_2",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.logistics",
+  "training": "train.kumo.logistics",
+  "cohesion": 76,
+  "morale": 73,
+  "readiness": 86,
+  "location": "loc_kumo_perimeter",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.09",
+  "stats_ref": "state/unit-capability/kumo-assault-2--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-2--support--logistics.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

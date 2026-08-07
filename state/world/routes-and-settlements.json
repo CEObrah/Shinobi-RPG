@@ -1,0 +1,115 @@
+{
+  "owner_id": "world_routes_and_settlements",
+  "owner_type": "world_registry",
+  "payload": {
+    "routes": [
+      {
+        "from": "loc_fire_capital",
+        "id": "route_fire_capital_konoha",
+        "mode": "road",
+        "status": "open",
+        "to": "loc_konoha",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_konoha",
+        "id": "route_konoha_wave",
+        "mode": "road_and_sea",
+        "status": "open_but_criminally_pressured",
+        "to": "loc_wave_town",
+        "travel_days_band": [
+          5,
+          9
+        ],
+        "reference_travel_days": 7.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_fire_western_border",
+        "id": "route_fire_wind",
+        "mode": "desert_road",
+        "status": "open_controlled",
+        "to": "loc_suna",
+        "travel_days_band": [
+          6,
+          12
+        ],
+        "reference_travel_days": 9.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_fire_northern_border",
+        "id": "route_fire_rain",
+        "mode": "road_bridge_network",
+        "status": "restricted",
+        "to": "loc_ame",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_fire_northwest",
+        "id": "route_fire_grass_earth",
+        "mode": "mountain_and_border_road",
+        "status": "guarded",
+        "to": "loc_iwa",
+        "travel_days_band": [
+          8,
+          16
+        ],
+        "reference_travel_days": 12.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_fire_northeast",
+        "id": "route_fire_lightning",
+        "mode": "mountain_road",
+        "status": "guarded",
+        "to": "loc_kumo",
+        "travel_days_band": [
+          9,
+          18
+        ],
+        "reference_travel_days": 13.5,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_kiri_harbor",
+        "id": "route_water_archipelago",
+        "mode": "sea",
+        "status": "weather_dependent",
+        "to": "loc_water_eastern_islands",
+        "travel_days_band": [
+          1,
+          5
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      },
+      {
+        "from": "loc_iron_capital",
+        "id": "route_iron_summit_network",
+        "mode": "mountain_road",
+        "status": "open_guarded",
+        "to": "loc_iron_northern_pass",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "data/mechanics/travel.json"
+      }
+    ],
+    "settlement_generation_rule": "ordinary settlements may materialize from country population owners; hidden villages cannot be invented"
+  },
+  "schema": "shinobi-world-registry.v38",
+  "source_domain": "routes_and_settlements"
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_earth_palace_guard.assault",
+  "name": "Land of Earth Daimyo Guard, First Palace Team — Assault Unit",
+  "owner": "force_land_earth_civilian_security",
+  "parent_force": "force_land_earth_civilian_security",
+  "parent_team": "team_land_earth_palace_guard",
+  "troop_type": "guards",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 16
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "commander": 1,
+    "guard": 13,
+    "senior_guard": 2
+  },
+  "condition": {
+    "healthy": 14,
+    "light_healing_injury": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.assault",
+  "training": "train.civil.assault",
+  "cohesion": 69,
+  "morale": 74,
+  "readiness": 77,
+  "location": "loc_land_earth_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.05",
+  "stats_ref": "state/unit-capability/land-earth-palace-guard--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/land-earth-palace-guard--assault.json",
+  "loadout_standard": "loadout_civil_guard"
+}

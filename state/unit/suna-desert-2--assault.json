@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_desert_2.assault",
+  "name": "Suna Western Oasis Guard, First Tactical Team — Assault Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_desert_2",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 3,
+    "jonin": 1
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.assault",
+  "training": "train.suna.assault",
+  "cohesion": 73,
+  "morale": 77,
+  "readiness": 79,
+  "location": "loc_wind_western_oasis",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/suna-desert-2--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-desert-2--assault.json",
+  "loadout_standard": "loadout_suna_desert"
+}

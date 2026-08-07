@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "unit_prefix",
+    "authority",
+    "units"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unit-path-index-shard.v2"
+    },
+    "unit_prefix": {
+      "type": "string"
+    },
+    "authority": {
+      "const": false
+    },
+    "units": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

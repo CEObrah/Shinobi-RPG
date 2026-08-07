@@ -1,0 +1,37 @@
+{
+  "schema": "technique-defaults.v1",
+  "id": "technique.defaults.common",
+  "defaults": {
+    "resolution_authority": "data/mechanics/technique-primitives.json",
+    "aliases": [],
+    "field_usable": true,
+    "minimum_range_m": 0,
+    "required_equipment": [],
+    "required_packages": [],
+    "projectile_speed_mps": 0,
+    "required_medium": [],
+    "prerequisites": [],
+    "environmental_modifiers": [
+      "medium_availability",
+      "visibility",
+      "wind",
+      "water",
+      "terrain",
+      "cover_as_applicable"
+    ],
+    "interruption_conditions": [
+      "loss_of_required_limb_or_seal_sequence",
+      "loss_of_concentration",
+      "contact_before_release",
+      "insufficient_chakra",
+      "invalid_geometry"
+    ],
+    "failure_states": [
+      "no_effect",
+      "partial_or_unstable_effect",
+      "misplacement_or_self_exposure_when_margin_is_negative"
+    ],
+    "sustained_chakra_per_6s": 0
+  },
+  "merge_rule": "Start with these defaults, then overlay the exact technique record. Fields explicitly present in the record always win."
+}

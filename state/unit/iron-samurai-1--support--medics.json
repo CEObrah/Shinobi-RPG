@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iron_samurai_1.support.medics",
+  "name": "Iron Northern Pass Garrison, First Sword Team — Support Unit — Medics Unit",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "parent_team": "team_iron_samurai_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "samurai": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iron.medical",
+  "training": "train.iron.medical",
+  "cohesion": 75,
+  "morale": 67,
+  "readiness": 85,
+  "location": "loc_iron_northern_pass",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/iron-samurai-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/iron-samurai-1--support--medics.json",
+  "loadout_standard": "loadout_iron_samurai"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_oasis_1.support.logistics",
+  "name": "Suna Oasis Defense Command, First Guard Team — Logistics Support Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_oasis_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.logistics",
+  "training": "train.suna.logistics",
+  "cohesion": 71,
+  "morale": 70,
+  "readiness": 84,
+  "location": "loc_wind_major_oasis",
+  "mission": "water-source and oasis defense",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/suna-oasis-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-oasis-1--support--logistics.json",
+  "loadout_standard": "loadout_suna_desert"
+}

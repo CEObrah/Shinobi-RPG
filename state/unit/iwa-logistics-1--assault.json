@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iwa_logistics_1.assault",
+  "name": "Iwa Logistics Corps, First Field Support Team — Assault Unit",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "parent_team": "team_iwa_logistics_1",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 1,
+    "jonin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 6
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iwa.assault",
+  "training": "train.iwa.assault",
+  "cohesion": 78,
+  "morale": 81,
+  "readiness": 83,
+  "location": "loc_iwa_logistics_yard",
+  "mission": "siege and supply support readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.04",
+  "stats_ref": "state/unit-capability/iwa-logistics-1--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/iwa-logistics-1--assault.json",
+  "loadout_standard": "loadout_iwa_heavy"
+}

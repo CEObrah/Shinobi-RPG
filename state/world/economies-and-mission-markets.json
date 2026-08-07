@@ -1,0 +1,61 @@
+{
+  "owner_id": "world_economies_and_mission_markets",
+  "owner_type": "world_registry",
+  "payload": {
+    "economies_and_mission_markets": {
+      "last_settled_at": "SE-0061-02-05T07:00:00",
+      "markets": [
+        {
+          "competition": [
+            "faction_suna",
+            "faction_kusa"
+          ],
+          "demand": [
+            "escort",
+            "investigation",
+            "bandit_suppression",
+            "border_reconnaissance",
+            "protection",
+            "capture"
+          ],
+          "id": "market_konoha_missions",
+          "owner_id": "faction_konoha",
+          "status": "active"
+        },
+        {
+          "competition": [
+            "faction_konoha"
+          ],
+          "demand": [
+            "desert_escort",
+            "oasis_security",
+            "trade_route_protection",
+            "poison_investigation"
+          ],
+          "id": "market_suna_missions",
+          "owner_id": "faction_suna",
+          "status": "funding_pressure"
+        },
+        {
+          "competition": [
+            "missing_nin",
+            "private_security"
+          ],
+          "demand": [
+            "shipping_security",
+            "piracy_suppression",
+            "island_reconnaissance",
+            "smuggling"
+          ],
+          "id": "market_maritime_missions",
+          "owner_id": "faction_kiri",
+          "status": "fragmented"
+        }
+      ],
+      "section": "economy_and_mission_market",
+      "treasury_rule": "country, village, institution, force, and personal money remain separate"
+    }
+  },
+  "schema": "shinobi-world-registry.v38",
+  "source_domain": "economies_and_mission_markets"
+}

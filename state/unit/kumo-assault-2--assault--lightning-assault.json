@@ -1,0 +1,38 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_2.assault.lightning-assault",
+  "name": "Kumo Capital Guard, First Shock Team — Assault Unit — Lightning Assault Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_2",
+  "troop_type": "lightning_assault",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 10
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "genin": 4,
+    "special_jonin": 1,
+    "jonin": 1
+  },
+  "condition": {
+    "healthy": 9,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.assault",
+  "training": "train.kumo.assault",
+  "cohesion": 76,
+  "morale": 73,
+  "readiness": 86,
+  "location": "loc_kumo_perimeter",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/kumo-assault-2--assault--lightning-assault.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-2--assault--lightning-assault.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

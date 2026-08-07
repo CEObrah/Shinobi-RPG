@@ -1,0 +1,39 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_1.assault.lightning-assault",
+  "name": "Kumo Southern Reaction Company, First Assault Team — Assault Unit — Lightning Assault Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_1",
+  "troop_type": "lightning_assault",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 10
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 5,
+    "special_jonin": 1,
+    "genin": 2,
+    "jonin": 1,
+    "support": 1
+  },
+  "condition": {
+    "healthy": 9,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.assault",
+  "training": "train.kumo.assault",
+  "cohesion": 82,
+  "morale": 76,
+  "readiness": 86,
+  "location": "loc_lightning_southern_border",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/kumo-assault-1--assault--lightning-assault.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-1--assault--lightning-assault.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

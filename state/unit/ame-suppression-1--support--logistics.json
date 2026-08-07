@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_suppression_1.support.logistics",
+  "name": "Ame Urban Suppression Command, First Tactical Team — Logistics Support Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_suppression_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 3
+  },
+  "condition": {
+    "healthy": 2,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.logistics",
+  "training": "train.ame.logistics",
+  "cohesion": 70,
+  "morale": 74,
+  "readiness": 80,
+  "location": "loc_ame_central_district",
+  "mission": "urban suppression readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/ame-suppression-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-suppression-1--support--logistics.json",
+  "loadout_standard": "loadout_ame_urban"
+}

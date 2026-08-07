@@ -1,0 +1,51 @@
+{
+  "active_combat": false,
+  "decision_required": "Wei has not chosen how to spend the period before the 09:00 Academy assignment window.",
+  "freeform_actions_allowed": true,
+  "loaded_owner_ids": [
+    "pc_wei_tang",
+    "team.konoha.fujin"
+  ],
+  "location_id": "loc_konoha",
+  "narrative": {
+    "active_npc_agendas": [],
+    "active_questions": [
+      "How does Wei use the time before the 09:00 team-assignment window?"
+    ],
+    "approaching_consequences": [
+      "The opening declaration determines which mission and command owners become active."
+    ],
+    "available_reports": [],
+    "current_scene_type": "opening_assignment",
+    "current_tension": "controlled_uncertainty",
+    "known_clues": [],
+    "last_major_choice": null,
+    "last_scene_summary": "Opening morning in Konoha. No voluntary action has occurred.",
+    "pending_information_paths": [],
+    "promises_and_threats": [],
+    "recent_reveals": [],
+    "suspected_clues": [],
+    "unresolved_hooks": [
+      "09:00 Academy team assignment",
+      "ANBU candidacy remains separate and inactive"
+    ],
+    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
+  },
+  "scene_id": "scene_opening_assignment_gate",
+  "scene_summary": "Wei is healthy, combat-ready in House Tang equipment, on Konoha Special Missions roster, and only an ANBU candidate. Team Fujin is pending assignment later this morning.",
+  "schema": "scene.v38",
+  "time_passage_allowed": true,
+  "world_time": "SE-0061-02-05T07:00:00",
+  "known_clock_boundaries": [
+    {
+      "due_at": "SE-0061-02-05T09:00:00",
+      "event_id": "process_team_fujin_assignment",
+      "visibility": "known"
+    }
+  ],
+  "observable_pressures": [
+    "Team assignment begins at 09:00 and may require Wei in person.",
+    "Wei is a Jōnin on the Special Missions roster and is not active ANBU.",
+    "Any preparation that crosses 09:00 is interrupted by the assignment event unless a lawful cause prevents attendance."
+  ]
+}

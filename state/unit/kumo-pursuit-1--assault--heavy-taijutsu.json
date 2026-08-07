@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_pursuit_1.assault.heavy-taijutsu",
+  "name": "Kumo Pursuit Division, First Tactical Team — Assault Unit — Heavy Taijutsu Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_pursuit_1",
+  "troop_type": "heavy_taijutsu",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 4,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.assault",
+  "training": "train.kumo.assault",
+  "cohesion": 85,
+  "morale": 80,
+  "readiness": 87,
+  "location": "loc_kumo",
+  "mission": "high-speed pursuit readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/kumo-pursuit-1--assault--heavy-taijutsu.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-pursuit-1--assault--heavy-taijutsu.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_bridge_2.support.medics",
+  "name": "Ame Eastern Bridge Command, Second Control Team — Support Unit — Medics Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_bridge_2",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.medical",
+  "training": "train.ame.medical",
+  "cohesion": 74,
+  "morale": 64,
+  "readiness": 83,
+  "location": "loc_ame_eastern_bridge",
+  "mission": "eastern bridge reinforcement readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.01",
+  "stats_ref": "state/unit-capability/ame-bridge-2--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-bridge-2--support--medics.json",
+  "loadout_standard": "loadout_ame_urban"
+}

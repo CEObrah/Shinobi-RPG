@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iron_samurai_2.support.logistics",
+  "name": "Iron Diplomatic Guard, First Sword Team — Logistics Support Unit",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "parent_team": "team_iron_samurai_2",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "samurai": 2
+  },
+  "condition": {
+    "healthy": 1,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iron.logistics",
+  "training": "train.iron.logistics",
+  "cohesion": 66,
+  "morale": 74,
+  "readiness": 86,
+  "location": "loc_iron_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/iron-samurai-2--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/iron-samurai-2--support--logistics.json",
+  "loadout_standard": "loadout_iron_samurai"
+}

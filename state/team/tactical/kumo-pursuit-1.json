@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_kumo_pursuit_1",
+  "name": "Kumo Pursuit Division, First Tactical Team",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_kumo_pursuit_1.assault.heavy-taijutsu",
+    "unit_kumo_pursuit_1.assault.lightning-assault",
+    "unit_kumo_pursuit_1.recon.scouts",
+    "unit_kumo_pursuit_1.recon.sensors",
+    "unit_kumo_pursuit_1.support.medics",
+    "unit_kumo_pursuit_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.kumo.field",
+  "training": "train.kumo.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 85,
+  "morale": 80,
+  "readiness": 87,
+  "location": "loc_kumo",
+  "mission": "high-speed pursuit readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "special_jonin": 1
+        },
+        "loadout": "loadout_kumo_assault",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 87,
+        "capability": {
+          "attributes.awareness": [
+            71.0,
+            3.0,
+            68.0,
+            74.0
+          ],
+          "attributes.composure": [
+            75.5,
+            6.5,
+            69.0,
+            82.0
+          ],
+          "attributes.intelligence": [
+            82.5,
+            3.5,
+            79.0,
+            86.0
+          ],
+          "attributes.presence": [
+            76.0,
+            10.0,
+            66.0,
+            86.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            71.5,
+            1.5,
+            70.0,
+            73.0
+          ],
+          "chakra_dimensions.control": [
+            74.0,
+            7.0,
+            67.0,
+            81.0
+          ],
+          "chakra_dimensions.multitasking": [
+            71.5,
+            0.5,
+            71.0,
+            72.0
+          ],
+          "operational_skills.leadership": [
+            59.5,
+            9.5,
+            50.0,
+            69.0
+          ],
+          "operational_skills.tactics": [
+            68.5,
+            4.5,
+            64.0,
+            73.0
+          ],
+          "operational_skills.team_coordination": [
+            67.5,
+            4.5,
+            63.0,
+            72.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

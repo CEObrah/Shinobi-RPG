@@ -1,0 +1,73 @@
+{
+  "schema": "item-maneuvers-shard.v1",
+  "maneuver_packages": {
+    "MP_FUMA_SHURIKEN": {
+      "weapon_family": "fuma_shuriken",
+      "maneuvers": {
+        "unfold": {
+          "name": "Unfold",
+          "base_startup_s": 0.48,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.2,
+          "geometry": "self_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "throw": {
+          "name": "Throw",
+          "base_startup_s": 1.1,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.72,
+          "geometry": "large_projectile_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 2,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "projectile range and travel",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "guided_wire_throw": {
+          "name": "Guided wire throw",
+          "base_startup_s": 1.35,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.86,
+          "geometry": "large_projectile_curve",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "attached wire and control",
+          "accuracy_modifier": 1,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "training-mechanics.v38",
+  "representation_efficiency": {
+    "exact": 1.0,
+    "individual_lite": 1.0,
+    "unit": 1.0
+  },
+  "formulas": {
+    "instructor_access": "min(1, available_instructor_hours / required_instructor_hours)",
+    "capacity_factor": "min(instructor_access, facility_slots/required_slots, equipment_sets/required_sets)",
+    "effective_training_hours": "scheduled_hours * attendance * capacity_factor * instructor_quality_factor * facility_quality_factor * equipment_factor * health_factor * recovery_factor * relevance_factor * difficulty_fit_factor",
+    "learning_rate": "aptitude/100",
+    "diminishing_returns": "1 / (1 + max(0,current_value-100)/100)",
+    "development_units": "effective_training_hours * learning_rate * experience_modifier * diminishing_returns",
+    "skill_gain": "development_units / point_cost(current_value)",
+    "point_cost(v)": "1 + floor(max(0,v-40)/20)"
+  },
+  "promotion": "qualified_subset_transfer only; rank requires institutional/experience gates in addition to capability",
+  "batch_equivalence": "batch only while all causal inputs remain unchanged; split at any causal change"
+}

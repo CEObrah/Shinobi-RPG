@@ -1,0 +1,102 @@
+{
+  "schema": "doctrine_role_profiles.v1",
+  "profiles": {
+    "field": {
+      "priorities": [
+        "maintain mission geometry",
+        "support adjacent specialties",
+        "preserve extraction route"
+      ],
+      "break_contact": "reform when command/control or objective geometry is lost"
+    },
+    "assault": {
+      "priorities": [
+        "create local superiority",
+        "disrupt enemy action before completion",
+        "finish objective then reposition"
+      ],
+      "risk": "accept short exposure for decisive local control, not uncontrolled pursuit"
+    },
+    "recon": {
+      "priorities": [
+        "gain information without revealing main body",
+        "maintain report route",
+        "avoid decisive engagement unless mission requires"
+      ],
+      "break_contact": "disengage after compromise when information value exceeds contact value"
+    },
+    "ranged_control": {
+      "priorities": [
+        "shape movement and lanes",
+        "support maneuvering line units",
+        "preserve ammunition/chakra for decisive windows"
+      ],
+      "risk": "avoid unsupported close entanglement"
+    },
+    "support": {
+      "priorities": [
+        "preserve support function",
+        "remain reachable by protected units",
+        "withdraw before support loss becomes irrecoverable"
+      ],
+      "frontage": "no default assault frontage unless explicitly committed"
+    },
+    "command": {
+      "priorities": [
+        "maintain information flow",
+        "delegate within command capacity",
+        "preserve reserve/reaction options"
+      ],
+      "rule": "do not personally absorb more units/people than command capacity when qualified delegation exists"
+    },
+    "militia": {
+      "priorities": [
+        "defend assigned locality",
+        "hold simple terrain",
+        "avoid complex unsupported pursuit"
+      ]
+    },
+    "regular": {
+      "priorities": [
+        "maintain unit integrity",
+        "use trained combined action",
+        "preserve command and supply"
+      ]
+    },
+    "raw_levy": {
+      "priorities": [
+        "keep formation simple",
+        "anchor on terrain/command",
+        "avoid independent complex maneuver"
+      ]
+    },
+    "medical": {
+      "priorities": [
+        "preserve treatment capacity",
+        "triage and stabilize by urgency",
+        "extract casualties through protected routes",
+        "protect patients and medical supplies"
+      ],
+      "frontage": "no default assault frontage; self-defense or deliberate combat commitment only",
+      "casualty_rule": "medical losses reduce treatment/extraction capacity before they are counted as ordinary line-combat losses"
+    },
+    "logistics": {
+      "priorities": [
+        "maintain supply custody and route continuity",
+        "deliver ammunition/tools/food/medical stocks to the correct recipient",
+        "protect transport and reserves",
+        "withdraw or reroute before service collapse"
+      ],
+      "frontage": "no default assault frontage; self-defense or deliberate combat commitment only"
+    },
+    "communications": {
+      "priorities": [
+        "preserve message integrity and timing",
+        "maintain redundant relay paths",
+        "protect signal personnel and equipment",
+        "restore broken links before expanding the network"
+      ],
+      "frontage": "no default assault frontage; communications supports command but does not itself become the commander"
+    }
+  }
+}

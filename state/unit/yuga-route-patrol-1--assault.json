@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_yuga_route_patrol_1.assault",
+  "name": "Yuga Hot-Springs Route Patrol, First Tactical Team — Assault Unit",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "parent_team": "team_yuga_route_patrol_1",
+  "troop_type": "line_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 3
+  },
+  "condition": {
+    "healthy": 6
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.yuga.assault",
+  "training": "train.yuga.assault",
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_hot_water_trade_route",
+  "mission": "commercial route patrol readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.05",
+  "stats_ref": "state/unit-capability/yuga-route-patrol-1--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/yuga-route-patrol-1--assault.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

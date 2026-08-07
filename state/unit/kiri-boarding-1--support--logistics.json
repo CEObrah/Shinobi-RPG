@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_boarding_1.support.logistics",
+  "name": "Kiri Naval Security, First Interdiction Team — Logistics Support Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_boarding_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.logistics",
+  "training": "train.kiri.logistics",
+  "cohesion": 78,
+  "morale": 71,
+  "readiness": 86,
+  "location": "loc_kiri_harbor",
+  "mission": "smuggling and piracy interdiction",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.01",
+  "stats_ref": "state/unit-capability/kiri-boarding-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-boarding-1--support--logistics.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

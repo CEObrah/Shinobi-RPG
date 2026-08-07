@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_taijutsu_1.recon.scouts",
+  "name": "Kumo Heavy Taijutsu Corps, First Assault Team — Recon Unit — Scouts Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_taijutsu_1",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.recon",
+  "training": "train.kumo.recon",
+  "cohesion": 79,
+  "morale": 75,
+  "readiness": 91,
+  "location": "loc_kumo_training_ground",
+  "mission": "close assault readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/kumo-taijutsu-1--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-taijutsu-1--recon--scouts.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

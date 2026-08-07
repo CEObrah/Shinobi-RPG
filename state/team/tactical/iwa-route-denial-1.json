@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_iwa_route_denial_1",
+  "name": "Iwa Route-Denial Command, First Tactical Team",
+  "owner": "force_iwa_shinobi",
+  "parent_force": "force_iwa_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_iwa_route_denial_1.assault",
+    "unit_iwa_route_denial_1.ranged_control",
+    "unit_iwa_route_denial_1.recon",
+    "unit_iwa_route_denial_1.support.earthwork-specialists",
+    "unit_iwa_route_denial_1.support.medics",
+    "unit_iwa_route_denial_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.iwa.field",
+  "training": "train.iwa.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 79,
+  "morale": 76,
+  "readiness": 84,
+  "location": "loc_earth_mountain_routes",
+  "mission": "mountain route denial readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "support": 1
+        },
+        "loadout": "loadout_iwa_heavy",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 84,
+        "capability": {
+          "attributes.awareness": [
+            67.0,
+            6.0,
+            61.0,
+            73.0
+          ],
+          "attributes.composure": [
+            74.0,
+            3.0,
+            71.0,
+            77.0
+          ],
+          "attributes.intelligence": [
+            59.0,
+            6.0,
+            53.0,
+            65.0
+          ],
+          "attributes.presence": [
+            68.0,
+            3.0,
+            65.0,
+            71.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            71.5,
+            4.5,
+            67.0,
+            76.0
+          ],
+          "chakra_dimensions.control": [
+            60.0,
+            0.0,
+            60.0,
+            60.0
+          ],
+          "chakra_dimensions.multitasking": [
+            56.0,
+            3.0,
+            53.0,
+            59.0
+          ],
+          "operational_skills.leadership": [
+            52.0,
+            5.0,
+            47.0,
+            57.0
+          ],
+          "operational_skills.tactics": [
+            65.5,
+            3.5,
+            62.0,
+            69.0
+          ],
+          "operational_skills.team_coordination": [
+            68.5,
+            1.5,
+            67.0,
+            70.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

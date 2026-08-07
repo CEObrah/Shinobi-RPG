@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_kusa_intelligence_1",
+  "name": "Kusa Intelligence Service, First Field Team",
+  "owner": "force_kusa_shinobi",
+  "parent_force": "force_kusa_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_kusa_intelligence_1.assault",
+    "unit_kusa_intelligence_1.recon.infiltrators",
+    "unit_kusa_intelligence_1.recon.scouts",
+    "unit_kusa_intelligence_1.support.medics",
+    "unit_kusa_intelligence_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.kusa.field",
+  "training": "train.kusa.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 70,
+  "morale": 68,
+  "readiness": 82,
+  "location": "loc_kusa",
+  "mission": "border intelligence collection readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "support": 1
+        },
+        "loadout": "loadout_minor_village_field",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 82,
+        "capability": {
+          "attributes.awareness": [
+            58.0,
+            6.0,
+            52.0,
+            64.0
+          ],
+          "attributes.composure": [
+            69.0,
+            0.0,
+            69.0,
+            69.0
+          ],
+          "attributes.intelligence": [
+            51.0,
+            0.0,
+            51.0,
+            51.0
+          ],
+          "attributes.presence": [
+            58.0,
+            2.0,
+            56.0,
+            60.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            52.0,
+            1.0,
+            51.0,
+            53.0
+          ],
+          "chakra_dimensions.control": [
+            59.0,
+            2.0,
+            57.0,
+            61.0
+          ],
+          "chakra_dimensions.multitasking": [
+            59.0,
+            4.0,
+            55.0,
+            63.0
+          ],
+          "operational_skills.leadership": [
+            48.0,
+            2.0,
+            46.0,
+            50.0
+          ],
+          "operational_skills.tactics": [
+            67.5,
+            1.5,
+            66.0,
+            69.0
+          ],
+          "operational_skills.team_coordination": [
+            68.5,
+            0.5,
+            68.0,
+            69.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

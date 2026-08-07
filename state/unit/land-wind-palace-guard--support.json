@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_wind_palace_guard.support",
+  "name": "Land of Wind Daimyo Guard, First Palace Team — Logistics Support Unit",
+  "owner": "force_land_wind_civilian_security",
+  "parent_force": "force_land_wind_civilian_security",
+  "parent_team": "team_land_wind_palace_guard",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "commander": 1,
+    "senior_guard": 1
+  },
+  "condition": {
+    "healthy": 1,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.logistics",
+  "training": "train.civil.logistics",
+  "cohesion": 67,
+  "morale": 72,
+  "readiness": 82,
+  "location": "loc_land_wind_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.01",
+  "stats_ref": "state/unit-capability/land-wind-palace-guard--support.json",
+  "battle_kernel_ref": "state/unit-kernel/land-wind-palace-guard--support.json",
+  "loadout_standard": "loadout_civil_guard"
+}

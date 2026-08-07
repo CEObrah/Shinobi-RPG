@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_mist_2.ranged_control",
+  "name": "Kiri Eastern Island Patrol, First Mist Team — Ranged Control Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_mist_2",
+  "troop_type": "water_control",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 6
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 4
+  },
+  "condition": {
+    "healthy": 5,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.ranged_control",
+  "training": "train.kiri.ranged_control",
+  "cohesion": 69,
+  "morale": 74,
+  "readiness": 83,
+  "location": "loc_water_eastern_islands",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/kiri-mist-2--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-mist-2--ranged_control.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "unit_id",
+    "stat_order_ref",
+    "mean_vector",
+    "spread_vector",
+    "full_stats_ref",
+    "source_sha256",
+    "derived_cache"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unit-battle-kernel.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "unit_id": {
+      "type": "string"
+    },
+    "stat_order_ref": {
+      "type": "string"
+    },
+    "mean_vector": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "spread_vector": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    },
+    "full_stats_ref": {
+      "type": "string"
+    },
+    "source_sha256": {
+      "type": "string"
+    },
+    "derived_cache": {
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

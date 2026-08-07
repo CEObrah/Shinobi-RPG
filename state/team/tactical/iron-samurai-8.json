@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_iron_samurai_8",
+  "name": "Iron Armored Response Command, First Sword Team",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_iron_samurai_8.assault",
+    "unit_iron_samurai_8.ranged_control",
+    "unit_iron_samurai_8.recon",
+    "unit_iron_samurai_8.support.medics",
+    "unit_iron_samurai_8.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.iron.field",
+  "training": "train.iron.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 68,
+  "morale": 72,
+  "readiness": 86,
+  "location": "loc_iron_capital",
+  "mission": "armored response readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "senior_samurai": 1,
+          "support": 1
+        },
+        "loadout": "loadout_iron_samurai",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 86,
+        "capability": {
+          "attributes.awareness": [
+            68.0,
+            5.0,
+            63.0,
+            73.0
+          ],
+          "attributes.composure": [
+            64.0,
+            4.0,
+            60.0,
+            68.0
+          ],
+          "attributes.intelligence": [
+            69.0,
+            4.0,
+            65.0,
+            73.0
+          ],
+          "attributes.presence": [
+            72.0,
+            7.0,
+            65.0,
+            79.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            74.0,
+            7.0,
+            67.0,
+            81.0
+          ],
+          "chakra_dimensions.control": [
+            69.5,
+            9.5,
+            60.0,
+            79.0
+          ],
+          "chakra_dimensions.multitasking": [
+            73.5,
+            2.5,
+            71.0,
+            76.0
+          ],
+          "operational_skills.leadership": [
+            60.5,
+            5.5,
+            55.0,
+            66.0
+          ],
+          "operational_skills.tactics": [
+            67.0,
+            5.0,
+            62.0,
+            72.0
+          ],
+          "operational_skills.team_coordination": [
+            79.0,
+            3.0,
+            76.0,
+            82.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_kiri_boarding_1",
+  "name": "Kiri Naval Security, First Interdiction Team",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_kiri_boarding_1.assault",
+    "unit_kiri_boarding_1.ranged_control",
+    "unit_kiri_boarding_1.recon.scouts",
+    "unit_kiri_boarding_1.recon.sensors",
+    "unit_kiri_boarding_1.support.medics",
+    "unit_kiri_boarding_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.kiri.field",
+  "training": "train.kiri.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 78,
+  "morale": 71,
+  "readiness": 86,
+  "location": "loc_kiri_harbor",
+  "mission": "smuggling and piracy interdiction",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "support": 1
+        },
+        "loadout": "loadout_kiri_maritime",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 86,
+        "capability": {
+          "attributes.awareness": [
+            70.5,
+            4.5,
+            66.0,
+            75.0
+          ],
+          "attributes.composure": [
+            70.0,
+            2.0,
+            68.0,
+            72.0
+          ],
+          "attributes.intelligence": [
+            73.5,
+            3.5,
+            70.0,
+            77.0
+          ],
+          "attributes.presence": [
+            62.0,
+            4.0,
+            58.0,
+            66.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            68.0,
+            5.0,
+            63.0,
+            73.0
+          ],
+          "chakra_dimensions.control": [
+            63.0,
+            10.0,
+            53.0,
+            73.0
+          ],
+          "chakra_dimensions.multitasking": [
+            73.5,
+            4.5,
+            69.0,
+            78.0
+          ],
+          "operational_skills.leadership": [
+            61.5,
+            5.5,
+            56.0,
+            67.0
+          ],
+          "operational_skills.tactics": [
+            64.5,
+            1.5,
+            63.0,
+            66.0
+          ],
+          "operational_skills.team_coordination": [
+            66.5,
+            2.5,
+            64.0,
+            69.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

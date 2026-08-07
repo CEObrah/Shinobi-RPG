@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_kiri_water_control_1",
+  "name": "Kiri Water-Control Corps, First Field Team",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_kiri_water_control_1.assault",
+    "unit_kiri_water_control_1.ranged_control",
+    "unit_kiri_water_control_1.recon.scouts",
+    "unit_kiri_water_control_1.recon.sensors",
+    "unit_kiri_water_control_1.support.medics",
+    "unit_kiri_water_control_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.kiri.field",
+  "training": "train.kiri.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 72,
+  "morale": 72,
+  "readiness": 89,
+  "location": "loc_kiri",
+  "mission": "water-volume control readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "support": 1
+        },
+        "loadout": "loadout_kiri_maritime",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 89,
+        "capability": {
+          "attributes.awareness": [
+            71.0,
+            3.0,
+            68.0,
+            74.0
+          ],
+          "attributes.composure": [
+            67.5,
+            2.5,
+            65.0,
+            70.0
+          ],
+          "attributes.intelligence": [
+            76.5,
+            2.5,
+            74.0,
+            79.0
+          ],
+          "attributes.presence": [
+            61.5,
+            1.5,
+            60.0,
+            63.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            65.5,
+            1.5,
+            64.0,
+            67.0
+          ],
+          "chakra_dimensions.control": [
+            57.0,
+            7.0,
+            50.0,
+            64.0
+          ],
+          "chakra_dimensions.multitasking": [
+            76.0,
+            4.0,
+            72.0,
+            80.0
+          ],
+          "operational_skills.leadership": [
+            65.5,
+            4.5,
+            61.0,
+            70.0
+          ],
+          "operational_skills.tactics": [
+            67.0,
+            3.0,
+            64.0,
+            70.0
+          ],
+          "operational_skills.team_coordination": [
+            65.5,
+            3.5,
+            62.0,
+            69.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

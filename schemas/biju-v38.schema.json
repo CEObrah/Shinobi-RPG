@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "power_factors",
+    "states",
+    "formulas",
+    "rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "biju-mechanics.v38"
+    },
+    "power_factors": {
+      "type": "object"
+    },
+    "states": {
+      "type": "object"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "rules": {
+      "type": "array"
+    }
+  }
+}

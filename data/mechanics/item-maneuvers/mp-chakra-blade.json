@@ -1,0 +1,115 @@
+{
+  "schema": "item-maneuvers-shard.v1",
+  "maneuver_packages": {
+    "MP_CHAKRA_BLADE": {
+      "weapon_family": "chakra_conductive_blade",
+      "maneuvers": {
+        "draw": {
+          "name": "Draw",
+          "base_startup_s": 0.32,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.14,
+          "geometry": "ready_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "cut": {
+          "name": "Cut",
+          "base_startup_s": 0.68,
+          "contact_window_s": 0.14,
+          "base_recovery_s": 0.42,
+          "geometry": "committed_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "thrust": {
+          "name": "Thrust",
+          "base_startup_s": 0.6,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.4,
+          "geometry": "line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 1,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "parry": {
+          "name": "Parry",
+          "base_startup_s": 0.18,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.26,
+          "geometry": "defensive_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 2,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "channel_ready": {
+          "name": "Prepare chakra channel",
+          "base_startup_s": 0.3,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.16,
+          "geometry": "self_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "legal chakra channel method",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "behavior-profile.v1",
+  "person_id": "canon_deidara",
+  "name": "Deidara",
+  "authority": false,
+  "mode": "evidence_limited_role_driven",
+  "source_refs": [
+    "state/char/deidara.json"
+  ],
+  "known_anchors": {
+    "origin": "Iwa",
+    "current_goal": "pursue explosive art",
+    "institutional_duties": [
+      "serve Iwagakure and preserve operational discipline"
+    ],
+    "role_anchors": [
+      "assassin",
+      "ninjutsu"
+    ],
+    "rank_anchor": "special_jonin",
+    "affiliation_anchor": "Iwa",
+    "source_class": "canon_or_campaign_exact_character"
+  },
+  "decision_basis": [
+    "saved current goals, orders, and institutional duties",
+    "actual authority, resources, and mission constraints",
+    "saved relationships, reputation access, and direct knowledge",
+    "health, chakra/resources, location, risk, and current pressure",
+    "saved role, rank, affiliation, canon/source anchors, and campaign history"
+  ],
+  "dialogue_constraints": [
+    "Roles and specialties are not personality traits. Do not turn role labels into characterization.",
+    "Do not invent signature speech, private trauma, humor, favorite things, hidden motives, or strong opinions merely to make dialogue vivid.",
+    "Use rank, role, culture, current objective, relationships, knowledge, reputation, and observed campaign history first.",
+    "If sustained interaction produces distinctive repeated behavior, persist only the supported compact behavior evidence into the exact character owner."
+  ],
+  "narration_rule": "This cold profile prevents under-contextualized improvisation; it is not personality authority and never grants knowledge, relationships, motives, or competence."
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "command-assignments.v1",
+  "id": "org.assignments",
+  "records": [],
+  "rule": "Intact unit assignments retain source owner, home unit, standards and history. Raw personnel assignments retain source accounting/home claims and may remain unorganized until the receiving commander lawfully forms homogeneous units. Assignment changes authority, not ownership.",
+  "return_rule": "Return intact units or surviving raw-personnel claims to the source home chain; preserve casualties, injuries, experience, morale/cohesion, lawful promotions, equipment loss and history; dissolve receiving-only formations/orders; then invoke source reconstitution.",
+  "assignment_kinds": [
+    "intact_units",
+    "raw_personnel"
+  ],
+  "required_fields": [
+    "source_owner",
+    "assignment_kind",
+    "receiving_commander",
+    "authority_limits",
+    "start",
+    "return_condition",
+    "return_policy_ref"
+  ]
+}

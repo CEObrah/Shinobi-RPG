@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_hunter_1.recon.sensors",
+  "name": "Kiri Hunter-Nin Corps, First Pursuit Team — Recon Unit — Sensors Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_hunter_1",
+  "troop_type": "sensors",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.recon",
+  "training": "train.kiri.recon",
+  "cohesion": 69,
+  "morale": 67,
+  "readiness": 80,
+  "location": "loc_kiri_hunter_station",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/kiri-hunter-1--recon--sensors.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-hunter-1--recon--sensors.json",
+  "loadout_standard": "loadout_kiri_hunter"
+}

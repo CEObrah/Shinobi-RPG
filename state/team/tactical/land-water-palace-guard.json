@@ -1,0 +1,122 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_land_water_palace_guard",
+  "name": "Land of Water Daimyo Guard, First Palace Team",
+  "owner": "force_land_water_civilian_security",
+  "parent_force": "force_land_water_civilian_security",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_land_water_palace_guard.assault",
+    "unit_land_water_palace_guard.ranged_control",
+    "unit_land_water_palace_guard.recon",
+    "unit_land_water_palace_guard.support"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.civil.field",
+  "training": "train.civil.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 71,
+  "morale": 72,
+  "readiness": 82,
+  "location": "loc_land_water_capital",
+  "mission": "standing_readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "guard": 2
+        },
+        "loadout": "loadout_civil_guard",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 82,
+        "capability": {
+          "attributes.awareness": [
+            47.0,
+            8.0,
+            39.0,
+            55.0
+          ],
+          "attributes.composure": [
+            35.5,
+            4.5,
+            31.0,
+            40.0
+          ],
+          "attributes.intelligence": [
+            43.0,
+            1.0,
+            42.0,
+            44.0
+          ],
+          "attributes.presence": [
+            38.5,
+            0.5,
+            38.0,
+            39.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            37.0,
+            1.0,
+            36.0,
+            38.0
+          ],
+          "chakra_dimensions.control": [
+            31.5,
+            13.5,
+            18.0,
+            45.0
+          ],
+          "chakra_dimensions.multitasking": [
+            38.5,
+            0.5,
+            38.0,
+            39.0
+          ],
+          "operational_skills.leadership": [
+            32.0,
+            4.0,
+            28.0,
+            36.0
+          ],
+          "operational_skills.tactics": [
+            65.0,
+            0.0,
+            65.0,
+            65.0
+          ],
+          "operational_skills.team_coordination": [
+            65.0,
+            0.0,
+            65.0,
+            65.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

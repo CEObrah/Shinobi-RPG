@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "eight_gates",
+    "jinchuriki",
+    "puppets",
+    "summons"
+  ],
+  "properties": {
+    "schema": {
+      "const": "special-systems.v38"
+    },
+    "eight_gates": {
+      "type": "object"
+    },
+    "jinchuriki": {
+      "type": "object"
+    },
+    "puppets": {
+      "type": "object"
+    },
+    "summons": {
+      "type": "object"
+    }
+  }
+}

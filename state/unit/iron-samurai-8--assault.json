@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iron_samurai_8.assault",
+  "name": "Iron Armored Response Command, First Sword Team — Assault Unit",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "parent_team": "team_iron_samurai_8",
+  "troop_type": "armored_swordsmen",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 16
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "commander": 1,
+    "samurai": 13,
+    "senior_samurai": 2
+  },
+  "condition": {
+    "healthy": 14,
+    "light_healing_injury": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iron.assault",
+  "training": "train.iron.assault",
+  "cohesion": 68,
+  "morale": 72,
+  "readiness": 86,
+  "location": "loc_iron_capital",
+  "mission": "armored response readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.06",
+  "stats_ref": "state/unit-capability/iron-samurai-8--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/iron-samurai-8--assault.json",
+  "loadout_standard": "loadout_iron_samurai"
+}

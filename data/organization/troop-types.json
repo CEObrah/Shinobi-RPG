@@ -1,0 +1,192 @@
+{
+  "schema": "troop_type_registry.v1",
+  "authority": "Shinobi RPG only",
+  "types": {
+    "ambushers": {
+      "combat_class": "line_combat"
+    },
+    "archers": {
+      "combat_class": "line_combat"
+    },
+    "armored_swordsmen": {
+      "combat_class": "line_combat"
+    },
+    "barrier_specialists": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "specialist_field_support",
+      "offensive_contact_eligible": true
+    },
+    "bridge_control": {
+      "combat_class": "line_combat"
+    },
+    "capture_specialists": {
+      "combat_class": "line_combat"
+    },
+    "communications": {
+      "combat_class": "service_support",
+      "support_capacity_kind": "command_communications_or_logistics"
+    },
+    "couriers": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "demolition": {
+      "combat_class": "line_combat"
+    },
+    "earth_control": {
+      "combat_class": "line_combat"
+    },
+    "earthwork_specialists": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "specialist_field_support",
+      "offensive_contact_eligible": true
+    },
+    "experimental_combatants": {
+      "combat_class": "line_combat"
+    },
+    "guards": {
+      "combat_class": "line_combat"
+    },
+    "heavy_assault": {
+      "combat_class": "line_combat"
+    },
+    "heavy_taijutsu": {
+      "combat_class": "line_combat"
+    },
+    "hunter_nin": {
+      "combat_class": "line_combat"
+    },
+    "infiltrators": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "lightning_assault": {
+      "combat_class": "line_combat"
+    },
+    "line_combatants": {
+      "combat_class": "line_combat"
+    },
+    "medics": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "treatment_and_extraction"
+    },
+    "mist_assault": {
+      "combat_class": "line_combat"
+    },
+    "poison_specialists": {
+      "combat_class": "line_combat"
+    },
+    "puppeteers": {
+      "combat_class": "line_combat"
+    },
+    "pursuit": {
+      "combat_class": "line_combat"
+    },
+    "ranged_specialists": {
+      "combat_class": "line_combat"
+    },
+    "retrieval": {
+      "combat_class": "line_combat"
+    },
+    "rooftop_assault": {
+      "combat_class": "line_combat"
+    },
+    "scouts": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "sensors": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "surveillance": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "trackers": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "reconnaissance_or_information",
+      "offensive_contact_eligible": true
+    },
+    "trap_specialists": {
+      "combat_class": "line_combat"
+    },
+    "water_control": {
+      "combat_class": "line_combat"
+    },
+    "waterfall_guards": {
+      "combat_class": "line_combat"
+    },
+    "wind_skirmishers": {
+      "combat_class": "line_combat"
+    },
+    "general_shinobi": {
+      "combat_class": "line_combat"
+    },
+    "samurai_line": {
+      "combat_class": "line_combat"
+    },
+    "intelligence_specialist": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "intelligence"
+    },
+    "medical_nin": {
+      "combat_class": "combat_support",
+      "support_capacity_kind": "medical"
+    },
+    "medical_staff": {
+      "combat_class": "service_support",
+      "support_capacity_kind": "medical",
+      "can_be_explicitly_committed": false
+    },
+    "logistics_support": {
+      "combat_class": "service_support",
+      "support_capacity_kind": "logistics",
+      "can_be_explicitly_committed": false
+    },
+    "training_personnel": {
+      "combat_class": "service_support",
+      "support_capacity_kind": "training",
+      "can_be_explicitly_committed": false
+    },
+    "line_infantry": {
+      "combat_class": "line_combat"
+    }
+  },
+  "rules": {
+    "medical_nin": "Military combat-support. Default duty is treatment/extraction, not assault frontage. Named combat medics still resolve from their own exact sheet when committed.",
+    "service_support": "Real targetable organizations but excluded from default offensive frontage; casualties reduce support capacity."
+  },
+  "class_defaults": {
+    "line_combat": {
+      "frontage_eligible": true,
+      "offensive_contact_eligible": true,
+      "can_self_defend": true,
+      "can_be_explicitly_committed": true
+    },
+    "combat_support": {
+      "frontage_eligible": false,
+      "offensive_contact_eligible": false,
+      "can_self_defend": true,
+      "can_be_explicitly_committed": true
+    },
+    "service_support": {
+      "frontage_eligible": false,
+      "offensive_contact_eligible": false,
+      "can_self_defend": true,
+      "can_be_explicitly_committed": true
+    },
+    "noncombat_support": {
+      "frontage_eligible": false,
+      "offensive_contact_eligible": false,
+      "can_self_defend": false,
+      "can_be_explicitly_committed": false
+    }
+  },
+  "resolution_rule": "Read combat_class defaults first, then apply only per-type overrides. This registry classifies units; it does not create another organizational layer."
+}

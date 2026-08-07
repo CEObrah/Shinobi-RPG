@@ -1,0 +1,115 @@
+{
+  "schema": "team-doctrine-template.v1",
+  "authority": "Reusable template only; active doctrine state lives in state/team/team-doctrine-registry.json.",
+  "template": {
+    "approved_by": null,
+    "command": {
+      "captain": null,
+      "delegated_authorities": {},
+      "deputy": null,
+      "succession_order": []
+    },
+    "communications": {
+      "emergency_signal": null,
+      "lost_contact_behavior": "rally or continue under saved branch order",
+      "silent_signals": [],
+      "verbal": true
+    },
+    "contingencies": {
+      "aerial_attack": null,
+      "barrier": null,
+      "captain_down": null,
+      "genjutsu": null,
+      "mass_area_attack": null,
+      "summoning": null,
+      "teammate_down": null,
+      "underground_attack": null
+    },
+    "effective_from": null,
+    "engagement": {
+      "default_posture": "mission_defined",
+      "named_target_policy": "individual agency and mission authority",
+      "ordinary_hostile_policy": "mission_defined",
+      "pursuit_limit": "captain defined",
+      "stealth_break_conditions": [],
+      "surrender_policy": "accept unless unlawful or tactically impossible"
+    },
+    "extraction": {
+      "casualty_priority": null,
+      "evidence_priority": null,
+      "prisoner_priority": null,
+      "rendezvous": null,
+      "retreat_triggers": []
+    },
+    "mission": {
+      "acceptable_collateral": "mission_defined",
+      "evidence_requirements": [],
+      "primary_objective": null,
+      "protected_people": [],
+      "required_live_targets": [],
+      "secondary_objectives": []
+    },
+    "resources": {
+      "ammunition_reserves": {},
+      "chakra_reserves": {},
+      "major_technique_authorization": {},
+      "medical_reserves": {}
+    },
+    "revision": 1,
+    "roles": {},
+    "status": "draft",
+    "team_id": null,
+    "training": {
+      "after_action_review": true,
+      "attendance_rule": "exact location, health, duty, instructor, facility and equipment must support attendance",
+      "cohesion_rule": "shared drills may change cohesion and communication reliability but never multiply individual stats",
+      "credit_rule": "only verified nonoverlapping attended hours create development credit",
+      "cycle_length_days": 7,
+      "equipment_requirements": [],
+      "evaluation_every_cycles": 4,
+      "facility_ids": [],
+      "failure_and_blocker_rules": [
+        "mission interruption",
+        "injury",
+        "travel",
+        "missing instructor",
+        "missing facility",
+        "equipment shortage",
+        "authority withdrawal"
+      ],
+      "instructor_ids": [],
+      "maximum_hours_per_member_per_week": 12,
+      "member_training_caps": {},
+      "minimum_recovery_hours": 56,
+      "role_focus": {},
+      "safety_limits": {},
+      "scheduled_sessions": [],
+      "shared_drills": [],
+      "status": "inactive_until_approved",
+      "team_objectives": [],
+      "technique_deconfliction": []
+    },
+    "tendencies": {
+      "scale": "0-100; null means not yet adopted",
+      "aggression": null,
+      "initiative": null,
+      "caution": null,
+      "adaptability": null,
+      "flank_bias": null,
+      "ambush_bias": null,
+      "counterattack_bias": null,
+      "pursuit_bias": null,
+      "reserve_bias": null,
+      "withdrawal_willingness": null,
+      "casualty_tolerance": null,
+      "objective_focus": null,
+      "ally_support": null,
+      "formation_discipline": null,
+      "commander_dependence": null,
+      "chakra_conservation": null,
+      "capture_bias": null,
+      "information_preservation": null,
+      "stealth_bias": null
+    }
+  }
+}

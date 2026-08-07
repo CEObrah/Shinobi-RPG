@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_rain_palace_guard.ranged_control",
+  "name": "Land of Rain Daimyo Guard, First Palace Team — Ranged Control Unit",
+  "owner": "force_land_rain_civilian_security",
+  "parent_force": "force_land_rain_civilian_security",
+  "parent_team": "team_land_rain_palace_guard",
+  "troop_type": "archers",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "guard": 3
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.ranged_control",
+  "training": "train.civil.ranged_control",
+  "cohesion": 70,
+  "morale": 71,
+  "readiness": 87,
+  "location": "loc_land_rain_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.06",
+  "stats_ref": "state/unit-capability/land-rain-palace-guard--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/land-rain-palace-guard--ranged_control.json",
+  "loadout_standard": "loadout_civil_archer"
+}

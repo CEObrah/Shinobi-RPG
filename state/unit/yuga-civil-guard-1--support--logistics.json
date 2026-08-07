@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_yuga_civil_guard_1.support.logistics",
+  "name": "Yuga Civil Protection Service, First Guard Team — Logistics Support Unit",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "parent_team": "team_yuga_civil_guard_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 4
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 2
+  },
+  "condition": {
+    "light_healing_injury": 1,
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.yuga.logistics",
+  "training": "train.yuga.logistics",
+  "cohesion": 65,
+  "morale": 72,
+  "readiness": 87,
+  "location": "loc_yuga",
+  "mission": "civil protection readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/yuga-civil-guard-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/yuga-civil-guard-1--support--logistics.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

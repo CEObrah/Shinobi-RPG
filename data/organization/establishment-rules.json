@@ -1,0 +1,33 @@
+{
+  "schema": "establishment-rules.v1",
+  "rules": {
+    "world_owned_forces_preorganized": true,
+    "player_personal_force_preorganized": false,
+    "raw_personnel_specifically_given_to_player_to_organize_preorganized": false,
+    "intact_assigned_units_keep_home_organization": true,
+    "formation_is_operational_not_ownership": true,
+    "home_unit_survives_temporary_attachment": true,
+    "return_restores_home_chain_not_condition": true,
+    "stable_series_units_are_real_units": true,
+    "cold_unit_materialization_preserves_same_unit_id_and_history": true
+  },
+  "assignment_fields": [
+    "source_owner",
+    "home_unit",
+    "current_parent",
+    "current_commander",
+    "authority_limits",
+    "start",
+    "end_or_return_condition",
+    "return_policy_ref"
+  ],
+  "return_invariant": "Temporary player organization dissolves on return unless the source owner formally adopts it. Learned skills and lawful history persist; temporary battle orders do not become source doctrine.",
+  "id": "establishment.rule.standard",
+  "unit_boundary_invariants": {
+    "one_troop_type": true,
+    "one_standard_loadout": true,
+    "subset_persistent_change_requires_split": true,
+    "split_merge_conserves_real_state": true
+  },
+  "materialization_rule": "Stable ordinal units exist before materialization. Materialize detail only when command, location, casualties, equipment, cohesion, history, or causal interaction diverges from series baseline."
+}

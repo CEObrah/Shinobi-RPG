@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "units",
+    "formulas",
+    "rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "body-mechanics.v38"
+    },
+    "units": {
+      "type": "object"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "rules": {
+      "type": "array"
+    }
+  }
+}

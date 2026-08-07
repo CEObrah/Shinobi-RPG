@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_anbu_2.recon.trackers",
+  "name": "Konoha ANBU Operations, Second Tactical Team — Recon Unit — Trackers Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_anbu_2",
+  "troop_type": "trackers",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "anbu_qualified",
+  "rank_distribution": {
+    "anbu_operatives": 2,
+    "jonin": 1,
+    "special_jonin_or_anbu_specialist": 2
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.recon",
+  "training": "train.konoha.recon",
+  "cohesion": 81,
+  "morale": 73,
+  "readiness": 83,
+  "location": "loc_konoha_anbu_headquarters",
+  "mission": "ANBU-qualified covert operations readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.12",
+  "stats_ref": "state/unit-capability/konoha-anbu-2--recon--trackers.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-anbu-2--recon--trackers.json",
+  "loadout_standard": "loadout_anbu"
+}

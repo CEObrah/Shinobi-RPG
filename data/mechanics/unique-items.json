@@ -1,0 +1,236 @@
+{
+  "schema": "unique-item-mechanics.v38",
+  "version": "3.8",
+  "authority": "Structured numerical authority for named-item chakra interfaces and unique modules.",
+  "chakra_interfaces": {
+    "interface_basic_chakra_conductor": {
+      "name": "Basic Chakra Conductor",
+      "throughput_per_6s": 4,
+      "nodes": 1,
+      "control_support": 1,
+      "efficiency_support": 0,
+      "safe_intensity": 2
+    },
+    "interface_standard_dual_conductor": {
+      "name": "Standard Dual Conductor",
+      "throughput_per_6s": 10,
+      "nodes": 2,
+      "control_support": 4,
+      "efficiency_support": 2,
+      "safe_intensity": 3
+    },
+    "interface_hiramekarei_core": {
+      "name": "Hiramekarei Chakra Core",
+      "throughput_per_6s": 20,
+      "nodes": 3,
+      "control_support": 5,
+      "efficiency_support": 3,
+      "safe_intensity": 5,
+      "stored_capacity": 60
+    },
+    "interface_kiba_dual_lightning": {
+      "name": "Kiba Dual Lightning Lattice",
+      "throughput_per_6s": 16,
+      "nodes": 2,
+      "control_support": 5,
+      "efficiency_support": 3,
+      "safe_intensity": 4
+    }
+  },
+  "named_item_base_links": {
+    "item_samehada": [
+      "weapon_heavy_sword",
+      "module_samehada_absorption"
+    ],
+    "item_kubikiribocho": [
+      "weapon_heavy_sword",
+      "module_kubikiribocho_blood_iron_repair"
+    ],
+    "item_hiramekarei": [
+      "weapon_heavy_sword",
+      "module_hiramekarei_chakra_forms"
+    ],
+    "item_kusanagi": [
+      "weapon_katana",
+      "module_kusanagi_extension"
+    ],
+    "item_gaara_sand_gourd": [
+      "item_field_pack_desert",
+      "module_gaara_prepared_sand_reservoir"
+    ],
+    "item_temari_giant_fan": [
+      "weapon_giant_war_fan",
+      "module_war_fan_wind_focus"
+    ],
+    "item_asuma_trench_knives": [
+      "weapon_chakra_trench_knife_pair",
+      "module_chakra_trench_knife_pair"
+    ]
+  },
+  "unique_modules": {
+    "module_samehada_absorption": {
+      "absorption_limit_chakra_per_contact": 12,
+      "valid_targets": [
+        "exposed_chakra",
+        "chakra_cloak",
+        "chakra_construct",
+        "barrier",
+        "chakra_infused_object"
+      ],
+      "contest_percent_by_margin": {
+        "-15_or_less": 0,
+        "-14_to_-1": 25,
+        "0_to_14": 50,
+        "15_to_29": 75,
+        "30_plus": 100
+      },
+      "additional_functions": [
+        "chakra_transfer",
+        "limited_autonomy",
+        "healing_support",
+        "fusion"
+      ]
+    },
+    "module_kubikiribocho_blood_iron_repair": {
+      "repair_requires_exact_iron_source": true,
+      "tracks": [
+        "source_mass",
+        "recoverable_iron",
+        "time",
+        "contamination",
+        "repair_amount"
+      ]
+    },
+    "module_hiramekarei_chakra_forms": {
+      "interface": "interface_hiramekarei_core",
+      "forms": {
+        "broad_hammer": {
+          "cost": 8,
+          "impact_bonus": 5,
+          "control_demand": 45
+        },
+        "long_blade": {
+          "cost": 6,
+          "reach_bonus_m": 3,
+          "penetration_bonus": 2,
+          "control_demand": 50
+        },
+        "split_blades": {
+          "cost": 10,
+          "additional_attack_lanes": 1,
+          "multitasking_demand": 55
+        }
+      }
+    },
+    "module_kusanagi_extension": {
+      "maximum_extension_m": 20,
+      "action_time_added_per_5m": 0.15,
+      "precision_penalty_per_5m": 2,
+      "remote_control_demand": "25 + 2 per meter beyond base reach + interference",
+      "sustained_nodes": 1
+    },
+    "module_gaara_prepared_sand_reservoir": {
+      "gourd_empty_mass_kg": 8,
+      "prepared_sand_capacity_kg": 75,
+      "integrity_max": 90,
+      "control_support": 6,
+      "removes_only_material_generation_burden": true,
+      "mass_tracking_required": true
+    },
+    "module_war_fan_wind_focus": {
+      "states": {
+        "closed": {
+          "wind_control": 0,
+          "area_support": 0,
+          "action_modifier_s": 0
+        },
+        "partial": {
+          "wind_control": 2,
+          "area_support": 2,
+          "action_modifier_s": 0.2
+        },
+        "full": {
+          "wind_control": 4,
+          "area_support": 4,
+          "action_modifier_s": 0.4
+        }
+      }
+    },
+    "module_chakra_trench_knife_pair": {
+      "interface": "interface_standard_dual_conductor"
+    },
+    "module_kiba_lightning_blades": {
+      "interface": "interface_kiba_dual_lightning",
+      "cutting_current": {
+        "chakra_cost": 6,
+        "penetration_bonus": 2,
+        "electrical_injury_bonus": 3
+      },
+      "lightning_capture": {
+        "maximum_chakra_equivalent": 12,
+        "control_demand": 55
+      }
+    },
+    "module_nuibari_threading": {
+      "requires_piercing_contact": true,
+      "tracks_wire_length": true,
+      "additional_target_costs": [
+        "wire",
+        "action_time",
+        "multitasking"
+      ]
+    },
+    "module_kabutowari_combination": {
+      "segments": 2,
+      "armor_stress_bonus": 4,
+      "transmitted_impact_bonus": 3
+    },
+    "module_shibuki_explosive_scroll": {
+      "modes": {
+        "single_burst": {
+          "tags": 1,
+          "impact": 6,
+          "penetration": 2,
+          "radius_m": 2
+        },
+        "focused_breach": {
+          "tags": 3,
+          "impact": 9,
+          "penetration": 5,
+          "radius_m": 1
+        },
+        "chain_blast": {
+          "tags": 8,
+          "impact": 10,
+          "penetration": 3,
+          "radius_m": 5
+        }
+      }
+    },
+    "module_gunbai_conversion": {
+      "capacity_per_reaction": 30,
+      "coverage": "one_intersecting_vector",
+      "cannot_reflect": [
+        "inside_attacks",
+        "nonintersecting_attacks",
+        "genjutsu_already_delivered"
+      ]
+    },
+    "module_totsuka_sealing": {
+      "requires_susanoo": true,
+      "requires_impaling_contact": true,
+      "sealing_completion_seconds": 1.5
+    },
+    "module_yata_mirror": {
+      "coverage_arc_degrees": 120,
+      "vectors_per_reaction": 1,
+      "cannot_cover": [
+        "behind",
+        "beneath",
+        "already_inside",
+        "genjutsu",
+        "nonintersecting_effects"
+      ]
+    }
+  }
+}

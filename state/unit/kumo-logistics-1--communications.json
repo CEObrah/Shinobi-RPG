@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_logistics_1.communications",
+  "name": "Kumo Logistics Corps, First Route Support Team — Communications Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_logistics_1",
+  "troop_type": "communications",
+  "role": "communications",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "special_jonin": 2,
+    "genin": 2,
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.communications",
+  "training": "train.kumo.communications",
+  "cohesion": 85,
+  "morale": 73,
+  "readiness": 92,
+  "location": "loc_kumo_logistics_yard",
+  "mission": "mountain route support readiness",
+  "tendency_profile_ref": "unit.tendency.02",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/kumo-logistics-1--communications.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-logistics-1--communications.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

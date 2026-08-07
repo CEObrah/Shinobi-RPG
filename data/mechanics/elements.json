@@ -1,0 +1,32 @@
+{
+  "schema": "element-mechanics.v38",
+  "primary_cycle": {
+    "fire": "wind",
+    "wind": "lightning",
+    "lightning": "earth",
+    "earth": "water",
+    "water": "fire"
+  },
+  "opposed_resolution": {
+    "advantage_margin_modifier": 15,
+    "disadvantage_margin_modifier": -15,
+    "same_or_unrelated_modifier": 0,
+    "rule": "Apply only when two elemental effects directly contest the same physical space. Technique-specific composition and scale still matter."
+  },
+  "combined_natures": {
+    "ice_release": {
+      "components": [
+        "water",
+        "wind"
+      ],
+      "interaction_rule": "Use technique profile; do not reduce automatically to either component."
+    }
+  },
+  "environment": {
+    "water_available": "may satisfy registered water-medium requirements",
+    "saturated_ground": "may modify lightning conduction and earth handling only when technique profile says so",
+    "strong_wind": "affects registered projectile/mist/fire geometry through environment modifier",
+    "vacuum_or_oxygen_denial": "fire techniques require registered combustion exceptions"
+  },
+  "rule": "Elemental advantage modifies an opposed contest, not raw damage after an uncontested hit."
+}

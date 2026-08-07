@@ -1,0 +1,218 @@
+{
+  "schema": "invisible-court-tactics.v1",
+  "style": "Invisible Court Style",
+  "authority": "Load-on-demand tactical detail; state/player-detail/combat-style.json owns the player doctrine.",
+  "anatomical_target_rules": {
+    "ankle_and_achilles": {
+      "purpose": [
+        "remove mobility",
+        "stop pursuit or Body Flicker setup",
+        "make grappling control easier"
+      ],
+      "setup": [
+        "Pressure Nails destabilization",
+        "Crosscurrent landing error",
+        "free-hand or katana angle after entry"
+      ]
+    },
+    "armpit": {
+      "nonlethal_options": [
+        "underhook",
+        "shoulder pressure",
+        "arm lock"
+      ],
+      "opening_conditions": [
+        "raised arm",
+        "high block",
+        "weapon draw",
+        "grapple reach"
+      ],
+      "purpose": [
+        "compromise raised weapon or sealing arm"
+      ]
+    },
+    "back_of_knee": {
+      "opening_conditions": [
+        "backward step",
+        "turn to escape",
+        "weight committed to leg",
+        "resisted throw"
+      ],
+      "purpose": [
+        "collapse base",
+        "stop retreat or jump",
+        "enable back control"
+      ]
+    },
+    "blind_side": {
+      "finishes": [
+        "rear choke",
+        "rear-knee attack",
+        "neck threat",
+        "face-down control"
+      ],
+      "preferred_positions": [
+        "outside weapon-side shoulder",
+        "behind elbow",
+        "beside rear shoulder",
+        "behind opponent after wrist control"
+      ]
+    },
+    "hands_and_fingers": {
+      "deterministic_limit": "Aiming at a hand does not bypass its movement, guard, armor, distance or contact timing.",
+      "legal_attacks": [
+        "Pressure Nails disruption",
+        "finger or knuckle cut",
+        "palm or back-of-hand cut",
+        "physical finger separation"
+      ],
+      "purpose": [
+        "stop hand seals",
+        "remove weapon or tool control",
+        "break concentration"
+      ]
+    },
+    "neck_and_jawline": {
+      "lethal_use": "only after player declares lethal force and a legal opening exists",
+      "nonlethal_use": [
+        "pommel strike",
+        "forearm pressure",
+        "head control",
+        "choke",
+        "forced posture change"
+      ]
+    },
+    "wrists_and_forearms": {
+      "legal_attacks": [
+        "wrist cut",
+        "forearm tendon cut",
+        "free-hand wrist capture",
+        "katana threat to one wrist while controlling the other"
+      ],
+      "purpose": [
+        "stop sealing",
+        "break weapon grip",
+        "reduce blocking and grappling defense"
+      ]
+    }
+  },
+  "combat_phases": {
+    "break_seal": [
+      "Crosscurrent Zone degrades precision",
+      "Pressure Nails attacks a finger or wrist",
+      "Binding Current separates hands",
+      "Empty Step closes before release"
+    ],
+    "establish_control": [
+      "free hand catches remaining arm",
+      "katana controls the other side",
+      "move outside the weapon shoulder toward the blind side",
+      "Flowing Veil handles immediate counter"
+    ],
+    "finish": [
+      "player chooses lethal cut or thrust, joint destruction, choke, throw, pin, disarm, cuffs or forced surrender"
+    ],
+    "read": [
+      "activate Listening Skin",
+      "identify dominant hand, lead leg, weapon position, likely escape direction and sealing pattern"
+    ],
+    "remove_mobility": [
+      "attack or control ankle, Achilles, supporting leg, rear knee or hip position"
+    ],
+    "trigger": [
+      "advance, threaten a hand, throw a tool, take an angle or threaten the throat to force a reaction"
+    ]
+  },
+  "disabling_sequence": [
+    "remove or separate the hands",
+    "remove mobility through ankle, Achilles, supporting leg or rear knee",
+    "move to the blind side",
+    "establish wrist, elbow, shoulder, back or choke control",
+    "finish, pin, disarm or force surrender"
+  ],
+  "force_melee_rules": [
+    "close before a seal completes",
+    "remain close enough that sealing exposes the hands to the katana",
+    "follow retreat with Empty Step when geometry permits",
+    "redirect projectiles with Returning Current",
+    "shift physical attacks with Flowing Veil",
+    "deny escape lanes with Thousand-Edge routes"
+  ],
+  "katana_and_free_hand_actions": [
+    "catch wrists",
+    "trap or separate fingers",
+    "control elbows",
+    "secure underhooks",
+    "apply arm locks and chokes",
+    "drag posture off-line",
+    "turn the back or weapon shoulder",
+    "pull a limb across the body into a katana threat",
+    "pin or force surrender"
+  ],
+  "legal_lethal_finishes": [
+    "controlled neck cut from blind side",
+    "thrust through exposed armpit or torso after arm control",
+    "wrist disable followed by decisive body strike",
+    "rear-knee collapse followed by neck strike",
+    "take back and cut throat"
+  ],
+  "legal_nonlethal_finishes": [
+    "rear choke",
+    "shoulder, elbow or wrist lock",
+    "face-down pin",
+    "knee-on-back restraint",
+    "disarm",
+    "katana-at-throat surrender",
+    "chakra-suppression cuffs after control"
+  ],
+  "matchups": {
+    "multiple_opponents": [
+      "do not remain attached to one target",
+      "prioritize sensors, medics, commanders, barrier users and large-scale casters",
+      "use Returning Current and Crosscurrent Zone",
+      "make one brief disable or throw",
+      "reposition with Empty Step",
+      "use Thousand-Edge routes to prevent interference"
+    ],
+    "swordsman": [
+      "use Listening Skin on swing startup",
+      "Flowing Veil shifts blade off-line",
+      "Pressure Nails attacks grip or wrist",
+      "enter outside weapon shoulder",
+      "control sword arm rather than repeatedly clash"
+    ],
+    "taijutsu_specialist": [
+      "avoid force-on-force exchange",
+      "disturb supporting ankle, knee, wrist or elbow",
+      "use katana to constrain entry",
+      "grapple only when angle and leverage are favorable",
+      "create space against overwhelming strength"
+    ]
+  },
+  "resource_decision_detail": {
+    "cost_efficiency_rule": "Prefer the lowest total chakra cost that produces the required legal effect, including setup, maintenance, likely follow-up costs, and the need to preserve a second-engagement reserve.",
+    "jutsu_use_tests": [
+      "A physical answer cannot complete inside the actual timing window.",
+      "Range, terrain, airborne movement, sealing, barriers, or multiple opponents make a physical answer insufficient.",
+      "A low-cost method prevents substantially greater chakra loss, injury, capture, mission failure, or time loss.",
+      "Dodge, parry, block, cover, movement, or grappling cannot legally protect the required target.",
+      "The player explicitly orders the method or a chakra-expending tactical posture."
+    ],
+    "ordinary_priority_order": [
+      "ordinary perception and intelligence-led threat analysis",
+      "position, timing, terrain, cover, and movement",
+      "standard katana, grappling, unarmed control, kunai, shuriken, wire, smoke, and explosive tags",
+      "low-cost jutsu that creates a necessary opening or prevents a greater cost",
+      "moderate-cost jutsu when physical methods are insufficient",
+      "major fields only with explicit player authorization except narrowly defined immediate survival emergencies"
+    ],
+    "prohibited_default_uses": [
+      "Do not maintain Listening Skin continuously without a concrete sensory need.",
+      "Do not use Empty Step when ordinary movement reaches the same legal position in time.",
+      "Do not use Pressure Nails when a physical feint, thrown tool, cut, grip, or footwork disruption is sufficient.",
+      "Do not sustain zones merely to dominate an already controlled opponent.",
+      "Do not add Wind Release for appearance, intimidation, or narrative spectacle.",
+      "Do not use Court of Ten Thousand Invisible Blades without explicit player authorization."
+    ]
+  }
+}

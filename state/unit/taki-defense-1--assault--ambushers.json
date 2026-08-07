@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_taki_defense_1.assault.ambushers",
+  "name": "Taki Waterfall Guard, First Defense Team — Assault Unit — Ambushers Unit",
+  "owner": "force_taki_shinobi",
+  "parent_force": "force_taki_shinobi",
+  "parent_team": "team_taki_defense_1",
+  "troop_type": "ambushers",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 7
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 3,
+    "jonin": 1
+  },
+  "condition": {
+    "healthy": 6,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.taki.assault",
+  "training": "train.taki.assault",
+  "cohesion": 74,
+  "morale": 74,
+  "readiness": 86,
+  "location": "loc_taki_hidden_approach",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.02",
+  "stats_ref": "state/unit-capability/taki-defense-1--assault--ambushers.json",
+  "battle_kernel_ref": "state/unit-kernel/taki-defense-1--assault--ambushers.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

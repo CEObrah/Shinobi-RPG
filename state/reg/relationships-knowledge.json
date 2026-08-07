@@ -1,0 +1,13 @@
+{
+  "knowledge_events": [],
+  "owner_id": "relationships_knowledge",
+  "owner_type": "relationship_knowledge_registry",
+  "relationship_owners": [],
+  "schema": "shinobi-domain-registry.v38",
+  "relationship_edge_count": 56,
+  "relationship_storage": {
+    "source_shard_template": "state/reg/relationship-edges/<source_id>.json",
+    "derived_index": "state/reg/relationship-edge-index.json",
+    "authority_rule": "Each relationship edge exists exactly once in the source-owner shard. The index stores paths only."
+  }
+}

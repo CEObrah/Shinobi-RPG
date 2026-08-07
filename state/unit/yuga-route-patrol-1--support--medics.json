@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_yuga_route_patrol_1.support.medics",
+  "name": "Yuga Hot-Springs Route Patrol, First Tactical Team — Support Unit — Medics Unit",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "parent_team": "team_yuga_route_patrol_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1
+  },
+  "condition": {
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.yuga.medical",
+  "training": "train.yuga.medical",
+  "cohesion": 75,
+  "morale": 72,
+  "readiness": 81,
+  "location": "loc_hot_water_trade_route",
+  "mission": "commercial route patrol readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/yuga-route-patrol-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/yuga-route-patrol-1--support--medics.json",
+  "loadout_standard": "loadout_minor_village_field"
+}

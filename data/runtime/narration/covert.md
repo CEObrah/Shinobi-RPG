@@ -1,0 +1,2 @@
+# Covert, intelligence, and mission narration
+Prioritize sight lines, sound, cover, patrol rhythm, disguises, documents, seals, witnesses, evidence, custody, escape routes, travel/extraction time, and what information can leak afterward. Tension comes from incomplete knowledge and timing, not narrator omniscience. A successful infiltration may still leave traces; a clean capture still requires transport and jurisdiction. Distinguish what Wei suspects from what he can prove.

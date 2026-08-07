@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_oto_infiltration_2.assault.experimental-combatants",
+  "name": "Oto Field Network, Second Infiltration Team — Assault Unit — Experimental Combatants Unit",
+  "owner": "force_oto_network",
+  "parent_force": "force_oto_network",
+  "parent_team": "team_oto_infiltration_2",
+  "troop_type": "experimental_combatants",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 3,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.oto.assault",
+  "training": "train.oto.assault",
+  "cohesion": 70,
+  "morale": 74,
+  "readiness": 86,
+  "location": "loc_rice_fields",
+  "mission": "distributed infiltration readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/oto-infiltration-2--assault--experimental-combatants.json",
+  "battle_kernel_ref": "state/unit-kernel/oto-infiltration-2--assault--experimental-combatants.json",
+  "loadout_standard": "loadout_oto_infiltration"
+}

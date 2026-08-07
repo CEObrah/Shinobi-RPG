@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_iron_samurai_4.assault",
+  "name": "Iron Capital Guard, First Armored Team — Assault Unit",
+  "owner": "force_iron_samurai",
+  "parent_force": "force_iron_samurai",
+  "parent_team": "team_iron_samurai_4",
+  "troop_type": "armored_swordsmen",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 16
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "commander": 1,
+    "samurai": 13,
+    "senior_samurai": 2
+  },
+  "condition": {
+    "healthy": 16
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.iron.assault",
+  "training": "train.iron.assault",
+  "cohesion": 68,
+  "morale": 69,
+  "readiness": 78,
+  "location": "loc_iron_capital",
+  "mission": "capital defense readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.07",
+  "stats_ref": "state/unit-capability/iron-samurai-4--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/iron-samurai-4--assault.json",
+  "loadout_standard": "loadout_iron_samurai"
+}

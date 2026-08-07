@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_kumo_relay_3",
+  "name": "Kumo Sensor Relay Corps, Third Mobile Team",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_kumo_relay_3.assault.line-combatants",
+    "unit_kumo_relay_3.assault.pursuit",
+    "unit_kumo_relay_3.communications",
+    "unit_kumo_relay_3.recon",
+    "unit_kumo_relay_3.support.medics",
+    "unit_kumo_relay_3.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.kumo.field",
+  "training": "train.kumo.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 83,
+  "morale": 78,
+  "readiness": 86,
+  "location": "loc_lightning_northern_route",
+  "mission": "northern relay coverage readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "chunin": 1
+        },
+        "loadout": "loadout_kumo_assault",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 86,
+        "capability": {
+          "attributes.awareness": [
+            72.429,
+            9.796,
+            59.0,
+            85.0
+          ],
+          "attributes.composure": [
+            70.429,
+            3.499,
+            65.0,
+            74.0
+          ],
+          "attributes.intelligence": [
+            67.143,
+            8.459,
+            54.0,
+            79.0
+          ],
+          "attributes.presence": [
+            66.286,
+            3.194,
+            59.0,
+            70.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            59.429,
+            3.458,
+            55.0,
+            66.0
+          ],
+          "chakra_dimensions.control": [
+            65.0,
+            10.677,
+            52.0,
+            80.0
+          ],
+          "chakra_dimensions.multitasking": [
+            76.429,
+            9.256,
+            58.0,
+            87.0
+          ],
+          "operational_skills.leadership": [
+            69.571,
+            8.104,
+            61.0,
+            86.0
+          ],
+          "operational_skills.tactics": [
+            53.286,
+            5.675,
+            46.0,
+            59.0
+          ],
+          "operational_skills.team_coordination": [
+            70.429,
+            8.016,
+            62.0,
+            84.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

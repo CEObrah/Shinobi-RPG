@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_2.assault.heavy-taijutsu",
+  "name": "Kumo Capital Guard, First Shock Team — Assault Unit — Heavy Taijutsu Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_2",
+  "troop_type": "heavy_taijutsu",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 5
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 5
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.assault",
+  "training": "train.kumo.assault",
+  "cohesion": 76,
+  "morale": 73,
+  "readiness": 86,
+  "location": "loc_kumo_perimeter",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/kumo-assault-2--assault--heavy-taijutsu.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-2--assault--heavy-taijutsu.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

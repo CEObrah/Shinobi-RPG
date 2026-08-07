@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_konoha_anbu_1.support.logistics",
+  "name": "Konoha ANBU Operations, First Tactical Team — Logistics Support Unit",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "parent_team": "team_konoha_anbu_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "anbu_qualified",
+  "rank_distribution": {
+    "anbu_specialist": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.konoha.logistics",
+  "training": "train.konoha.logistics",
+  "cohesion": 81,
+  "morale": 77,
+  "readiness": 86,
+  "location": "loc_konoha_anbu_headquarters",
+  "mission": "ANBU-qualified covert operations readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.18",
+  "stats_ref": "state/unit-capability/konoha-anbu-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/konoha-anbu-1--support--logistics.json",
+  "loadout_standard": "loadout_anbu"
+}

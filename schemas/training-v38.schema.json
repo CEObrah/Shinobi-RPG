@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "representation_efficiency",
+    "formulas",
+    "promotion",
+    "batch_equivalence"
+  ],
+  "properties": {
+    "schema": {
+      "const": "training-mechanics.v38"
+    },
+    "representation_efficiency": {
+      "type": "object"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "promotion": {
+      "type": "string"
+    },
+    "batch_equivalence": {
+      "type": "string"
+    }
+  }
+}

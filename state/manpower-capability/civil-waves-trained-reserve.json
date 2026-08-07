@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability.v1",
+  "id": "capability.civil.waves.trained_reserve",
+  "pool_id": "civil.waves.trained_reserve",
+  "source_owner": "force.civil.waves",
+  "stats": {
+    "attributes": {
+      "strength": 34,
+      "endurance": 35,
+      "awareness": 31
+    },
+    "skills": {
+      "weapons": 35,
+      "formation": 34,
+      "tactics": 21
+    },
+    "morale": 54,
+    "discipline": 44,
+    "experience": 31
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 170,
+      "sd": 6.7
+    },
+    "weight_kg": {
+      "mean": 61,
+      "sd": 7.8
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 85,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_mist_1.recon.scouts",
+  "name": "Kiri Harbor Defense, First Mist Team — Recon Unit — Scouts Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_mist_1",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 2,
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.recon",
+  "training": "train.kiri.recon",
+  "cohesion": 76,
+  "morale": 72,
+  "readiness": 84,
+  "location": "loc_kiri_harbor",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/kiri-mist-1--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-mist-1--recon--scouts.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

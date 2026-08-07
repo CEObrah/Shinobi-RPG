@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_suna_desert_3",
+  "name": "Suna Eastern Dune Patrol, First Tactical Team",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_suna_desert_3.assault",
+    "unit_suna_desert_3.ranged_control.trap-specialists",
+    "unit_suna_desert_3.ranged_control.wind-skirmishers",
+    "unit_suna_desert_3.recon",
+    "unit_suna_desert_3.support.medics",
+    "unit_suna_desert_3.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.suna.field",
+  "training": "train.suna.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 72,
+  "morale": 76,
+  "readiness": 84,
+  "location": "loc_wind_eastern_dunes",
+  "mission": "eastern desert patrol readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 1,
+          "genin": 1
+        },
+        "loadout": "loadout_suna_desert",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 84,
+        "capability": {
+          "attributes.awareness": [
+            51.0,
+            8.0,
+            43.0,
+            59.0
+          ],
+          "attributes.composure": [
+            69.0,
+            2.0,
+            67.0,
+            71.0
+          ],
+          "attributes.intelligence": [
+            60.5,
+            2.5,
+            58.0,
+            63.0
+          ],
+          "attributes.presence": [
+            59.5,
+            4.5,
+            55.0,
+            64.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            67.5,
+            3.5,
+            64.0,
+            71.0
+          ],
+          "chakra_dimensions.control": [
+            52.5,
+            0.5,
+            52.0,
+            53.0
+          ],
+          "chakra_dimensions.multitasking": [
+            67.0,
+            4.0,
+            63.0,
+            71.0
+          ],
+          "operational_skills.leadership": [
+            56.0,
+            1.0,
+            55.0,
+            57.0
+          ],
+          "operational_skills.tactics": [
+            68.5,
+            1.5,
+            67.0,
+            70.0
+          ],
+          "operational_skills.team_coordination": [
+            62.0,
+            3.0,
+            59.0,
+            65.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

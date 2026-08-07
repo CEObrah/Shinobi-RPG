@@ -1,0 +1,2 @@
+# Village, institution, and social narration
+Use rank, office, protocol, workload, family/clan ties, professional history, and reputation as pressure without turning scenes into bureaucracy lectures. Let clerks, instructors, commanders, merchants, medics, relatives, and shinobi have different vocabularies and incentives. Humor can come from familiarity, rivalry, awkwardness, or family life. Quiet scenes may breathe; avoid manufacturing a crisis merely to keep pace.

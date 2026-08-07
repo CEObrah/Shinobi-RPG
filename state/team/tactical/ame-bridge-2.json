@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_ame_bridge_2",
+  "name": "Ame Eastern Bridge Command, Second Control Team",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_ame_bridge_2.assault.bridge-control",
+    "unit_ame_bridge_2.assault.rooftop-assault",
+    "unit_ame_bridge_2.recon.sensors",
+    "unit_ame_bridge_2.recon.surveillance",
+    "unit_ame_bridge_2.support.medics",
+    "unit_ame_bridge_2.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.ame.field",
+  "training": "train.ame.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 74,
+  "morale": 64,
+  "readiness": 83,
+  "location": "loc_ame_eastern_bridge",
+  "mission": "eastern bridge reinforcement readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 1,
+          "jonin": 1
+        },
+        "loadout": "loadout_ame_urban",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 83,
+        "capability": {
+          "attributes.awareness": [
+            52.5,
+            8.5,
+            44.0,
+            61.0
+          ],
+          "attributes.composure": [
+            56.5,
+            0.5,
+            56.0,
+            57.0
+          ],
+          "attributes.intelligence": [
+            42.5,
+            6.5,
+            36.0,
+            49.0
+          ],
+          "attributes.presence": [
+            58.5,
+            7.5,
+            51.0,
+            66.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            65.0,
+            7.0,
+            58.0,
+            72.0
+          ],
+          "chakra_dimensions.control": [
+            62.0,
+            6.0,
+            56.0,
+            68.0
+          ],
+          "chakra_dimensions.multitasking": [
+            47.0,
+            0.0,
+            47.0,
+            47.0
+          ],
+          "operational_skills.leadership": [
+            48.0,
+            0.0,
+            48.0,
+            48.0
+          ],
+          "operational_skills.tactics": [
+            65.5,
+            4.5,
+            61.0,
+            70.0
+          ],
+          "operational_skills.team_coordination": [
+            65.0,
+            1.0,
+            64.0,
+            66.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

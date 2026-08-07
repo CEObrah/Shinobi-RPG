@@ -1,0 +1,94 @@
+{
+  "schema": "reconstitution-policies.v1",
+  "policies": {
+    "reconstitution.shinobi_village": {
+      "return_behavior": "restore_home_chain",
+      "preserve": [
+        "casualties",
+        "injuries",
+        "captures",
+        "missing",
+        "experience",
+        "cohesion",
+        "morale",
+        "valid_promotions",
+        "equipment_losses",
+        "equipment_gains_with_valid_custody",
+        "relationships",
+        "unit_history",
+        "doctrine_familiarity"
+      ],
+      "actions": [
+        "stand_down_if_needed",
+        "recover_injured",
+        "fill_vacancies_from_qualified_pool",
+        "appoint_replacement_command",
+        "replace_equipment_from_real_stock",
+        "integrate_replacements",
+        "restore_doctrine_familiarity",
+        "merge_or_disband_only_if_owner_policy_requires"
+      ],
+      "no_reset": true
+    },
+    "reconstitution.conventional": {
+      "return_behavior": "restore_home_chain",
+      "preserve": [
+        "casualties",
+        "injuries",
+        "experience",
+        "cohesion",
+        "morale",
+        "valid_promotions",
+        "equipment_losses",
+        "unit_history"
+      ],
+      "actions": [
+        "muster_survivors",
+        "recover_injured",
+        "fill_from_replacement_pool",
+        "replace_officers",
+        "reissue_from_stock",
+        "retrain_replacements",
+        "merge_understrength_if_required"
+      ],
+      "no_reset": true
+    },
+    "reconstitution.samurai": {
+      "return_behavior": "restore_home_chain",
+      "preserve": [
+        "casualties",
+        "injuries",
+        "experience",
+        "cohesion",
+        "honors",
+        "equipment_losses",
+        "unit_history"
+      ],
+      "actions": [
+        "stand_down",
+        "replace_from_samurai_pool",
+        "appoint_command",
+        "retrain"
+      ],
+      "no_reset": true
+    },
+    "reconstitution.house_tang": {
+      "return_behavior": "restore_house_unit_or_external_assignment",
+      "preserve": [
+        "identity",
+        "injuries",
+        "experience",
+        "relationships",
+        "training",
+        "equipment_state",
+        "unit_history"
+      ],
+      "actions": [
+        "recover",
+        "replace_only_from_real_house_members",
+        "reassign_by_house_authority"
+      ],
+      "no_reset": true
+    }
+  }
+}

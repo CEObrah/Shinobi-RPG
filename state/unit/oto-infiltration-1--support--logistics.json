@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_oto_infiltration_1.support.logistics",
+  "name": "Oto Field Network, First Retrieval Team — Logistics Support Unit",
+  "owner": "force_oto_network",
+  "parent_force": "force_oto_network",
+  "parent_team": "team_oto_infiltration_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "jonin": 1,
+    "genin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.oto.logistics",
+  "training": "train.oto.logistics",
+  "cohesion": 66,
+  "morale": 64,
+  "readiness": 77,
+  "location": "loc_rice_hidden_facility",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/oto-infiltration-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/oto-infiltration-1--support--logistics.json",
+  "loadout_standard": "loadout_oto_infiltration"
+}

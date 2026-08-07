@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_3.recon.scouts",
+  "name": "Kumo Northern Pass Company, First Assault Team — Recon Unit — Scouts Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_3",
+  "troop_type": "scouts",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 2,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 3
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.recon",
+  "training": "train.kumo.recon",
+  "cohesion": 83,
+  "morale": 80,
+  "readiness": 86,
+  "location": "loc_lightning_northern_pass",
+  "mission": "northern pass reaction readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.06",
+  "stats_ref": "state/unit-capability/kumo-assault-3--recon--scouts.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-3--recon--scouts.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

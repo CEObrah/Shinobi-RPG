@@ -1,0 +1,129 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_konoha_barrier_3",
+  "name": "Konoha Barrier Corps, Perimeter Maintenance Team",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_konoha_barrier_3.assault.kit-loadout-konoha-flak",
+    "unit_konoha_barrier_3.assault.kit-loadout-standard-shinobi",
+    "unit_konoha_barrier_3.communications.kit-loadout-konoha-flak",
+    "unit_konoha_barrier_3.communications.kit-loadout-standard-shinobi",
+    "unit_konoha_barrier_3.recon.kit-loadout-konoha-flak",
+    "unit_konoha_barrier_3.recon.kit-loadout-standard-shinobi",
+    "unit_konoha_barrier_3.support.barrier-specialists.kit-loadout-konoha-flak",
+    "unit_konoha_barrier_3.support.barrier-specialists.kit-loadout-standard-shinobi",
+    "unit_konoha_barrier_3.support.medics",
+    "unit_konoha_barrier_3.support.logistics.kit-loadout-konoha-flak",
+    "unit_konoha_barrier_3.support.logistics.kit-loadout-standard-shinobi"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.konoha.field",
+  "training": "train.konoha.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 79,
+  "morale": 80,
+  "readiness": 82,
+  "location": "loc_konoha_perimeter",
+  "mission": "barrier inspection and perimeter continuity",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 2
+        },
+        "loadout": "loadout_standard_shinobi",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 82,
+        "capability": {
+          "attributes.awareness": [
+            66.0,
+            3.674,
+            60.0,
+            69.0
+          ],
+          "attributes.composure": [
+            63.5,
+            5.852,
+            56.0,
+            72.0
+          ],
+          "attributes.intelligence": [
+            58.25,
+            5.54,
+            53.0,
+            67.0
+          ],
+          "attributes.presence": [
+            55.5,
+            4.153,
+            49.0,
+            60.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            63.0,
+            7.246,
+            51.0,
+            70.0
+          ],
+          "chakra_dimensions.control": [
+            66.0,
+            7.55,
+            55.0,
+            73.0
+          ],
+          "chakra_dimensions.multitasking": [
+            52.0,
+            4.95,
+            45.0,
+            58.0
+          ],
+          "operational_skills.leadership": [
+            51.75,
+            7.854,
+            43.0,
+            63.0
+          ],
+          "operational_skills.tactics": [
+            60.75,
+            1.299,
+            60.0,
+            63.0
+          ],
+          "operational_skills.team_coordination": [
+            58.0,
+            4.528,
+            51.0,
+            62.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

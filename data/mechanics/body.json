@@ -1,0 +1,28 @@
+{
+  "schema": "body-mechanics.v38",
+  "units": {
+    "height": "m",
+    "mass": "kg",
+    "speed": "m/s",
+    "energy": "J"
+  },
+  "formulas": {
+    "height_m": "adult/current height_cm / 100",
+    "unarmed_reach_m": "0.45 * height_m",
+    "body_reach_adjustment_m": "0.22 * (height_m - 1.70)",
+    "effective_weapon_reach_m": "item.reach_m + body_reach_adjustment_m",
+    "walking_stride_m": "0.415 * height_m",
+    "mass_factor_0_200": "clamp(100 * sqrt(actor_mass_kg / target_mass_kg), 50, 150)",
+    "grapple_control_score": "0.35*Grappling + 0.25*Strength + 0.15*Coordination + 0.15*Agility + 0.10*mass_factor_0_200",
+    "knockback_resistance": "(0.45*Toughness + 0.35*Strength + 0.20*Endurance) * sqrt(mass_kg/70)",
+    "linear_momentum": "mass_kg * speed_mps",
+    "fall_energy_j": "mass_kg * 9.80665 * fall_height_m",
+    "carry_capacity_kg": "mass_kg * (0.35 + Strength/160)"
+  },
+  "rules": [
+    "Strength is not body mass.",
+    "Body dimensions affect geometry even when attributes are equal.",
+    "Item reach remains authoritative and receives only the explicit body adjustment above.",
+    "Unless an owner has an explicit supported override, current height derives from birth_date + growth_profile_id + optional anchors through growth_end_age; current_weight_kg is a mutable life-course value and is never frozen merely because growth_end_age was reached."
+  ]
+}

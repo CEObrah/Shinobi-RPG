@@ -1,0 +1,64 @@
+{
+  "schema": "medical-implant-registry.v38",
+  "profiles": {
+    "implant.sharingan_3tomoe_transplanted": {
+      "id": "implant.sharingan_3tomoe_transplanted",
+      "type": "ocular_dojutsu_implant",
+      "bloodline_ref": "bloodline.sharingan",
+      "stage": "three_tomoe",
+      "can_normally_deactivate_in_non_uchiha": false,
+      "grants_only_registered_eye_functions": true,
+      "surgical_requirements": {
+        "medicine": 150,
+        "chakra_control": 145,
+        "advanced_surgery_mastery": 130
+      },
+      "passive_drain_rule": {
+        "principle": "eye remains biologically active, but mastery can reduce passive chakra drain to zero",
+        "formula": "passive_drain = base_passive_drain * max(0,(400-integration-ocular_control)/400)^2",
+        "integration_scale": "0-200",
+        "ocular_control_scale": "0-200",
+        "minimum_passive_drain": 0,
+        "zero_drain_condition": "integration=200 and ocular_control=200; near-perfect combined values approach zero continuously"
+      },
+      "active_use_cost_rule": "active techniques still pay their registered base cost; poor integration/control may add penalties, but perfect mastery removes transplant inefficiency rather than the technique base cost",
+      "procedure_success_rule": "100_percent_when_medically_eligible_recipient_qualified_operator_and_proper_facility_are_present",
+      "extraction_and_preservation_rule": "qualified_extraction_and_registered_preservation_do_not_reduce_vision_integrity"
+    },
+    "implant.shisui_right_mangekyo": {
+      "id": "implant.shisui_right_mangekyo",
+      "type": "unique_mangekyo_ocular_implant",
+      "bloodline_ref": "bloodline.sharingan",
+      "eye_identity": "Shisui Uchiha right eye",
+      "technique_refs": [
+        "kotoamatsukami"
+      ],
+      "can_normally_deactivate_in_non_uchiha": false,
+      "surgical_requirements": {
+        "medicine": 175,
+        "chakra_control": 165,
+        "advanced_surgery_mastery": 155
+      },
+      "cooldown_state": "tracked_per_eye_instance",
+      "passive_drain_rule": {
+        "principle": "eye remains biologically active, but mastery can reduce passive chakra drain to zero",
+        "formula": "passive_drain = base_passive_drain * max(0,(400-integration-ocular_control)/400)^2",
+        "integration_scale": "0-200",
+        "ocular_control_scale": "0-200",
+        "minimum_passive_drain": 0,
+        "zero_drain_condition": "integration=200 and ocular_control=200; near-perfect combined values approach zero continuously"
+      },
+      "active_use_cost_rule": "active techniques still pay their registered base cost; poor integration/control may add penalties, but perfect mastery removes transplant inefficiency rather than the technique base cost",
+      "procedure_success_rule": "100_percent_when_medically_eligible_recipient_qualified_operator_and_proper_facility_are_present",
+      "extraction_and_preservation_rule": "qualified_extraction_and_registered_preservation_do_not_reduce_vision_integrity"
+    },
+    "implant.danzo_modified_right_arm": {
+      "id": "implant.danzo_modified_right_arm",
+      "type": "hashirama_cell_modified_arm",
+      "integrated_eye_socket_count": 10,
+      "contains_independent_eye_instances": true,
+      "compatibility": "dangerous; Hashirama-cell overgrowth and chakra instability require containment",
+      "does_not_duplicate_contained_eyes": true
+    }
+  }
+}

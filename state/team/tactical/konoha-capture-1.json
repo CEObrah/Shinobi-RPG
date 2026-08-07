@@ -1,0 +1,128 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_konoha_capture_1",
+  "name": "Konoha Capture Division, First Tactical Team",
+  "owner": "force_konoha_shinobi",
+  "parent_force": "force_konoha_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_konoha_capture_1.assault.capture-specialists.kit-loadout-konoha-flak",
+    "unit_konoha_capture_1.assault.capture-specialists.kit-loadout-standard-shinobi",
+    "unit_konoha_capture_1.assault.line-combatants.kit-loadout-konoha-flak",
+    "unit_konoha_capture_1.assault.line-combatants.kit-loadout-standard-shinobi",
+    "unit_konoha_capture_1.recon.sensors.kit-loadout-konoha-flak",
+    "unit_konoha_capture_1.recon.sensors.kit-loadout-standard-shinobi",
+    "unit_konoha_capture_1.recon.trackers.kit-loadout-konoha-flak",
+    "unit_konoha_capture_1.recon.trackers.kit-loadout-standard-shinobi",
+    "unit_konoha_capture_1.support.medics",
+    "unit_konoha_capture_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.konoha.field",
+  "training": "train.konoha.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 77,
+  "morale": 71,
+  "readiness": 84,
+  "location": "loc_konoha_internal_security",
+  "mission": "standing_readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 2
+        },
+        "loadout": "loadout_konoha_flak",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 84,
+        "capability": {
+          "attributes.awareness": [
+            69.0,
+            4.0,
+            65.0,
+            73.0
+          ],
+          "attributes.composure": [
+            67.0,
+            1.0,
+            66.0,
+            68.0
+          ],
+          "attributes.intelligence": [
+            71.0,
+            3.0,
+            68.0,
+            74.0
+          ],
+          "attributes.presence": [
+            69.0,
+            2.0,
+            67.0,
+            71.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            76.0,
+            6.0,
+            70.0,
+            82.0
+          ],
+          "chakra_dimensions.control": [
+            79.5,
+            0.5,
+            79.0,
+            80.0
+          ],
+          "chakra_dimensions.multitasking": [
+            75.5,
+            2.5,
+            73.0,
+            78.0
+          ],
+          "operational_skills.leadership": [
+            59.5,
+            2.5,
+            57.0,
+            62.0
+          ],
+          "operational_skills.tactics": [
+            76.0,
+            3.0,
+            73.0,
+            79.0
+          ],
+          "operational_skills.team_coordination": [
+            68.5,
+            2.5,
+            66.0,
+            71.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

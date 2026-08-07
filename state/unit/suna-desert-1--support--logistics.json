@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_suna_desert_1.support.logistics",
+  "name": "Suna Northern Desert Patrol, First Tactical Team — Logistics Support Unit",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "parent_team": "team_suna_desert_1",
+  "troop_type": "logistics_support",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1,
+    "special_jonin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.suna.logistics",
+  "training": "train.suna.logistics",
+  "cohesion": 77,
+  "morale": 76,
+  "readiness": 82,
+  "location": "loc_wind_northern_route",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.02",
+  "stats_ref": "state/unit-capability/suna-desert-1--support--logistics.json",
+  "battle_kernel_ref": "state/unit-kernel/suna-desert-1--support--logistics.json",
+  "loadout_standard": "loadout_suna_desert"
+}

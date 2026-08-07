@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "command-assignments.v1"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source_owner",
+          "assignment_kind",
+          "receiving_commander",
+          "authority_limits",
+          "start",
+          "return_condition",
+          "return_policy_ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "source_owner": {
+            "type": "string"
+          },
+          "assignment_kind": {
+            "enum": [
+              "intact_units",
+              "raw_personnel"
+            ]
+          },
+          "receiving_commander": {
+            "type": "string"
+          },
+          "authority_limits": {
+            "type": "object"
+          },
+          "start": {
+            "type": "string"
+          },
+          "return_condition": {},
+          "return_policy_ref": {
+            "type": "string"
+          },
+          "unit_refs": {
+            "type": "array"
+          },
+          "raw_allocations": {
+            "type": "array"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_ame_suppression_1",
+  "name": "Ame Urban Suppression Command, First Tactical Team",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_ame_suppression_1.assault.bridge-control",
+    "unit_ame_suppression_1.assault.rooftop-assault",
+    "unit_ame_suppression_1.recon.sensors",
+    "unit_ame_suppression_1.recon.surveillance",
+    "unit_ame_suppression_1.support.medics",
+    "unit_ame_suppression_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.ame.field",
+  "training": "train.ame.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 70,
+  "morale": 74,
+  "readiness": 80,
+  "location": "loc_ame_central_district",
+  "mission": "urban suppression readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 1,
+          "jonin": 1
+        },
+        "loadout": "loadout_ame_urban",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 80,
+        "capability": {
+          "attributes.awareness": [
+            51.5,
+            9.5,
+            42.0,
+            61.0
+          ],
+          "attributes.composure": [
+            60.0,
+            0.0,
+            60.0,
+            60.0
+          ],
+          "attributes.intelligence": [
+            45.0,
+            6.0,
+            39.0,
+            51.0
+          ],
+          "attributes.presence": [
+            58.0,
+            4.0,
+            54.0,
+            62.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            65.0,
+            10.0,
+            55.0,
+            75.0
+          ],
+          "chakra_dimensions.control": [
+            66.0,
+            0.0,
+            66.0,
+            66.0
+          ],
+          "chakra_dimensions.multitasking": [
+            46.0,
+            0.0,
+            46.0,
+            46.0
+          ],
+          "operational_skills.leadership": [
+            46.5,
+            1.5,
+            45.0,
+            48.0
+          ],
+          "operational_skills.tactics": [
+            66.0,
+            3.0,
+            63.0,
+            69.0
+          ],
+          "operational_skills.team_coordination": [
+            64.5,
+            1.5,
+            63.0,
+            66.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

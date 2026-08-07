@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_oto_retrieval_2.support.medics",
+  "name": "Oto Field Network, Second Retrieval Team — Support Unit — Medics Unit",
+  "owner": "force_oto_network",
+  "parent_force": "force_oto_network",
+  "parent_team": "team_oto_retrieval_2",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "special_jonin": 1,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.oto.medical",
+  "training": "train.oto.medical",
+  "cohesion": 72,
+  "morale": 68,
+  "readiness": 84,
+  "location": "loc_rice_fields_hidden_route",
+  "mission": "retrieval operation readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.11",
+  "stats_ref": "state/unit-capability/oto-retrieval-2--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/oto-retrieval-2--support--medics.json",
+  "loadout_standard": "loadout_oto_infiltration"
+}

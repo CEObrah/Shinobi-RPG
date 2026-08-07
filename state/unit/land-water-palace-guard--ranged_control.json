@@ -1,0 +1,36 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_land_water_palace_guard.ranged_control",
+  "name": "Land of Water Daimyo Guard, First Palace Team — Ranged Control Unit",
+  "owner": "force_land_water_civilian_security",
+  "parent_force": "force_land_water_civilian_security",
+  "parent_team": "team_land_water_palace_guard",
+  "troop_type": "archers",
+  "role": "ranged_control",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 3
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "guard": 2,
+    "senior_guard": 1
+  },
+  "condition": {
+    "healthy": 2,
+    "light_healing_injury": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.civil.ranged_control",
+  "training": "train.civil.ranged_control",
+  "cohesion": 71,
+  "morale": 72,
+  "readiness": 82,
+  "location": "loc_land_water_capital",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.01",
+  "aptitude_profile_ref": "unit.aptitude.02",
+  "stats_ref": "state/unit-capability/land-water-palace-guard--ranged_control.json",
+  "battle_kernel_ref": "state/unit-kernel/land-water-palace-guard--ranged_control.json",
+  "loadout_standard": "loadout_civil_archer"
+}

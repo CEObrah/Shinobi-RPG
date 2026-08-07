@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Troop Pool",
+  "description": "Accounting-only homogeneous source manpower. It cannot fight directly; current population capability is cold behind capability_ref and organized combat occurs through units.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "count",
+    "capability_ref"
+  ],
+  "properties": {
+    "schema": {
+      "const": "troop_pool.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "role": {
+      "type": "string"
+    },
+    "troop_type": {
+      "type": "string"
+    },
+    "readiness_class": {
+      "type": "string"
+    },
+    "capability_ref": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kiri_maritime_1.assault",
+  "name": "Kiri Maritime Corps, First Boarding Team — Assault Unit",
+  "owner": "force_kiri_shinobi",
+  "parent_force": "force_kiri_shinobi",
+  "parent_team": "team_kiri_maritime_1",
+  "troop_type": "mist_assault",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 9
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 4,
+    "genin": 3,
+    "special_jonin": 2
+  },
+  "condition": {
+    "healthy": 7,
+    "light_healing_injury": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kiri.assault",
+  "training": "train.kiri.assault",
+  "cohesion": 71,
+  "morale": 69,
+  "readiness": 84,
+  "location": "loc_kiri_harbor",
+  "mission": "boarding and harbor response readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.05",
+  "stats_ref": "state/unit-capability/kiri-maritime-1--assault.json",
+  "battle_kernel_ref": "state/unit-kernel/kiri-maritime-1--assault.json",
+  "loadout_standard": "loadout_kiri_maritime"
+}

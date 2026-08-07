@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_taki_reserve_1",
+  "name": "Taki Elite Reserve, First Tactical Team",
+  "owner": "force_taki_shinobi",
+  "parent_force": "force_taki_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_taki_reserve_1.assault.ambushers",
+    "unit_taki_reserve_1.assault.waterfall-guards",
+    "unit_taki_reserve_1.recon",
+    "unit_taki_reserve_1.support.medics",
+    "unit_taki_reserve_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.taki.field",
+  "training": "train.taki.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 67,
+  "morale": 67,
+  "readiness": 77,
+  "location": "loc_taki",
+  "mission": "elite reserve readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 1,
+          "genin": 1
+        },
+        "loadout": "loadout_minor_village_field",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 77,
+        "capability": {
+          "attributes.awareness": [
+            58.0,
+            6.0,
+            52.0,
+            64.0
+          ],
+          "attributes.composure": [
+            57.5,
+            3.5,
+            54.0,
+            61.0
+          ],
+          "attributes.intelligence": [
+            63.5,
+            5.5,
+            58.0,
+            69.0
+          ],
+          "attributes.presence": [
+            55.5,
+            2.5,
+            53.0,
+            58.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            61.5,
+            2.5,
+            59.0,
+            64.0
+          ],
+          "chakra_dimensions.control": [
+            60.0,
+            4.0,
+            56.0,
+            64.0
+          ],
+          "chakra_dimensions.multitasking": [
+            63.0,
+            0.0,
+            63.0,
+            63.0
+          ],
+          "operational_skills.leadership": [
+            44.5,
+            9.5,
+            35.0,
+            54.0
+          ],
+          "operational_skills.tactics": [
+            67.5,
+            2.5,
+            65.0,
+            70.0
+          ],
+          "operational_skills.team_coordination": [
+            62.5,
+            0.5,
+            62.0,
+            63.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

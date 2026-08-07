@@ -1,0 +1,124 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_yuga_civil_guard_1",
+  "name": "Yuga Civil Protection Service, First Guard Team",
+  "owner": "force_yuga_service",
+  "parent_force": "force_yuga_service",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_yuga_civil_guard_1.assault.ambushers",
+    "unit_yuga_civil_guard_1.assault.waterfall-guards",
+    "unit_yuga_civil_guard_1.recon",
+    "unit_yuga_civil_guard_1.support.medics",
+    "unit_yuga_civil_guard_1.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.yuga.field",
+  "training": "train.yuga.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 65,
+  "morale": 72,
+  "readiness": 87,
+  "location": "loc_yuga",
+  "mission": "civil protection readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "chunin": 1,
+          "genin": 1
+        },
+        "loadout": "loadout_minor_village_field",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 87,
+        "capability": {
+          "attributes.awareness": [
+            57.5,
+            4.5,
+            53.0,
+            62.0
+          ],
+          "attributes.composure": [
+            55.0,
+            4.0,
+            51.0,
+            59.0
+          ],
+          "attributes.intelligence": [
+            63.5,
+            2.5,
+            61.0,
+            66.0
+          ],
+          "attributes.presence": [
+            51.5,
+            3.5,
+            48.0,
+            55.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            63.5,
+            7.5,
+            56.0,
+            71.0
+          ],
+          "chakra_dimensions.control": [
+            54.5,
+            4.5,
+            50.0,
+            59.0
+          ],
+          "chakra_dimensions.multitasking": [
+            62.0,
+            4.0,
+            58.0,
+            66.0
+          ],
+          "operational_skills.leadership": [
+            42.0,
+            1.0,
+            41.0,
+            43.0
+          ],
+          "operational_skills.tactics": [
+            63.5,
+            2.5,
+            61.0,
+            66.0
+          ],
+          "operational_skills.team_coordination": [
+            69.0,
+            1.0,
+            68.0,
+            70.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

@@ -1,0 +1,125 @@
+{
+  "schema": "tactical-team.v1",
+  "id": "team_suna_puppet_2",
+  "name": "Suna Puppet Corps, Second Field Team",
+  "owner": "force_suna_shinobi",
+  "parent_force": "force_suna_shinobi",
+  "role": "ready_not_engaged",
+  "unit_refs": [
+    "unit_suna_puppet_2.assault",
+    "unit_suna_puppet_2.ranged_control",
+    "unit_suna_puppet_2.recon",
+    "unit_suna_puppet_2.support.medics",
+    "unit_suna_puppet_2.support.puppeteers",
+    "unit_suna_puppet_2.support.logistics"
+  ],
+  "personnel_total": 25,
+  "doctrine": "doc.suna.field",
+  "training": "train.suna.field",
+  "tendencies": {
+    "aggression": 55,
+    "initiative": 60,
+    "caution": 55,
+    "adaptability": 60,
+    "ambush_bias": 55,
+    "counterattack_bias": 55,
+    "pursuit_bias": 45,
+    "objective_focus": 75,
+    "ally_support": 70,
+    "chakra_conservation": 65,
+    "capture_bias": 45,
+    "information_preservation": 70
+  },
+  "cohesion": 74,
+  "morale": 76,
+  "readiness": 86,
+  "location": "loc_suna",
+  "mission": "puppet field deployment readiness",
+  "commander_slot": {
+    "representation": "cold_command_slot",
+    "profile_ref": "command_profile.shinobi_tactical_standard"
+  },
+  "command_personnel": {
+    "representation": "conserved_command_personnel",
+    "count": 2,
+    "includes_commander_slot": true,
+    "groups": [
+      {
+        "count": 2,
+        "quality": "professional_shinobi",
+        "rank_distribution": {
+          "genin": 1,
+          "jonin": 1
+        },
+        "loadout": "loadout_suna_desert",
+        "condition": {
+          "healthy": 2
+        },
+        "readiness": 86,
+        "capability": {
+          "attributes.awareness": [
+            61.0,
+            6.0,
+            55.0,
+            67.0
+          ],
+          "attributes.composure": [
+            74.5,
+            3.5,
+            71.0,
+            78.0
+          ],
+          "attributes.intelligence": [
+            71.0,
+            4.0,
+            67.0,
+            75.0
+          ],
+          "attributes.presence": [
+            68.5,
+            0.5,
+            68.0,
+            69.0
+          ],
+          "chakra_dimensions.casting_stability": [
+            75.0,
+            2.0,
+            73.0,
+            77.0
+          ],
+          "chakra_dimensions.control": [
+            62.5,
+            0.5,
+            62.0,
+            63.0
+          ],
+          "chakra_dimensions.multitasking": [
+            77.5,
+            1.5,
+            76.0,
+            79.0
+          ],
+          "operational_skills.leadership": [
+            58.5,
+            0.5,
+            58.0,
+            59.0
+          ],
+          "operational_skills.tactics": [
+            70.5,
+            0.5,
+            70.0,
+            71.0
+          ],
+          "operational_skills.team_coordination": [
+            64.0,
+            2.0,
+            62.0,
+            66.0
+          ]
+        }
+      }
+    ]
+  },
+  "model_ref": "data/team/tactical-team-model.json"
+}

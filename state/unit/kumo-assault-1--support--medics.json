@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_assault_1.support.medics",
+  "name": "Kumo Southern Reaction Company, First Assault Team — Support Unit — Medics Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_assault_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.medical",
+  "training": "train.kumo.medical",
+  "cohesion": 82,
+  "morale": 76,
+  "readiness": 86,
+  "location": "loc_lightning_southern_border",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/kumo-assault-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-assault-1--support--medics.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

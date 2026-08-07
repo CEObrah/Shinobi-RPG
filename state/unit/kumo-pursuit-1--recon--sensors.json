@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_kumo_pursuit_1.recon.sensors",
+  "name": "Kumo Pursuit Division, First Tactical Team — Recon Unit — Sensors Unit",
+  "owner": "force_kumo_shinobi",
+  "parent_force": "force_kumo_shinobi",
+  "parent_team": "team_kumo_pursuit_1",
+  "troop_type": "sensors",
+  "role": "recon",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 2
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 1,
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 2
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.kumo.recon",
+  "training": "train.kumo.recon",
+  "cohesion": 85,
+  "morale": 80,
+  "readiness": 87,
+  "location": "loc_kumo",
+  "mission": "high-speed pursuit readiness",
+  "tendency_profile_ref": "unit.tendency.04",
+  "aptitude_profile_ref": "unit.aptitude.10",
+  "stats_ref": "state/unit-capability/kumo-pursuit-1--recon--sensors.json",
+  "battle_kernel_ref": "state/unit-kernel/kumo-pursuit-1--recon--sensors.json",
+  "loadout_standard": "loadout_kumo_assault"
+}

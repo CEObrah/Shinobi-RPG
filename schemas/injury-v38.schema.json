@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "scale",
+    "formulas",
+    "wound_tiers",
+    "required_channels",
+    "incapacitation",
+    "functional_penalties",
+    "consciousness_bands",
+    "death_rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "injury-mechanics.v38"
+    },
+    "scale": {
+      "type": "string"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "wound_tiers": {
+      "type": "object"
+    },
+    "required_channels": {
+      "type": "array"
+    },
+    "incapacitation": {
+      "type": "object"
+    },
+    "functional_penalties": {
+      "type": "object"
+    },
+    "consciousness_bands": {
+      "type": "object"
+    },
+    "death_rule": {
+      "type": "string"
+    }
+  }
+}

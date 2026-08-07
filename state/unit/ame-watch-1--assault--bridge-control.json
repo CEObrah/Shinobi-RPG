@@ -1,0 +1,35 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_watch_1.assault.bridge-control",
+  "name": "Ame Central Rain Watch, First Surveillance Team — Assault Unit — Bridge Control Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_watch_1",
+  "troop_type": "bridge_control",
+  "role": "assault",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 4
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "chunin": 2,
+    "genin": 2
+  },
+  "condition": {
+    "healthy": 4
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.assault",
+  "training": "train.ame.assault",
+  "cohesion": 75,
+  "morale": 70,
+  "readiness": 79,
+  "location": "loc_ame_central_towers",
+  "mission": "standing_readiness",
+  "tendency_profile_ref": "unit.tendency.05",
+  "aptitude_profile_ref": "unit.aptitude.08",
+  "stats_ref": "state/unit-capability/ame-watch-1--assault--bridge-control.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-watch-1--assault--bridge-control.json",
+  "loadout_standard": "loadout_ame_urban"
+}

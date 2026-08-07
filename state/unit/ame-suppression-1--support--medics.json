@@ -1,0 +1,34 @@
+{
+  "schema": "unit.v38",
+  "id": "unit_ame_suppression_1.support.medics",
+  "name": "Ame Urban Suppression Command, First Tactical Team — Support Unit — Medics Unit",
+  "owner": "force_ame_shinobi",
+  "parent_force": "force_ame_shinobi",
+  "parent_team": "team_ame_suppression_1",
+  "troop_type": "medics",
+  "role": "support",
+  "personnel": {
+    "representation": "aggregate",
+    "count": 1
+  },
+  "quality": "professional_shinobi",
+  "rank_distribution": {
+    "genin": 1
+  },
+  "condition": {
+    "healthy": 1
+  },
+  "resolution_scale": "small_1_24",
+  "doctrine": "doc.ame.medical",
+  "training": "train.ame.medical",
+  "cohesion": 70,
+  "morale": 74,
+  "readiness": 80,
+  "location": "loc_ame_central_district",
+  "mission": "urban suppression readiness",
+  "tendency_profile_ref": "unit.tendency.03",
+  "aptitude_profile_ref": "unit.aptitude.03",
+  "stats_ref": "state/unit-capability/ame-suppression-1--support--medics.json",
+  "battle_kernel_ref": "state/unit-kernel/ame-suppression-1--support--medics.json",
+  "loadout_standard": "loadout_ame_urban"
+}

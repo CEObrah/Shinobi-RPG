@@ -1,51 +1,65 @@
 {
   "active_combat": false,
-  "decision_required": "Hiruzen revised his provisional preferred five to Ensui Nara, Hana Inuzuka, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo. No roster or second command is approved. Wei must decide whether to endorse it, challenge a slot, request formal availability review, or turn to Team Fujin's 09:00 assignment.",
+  "decision_required": "Wei has arrived at the Konoha Academy before Team Fujin's 09:00 assignment. Hiruzen has accepted the revised special-operations roster for formal personnel review, but no team, transfer, second command, or mission authority is approved.",
   "freeform_actions_allowed": true,
-  "loaded_owner_ids": ["pc_wei_tang", "team.konoha.fujin", "canon_hiruzen"],
-  "location_id": "loc_hokage_tower",
+  "loaded_owner_ids": [
+    "pc_wei_tang",
+    "team.konoha.fujin"
+  ],
+  "location_id": "loc_konoha_academy",
   "narrative": {
     "active_npc_agendas": [],
-    "active_questions": ["Does Wei accept the revised five, challenge a slot, request formal review, or leave for the 09:00 assignment?"],
+    "active_questions": [
+      "What does Wei do during the remaining minutes before Team Fujin's 09:00 assignment?"
+    ],
     "approaching_consequences": [
-      "Team Fujin remains scheduled for 09:00.",
-      "Dual command still requires schedule, deputy, and coverage rules."
+      "Team Fujin's assignment event occurs at 09:00.",
+      "The special-operations roster remains under formal personnel and duty-conflict review."
     ],
     "available_reports": [],
-    "current_scene_type": "hokage_office_proposal",
-    "current_tension": "professional_scrutiny",
+    "current_scene_type": "academy_preassignment",
+    "current_tension": "waiting_before_assignment",
     "known_clues": [
-      "Hiruzen's revised default complement is Ensui, Hana, Hoheto, Tekuno, and Hayama beside Wei.",
-      "Hana is the clearest outside improvement because she adds field medicine while preserving elite tracking and infiltration.",
-      "Muta remains the preferred counter-surveillance and covert-tracking alternate; Kurenai is the genjutsu/secondary-command alternate.",
-      "Inoichi is a high-value mental, sensing, communications, and investigation option but is preferred as a flexible village asset unless specifically needed inside the cell.",
-      "Shizune is traveling with Tsunade; Ibiki and Anko are not Hiruzen's default permanent choices.",
-      "Hayama remains Hiruzen's preferred deputy if Wei also carries Team Fujin."
+      "Wei endorsed Hiruzen's revised core: Ensui Nara, Hana Inuzuka, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo beside Wei.",
+      "Hiruzen accepted that revised core for formal personnel availability and duty-conflict review; this is not team approval.",
+      "Wei told Hiruzen he wants the unit oriented toward S-rank work including Root infiltration, Akatsuki operations, and high-profile bounty targets.",
+      "Hiruzen refused any standing self-targeting authority: Root operations require direct Hokage authorization; Akatsuki and bounty-target strikes require specific lawful mission orders and actionable intelligence.",
+      "Hayama remains Hiruzen's preferred deputy if dual command is eventually approved."
     ],
-    "last_major_choice": "Wei asked Hiruzen to search beyond every original candidate for anyone in Konoha who would improve the permanent six-person special-operations structure.",
-    "last_scene_summary": "From 07:55 to 08:15, Hiruzen broadened the review and replaced Muta with Hana in his provisional default roster. No transfer, second team, or permanent command was approved.",
-    "pending_information_paths": ["Formal personnel availability and duty-conflict review for the revised preferred five."],
+    "last_major_choice": "Wei endorsed Hiruzen's revised six, requested formal review, stated an aggressive S-rank mission preference, then left for the Academy.",
+    "last_scene_summary": "From 08:15 to 08:25, Wei endorsed the revised special-operations core and requested formal review. Hiruzen accepted the review but restricted any future Root, Akatsuki, or bounty-target operations to specific lawful authorization. Wei then traveled to the Academy, arriving at 08:45.",
+    "pending_information_paths": [
+      "Formal personnel availability and duty-conflict review for Ensui, Hana, Hoheto, Tekuno, and Hayama."
+    ],
     "promises_and_threats": [],
-    "recent_reveals": ["Hana Inuzuka is Hiruzen's strongest outside addition to the default squad structure."],
+    "recent_reveals": [
+      "Hiruzen will consider the revised roster formally, but not grant it independent target-selection authority."
+    ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "Permanent special-operations squad proposal awaiting formal review",
+      "Permanent special-operations squad proposal under formal personnel review",
       "Dual-team command structure",
       "09:00 Team Fujin assignment",
       "ANBU candidacy remains separate and inactive"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_hokage_office_roster_review",
-  "scene_summary": "At 08:15 Wei remains at the Hokage Tower. Hiruzen's provisional preferred complement is Ensui, Hana, Hoheto, Tekuno, and Hayama. Team Fujin remains scheduled for 09:00.",
+  "scene_id": "scene_konoha_academy_preassignment",
+  "scene_summary": "At 08:45 Wei is at the Konoha Academy ahead of Team Fujin's 09:00 assignment. The revised special-operations roster is under formal review; no second team or mission authority is approved.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T08:15:00",
-  "known_clock_boundaries": [{"due_at": "SE-0061-02-05T09:00:00", "event_id": "process_team_fujin_assignment", "visibility": "known"}],
+  "world_time": "SE-0061-02-05T08:45:00",
+  "known_clock_boundaries": [
+    {
+      "due_at": "SE-0061-02-05T09:00:00",
+      "event_id": "process_team_fujin_assignment",
+      "visibility": "known"
+    }
+  ],
   "observable_pressures": [
     "The special-operations proposal remains unapproved.",
     "No recommended shinobi has been transferred or committed.",
-    "Team Fujin begins at 09:00 and may require Wei in person.",
+    "Team Fujin begins at 09:00.",
     "Any action crossing 09:00 is interrupted by the assignment event unless lawfully prevented."
   ]
 }

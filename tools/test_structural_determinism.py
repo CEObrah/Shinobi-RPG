@@ -120,6 +120,32 @@ def expected_blank(template: dict) -> dict:
     return root
 
 
+def first_difference(actual, expected, path=""):
+    if type(actual) is not type(expected):
+        return f"type mismatch at {path or '/'} actual={type(actual).__name__} expected={type(expected).__name__}"
+    if isinstance(expected, dict):
+        actual_keys = set(actual)
+        expected_keys = set(expected)
+        missing = sorted(expected_keys - actual_keys)
+        if missing:
+            return f"missing key at {path or '/'}: {missing[0]}"
+        extra = sorted(actual_keys - expected_keys)
+        if extra:
+            return f"extra key at {path or '/'}: {extra[0]}"
+        for key in sorted(expected):
+            child = first_difference(actual[key], expected[key], f"{path}/{encode_segment(key)}")
+            if child:
+                return child
+        return None
+    if isinstance(expected, list):
+        if actual != expected:
+            return f"array mismatch at {path or '/'} actual={actual!r} expected={expected!r}"
+        return None
+    if actual != expected:
+        return f"value mismatch at {path or '/'} actual={actual!r} expected={expected!r}"
+    return None
+
+
 def assert_blank_values(value, path: str) -> None:
     if value is None:
         return
@@ -163,7 +189,8 @@ def main() -> None:
         actual = read_json(rel)
         expected = expected_blank(mutable[schema_id])
         if actual != expected:
-            fail(f"blank skeleton drift: {schema_id}")
+            detail = first_difference(actual, expected) or "unknown difference"
+            fail(f"blank skeleton drift: {schema_id}: {detail}")
         assert_blank_values(actual, rel)
 
     system_index = read_json("data/runtime/system-contract-index.json")

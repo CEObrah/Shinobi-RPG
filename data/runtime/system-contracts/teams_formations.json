@@ -8,6 +8,7 @@
   "owner_templates": [
     "tactical-team",
     "team",
+    "special-mission-team",
     "team-doctrine-registry"
   ],
   "read_first": [
@@ -21,10 +22,13 @@
   ],
   "invariants": [
     "Teams may combine homogeneous units and named shinobi.",
+    "Named special-mission teams reference persistent exact people and never duplicate their bodies, capabilities, equipment or source history.",
+    "A named special-mission team commander and deputy are members of the same lawful roster.",
     "Formations are temporary and own no manpower."
   ],
   "validators": [
     "tools/test_unit_model.py",
+    "tools/test_team_consistency.py",
     "tools/test_templates.py"
   ]
 }

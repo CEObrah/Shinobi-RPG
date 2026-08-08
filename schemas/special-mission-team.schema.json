@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema", "id", "name", "status", "team_type", "assignment_authority", "commander", "deputy", "members", "roles", "activation_condition"],
+  "properties": {
+    "schema": {"const": "special-mission-team"},
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "status": {"enum": ["forming", "active", "inactive"]},
+    "team_type": {"const": "special_mission_cell"},
+    "assignment_authority": {"type": "string", "minLength": 1},
+    "commander": {"type": "string", "minLength": 1},
+    "deputy": {"type": "string", "minLength": 1},
+    "members": {"type": "array", "minItems": 4, "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "roles": {"type": "object", "additionalProperties": {"type": "string"}},
+    "activation_condition": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

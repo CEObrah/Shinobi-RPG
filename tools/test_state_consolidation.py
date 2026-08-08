@@ -82,6 +82,108 @@ owner_shard = read_json(ROOT / "state/index/owners/house.json")
 if "house.tang.units" in owner_shard.get("owners", {}):
     errors.append("derived House unit projection must not be registered as an owner")
 
+# Exact named characters own their residual development state inline. The external
+# bank is reserved for compressed person-lite and unit owners so an exact person's
+# development cursor cannot drift from a second writable file.
+bank_path = ROOT / "state/development/banks.json"
+if bank_path.exists():
+    bank = read_json(bank_path)
+    for owner_id, entry in bank.get("entries", {}).items():
+        if entry.get("owner_type") == "character":
+            errors.append(f"{bank_path.relative_to(ROOT)}: exact character bank entry must be inline: {owner_id}")
+
+exact_character_paths = [ROOT / "state/player.json"] + sorted((ROOT / "state/char").glob("*.json"))
+for path in exact_character_paths:
+    data = read_json(path)
+    if data.get("schema") != "shinobi_character":
+        continue
+    development = data.get("development")
+    if not isinstance(development, dict):
+        continue
+    credits = development.get("residual_credits")
+    if credits is None:
+        continue
+    if not isinstance(credits, dict):
+        errors.append(f"{path.relative_to(ROOT)}: development.residual_credits must be an object")
+        continue
+    for target, value in credits.items():
+        if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
+            errors.append(f"{path.relative_to(ROOT)}: invalid residual credit {target}={value}")
+
+# Operational team state and assignment/provenance remain separate authorities,
+# but any assignment explicitly tied to a team must reproduce the same commander
+# and named raw-personnel roster.
+teams = {}
+team_dir = ROOT / "state/team"
+if team_dir.exists():
+    for path in team_dir.glob("*.json"):
+        data = read_json(path)
+        team_id = data.get("id")
+        if team_id:
+            teams[team_id] = (path, data)
+
+assignments_path = ROOT / "state/org/assignments.json"
+if assignments_path.exists():
+    assignments = read_json(assignments_path)
+    for record in assignments.get("records", []):
+        limits = record.get("authority_limits") or {}
+        team_id = limits.get("team_id") if isinstance(limits, dict) else None
+        if not team_id:
+            continue
+        if team_id not in teams:
+            errors.append(f"{assignments_path.relative_to(ROOT)}: assignment {record.get('id')} references missing team {team_id}")
+            continue
+        team_path, team = teams[team_id]
+        commander = team.get("commander") or team.get("jonin_instructor")
+        if record.get("receiving_commander") != commander:
+            errors.append(
+                f"{assignments_path.relative_to(ROOT)}: assignment {record.get('id')} commander "
+                f"{record.get('receiving_commander')} != {team_path.relative_to(ROOT)} commander {commander}"
+            )
+        if record.get("assignment_kind") == "raw_personnel" and isinstance(team.get("members"), list):
+            expected = set(team.get("members", []))
+            if commander:
+                expected.discard(commander)
+            allocated = set(record.get("raw_allocations", []))
+            if allocated != expected:
+                errors.append(
+                    f"{assignments_path.relative_to(ROOT)}: assignment {record.get('id')} raw roster drift "
+                    f"missing={sorted(expected - allocated)} extra={sorted(allocated - expected)}"
+                )
+
+# A force owns aggregate personnel accounting while materialized units own their
+# operational state. Those files remain separate, but materialized unit headcount
+# must exactly equal the force's claimed unit population.
+materialized_by_force = {}
+unit_dir = ROOT / "state/unit"
+if unit_dir.exists():
+    for path in unit_dir.glob("*.json"):
+        unit = read_json(path)
+        if unit.get("schema") != "unit":
+            continue
+        parent_force = unit.get("parent_force")
+        personnel = unit.get("personnel") or {}
+        count = personnel.get("count") if isinstance(personnel, dict) else None
+        if parent_force and isinstance(count, int):
+            materialized_by_force[parent_force] = materialized_by_force.get(parent_force, 0) + count
+
+force_dir = ROOT / "state/force"
+if force_dir.exists():
+    for path in force_dir.glob("*.json"):
+        force = read_json(path)
+        if force.get("schema") != "force":
+            continue
+        force_id = force.get("id")
+        claims = force.get("unit_claims", [])
+        if not isinstance(claims, list):
+            continue
+        claimed_count = sum(int(claim.get("count", 0)) for claim in claims if isinstance(claim, dict))
+        materialized_count = materialized_by_force.get(force_id, 0)
+        if claimed_count != materialized_count:
+            errors.append(
+                f"{path.relative_to(ROOT)}: unit claim drift claimed={claimed_count} materialized={materialized_count}"
+            )
+
 # A battle kernel is allowed to be split because it is explicitly derived.
 kernel_dir = ROOT / "state/unit-kernel"
 if kernel_dir.exists():

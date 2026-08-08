@@ -3,9 +3,13 @@
   "id": "Invisible Court Core: Court Defense",
   "doctrine": {
     "id": "Invisible Court Core: Court Defense",
-    "version": 1,
-    "inherits": "doc.civil.general",
+    "inherits": "doc.house_tang.invisible_court",
     "role_profile_ref": "data/organization/doctrine-role-profiles.json#field",
-    "institution_overlay_ref": "data/organization/institution-doctrine-overlays.json#civil"
+    "institution_overlay_ref": "data/organization/institution-doctrine-overlays.json#house_tang",
+    "principles": [
+      "Layer defenders around objectives and access routes so one breached position exposes the attacker to another controlled angle.",
+      "Rotate pressure rather than allowing a single element to exhaust itself while adjacent fighters remain unused.",
+      "Counterattack only when it restores objective control, extraction access, or favorable geometry; do not abandon the defended purpose to chase."
+    ]
   }
 }

@@ -1,66 +1,65 @@
 {
   "active_combat": false,
-  "decision_required": "Wei has completed Riku and Mei's first technique demonstrations and a controlled paired pressure drill. Kai received the Academy notice and reported to the Academy but has not yet received an equivalent practical assessment. Wei must decide how to continue Team Fujin's first day.",
+  "decision_required": "Wei has questioned Kai about the missed assignment, completed Kai's individual baseline, and run Team Fujin's first full three-Genin coordination exercise. Kai is materially behind Riku and Mei and his saved field-ready repertoire does not currently support the team's assigned air-control role. Wei must decide how to structure the team's next step.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": ["pc_wei_tang", "team.konoha.fujin", "char.riku_hyuga", "char.mei_arakawa", "char.kai"],
   "location_id": "loc_konoha_academy_assignment_hall",
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "How does Wei assess and integrate Kai now that the full roster is physically present?",
-      "What long-term training structure, if any, will Wei eventually adopt for Team Fujin?"
+      "How does Wei develop Kai without letting the capability gap distort the whole team's training?",
+      "What training structure will turn three mismatched Genin into a functional team?"
     ],
     "approaching_consequences": [
-      "Riku and Mei have spent meaningful chakra during controlled demonstrations and should not be treated as fully fresh for repeated high-output technique work.",
-      "Team Fujin still has no adopted doctrine or full-team shared training history.",
+      "Kai's assigned timing-disruption/air-control role is not supported by any currently saved field-usable technique.",
+      "Riku and Mei remain more capable and more tactically mature than Kai.",
+      "Team Fujin has now trained as a full roster but still has no adopted permanent doctrine.",
       "The separate special-operations personnel review remains unresolved."
     ],
     "available_reports": [],
     "current_scene_type": "academy_team_training",
-    "current_tension": "full_roster_present_uneven_assessment",
+    "current_tension": "full_team_present_capability_gap_exposed",
     "known_clues": [
-      "The Academy notice reached Kai at Sword Manor and Kai reported to the Academy by 10:10; the reason he missed the 09:00 assignment remains unverified.",
-      "Riku demonstrated Eight-Point Fault as precise small-area terrain funneling supported by Byakugan observation rather than large-volume Earth Release.",
-      "Mei demonstrated False Opening and Frost Senbon, showing controlled perceptual manipulation and precise Ice Release projectile work.",
-      "In a controlled capture-and-defense pressure drill, Riku and Mei initially reacted as two independent fighters, then improved their lane sharing and timing over repeated rounds.",
-      "Their later drill performance was better coordinated but is not equivalent to established team doctrine or combat-tested cohesion.",
-      "No promotion, relationship-score change, doctrine adoption, or integer skill/mastery increase resulted from the short training block.",
-      "Kai has not yet received a comparable practical assessment.",
+      "When Wei asked about the missed assignment, Kai said he had been training at Sword Manor, lost track of the time, and failed to check the clock; this is Kai's account rather than independently verified evidence.",
+      "Kai's strongest visible baseline areas are sword handling and movement; his tactical judgment, thrown-tool handling, and team coordination are substantially less developed than Riku's and Mei's.",
+      "Kai did not demonstrate a field-ready ninjutsu or signature technique during the assessment.",
+      "The authoritative Kai record currently contains no field-usable techniques despite his House junior curriculum package and Team Fujin's assigned air-control role.",
+      "In the first full-team coordination exercise, Riku and Mei had to reduce pace and simplify lanes for Kai to stay integrated rather than becoming an isolated third mover.",
+      "Kai responded better when given one immediate timing task at a time and used his sword work more effectively inside openings created by Riku and Mei.",
+      "No permanent doctrine, promotion, relationship-score change, or integer capability increase was granted by the short block.",
       "The formal special-operations personnel review remains separate and unresolved."
     ],
-    "last_major_choice": "Wei waited for word from Kai, observed Riku and Mei's individual chakra and signature-technique demonstrations, then ran a harder controlled paired capture-and-defense pressure drill.",
-    "last_scene_summary": "From 09:45 to 11:35, the Academy notice reached Kai and he reported in. Wei then observed Riku demonstrate Eight-Point Fault and Mei demonstrate False Opening and Frost Senbon. Riku and Mei completed a controlled paired pressure drill that exposed early independent reactions and later improvement in shared timing. Kai observed after arriving but remains practically unassessed.",
+    "last_major_choice": "Wei asked Kai why he missed the assignment, assessed him individually, then continued directly into Team Fujin's first full three-Genin coordination exercise.",
+    "last_scene_summary": "From 11:35 to 13:15, Wei questioned Kai, ran a 35-minute individual baseline, and then a one-hour full-roster coordination exercise. Kai accepted responsibility in his own account for losing track of time at Sword Manor. The training exposed a large capability and tactical gap between Kai and the other two Genin, while also showing that he can contribute through simple timing tasks and sword pressure when Riku and Mei create stable openings.",
     "pending_information_paths": [
-      "Why Kai missed the original 09:00 Team Fujin assignment.",
+      "Independent verification, if Wei chooses to seek it, of Kai's account of why he missed 09:00.",
       "Formal personnel availability and duty-conflict review for the proposed special-operations squad."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Riku's distinctive control favors precise terrain geometry and option denial rather than raw earth volume.",
-      "Mei combines subtle perception control with highly precise Ice Release.",
-      "Riku and Mei can improve coordination within a session, but the timing is not yet habitual.",
-      "Kai is now physically present with Team Fujin."
+      "Kai is currently the developmental bottleneck in Team Fujin.",
+      "Kai's saved field-ready repertoire does not support his assigned air-control role.",
+      "Riku and Mei can adjust around Kai, but doing so reduces the pace and complexity they can sustain as a trio."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "Kai's missed assignment and incomplete assessment",
-      "First full three-Genin Team Fujin drill",
-      "Future Team Fujin training structure and doctrine",
+      "Kai's capability gap and unsupported assigned role",
+      "Team Fujin training structure",
+      "Future Team Fujin doctrine",
       "Permanent special-operations squad under formal review",
       "Potential future dual-team command"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_konoha_academy_team_fujin_training",
-  "scene_summary": "At 11:35 Kai has reported to the Academy. Riku and Mei have completed signature-technique demonstrations and a controlled paired pressure drill; Kai remains unassessed.",
+  "scene_id": "scene_konoha_academy_team_fujin_full_roster_training",
+  "scene_summary": "At 13:15 Team Fujin has completed its first full-roster exercise. Kai's individual capability gap and unsupported air-control role are now directly apparent to Wei.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T11:35:00",
+  "world_time": "SE-0061-02-05T13:15:00",
   "known_clock_boundaries": [],
   "observable_pressures": [
-    "Kai is present but has not yet received a practical assessment.",
-    "Riku and Mei are no longer fully fresh after technique demonstrations and pressure work.",
-    "The team has no adopted doctrine or full-team practice history.",
-    "The separate special-operations proposal remains unapproved."
+    "Kai needs focused development before he can match the complexity Riku and Mei can already handle.",
+    "Riku and Mei have already spent chakra and training effort earlier in the day.",
+    "The full team needs food, recovery, and a deliberate next training decision before another hard block."
   ]
 }

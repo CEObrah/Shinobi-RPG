@@ -156,21 +156,60 @@ if assignments_path.exists():
                     f"missing={sorted(expected - allocated)} extra={sorted(allocated - expected)}"
                 )
 
-# A force owns aggregate personnel accounting while materialized units own their
-# operational state. Those files remain separate, but materialized unit headcount
-# must exactly equal the force's claimed unit population.
+# A force owns aggregate personnel accounting while materialized homogeneous units
+# own operational troop state. Tactical-team command personnel are real conserved
+# people represented outside those units, so force claims must equal unit personnel
+# plus separately represented tactical command personnel.
 materialized_by_force = {}
+unit_counts = {}
 unit_dir = ROOT / "state/unit"
 if unit_dir.exists():
     for path in unit_dir.glob("*.json"):
         unit = read_json(path)
         if unit.get("schema") != "unit":
             continue
+        unit_id = unit.get("id")
         parent_force = unit.get("parent_force")
         personnel = unit.get("personnel") or {}
         count = personnel.get("count") if isinstance(personnel, dict) else None
+        if unit_id and isinstance(count, int):
+            unit_counts[unit_id] = count
         if parent_force and isinstance(count, int):
             materialized_by_force[parent_force] = materialized_by_force.get(parent_force, 0) + count
+
+# Commanders are people, never one-person troop units. Tactical-team command
+# personnel therefore stay outside the homogeneous unit sheets but still consume
+# the parent force's claimed headcount.
+tactical_dir = ROOT / "state/team/tactical"
+if tactical_dir.exists():
+    for path in tactical_dir.glob("*.json"):
+        tactical = read_json(path)
+        if tactical.get("schema") != "tactical-team":
+            continue
+        parent_force = tactical.get("parent_force") or tactical.get("owner")
+        command_personnel = tactical.get("command_personnel") or {}
+        command_count = command_personnel.get("count", 0) if isinstance(command_personnel, dict) else 0
+        if not isinstance(command_count, int) or command_count < 0:
+            errors.append(f"{path.relative_to(ROOT)}: invalid command_personnel count {command_count}")
+            continue
+        if parent_force:
+            materialized_by_force[parent_force] = materialized_by_force.get(parent_force, 0) + command_count
+
+        unit_sum = 0
+        missing_refs = []
+        for unit_id in tactical.get("unit_refs", []):
+            if unit_id not in unit_counts:
+                missing_refs.append(unit_id)
+            else:
+                unit_sum += unit_counts[unit_id]
+        if missing_refs:
+            errors.append(f"{path.relative_to(ROOT)}: missing tactical unit refs {sorted(missing_refs)}")
+        personnel_total = tactical.get("personnel_total")
+        if isinstance(personnel_total, int) and not missing_refs and personnel_total != unit_sum + command_count:
+            errors.append(
+                f"{path.relative_to(ROOT)}: tactical personnel drift total={personnel_total} "
+                f"units={unit_sum} command={command_count}"
+            )
 
 force_dir = ROOT / "state/force"
 if force_dir.exists():

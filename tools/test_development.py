@@ -33,13 +33,13 @@ assert model['promotion_rule']['mode']=='qualified_subset_transfer'
 assert model['batching_rule']['batch_equivalence_required'] is True
 # Lazy bank registration must exist and be part of the training/development contract.
 index=json.loads((ROOT/'data/runtime/template-index-shards/d.json').read_text())
-assert 'development-bank-registry.v1' in index['templates']
-template=json.loads((ROOT/'data/runtime/templates/development-bank-registry.v1.template.json').read_text())
+assert 'development-bank-registry' in index['templates']
+template=json.loads((ROOT/'data/runtime/templates/development-bank-registry.template.json').read_text())
 assert template['object_contracts']['/entries']['mode']=='open_map'
 assert template['object_contracts']['/entries/*/credits']['mode']=='open_map'
 contract=json.loads((ROOT/'data/runtime/system-contracts/training_development.json').read_text())
 assert 'state/development/' in contract['authority_paths']
-assert 'development-bank-registry.v1' in contract['owner_templates']
+assert 'development-bank-registry' in contract['owner_templates']
 assert any('Aggregate process settled_through' in x for x in contract['invariants'])
 rules=(ROOT/'rules/training.md').read_text()
 assert 'Lazy deterministic development bank' in rules
@@ -58,7 +58,7 @@ assert v==61 and abs(residual-0.5)<1e-9, (v,residual)
 bank_path=ROOT/'state/development/banks.json'
 if bank_path.exists():
     bank=json.loads(bank_path.read_text())
-    assert bank['schema']=='development-bank-registry.v1'
+    assert bank['schema']=='development-bank-registry'
     for owner_id, entry in bank['entries'].items():
         assert entry['owner_type'] in {'character','person_lite','unit'}, owner_id
         assert all(v>=0 for v in entry['credits'].values()), owner_id

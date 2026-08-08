@@ -2,13 +2,13 @@
   "schema": "template-index-shard.v1",
   "prefix": "t",
   "templates": {
-    "tactical-team.v1": {
-      "path": "data/runtime/templates/tactical-team.v1.template.json",
+    "tactical-team": {
+      "path": "data/runtime/templates/tactical-team.template.json",
       "source_schema": "schemas/tactical-team-v1.schema.json",
       "scope": "mutable_state"
     },
-    "tactical_team_model.v1": {
-      "path": "data/runtime/templates/tactical_team_model.v1.template.json",
+    "tactical_team_model": {
+      "path": "data/runtime/templates/tactical_team_model.template.json",
       "source_schema": null,
       "scope": "static_data"
     },
@@ -17,8 +17,8 @@
       "source_schema": null,
       "scope": "mutable_state"
     },
-    "team-doctrine-template.v1": {
-      "path": "data/runtime/templates/team-doctrine-template.v1.template.json",
+    "team-doctrine-template": {
+      "path": "data/runtime/templates/team-doctrine-template.template.json",
       "source_schema": "schemas/team-doctrine-template-v1.schema.json",
       "scope": "static_data"
     },
@@ -32,18 +32,18 @@
       "source_schema": "schemas/tech-index.schema.json",
       "scope": "static_data"
     },
-    "tech-manifest.v1": {
-      "path": "data/runtime/templates/tech-manifest.v1.template.json",
+    "tech-manifest": {
+      "path": "data/runtime/templates/tech-manifest.template.json",
       "source_schema": "schemas/tech-manifest-v1.schema.json",
       "scope": "static_data"
     },
-    "tech-name-index-shard.v2": {
-      "path": "data/runtime/templates/tech-name-index-shard.v2.template.json",
+    "tech-name-index-shard": {
+      "path": "data/runtime/templates/tech-name-index-shard.template.json",
       "source_schema": "schemas/tech-name-index-shard-v2.schema.json",
       "scope": "static_data"
     },
-    "tech-name-index.v2": {
-      "path": "data/runtime/templates/tech-name-index.v2.template.json",
+    "tech-name-index": {
+      "path": "data/runtime/templates/tech-name-index.template.json",
       "source_schema": "schemas/tech-name-index-v2.schema.json",
       "scope": "static_data"
     },
@@ -52,33 +52,33 @@
       "source_schema": "schemas/tech-packages.schema.json",
       "scope": "static_data"
     },
-    "technique-defaults.v1": {
-      "path": "data/runtime/templates/technique-defaults.v1.template.json",
+    "technique-defaults": {
+      "path": "data/runtime/templates/technique-defaults.template.json",
       "source_schema": "schemas/technique-defaults-v1.schema.json",
       "scope": "static_data"
     },
-    "technique-effect-profile.v1": {
-      "path": "data/runtime/templates/technique-effect-profile.v1.template.json",
+    "technique-effect-profile": {
+      "path": "data/runtime/templates/technique-effect-profile.template.json",
       "source_schema": "schemas/technique-effect-profile-v1.schema.json",
       "scope": "static_data"
     },
-    "technique-effects-index.v2": {
-      "path": "data/runtime/templates/technique-effects-index.v2.template.json",
+    "technique-effects-index": {
+      "path": "data/runtime/templates/technique-effects-index.template.json",
       "source_schema": "schemas/technique-effects-index-v2.schema.json",
       "scope": "static_data"
     },
-    "technique-effects-manifest.v1": {
-      "path": "data/runtime/templates/technique-effects-manifest.v1.template.json",
+    "technique-effects-manifest": {
+      "path": "data/runtime/templates/technique-effects-manifest.template.json",
       "source_schema": "schemas/technique-effects-manifest-v1.schema.json",
       "scope": "static_data"
     },
-    "technique-primitive.v1": {
-      "path": "data/runtime/templates/technique-primitive.v1.template.json",
+    "technique-primitive": {
+      "path": "data/runtime/templates/technique-primitive.template.json",
       "source_schema": "schemas/technique-primitive-v1.schema.json",
       "scope": "static_data"
     },
-    "technique-primitives-index.v2": {
-      "path": "data/runtime/templates/technique-primitives-index.v2.template.json",
+    "technique-primitives-index": {
+      "path": "data/runtime/templates/technique-primitives-index.template.json",
       "source_schema": "schemas/technique-primitives-index-v2.schema.json",
       "scope": "static_data"
     },
@@ -92,8 +92,8 @@
       "source_schema": "schemas/template-index-shard-v1.schema.json",
       "scope": "registered_json_structure"
     },
-    "template-index.v1": {
-      "path": "data/runtime/templates/template-index.v1.template.json",
+    "template-index": {
+      "path": "data/runtime/templates/template-index.template.json",
       "source_schema": null,
       "scope": "static_data"
     },
@@ -102,8 +102,8 @@
       "source_schema": "schemas/template-index-v2.schema.json",
       "scope": "registered_json_structure"
     },
-    "temporal-coverage-requirements.v1": {
-      "path": "data/runtime/templates/temporal-coverage-requirements.v1.template.json",
+    "temporal-coverage-requirements": {
+      "path": "data/runtime/templates/temporal-coverage-requirements.template.json",
       "source_schema": "schemas/temporal-coverage-requirements-v1.schema.json",
       "scope": "static_data"
     },
@@ -112,8 +112,8 @@
       "source_schema": "schemas/temporal-frontier.schema.json",
       "scope": "mutable_state"
     },
-    "temporal-settlement-runtime.v1": {
-      "path": "data/runtime/templates/temporal-settlement-runtime.v1.template.json",
+    "temporal-settlement-runtime": {
+      "path": "data/runtime/templates/temporal-settlement-runtime.template.json",
       "source_schema": "schemas/temporal-settlement-runtime-v1.schema.json",
       "scope": "static_data"
     },
@@ -127,18 +127,18 @@
       "source_schema": "schemas/training-mechanics.schema.json",
       "scope": "static_data"
     },
-    "training-profile-record.v1": {
-      "path": "data/runtime/templates/training-profile-record.v1.template.json",
+    "training-profile-record": {
+      "path": "data/runtime/templates/training-profile-record.template.json",
       "source_schema": "schemas/training-profile-record-v1.schema.json",
       "scope": "static_data"
     },
-    "training_profile_registry.v2": {
-      "path": "data/runtime/templates/training_profile_registry.v2.template.json",
+    "training_profile_registry": {
+      "path": "data/runtime/templates/training_profile_registry.template.json",
       "source_schema": "schemas/training-profile-registry-v2.schema.json",
       "scope": "static_data"
     },
-    "training_role_profiles.v1": {
-      "path": "data/runtime/templates/training_role_profiles.v1.template.json",
+    "training_role_profiles": {
+      "path": "data/runtime/templates/training_role_profiles.template.json",
       "source_schema": null,
       "scope": "static_data"
     },
@@ -147,13 +147,13 @@
       "source_schema": null,
       "scope": "static_data"
     },
-    "troop_pool.v1": {
-      "path": "data/runtime/templates/troop_pool.v1.template.json",
+    "troop_pool": {
+      "path": "data/runtime/templates/troop_pool.template.json",
       "source_schema": "schemas/troop-pool-v1.schema.json",
       "scope": "registered_json_structure"
     },
-    "troop_type_registry.v1": {
-      "path": "data/runtime/templates/troop_type_registry.v1.template.json",
+    "troop_type_registry": {
+      "path": "data/runtime/templates/troop_type_registry.template.json",
       "source_schema": null,
       "scope": "static_data"
     }

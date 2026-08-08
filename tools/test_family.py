@@ -12,8 +12,8 @@ def all_routes():
     for rel in m.get('route_shards',{}).values():out.update(rj(rel).get('routes',{}))
     return out
 idx=rj('state/family/index.json'); mech=rj('data/mechanics/family.json')
-if idx.get('schema')!='family-index.v1' or idx.get('authority') is not False:err('family_index_invalid')
-if mech.get('schema')!='family-mechanics.v1':err('family_mechanics_invalid')
+if idx.get('schema')!='family-index' or idx.get('authority') is not False:err('family_index_invalid')
+if mech.get('schema')!='family-mechanics':err('family_mechanics_invalid')
 for phrase in ('relationship','reputation','property','health'):
     if phrase not in json.dumps(mech.get('authority_boundaries',{})).lower():err(f'family_authority_separation_missing:{phrase}')
 if mech.get('player_agency',{}).get('never_choose_player_spouse') is not True:err('player_spouse_agency_missing')
@@ -59,7 +59,7 @@ for rid,ref in idx.get('parentage',{}).items():
         if pl.get('parent_id') not in people:err(f'parentage_unknown_parent:{rid}:{pl.get("parent_id")}')
 # Derived kinship must stay non-authoritative.
 kin=rj('state/family/kinship-index.json')
-if kin.get('schema')!='kinship-index.v1' or kin.get('authority') is not False:err('kinship_index_invalid')
+if kin.get('schema')!='kinship-index' or kin.get('authority') is not False:err('kinship_index_invalid')
 # Routing and human contract.
 router=rj('data/runtime/rule-router.json').get('domains',{})
 for d in ('family_query','family_transition','family_succession'):

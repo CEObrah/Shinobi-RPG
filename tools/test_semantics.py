@@ -87,7 +87,7 @@ for typ,spec in types.items():
 
 # Command mechanics reference case and ownership-agnostic hierarchy.
 cmd=rj('data/mechanics/command.json')
-if cmd.get('schema')!='hierarchical_command_mechanics.v4':err('command_schema')
+if cmd.get('schema')!='hierarchical_command_mechanics':err('command_schema')
 if [120,10000] not in cmd.get('comfortable_direct_personnel_anchors',[]):err('command_anchor_120_personnel')
 if [120,8] not in cmd.get('comfortable_direct_command_slots_anchors',[]):err('command_anchor_120_slots')
 text=json.dumps(cmd).lower()
@@ -99,14 +99,14 @@ if '10000 direct personnel' not in ex.get('superior_after','') or '7 direct comm
 
 # Partition/refit deterministic authority.
 part=rj('data/mechanics/unit-partition.json')
-if part.get('schema')!='unit_partition_mechanics.v1':err('unit_partition_schema')
+if part.get('schema')!='unit_partition_mechanics':err('unit_partition_schema')
 pt=json.dumps(part).lower()
 for phrase in ('largest remainder','neutral','merge','weighted','receipt'):
     if phrase not in pt:err(f'partition_contract_missing:{phrase}')
 
 # Transaction registry must be v2 and conserve future receipts.
 tx=rj('state/org/unit-transactions.json')
-if tx.get('schema')!='unit-transaction-registry.v2':err('unit_transaction_schema')
+if tx.get('schema')!='unit-transaction-registry':err('unit_transaction_schema')
 
 # Force pools/accounting cannot masquerade as formations.
 if GAME=='sword':
@@ -117,14 +117,14 @@ if GAME=='sword':
 
 # Ocular routing/batching preserves unique assets without loading every stored eye.
 oc=rj('state/medical/ocular-registry.json')
-if oc.get('schema')!='ocular-registry-index.v2':err('ocular_index_v2')
+if oc.get('schema')!='ocular-registry-index':err('ocular_index_v2')
 for owner,rel in oc.get('owner_index',{}).items():
     if not (R/rel).exists():err(f'ocular_owner_shard_missing:{owner}')
 sp=((oc.get('stockpiles') or {}).get('obito_stockpile') or {}).get('inventory_ref')
 if not sp or not (R/sp).exists():err('ocular_stockpile_route_missing')
 else:
     sd=rj(sp)
-    if sd.get('schema')!='ocular-stockpile-batch.v1':err('ocular_stockpile_batch_schema')
+    if sd.get('schema')!='ocular-stockpile-batch':err('ocular_stockpile_batch_schema')
     n=sum(int(b)-int(a)+1 for a,b in sd.get('available_ordinal_ranges',[]))
     if n!=sd.get('unique_asset_count'):err('ocular_stockpile_batch_count')
     if 'lowest available ordinal' not in str(sd.get('allocation_rule','')).lower():err('ocular_stockpile_deterministic_allocation')
@@ -157,20 +157,20 @@ for phrase in ('Minimum-context','Updating a unit','Updating an NPC','Large batt
 
 # Reputation architecture and relationship separation.
 repidx=rj('state/reputation/index.json')
-if repidx.get('schema')!='reputation-index.v1' or repidx.get('authority') is not False:err('reputation_index_schema')
+if repidx.get('schema')!='reputation-index' or repidx.get('authority') is not False:err('reputation_index_schema')
 _reps=list((R/'state/reputation/subjects').glob('*.json'))
 if len(_reps)!=repidx.get('subject_count'):err(f'reputation_subject_count:{len(_reps)}:{repidx.get("subject_count")}')
 for _p in _reps:
     _d=rj(_p)
-    if _d.get('schema')!='reputation-subject.v1' or _d.get('authority') is not True:err(f'reputation_subject_schema:{_p.name}')
+    if _d.get('schema')!='reputation-subject' or _d.get('authority') is not True:err(f'reputation_subject_schema:{_p.name}')
     for _aud,_ref in _d.get('audience_profiles',{}).items():
         if not (R/_ref).exists():err(f'reputation_audience_ref_missing:{_p.name}:{_aud}:{_ref}')
 _mech=rj('data/mechanics/reputation.json')
-if _mech.get('schema')!='reputation-mechanics.v1':err('reputation_mechanics_schema')
+if _mech.get('schema')!='reputation-mechanics':err('reputation_mechanics_schema')
 _dims=rj('data/reputation/dimensions.json')
-if _dims.get('schema')!='reputation-dimensions.v1':err('reputation_dimensions_schema')
+if _dims.get('schema')!='reputation-dimensions':err('reputation_dimensions_schema')
 _auds=rj('data/reputation/audience-segments.json')
-if _auds.get('schema')!='reputation-audience-segments.v1':err('reputation_audience_segments_schema')
+if _auds.get('schema')!='reputation-audience-segments':err('reputation_audience_segments_schema')
 _routes=router.get('domains',{})
 for _dom in ('reputation_query','recognition_check','reputation_event'):
     if _dom not in _routes:err(f'reputation_router_domain_missing:{_dom}')
@@ -208,9 +208,9 @@ if (R/'RUNTIME.md').stat().st_size>8000:print(f"CONTEXT ADVISORY: RUNTIME.md is 
 
 # Sparse family/life-course authority must be routed and separate from relationships/reputation.
 _fidx=rj('state/family/index.json')
-if _fidx.get('schema')!='family-index.v1' or _fidx.get('authority') is not False:err('family_index_schema')
+if _fidx.get('schema')!='family-index' or _fidx.get('authority') is not False:err('family_index_schema')
 _fm=rj('data/mechanics/family.json')
-if _fm.get('schema')!='family-mechanics.v1':err('family_mechanics_schema')
+if _fm.get('schema')!='family-mechanics':err('family_mechanics_schema')
 for _dom in ('family_query','family_transition','family_succession'):
     if _dom not in router.get('domains',{}):err(f'family_router_domain_missing:{_dom}')
 for _r in ('family_person','family_transition','family_succession','family_event'):

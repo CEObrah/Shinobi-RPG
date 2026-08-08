@@ -1,5 +1,5 @@
 {
-  "schema": "temporal-settlement-runtime.v1",
+  "schema": "temporal-settlement-runtime",
   "purpose": "Deterministic full-interval catch-up. A process is never considered settled merely because its first overdue boundary was resolved.",
   "closure_target": "exact reached world time or earlier hard player interrupt",
   "selection_order": "globally earliest unresolved due/trigger time first; deterministic tie order by process id unless a registered dependency overrides it",

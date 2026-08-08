@@ -97,7 +97,7 @@ def ocular_eyes():
  for ref in [x for x in stockrefs if x]:
   sd=rj(ROOT/ref) or {}
   if isinstance(sd.get('eyes'),list): out.extend(sd['eyes']); continue
-  if sd.get('schema')=='ocular-stockpile-batch.v1':
+  if sd.get('schema')=='ocular-stockpile-batch':
    proto=sd.get('prototype',{})
    for a,b in sd.get('available_ordinal_ranges',[]):
     for n in range(int(a),int(b)+1):
@@ -228,12 +228,12 @@ if 'bloodline.guardian_current' not in pl.get('repertoire',{}).get('bloodlines',
 
 # Dedicated reputation authority.
 _repidx=rj(ROOT/'state/reputation/index.json') or {}
-if _repidx.get('schema')!='reputation-index.v1' or _repidx.get('authority') is not False:err('reputation_index_invalid')
+if _repidx.get('schema')!='reputation-index' or _repidx.get('authority') is not False:err('reputation_index_invalid')
 _reps=list((ROOT/'state/reputation/subjects').glob('*.json'))
 if len(_reps)!=_repidx.get('subject_count'):err(f'reputation_subject_count:{len(_reps)}:{_repidx.get("subject_count")}')
 for _p in _reps:
  _d=rj(_p) or {}
- if _d.get('schema')!='reputation-subject.v1' or _d.get('authority') is not True:err(f'reputation_subject_invalid:{_p.name}')
+ if _d.get('schema')!='reputation-subject' or _d.get('authority') is not True:err(f'reputation_subject_invalid:{_p.name}')
  for _aud,_ref in _d.get('audience_profiles',{}).items():
   if not (ROOT/_ref).exists():err(f'reputation_audience_missing:{_p.name}:{_aud}:{_ref}')
 if not (ROOT/'data/mechanics/reputation.json').exists():err('reputation_mechanics_missing')
@@ -432,7 +432,7 @@ else:
  if _oinv.get('regeneration_forbidden') is not True:err('ocular_inventory_regeneration_not_forbidden')
  if isinstance(_oinv.get('eyes'),list):
   if len({x.get('eye_id') for x in _oinv.get('eyes',[])})!=len(_oinv.get('eyes',[])):err('ocular_inventory_duplicate_eye')
- elif _oinv.get('schema')=='ocular-stockpile-batch.v1':
+ elif _oinv.get('schema')=='ocular-stockpile-batch':
   _n=sum(int(b)-int(a)+1 for a,b in _oinv.get('available_ordinal_ranges',[]))
   if _n!=int(_oinv.get('unique_asset_count',-1)):err('ocular_batch_count_mismatch')
   if not _oinv.get('id_template') or not _oinv.get('allocation_rule'):err('ocular_batch_materialization_contract_missing')
@@ -787,7 +787,7 @@ for _pth in (ROOT/'state/unit').glob('*.json'):
 
 # Unit split/merge transaction receipts must conserve headcount and lineage evidence.
 _tx=rj(ROOT/'state/org/unit-transactions.json') or {}
-if _tx.get('schema')!='unit-transaction-registry.v2':err('unit_transaction_registry_v2_missing')
+if _tx.get('schema')!='unit-transaction-registry':err('unit_transaction_registry_v2_missing')
 _seen_tx=set()
 for _r in _tx.get('records',[]):
  _tid=_r.get('id')
@@ -818,13 +818,13 @@ for _up in (ROOT/'state/unit').glob('*.json'):
   if _k.get('source_sha256')!=_h: err(f'unit_kernel_stale:{_up.name}')
 # Command mechanics must expose ownership-agnostic two-axis hierarchy at army scale.
 _cmd=rj(ROOT/'data/mechanics/command.json') or {}
-if _cmd.get('schema')!='hierarchical_command_mechanics.v4': err('command_schema_v4_missing')
+if _cmd.get('schema')!='hierarchical_command_mechanics': err('command_schema_v4_missing')
 if _cmd.get('comfortable_direct_personnel_anchors',[])[-1][1] < 100000: err('command_personnel_scale_too_low')
 if 'ownership' not in str(_cmd.get('principle','')).lower(): err('command_ownership_agnostic_missing')
 # Unit model requires aggregate resolution and single-loadout boundary.
 _um=rj(ROOT/'data/organization/unit-model.json') or {}
 _part=rj(ROOT/'data/mechanics/unit-partition.json') or {}
-if _part.get('schema')!='unit_partition_mechanics.v1':err('unit_partition_mechanics_missing')
+if _part.get('schema')!='unit_partition_mechanics':err('unit_partition_mechanics_missing')
 if _um.get('aggregate_combat_authority')!='data/mechanics/unit-resolution.json': err('unit_resolution_authority_missing')
 if errors:
  print('AUDIT FAILED');[print('-',e) for e in errors];sys.exit(1)

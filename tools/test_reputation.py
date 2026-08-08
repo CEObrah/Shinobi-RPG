@@ -9,7 +9,7 @@ def rj(rel):
 def err(x):errs.append(x)
 
 m=rj('data/mechanics/reputation.json')
-if m.get('schema')!='reputation-mechanics.v1':err('mechanics_schema')
+if m.get('schema')!='reputation-mechanics':err('mechanics_schema')
 idx=rj('state/reputation/index.json')
 if idx.get('authority') is not False:err('index_authority')
 # Worked deterministic evidence update.

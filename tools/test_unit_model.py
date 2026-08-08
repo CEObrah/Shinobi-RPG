@@ -21,7 +21,7 @@ def interp(anchors,x):
             return int(y0+(y1-y0)*(x-x0)/(x1-x0))
     raise AssertionError
 cmd=rj('data/mechanics/command.json')
-if cmd.get('schema')!='hierarchical_command_mechanics.v4':err('command_v4')
+if cmd.get('schema')!='hierarchical_command_mechanics':err('command_v4')
 pa=cmd.get('comfortable_direct_personnel_anchors',[]); sa=cmd.get('comfortable_direct_command_slots_anchors',[])
 if interp(pa,120)!=10000:err(f'command_rating120_personnel:{interp(pa,120) if pa else None}')
 if interp(sa,120)!=8:err(f'command_rating120_slots:{interp(sa,120) if sa else None}')
@@ -44,7 +44,7 @@ if 'personal and assigned troops' not in str(cmd.get('ownership_agnostic','')).l
 
 # Command-group persistence and commander-person combat semantics.
 cgi=rj('state/cmd/command-groups/index.json')
-if cgi.get('schema')!='command-group-index.v1' or cgi.get('authority') is not False:err('command_group_index')
+if cgi.get('schema')!='command-group-index' or cgi.get('authority') is not False:err('command_group_index')
 if cgi.get('count')!=len([p for p in (R/'state/cmd/command-groups').glob('*.json') if p.name!='index.json']):err('command_group_index_count')
 _cblob=json.dumps(cmd).lower()
 for phrase in ('commander/officer is always a person','owns no people','one direct subordinate command group consumes exactly one parent direct command slot'):
@@ -52,7 +52,7 @@ for phrase in ('commander/officer is always a person','owns no people','one dire
 
 # Unit partition/merge mechanics are deterministic and anti-reroll.
 part=rj('data/mechanics/unit-partition.json')
-if part.get('schema')!='unit_partition_mechanics.v1':err('unit_partition_v1')
+if part.get('schema')!='unit_partition_mechanics':err('unit_partition_v1')
 if 'largest remainder' not in str(part.get('neutral_split',{}).get('categorical_integer_state','')).lower():err('largest_remainder_missing')
 if 'inherits the parent capability mean and spread' not in str(part.get('neutral_split',{}).get('continuous_capability','')).lower():err('neutral_split_distribution_missing')
 if 'sigma_i^2' not in str(part.get('merge',{}).get('continuous_population_variance','')):err('pooled_variance_formula_missing')
@@ -69,12 +69,12 @@ n1=n2=100; mu1,mu2=40.0,60.0; s1=s2=5.0; N=n1+n2; mu=(n1*mu1+n2*mu2)/N; var=(n1*
 if abs(mu-50.0)>1e-9 or abs(math.sqrt(var)-math.sqrt(125.0))>1e-9:err('pooled_moment_reference_failed')
 # Transaction registry uses v2 evidence contract.
 txr=rj('state/org/unit-transactions.json')
-if txr.get('schema')!='unit-transaction-registry.v2':err('unit_transaction_v2')
+if txr.get('schema')!='unit-transaction-registry':err('unit_transaction_v2')
 
 # Unit model and aggregate computation.
 um=rj('data/organization/unit-model.json'); ur=rj('data/mechanics/unit-resolution.json')
-if um.get('schema')!='unit_model.v2':err('unit_model_v2')
-if ur.get('schema')!='unit_resolution_mechanics.v1':err('unit_resolution_v1')
+if um.get('schema')!='unit_model':err('unit_model_v2')
+if ur.get('schema')!='unit_resolution_mechanics':err('unit_resolution_v1')
 if 'one scalar power score' not in str(ur.get('anti_overcompression','')).lower():err('anti_scalar_missing')
 if 'aggregate' not in str(ur.get('principle','')).lower():err('aggregate_unit_missing')
 # Partial refit must require split.

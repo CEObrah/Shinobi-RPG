@@ -17,6 +17,8 @@ jobs:
       - run: pip install jsonschema
       - name: Apply population and Sword Manor compression migration
         run: python tools/migrate_population_model.py
+      - name: Align audit assumptions with the new model
+        run: python tools/fix_population_migration_audit.py
       - name: Validate migrated repository
         run: |
           python tools/test_transaction_integrity.py
@@ -42,6 +44,7 @@ jobs:
       - name: Commit migration and remove temporary runner
         run: |
           rm tools/migrate_population_model.py
+          rm tools/fix_population_migration_audit.py
           rm .github/workflows/migrate-population-model.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

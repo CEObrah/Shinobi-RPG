@@ -24,6 +24,8 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          rm -f maintenance/gameplay-version-audit.json
+          rm -f maintenance/migration-failure.log
           python tools/migrate_stable_gameplay_names.py 2>&1 | tee /tmp/stable-name-migration.log
       - name: Publish migration failure
         if: ${{ failure() && steps.migrate.outcome == 'failure' }}

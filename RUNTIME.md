@@ -20,9 +20,13 @@ State change: capture persistence base/world revision; load causal owners/mechan
 
 A time skip closes the entire requested interval. Stable distant descendants may use declared parent force/institution clocks when chronologically equivalent; split batching on material change and wake exact owners on direct causal effects. End with no overdue work.
 
+General autonomous scheduling is centralized in the temporal runtime. Exact character sheets do not own duplicate general-purpose scheduler cursors. Real clocks remain with the domain whose mechanics need them, such as development, recovery, deployment return, travel, mission deadlines, contracts, active operations, institutional settlements, or other registered causal boundaries.
+
+Coarse routine world processes use boundary-only review and immediate causal wake-ups. A process is continuous only when elapsed time itself must be settled through every reached world time. Every continuous frontier advance requires a matching semantic receipt in `state/runtime.json`; advancing an aggregate timestamp without reviewing its covered work is invalid. Owner-local deadlines and causal wake-ups override slower monthly or weekly fallback reviews.
+
 Offscreen does not mean frozen. People, units, teams, forces, factions, institutions, missions/projects, training/recovery, political plans, and military operations require direct or lawful aggregate process coverage. Compression changes storage/computation only and may never improve survival, training, recovery, promotion, resources, equipment/instructor/facility access, or field experience.
 
-Autonomous owners act only from saved goals, knowledge, authority, resources, location, relationships, opposition, orders, routes, and risk. Instantiate material operations before resolving them. Persist casualties, injuries, captures, movement, resource/equipment loss, control changes, and successor actions.
+Autonomous owners act only from saved goals, knowledge, authority, resources, location, relationships, opposition, orders, routes, and risk. Instantiate material operations before resolving them. Persist casualties, injuries, captures, movement, resource/equipment loss, control changes, and successor actions. Active or blocked missions, contracts, projects, deployments, recoveries, and other commitments must have an exact next boundary in their own domain or reference an exact operation/process that owns it. Completion, failure, cancellation, or a material threshold immediately wakes lawful successor evaluation rather than leaving stale active state.
 
 ## Unit, command, and large-battle invariants
 

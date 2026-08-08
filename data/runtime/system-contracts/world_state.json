@@ -16,17 +16,24 @@
   ],
   "read_first": [
     "exact world/place/faction owner causally involved",
-    "only referenced process/mechanics needed to resolve change"
+    "only referenced process/mechanics needed to resolve change",
+    "for a consequential site question, verify compact place state is sufficient before resolution"
   ],
   "write_order": [
     "validate cause, authority, elapsed time and information limits",
+    "settle any causally relevant site operational module through the exact reached time",
     "write authoritative world owner",
+    "write separate personnel, force, stock, inventory or process owners only when their own authority actually changes",
     "rebuild affected indexes and process consequences"
   ],
   "invariants": [
     "Offscreen world state changes only through registered processes or resolved causal actions.",
     "World ownership/control/resources are never inferred from labels or indexes.",
-    "Player knowledge remains separate from world truth."
+    "Player knowledge remains separate from world truth.",
+    "Any world object capable of changing a consequential outcome must have sufficient authoritative state for that causal role or route to registered deeper authority before resolution.",
+    "Missing site detail is never silently treated as neutral, favorable, hostile or retroactively selected after a plan is revealed.",
+    "Static ambient locations establish ontology only and never imply mutable security, staff, supply, capacity, damage, access or readiness.",
+    "Strategic places persist only applicable causal modules; detailed personnel, units, stock, inventory and mechanics remain separate authorities referenced rather than duplicated."
   ],
   "validators": [
     "tools/test_living_world.py",

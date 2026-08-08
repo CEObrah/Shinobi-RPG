@@ -22,20 +22,25 @@
   ],
   "read_first": [
     "force/institution owner",
-    "one home-establishment shard"
+    "one home-establishment shard",
+    "House owner before House operational, permanent-unit, readiness or membership-assignment mutation"
   ],
   "write_order": [
     "conserve source manpower",
-    "update permanent organization or source pool",
-    "rebuild owner/unit indexes"
+    "update the canonical aggregate owner for organization, membership classification, permanent units and operating state",
+    "update genuinely separate authorities such as inventory stock only when causally changed",
+    "rebuild owner/unit indexes and derived caches"
   ],
   "invariants": [
     "World-owned forces have home organization.",
     "Player personal organization is not invented.",
-    "Returning units restore home chain without resetting losses."
+    "Returning units restore home chain without resetting losses.",
+    "One semantic mutable fact has one writable owner; a sidecar may exist only for a genuinely separate authority or rebuildable derived data.",
+    "When a House owner embeds permanent units, member assignment classification, standing readiness and its operating process, those facts are not mirrored in mutable House sidecars."
   ],
   "validators": [
     "tools/test_unit_model.py",
-    "tools/test_living_world.py"
+    "tools/test_living_world.py",
+    "tools/test_state_consolidation.py"
   ]
 }

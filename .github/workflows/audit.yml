@@ -12,6 +12,7 @@ jobs:
           python-version: '3.12'
       - run: pip install jsonschema
       - run: python tools/test_transaction_integrity.py
+      - run: python tools/test_state_consolidation.py
       - run: python tools/audit.py
       - run: python tools/test_gameplay_naming.py
       - run: python tools/test_development.py

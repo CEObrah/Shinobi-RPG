@@ -138,12 +138,12 @@ jobs:
       - name: Remove temporary migration machinery
         run: |
           rm -f tools/migrate_stable_gameplay_names.py
-          rm -f .github/workflows/stable-gameplay-names-migration.yml
           rm -f tools/audit_gameplay_versions.py
           rm -f maintenance/gameplay-version-audit.json
           rm -f maintenance/migration-failure.log
           rm -f maintenance/validation-failure.log
           rmdir maintenance 2>/dev/null || true
+          git checkout HEAD -- .github/workflows/audit.yml .github/workflows/stable-gameplay-names-migration.yml
           git add -A
       - name: Validate migrated repository
         id: validate

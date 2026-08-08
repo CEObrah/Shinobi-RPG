@@ -39,9 +39,19 @@
     },
     "repertoire": {
       "type": "object"
-    },
-    "runtime": false,
-    "schedule_profile": false
+    }
   },
+  "allOf": [
+    {
+      "not": {
+        "required": ["runtime"]
+      }
+    },
+    {
+      "not": {
+        "required": ["schedule_profile"]
+      }
+    }
+  ],
   "additionalProperties": true
 }

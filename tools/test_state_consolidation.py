@@ -82,33 +82,38 @@ owner_shard = read_json(ROOT / "state/index/owners/house.json")
 if "house.tang.units" in owner_shard.get("owners", {}):
     errors.append("derived House unit projection must not be registered as an owner")
 
-# Exact named characters own their residual development state inline. The external
-# bank is reserved for compressed person-lite and unit owners so an exact person's
-# development cursor cannot drift from a second writable file.
+# Exact-character development can use the shared residual bank, but once a bank
+# exists its resolved_through field is the sole development cursor. The same
+# cursor must not also be independently writable on the character sheet.
+exact_characters = {}
+exact_character_paths = [ROOT / "state/player.json"] + sorted((ROOT / "state/char").glob("*.json"))
+for path in exact_character_paths:
+    data = read_json(path)
+    if data.get("schema") == "shinobi_character" and data.get("owner_id"):
+        exact_characters[data["owner_id"]] = (path, data)
+
 bank_path = ROOT / "state/development/banks.json"
 if bank_path.exists():
     bank = read_json(bank_path)
     for owner_id, entry in bank.get("entries", {}).items():
-        if entry.get("owner_type") == "character":
-            errors.append(f"{bank_path.relative_to(ROOT)}: exact character bank entry must be inline: {owner_id}")
-
-exact_character_paths = [ROOT / "state/player.json"] + sorted((ROOT / "state/char").glob("*.json"))
-for path in exact_character_paths:
-    data = read_json(path)
-    if data.get("schema") != "shinobi_character":
-        continue
-    development = data.get("development")
-    if not isinstance(development, dict):
-        continue
-    credits = development.get("residual_credits")
-    if credits is None:
-        continue
-    if not isinstance(credits, dict):
-        errors.append(f"{path.relative_to(ROOT)}: development.residual_credits must be an object")
-        continue
-    for target, value in credits.items():
-        if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
-            errors.append(f"{path.relative_to(ROOT)}: invalid residual credit {target}={value}")
+        if entry.get("owner_type") != "character":
+            continue
+        if owner_id not in exact_characters:
+            errors.append(f"{bank_path.relative_to(ROOT)}: character bank entry has no exact owner: {owner_id}")
+            continue
+        path, character = exact_characters[owner_id]
+        development = character.get("development") or {}
+        if "last_settled_at" in development:
+            errors.append(
+                f"{path.relative_to(ROOT)}: duplicate development cursor; bank resolved_through is authoritative for {owner_id}"
+            )
+        credits = entry.get("credits", {})
+        if not isinstance(credits, dict):
+            errors.append(f"{bank_path.relative_to(ROOT)}: credits must be an object for {owner_id}")
+        else:
+            for target, value in credits.items():
+                if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
+                    errors.append(f"{bank_path.relative_to(ROOT)}: invalid residual credit {owner_id}:{target}={value}")
 
 # Operational team state and assignment/provenance remain separate authorities,
 # but any assignment explicitly tied to a team must reproduce the same commander

@@ -6,6 +6,8 @@ This repository is campaign authority: mutable truth in `state/`, reusable mecha
 
 Startup loads only `RUNTIME.md`, `VOICE.md`, `data/runtime/repository-map.json`, `state/meta.json`, `state/player.json`, and `state/scene.json`; then load the smallest causal owner/shard. Known IDs use direct refs; indexes are discovery only. Do not preload catalogs, rosters, units, techniques, social graphs, or establishments. `REPOSITORY_MAP.md` is the read/write cookbook; `PLAYER_INTERFACE.md` is load-on-demand. Stop when enough authority is loaded. Structural writes use one exact cold file template, its registered blank owner skeleton, and the relevant system update contract. Existing owners and examples never define structure.
 
+Control, routing, narration, state, and mechanic files have no arbitrary content-byte ceilings. They are judged by semantic correctness, completeness, ownership, retrieval cost, and absence of duplicated authority. Split or route content only when doing so improves authority boundaries or causal loading without losing necessary instruction; never delete or weaken useful rules merely to satisfy a numeric file-size target.
+
 ## Player agency and intent boundary
 
 Never invent Wei Tang's consequential voluntary dialogue, private thoughts, allegiance, surrender, spending, promises, mercy/execution choice, irreversible equipment choice, surgery, permanent doctrine, or strategic commitment. Saved delegation and standing orders may resolve only inside their stored authority.

@@ -525,9 +525,6 @@ for _pth in (ROOT/'state/person/world').glob('*.json'):
 # Runtime efficiency: no dead ref archaeology, no daily dormant-event polling, compact contracts.
 if (ROOT/'data/ref').exists():err('dead_data_ref_directory')
 if len(front.get('processes',[]))>16:err(f'frontier_process_bloat:{len(front.get("processes",[]))}')
-if (ROOT/'data/runtime/process-policies.json').stat().st_size>50000:err('process_policy_registry_bloat')
-if (ROOT/'state/player.json').stat().st_size>13000:err('startup_player_bloat')
-if (ROOT/'state/scene.json').stat().st_size>6000:err('startup_scene_bloat')
 # Canonical state must not contain OOC wishlists or duplicate owner schedule clocks.
 _forbidden_ooc_keys={'preferred_allocation_if_assets_are_recovered','desired_roster','wishlist','future_roster','player_preference','ooc_plan','desired_recruit','story_plan','possible_future_team','user_wants'}
 _forbidden_ooc_values={'planned_player_objective_not_started','inactive_player_goal'}

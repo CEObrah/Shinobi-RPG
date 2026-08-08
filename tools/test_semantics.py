@@ -198,12 +198,10 @@ if 'world_seed' not in str(_rng.get('seed_source','')) or 'transaction_id' not i
 if not (_rng.get('record_seed_and_draw_index') is True or _rng.get('must_record_seed_and_draw_index') is True):err('rng_receipt_requirement')
 if _rng.get('model_sampling_forbidden') is not True:err('rng_model_sampling_forbidden')
 
-# Router/map must expose the current architecture and stay compact enough to be useful.
+# Router/map must expose the current architecture and route authority correctly.
 mapd=rj('data/runtime/repository-map.json'); routes=all_routes(mapd)
 for k in ('command_capacity','unit_partition','mass_battle','npc_development','unit_development','equipment'):
     if k not in routes:err(f'map_route_missing:{k}')
-if (R/'data/runtime/repository-map.json').stat().st_size>14000:print(f"CONTEXT ADVISORY: repository-map.json is {(R/'data/runtime/repository-map.json').stat().st_size} bytes")
-if (R/'RUNTIME.md').stat().st_size>8000:print(f"CONTEXT ADVISORY: RUNTIME.md is {(R/'RUNTIME.md').stat().st_size} bytes")
 
 
 # Sparse family/life-course authority must be routed and separate from relationships/reputation.

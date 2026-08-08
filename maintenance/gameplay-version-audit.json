@@ -1,8 +1,8 @@
 {
   "release_token_scope": "v30-v39 release generations",
-  "tracked_file_count": 4574,
+  "tracked_file_count": 4576,
   "versioned_path_count": 143,
-  "versioned_content_file_count": 1060,
+  "versioned_content_file_count": 1061,
   "all_gameplay_versioned_path_count": 184,
   "all_gameplay_versioned_paths": [
     "data/runtime/templates/autonomous-world-simulation.v1.template.json",
@@ -3033,39 +3033,39 @@
     },
     {
       "path": "maintenance/gameplay-version-audit.json",
-      "count": 1641,
+      "count": 1714,
       "samples": [
         {
           "line": 2,
-          "text": "  \"release_token_scope\": \"v30-v39 only; v1/v2 infrastructure protocols excluded\","
-        },
-        {
-          "line": 7,
-          "text": "    \"biju-mechanics.v38\": 1,"
-        },
-        {
-          "line": 8,
-          "text": "    \"biological-implant-state.v38\": 1,"
-        },
-        {
-          "line": 9,
-          "text": "    \"bloodlines.v38\": 1,"
-        },
-        {
-          "line": 10,
-          "text": "    \"body-mechanics.v38\": 1,"
+          "text": "  \"release_token_scope\": \"v30-v39 release generations\","
         },
         {
           "line": 11,
-          "text": "    \"chakra-mechanics.v38\": 1,"
+          "text": "    \"data/runtime/templates/biju-mechanics.v38.template.json\","
         },
         {
           "line": 12,
-          "text": "    \"clone-barrier-mechanics.v38\": 1,"
+          "text": "    \"data/runtime/templates/biological-implant-state.v38.template.json\","
         },
         {
           "line": 13,
-          "text": "    \"combat-profile-templates.v38\": 1,"
+          "text": "    \"data/runtime/templates/bloodlines.v38.template.json\","
+        },
+        {
+          "line": 14,
+          "text": "    \"data/runtime/templates/body-mechanics.v38.template.json\","
+        },
+        {
+          "line": 15,
+          "text": "    \"data/runtime/templates/campaign-objective.v38.template.json\","
+        },
+        {
+          "line": 16,
+          "text": "    \"data/runtime/templates/chakra-mechanics.v38.template.json\","
+        },
+        {
+          "line": 18,
+          "text": "    \"data/runtime/templates/clone-barrier-mechanics.v38.template.json\","
         }
       ]
     },
@@ -12480,6 +12480,28 @@
         {
           "line": 102,
           "text": "    \"release_token_scope\": \"v30-v39 release generations\","
+        }
+      ]
+    },
+    {
+      "path": "tools/migrate_stable_gameplay_names.py",
+      "count": 4,
+      "samples": [
+        {
+          "line": 150,
+          "text": "    if isinstance(templates, dict) and \"tech-index.v38\" in templates:"
+        },
+        {
+          "line": 151,
+          "text": "        templates.pop(\"tech-index.v38\")"
+        },
+        {
+          "line": 154,
+          "text": "    \"data/runtime/templates/tech-index.v38.template.json\","
+        },
+        {
+          "line": 155,
+          "text": "    \"schemas/tech-index-v38.schema.json\","
         }
       ]
     },

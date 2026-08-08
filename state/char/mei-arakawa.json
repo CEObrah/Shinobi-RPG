@@ -9,13 +9,7 @@
   "life_status": "alive",
   "village_or_affiliation": "Konohagakure",
   "official_rank_or_status": "Genin",
-  "roles": [
-    "team_fujin_candidate",
-    "sensor",
-    "genjutsu_specialist",
-    "precision_controller",
-    "infiltration"
-  ],
+  "roles": ["team_fujin_candidate", "sensor", "genjutsu_specialist", "precision_controller", "infiltration"],
   "team_status": "academy_graduated_unassigned",
   "current_unit_or_office": null,
   "current_location_id": "loc_konoha_academy_assignment_hall",
@@ -25,16 +19,7 @@
     "adult_height_cm": 162.0,
     "growth_profile_id": "human_height_to_18",
     "growth_end_age": 18,
-    "height_anchors": [
-      {
-        "age": 13,
-        "cm": 154
-      },
-      {
-        "age": 18,
-        "cm": 162
-      }
-    ],
+    "height_anchors": [{"age": 13, "cm": 154}, {"age": 18, "cm": 162}],
     "current_weight_kg": 46.0,
     "frame": "slight",
     "source": "simulation_authored"
@@ -94,48 +79,22 @@
     "traps": 104
   },
   "resources": {
-    "chakra": {
-      "capacity": 92,
-      "current": 92
-    },
-    "health": {
-      "capacity": 68,
-      "current": 68
-    },
-    "fatigue": {
-      "capacity": 100,
-      "current": 0
-    },
-    "strain": {
-      "safe_capacity": 68,
-      "current": 0
-    }
+    "chakra": {"capacity": 92, "current": 84},
+    "health": {"capacity": 68, "current": 68},
+    "fatigue": {"capacity": 100, "current": 0},
+    "strain": {"safe_capacity": 68, "current": 0}
   },
-  "condition": {
-    "health": "healthy",
-    "fatigue": 0
-  },
+  "condition": {"health": "healthy", "fatigue": 0},
   "equipment_loadout_id": "load.char.mei_arakawa",
-  "equipment_exceptions": {
-    "add": [],
-    "remove": []
-  },
+  "equipment_exceptions": {"add": [], "remove": []},
   "combat_style": {
     "name": "Mirror Mist Style",
     "type": "learned_personal_style",
     "principle": "control perception, then punish the decision made from false information"
   },
   "repertoire": {
-    "packages": [
-      "PKG_KONOHA_ACADEMY_CORE",
-      "PKG_WATER_FOUNDATION",
-      "PKG_WIND_FOUNDATION"
-    ],
-    "package_mastery": {
-      "PKG_KONOHA_ACADEMY_CORE": 82,
-      "PKG_WATER_FOUNDATION": 94,
-      "PKG_WIND_FOUNDATION": 76
-    },
+    "packages": ["PKG_KONOHA_ACADEMY_CORE", "PKG_WATER_FOUNDATION", "PKG_WIND_FOUNDATION"],
+    "package_mastery": {"PKG_KONOHA_ACADEMY_CORE": 82, "PKG_WATER_FOUNDATION": 94, "PKG_WIND_FOUNDATION": 76},
     "field_usable_techniques": [
       "mirror_floor",
       "ripple_reading",
@@ -151,9 +110,7 @@
       "cold_lock"
     ],
     "latent_or_locked_techniques": [],
-    "bloodlines": [
-      "bloodline.ice_release"
-    ],
+    "bloodlines": ["bloodline.ice_release"],
     "method_mastery": {
       "mirror_floor": 88,
       "ripple_reading": 92,
@@ -170,38 +127,21 @@
     }
   },
   "compact_personality": {
-    "traits": [
-      "calm",
-      "observant",
-      "dryly_sarcastic",
-      "competitive",
-      "socially_perceptive",
-      "patient"
-    ],
+    "traits": ["calm", "observant", "dryly_sarcastic", "competitive", "socially_perceptive", "patient"],
     "principle": "The easiest lie is the one they finish for you."
   },
   "team_role": "sensor_controller_and_acting_field_leader_when_wei_absent",
   "goal_state": {
-    "long_term_goals": [
-      "develop Mirror Mist Style without reducing herself to her bloodline"
-    ],
-    "current_goals": [
-      "develop Mirror Mist Style without reducing herself to her bloodline"
-    ],
+    "long_term_goals": ["develop Mirror Mist Style without reducing herself to her bloodline"],
+    "current_goals": ["develop Mirror Mist Style without reducing herself to her bloodline"],
     "current_orders": [],
-    "personal_desires": [
-      "master Mirror Mist control while becoming a leader others can rely on"
-    ],
-    "institutional_duties": [
-      "protect Konoha and assigned comrades"
-    ]
+    "personal_desires": ["master Mirror Mist control while becoming a leader others can rely on"],
+    "institutional_duties": ["protect Konoha and assigned comrades"]
   },
-  "background": {
-    "origin": "Konohagakure"
-  },
+  "background": {"origin": "Konohagakure"},
   "development": {
     "current_training": [],
-    "last_settled_at": "SE-0061-02-05T07:00:00",
+    "last_settled_at": "SE-0061-02-05T11:35:00",
     "weighted_adaptation": null
   },
   "aptitude": {
@@ -218,26 +158,16 @@
     "source": "simulation_seed_from_initial_capability"
   },
   "behavior": {
-    "core_traits": [
-      "observant",
-      "dryly sarcastic",
-      "socially perceptive"
-    ],
+    "core_traits": ["observant", "dryly sarcastic", "socially perceptive"],
     "decision_style": "likes having one practical fallback ready before taking a risk",
     "stress_response": "slows the fight mentally, manipulates expectations, and avoids uncontrolled brawls",
     "private_concern": "being manipulated by a superior",
-    "personal_preferences": [
-      "private rather than ceremonial praise",
-      "well-prepared equipment"
-    ],
+    "personal_preferences": ["private rather than ceremonial praise", "well-prepared equipment"],
     "ambition_or_orientation": "master Mirror Mist control while becoming a leader others can rely on",
     "trust_style": "quick with competent teammates but slow after betrayal",
     "failure_response": "reviews the mistake and changes procedure",
     "temperament": "calm, observant, dryly_sarcastic; behavior remains bounded by saved history and current pressures",
-    "values": [
-      "protect Konoha and assigned comrades",
-      "professional competence"
-    ],
+    "values": ["protect Konoha and assigned comrades", "professional competence"],
     "humor_style": "restrained or context-dependent",
     "source": "canon_characterization_plus_campaign_state"
   },

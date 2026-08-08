@@ -29,14 +29,8 @@
     "growth_profile_id": "human_height_to_18",
     "growth_end_age": 18,
     "height_anchors": [
-      {
-        "age": 14,
-        "cm": 178
-      },
-      {
-        "age": 18,
-        "cm": 188
-      }
+      {"age": 14, "cm": 178},
+      {"age": 18, "cm": 188}
     ],
     "current_weight_kg": 74.0,
     "frame": "broad",
@@ -96,32 +90,14 @@
     "traps": 63
   },
   "resources": {
-    "chakra": {
-      "capacity": 112,
-      "current": 112
-    },
-    "health": {
-      "capacity": 108,
-      "current": 108
-    },
-    "fatigue": {
-      "capacity": 100,
-      "current": 0
-    },
-    "strain": {
-      "safe_capacity": 88,
-      "current": 0
-    }
+    "chakra": {"capacity": 112, "current": 84},
+    "health": {"capacity": 108, "current": 108},
+    "fatigue": {"capacity": 100, "current": 0},
+    "strain": {"safe_capacity": 88, "current": 0}
   },
-  "condition": {
-    "health": "healthy",
-    "fatigue": 0
-  },
+  "condition": {"health": "healthy", "fatigue": 0},
   "equipment_loadout_id": "load.char.riku",
-  "equipment_exceptions": {
-    "add": [],
-    "remove": []
-  },
+  "equipment_exceptions": {"add": [], "remove": []},
   "combat_style": {
     "name": "Faultline Style",
     "type": "learned_personal_style",
@@ -139,16 +115,8 @@
     "philosophy": "Everything stands because something is supporting it. Find that support. Break it."
   },
   "repertoire": {
-    "packages": [
-      "PKG_KONOHA_ACADEMY_CORE",
-      "PKG_EARTH_FOUNDATION",
-      "PKG_HYUGA_CLAN_CORE"
-    ],
-    "package_mastery": {
-      "PKG_KONOHA_ACADEMY_CORE": 72,
-      "PKG_EARTH_FOUNDATION": 82,
-      "PKG_HYUGA_CLAN_CORE": 82
-    },
+    "packages": ["PKG_KONOHA_ACADEMY_CORE", "PKG_EARTH_FOUNDATION", "PKG_HYUGA_CLAN_CORE"],
+    "package_mastery": {"PKG_KONOHA_ACADEMY_CORE": 72, "PKG_EARTH_FOUNDATION": 82, "PKG_HYUGA_CLAN_CORE": 82},
     "field_usable_techniques": [
       "ground_sense",
       "load_shift",
@@ -165,9 +133,7 @@
       "eight_point_fault"
     ],
     "latent_or_locked_techniques": [],
-    "bloodlines": [
-      "bloodline.byakugan"
-    ],
+    "bloodlines": ["bloodline.byakugan"],
     "method_mastery": {
       "ground_sense": 86,
       "load_shift": 82,
@@ -185,31 +151,9 @@
     }
   },
   "compact_personality": {
-    "traits": [
-      "confident",
-      "stubborn",
-      "dependable",
-      "competitive",
-      "protective",
-      "practical",
-      "thoughtful",
-      "difficult_to_intimidate"
-    ],
-    "interests": [
-      "architecture",
-      "bridges",
-      "fortifications",
-      "tunnels",
-      "construction",
-      "terrain",
-      "mechanical_balance",
-      "structural_weaknesses"
-    ],
-    "dislikes": [
-      "being_treated_as_the_big_strong_kid",
-      "being_treated_as_another_hyuga_prodigy",
-      "having_his_fighting_style_defined_for_him"
-    ]
+    "traits": ["confident", "stubborn", "dependable", "competitive", "protective", "practical", "thoughtful", "difficult_to_intimidate"],
+    "interests": ["architecture", "bridges", "fortifications", "tunnels", "construction", "terrain", "mechanical_balance", "structural_weaknesses"],
+    "dislikes": ["being_treated_as_the_big_strong_kid", "being_treated_as_another_hyuga_prodigy", "having_his_fighting_style_defined_for_him"]
   },
   "team_role": "ground_control_frontline_reconnaissance",
   "goal_state": {
@@ -230,10 +174,7 @@
       "be respected for what he built rather than only what he inherited",
       "study real fortifications, bridges, tunnels, and battlefield engineering"
     ],
-    "institutional_duties": [
-      "protect Konoha and assigned comrades",
-      "obey lawful mission objectives rather than chase unnecessary fights"
-    ]
+    "institutional_duties": ["protect Konoha and assigned comrades", "obey lawful mission objectives rather than chase unnecessary fights"]
   },
   "background": {
     "origin": "Konohagakure, secondary Hyūga household",
@@ -255,19 +196,11 @@
     "principle": "knows only personally observed, taught, reported, or institutionally available information",
     "known_secrets": [],
     "misinformation": [],
-    "trained_knowledge": [
-      "Hyūga fundamentals",
-      "Byakugan operation",
-      "Gentle Fist fundamentals",
-      "Earth Release",
-      "bōjutsu",
-      "basic structural analysis",
-      "Konoha Academy core"
-    ]
+    "trained_knowledge": ["Hyūga fundamentals", "Byakugan operation", "Gentle Fist fundamentals", "Earth Release", "bōjutsu", "basic structural analysis", "Konoha Academy core"]
   },
   "development": {
     "current_training": [],
-    "last_settled_at": "SE-0061-02-05T07:00:00",
+    "last_settled_at": "SE-0061-02-05T11:35:00",
     "weighted_adaptation": null
   },
   "aptitude": {
@@ -294,13 +227,7 @@
     "hair": "dark brown",
     "eyes": "pale Hyūga eyes",
     "build": "tall, broad-shouldered, heavy athletic build for age fourteen; strong forearms and legs",
-    "combat_clothing": [
-      "dark shinobi pants",
-      "short-sleeved combat jacket",
-      "forearm wraps",
-      "reinforced shin guards",
-      "light torso protection"
-    ],
+    "combat_clothing": ["dark shinobi pants", "short-sleeved combat jacket", "forearm wraps", "reinforced shin guards", "light torso protection"],
     "weapon_carry": "reinforced bō carried diagonally across back",
     "armor_preference": "light protection; avoids bulky armor to preserve movement and terrain contact"
   },
@@ -368,33 +295,16 @@
     "advanced Earth Release counterplay"
   ],
   "behavior": {
-    "core_traits": [
-      "confident",
-      "stubborn",
-      "dependable",
-      "practical",
-      "protective"
-    ],
+    "core_traits": ["confident", "stubborn", "dependable", "practical", "protective"],
     "decision_style": "reads support, footing, body alignment, and escape structure before committing",
     "stress_response": "becomes more anchored and objective-focused; risk is stubbornly continuing when withdrawal is wiser",
     "private_concern": "that people will credit the Byakugan for work he deliberately built himself",
-    "personal_preferences": [
-      "well-made structures",
-      "good tools",
-      "clear terrain information",
-      "competent teammates who will argue with him honestly"
-    ],
+    "personal_preferences": ["well-made structures", "good tools", "clear terrain information", "competent teammates who will argue with him honestly"],
     "ambition_or_orientation": "make Faultline Style an elite battlefield-control discipline",
     "trust_style": "earned through competence and reliability rather than rank alone",
     "failure_response": "studies the structural cause of failure and modifies his method; may initially resist admitting the mission was already complete",
     "temperament": "confident, stubborn, dependable, competitive, protective, practical, and surprisingly thoughtful",
-    "values": [
-      "earned skill",
-      "protecting teammates",
-      "practical solutions",
-      "independence of thought",
-      "precision over waste"
-    ],
+    "values": ["earned skill", "protecting teammates", "practical solutions", "independence of thought", "precision over waste"],
     "humor_style": "dry and blunt; can become absorbed in buildings or terrain long enough to amuse teammates",
     "conflict_style": "reads structure and footing first, tests reactions, restricts movement, then collapses the opponent preferred options",
     "source": "user_authored"

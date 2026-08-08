@@ -1,68 +1,65 @@
 {
   "active_combat": false,
-  "decision_required": "Wei has completed a baseline practical assessment with Riku Hyūga and Mei Arakawa. Kai Tang remains absent; Academy staff dispatched word to him, but delivery and response are not yet verified. Wei must decide the team's next step.",
+  "decision_required": "Wei has completed Riku and Mei's first technique demonstrations and a controlled paired pressure drill. Kai received the Academy notice and reported to the Academy but has not yet received an equivalent practical assessment. Wei must decide how to continue Team Fujin's first day.",
   "freeform_actions_allowed": true,
-  "loaded_owner_ids": [
-    "pc_wei_tang",
-    "team.konoha.fujin",
-    "char.riku_hyuga",
-    "char.mei_arakawa",
-    "char.kai"
-  ],
+  "loaded_owner_ids": ["pc_wei_tang", "team.konoha.fujin", "char.riku_hyuga", "char.mei_arakawa", "char.kai"],
   "location_id": "loc_konoha_academy_assignment_hall",
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "How does Wei continue the first Team Fujin day after a partial baseline assessment?",
-      "When will Kai receive the Academy message and report?"
+      "How does Wei assess and integrate Kai now that the full roster is physically present?",
+      "What long-term training structure, if any, will Wei eventually adopt for Team Fujin?"
     ],
     "approaching_consequences": [
-      "Team Fujin still has no adopted doctrine or shared full-team training history.",
-      "The special-operations roster remains under formal personnel review."
+      "Riku and Mei have spent meaningful chakra during controlled demonstrations and should not be treated as fully fresh for repeated high-output technique work.",
+      "Team Fujin still has no adopted doctrine or full-team shared training history.",
+      "The separate special-operations personnel review remains unresolved."
     ],
     "available_reports": [],
-    "current_scene_type": "academy_team_initial_assessment",
-    "current_tension": "new_team_incomplete_but_observed",
+    "current_scene_type": "academy_team_training",
+    "current_tension": "full_roster_present_uneven_assessment",
     "known_clues": [
-      "At Wei's request, Academy staff dispatched word to Kai concerning his missed Team Fujin assignment; delivery and Kai's response were not verified by 09:45.",
-      "Wei conducted a short non-doctrinal baseline practical assessment with Riku and Mei on an adjacent Academy practice yard.",
-      "Riku showed strong physicality, staff handling, tactical awareness, and practical terrain-reading habits during the baseline work.",
-      "Mei showed high movement precision, stealth, thrown-tool handling, sensory discipline, and tactical control during the baseline work.",
-      "Riku and Mei showed sound individual judgment but do not yet have rehearsed shared timing; the exercise was too short and incomplete to establish team doctrine or full-team coordination.",
-      "Kai's absence prevents a complete assessment of Team Fujin.",
-      "No measurable permanent skill-point gain, promotion, relationship-score change, or team doctrine was granted by the short diagnostic.",
+      "The Academy notice reached Kai at Sword Manor and Kai reported to the Academy by 10:10; the reason he missed the 09:00 assignment remains unverified.",
+      "Riku demonstrated Eight-Point Fault as precise small-area terrain funneling supported by Byakugan observation rather than large-volume Earth Release.",
+      "Mei demonstrated False Opening and Frost Senbon, showing controlled perceptual manipulation and precise Ice Release projectile work.",
+      "In a controlled capture-and-defense pressure drill, Riku and Mei initially reacted as two independent fighters, then improved their lane sharing and timing over repeated rounds.",
+      "Their later drill performance was better coordinated but is not equivalent to established team doctrine or combat-tested cohesion.",
+      "No promotion, relationship-score change, doctrine adoption, or integer skill/mastery increase resulted from the short training block.",
+      "Kai has not yet received a comparable practical assessment.",
       "The formal special-operations personnel review remains separate and unresolved."
     ],
-    "last_major_choice": "Wei asked Academy staff to send word to Kai, then took Riku and Mei to an adjacent practice yard for a baseline practical assessment.",
-    "last_scene_summary": "From 09:00 to 09:45, Academy staff dispatched word to Kai at Wei's request. Wei then ran a short non-doctrinal baseline practical assessment with Riku and Mei, observing their individual movement, weapons, awareness, judgment, and paired objective work. Kai remained absent and no reply was verified before the assessment ended.",
+    "last_major_choice": "Wei waited for word from Kai, observed Riku and Mei's individual chakra and signature-technique demonstrations, then ran a harder controlled paired capture-and-defense pressure drill.",
+    "last_scene_summary": "From 09:45 to 11:35, the Academy notice reached Kai and he reported in. Wei then observed Riku demonstrate Eight-Point Fault and Mei demonstrate False Opening and Frost Senbon. Riku and Mei completed a controlled paired pressure drill that exposed early independent reactions and later improvement in shared timing. Kai observed after arriving but remains practically unassessed.",
     "pending_information_paths": [
-      "Delivery of the Academy message to Kai and Kai's response or arrival.",
+      "Why Kai missed the original 09:00 Team Fujin assignment.",
       "Formal personnel availability and duty-conflict review for the proposed special-operations squad."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Riku's baseline strengths visibly favor physical control, staff work, awareness, and terrain-oriented judgment.",
-      "Mei's baseline strengths visibly favor precision movement, stealth, ranged tools, sensing, and tactical control.",
-      "The present pair is promising but not yet rehearsed as a team."
+      "Riku's distinctive control favors precise terrain geometry and option denial rather than raw earth volume.",
+      "Mei combines subtle perception control with highly precise Ice Release.",
+      "Riku and Mei can improve coordination within a session, but the timing is not yet habitual.",
+      "Kai is now physically present with Team Fujin."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "Kai's absence and pending Academy message",
-      "First complete Team Fujin assessment",
+      "Kai's missed assignment and incomplete assessment",
+      "First full three-Genin Team Fujin drill",
       "Future Team Fujin training structure and doctrine",
       "Permanent special-operations squad under formal review",
       "Potential future dual-team command"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_konoha_academy_team_fujin_initial_assessment",
-  "scene_summary": "At 09:45 Wei has completed a partial baseline assessment of Team Fujin with Riku and Mei. Kai remains absent, and the Academy message to him has no verified delivery or response yet.",
+  "scene_id": "scene_konoha_academy_team_fujin_training",
+  "scene_summary": "At 11:35 Kai has reported to the Academy. Riku and Mei have completed signature-technique demonstrations and a controlled paired pressure drill; Kai remains unassessed.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T09:45:00",
+  "world_time": "SE-0061-02-05T11:35:00",
   "known_clock_boundaries": [],
   "observable_pressures": [
-    "Kai remains absent from Team Fujin's first-day activity.",
+    "Kai is present but has not yet received a practical assessment.",
+    "Riku and Mei are no longer fully fresh after technique demonstrations and pressure work.",
     "The team has no adopted doctrine or full-team practice history.",
     "The separate special-operations proposal remains unapproved."
   ]

@@ -1,6 +1,6 @@
 {
   "schema": "temporal-frontier.v39",
-  "world_time": "SE-0061-02-05T09:45:00",
+  "world_time": "SE-0061-02-05T11:35:00",
   "processes": [
     {
       "id": "process_team_fujin_assignment",
@@ -9,38 +9,27 @@
       "settled_through": "SE-0061-02-05T09:00:00",
       "next_due": null,
       "source": "team_assignment",
-      "recurrence": {
-        "kind": "one_shot",
-        "accrual_mode": "event"
-      },
+      "recurrence": {"kind": "one_shot", "accrual_mode": "event"},
       "coverage_ref": "state/time/coverage/process_team_fujin_assignment.json"
     },
     {
       "id": "process_house_tang_people_weekly",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-02-12T07:00:00",
       "source": "house_training_and_life",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "continuous",
-        "interval_seconds": 604800
-      },
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "continuous", "interval_seconds": 604800},
       "coverage_ref": "state/time/coverage/process_house_tang_people_weekly.json"
     },
     {
       "id": "process_named_characters_monthly",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-03-01T00:00:00",
       "source": "named_character_life_and_development",
-      "recurrence": {
-        "kind": "calendar_month_start",
-        "accrual_mode": "continuous",
-        "clock": "00:00:00"
-      },
+      "recurrence": {"kind": "calendar_month_start", "accrual_mode": "continuous", "clock": "00:00:00"},
       "coverage_ref": "state/time/coverage/process_named_characters_monthly.json",
       "wake_policy": "monthly baseline plus immediate causal wake-up"
     },
@@ -48,14 +37,10 @@
       "id": "process_world_forces_monthly",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-03-01T00:00:00",
       "source": "force_and_tactical_development",
-      "recurrence": {
-        "kind": "calendar_month_start",
-        "accrual_mode": "continuous",
-        "clock": "00:00:00"
-      },
+      "recurrence": {"kind": "calendar_month_start", "accrual_mode": "continuous", "clock": "00:00:00"},
       "coverage_ref": "state/time/coverage/process_world_forces_monthly.json",
       "wake_policy": "monthly baseline plus immediate causal wake-up",
       "coverage_mode": "descendant_aggregate"
@@ -64,14 +49,10 @@
       "id": "process_world_structures_monthly",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-03-01T00:00:00",
       "source": "countries_institutions_and_stocks",
-      "recurrence": {
-        "kind": "calendar_month_start",
-        "accrual_mode": "continuous",
-        "clock": "00:00:00"
-      },
+      "recurrence": {"kind": "calendar_month_start", "accrual_mode": "continuous", "clock": "00:00:00"},
       "wake_policy": "monthly baseline plus immediate causal wake-up",
       "coverage": []
     },
@@ -79,14 +60,10 @@
       "id": "process_living_world_monthly",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-03-01T00:00:00",
       "source": "living_people_and_factions",
-      "recurrence": {
-        "kind": "calendar_month_start",
-        "accrual_mode": "continuous",
-        "clock": "00:00:00"
-      },
+      "recurrence": {"kind": "calendar_month_start", "accrual_mode": "continuous", "clock": "00:00:00"},
       "coverage_ref": "state/time/coverage/process_living_world_monthly.json",
       "wake_policy": "monthly baseline plus immediate causal wake-up"
     },
@@ -97,30 +74,19 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-02-12T07:00:00",
       "source": "mission_market",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
       "wake_policy": "weekly refresh or immediate issuer/incident demand",
-      "coverage": [
-        "missions_contracts_projects"
-      ]
+      "coverage": ["missions_contracts_projects"]
     },
     {
       "id": "process_world_event_triggers",
       "status": "active",
       "settlement_mode": "triggered",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": null,
       "source": "causal_event_wakeup",
-      "recurrence": {
-        "kind": "triggered",
-        "accrual_mode": "triggered"
-      },
-      "coverage": [
-        "registry.world_events"
-      ],
+      "recurrence": {"kind": "triggered", "accrual_mode": "triggered"},
+      "coverage": ["registry.world_events"],
       "trigger": "evaluate only when relevant state changes or a scheduled event calls the archetype catalog"
     },
     {
@@ -130,14 +96,8 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-02-10T07:00:00",
       "source": "scheduler",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "pressure_wave_gato_bridge"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
+      "coverage": ["pressure_wave_gato_bridge"]
     },
     {
       "id": "batch_clock_world_pressures_world_pressures_se_0061_02_11t18_00_00_event_or_weekly",
@@ -146,14 +106,8 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-02-11T18:00:00",
       "source": "scheduler",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "pressure_mizuki_forbidden_scroll"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
+      "coverage": ["pressure_mizuki_forbidden_scroll"]
     },
     {
       "id": "batch_clock_world_pressures_world_pressures_se_0061_02_12t07_00_00_event_or_weekly",
@@ -162,14 +116,8 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-02-12T07:00:00",
       "source": "scheduler",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "pressure_oto_konoha_infiltration"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
+      "coverage": ["pressure_oto_konoha_infiltration"]
     },
     {
       "id": "batch_clock_world_pressures_world_pressures_se_0061_02_12t09_00_00_event_or_weekly",
@@ -178,14 +126,8 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-02-12T09:00:00",
       "source": "scheduler",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "pressure_konoha_academy_graduation"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
+      "coverage": ["pressure_konoha_academy_graduation"]
     },
     {
       "id": "batch_clock_world_pressures_world_pressures_se_0061_03_01t07_00_00_event_or_weekly",
@@ -194,33 +136,18 @@
       "settled_through": "SE-0061-02-05T07:00:00",
       "next_due": "SE-0061-03-01T07:00:00",
       "source": "scheduler",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "boundary_only",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "pressure_akatsuki_intelligence",
-        "pressure_great_village_mission_market",
-        "pressure_kiri_transition",
-        "pressure_suna_funding"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "boundary_only", "interval_seconds": 604800},
+      "coverage": ["pressure_akatsuki_intelligence", "pressure_great_village_mission_market", "pressure_kiri_transition", "pressure_suna_funding"]
     },
     {
       "id": "process_team_doctrine_training",
       "status": "active",
       "settlement_mode": "batchable",
-      "settled_through": "SE-0061-02-05T09:45:00",
+      "settled_through": "SE-0061-02-05T11:35:00",
       "next_due": "SE-0061-02-12T09:00:00",
       "source": "team_training",
-      "recurrence": {
-        "kind": "fixed_interval",
-        "accrual_mode": "continuous",
-        "interval_seconds": 604800
-      },
-      "coverage": [
-        "team.konoha.fujin"
-      ]
+      "recurrence": {"kind": "fixed_interval", "accrual_mode": "continuous", "interval_seconds": 604800},
+      "coverage": ["team.konoha.fujin"]
     }
   ]
 }

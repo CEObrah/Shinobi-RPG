@@ -10,20 +10,26 @@
   ],
   "read_first": [
     "state/reg/missions-contracts-projects.json",
-    "only the issuer, team, people or institutional owners whose authority or availability changes the project"
+    "only the issuer, team, people, operation or institutional owners whose authority, availability or state changes the commitment"
   ],
   "write_order": [
-    "resolve the real institutional or contractual action first",
-    "update project/contract/mission registry status to mirror that resolved authority",
-    "create no mission, transfer, team or permission merely from a planning record"
+    "resolve the real institutional, contractual or operational action first",
+    "update project/contract/mission lifecycle record to mirror that resolved authority",
+    "for an active or blocked commitment, set the next exact review boundary unless a referenced exact operation/domain process owns it",
+    "when a commitment completes, fails or is cancelled, close its lifecycle record and evaluate lawful successor actions immediately",
+    "create no mission, transfer, team, permission or resource merely from a planning record"
   ],
   "invariants": [
-    "Projects record resolved planning state and never substitute for institutional authority.",
+    "Projects record resolved planning lifecycle and never substitute for institutional authority.",
     "OOC proposals and wishlists do not become active missions or assignments.",
     "A project may become authorized only after the actual authority, staffing, obligations and blockers are resolved in their owning systems.",
-    "Formation of a team does not automatically create a mission."
+    "Formation of a team does not automatically create a mission.",
+    "Active and blocked commitments cannot be timeless: they carry a next_due_at or reference an exact operation/domain process that owns the next boundary.",
+    "Commitment records do not duplicate rosters, command, equipment, injuries, property or other domain-owned facts.",
+    "Completion, failure or cancellation wakes the responsible autonomous owner to evaluate a successor instead of leaving stale active state."
   ],
   "validators": [
+    "tools/test_world_liveness.py",
     "tools/test_runtime.py",
     "tools/test_semantics.py",
     "tools/test_templates.py"

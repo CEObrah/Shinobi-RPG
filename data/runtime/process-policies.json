@@ -5,7 +5,7 @@
   "contract_defaults": {
     "status": "active",
     "successor_plan_required": true,
-    "execution_mode": "scheduled_or_causal_wakeup"
+    "execution_mode": "aggregate_boundary_or_causal_wakeup"
   },
   "policy_templates": {
     "autonomous_owner_v1": {
@@ -22,9 +22,9 @@
         "superseded"
       ],
       "policy_revision": 1,
-      "replanning_policy": "After each settled interval, reassess goals, authority, knowledge, health, resources, dependencies, opposition, and risks. Complete, block, fail, continue, or supersede the current plan and create a lawful successor plan when autonomy permits.",
+      "replanning_policy": "At its aggregate review boundary or any earlier causal wake-up, reassess goals, authority, knowledge, health, resources, dependencies, opposition and risks. Complete, block, fail, continue or supersede the current plan and create a lawful successor plan when autonomy permits.",
       "result_requirement": "Every crossed interval resolves as progress, maintenance, recovery, decline, loss, transformation, closure, blockage, or explicit no material change with a causal reason.",
-      "safe_compaction_policy": "Multiple crossed routine intervals may share one span receipt only when each interval is internally resolved in order and no material event, threshold, player dependency, or causal interruption is skipped."
+      "safe_compaction_policy": "Stable distant routine may share an aggregate boundary review. Split immediately on material events, owner-local domain deadlines, thresholds, player dependencies or causal intersections."
     },
     "featured_original_v1": {
       "authority_scope": "saved role, office, command, custody and legal authority only",

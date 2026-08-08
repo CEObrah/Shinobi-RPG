@@ -1,1 +1,38 @@
-{"schema":"system-contract.v1","system_id":"characters","authority":false,"authority_paths":["state/char/","state/person/"],"owner_templates":["shinobi_character","person-lite"],"read_first":["exact/lite owner","only causal health, relationship, knowledge, career, command, training references"],"write_order":["validate causal evidence and elapsed time","write character-owned fields only","write health/relationship/knowledge/office/command changes to their dedicated owners","rebuild only affected derived indexes"],"invariants":["Never invent player intent.","Unknown is better than filler.","No skill/rank/behavior growth without causal evidence and time.","Do not back-project future canon achievements."],"validators":["tools/test_templates.py","tools/test_development.py","tools/test_semantics.py"]}
+{
+  "schema": "system-contract.v1",
+  "system_id": "characters",
+  "authority": false,
+  "authority_paths": [
+    "state/char/",
+    "state/person/"
+  ],
+  "owner_templates": [
+    "shinobi_character",
+    "person-lite"
+  ],
+  "read_first": [
+    "exact/lite owner",
+    "only causal health, relationship, knowledge, career, command, training or dedicated deadline references"
+  ],
+  "write_order": [
+    "validate causal evidence and elapsed time",
+    "write character-owned fields only",
+    "write health/relationship/knowledge/office/command changes to their dedicated owners",
+    "write general autonomous review timing only through the time_process authority; never add a second character scheduler cursor",
+    "rebuild only affected derived indexes"
+  ],
+  "invariants": [
+    "Never invent player intent.",
+    "Unknown is better than filler.",
+    "No skill/rank/behavior growth without causal evidence and time.",
+    "General autonomous scheduling is centralized in the temporal runtime; exact character owners do not persist runtime or schedule_profile mirrors.",
+    "Development, recovery, deployment, mission and other real domain clocks remain separate when their mechanics require them.",
+    "Do not back-project future canon achievements."
+  ],
+  "validators": [
+    "tools/test_templates.py",
+    "tools/test_development.py",
+    "tools/test_semantics.py",
+    "tools/test_world_liveness.py"
+  ]
+}

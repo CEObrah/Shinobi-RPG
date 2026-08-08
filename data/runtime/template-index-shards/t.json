@@ -1,1 +1,156 @@
-{"schema":"template-index-shard.v1","prefix":"t","templates":{"tactical-team":{"path":"data/runtime/templates/tactical-team.template.json","source_schema":"schemas/tactical-team-v1.schema.json","scope":"mutable_state"},"tactical_team_model":{"path":"data/runtime/templates/tactical_team_model.template.json","source_schema":null,"scope":"static_data"},"team-doctrine":{"path":"data/runtime/templates/team-doctrine.template.json","source_schema":"schemas/team-doctrine.schema.json","scope":"mutable_state"},"team-doctrine-registry":{"path":"data/runtime/templates/team-doctrine-registry.template.json","source_schema":null,"scope":"mutable_state"},"team-doctrine-template":{"path":"data/runtime/templates/team-doctrine-template.template.json","source_schema":"schemas/team-doctrine-template-v1.schema.json","scope":"static_data"},"team":{"path":"data/runtime/templates/team.template.json","source_schema":"schemas/team.schema.json","scope":"mutable_state"},"tech-index":{"path":"data/runtime/templates/tech-index.template.json","source_schema":"schemas/tech-index.schema.json","scope":"static_data"},"tech-manifest":{"path":"data/runtime/templates/tech-manifest.template.json","source_schema":"schemas/tech-manifest-v1.schema.json","scope":"static_data"},"tech-name-index-shard":{"path":"data/runtime/templates/tech-name-index-shard.template.json","source_schema":"schemas/tech-name-index-shard-v2.schema.json","scope":"static_data"},"tech-name-index":{"path":"data/runtime/templates/tech-name-index.template.json","source_schema":"schemas/tech-name-index-v2.schema.json","scope":"static_data"},"tech-packages":{"path":"data/runtime/templates/tech-packages.template.json","source_schema":"schemas/tech-packages.schema.json","scope":"static_data"},"technique-defaults":{"path":"data/runtime/templates/technique-defaults.template.json","source_schema":"schemas/technique-defaults-v1.schema.json","scope":"static_data"},"technique-effect-profile":{"path":"data/runtime/templates/technique-effect-profile.template.json","source_schema":"schemas/technique-effect-profile-v1.schema.json","scope":"static_data"},"technique-effects-index":{"path":"data/runtime/templates/technique-effects-index.template.json","source_schema":"schemas/technique-effects-index-v2.schema.json","scope":"static_data"},"technique-effects-manifest":{"path":"data/runtime/templates/technique-effects-manifest.template.json","source_schema":"schemas/technique-effects-manifest-v1.schema.json","scope":"static_data"},"technique-primitive":{"path":"data/runtime/templates/technique-primitive.template.json","source_schema":"schemas/technique-primitive-v1.schema.json","scope":"static_data"},"technique-primitives-index":{"path":"data/runtime/templates/technique-primitives-index.template.json","source_schema":"schemas/technique-primitives-index-v2.schema.json","scope":"static_data"},"technique-primitives":{"path":"data/runtime/templates/technique-primitives.template.json","source_schema":"schemas/technique-primitives.schema.json","scope":"registered_json_structure"},"template-index-shard.v1":{"path":"data/runtime/templates/template-index-shard.v1.template.json","source_schema":"schemas/template-index-shard-v1.schema.json","scope":"registered_json_structure"},"template-index":{"path":"data/runtime/templates/template-index.template.json","source_schema":null,"scope":"static_data"},"template-index.v2":{"path":"data/runtime/templates/template-index.v2.template.json","source_schema":"schemas/template-index-v2.schema.json","scope":"registered_json_structure"},"temporal-coverage-requirements":{"path":"data/runtime/templates/temporal-coverage-requirements.template.json","source_schema":"schemas/temporal-coverage-requirements-v1.schema.json","scope":"static_data"},"temporal-frontier":{"path":"data/runtime/templates/temporal-frontier.template.json","source_schema":"schemas/temporal-frontier.schema.json","scope":"mutable_state"},"temporal-settlement-runtime":{"path":"data/runtime/templates/temporal-settlement-runtime.template.json","source_schema":"schemas/temporal-settlement-runtime-v1.schema.json","scope":"static_data"},"timing-mechanics":{"path":"data/runtime/templates/timing-mechanics.template.json","source_schema":null,"scope":"static_data"},"training-mechanics":{"path":"data/runtime/templates/training-mechanics.template.json","source_schema":"schemas/training-mechanics.schema.json","scope":"static_data"},"training-profile-record":{"path":"data/runtime/templates/training-profile-record.template.json","source_schema":"schemas/training-profile-record-v1.schema.json","scope":"static_data"},"training_profile_registry":{"path":"data/runtime/templates/training_profile_registry.template.json","source_schema":"schemas/training-profile-registry-v2.schema.json","scope":"static_data"},"training_role_profiles":{"path":"data/runtime/templates/training_role_profiles.template.json","source_schema":null,"scope":"static_data"},"travel-mechanics":{"path":"data/runtime/templates/travel-mechanics.template.json","source_schema":null,"scope":"static_data"},"troop_pool":{"path":"data/runtime/templates/troop_pool.template.json","source_schema":"schemas/troop-pool-v1.schema.json","scope":"registered_json_structure"},"troop_type_registry":{"path":"data/runtime/templates/troop_type_registry.template.json","source_schema":null,"scope":"static_data"}}}
+{
+  "schema": "template-index-shard.v1",
+  "prefix": "t",
+  "templates": {
+    "tactical-team": {
+      "path": "data/runtime/templates/tactical-team.template.json",
+      "source_schema": "schemas/tactical-team-v1.schema.json",
+      "scope": "mutable_state"
+    },
+    "tactical_team_model": {
+      "path": "data/runtime/templates/tactical_team_model.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "team-doctrine": {
+      "path": "data/runtime/templates/team-doctrine.template.json",
+      "source_schema": "schemas/team-doctrine.schema.json",
+      "scope": "mutable_state"
+    },
+    "team-doctrine-registry": {
+      "path": "data/runtime/templates/team-doctrine-registry.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "team-doctrine-template": {
+      "path": "data/runtime/templates/team-doctrine-template.template.json",
+      "source_schema": "schemas/team-doctrine-template-v1.schema.json",
+      "scope": "static_data"
+    },
+    "team": {
+      "path": "data/runtime/templates/team.template.json",
+      "source_schema": "schemas/team.schema.json",
+      "scope": "mutable_state"
+    },
+    "tech-index": {
+      "path": "data/runtime/templates/tech-index.template.json",
+      "source_schema": "schemas/tech-index.schema.json",
+      "scope": "static_data"
+    },
+    "tech-manifest": {
+      "path": "data/runtime/templates/tech-manifest.template.json",
+      "source_schema": "schemas/tech-manifest-v1.schema.json",
+      "scope": "static_data"
+    },
+    "tech-name-index-shard": {
+      "path": "data/runtime/templates/tech-name-index-shard.template.json",
+      "source_schema": "schemas/tech-name-index-shard-v2.schema.json",
+      "scope": "static_data"
+    },
+    "tech-name-index": {
+      "path": "data/runtime/templates/tech-name-index.template.json",
+      "source_schema": "schemas/tech-name-index-v2.schema.json",
+      "scope": "static_data"
+    },
+    "tech-packages": {
+      "path": "data/runtime/templates/tech-packages.template.json",
+      "source_schema": "schemas/tech-packages.schema.json",
+      "scope": "static_data"
+    },
+    "technique-defaults": {
+      "path": "data/runtime/templates/technique-defaults.template.json",
+      "source_schema": "schemas/technique-defaults-v1.schema.json",
+      "scope": "static_data"
+    },
+    "technique-effect-profile": {
+      "path": "data/runtime/templates/technique-effect-profile.template.json",
+      "source_schema": "schemas/technique-effect-profile-v1.schema.json",
+      "scope": "static_data"
+    },
+    "technique-effects-index": {
+      "path": "data/runtime/templates/technique-effects-index.template.json",
+      "source_schema": "schemas/technique-effects-index-v2.schema.json",
+      "scope": "static_data"
+    },
+    "technique-effects-manifest": {
+      "path": "data/runtime/templates/technique-effects-manifest.template.json",
+      "source_schema": "schemas/technique-effects-manifest-v1.schema.json",
+      "scope": "static_data"
+    },
+    "technique-primitive": {
+      "path": "data/runtime/templates/technique-primitive.template.json",
+      "source_schema": "schemas/technique-primitive-v1.schema.json",
+      "scope": "static_data"
+    },
+    "technique-primitives-index": {
+      "path": "data/runtime/templates/technique-primitives-index.template.json",
+      "source_schema": "schemas/technique-primitives-index-v2.schema.json",
+      "scope": "static_data"
+    },
+    "template-index-shard.v1": {
+      "path": "data/runtime/templates/template-index-shard.v1.template.json",
+      "source_schema": "schemas/template-index-shard-v1.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "template-index.v2": {
+      "path": "data/runtime/templates/template-index.v2.template.json",
+      "source_schema": "schemas/template-index-v2.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "temporal-coverage-requirements": {
+      "path": "data/runtime/templates/temporal-coverage-requirements.template.json",
+      "source_schema": "schemas/temporal-coverage-requirements-v1.schema.json",
+      "scope": "static_data"
+    },
+    "temporal-frontier": {
+      "path": "data/runtime/templates/temporal-frontier.template.json",
+      "source_schema": "schemas/temporal-frontier.schema.json",
+      "scope": "mutable_state"
+    },
+    "temporal-settlement-runtime": {
+      "path": "data/runtime/templates/temporal-settlement-runtime.template.json",
+      "source_schema": "schemas/temporal-settlement-runtime-v1.schema.json",
+      "scope": "static_data"
+    },
+    "timing-mechanics": {
+      "path": "data/runtime/templates/timing-mechanics.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "training-mechanics": {
+      "path": "data/runtime/templates/training-mechanics.template.json",
+      "source_schema": "schemas/training-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "training-profile-record": {
+      "path": "data/runtime/templates/training-profile-record.template.json",
+      "source_schema": "schemas/training-profile-record-v1.schema.json",
+      "scope": "static_data"
+    },
+    "training_profile_registry": {
+      "path": "data/runtime/templates/training_profile_registry.template.json",
+      "source_schema": "schemas/training-profile-registry-v2.schema.json",
+      "scope": "static_data"
+    },
+    "training_role_profiles": {
+      "path": "data/runtime/templates/training_role_profiles.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "travel-mechanics": {
+      "path": "data/runtime/templates/travel-mechanics.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "troop_pool": {
+      "path": "data/runtime/templates/troop_pool.template.json",
+      "source_schema": "schemas/troop-pool-v1.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "troop_type_registry": {
+      "path": "data/runtime/templates/troop_type_registry.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    }
+  }
+}

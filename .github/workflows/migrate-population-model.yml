@@ -1,0 +1,50 @@
+name: migrate-population-model
+on:
+  push:
+    branches:
+      - maintenance/population-materialization
+permissions:
+  contents: write
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install jsonschema
+      - name: Apply population and Sword Manor compression migration
+        run: python tools/migrate_population_model.py
+      - name: Validate migrated repository
+        run: |
+          python tools/test_transaction_integrity.py
+          python tools/test_state_consolidation.py
+          python tools/test_population_model.py
+          python tools/test_world_liveness.py
+          python tools/test_commitment_liveness.py
+          python tools/audit.py
+          python tools/test_gameplay_naming.py
+          python tools/test_development.py
+          python tools/test_mechanics.py
+          python tools/test_living_world.py
+          python tools/test_runtime.py
+          python tools/test_semantics.py
+          python tools/test_unit_model.py
+          python tools/test_reputation.py
+          python tools/test_family.py
+          python tools/test_team_consistency.py
+          python tools/test_house_tang_martial.py
+          python tools/test_templates.py
+          python tools/test_structural_determinism.py
+          python tools/test_routing.py
+      - name: Commit migration and remove temporary runner
+        run: |
+          rm tools/migrate_population_model.py
+          rm .github/workflows/migrate-population-model.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Implement aggregate population and Sword Manor cohort model"
+          git push origin HEAD:maintenance/population-materialization

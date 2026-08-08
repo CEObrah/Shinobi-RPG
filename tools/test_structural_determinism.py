@@ -32,9 +32,15 @@ def load_templates() -> dict[str, dict]:
 
 
 def decode_pointer(pointer: str) -> list[str]:
+    if pointer == "":
+        return []
     if not pointer.startswith("/"):
         fail(f"invalid template pointer: {pointer}")
-    return [segment.replace("~1", "/").replace("~0", "~") for segment in pointer[1:].split("/") if segment != ""]
+    return [segment.replace("~1", "/").replace("~0", "~") for segment in pointer[1:].split("/")]
+
+
+def encode_segment(segment: str) -> str:
+    return segment.replace("~", "~0").replace("/", "~1")
 
 
 def placeholder(type_spec):
@@ -46,38 +52,71 @@ def placeholder(type_spec):
     return None
 
 
-def expected_blank(template: dict) -> dict:
-    field_types = template.get("field_types")
-    if not isinstance(field_types, dict):
-        fail(f"template {template.get('target_schema')} missing field_types")
-    root: dict = {}
-    ordered = sorted(field_types.items(), key=lambda item: (item[0].count("/"), item[0]))
-    for pointer, type_spec in ordered:
-        segments = decode_pointer(pointer)
-        if not segments or "*" in segments:
-            continue
-        current = root
-        blocked = False
-        for idx, segment in enumerate(segments):
-            last = idx == len(segments) - 1
-            if not isinstance(current, dict):
-                blocked = True
-                break
-            if last:
-                current.setdefault(segment, placeholder(type_spec))
-                continue
+def put(root: dict, pointer: str, value) -> None:
+    segments = decode_pointer(pointer)
+    if not segments:
+        if not isinstance(value, dict):
+            fail("root blank skeleton must be object")
+        return
+    if "*" in segments:
+        return
+    current = root
+    for idx, segment in enumerate(segments):
+        last = idx == len(segments) - 1
+        if not isinstance(current, dict):
+            return
+        if last:
             if segment not in current:
-                current[segment] = {}
-            if isinstance(current[segment], list):
-                blocked = True
-                break
-            if current[segment] is None:
-                current[segment] = {}
-            if not isinstance(current[segment], dict):
-                fail(f"template {template.get('target_schema')} has incompatible nested pointer {pointer}")
-            current = current[segment]
-        if blocked:
+                current[segment] = value
+            return
+        if segment not in current:
+            current[segment] = {}
+        if isinstance(current[segment], list):
+            return
+        if current[segment] is None:
+            current[segment] = {}
+        if not isinstance(current[segment], dict):
+            return
+        current = current[segment]
+
+
+def expected_blank(template: dict) -> dict:
+    type_contracts = template.get("type_contracts")
+    object_contracts = template.get("object_contracts")
+    array_contracts = template.get("array_contracts")
+    if not isinstance(type_contracts, dict) or not isinstance(object_contracts, dict) or not isinstance(array_contracts, dict):
+        fail(f"template {template.get('target_schema')} missing structural contracts")
+
+    root: dict = {}
+    for pointer, type_spec in sorted(type_contracts.items(), key=lambda item: (item[0].count("/"), item[0])):
+        if pointer == "" or "*" in decode_pointer(pointer):
             continue
+        put(root, pointer, placeholder(type_spec))
+
+    for pointer in sorted(array_contracts, key=lambda p: (p.count("/"), p)):
+        if "*" not in decode_pointer(pointer):
+            put(root, pointer, [])
+
+    for pointer, contract in sorted(object_contracts.items(), key=lambda item: (item[0].count("/"), item[0])):
+        if "*" in decode_pointer(pointer):
+            continue
+        if pointer:
+            put(root, pointer, {})
+        if not isinstance(contract, dict):
+            fail(f"invalid object contract: {template.get('target_schema')}:{pointer}")
+        for key in contract.get("allowed_keys", []):
+            child_pointer = f"{pointer}/{encode_segment(key)}" if pointer else f"/{encode_segment(key)}"
+            child_type = type_contracts.get(child_pointer)
+            if child_type is not None:
+                value = placeholder(child_type)
+            elif child_pointer in array_contracts:
+                value = []
+            elif child_pointer in object_contracts:
+                value = {}
+            else:
+                value = None
+            put(root, child_pointer, value)
+
     return root
 
 

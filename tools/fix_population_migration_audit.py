@@ -42,13 +42,17 @@ for owner_id in ["house.tang"] + ht_ids:
 coverage["required_owner_ids"] = required
 write("data/runtime/coverage-requirements.json", coverage)
 
-# The semantic layer reserves an older organizational word. Rename the generated
-# representation to aggregate group terminology everywhere before validation.
+# The semantic layer reserves an older organizational word. Rename generated
+# representation text without mutating the validators that enforce that rule.
 old_term = "co" + "hort"
 new_term = "group"
 text_suffixes = {".json", ".md", ".py", ".yml", ".yaml", ".txt"}
+protected = {
+    ROOT / "tools/test_semantics.py",
+    ROOT / "tools/test_unit_model.py",
+}
 for path in ROOT.rglob("*"):
-    if not path.is_file() or ".git" in path.parts or path.suffix not in text_suffixes:
+    if path in protected or not path.is_file() or ".git" in path.parts or path.suffix not in text_suffixes:
         continue
     try:
         text = path.read_text(encoding="utf-8")

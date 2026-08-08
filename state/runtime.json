@@ -1,5 +1,66 @@
 {
-  "completed_reviews":{},
+  "completed_reviews": {
+    "process_house_tang_people_weekly": {
+      "process_id": "process_house_tang_people_weekly",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": "state/time/coverage/process_house_tang_people_weekly.json",
+      "coverage_count": 32,
+      "result": "Current authoritative state is the exact settlement base at this frontier; this receipt asserts no unrecorded earlier interval semantics."
+    },
+    "process_named_characters_monthly": {
+      "process_id": "process_named_characters_monthly",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": "state/time/coverage/process_named_characters_monthly.json",
+      "coverage_count": 118,
+      "result": "Current authoritative state is the exact settlement base at this frontier; owner-local schedules and future causal wakes remain independently due from their saved cursors."
+    },
+    "process_world_forces_monthly": {
+      "process_id": "process_world_forces_monthly",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": "state/time/coverage/process_world_forces_monthly.json",
+      "coverage_count": 34,
+      "result": "Current authoritative force state is the exact settlement base; deployments, conflicts, missions, shortages and descendant material changes wake their owners before the monthly fallback."
+    },
+    "process_world_structures_monthly": {
+      "process_id": "process_world_structures_monthly",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": "state/time/coverage/process_world_structures_monthly.json",
+      "coverage_count": 19,
+      "result": "Current authoritative world registries and institutional stock owners are the exact settlement base; embedded deadlines and causal stock changes wake before the monthly fallback."
+    },
+    "process_living_world_monthly": {
+      "process_id": "process_living_world_monthly",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": "state/time/coverage/process_living_world_monthly.json",
+      "coverage_count": 32,
+      "result": "Current authoritative faction and support-person state is the exact settlement base; saved owner plans and schedules continue from their own local review cursors."
+    },
+    "process_team_doctrine_training": {
+      "process_id": "process_team_doctrine_training",
+      "reviewed_from": "SE-0061-02-06T21:15:00",
+      "reviewed_through": "SE-0061-02-06T21:15:00",
+      "outcome": "no_op",
+      "material_change": false,
+      "coverage_ref": null,
+      "coverage_count": 3,
+      "result": "Current team doctrine and training state is the exact settlement base; future attendance, duty conflicts, injuries and roster changes wake exact team owners."
+    }
+  },
   "last_settled_at":"SE-0061-02-06T21:15:00",
   "schema":"shinobi-world-runtime"
 }

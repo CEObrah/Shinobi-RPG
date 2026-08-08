@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
@@ -157,6 +158,35 @@ for path in tracked():
     if new != text:
         path.write_text(new, encoding="utf-8")
 
+# 4b. Unit battle kernels are derived caches. Their source hash is the exact
+# byte hash of each unit's authoritative stats_ref capability document. The
+# schema rewrite changes those bytes, so refresh only that derived hash after
+# proving the kernel still belongs to the same unit.
+refreshed_kernels = 0
+for unit_path in sorted((ROOT / "state/unit").glob("*.json")):
+    unit = load_no_dupes(unit_path)
+    stats_ref = unit.get("stats_ref")
+    kernel_ref = unit.get("battle_kernel_ref")
+    if not isinstance(stats_ref, str) or not isinstance(kernel_ref, str):
+        continue
+    stats_path = ROOT / stats_ref
+    kernel_path = ROOT / kernel_ref
+    if not stats_path.exists() or not kernel_path.exists():
+        continue
+    kernel = load_no_dupes(kernel_path)
+    if kernel.get("unit_id") != unit.get("id"):
+        raise SystemExit(
+            f"unit kernel owner mismatch during refresh:{unit_path.relative_to(ROOT)}:{kernel_ref}"
+        )
+    digest = hashlib.sha256(stats_path.read_bytes()).hexdigest()
+    if kernel.get("source_sha256") != digest:
+        kernel["source_sha256"] = digest
+        kernel_path.write_text(
+            json.dumps(kernel, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        refreshed_kernels += 1
+
 # 5. Normalize gameplay-target template_id independently. This catches a
 # versioned template identity even if its target schema was already stable.
 for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
@@ -194,5 +224,6 @@ for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
 print(json.dumps({
     "migrated_schema_ids": len(mapping),
     "renamed_gameplay_templates": len(renames),
+    "refreshed_unit_kernels": refreshed_kernels,
     "sample_mapping": dict(list(mapping.items())[:20]),
 }, indent=2))

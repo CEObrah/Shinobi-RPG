@@ -2,31 +2,19 @@
   "schema": "system-contract.v1",
   "system_id": "forces_institutions",
   "authority": false,
-  "authority_paths": [
-    "state/force/",
-    "state/org/",
-    "state/house/",
-    "state/manpower-capability/"
-  ],
-  "owner_templates": [
-    "covenant",
-    "force",
-    "home_establishment_index",
-    "home_establishment_owner",
-    "house",
-    "house_charter",
-    "manpower-capability",
-    "process",
-    "stock"
-  ],
+  "authority_paths": ["state/force/", "state/org/", "state/house/", "state/manpower-capability/"],
+  "owner_templates": ["covenant", "force", "home_establishment_index", "home_establishment_owner", "house", "house_charter", "manpower-capability", "process", "role-slot-registry", "stock"],
   "read_first": [
     "force/institution owner",
     "one home-establishment shard",
+    "role-slot registry only when an unmaterialized or office-continuity function is causal",
     "House owner before House operational, permanent-unit, readiness or membership-assignment mutation"
   ],
   "write_order": [
     "conserve source manpower",
+    "settle any affected role-slot continuity through the exact reached time before using it",
     "update the canonical aggregate owner for organization, membership classification, permanent units and operating state",
+    "update role-slot institutional authority when vacancy, succession, appointment continuity or materialization changes",
     "update genuinely separate authorities such as inventory stock only when causally changed",
     "rebuild owner/unit indexes and derived caches"
   ],
@@ -37,11 +25,10 @@
     "One semantic mutable fact has one writable owner; a sidecar may exist only for a genuinely separate authority or rebuildable derived data.",
     "When a House owner embeds permanent units, member assignment classification, standing readiness and its operating process, those facts are not mirrored in mutable House sidecars.",
     "House member_ids contains persistent identity-bearing members only; ordinary Sword Manor personnel are conserved in aggregate cohort counts under the House owner.",
-    "Routine House cohort development is one aggregate write; do not create or update one person owner per ordinary member."
+    "Routine House cohort development is one aggregate write; do not create or update one person owner per ordinary member.",
+    "An unmaterialized role slot is institutional continuity state, never a hidden person sheet.",
+    "Role slots may track only office authority, stable incumbency continuity, age/tenure band, functional capability band, availability, service-development credit, vacancy/retirement/succession state and settlement time.",
+    "Materializing an officeholder preserves the same incumbency and may not grant free capability, knowledge, equipment, relationships, authority or retroactive outcome convenience."
   ],
-  "validators": [
-    "tools/test_unit_model.py",
-    "tools/test_living_world.py",
-    "tools/test_state_consolidation.py"
-  ]
+  "validators": ["tools/test_unit_model.py", "tools/test_living_world.py", "tools/test_state_consolidation.py", "tools/test_templates.py"]
 }

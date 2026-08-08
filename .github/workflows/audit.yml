@@ -13,6 +13,7 @@ jobs:
       - run: pip install jsonschema
       - run: python tools/test_transaction_integrity.py
       - run: python tools/test_state_consolidation.py
+      - run: python tools/test_population_model.py
       - run: python tools/test_world_liveness.py
       - run: python tools/test_commitment_liveness.py
       - run: python tools/audit.py

@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": "Team Fujin is now active under Wei as Jonin instructor. Riku Hyūga and Mei Arakawa are present in the assignment hall; Kai Tang is assigned but was not present at the 09:00 assignment. Wei must decide how to begin.",
+  "decision_required": "Wei has completed a baseline practical assessment with Riku Hyūga and Mei Arakawa. Kai Tang remains absent; Academy staff dispatched word to him, but delivery and response are not yet verified. Wei must decide the team's next step.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "pc_wei_tang",
@@ -13,52 +13,57 @@
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "How does Wei begin with a newly assigned team while Kai is absent?"
+      "How does Wei continue the first Team Fujin day after a partial baseline assessment?",
+      "When will Kai receive the Academy message and report?"
     ],
     "approaching_consequences": [
-      "Team Fujin has no adopted doctrine or shared training history yet.",
+      "Team Fujin still has no adopted doctrine or shared full-team training history.",
       "The special-operations roster remains under formal personnel review."
     ],
     "available_reports": [],
-    "current_scene_type": "academy_team_assignment",
-    "current_tension": "new_team_incomplete_attendance",
+    "current_scene_type": "academy_team_initial_assessment",
+    "current_tension": "new_team_incomplete_but_observed",
     "known_clues": [
-      "Wei's readiness check found his saved condition ready, resources full, and current House combat loadout in its normal configuration.",
-      "Academy staff confirmed the official Team Fujin roster: Wei Tang, Kai Tang, Riku Hyūga, and Mei Arakawa.",
-      "Riku and Mei were present in the assignment hall before 09:00; Kai was not present there.",
-      "At 09:00 the village assignment process activated Team Fujin with Wei as Jonin instructor.",
-      "Mei is the designated acting field leader when Wei is absent.",
+      "At Wei's request, Academy staff dispatched word to Kai concerning his missed Team Fujin assignment; delivery and Kai's response were not verified by 09:45.",
+      "Wei conducted a short non-doctrinal baseline practical assessment with Riku and Mei on an adjacent Academy practice yard.",
+      "Riku showed strong physicality, staff handling, tactical awareness, and practical terrain-reading habits during the baseline work.",
+      "Mei showed high movement precision, stealth, thrown-tool handling, sensory discipline, and tactical control during the baseline work.",
+      "Riku and Mei showed sound individual judgment but do not yet have rehearsed shared timing; the exercise was too short and incomplete to establish team doctrine or full-team coordination.",
+      "Kai's absence prevents a complete assessment of Team Fujin.",
+      "No measurable permanent skill-point gain, promotion, relationship-score change, or team doctrine was granted by the short diagnostic.",
       "The formal special-operations personnel review remains separate and unresolved."
     ],
-    "last_major_choice": "Wei checked his readiness, checked in with Academy staff for Team Fujin material, then waited for the 09:00 assignment.",
-    "last_scene_summary": "From 08:45 to 09:00 Wei completed a readiness check, received the Team Fujin roster from Academy staff, observed Riku and Mei present and Kai absent, then accepted the scheduled assignment as it took effect at 09:00.",
+    "last_major_choice": "Wei asked Academy staff to send word to Kai, then took Riku and Mei to an adjacent practice yard for a baseline practical assessment.",
+    "last_scene_summary": "From 09:00 to 09:45, Academy staff dispatched word to Kai at Wei's request. Wei then ran a short non-doctrinal baseline practical assessment with Riku and Mei, observing their individual movement, weapons, awareness, judgment, and paired objective work. Kai remained absent and no reply was verified before the assessment ended.",
     "pending_information_paths": [
-      "Why Kai was absent from the 09:00 assignment hall.",
+      "Delivery of the Academy message to Kai and Kai's response or arrival.",
       "Formal personnel availability and duty-conflict review for the proposed special-operations squad."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Team Fujin is now an active Konoha Genin team under Wei.",
-      "Kai is assigned to the team but was not physically present at the assignment."
+      "Riku's baseline strengths visibly favor physical control, staff work, awareness, and terrain-oriented judgment.",
+      "Mei's baseline strengths visibly favor precision movement, stealth, ranged tools, sensing, and tactical control.",
+      "The present pair is promising but not yet rehearsed as a team."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "First Team Fujin meeting and training structure",
-      "Kai's absence from assignment",
+      "Kai's absence and pending Academy message",
+      "First complete Team Fujin assessment",
+      "Future Team Fujin training structure and doctrine",
       "Permanent special-operations squad under formal review",
       "Potential future dual-team command"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_konoha_academy_team_fujin_assignment",
-  "scene_summary": "At 09:00 Team Fujin is active under Wei. Riku and Mei are present in the Academy assignment hall; Kai is assigned but absent.",
+  "scene_id": "scene_konoha_academy_team_fujin_initial_assessment",
+  "scene_summary": "At 09:45 Wei has completed a partial baseline assessment of Team Fujin with Riku and Mei. Kai remains absent, and the Academy message to him has no verified delivery or response yet.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T09:00:00",
+  "world_time": "SE-0061-02-05T09:45:00",
   "known_clock_boundaries": [],
   "observable_pressures": [
-    "Kai is assigned to Team Fujin but is not present in the assignment hall.",
-    "The new team has no adopted doctrine or shared training history.",
+    "Kai remains absent from Team Fujin's first-day activity.",
+    "The team has no adopted doctrine or full-team practice history.",
     "The separate special-operations proposal remains unapproved."
   ]
 }

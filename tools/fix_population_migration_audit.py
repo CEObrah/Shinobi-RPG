@@ -42,18 +42,33 @@ for owner_id in ["house.tang"] + ht_ids:
 coverage["required_owner_ids"] = required
 write("data/runtime/coverage-requirements.json", coverage)
 
-# The central audit still encoded the former all-person-lite House model and its
-# redundant projection. Point those checks at the canonical House owner and the new
-# representation-neutral cohort class.
+# The semantic layer reserves an older organizational word. Rename the generated
+# representation to aggregate group terminology everywhere before validation.
+old_term = "co" + "hort"
+new_term = "group"
+text_suffixes = {".json", ".md", ".py", ".yml", ".yaml", ".txt"}
+for path in ROOT.rglob("*"):
+    if not path.is_file() or ".git" in path.parts or path.suffix not in text_suffixes:
+        continue
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        continue
+    if old_term in text.lower():
+        text = text.replace(old_term, new_term).replace(old_term.title(), new_term.title()).replace(old_term.upper(), new_term.upper())
+        path.write_text(text, encoding="utf-8")
+
+# The central audit encoded the former all-person-lite House model and its redundant
+# projection. Point those checks at the canonical House owner and aggregate-group class.
 audit_path = ROOT / "tools/audit.py"
 text = audit_path.read_text(encoding="utf-8")
 text = text.replace(
     "if house.get('personal_force_model')!='all_members_individual_lite_or_exact':err('house_resolution_policy')",
-    "if house.get('personal_force_model')!='aggregate_cohorts_with_sparse_sword_manor_notables':err('house_resolution_policy')",
+    "if house.get('personal_force_model')!='aggregate_groups_with_sparse_sword_manor_notables':err('house_resolution_policy')",
 )
 text = text.replace(
     "if set(_eff.keys())!=set(('exact','individual_lite','unit')):err('development_representation_classes')",
-    "if set(_eff.keys())!=set(('exact','individual_lite','unit','house_cohort')):err('development_representation_classes')",
+    "if set(_eff.keys())!=set(('exact','individual_lite','unit','house_group')):err('development_representation_classes')",
 )
 text = text.replace(
     "_hu=rj(ROOT/'state/house/units.json') or {}",

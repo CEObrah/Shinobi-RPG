@@ -13,10 +13,6 @@ RELEASE_ATTACHED = re.compile(r"(?i)([._-])v3[0-9]\b")
 RELEASE_STANDALONE = re.compile(r"(?i)\bv3[0-9]\b")
 
 
-def git(*args: str) -> str:
-    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
-
-
 def tracked() -> list[Path]:
     raw = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT)
     return [ROOT / p.decode("utf-8") for p in raw.split(b"\0") if p]
@@ -140,9 +136,8 @@ def loads_no_dupes(text: str, rel: str):
     return json.loads(text, object_pairs_hook=hook)
 
 
-# The older tech-index generation is an empty structural stub. The later one is
-# the live static-data contract, so keep the live contract and remove the stub
-# before both names collapse to the same stable semantic name.
+# The old tech-index generation is an empty structural stub. Keep the live
+# static-data contract and remove the stub before both names collapse.
 t_index = ROOT / "data/runtime/template-index-shards/t.json"
 if t_index.exists():
     data = json.loads(t_index.read_text(encoding="utf-8"))
@@ -158,7 +153,7 @@ for rel in (
     if path.exists():
         subprocess.check_call(["git", "rm", rel], cwd=ROOT)
 
-# Gameplay data stores only current facts/rules, not release counters.
+# Gameplay data stores current facts and rules, not release counters.
 for path in tracked():
     if not path.exists() or path.suffix.lower() != ".json":
         continue
@@ -206,7 +201,7 @@ for path in list(tracked()):
     target.parent.mkdir(parents=True, exist_ok=True)
     subprocess.check_call(["git", "mv", rel, new_rel], cwd=ROOT)
 
-# Remove version properties from JSON schemas serving gameplay authorities.
+# Remove version properties from schemas serving gameplay authorities.
 for source in sorted(gameplay_source_schemas):
     rel = stable_path(source)
     path = ROOT / rel
@@ -216,9 +211,9 @@ for source in sorted(gameplay_source_schemas):
     if strip_schema_version_fields(data):
         dump_json(path, data)
 
-# Rewrite all attached release-generation identifiers and paths across the tree.
-# Non-JSON prose/code may also contain a bare release token; call it "current"
-# rather than preserving release-history vocabulary.
+# Rewrite attached release-generation identifiers and paths across the tree.
+# Bare release tokens in non-JSON prose/code become "current" rather than
+# preserving release-history vocabulary.
 for path in tracked():
     if not path.exists() or path.suffix.lower() not in TEXT_SUFFIXES:
         continue
@@ -303,27 +298,24 @@ for path in tracked():
         for pointer in version_key_pointers(data):
             errors.append(f"gameplay_version_counter:{rel}:{pointer}")
 
-# Gameplay-target templates may not reintroduce version counters even though
-# infrastructure protocol templates may retain their own technical generations.
 for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
     data = json.loads(path.read_text(encoding="utf-8"))
     dirs = data.get("current_directories", []) if isinstance(data, dict) else []
-    gameplay = any(
+    gameplay = isinstance(dirs, list) and any(
         isinstance(d, str) and (d.startswith("state/") or (d.startswith("data/") and not d.startswith("data/runtime/")))
-        for d in dirs if isinstance(dirs, list)
+        for d in dirs
     )
     if not gameplay:
         continue
-    for field in ("required_top_level_keys",):
-        vals = data.get(field, [])
-        if any(str(x).lower() in VERSION_KEYS for x in vals if isinstance(vals, list)):
-            errors.append(f"gameplay_template_version_counter:{path.relative_to(ROOT)}:{field}")
+    vals = data.get("required_top_level_keys", [])
+    if isinstance(vals, list) and any(str(x).lower() in VERSION_KEYS for x in vals):
+        errors.append(f"gameplay_template_version_counter:{path.relative_to(ROOT)}:required_top_level_keys")
     for contract in (data.get("object_contracts", {}) or {}).values():
         if not isinstance(contract, dict):
             continue
         for field in ("allowed_keys", "canonical_order"):
             vals = contract.get(field, [])
-            if any(str(x).lower() in VERSION_KEYS for x in vals if isinstance(vals, list)):
+            if isinstance(vals, list) and any(str(x).lower() in VERSION_KEYS for x in vals):
                 errors.append(f"gameplay_template_version_counter:{path.relative_to(ROOT)}:{field}")
     for field in ("type_contracts", "array_contracts"):
         for pointer in (data.get(field, {}) or {}):
@@ -340,21 +332,17 @@ if errors:
 print("GAMEPLAY NAMING OK")
 ''', encoding="utf-8")
 
-# Make the complete validator stack part of normal CI.
+# Add the naming guard to the repository's actual CI stack. Routing/templates
+# are already present and remain mandatory.
 audit = ROOT / ".github/workflows/audit.yml"
 audit_text = audit.read_text(encoding="utf-8")
-anchor = "      - run: python tools/audit_state.py\n"
-extra = (
-    "      - run: python tools/test_gameplay_naming.py\n"
-    "      - run: python tools/test_routing.py\n"
-    "      - run: python tools/test_templates.py\n"
-)
+anchor = "      - run: python tools/audit.py\n"
+extra = "      - run: python tools/test_gameplay_naming.py\n"
 if "python tools/test_gameplay_naming.py" not in audit_text:
     if anchor not in audit_text:
         raise SystemExit("audit workflow insertion anchor missing")
     audit.write_text(audit_text.replace(anchor, anchor + extra), encoding="utf-8")
 
-# Final safety scan for JSON duplicate keys after all textual rewrites.
 for path in tracked():
     if path.exists() and path.suffix.lower() == ".json":
         loads_no_dupes(path.read_text(encoding="utf-8"), path.relative_to(ROOT).as_posix())

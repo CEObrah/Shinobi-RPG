@@ -17,9 +17,8 @@ jobs:
           fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      - run: pip install -r requirements.txt
+          python-version: '3.12'
+      - run: pip install jsonschema
       - name: Apply stable gameplay naming migration
         run: python tools/migrate_stable_gameplay_names.py
       - name: Remove temporary migration machinery
@@ -34,19 +33,20 @@ jobs:
       - name: Validate migrated repository
         run: |
           python tools/test_transaction_integrity.py
-          python tools/audit_state.py
+          python tools/audit.py
           python tools/test_gameplay_naming.py
-          python tools/test_development_model.py
+          python tools/test_development.py
           python tools/test_mechanics.py
           python tools/test_living_world.py
-          python tools/test_runtime_contract.py
+          python tools/test_runtime.py
           python tools/test_semantics.py
           python tools/test_unit_model.py
           python tools/test_reputation.py
           python tools/test_family.py
           python tools/test_team_consistency.py
-          python tools/test_routing.py
+          python tools/test_house_tang_martial.py
           python tools/test_templates.py
+          python tools/test_routing.py
       - name: Commit migrated tree
         run: |
           git config user.name "github-actions[bot]"

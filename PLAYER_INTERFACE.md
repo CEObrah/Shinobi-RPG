@@ -1,18 +1,16 @@
 # Player Interface
 
-This file defines optional control grammar for ChatGPT. It is interface documentation, never fictional campaign state.
+This file documents optional control grammar for ChatGPT. It is interface documentation, never fictional campaign state. Natural language is always valid and primary.
 
-## Intent prefixes
+## Intent and persistence
 
-- `OOC:` discussion/design only. Never persist a roster, goal, relationship, request, assignment, acquisition, doctrine change, or other campaign fact.
-- `PREVIEW:` resolve feasibility, costs, timing, requirements, blockers, and a proposed structure without persisting anything.
-- `ORDER:` explicit in-world player order. Validate authority, resources, time, information, legality, and persistence before narrating success.
-
-Natural language remains valid. A question, comparison, brainstorm, or request for design is not an order merely because it contains a possible future action.
+- `OOC:` marks discussion/design only and never persists a roster, goal, relationship, request, assignment, acquisition, doctrine change, or other campaign fact.
+- Questions, comparisons, hypotheticals, feasibility checks, brainstorming, and design requests are nonpersistent unless the user actually commits Wei to an in-world action.
+- A clear natural-language in-world action or instruction uses the normal authority, resource, information, time, legality, validation, and persistence transaction before success is narrated. No special action prefix is required.
 
 ## Management commands
 
-`FORM UNIT`, `SPLIT UNIT`, `MERGE UNIT`, `REFIT UNIT`, `FORM FORMATION`, `FORMATION SETUP`, `SET COMMAND`, `DELEGATE COMMAND`, `SHOW COMMAND CAPACITY`, `SET DOCTRINE`, `SET TENDENCIES`, `SET LOADOUT`, `SET TRAINING`, `SET STANDING ORDERS`, `ATTACH UNIT`, `DETACH UNIT`, `SHOW UNIT`, `SHOW FORMATION`, `SHOW COMMAND`, and `PREVIEW REORGANIZATION` are structured natural-language controls, not a software parser.
+`FORM UNIT`, `SPLIT UNIT`, `MERGE UNIT`, `REFIT UNIT`, `FORM FORMATION`, `FORMATION SETUP`, `SET COMMAND`, `DELEGATE COMMAND`, `SHOW COMMAND CAPACITY`, `SET DOCTRINE`, `SET TENDENCIES`, `SET LOADOUT`, `SET TRAINING`, `SET STANDING ORDERS`, `ATTACH UNIT`, `DETACH UNIT`, `SHOW UNIT`, `SHOW FORMATION`, and `SHOW COMMAND` are structured natural-language controls, not a software parser.
 
 ### Unit / team setup fields
 
@@ -101,7 +99,6 @@ Temporary battle orders:
 
 `SHOW UNIT`, `SHOW FORMATION`, and `SHOW COMMAND` are read-only. `SET DOCTRINE`, `SET TENDENCIES`, `SET LOADOUT`, `SET TRAINING`, and `SET STANDING ORDERS` modify only the named layer and do not silently rewrite the others.
 
-
 ## Split, merge, refit, and delegation
 
 - `SPLIT UNIT <unit> INTO ...` partitions one homogeneous unit. Neutral splits preserve the parent represented capability distribution and allocate integer categories deterministically. Selecting veterans/specialists is a separate evidence/time-consuming selection action.
@@ -136,7 +133,7 @@ Raw unorganized manpower may exist temporarily as a troop pool/allocation for ac
 
 `SHOW RENOWN <subject>` summarizes player-known professional/public recognition without inventing a universal fame score. `SHOW PRESTIGE <subject> [audience]` and `SHOW NOTORIETY <subject> [audience]` follow the same knowledge gate.
 
-There is no `SET REPUTATION` command. Reputation changes only through causal events, witnesses, reports, propaganda/counter-propaganda, appointments/honors, contracts, battles, scandals, and other world actions resolved by the reputation mechanics. `PREVIEW:` may estimate possible audiences/risks but changes nothing.
+There is no `SET REPUTATION` command. Reputation changes only through causal events, witnesses, reports, propaganda/counter-propaganda, appointments/honors, contracts, battles, scandals, and other world actions resolved by the reputation mechanics. Hypothetical discussion may estimate possible audiences or risks but changes nothing.
 
 ### Command-tree display
 
@@ -162,9 +159,9 @@ Natural language remains primary. Structured aliases are optional:
 
 - `SHOW FAMILY <person>` — read-only unions, household/dependent/parentage/succession refs known to the player.
 - `SHOW SUCCESSION <House/clan/title>` — read-only current succession state/known claims.
-- `PREVIEW: MARRIAGE <person>` — OOC/read-only implications, blockers and likely required authorities; creates no intent.
-- `ORDER: PROPOSE MARRIAGE TO <person>` — explicit in-world proposal attempt; does not force acceptance.
-- `ORDER: ACCEPT PROPOSAL <id>` / `ORDER: DECLINE PROPOSAL <id>` — explicit player response after loading the real pending proposal.
-- `ORDER: END/RENEGOTIATE BETROTHAL <id>` and family/household orders use the same authority/time/persistence contract.
+- Asking about marriage implications, blockers, or likely required authorities is read-only and creates no intent.
+- `PROPOSE MARRIAGE TO <person>` is an explicit in-world proposal attempt when the user actually directs Wei to do it; it does not force acceptance.
+- `ACCEPT PROPOSAL <id>` / `DECLINE PROPOSAL <id>` are explicit player responses after loading the real pending proposal.
+- `END BETROTHAL <id>`, `RENEGOTIATE BETROTHAL <id>`, and other family/household instructions use the same authority/time/persistence contract.
 
 A proposal *to* the player can exist as world state without becoming player intent. OOC discussion never creates courtship, betrothal, marriage, parenthood, adoption or divorce state.

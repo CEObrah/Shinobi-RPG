@@ -584,7 +584,7 @@ if _treg.get('doctrine_template_ref')!='data/team/doctrine-template.json':err('t
 _ttpl=rj(ROOT/'data/team/doctrine-template.json') or {}
 if not isinstance((_ttpl.get('template') or {}).get('tendencies'),dict):err('team_tendency_template_missing')
 _iface=(ROOT/'PLAYER_INTERFACE.md').read_text(encoding='utf-8') if (ROOT/'PLAYER_INTERFACE.md').exists() else ''
-for _phrase in ('OOC:','PREVIEW:','ORDER:','FORM UNIT','TEAM SETUP','FORMATION SETUP'):
+for _phrase in ('OOC:','FORM UNIT','TEAM SETUP','FORMATION SETUP'):
  if _phrase not in _iface:err(f'player_interface_missing:{_phrase}')
 _rd=alltech.get('rulers_domain') or {}
 if _rd.get('geometry',{}).get('radius_m')!=10:err('rulers_domain_radius')

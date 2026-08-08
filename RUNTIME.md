@@ -54,7 +54,7 @@ Follow `VOICE.md`; resolve mechanics before prose. Load one primary cold scene m
 
 Gameplay prose uses grounded second-person present tense unless a narrower registered scene contract explicitly requires otherwise. Keep referee analysis, validation disclaimers, and repository/mechanics explanation out of the fiction. If a mechanical distinction matters to the user but not to Wei's immediate perception, state it briefly OOC before or after the scene rather than turning the scene into a rules report.
 
-`OOC:` never persists. `PREVIEW:` computes without persistence. `ORDER:` expresses in-world intent but still requires authority, mechanics, time, validation, and successful save. Questions/brainstorming are not orders.
+`OOC:` never persists. Hypothetical, comparative, planning, and brainstorming language is nonpersistent unless the user actually commits Wei to an in-world action. Clear natural-language actions and instructions require the normal authority, mechanics, time, validation, and persistence transaction before success is narrated.
 
 ## Maintenance boundary
 

@@ -19,6 +19,7 @@ frontier=load(ROOT/'state/time/frontier.json')
 team_process=next((p for p in frontier.get('processes',[]) if p.get('id')=='process_team_doctrine_training'),{})
 process_coverage=set(team_process.get('coverage',[]))
 seen_active=set()
+active_teams={}
 
 def require_active_coverage(team_id):
     if team_id in seen_active: errors.append(f'duplicate_active_team_id:{team_id}')
@@ -35,6 +36,7 @@ for path in sorted((ROOT/'state/team').glob('*.json')):
     if not team_id:
         errors.append(f'active_team_missing_id:{path.relative_to(ROOT)}')
         continue
+    active_teams[team_id]=(path,data)
     require_active_coverage(team_id)
 
     if schema=='special-mission-team':
@@ -77,6 +79,55 @@ for path in sorted((ROOT/'state/team').glob('*.json')):
             if 'no permanent team' in command: errors.append(f'stale_team_command_mirror:{team_id}:{owner_path.relative_to(ROOT)}:{command}')
             if team_name and team_name not in command and team_name not in current_text:
                 errors.append(f'stale_instructor_team_mirror:{team_id}:{owner_path.relative_to(ROOT)}')
+
+# Doctrine is a subordinate state owner for practiced doctrine/familiarity. It may
+# remain separate for cold loading, but roster and command facts belong to the core
+# team and every doctrine reference must resolve to that saved roster.
+doctrine_dir=ROOT/'state/team/doctrine'
+if doctrine_dir.exists():
+    seen_doctrine_teams=set()
+    for path in sorted(doctrine_dir.glob('*.json')):
+        doctrine=load(path)
+        if doctrine.get('schema')!='team-doctrine':
+            continue
+        team_id=doctrine.get('team_id')
+        if team_id in seen_doctrine_teams: errors.append(f'duplicate_team_doctrine:{team_id}')
+        seen_doctrine_teams.add(team_id)
+        team_entry=active_teams.get(team_id)
+        if team_entry is None:
+            errors.append(f'doctrine_team_missing_or_inactive:{path.relative_to(ROOT)}:{team_id}')
+            continue
+        team_path,team=team_entry
+        if team.get('schema')=='special-mission-team':
+            members=set(team.get('members',[]))
+            captain=team.get('commander')
+            deputy=team.get('deputy')
+        else:
+            members=set([x for x in [team.get('jonin_instructor'),*team.get('genin',[])] if x])
+            captain=team.get('jonin_instructor')
+            deputy=None
+        command=doctrine.get('command') or {}
+        if command.get('captain')!=captain:
+            errors.append(f'doctrine_captain_drift:{team_id}:{command.get("captain")}:{captain}')
+        if deputy is not None and command.get('deputy')!=deputy:
+            errors.append(f'doctrine_deputy_drift:{team_id}:{command.get("deputy")}:{deputy}')
+        if set((doctrine.get('familiarity') or {}).keys())!=members:
+            errors.append(f'doctrine_familiarity_roster_drift:{team_id}')
+        if set((doctrine.get('roles') or {}).keys())!=members:
+            errors.append(f'doctrine_role_roster_drift:{team_id}')
+        training=doctrine.get('training') or {}
+        if set((training.get('member_training_caps') or {}).keys())!=members:
+            errors.append(f'doctrine_training_cap_roster_drift:{team_id}')
+        if not set((training.get('role_focus') or {}).keys()).issubset(members):
+            errors.append(f'doctrine_training_role_nonmember:{team_id}')
+        referenced=set(command.get('succession_order',[]))
+        referenced.update(training.get('lead_instructors',[]))
+        referenced.update((training.get('role_focus') or {}).keys())
+        referenced.update((doctrine.get('extraction') or {}).get('primary_members',[]))
+        for phase in doctrine.get('phases',[]):
+            referenced.update(phase.get('primary_members',[]))
+        extra=referenced-members
+        if extra: errors.append(f'doctrine_nonmember_reference:{team_id}:{sorted(extra)}')
 
 for team_id in sorted(registered_active-seen_active): errors.append(f'training_registry_active_team_not_active:{team_id}')
 for team_id in sorted(process_coverage-seen_active): errors.append(f'training_process_coverage_team_not_active:{team_id}')

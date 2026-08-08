@@ -1,0 +1,32 @@
+name: Gameplay Version Audit
+
+on:
+  push:
+    branches:
+      - maintenance/stable-gameplay-names
+
+jobs:
+  audit-version-surface:
+    if: ${{ !contains(github.event.head_commit.message, '[version-audit-report]') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit gameplay release identifiers
+        run: python tools/audit_gameplay_versions.py
+      - name: Commit audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add maintenance/gameplay-version-audit.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "[version-audit-report] Inventory gameplay release identifiers"
+          git push origin HEAD:maintenance/stable-gameplay-names

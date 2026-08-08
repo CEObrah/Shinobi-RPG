@@ -20,6 +20,11 @@ registry = read("schemas/registry.json")
 registry["population-registry"] = "population-registry.schema.json"
 write("schemas/registry.json", registry)
 
+# Register the consolidated population authority directory in runtime routing metadata.
+directory_map = read("data/runtime/directory-map.json")
+directory_map.setdefault("dirs", {})["state/population"] = "mapped"
+write("data/runtime/directory-map.json", directory_map)
+
 # Temporal coverage now follows the House aggregate owner plus sparse surviving notables,
 # not the deleted ordinary person-lite identities.
 coverage = read("data/runtime/coverage-requirements.json")

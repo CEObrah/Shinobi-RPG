@@ -29,9 +29,11 @@ jobs:
           rm -f maintenance/validation-failure.log
           python - <<'PY'
           import json
+          import re
           from pathlib import Path
 
           VERSION_KEYS = {'version', 'schema_version', 'game_version', 'rules_version', 'data_version'}
+          RELEASE_LABEL = re.compile(r'(?i)\s*\bv3[0-9]\b')
 
           def strip_schema_versions(value):
               changed = False
@@ -61,11 +63,33 @@ jobs:
                           changed = True
               return changed
 
+          def strip_schema_labels(value):
+              changed = False
+              if isinstance(value, dict):
+                  for key, item in list(value.items()):
+                      if key in {'title', 'description'} and isinstance(item, str):
+                          new = RELEASE_LABEL.sub('', item).replace('  ', ' ').strip()
+                          if new != item:
+                              value[key] = new
+                              changed = True
+                      elif strip_schema_labels(item):
+                          changed = True
+              elif isinstance(value, list):
+                  for item in value:
+                      if strip_schema_labels(item):
+                          changed = True
+              return changed
+
           registry_path = Path('schemas/registry.json')
           registry = json.loads(registry_path.read_text(encoding='utf-8'))
           registry.pop('tech-index.v38', None)
           registry['mechanics-core.v38'] = 'mechanics-core-v38.schema.json'
           Path('schemas/core-v38.schema.json').unlink(missing_ok=True)
+
+          for schema_path in Path('schemas').glob('*.json'):
+              schema = json.loads(schema_path.read_text(encoding='utf-8'))
+              if strip_schema_labels(schema):
+                  schema_path.write_text(json.dumps(schema, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 
           for template_path in Path('data/runtime/templates').glob('*.json'):
               template = json.loads(template_path.read_text(encoding='utf-8'))

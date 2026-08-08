@@ -7,7 +7,7 @@ on:
 
 jobs:
   migrate:
-    if: ${{ !contains(github.event.head_commit.message, '[stable-gameplay-migration]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[stable-gameplay-migration]') && !contains(github.event.head_commit.message, '[migration-failure-log]') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,14 +20,30 @@ jobs:
           python-version: '3.12'
       - run: pip install jsonschema
       - name: Apply stable gameplay naming migration
-        run: python tools/migrate_stable_gameplay_names.py
+        id: migrate
+        shell: bash
+        run: |
+          set -o pipefail
+          python tools/migrate_stable_gameplay_names.py 2>&1 | tee /tmp/stable-name-migration.log
+      - name: Publish migration failure
+        if: ${{ failure() && steps.migrate.outcome == 'failure' }}
+        shell: bash
+        run: |
+          git reset --hard HEAD
+          mkdir -p maintenance
+          cp /tmp/stable-name-migration.log maintenance/migration-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add maintenance/migration-failure.log
+          git commit -m "[migration-failure-log] Capture stable naming failure"
+          git push origin HEAD:maintenance/stable-gameplay-names
       - name: Remove temporary migration machinery
         run: |
           rm -f tools/migrate_stable_gameplay_names.py
           rm -f .github/workflows/stable-gameplay-names-migration.yml
           rm -f tools/audit_gameplay_versions.py
-          rm -f .github/workflows/gameplay-version-audit.yml
           rm -f maintenance/gameplay-version-audit.json
+          rm -f maintenance/migration-failure.log
           rmdir maintenance 2>/dev/null || true
           git add -A
       - name: Validate migrated repository

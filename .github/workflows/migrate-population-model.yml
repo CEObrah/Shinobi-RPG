@@ -41,11 +41,11 @@ jobs:
           python tools/test_templates.py
           python tools/test_structural_determinism.py
           python tools/test_routing.py
-      - name: Commit migration and remove temporary runner
+      - name: Commit validated gameplay migration
         run: |
           rm tools/migrate_population_model.py
           rm tools/fix_population_migration_audit.py
-          rm .github/workflows/migrate-population-model.yml
+          git checkout -- .github/workflows/audit.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A

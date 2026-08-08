@@ -47,12 +47,15 @@ def walk_strings(value, pointer=""):
 def is_gameplay_target(template: dict) -> bool:
     dirs = template.get("current_directories", []) if isinstance(template, dict) else []
     return isinstance(dirs, list) and any(
-        isinstance(d, str) and (d.startswith("state/") or (d.startswith("data/") and not d.startswith("data/runtime/")))
+        isinstance(d, str) and (
+            d == "state" or d.startswith("state/") or
+            d == "data" or (d.startswith("data/") and not d.startswith("data/runtime/"))
+        )
         for d in dirs
     )
 
 
-# 1. Derive the live migration set from both instantiated gameplay owners and
+# 1. Derive the live migration set from instantiated gameplay owners and
 # registered gameplay-target templates. Versioned values in gameplay JSON are
 # permitted only in /schema fields; any other use fails closed.
 source_ids: set[str] = set()
@@ -73,13 +76,16 @@ for path in tracked():
                 raise SystemExit(f"versioned gameplay value outside schema field:{rel}:{pointer}:{value}")
             source_ids.add(value)
 
+# Keep every template available for filename rewiring. A schema may be live only
+# as a nested mutable structure and therefore have an empty current_directories
+# list while still needing a stable template identity.
 template_paths: list[Path] = []
 all_template_targets: set[str] = set()
 for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
     data = load_no_dupes(path)
+    template_paths.append(path)
     if not is_gameplay_target(data):
         continue
-    template_paths.append(path)
     target_schema = data.get("target_schema")
     if isinstance(target_schema, str):
         all_template_targets.add(target_schema)
@@ -120,7 +126,9 @@ if isinstance(registry, dict):
         if existing is not None and existing != registry[source]:
             raise SystemExit(f"schema registry stable-key collision:{source}->{target}:{existing}!={registry[source]}")
 
-# 3. Rename gameplay-target template files to stable semantic filenames.
+# 3. Rename every structural template whose target schema is one of the live
+# gameplay schema identities being normalized. This includes nested mutable
+# structures that do not own a directory of their own.
 renames: dict[str, str] = {}
 for path in template_paths:
     data = load_no_dupes(path)
@@ -187,11 +195,11 @@ for unit_path in sorted((ROOT / "state/unit").glob("*.json")):
         )
         refreshed_kernels += 1
 
-# 5. Normalize gameplay-target template_id independently. This catches a
-# versioned template identity even if its target schema was already stable.
+# 5. Normalize template IDs for templates tied to a migrated gameplay schema.
 for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
     data = load_no_dupes(path)
-    if not is_gameplay_target(data):
+    target_schema = data.get("target_schema")
+    if target_schema not in mapping.values():
         continue
     template_id = data.get("template_id")
     if isinstance(template_id, str) and VERSION.search(template_id):
@@ -211,10 +219,11 @@ for path in tracked():
             if VERSION.search(value):
                 raise SystemExit(f"version identifier remains in gameplay tree:{rel}:{pointer}:{value}")
 
-# 7. Gameplay-target template identity must also be stable.
+# 7. Every template tied to a migrated gameplay schema must have stable target
+# and template identities as well.
 for path in sorted((ROOT / "data/runtime/templates").glob("*.json")):
     data = load_no_dupes(path)
-    if not is_gameplay_target(data):
+    if data.get("target_schema") not in mapping.values():
         continue
     for field in ("target_schema", "template_id"):
         value = data.get(field)

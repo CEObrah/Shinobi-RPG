@@ -1,65 +1,64 @@
 {
   "active_combat": false,
-  "decision_required": "Wei has arrived at the Konoha Academy before Team Fujin's 09:00 assignment. Hiruzen has accepted the revised special-operations roster for formal personnel review, but no team, transfer, second command, or mission authority is approved.",
+  "decision_required": "Team Fujin is now active under Wei as Jonin instructor. Riku Hyūga and Mei Arakawa are present in the assignment hall; Kai Tang is assigned but was not present at the 09:00 assignment. Wei must decide how to begin.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "pc_wei_tang",
-    "team.konoha.fujin"
+    "team.konoha.fujin",
+    "char.riku_hyuga",
+    "char.mei_arakawa",
+    "char.kai"
   ],
-  "location_id": "loc_konoha_academy",
+  "location_id": "loc_konoha_academy_assignment_hall",
   "narrative": {
     "active_npc_agendas": [],
     "active_questions": [
-      "What does Wei do during the remaining minutes before Team Fujin's 09:00 assignment?"
+      "How does Wei begin with a newly assigned team while Kai is absent?"
     ],
     "approaching_consequences": [
-      "Team Fujin's assignment event occurs at 09:00.",
-      "The special-operations roster remains under formal personnel and duty-conflict review."
+      "Team Fujin has no adopted doctrine or shared training history yet.",
+      "The special-operations roster remains under formal personnel review."
     ],
     "available_reports": [],
-    "current_scene_type": "academy_preassignment",
-    "current_tension": "waiting_before_assignment",
+    "current_scene_type": "academy_team_assignment",
+    "current_tension": "new_team_incomplete_attendance",
     "known_clues": [
-      "Wei endorsed Hiruzen's revised core: Ensui Nara, Hana Inuzuka, Hoheto Hyūga, Tekuno Kanden, and Hayama Shirakumo beside Wei.",
-      "Hiruzen accepted that revised core for formal personnel availability and duty-conflict review; this is not team approval.",
-      "Wei told Hiruzen he wants the unit oriented toward S-rank work including Root infiltration, Akatsuki operations, and high-profile bounty targets.",
-      "Hiruzen refused any standing self-targeting authority: Root operations require direct Hokage authorization; Akatsuki and bounty-target strikes require specific lawful mission orders and actionable intelligence.",
-      "Hayama remains Hiruzen's preferred deputy if dual command is eventually approved."
+      "Wei's readiness check found his saved condition ready, resources full, and current House combat loadout in its normal configuration.",
+      "Academy staff confirmed the official Team Fujin roster: Wei Tang, Kai Tang, Riku Hyūga, and Mei Arakawa.",
+      "Riku and Mei were present in the assignment hall before 09:00; Kai was not present there.",
+      "At 09:00 the village assignment process activated Team Fujin with Wei as Jonin instructor.",
+      "Mei is the designated acting field leader when Wei is absent.",
+      "The formal special-operations personnel review remains separate and unresolved."
     ],
-    "last_major_choice": "Wei endorsed Hiruzen's revised six, requested formal review, stated an aggressive S-rank mission preference, then left for the Academy.",
-    "last_scene_summary": "From 08:15 to 08:25, Wei endorsed the revised special-operations core and requested formal review. Hiruzen accepted the review but restricted any future Root, Akatsuki, or bounty-target operations to specific lawful authorization. Wei then traveled to the Academy, arriving at 08:45.",
+    "last_major_choice": "Wei checked his readiness, checked in with Academy staff for Team Fujin material, then waited for the 09:00 assignment.",
+    "last_scene_summary": "From 08:45 to 09:00 Wei completed a readiness check, received the Team Fujin roster from Academy staff, observed Riku and Mei present and Kai absent, then accepted the scheduled assignment as it took effect at 09:00.",
     "pending_information_paths": [
-      "Formal personnel availability and duty-conflict review for Ensui, Hana, Hoheto, Tekuno, and Hayama."
+      "Why Kai was absent from the 09:00 assignment hall.",
+      "Formal personnel availability and duty-conflict review for the proposed special-operations squad."
     ],
     "promises_and_threats": [],
     "recent_reveals": [
-      "Hiruzen will consider the revised roster formally, but not grant it independent target-selection authority."
+      "Team Fujin is now an active Konoha Genin team under Wei.",
+      "Kai is assigned to the team but was not physically present at the assignment."
     ],
     "suspected_clues": [],
     "unresolved_hooks": [
-      "Permanent special-operations squad proposal under formal personnel review",
-      "Dual-team command structure",
-      "09:00 Team Fujin assignment",
-      "ANBU candidacy remains separate and inactive"
+      "First Team Fujin meeting and training structure",
+      "Kai's absence from assignment",
+      "Permanent special-operations squad under formal review",
+      "Potential future dual-team command"
     ],
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_konoha_academy_preassignment",
-  "scene_summary": "At 08:45 Wei is at the Konoha Academy ahead of Team Fujin's 09:00 assignment. The revised special-operations roster is under formal review; no second team or mission authority is approved.",
+  "scene_id": "scene_konoha_academy_team_fujin_assignment",
+  "scene_summary": "At 09:00 Team Fujin is active under Wei. Riku and Mei are present in the Academy assignment hall; Kai is assigned but absent.",
   "schema": "scene.v38",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T08:45:00",
-  "known_clock_boundaries": [
-    {
-      "due_at": "SE-0061-02-05T09:00:00",
-      "event_id": "process_team_fujin_assignment",
-      "visibility": "known"
-    }
-  ],
+  "world_time": "SE-0061-02-05T09:00:00",
+  "known_clock_boundaries": [],
   "observable_pressures": [
-    "The special-operations proposal remains unapproved.",
-    "No recommended shinobi has been transferred or committed.",
-    "Team Fujin begins at 09:00.",
-    "Any action crossing 09:00 is interrupted by the assignment event unless lawfully prevented."
+    "Kai is assigned to Team Fujin but is not present in the assignment hall.",
+    "The new team has no adopted doctrine or shared training history.",
+    "The separate special-operations proposal remains unapproved."
   ]
 }

@@ -30,10 +30,71 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          path = Path('schemas/registry.json')
-          data = json.loads(path.read_text(encoding='utf-8'))
-          data.pop('tech-index.v38', None)
-          path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          VERSION_KEYS = {'version', 'schema_version', 'game_version', 'rules_version', 'data_version'}
+
+          def strip_schema_versions(value):
+              changed = False
+              if isinstance(value, dict):
+                  required = value.get('required')
+                  if isinstance(required, list):
+                      new = [x for x in required if str(x).lower() not in VERSION_KEYS]
+                      if new != required:
+                          value['required'] = new
+                          changed = True
+                  props = value.get('properties')
+                  if isinstance(props, dict):
+                      for key in list(props):
+                          if str(key).lower() in VERSION_KEYS:
+                              del props[key]
+                              changed = True
+                          elif strip_schema_versions(props[key]):
+                              changed = True
+                  for key, item in list(value.items()):
+                      if key in {'required', 'properties'}:
+                          continue
+                      if strip_schema_versions(item):
+                          changed = True
+              elif isinstance(value, list):
+                  for item in value:
+                      if strip_schema_versions(item):
+                          changed = True
+              return changed
+
+          registry_path = Path('schemas/registry.json')
+          registry = json.loads(registry_path.read_text(encoding='utf-8'))
+          registry.pop('tech-index.v38', None)
+
+          for template_path in Path('data/runtime/templates').glob('*.json'):
+              template = json.loads(template_path.read_text(encoding='utf-8'))
+              dirs = template.get('current_directories', []) if isinstance(template, dict) else []
+              gameplay = isinstance(dirs, list) and any(
+                  isinstance(d, str) and (d.startswith('state/') or (d.startswith('data/') and not d.startswith('data/runtime/')))
+                  for d in dirs
+              )
+              if not gameplay:
+                  continue
+              source = template.get('source_schema')
+              if not source:
+                  target = template.get('target_schema')
+                  filename = registry.get(target)
+                  if filename:
+                      source = f'schemas/{filename}'
+              if not source:
+                  continue
+              schema_path = Path(source)
+              if not schema_path.exists():
+                  continue
+              schema = json.loads(schema_path.read_text(encoding='utf-8'))
+              if strip_schema_versions(schema):
+                  schema_path.write_text(json.dumps(schema, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          registry_path.write_text(json.dumps(registry, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          audit_path = Path('tools/audit.py')
+          audit = audit_path.read_text(encoding='utf-8')
+          audit = audit.replace("_version=(ROOT/'VERSION').read_text(encoding='utf-8').strip()\nif meta.get('version')!=_version:err(f'meta_version:{meta.get(\"version\")}!={_version}')\n", '')
+          audit_path.write_text(audit, encoding='utf-8')
           PY
           python tools/migrate_stable_gameplay_names.py 2>&1 | tee /tmp/stable-name-migration.log
       - name: Publish migration failure
@@ -89,7 +150,7 @@ jobs:
           mkdir -p maintenance
           cp /tmp/stable-name-validation.log maintenance/validation-failure.log
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+CEObrah@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add maintenance/validation-failure.log
           git commit -m "[validation-failure-log] Capture stable naming validation failure"
           git push origin HEAD:maintenance/stable-gameplay-names

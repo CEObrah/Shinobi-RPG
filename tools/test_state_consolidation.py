@@ -92,6 +92,28 @@ for path in exact_character_paths:
     if data.get("schema") == "shinobi_character" and data.get("owner_id"):
         exact_characters[data["owner_id"]] = (path, data)
 
+# Some exact-character schemas retain legacy career mirrors inside the same file.
+# Until those fields are structurally retired, identical semantic fields must be
+# exact mirrors rather than independent writable truths.
+for owner_id, (path, character) in exact_characters.items():
+    career = character.get("career_state")
+    if not isinstance(career, dict):
+        continue
+    official_rank = character.get("official_rank_or_status")
+    career_rank = career.get("current_rank_or_status")
+    if career_rank is None:
+        career_rank = career.get("rank")
+    if official_rank is not None and career_rank is not None and official_rank != career_rank:
+        errors.append(
+            f"{path.relative_to(ROOT)}: rank mirror drift official_rank_or_status={official_rank!r} career={career_rank!r}"
+        )
+    current_office = character.get("current_unit_or_office")
+    career_office = career.get("current_unit_or_office")
+    if current_office is not None and career_office is not None and current_office != career_office:
+        errors.append(
+            f"{path.relative_to(ROOT)}: assignment mirror drift current_unit_or_office={current_office!r} career={career_office!r}"
+        )
+
 bank_path = ROOT / "state/development/banks.json"
 if bank_path.exists():
     bank = read_json(bank_path)

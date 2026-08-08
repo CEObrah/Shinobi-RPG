@@ -1,8 +1,1128 @@
 {
-  "release_token_scope": "v30-v39 only; v1/v2 infrastructure protocols excluded",
-  "tracked_file_count": 4573,
+  "release_token_scope": "v30-v39 release generations",
+  "tracked_file_count": 4574,
   "versioned_path_count": 143,
-  "versioned_content_file_count": 1059,
+  "versioned_content_file_count": 1060,
+  "all_gameplay_versioned_path_count": 184,
+  "all_gameplay_versioned_paths": [
+    "data/runtime/templates/autonomous-world-simulation.v1.template.json",
+    "data/runtime/templates/behavior-profile-index.v1.template.json",
+    "data/runtime/templates/behavior-profile.v1.template.json",
+    "data/runtime/templates/biju-mechanics.v38.template.json",
+    "data/runtime/templates/biological-implant-state.v38.template.json",
+    "data/runtime/templates/bloodlines.v38.template.json",
+    "data/runtime/templates/body-mechanics.v38.template.json",
+    "data/runtime/templates/campaign-objective.v38.template.json",
+    "data/runtime/templates/chakra-mechanics.v38.template.json",
+    "data/runtime/templates/choice-presentation.v1.template.json",
+    "data/runtime/templates/clone-barrier-mechanics.v38.template.json",
+    "data/runtime/templates/combat-profile-templates.v38.template.json",
+    "data/runtime/templates/command-assignments.v1.template.json",
+    "data/runtime/templates/command-group-index.v1.template.json",
+    "data/runtime/templates/command-group.v1.template.json",
+    "data/runtime/templates/commander_profile_registry.v1.template.json",
+    "data/runtime/templates/content-archetypes.v1.template.json",
+    "data/runtime/templates/covenant.v38.template.json",
+    "data/runtime/templates/development-bank-registry.v1.template.json",
+    "data/runtime/templates/development-fairness-tests.v38.template.json",
+    "data/runtime/templates/development-model.v38.template.json",
+    "data/runtime/templates/directory-map.v1.template.json",
+    "data/runtime/templates/doctrine-record.v1.template.json",
+    "data/runtime/templates/doctrine_registry.v2.template.json",
+    "data/runtime/templates/doctrine_role_profiles.v1.template.json",
+    "data/runtime/templates/dojutsu-mechanics.v38.template.json",
+    "data/runtime/templates/effect-resolvers.v38.template.json",
+    "data/runtime/templates/element-mechanics.v38.template.json",
+    "data/runtime/templates/encumbrance-mechanics.v38.template.json",
+    "data/runtime/templates/establishment-rules.v1.template.json",
+    "data/runtime/templates/faction-owner.v1.template.json",
+    "data/runtime/templates/faction-registry-index.v2.template.json",
+    "data/runtime/templates/faction-registry.v1.template.json",
+    "data/runtime/templates/family-courtship.v1.template.json",
+    "data/runtime/templates/family-event.v1.template.json",
+    "data/runtime/templates/family-household.v1.template.json",
+    "data/runtime/templates/family-index.v1.template.json",
+    "data/runtime/templates/family-kinship.v1.template.json",
+    "data/runtime/templates/family-mechanics.v1.template.json",
+    "data/runtime/templates/family-parentage.v1.template.json",
+    "data/runtime/templates/family-proposal.v1.template.json",
+    "data/runtime/templates/family-succession.v1.template.json",
+    "data/runtime/templates/family-union.v1.template.json",
+    "data/runtime/templates/file-template.v1.template.json",
+    "data/runtime/templates/force.v38.template.json",
+    "data/runtime/templates/formation-library.v1.template.json",
+    "data/runtime/templates/genjutsu-mechanics.v38.template.json",
+    "data/runtime/templates/guardian-current-mechanics.v38.template.json",
+    "data/runtime/templates/hierarchical_command_mechanics.v4.template.json",
+    "data/runtime/templates/home-establishments.v1.template.json",
+    "data/runtime/templates/home_establishment_index.v2.template.json",
+    "data/runtime/templates/home_establishment_owner.v2.template.json",
+    "data/runtime/templates/house.v38.template.json",
+    "data/runtime/templates/house_charter.v38.template.json",
+    "data/runtime/templates/house_units.v38.template.json",
+    "data/runtime/templates/injury-mechanics.v38.template.json",
+    "data/runtime/templates/institution_doctrine_overlays.v1.template.json",
+    "data/runtime/templates/interface-intent-tests.v1.template.json",
+    "data/runtime/templates/invisible-court-tactics.v1.template.json",
+    "data/runtime/templates/item-index.v38.template.json",
+    "data/runtime/templates/item-maneuvers-index.v1.template.json",
+    "data/runtime/templates/item-maneuvers-shard.v1.template.json",
+    "data/runtime/templates/item-maneuvers.v1.template.json",
+    "data/runtime/templates/jinchuriki-registry.v38.template.json",
+    "data/runtime/templates/kinship-index.v1.template.json",
+    "data/runtime/templates/knowledge-profiles.v1.template.json",
+    "data/runtime/templates/life-course-registry.v38.template.json",
+    "data/runtime/templates/loadout-record.v1.template.json",
+    "data/runtime/templates/loadouts-index.v1.template.json",
+    "data/runtime/templates/loadouts-index.v3.template.json",
+    "data/runtime/templates/loadouts-shard.v1.template.json",
+    "data/runtime/templates/loadouts.v38.template.json",
+    "data/runtime/templates/manpower-capability.v1.template.json",
+    "data/runtime/templates/mechanics-core.v38.template.json",
+    "data/runtime/templates/mechanics-regression-tests.v38.template.json",
+    "data/runtime/templates/medical-implant-registry.v38.template.json",
+    "data/runtime/templates/medical-mechanics.v38.template.json",
+    "data/runtime/templates/meta.v38.template.json",
+    "data/runtime/templates/morale-mechanics.v38.template.json",
+    "data/runtime/templates/narration-router.v1.template.json",
+    "data/runtime/templates/narrative-recall.v1.template.json",
+    "data/runtime/templates/ocular-inventory.v1.template.json",
+    "data/runtime/templates/ocular-owner-shard.v1.template.json",
+    "data/runtime/templates/ocular-registry-index.v2.template.json",
+    "data/runtime/templates/ocular-registry.v38.template.json",
+    "data/runtime/templates/ocular-stockpile-batch.v1.template.json",
+    "data/runtime/templates/organization-authority-model.v1.template.json",
+    "data/runtime/templates/owner-index-shard.v1.template.json",
+    "data/runtime/templates/owner_index.v39.template.json",
+    "data/runtime/templates/path-template-index.v1.template.json",
+    "data/runtime/templates/path-template.v1.template.json",
+    "data/runtime/templates/perception-mechanics.v38.template.json",
+    "data/runtime/templates/person-lite.v38.template.json",
+    "data/runtime/templates/place.v38.template.json",
+    "data/runtime/templates/player-combat-style.v1.template.json",
+    "data/runtime/templates/process-coverage.v1.template.json",
+    "data/runtime/templates/process-policy-registry.v1.template.json",
+    "data/runtime/templates/process.v38.template.json",
+    "data/runtime/templates/puppet-registry.v38.template.json",
+    "data/runtime/templates/reconstitution-policies.v1.template.json",
+    "data/runtime/templates/relationship-edge-index.v1.template.json",
+    "data/runtime/templates/relationship-edge-shard.v1.template.json",
+    "data/runtime/templates/repository-map.v1.template.json",
+    "data/runtime/templates/repository-map.v2.template.json",
+    "data/runtime/templates/repository-map.v3.template.json",
+    "data/runtime/templates/repository-map.v4.template.json",
+    "data/runtime/templates/repository-route-shard.v1.template.json",
+    "data/runtime/templates/reputation-audience-profile.v1.template.json",
+    "data/runtime/templates/reputation-audience-segments.v1.template.json",
+    "data/runtime/templates/reputation-dimensions.v1.template.json",
+    "data/runtime/templates/reputation-event.v1.template.json",
+    "data/runtime/templates/reputation-index.v1.template.json",
+    "data/runtime/templates/reputation-mechanics.v1.template.json",
+    "data/runtime/templates/reputation-subject.v1.template.json",
+    "data/runtime/templates/role-profiles.v1.template.json",
+    "data/runtime/templates/routine-profiles.v38.template.json",
+    "data/runtime/templates/rulers-domain-tests.v1.template.json",
+    "data/runtime/templates/runtime-catchup-tests.v1.template.json",
+    "data/runtime/templates/runtime-rule-router.v1.template.json",
+    "data/runtime/templates/runtime-rule-router.v2.template.json",
+    "data/runtime/templates/scene.v38.template.json",
+    "data/runtime/templates/seal-state-registry.v38.template.json",
+    "data/runtime/templates/sealing-mechanics.v38.template.json",
+    "data/runtime/templates/shinobi-domain-registry.v38.template.json",
+    "data/runtime/templates/shinobi-stock.v38.template.json",
+    "data/runtime/templates/shinobi-team-types.v1.template.json",
+    "data/runtime/templates/shinobi-world-registry.v38.template.json",
+    "data/runtime/templates/shinobi-world-runtime.v38.template.json",
+    "data/runtime/templates/shinobi_character_v38.template.json",
+    "data/runtime/templates/special-systems.v38.template.json",
+    "data/runtime/templates/standing-procedures.v1.template.json",
+    "data/runtime/templates/stats-mechanics.v38.template.json",
+    "data/runtime/templates/stock.v38.template.json",
+    "data/runtime/templates/summon-registry.v38.template.json",
+    "data/runtime/templates/support_mechanics.v1.template.json",
+    "data/runtime/templates/system-contract-index.v1.template.json",
+    "data/runtime/templates/system-contract.v1.template.json",
+    "data/runtime/templates/tactical-team.v1.template.json",
+    "data/runtime/templates/tactical_team_model.v1.template.json",
+    "data/runtime/templates/team-doctrine-registry.v38.template.json",
+    "data/runtime/templates/team-doctrine-template.v1.template.json",
+    "data/runtime/templates/team.v38.template.json",
+    "data/runtime/templates/tech-index.v38.template.json",
+    "data/runtime/templates/tech-index.v39.template.json",
+    "data/runtime/templates/tech-manifest.v1.template.json",
+    "data/runtime/templates/tech-name-index-shard.v2.template.json",
+    "data/runtime/templates/tech-name-index.v2.template.json",
+    "data/runtime/templates/tech-packages.v38.template.json",
+    "data/runtime/templates/technique-defaults.v1.template.json",
+    "data/runtime/templates/technique-effect-profile.v1.template.json",
+    "data/runtime/templates/technique-effects-index.v2.template.json",
+    "data/runtime/templates/technique-effects-manifest.v1.template.json",
+    "data/runtime/templates/technique-primitive.v1.template.json",
+    "data/runtime/templates/technique-primitives-index.v2.template.json",
+    "data/runtime/templates/technique-primitives.v38.template.json",
+    "data/runtime/templates/template-index-shard.v1.template.json",
+    "data/runtime/templates/template-index.v1.template.json",
+    "data/runtime/templates/template-index.v2.template.json",
+    "data/runtime/templates/temporal-coverage-requirements.v1.template.json",
+    "data/runtime/templates/temporal-frontier.v39.template.json",
+    "data/runtime/templates/temporal-settlement-runtime.v1.template.json",
+    "data/runtime/templates/timing-mechanics.v38.template.json",
+    "data/runtime/templates/training-mechanics.v38.template.json",
+    "data/runtime/templates/training-profile-record.v1.template.json",
+    "data/runtime/templates/training_profile_registry.v2.template.json",
+    "data/runtime/templates/training_role_profiles.v1.template.json",
+    "data/runtime/templates/travel-mechanics.v38.template.json",
+    "data/runtime/templates/troop_pool.v1.template.json",
+    "data/runtime/templates/troop_type_registry.v1.template.json",
+    "data/runtime/templates/unique-item-mechanics.v38.template.json",
+    "data/runtime/templates/unit-battle-kernel.v1.template.json",
+    "data/runtime/templates/unit-capability.v1.template.json",
+    "data/runtime/templates/unit-path-index-shard.v2.template.json",
+    "data/runtime/templates/unit-routing-index.v2.template.json",
+    "data/runtime/templates/unit-transaction-registry.v2.template.json",
+    "data/runtime/templates/unit.v38.template.json",
+    "data/runtime/templates/unit_aptitude_profiles.v1.template.json",
+    "data/runtime/templates/unit_combat_resolution.v1.template.json",
+    "data/runtime/templates/unit_model.v2.template.json",
+    "data/runtime/templates/unit_owner_index.v1.template.json",
+    "data/runtime/templates/unit_partition_mechanics.v1.template.json",
+    "data/runtime/templates/unit_resolution_mechanics.v1.template.json",
+    "data/runtime/templates/unit_tendency_profiles.v1.template.json",
+    "data/runtime/templates/world-event-registry.v1.template.json"
+  ],
+  "gameplay_version_key_file_count": 155,
+  "gameplay_version_keys": [
+    {
+      "path": "data/development/model.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/core.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/effect-resolvers.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/encumbrance.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/timing.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/travel.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/mechanics/unique-items.json",
+      "pointers": [
+        "/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.ame.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.earth.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.earth.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.earth.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.fire.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.fire.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.fire.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.frost.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.frost.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.frost.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.general.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.grass.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.grass.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.grass.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.hot-water.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.hot-water.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.hot-water.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.iron.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.iron.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.iron.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.lightning.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.lightning.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.lightning.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rain.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rain.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rain.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rice.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rice.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rice.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rivers.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rivers.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.rivers.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.tea.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.tea.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.tea.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.water.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.water.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.water.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waterfalls.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waterfalls.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waterfalls.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waves.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waves.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.waves.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.wind.militia.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.wind.raw_levy.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.civil.wind.regular.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_ame_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_iron_samurai.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_iwa_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_kiri_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_konoha_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_kumo_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_kusa_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_oto_network.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_suna_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_taki_shinobi.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.force_yuga_service.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iron.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.iwa.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kiri.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.communications.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.konoha.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.communications.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kumo.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.kusa.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.oto.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.shinobi.general.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.ranged_control.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.suna.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.taki.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.assault.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.command.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.field.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.logistics.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.medical.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.recon.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "data/organization/doctrine-records/doc.yuga.support.json",
+      "pointers": [
+        "/doctrine/version"
+      ]
+    },
+    {
+      "path": "state/meta.json",
+      "pointers": [
+        "/version"
+      ]
+    }
+  ],
   "schema_values": {
     "biju-mechanics.v38": 1,
     "biological-implant-state.v38": 1,
@@ -1908,6 +3028,44 @@
         {
           "line": 2,
           "text": "  \"schema\": \"tech-packages.v38\","
+        }
+      ]
+    },
+    {
+      "path": "maintenance/gameplay-version-audit.json",
+      "count": 1641,
+      "samples": [
+        {
+          "line": 2,
+          "text": "  \"release_token_scope\": \"v30-v39 only; v1/v2 infrastructure protocols excluded\","
+        },
+        {
+          "line": 7,
+          "text": "    \"biju-mechanics.v38\": 1,"
+        },
+        {
+          "line": 8,
+          "text": "    \"biological-implant-state.v38\": 1,"
+        },
+        {
+          "line": 9,
+          "text": "    \"bloodlines.v38\": 1,"
+        },
+        {
+          "line": 10,
+          "text": "    \"body-mechanics.v38\": 1,"
+        },
+        {
+          "line": 11,
+          "text": "    \"chakra-mechanics.v38\": 1,"
+        },
+        {
+          "line": 12,
+          "text": "    \"clone-barrier-mechanics.v38\": 1,"
+        },
+        {
+          "line": 13,
+          "text": "    \"combat-profile-templates.v38\": 1,"
         }
       ]
     },
@@ -11320,8 +12478,8 @@
       "count": 2,
       "samples": [
         {
-          "line": 80,
-          "text": "    \"release_token_scope\": \"v30-v39 only; v1/v2 infrastructure protocols excluded\","
+          "line": 102,
+          "text": "    \"release_token_scope\": \"v30-v39 release generations\","
         }
       ]
     },
@@ -11376,6 +12534,11 @@
       "path": "rules/doctrine.md",
       "line": 29,
       "text": "At battle start, snapshot doctrine version, doctrine familiarity, tendencies, commander, posture, orders, stats, equipment, morale, cohesion, fatigue, supply, terrain, and known intelligence. Resolve from that snapshot."
+    },
+    {
+      "path": "rules/intel.md",
+      "line": 58,
+      "text": "## Cross-Game Narrative Hardening (V2.5)"
     }
   ]
 }

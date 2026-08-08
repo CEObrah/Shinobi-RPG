@@ -64,6 +64,8 @@ jobs:
           registry_path = Path('schemas/registry.json')
           registry = json.loads(registry_path.read_text(encoding='utf-8'))
           registry.pop('tech-index.v38', None)
+          registry['mechanics-core.v38'] = 'mechanics-core-v38.schema.json'
+          Path('schemas/core-v38.schema.json').unlink(missing_ok=True)
 
           for template_path in Path('data/runtime/templates').glob('*.json'):
               template = json.loads(template_path.read_text(encoding='utf-8'))

@@ -1,59 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Current canonical schema: place.",
+  "title": "Strategic place state",
   "type": "object",
-  "required": [
-    "id",
-    "owner",
-    "schema"
-  ],
+  "required": ["schema", "id", "owner"],
   "properties": {
-    "alarm": {
-      "type": "string"
-    },
-    "built_floor_m2": {
-      "type": "integer"
-    },
-    "cells": {
-      "type": "object"
-    },
-    "chartered_land_m2": {
-      "type": "integer"
-    },
-    "custody_records": {
-      "type": "array"
-    },
-    "developed_m2": {
-      "type": "integer"
-    },
-    "facilities": {
-      "type": "array"
-    },
-    "id": {
-      "type": "string"
-    },
-    "infrastructure_backbone": {
-      "type": "array"
-    },
-    "long_term_capacity_after_projects": {
-      "type": "integer"
-    },
-    "name": {
-      "type": "string"
-    },
-    "owner": {
-      "type": "string"
-    },
-    "rooms": {
-      "type": "array"
-    },
-    "schema": {
-      "type": "string"
-    },
-    "systems": {
-      "type": "array"
-    }
+    "schema": {"const": "place"},
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "owner": {"type": "string"},
+    "chartered_land_m2": {"type": "integer", "minimum": 0},
+    "developed_m2": {"type": "integer", "minimum": 0},
+    "built_floor_m2": {"type": "integer", "minimum": 0},
+    "long_term_capacity_after_projects": {"type": "integer", "minimum": 0},
+    "facilities": {"type": "array", "items": {"type": "string"}},
+    "infrastructure_backbone": {"type": "array", "items": {"type": "string"}},
+    "alarm": {"type": "string"},
+    "cells": {"type": "object", "properties": {"standard": {"type": "integer", "minimum": 0}, "chakra_resistant": {"type": "integer", "minimum": 0}, "medical_observation": {"type": "integer", "minimum": 0}}, "additionalProperties": false},
+    "rooms": {"type": "array", "items": {"type": "string"}},
+    "systems": {"type": "array", "items": {"type": "string"}},
+    "custody_records": {"type": "array"},
+    "visibility": {"type": "string"},
+    "player_knowledge": {"type": "object", "properties": {"facility_known": {"type": "boolean"}, "known_access_routes": {"type": "array"}, "known_zones": {"type": "array"}}, "additionalProperties": false},
+    "zones": {"type": "array", "items": {"type": "object", "required": ["id", "function", "access_tier"], "properties": {"id": {"type": "string"}, "function": {"type": "string"}, "access_tier": {"type": "integer"}}, "additionalProperties": false}},
+    "connections": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+    "security_elements": {"type": "array", "items": {"type": "object", "required": ["id", "zone_id", "operator_owner_id", "strength", "readiness", "purpose"], "properties": {"id": {"type": "string"}, "zone_id": {"type": "string"}, "operator_owner_id": {"type": "string"}, "mechanic_ref": {"type": "string"}, "technique_ref": {"type": "string"}, "strength": {"type": "integer"}, "readiness": {"type": "integer"}, "purpose": {"type": "string"}}, "additionalProperties": false}},
+    "operational_modules": {"type": "array", "items": {"type": "object", "required": ["id", "module_type", "status", "last_settled_at"], "properties": {"id": {"type": "string"}, "module_type": {"type": "string"}, "status": {"type": "string"}, "readiness": {"type": ["integer", "null"], "minimum": 0, "maximum": 100}, "condition": {"type": ["integer", "null"], "minimum": 0, "maximum": 100}, "capacity_unit": {"type": ["string", "null"]}, "capacity_total": {"type": ["number", "null"], "minimum": 0}, "capacity_available": {"type": ["number", "null"], "minimum": 0}, "authority_refs": {"type": "array", "items": {"type": "string"}}, "mechanic_ref": {"type": ["string", "null"]}, "process_ref": {"type": ["string", "null"]}, "last_settled_at": {"type": "string"}}, "additionalProperties": false}},
+    "fixed_state_rule": {"type": "string"}
   },
-  "additionalProperties": true,
-  "description": "Current canonical schema contract."
+  "additionalProperties": false,
+  "description": "Compact mutable state for strategically consequential places. Ontology-only locations remain in static ambient content until persistent causal state is required."
 }

@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Population Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "pools",
+    "transfers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "population-registry"
+    },
+    "id": {
+      "type": "string"
+    },
+    "pools": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "owner_ref",
+          "category",
+          "count",
+          "status",
+          "provenance",
+          "profile",
+          "last_changed_at"
+        ],
+        "properties": {
+          "owner_ref": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "active",
+              "exhausted",
+              "closed"
+            ]
+          },
+          "provenance": {
+            "type": "string"
+          },
+          "profile": {
+            "$ref": "#/$defs/profile"
+          },
+          "last_changed_at": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "transfers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "at",
+          "source_pool_id",
+          "destination_ref",
+          "applicants",
+          "accepted",
+          "rejected",
+          "method",
+          "accepted_profile",
+          "materialized_person_ids",
+          "source_removed",
+          "destination_added"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          },
+          "source_pool_id": {
+            "type": "string"
+          },
+          "destination_ref": {
+            "type": "string"
+          },
+          "applicants": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "accepted": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rejected": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "method": {
+            "type": "string"
+          },
+          "accepted_profile": {
+            "$ref": "#/$defs/profile"
+          },
+          "materialized_person_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "source_removed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destination_added": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "selection_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "required": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ],
+      "properties": {
+        "numeric_distributions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "count",
+              "mean",
+              "sd",
+              "min",
+              "max"
+            ],
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "mean": {
+                "type": "number"
+              },
+              "sd": {
+                "type": "number",
+                "minimum": 0
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "category_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

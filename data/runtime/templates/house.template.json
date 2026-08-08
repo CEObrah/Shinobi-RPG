@@ -1,1 +1,565 @@
-{"schema":"file-template.v1","template_id":"template.house","target_schema":"house","source_schema":null,"scope":"mutable_state","current_directories":["state/house"],"unknown_key_policy":"reject","required_top_level_keys":[],"object_contracts":{"":{"mode":"closed","allowed_keys":["charter","covenant","externally_assigned_members","field_command_warrant","formation_library_ref","home","id","leadership","member_ids","name","operating_process","permanent_units","personal_force_model","private_guard_force","public_training_for_money","ranks","reconstitution_policy_ref","schema","standing_readiness_order","support_rank","unassigned_members","unit_policy"],"canonical_order":["schema","id","name","home","member_ids","ranks","leadership","field_command_warrant","public_training_for_money","private_guard_force","support_rank","charter","covenant","personal_force_model","unit_policy","permanent_units","unassigned_members","externally_assigned_members","formation_library_ref","reconstitution_policy_ref","standing_readiness_order","operating_process"]},"/field_command_warrant":{"mode":"closed","allowed_keys":["granted_by","holder","may_deploy_lawful_house_formations","may_organize_available_members","strategic_house_authority_retained_by"],"canonical_order":["holder","granted_by","may_organize_available_members","may_deploy_lawful_house_formations","strategic_house_authority_retained_by"]},"/leadership":{"mode":"closed","allowed_keys":["dojo_head","field_commander","first_sword","head_of_house","manor_director"],"canonical_order":["head_of_house","dojo_head","manor_director","first_sword","field_commander"]},"/unit_policy":{"mode":"closed","allowed_keys":["formation_types","permanent_units_player_or_delegated_authority_only"],"canonical_order":["permanent_units_player_or_delegated_authority_only","formation_types"]},"/permanent_units/*":{"mode":"closed","allowed_keys":["doctrine","formation_library_ref","id","loadout_standard","members","name","owner","reconstitution_policy_ref","role","standing_procedure_ref","training"],"canonical_order":["id","name","owner","members","role","doctrine","training","loadout_standard","formation_library_ref","reconstitution_policy_ref","standing_procedure_ref"]},"/operating_process":{"mode":"closed","allowed_keys":["constraints","goal","id","knowledge","last_review","next_review","opposition","plan","quiet_run_count","resources","status"],"canonical_order":["id","status","goal","plan","knowledge","resources","constraints","opposition","last_review","next_review","quiet_run_count"]}},"type_contracts":{"/charter":["string"],"/covenant":["string"],"/externally_assigned_members":["array"],"/externally_assigned_members/*":["string"],"/field_command_warrant":["object"],"/field_command_warrant/granted_by":["string"],"/field_command_warrant/holder":["string"],"/field_command_warrant/may_deploy_lawful_house_formations":["boolean"],"/field_command_warrant/may_organize_available_members":["boolean"],"/field_command_warrant/strategic_house_authority_retained_by":["string"],"/formation_library_ref":["string"],"/home":["string"],"/id":["string"],"/leadership":["object"],"/leadership/dojo_head":["string"],"/leadership/field_commander":["string"],"/leadership/first_sword":["string"],"/leadership/head_of_house":["string"],"/leadership/manor_director":["string"],"/member_ids":["array"],"/member_ids/*":["string"],"/name":["string"],"/operating_process":["object"],"/operating_process/constraints":["array"],"/operating_process/constraints/*":["string"],"/operating_process/goal":["string"],"/operating_process/id":["string"],"/operating_process/knowledge":["string"],"/operating_process/last_review":["null","string"],"/operating_process/next_review":["null","string"],"/operating_process/opposition":["array"],"/operating_process/plan":["array"],"/operating_process/plan/*":["string"],"/operating_process/quiet_run_count":["integer"],"/operating_process/resources":["array"],"/operating_process/resources/*":["string"],"/operating_process/status":["string"],"/permanent_units":["array"],"/permanent_units/*":["object"],"/permanent_units/*/doctrine":["string"],"/permanent_units/*/formation_library_ref":["string"],"/permanent_units/*/id":["string"],"/permanent_units/*/loadout_standard":["string"],"/permanent_units/*/members":["array"],"/permanent_units/*/members/*":["string"],"/permanent_units/*/name":["string"],"/permanent_units/*/owner":["string"],"/permanent_units/*/reconstitution_policy_ref":["string"],"/permanent_units/*/role":["string"],"/permanent_units/*/standing_procedure_ref":["string"],"/permanent_units/*/training":["string"],"/personal_force_model":["string"],"/private_guard_force":["boolean"],"/public_training_for_money":["boolean"],"/ranks":["array"],"/ranks/*":["string"],"/reconstitution_policy_ref":["string"],"/schema":["string"],"/standing_readiness_order":["string"],"/support_rank":["boolean"],"/unassigned_members":["array"],"/unassigned_members/*":["string"],"/unit_policy":["object"],"/unit_policy/formation_types":["array"],"/unit_policy/formation_types/*":["string"],"/unit_policy/permanent_units_player_or_delegated_authority_only":["boolean"]},"array_contracts":{"/externally_assigned_members":{"item_types":["string"]},"/member_ids":{"item_types":["string"]},"/operating_process/constraints":{"item_types":["string"]},"/operating_process/opposition":{"item_types":["string"]},"/operating_process/plan":{"item_types":["string"]},"/operating_process/resources":{"item_types":["string"]},"/permanent_units":{"item_types":["object"]},"/permanent_units/*/members":{"item_types":["string"]},"/ranks":{"item_types":["string"]},"/unassigned_members":{"item_types":["string"]},"/unit_policy/formation_types":{"item_types":["string"]}},"writing_rules":["Load this template before creating or structurally editing a target owner.","Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.","House permanent units, member assignment classification, standing readiness order, and House operating process are fields of the House owner; do not create mutable sidecar owners that mirror them.","Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.","Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.","Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."]}
+{
+  "schema": "file-template.v1",
+  "template_id": "template.house",
+  "target_schema": "house",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/house"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "charter",
+        "covenant",
+        "externally_assigned_members",
+        "field_command_warrant",
+        "formation_library_ref",
+        "home",
+        "id",
+        "leadership",
+        "member_ids",
+        "name",
+        "operating_process",
+        "permanent_units",
+        "personal_force_model",
+        "private_guard_force",
+        "public_training_for_money",
+        "ranks",
+        "reconstitution_policy_ref",
+        "schema",
+        "standing_readiness_order",
+        "support_rank",
+        "unassigned_members",
+        "unit_policy",
+        "aggregate_member_count"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "name",
+        "home",
+        "member_ids",
+        "aggregate_member_count",
+        "ranks",
+        "leadership",
+        "field_command_warrant",
+        "public_training_for_money",
+        "private_guard_force",
+        "support_rank",
+        "charter",
+        "covenant",
+        "personal_force_model",
+        "unit_policy",
+        "permanent_units",
+        "unassigned_members",
+        "externally_assigned_members",
+        "formation_library_ref",
+        "reconstitution_policy_ref",
+        "standing_readiness_order",
+        "operating_process"
+      ]
+    },
+    "/field_command_warrant": {
+      "mode": "closed",
+      "allowed_keys": [
+        "granted_by",
+        "holder",
+        "may_deploy_lawful_house_formations",
+        "may_organize_available_members",
+        "strategic_house_authority_retained_by"
+      ],
+      "canonical_order": [
+        "holder",
+        "granted_by",
+        "may_organize_available_members",
+        "may_deploy_lawful_house_formations",
+        "strategic_house_authority_retained_by"
+      ]
+    },
+    "/leadership": {
+      "mode": "closed",
+      "allowed_keys": [
+        "dojo_head",
+        "field_commander",
+        "first_sword",
+        "head_of_house",
+        "manor_director"
+      ],
+      "canonical_order": [
+        "head_of_house",
+        "dojo_head",
+        "manor_director",
+        "first_sword",
+        "field_commander"
+      ]
+    },
+    "/unit_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "formation_types",
+        "permanent_units_player_or_delegated_authority_only"
+      ],
+      "canonical_order": [
+        "permanent_units_player_or_delegated_authority_only",
+        "formation_types"
+      ]
+    },
+    "/permanent_units/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "doctrine",
+        "formation_library_ref",
+        "id",
+        "loadout_standard",
+        "members",
+        "name",
+        "owner",
+        "reconstitution_policy_ref",
+        "role",
+        "standing_procedure_ref",
+        "training",
+        "aggregate_count",
+        "cohort_profile"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "owner",
+        "members",
+        "aggregate_count",
+        "cohort_profile",
+        "role",
+        "doctrine",
+        "training",
+        "loadout_standard",
+        "formation_library_ref",
+        "reconstitution_policy_ref",
+        "standing_procedure_ref"
+      ]
+    },
+    "/operating_process": {
+      "mode": "closed",
+      "allowed_keys": [
+        "constraints",
+        "goal",
+        "id",
+        "knowledge",
+        "last_review",
+        "next_review",
+        "opposition",
+        "plan",
+        "quiet_run_count",
+        "resources",
+        "status"
+      ],
+      "canonical_order": [
+        "id",
+        "status",
+        "goal",
+        "plan",
+        "knowledge",
+        "resources",
+        "constraints",
+        "opposition",
+        "last_review",
+        "next_review",
+        "quiet_run_count"
+      ]
+    },
+    "/permanent_units/*/cohort_profile": {
+      "mode": "closed",
+      "allowed_keys": [
+        "representation",
+        "numeric_distributions",
+        "category_counts",
+        "development",
+        "provenance"
+      ],
+      "canonical_order": [
+        "representation",
+        "numeric_distributions",
+        "category_counts",
+        "development",
+        "provenance"
+      ]
+    },
+    "/permanent_units/*/cohort_profile/numeric_distributions": {
+      "mode": "open_map"
+    },
+    "/permanent_units/*/cohort_profile/numeric_distributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ],
+      "canonical_order": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ]
+    },
+    "/permanent_units/*/cohort_profile/category_counts": {
+      "mode": "open_map"
+    },
+    "/permanent_units/*/cohort_profile/development": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resolved_through",
+        "credits",
+        "model"
+      ],
+      "canonical_order": [
+        "resolved_through",
+        "credits",
+        "model"
+      ]
+    },
+    "/permanent_units/*/cohort_profile/development/credits": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/charter": [
+      "string"
+    ],
+    "/covenant": [
+      "string"
+    ],
+    "/externally_assigned_members": [
+      "array"
+    ],
+    "/externally_assigned_members/*": [
+      "string"
+    ],
+    "/field_command_warrant": [
+      "object"
+    ],
+    "/field_command_warrant/granted_by": [
+      "string"
+    ],
+    "/field_command_warrant/holder": [
+      "string"
+    ],
+    "/field_command_warrant/may_deploy_lawful_house_formations": [
+      "boolean"
+    ],
+    "/field_command_warrant/may_organize_available_members": [
+      "boolean"
+    ],
+    "/field_command_warrant/strategic_house_authority_retained_by": [
+      "string"
+    ],
+    "/formation_library_ref": [
+      "string"
+    ],
+    "/home": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/leadership": [
+      "object"
+    ],
+    "/leadership/dojo_head": [
+      "string"
+    ],
+    "/leadership/field_commander": [
+      "string"
+    ],
+    "/leadership/first_sword": [
+      "string"
+    ],
+    "/leadership/head_of_house": [
+      "string"
+    ],
+    "/leadership/manor_director": [
+      "string"
+    ],
+    "/member_ids": [
+      "array"
+    ],
+    "/member_ids/*": [
+      "string"
+    ],
+    "/name": [
+      "string"
+    ],
+    "/operating_process": [
+      "object"
+    ],
+    "/operating_process/constraints": [
+      "array"
+    ],
+    "/operating_process/constraints/*": [
+      "string"
+    ],
+    "/operating_process/goal": [
+      "string"
+    ],
+    "/operating_process/id": [
+      "string"
+    ],
+    "/operating_process/knowledge": [
+      "string"
+    ],
+    "/operating_process/last_review": [
+      "null",
+      "string"
+    ],
+    "/operating_process/next_review": [
+      "null",
+      "string"
+    ],
+    "/operating_process/opposition": [
+      "array"
+    ],
+    "/operating_process/plan": [
+      "array"
+    ],
+    "/operating_process/plan/*": [
+      "string"
+    ],
+    "/operating_process/quiet_run_count": [
+      "integer"
+    ],
+    "/operating_process/resources": [
+      "array"
+    ],
+    "/operating_process/resources/*": [
+      "string"
+    ],
+    "/operating_process/status": [
+      "string"
+    ],
+    "/permanent_units": [
+      "array"
+    ],
+    "/permanent_units/*": [
+      "object"
+    ],
+    "/permanent_units/*/doctrine": [
+      "string"
+    ],
+    "/permanent_units/*/formation_library_ref": [
+      "string"
+    ],
+    "/permanent_units/*/id": [
+      "string"
+    ],
+    "/permanent_units/*/loadout_standard": [
+      "string"
+    ],
+    "/permanent_units/*/members": [
+      "array"
+    ],
+    "/permanent_units/*/members/*": [
+      "string"
+    ],
+    "/permanent_units/*/name": [
+      "string"
+    ],
+    "/permanent_units/*/owner": [
+      "string"
+    ],
+    "/permanent_units/*/reconstitution_policy_ref": [
+      "string"
+    ],
+    "/permanent_units/*/role": [
+      "string"
+    ],
+    "/permanent_units/*/standing_procedure_ref": [
+      "string"
+    ],
+    "/permanent_units/*/training": [
+      "string"
+    ],
+    "/personal_force_model": [
+      "string"
+    ],
+    "/private_guard_force": [
+      "boolean"
+    ],
+    "/public_training_for_money": [
+      "boolean"
+    ],
+    "/ranks": [
+      "array"
+    ],
+    "/ranks/*": [
+      "string"
+    ],
+    "/reconstitution_policy_ref": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/standing_readiness_order": [
+      "string"
+    ],
+    "/support_rank": [
+      "boolean"
+    ],
+    "/unassigned_members": [
+      "array"
+    ],
+    "/unassigned_members/*": [
+      "string"
+    ],
+    "/unit_policy": [
+      "object"
+    ],
+    "/unit_policy/formation_types": [
+      "array"
+    ],
+    "/unit_policy/formation_types/*": [
+      "string"
+    ],
+    "/unit_policy/permanent_units_player_or_delegated_authority_only": [
+      "boolean"
+    ],
+    "/aggregate_member_count": [
+      "integer"
+    ],
+    "/permanent_units/*/aggregate_count": [
+      "integer"
+    ],
+    "/permanent_units/*/cohort_profile": [
+      "null",
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/representation": [
+      "string"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions": [
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*": [
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*/count": [
+      "integer"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*/mean": [
+      "number"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*/sd": [
+      "number"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*/min": [
+      "number"
+    ],
+    "/permanent_units/*/cohort_profile/numeric_distributions/*/max": [
+      "number"
+    ],
+    "/permanent_units/*/cohort_profile/category_counts": [
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/category_counts/*": [
+      "integer"
+    ],
+    "/permanent_units/*/cohort_profile/development": [
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/development/resolved_through": [
+      "string"
+    ],
+    "/permanent_units/*/cohort_profile/development/credits": [
+      "object"
+    ],
+    "/permanent_units/*/cohort_profile/development/credits/*": [
+      "number"
+    ],
+    "/permanent_units/*/cohort_profile/development/model": [
+      "string"
+    ],
+    "/permanent_units/*/cohort_profile/provenance": [
+      "array"
+    ],
+    "/permanent_units/*/cohort_profile/provenance/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/externally_assigned_members": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/member_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operating_process/constraints": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operating_process/opposition": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operating_process/plan": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operating_process/resources": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/permanent_units": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/permanent_units/*/members": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/ranks": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unassigned_members": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unit_policy/formation_types": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/permanent_units/*/cohort_profile/provenance": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "House permanent units, member assignment classification, standing readiness order, and House operating process are fields of the House owner; do not create mutable sidecar owners that mirror them.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order.",
+    "House Tang ordinary personnel may be represented as aggregate cohort counts/profiles inside the House owner; members arrays contain only persistent exact/person-lite identities.",
+    "Group development updates a cohort profile once. Do not fan out routine training writes across anonymous cohort members."
+  ]
+}

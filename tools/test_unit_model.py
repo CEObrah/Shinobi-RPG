@@ -85,14 +85,6 @@ for term in ('split','standard loadout','refit'):
 sup=rj('data/mechanics/support.json'); classes=sup.get('combat_classes',{})
 if 'service_support' not in classes:err('support_service_class_missing')
 if 'frontage' not in str(classes.get('service_support','')).lower():err('support_frontage_rule_missing')
-# No retired organization term in text files or filenames.
-for p in R.rglob('*'):
-    if '.git' in p.parts or not p.is_file() or p.suffix=='.pyc' or p==Path(__file__).resolve():continue
-    if 'cohort' in p.name.lower():err(f'retired_term_filename:{p.relative_to(R)}')
-    if p.suffix.lower() in ('.json','.md','.txt','.py'):
-        try:t=p.read_text(encoding='utf-8').lower()
-        except:continue
-        if 'cohort' in t:err(f'retired_term_text:{p.relative_to(R)}')
 # Context-size advisory only. Correctness and sufficient instructions take priority over a fixed byte ceiling.
 for rel,advisory in [('RUNTIME.md',8000),('data/runtime/repository-map.json',12000),('VOICE.md',8000)]:
     size=(R/rel).stat().st_size

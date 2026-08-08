@@ -36,6 +36,22 @@ for house_id, (path, house) in houses.items():
                 errors.append(f"{path.relative_to(ROOT)}: unit member {member_id} is not a House member")
     if len(unit_members) != len(set(unit_members)):
         errors.append(f"{path.relative_to(ROOT)}: a person appears in more than one permanent House unit")
+    aggregate_sum = 0
+    for unit in units:
+        aggregate_count = unit.get("aggregate_count")
+        if not isinstance(aggregate_count, int) or aggregate_count < 0:
+            errors.append(f"{path.relative_to(ROOT)}: unit {unit.get('id')} aggregate_count must be a nonnegative integer")
+            continue
+        aggregate_sum += aggregate_count
+        profile = unit.get("cohort_profile")
+        if aggregate_count == 0 and profile is not None:
+            errors.append(f"{path.relative_to(ROOT)}: unit {unit.get('id')} zero aggregate_count must have null cohort_profile")
+        if aggregate_count > 0 and (not isinstance(profile, dict) or profile.get("representation") != "house_cohort"):
+            errors.append(f"{path.relative_to(ROOT)}: unit {unit.get('id')} aggregate personnel require house_cohort profile")
+    if house.get("aggregate_member_count") != aggregate_sum:
+        errors.append(f"{path.relative_to(ROOT)}: aggregate_member_count drift {house.get('aggregate_member_count')} != {aggregate_sum}")
+    if house.get("personal_force_model") != "aggregate_cohorts_with_sparse_sword_manor_notables":
+        errors.append(f"{path.relative_to(ROOT)}: House Tang must use aggregate cohorts with sparse Sword Manor notables")
     unassigned = set(house.get("unassigned_members", []))
     external = set(house.get("externally_assigned_members", []))
     if unassigned & external:
@@ -50,31 +66,14 @@ for house_id, (path, house) in houses.items():
     if not isinstance(process, dict) or not process.get("id") or not process.get("status"):
         errors.append(f"{path.relative_to(ROOT)}: embedded operating_process must have id and status")
 
-# Compatibility House projection is allowed only as a derived exact projection.
+# Redundant House unit projection was removed; House organization/cohorts live in the House owner.
 projection_path = ROOT / "state/house/units.json"
 if projection_path.exists():
-    projection = read_json(projection_path)
-    source_ref = projection.get("source_ref")
-    if projection.get("authority") is not False or projection.get("derived_cache") is not True:
-        errors.append("state/house/units.json must be a non-authoritative derived cache")
-    if source_ref != "state/house/tang.json":
-        errors.append("state/house/units.json must source state/house/tang.json")
-    source = read_json(ROOT / source_ref) if source_ref and (ROOT / source_ref).exists() else {}
-    for key in (
-        "permanent_units",
-        "unassigned_members",
-        "externally_assigned_members",
-        "formation_library_ref",
-        "reconstitution_policy_ref",
-    ):
-        if projection.get(key) != source.get(key):
-            errors.append(f"state/house/units.json drift: {key} != House owner {key}")
-    if projection.get("note") != source.get("standing_readiness_order"):
-        errors.append("state/house/units.json drift: note != House standing_readiness_order")
+    errors.append("redundant House unit projection must not be recreated: state/house/units.json")
 
 owner_shard = read_json(ROOT / "state/index/owners/house.json")
 if "house.tang.units" in owner_shard.get("owners", {}):
-    errors.append("derived House unit projection must not be registered as an owner")
+    errors.append("removed House unit projection must not be registered as an owner")
 
 # Load exact characters and top-level operational teams once for cross-owner checks.
 exact_characters = {}

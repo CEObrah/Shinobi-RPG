@@ -4,6 +4,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 model=json.loads((ROOT/'data/development/model.json').read_text())
 eff=model['representation_efficiency']
 assert set(eff.values())=={1.0}, eff
+assert 'house_cohort' in eff and eff['house_cohort']==1.0
 # Identical inputs must not change because of representation.
 base=100.0
 aptitude=1.6

@@ -16,6 +16,8 @@ For an integer capability, repeatedly consume `point_cost(current_value)` develo
 
 For aggregate units, the same development law applies. Residual credits remain unit-specific and target-specific; capability changes update the authoritative multidimensional distribution and invalidate/rebuild the derived battle kernel. Qualified-subset promotion remains a conserved integer personnel transfer and cannot be fabricated from a fractional bank. Routine training cannot manufacture field, combat, or command experience.
 
+Sword Manor anonymous cohorts use the same law as aggregate units but keep their compact distribution and residual credits inside the House owner. A shared training block updates the cohort once. It must not fan out identical writes across every anonymous disciple. Persistent Sword Manor person-lite/exact standouts remain separate people and settle only their own attended hours; they do not receive both the cohort gain and a duplicate individual gain.
+
 The aggregate temporal frontier is not a substitute for an owner-specific development cursor. Advancing a coarse world process may defer an owner's capability materialization, but it may not erase the unresolved interval. This is the lazy-development guarantee that prevents offscreen named characters and units from freezing or losing fractional progress.
 
 ## Capacity conservation

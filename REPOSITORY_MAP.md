@@ -173,3 +173,8 @@ Only this repository is authority. Never import another game repository's data, 
 - **Commander in combat:** load the commander person's exact/lite combat owner separately from the command group. The command group owns hierarchy only and never substitutes for the person or a troop unit.
 - **Succession:** on commander incapacity, load saved deputy/successor refs and standing doctrine. If a superior absorbs the child units directly, recompute that superior's personnel and direct-slot load immediately.
 - **Display:** direct troop units and subordinate command groups are peer command elements. A subordinate command group counts as one direct slot and may be shown as `<Commander> Command` with its children nested underneath.
+
+
+## Population / recruitment
+
+Use the `population_recruitment` route. Load `state/population/registry.json` plus only the one destination owner. Recruitment is aggregate for mass forces. Sword Manor may materialize only sparse proven standouts under its saved personal-force model. Do not enumerate person files to process ordinary recruitment or cohort training.

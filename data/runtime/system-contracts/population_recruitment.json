@@ -1,0 +1,45 @@
+{
+  "schema": "system-contract.v1",
+  "system_id": "population_recruitment",
+  "authority": false,
+  "authority_paths": [
+    "state/population/",
+    "state/house/",
+    "state/force/",
+    "state/unit/",
+    "state/person/"
+  ],
+  "owner_templates": [
+    "population-registry",
+    "house",
+    "force",
+    "unit",
+    "person-lite"
+  ],
+  "read_first": [
+    "the one source population pool actually recruited from",
+    "the destination House/force/unit only",
+    "selection mechanics and source/destination capability state only when the recruitment test changes composition"
+  ],
+  "write_order": [
+    "resolve applicant count and selection from the source pool without pre-creating individuals",
+    "remove only accepted personnel from the source population; rejected applicants remain in the source pool",
+    "update the aggregate destination cohort/force/unit once with accepted count and selected composition",
+    "for house.tang only, materialize a sparse proven standout subset as person-lite and subtract that subset from the aggregate accepted cohort",
+    "record one conserved population transfer and rebuild only affected derived indexes"
+  ],
+  "invariants": [
+    "Recruitment never creates personnel from nothing.",
+    "Mass force, village, country, clan, mercenary and civilian-security recruitment remains aggregate and cannot automatically emit person-lite owners.",
+    "Sword Manor is the only recruitment path allowed to create sparse person-lite standouts, and only when house.tang personal_force_model authorizes it.",
+    "A descriptive source category such as hunter or villager is stored inside a pool/profile when causally relevant and does not require its own file.",
+    "Selection changes the accepted population profile; eight selected from fifty are not treated as eight unselected random civilians.",
+    "Compression cannot improve aptitude, age/body composition, capability, experience, survival, equipment, promotion or training outcomes."
+  ],
+  "validators": [
+    "tools/test_population_model.py",
+    "tools/test_state_consolidation.py",
+    "tools/test_templates.py",
+    "tools/test_development.py"
+  ]
+}

@@ -38,6 +38,12 @@ Command capacity is ownership-agnostic. Personal, institutional, assigned, attac
 
 Teams/task groups may combine separate homogeneous specialty units and exact named shinobi. Formations are temporary operational arrangements and own no manpower. Medical-nin, logistics, communications, sensors, engineers, and other support remain real targetable personnel/units; support effects are resolved separately from default line-assault frontage.
 
+## Population and recruitment invariants
+
+Recruitment conserves real aggregate population/manpower. Candidate categories such as hunter, villager, farmer, academy trainee, veteran, mercenary or specialist exist only when causally relevant and live as compact profile records, not separate files or hidden person sheets. Selection changes the accepted population profile.
+
+Mass recruitment for villages, countries, forces, clans, mercenaries and civilian security remains aggregate and never creates person-lite records as a side effect. Sword Manor is the sole recruitment exception: while House Tang's saved personal-force model authorizes it, only proven standout recruits may materialize as sparse person-lite individuals; ordinary accepted recruits enter aggregate House cohorts. Group training/development updates the aggregate cohort once, while persistent standouts retain only their individual divergence. Materialization and exact-character expansion conserve the same person and grant no free capability.
+
 ## Information and determinism
 
 World truth and player knowledge are separate. Information reaches Wei only through valid observation, sensors, reports, scouts, messengers, witnesses, prisoners, spies, or other persisted channels. Distinguish observation, inference, rumor, and verified fact.

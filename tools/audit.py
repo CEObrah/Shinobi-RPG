@@ -221,7 +221,7 @@ for oid in _covreq.get('required_owner_ids',[]):
  if oid not in covered:err(f'uncovered_owner:{oid}')
 # Personal/issued policy
 house=rj(ROOT/'state/house/tang.json') or {}
-if house.get('personal_force_model')!='all_members_individual_lite_or_exact':err('house_resolution_policy')
+if house.get('personal_force_model')!='aggregate_cohorts_with_sparse_sword_manor_notables':err('house_resolution_policy')
 # Player build validation may enforce persistent abilities, never a mutable opening career status.
 pl=rj(ROOT/'state/player.json') or {}
 if 'bloodline.guardian_current' not in pl.get('repertoire',{}).get('bloodlines',[]):err('wei_missing_guardian_current')
@@ -329,7 +329,7 @@ if len(set(ucr))<15:err('unit_readiness_values_insufficiently_differentiated')
 # Representation-neutral development model
 _dev=rj(ROOT/'data/development/model.json') or {}
 _eff=_dev.get('representation_efficiency',{})
-if set(_eff.keys())!=set(('exact','individual_lite','unit')):err('development_representation_classes')
+if set(_eff.keys())!=set(('exact','individual_lite','unit','house_cohort')):err('development_representation_classes')
 if any(v!=1.0 for v in _eff.values()):err(f'development_compression_bonus:{_eff}')
 if not _dev.get('capacity_rules',{}).get('instructor_time_conserved'):err('development_instructor_capacity_not_conserved')
 if not _dev.get('capacity_rules',{}).get('facility_capacity_conserved'):err('development_facility_capacity_not_conserved')
@@ -687,7 +687,7 @@ for _r in _hrs:
  for _s in _r.get('unit_series',[]):
   _n=int(_s.get('unit_count',0));_nom=int(_s.get('nominal_strength',0));_fin=int(_s.get('final_unit_strength',0))
   if _n<1 or _nom<1 or _fin<1 or _fin>_nom:err(f'bad_unit_series:{_r.get("id")}:{_s.get("series_id")}')
-_hu=rj(ROOT/'state/house/units.json') or {}
+_hu=rj(ROOT/'state/house/tang.json') or {}
 if 'pc_wei_tang' not in _hu.get('unassigned_members',[]):err('wei_personal_organization_predefined')
 if len(_hu.get('permanent_units',[]))<5:err('house_tang_institutional_units_missing')
 for _fn in ('kosuke-maruboshi.json','zaji.json','tekuno-kanden.json','hayama-shirakumo.json','suzaku-nara.json','daikoku-funeno.json','suzume.json'):

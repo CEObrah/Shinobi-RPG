@@ -1,1 +1,900 @@
-{"schema":"file-template.v1","template_id":"template.person-lite","target_schema":"person-lite","source_schema":"schemas/person-lite.schema.json","scope":"mutable_state","current_directories":["state/person/ht","state/person/world"],"unknown_key_policy":"reject","required_top_level_keys":["appearance","birth_date","body","id","name","resolution","schema","stats"],"object_contracts":{"":{"mode":"closed","allowed_keys":["appearance","appearance_source","aptitude","assignment","background","birth_date","birth_date_source","body","current_goal","duties","equipment_standard","family_id","health","history","id","loc","loyalty","name","narration_priority","offices","origin","owner","personality","qualifications","rank","relationships","repertoire","resolution","role_profile_ref","schema","stats","unit"],"canonical_order":["schema","id","name","resolution","owner","family_id","origin","birth_date","birth_date_source","rank","offices","duties","qualifications","stats","health","loc","assignment","unit","equipment_standard","loyalty","narration_priority","personality","history","body","appearance","appearance_source","repertoire","aptitude","relationships","current_goal","background","role_profile_ref"]},"/aptitude":{"mode":"closed","allowed_keys":["academic_learning","chakra_learning","genjutsu_learning","medical_learning","nature_transformation_learning","physical_learning","sensory_learning","social_learning","source","tactical_learning","technical_learning"],"canonical_order":["physical_learning","technical_learning","tactical_learning","academic_learning","social_learning","chakra_learning","nature_transformation_learning","genjutsu_learning","sensory_learning","medical_learning","source"]},"/body":{"mode":"closed","allowed_keys":["adult_height_cm","current_weight_kg","frame","growth_end_age","growth_profile_id","height_anchors","source"],"canonical_order":["adult_height_cm","growth_profile_id","growth_end_age","height_anchors","current_weight_kg","frame","source"]},"/health":{"mode":"closed","allowed_keys":["fatigue","status"],"canonical_order":["status","fatigue"]},"/history":{"mode":"closed","allowed_keys":["promotion","service"],"canonical_order":["promotion","service"]},"/personality":{"mode":"closed","allowed_keys":["decision_tendency","dislikes","preferences","private_concern","resolution","traits"],"canonical_order":["resolution","traits","preferences","dislikes","decision_tendency","private_concern"]},"/relationships/*":{"mode":"closed","allowed_keys":["duty","relationship_type","respect","target_id","trust"],"canonical_order":["target_id","relationship_type","trust","respect","duty"]},"/repertoire":{"mode":"closed","allowed_keys":["bloodlines","field_usable_techniques","latent_or_locked_techniques","method_mastery","package_mastery","packages"],"canonical_order":["packages","package_mastery","field_usable_techniques","latent_or_locked_techniques","bloodlines","method_mastery"]},"/repertoire/method_mastery":{"mode":"open_map"},"/repertoire/package_mastery":{"mode":"open_map"},"/stats":{"mode":"closed","allowed_keys":["attributes","chakra_dimensions","domain_proficiencies","martial_skills","operational_skills","resources"],"canonical_order":["attributes","chakra_dimensions","domain_proficiencies","martial_skills","operational_skills","resources"]},"/stats/attributes":{"mode":"closed","allowed_keys":["agility","awareness","composure","coordination","endurance","intelligence","presence","strength","toughness"],"canonical_order":["agility","awareness","composure","coordination","endurance","intelligence","presence","strength","toughness"]},"/stats/chakra_dimensions":{"mode":"closed","allowed_keys":["casting_stability","control","efficiency","hand_seal_speed","multitasking","output","sensing","suppression"],"canonical_order":["casting_stability","control","efficiency","hand_seal_speed","multitasking","output","sensing","suppression"]},"/stats/domain_proficiencies":{"mode":"closed","allowed_keys":["barrier","genjutsu","medical","sealing","wind"],"canonical_order":["genjutsu","medical","sealing","barrier","wind"]},"/stats/martial_skills":{"mode":"closed","allowed_keys":["bow","grappling","heavy_weapon","movement","polearm","staff","stealth","sword","thrown_tools","unarmed"],"canonical_order":["bow","grappling","heavy_weapon","movement","polearm","staff","stealth","sword","thrown_tools","unarmed"]},"/stats/operational_skills":{"mode":"closed","allowed_keys":["infiltration","investigation","leadership","medicine","survival","tactics","team_coordination","tracking","traps"],"canonical_order":["infiltration","investigation","leadership","medicine","survival","tactics","team_coordination","tracking","traps"]},"/stats/resources":{"mode":"closed","allowed_keys":["chakra","fatigue","health","strain"],"canonical_order":["chakra","health","fatigue","strain"]},"/stats/resources/chakra":{"mode":"closed","allowed_keys":["capacity","current"],"canonical_order":["capacity","current"]},"/stats/resources/fatigue":{"mode":"closed","allowed_keys":["capacity","current"],"canonical_order":["capacity","current"]},"/stats/resources/health":{"mode":"closed","allowed_keys":["capacity","current"],"canonical_order":["capacity","current"]},"/stats/resources/strain":{"mode":"closed","allowed_keys":["current","safe_capacity"],"canonical_order":["safe_capacity","current"]}},"type_contracts":{"/appearance":["integer","number"],"/appearance_source":["string"],"/aptitude":["object"],"/aptitude/academic_learning":["integer"],"/aptitude/chakra_learning":["integer"],"/aptitude/genjutsu_learning":["integer"],"/aptitude/medical_learning":["integer"],"/aptitude/nature_transformation_learning":["integer"],"/aptitude/physical_learning":["integer"],"/aptitude/sensory_learning":["integer"],"/aptitude/social_learning":["integer"],"/aptitude/source":["string"],"/aptitude/tactical_learning":["integer"],"/aptitude/technical_learning":["integer"],"/assignment":["string"],"/background":["string"],"/birth_date":["string"],"/birth_date_source":["string"],"/body":["object"],"/body/adult_height_cm":["number"],"/body/current_weight_kg":["number"],"/body/frame":["string"],"/body/growth_end_age":["integer"],"/body/growth_profile_id":["string"],"/body/height_anchors":["array"],"/body/source":["string"],"/current_goal":["string"],"/duties":["array"],"/duties/*":["string"],"/equipment_standard":["string"],"/family_id":["string"],"/health":["object"],"/health/fatigue":["integer"],"/health/status":["string"],"/history":["object"],"/history/promotion":["array"],"/history/service":["array"],"/history/service/*":["string"],"/id":["string"],"/loc":["string"],"/loyalty":["string"],"/name":["string"],"/narration_priority":["string"],"/offices":["array"],"/origin":["string"],"/owner":["string"],"/personality":["object"],"/personality/decision_tendency":["string"],"/personality/dislikes":["array"],"/personality/dislikes/*":["string"],"/personality/preferences":["array"],"/personality/preferences/*":["string"],"/personality/private_concern":["string"],"/personality/resolution":["string"],"/personality/traits":["array"],"/personality/traits/*":["string"],"/qualifications":["array"],"/qualifications/*":["string"],"/rank":["string"],"/relationships":["array"],"/relationships/*":["object"],"/relationships/*/duty":["integer"],"/relationships/*/relationship_type":["string"],"/relationships/*/respect":["integer"],"/relationships/*/target_id":["string"],"/relationships/*/trust":["integer"],"/repertoire":["object"],"/repertoire/bloodlines":["array"],"/repertoire/field_usable_techniques":["array"],"/repertoire/latent_or_locked_techniques":["array"],"/repertoire/method_mastery":["object"],"/repertoire/package_mastery":["object"],"/repertoire/package_mastery/*":["integer"],"/repertoire/packages":["array"],"/repertoire/packages/*":["string"],"/resolution":["string"],"/role_profile_ref":["string"],"/schema":["string"],"/stats":["object"],"/stats/attributes":["object"],"/stats/attributes/agility":["integer"],"/stats/attributes/awareness":["integer"],"/stats/attributes/composure":["integer"],"/stats/attributes/coordination":["integer"],"/stats/attributes/endurance":["integer"],"/stats/attributes/intelligence":["integer"],"/stats/attributes/presence":["integer"],"/stats/attributes/strength":["integer"],"/stats/attributes/toughness":["integer"],"/stats/chakra_dimensions":["object"],"/stats/chakra_dimensions/casting_stability":["integer"],"/stats/chakra_dimensions/control":["integer"],"/stats/chakra_dimensions/efficiency":["integer"],"/stats/chakra_dimensions/hand_seal_speed":["integer"],"/stats/chakra_dimensions/multitasking":["integer"],"/stats/chakra_dimensions/output":["integer"],"/stats/chakra_dimensions/sensing":["integer"],"/stats/chakra_dimensions/suppression":["integer"],"/stats/domain_proficiencies":["object"],"/stats/domain_proficiencies/barrier":["integer"],"/stats/domain_proficiencies/genjutsu":["integer"],"/stats/domain_proficiencies/medical":["integer"],"/stats/domain_proficiencies/sealing":["integer"],"/stats/domain_proficiencies/wind":["integer"],"/stats/martial_skills":["object"],"/stats/martial_skills/bow":["integer"],"/stats/martial_skills/grappling":["integer"],"/stats/martial_skills/heavy_weapon":["integer"],"/stats/martial_skills/movement":["integer"],"/stats/martial_skills/polearm":["integer"],"/stats/martial_skills/staff":["integer"],"/stats/martial_skills/stealth":["integer"],"/stats/martial_skills/sword":["integer"],"/stats/martial_skills/thrown_tools":["integer"],"/stats/martial_skills/unarmed":["integer"],"/stats/operational_skills":["object"],"/stats/operational_skills/infiltration":["integer"],"/stats/operational_skills/investigation":["integer"],"/stats/operational_skills/leadership":["integer"],"/stats/operational_skills/medicine":["integer"],"/stats/operational_skills/survival":["integer"],"/stats/operational_skills/tactics":["integer"],"/stats/operational_skills/team_coordination":["integer"],"/stats/operational_skills/tracking":["integer"],"/stats/operational_skills/traps":["integer"],"/stats/resources":["object"],"/stats/resources/chakra":["object"],"/stats/resources/chakra/capacity":["integer"],"/stats/resources/chakra/current":["integer"],"/stats/resources/fatigue":["object"],"/stats/resources/fatigue/capacity":["integer"],"/stats/resources/fatigue/current":["integer"],"/stats/resources/health":["object"],"/stats/resources/health/capacity":["integer"],"/stats/resources/health/current":["integer"],"/stats/resources/strain":["object"],"/stats/resources/strain/current":["integer"],"/stats/resources/strain/safe_capacity":["integer"],"/unit":["null"],"":["object"]},"array_contracts":{"/duties":{"item_types":["string"]},"/history/service":{"item_types":["string"]},"/personality/dislikes":{"item_types":["string"]},"/personality/preferences":{"item_types":["string"]},"/personality/traits":{"item_types":["string"]},"/qualifications":{"item_types":["string"]},"/relationships":{"item_types":["object"]},"/repertoire/packages":{"item_types":["string"]}},"writing_rules":["Load this template before creating or structurally editing a target owner.","Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.","Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.","Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.","Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."]}
+{
+  "schema": "file-template.v1",
+  "template_id": "template.person-lite",
+  "target_schema": "person-lite",
+  "source_schema": "schemas/person-lite.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/person/ht",
+    "state/person/world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "appearance",
+    "birth_date",
+    "body",
+    "id",
+    "name",
+    "resolution",
+    "schema",
+    "stats"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "appearance",
+        "appearance_source",
+        "aptitude",
+        "assignment",
+        "background",
+        "birth_date",
+        "birth_date_source",
+        "body",
+        "current_goal",
+        "duties",
+        "equipment_standard",
+        "family_id",
+        "health",
+        "history",
+        "id",
+        "loc",
+        "loyalty",
+        "name",
+        "narration_priority",
+        "offices",
+        "origin",
+        "owner",
+        "personality",
+        "qualifications",
+        "rank",
+        "relationships",
+        "repertoire",
+        "resolution",
+        "role_profile_ref",
+        "schema",
+        "stats",
+        "unit",
+        "materialization_reason"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "name",
+        "resolution",
+        "owner",
+        "family_id",
+        "origin",
+        "birth_date",
+        "birth_date_source",
+        "rank",
+        "offices",
+        "duties",
+        "qualifications",
+        "stats",
+        "health",
+        "loc",
+        "assignment",
+        "unit",
+        "equipment_standard",
+        "loyalty",
+        "narration_priority",
+        "materialization_reason",
+        "personality",
+        "history",
+        "body",
+        "appearance",
+        "appearance_source",
+        "repertoire",
+        "aptitude",
+        "relationships",
+        "current_goal",
+        "background",
+        "role_profile_ref"
+      ]
+    },
+    "/aptitude": {
+      "mode": "closed",
+      "allowed_keys": [
+        "academic_learning",
+        "chakra_learning",
+        "genjutsu_learning",
+        "medical_learning",
+        "nature_transformation_learning",
+        "physical_learning",
+        "sensory_learning",
+        "social_learning",
+        "source",
+        "tactical_learning",
+        "technical_learning"
+      ],
+      "canonical_order": [
+        "physical_learning",
+        "technical_learning",
+        "tactical_learning",
+        "academic_learning",
+        "social_learning",
+        "chakra_learning",
+        "nature_transformation_learning",
+        "genjutsu_learning",
+        "sensory_learning",
+        "medical_learning",
+        "source"
+      ]
+    },
+    "/body": {
+      "mode": "closed",
+      "allowed_keys": [
+        "adult_height_cm",
+        "current_weight_kg",
+        "frame",
+        "growth_end_age",
+        "growth_profile_id",
+        "height_anchors",
+        "source"
+      ],
+      "canonical_order": [
+        "adult_height_cm",
+        "growth_profile_id",
+        "growth_end_age",
+        "height_anchors",
+        "current_weight_kg",
+        "frame",
+        "source"
+      ]
+    },
+    "/health": {
+      "mode": "closed",
+      "allowed_keys": [
+        "fatigue",
+        "status"
+      ],
+      "canonical_order": [
+        "status",
+        "fatigue"
+      ]
+    },
+    "/history": {
+      "mode": "closed",
+      "allowed_keys": [
+        "promotion",
+        "service"
+      ],
+      "canonical_order": [
+        "promotion",
+        "service"
+      ]
+    },
+    "/personality": {
+      "mode": "closed",
+      "allowed_keys": [
+        "decision_tendency",
+        "dislikes",
+        "preferences",
+        "private_concern",
+        "resolution",
+        "traits"
+      ],
+      "canonical_order": [
+        "resolution",
+        "traits",
+        "preferences",
+        "dislikes",
+        "decision_tendency",
+        "private_concern"
+      ]
+    },
+    "/relationships/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "duty",
+        "relationship_type",
+        "respect",
+        "target_id",
+        "trust"
+      ],
+      "canonical_order": [
+        "target_id",
+        "relationship_type",
+        "trust",
+        "respect",
+        "duty"
+      ]
+    },
+    "/repertoire": {
+      "mode": "closed",
+      "allowed_keys": [
+        "bloodlines",
+        "field_usable_techniques",
+        "latent_or_locked_techniques",
+        "method_mastery",
+        "package_mastery",
+        "packages"
+      ],
+      "canonical_order": [
+        "packages",
+        "package_mastery",
+        "field_usable_techniques",
+        "latent_or_locked_techniques",
+        "bloodlines",
+        "method_mastery"
+      ]
+    },
+    "/repertoire/method_mastery": {
+      "mode": "open_map"
+    },
+    "/repertoire/package_mastery": {
+      "mode": "open_map"
+    },
+    "/stats": {
+      "mode": "closed",
+      "allowed_keys": [
+        "attributes",
+        "chakra_dimensions",
+        "domain_proficiencies",
+        "martial_skills",
+        "operational_skills",
+        "resources"
+      ],
+      "canonical_order": [
+        "attributes",
+        "chakra_dimensions",
+        "domain_proficiencies",
+        "martial_skills",
+        "operational_skills",
+        "resources"
+      ]
+    },
+    "/stats/attributes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "agility",
+        "awareness",
+        "composure",
+        "coordination",
+        "endurance",
+        "intelligence",
+        "presence",
+        "strength",
+        "toughness"
+      ],
+      "canonical_order": [
+        "agility",
+        "awareness",
+        "composure",
+        "coordination",
+        "endurance",
+        "intelligence",
+        "presence",
+        "strength",
+        "toughness"
+      ]
+    },
+    "/stats/chakra_dimensions": {
+      "mode": "closed",
+      "allowed_keys": [
+        "casting_stability",
+        "control",
+        "efficiency",
+        "hand_seal_speed",
+        "multitasking",
+        "output",
+        "sensing",
+        "suppression"
+      ],
+      "canonical_order": [
+        "casting_stability",
+        "control",
+        "efficiency",
+        "hand_seal_speed",
+        "multitasking",
+        "output",
+        "sensing",
+        "suppression"
+      ]
+    },
+    "/stats/domain_proficiencies": {
+      "mode": "closed",
+      "allowed_keys": [
+        "barrier",
+        "genjutsu",
+        "medical",
+        "sealing",
+        "wind"
+      ],
+      "canonical_order": [
+        "genjutsu",
+        "medical",
+        "sealing",
+        "barrier",
+        "wind"
+      ]
+    },
+    "/stats/martial_skills": {
+      "mode": "closed",
+      "allowed_keys": [
+        "bow",
+        "grappling",
+        "heavy_weapon",
+        "movement",
+        "polearm",
+        "staff",
+        "stealth",
+        "sword",
+        "thrown_tools",
+        "unarmed"
+      ],
+      "canonical_order": [
+        "bow",
+        "grappling",
+        "heavy_weapon",
+        "movement",
+        "polearm",
+        "staff",
+        "stealth",
+        "sword",
+        "thrown_tools",
+        "unarmed"
+      ]
+    },
+    "/stats/operational_skills": {
+      "mode": "closed",
+      "allowed_keys": [
+        "infiltration",
+        "investigation",
+        "leadership",
+        "medicine",
+        "survival",
+        "tactics",
+        "team_coordination",
+        "tracking",
+        "traps"
+      ],
+      "canonical_order": [
+        "infiltration",
+        "investigation",
+        "leadership",
+        "medicine",
+        "survival",
+        "tactics",
+        "team_coordination",
+        "tracking",
+        "traps"
+      ]
+    },
+    "/stats/resources": {
+      "mode": "closed",
+      "allowed_keys": [
+        "chakra",
+        "fatigue",
+        "health",
+        "strain"
+      ],
+      "canonical_order": [
+        "chakra",
+        "health",
+        "fatigue",
+        "strain"
+      ]
+    },
+    "/stats/resources/chakra": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "capacity",
+        "current"
+      ]
+    },
+    "/stats/resources/fatigue": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "capacity",
+        "current"
+      ]
+    },
+    "/stats/resources/health": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "capacity",
+        "current"
+      ]
+    },
+    "/stats/resources/strain": {
+      "mode": "closed",
+      "allowed_keys": [
+        "current",
+        "safe_capacity"
+      ],
+      "canonical_order": [
+        "safe_capacity",
+        "current"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/appearance": [
+      "integer",
+      "number"
+    ],
+    "/appearance_source": [
+      "string"
+    ],
+    "/aptitude": [
+      "object"
+    ],
+    "/aptitude/academic_learning": [
+      "integer"
+    ],
+    "/aptitude/chakra_learning": [
+      "integer"
+    ],
+    "/aptitude/genjutsu_learning": [
+      "integer"
+    ],
+    "/aptitude/medical_learning": [
+      "integer"
+    ],
+    "/aptitude/nature_transformation_learning": [
+      "integer"
+    ],
+    "/aptitude/physical_learning": [
+      "integer"
+    ],
+    "/aptitude/sensory_learning": [
+      "integer"
+    ],
+    "/aptitude/social_learning": [
+      "integer"
+    ],
+    "/aptitude/source": [
+      "string"
+    ],
+    "/aptitude/tactical_learning": [
+      "integer"
+    ],
+    "/aptitude/technical_learning": [
+      "integer"
+    ],
+    "/assignment": [
+      "string"
+    ],
+    "/background": [
+      "string"
+    ],
+    "/birth_date": [
+      "string"
+    ],
+    "/birth_date_source": [
+      "string"
+    ],
+    "/body": [
+      "object"
+    ],
+    "/body/adult_height_cm": [
+      "number"
+    ],
+    "/body/current_weight_kg": [
+      "number"
+    ],
+    "/body/frame": [
+      "string"
+    ],
+    "/body/growth_end_age": [
+      "integer"
+    ],
+    "/body/growth_profile_id": [
+      "string"
+    ],
+    "/body/height_anchors": [
+      "array"
+    ],
+    "/body/source": [
+      "string"
+    ],
+    "/current_goal": [
+      "string"
+    ],
+    "/duties": [
+      "array"
+    ],
+    "/duties/*": [
+      "string"
+    ],
+    "/equipment_standard": [
+      "string"
+    ],
+    "/family_id": [
+      "string"
+    ],
+    "/health": [
+      "object"
+    ],
+    "/health/fatigue": [
+      "integer"
+    ],
+    "/health/status": [
+      "string"
+    ],
+    "/history": [
+      "object"
+    ],
+    "/history/promotion": [
+      "array"
+    ],
+    "/history/service": [
+      "array"
+    ],
+    "/history/service/*": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/loc": [
+      "string"
+    ],
+    "/loyalty": [
+      "string"
+    ],
+    "/name": [
+      "string"
+    ],
+    "/narration_priority": [
+      "string"
+    ],
+    "/offices": [
+      "array"
+    ],
+    "/origin": [
+      "string"
+    ],
+    "/owner": [
+      "string"
+    ],
+    "/personality": [
+      "object"
+    ],
+    "/personality/decision_tendency": [
+      "string"
+    ],
+    "/personality/dislikes": [
+      "array"
+    ],
+    "/personality/dislikes/*": [
+      "string"
+    ],
+    "/personality/preferences": [
+      "array"
+    ],
+    "/personality/preferences/*": [
+      "string"
+    ],
+    "/personality/private_concern": [
+      "string"
+    ],
+    "/personality/resolution": [
+      "string"
+    ],
+    "/personality/traits": [
+      "array"
+    ],
+    "/personality/traits/*": [
+      "string"
+    ],
+    "/qualifications": [
+      "array"
+    ],
+    "/qualifications/*": [
+      "string"
+    ],
+    "/rank": [
+      "string"
+    ],
+    "/relationships": [
+      "array"
+    ],
+    "/relationships/*": [
+      "object"
+    ],
+    "/relationships/*/duty": [
+      "integer"
+    ],
+    "/relationships/*/relationship_type": [
+      "string"
+    ],
+    "/relationships/*/respect": [
+      "integer"
+    ],
+    "/relationships/*/target_id": [
+      "string"
+    ],
+    "/relationships/*/trust": [
+      "integer"
+    ],
+    "/repertoire": [
+      "object"
+    ],
+    "/repertoire/bloodlines": [
+      "array"
+    ],
+    "/repertoire/field_usable_techniques": [
+      "array"
+    ],
+    "/repertoire/latent_or_locked_techniques": [
+      "array"
+    ],
+    "/repertoire/method_mastery": [
+      "object"
+    ],
+    "/repertoire/package_mastery": [
+      "object"
+    ],
+    "/repertoire/package_mastery/*": [
+      "integer"
+    ],
+    "/repertoire/packages": [
+      "array"
+    ],
+    "/repertoire/packages/*": [
+      "string"
+    ],
+    "/resolution": [
+      "string"
+    ],
+    "/role_profile_ref": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/stats": [
+      "object"
+    ],
+    "/stats/attributes": [
+      "object"
+    ],
+    "/stats/attributes/agility": [
+      "integer"
+    ],
+    "/stats/attributes/awareness": [
+      "integer"
+    ],
+    "/stats/attributes/composure": [
+      "integer"
+    ],
+    "/stats/attributes/coordination": [
+      "integer"
+    ],
+    "/stats/attributes/endurance": [
+      "integer"
+    ],
+    "/stats/attributes/intelligence": [
+      "integer"
+    ],
+    "/stats/attributes/presence": [
+      "integer"
+    ],
+    "/stats/attributes/strength": [
+      "integer"
+    ],
+    "/stats/attributes/toughness": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions": [
+      "object"
+    ],
+    "/stats/chakra_dimensions/casting_stability": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/control": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/efficiency": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/hand_seal_speed": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/multitasking": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/output": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/sensing": [
+      "integer"
+    ],
+    "/stats/chakra_dimensions/suppression": [
+      "integer"
+    ],
+    "/stats/domain_proficiencies": [
+      "object"
+    ],
+    "/stats/domain_proficiencies/barrier": [
+      "integer"
+    ],
+    "/stats/domain_proficiencies/genjutsu": [
+      "integer"
+    ],
+    "/stats/domain_proficiencies/medical": [
+      "integer"
+    ],
+    "/stats/domain_proficiencies/sealing": [
+      "integer"
+    ],
+    "/stats/domain_proficiencies/wind": [
+      "integer"
+    ],
+    "/stats/martial_skills": [
+      "object"
+    ],
+    "/stats/martial_skills/bow": [
+      "integer"
+    ],
+    "/stats/martial_skills/grappling": [
+      "integer"
+    ],
+    "/stats/martial_skills/heavy_weapon": [
+      "integer"
+    ],
+    "/stats/martial_skills/movement": [
+      "integer"
+    ],
+    "/stats/martial_skills/polearm": [
+      "integer"
+    ],
+    "/stats/martial_skills/staff": [
+      "integer"
+    ],
+    "/stats/martial_skills/stealth": [
+      "integer"
+    ],
+    "/stats/martial_skills/sword": [
+      "integer"
+    ],
+    "/stats/martial_skills/thrown_tools": [
+      "integer"
+    ],
+    "/stats/martial_skills/unarmed": [
+      "integer"
+    ],
+    "/stats/operational_skills": [
+      "object"
+    ],
+    "/stats/operational_skills/infiltration": [
+      "integer"
+    ],
+    "/stats/operational_skills/investigation": [
+      "integer"
+    ],
+    "/stats/operational_skills/leadership": [
+      "integer"
+    ],
+    "/stats/operational_skills/medicine": [
+      "integer"
+    ],
+    "/stats/operational_skills/survival": [
+      "integer"
+    ],
+    "/stats/operational_skills/tactics": [
+      "integer"
+    ],
+    "/stats/operational_skills/team_coordination": [
+      "integer"
+    ],
+    "/stats/operational_skills/tracking": [
+      "integer"
+    ],
+    "/stats/operational_skills/traps": [
+      "integer"
+    ],
+    "/stats/resources": [
+      "object"
+    ],
+    "/stats/resources/chakra": [
+      "object"
+    ],
+    "/stats/resources/chakra/capacity": [
+      "integer"
+    ],
+    "/stats/resources/chakra/current": [
+      "integer"
+    ],
+    "/stats/resources/fatigue": [
+      "object"
+    ],
+    "/stats/resources/fatigue/capacity": [
+      "integer"
+    ],
+    "/stats/resources/fatigue/current": [
+      "integer"
+    ],
+    "/stats/resources/health": [
+      "object"
+    ],
+    "/stats/resources/health/capacity": [
+      "integer"
+    ],
+    "/stats/resources/health/current": [
+      "integer"
+    ],
+    "/stats/resources/strain": [
+      "object"
+    ],
+    "/stats/resources/strain/current": [
+      "integer"
+    ],
+    "/stats/resources/strain/safe_capacity": [
+      "integer"
+    ],
+    "/unit": [
+      "null"
+    ],
+    "": [
+      "object"
+    ],
+    "/materialization_reason": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/duties": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/service": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/personality/dislikes": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/personality/preferences": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/personality/traits": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/qualifications": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/relationships": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/repertoire/packages": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

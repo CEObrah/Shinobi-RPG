@@ -1,0 +1,344 @@
+{
+  "schema": "file-template.v1",
+  "template_id": "template.population-registry",
+  "target_schema": "population-registry",
+  "source_schema": "schemas/population-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/population"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "pools",
+    "transfers"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "pools",
+        "transfers"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "pools",
+        "transfers"
+      ]
+    },
+    "/pools": {
+      "mode": "open_map"
+    },
+    "/pools/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owner_ref",
+        "category",
+        "count",
+        "status",
+        "provenance",
+        "profile",
+        "last_changed_at"
+      ],
+      "canonical_order": [
+        "owner_ref",
+        "category",
+        "count",
+        "status",
+        "provenance",
+        "profile",
+        "last_changed_at"
+      ]
+    },
+    "/pools/*/profile": {
+      "mode": "closed",
+      "allowed_keys": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ],
+      "canonical_order": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ]
+    },
+    "/pools/*/profile/numeric_distributions": {
+      "mode": "open_map"
+    },
+    "/pools/*/profile/numeric_distributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ],
+      "canonical_order": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ]
+    },
+    "/pools/*/profile/category_counts": {
+      "mode": "open_map"
+    },
+    "/transfers/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "at",
+        "source_pool_id",
+        "destination_ref",
+        "applicants",
+        "accepted",
+        "rejected",
+        "method",
+        "accepted_profile",
+        "materialized_person_ids",
+        "source_removed",
+        "destination_added",
+        "selection_note"
+      ],
+      "canonical_order": [
+        "id",
+        "at",
+        "source_pool_id",
+        "destination_ref",
+        "applicants",
+        "accepted",
+        "rejected",
+        "method",
+        "accepted_profile",
+        "materialized_person_ids",
+        "source_removed",
+        "destination_added",
+        "selection_note"
+      ]
+    },
+    "/transfers/*/accepted_profile": {
+      "mode": "closed",
+      "allowed_keys": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ],
+      "canonical_order": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ]
+    },
+    "/transfers/*/accepted_profile/numeric_distributions": {
+      "mode": "open_map"
+    },
+    "/transfers/*/accepted_profile/numeric_distributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ],
+      "canonical_order": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ]
+    },
+    "/transfers/*/accepted_profile/category_counts": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/pools": [
+      "object"
+    ],
+    "/pools/*": [
+      "object"
+    ],
+    "/pools/*/owner_ref": [
+      "string"
+    ],
+    "/pools/*/category": [
+      "string"
+    ],
+    "/pools/*/count": [
+      "integer"
+    ],
+    "/pools/*/status": [
+      "string"
+    ],
+    "/pools/*/provenance": [
+      "string"
+    ],
+    "/pools/*/profile": [
+      "object"
+    ],
+    "/pools/*/last_changed_at": [
+      "string"
+    ],
+    "/pools/*/profile/numeric_distributions": [
+      "object"
+    ],
+    "/pools/*/profile/numeric_distributions/*": [
+      "object"
+    ],
+    "/pools/*/profile/numeric_distributions/*/count": [
+      "integer"
+    ],
+    "/pools/*/profile/numeric_distributions/*/mean": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/sd": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/min": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/max": [
+      "number"
+    ],
+    "/pools/*/profile/category_counts": [
+      "object"
+    ],
+    "/pools/*/profile/category_counts/*": [
+      "integer"
+    ],
+    "/pools/*/profile/tags": [
+      "array"
+    ],
+    "/pools/*/profile/tags/*": [
+      "string"
+    ],
+    "/transfers": [
+      "array"
+    ],
+    "/transfers/*": [
+      "object"
+    ],
+    "/transfers/*/id": [
+      "string"
+    ],
+    "/transfers/*/at": [
+      "string"
+    ],
+    "/transfers/*/source_pool_id": [
+      "string"
+    ],
+    "/transfers/*/destination_ref": [
+      "string"
+    ],
+    "/transfers/*/applicants": [
+      "integer"
+    ],
+    "/transfers/*/accepted": [
+      "integer"
+    ],
+    "/transfers/*/rejected": [
+      "integer"
+    ],
+    "/transfers/*/method": [
+      "string"
+    ],
+    "/transfers/*/accepted_profile": [
+      "object"
+    ],
+    "/transfers/*/materialized_person_ids": [
+      "array"
+    ],
+    "/transfers/*/materialized_person_ids/*": [
+      "string"
+    ],
+    "/transfers/*/source_removed": [
+      "integer"
+    ],
+    "/transfers/*/destination_added": [
+      "integer"
+    ],
+    "/transfers/*/selection_note": [
+      "null",
+      "string"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/count": [
+      "integer"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/mean": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/sd": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/min": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/max": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/category_counts": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/category_counts/*": [
+      "integer"
+    ],
+    "/transfers/*/accepted_profile/tags": [
+      "array"
+    ],
+    "/transfers/*/accepted_profile/tags/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/pools/*/profile/tags": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/transfers": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/transfers/*/materialized_person_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/transfers/*/accepted_profile/tags": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Population pools are aggregate reservoirs and recruitment provenance, not hidden person sheets.",
+    "Recruitment conserves accepted people from source pool to destination; rejected applicants remain in the source population.",
+    "Mass recruitment never creates person-lite records. Only the explicit Sword Manor sparse-notable policy may materialize a recruitment subset as person-lite.",
+    "Labels such as hunter, farmer, villager, academy trainee or veteran are categories inside this registry when causal, never mandatory separate files."
+  ]
+}

@@ -9,15 +9,39 @@
   ],
   "properties": {
     "completed_reviews": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "process_id",
+          "reviewed_from",
+          "reviewed_through",
+          "outcome",
+          "material_change",
+          "coverage_ref",
+          "coverage_count",
+          "result"
+        ],
+        "properties": {
+          "process_id": {"type": "string"},
+          "reviewed_from": {"type": ["string", "null"]},
+          "reviewed_through": {"type": "string"},
+          "outcome": {"enum": ["no_op", "deferred", "blocked", "failed", "succeeded"]},
+          "material_change": {"type": "boolean"},
+          "coverage_ref": {"type": ["string", "null"]},
+          "coverage_count": {"type": "integer", "minimum": 0},
+          "result": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
     },
     "last_settled_at": {
       "type": "string"
     },
     "schema": {
-      "type": "string"
+      "const": "shinobi-world-runtime"
     }
   },
-  "additionalProperties": true,
+  "additionalProperties": false,
   "description": "Current canonical schema contract."
 }

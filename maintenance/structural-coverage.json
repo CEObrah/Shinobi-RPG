@@ -8,7 +8,18 @@
       "current_directories": [
         "state/medical"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "health_medical"
+      ],
+      "path_authority_evidence": {
+        "health_medical": [
+          [
+            "state/medical",
+            "state/medical/"
+          ]
+        ]
+      }
     },
     {
       "schema": "command-assignments",
@@ -16,7 +27,18 @@
       "current_directories": [
         "state/org"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/org",
+            "state/org/"
+          ]
+        ]
+      }
     },
     {
       "schema": "command-group-index",
@@ -24,7 +46,18 @@
       "current_directories": [
         "state/cmd/command-groups"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "command"
+      ],
+      "path_authority_evidence": {
+        "command": [
+          [
+            "state/cmd/command-groups",
+            "state/cmd/"
+          ]
+        ]
+      }
     },
     {
       "schema": "covenant",
@@ -32,7 +65,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "development-bank-registry",
@@ -42,7 +86,18 @@
       ],
       "system_contracts": [
         "training_development"
-      ]
+      ],
+      "path_authority_candidates": [
+        "training_development"
+      ],
+      "path_authority_evidence": {
+        "training_development": [
+          [
+            "state/development",
+            "state/development/"
+          ]
+        ]
+      }
     },
     {
       "schema": "faction-owner",
@@ -50,7 +105,18 @@
       "current_directories": [
         "state/reg/factions"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "techniques_special": [
+          [
+            "state/reg/factions",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "faction-registry-index",
@@ -58,7 +124,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "family-index",
@@ -66,7 +158,18 @@
       "current_directories": [
         "state/family"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "family"
+      ],
+      "path_authority_evidence": {
+        "family": [
+          [
+            "state/family",
+            "state/family/"
+          ]
+        ]
+      }
     },
     {
       "schema": "force",
@@ -76,7 +179,18 @@
       ],
       "system_contracts": [
         "forces_institutions"
-      ]
+      ],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/force",
+            "state/force/"
+          ]
+        ]
+      }
     },
     {
       "schema": "home_establishment_index",
@@ -84,7 +198,18 @@
       "current_directories": [
         "state/org"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/org",
+            "state/org/"
+          ]
+        ]
+      }
     },
     {
       "schema": "home_establishment_owner",
@@ -94,7 +219,18 @@
       ],
       "system_contracts": [
         "forces_institutions"
-      ]
+      ],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/org/home-establishments",
+            "state/org/"
+          ]
+        ]
+      }
     },
     {
       "schema": "house",
@@ -102,7 +238,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "house_charter",
@@ -110,7 +257,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "house_units",
@@ -118,7 +276,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "jinchuriki-registry",
@@ -126,7 +295,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "kinship-index",
@@ -134,7 +329,18 @@
       "current_directories": [
         "state/family"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "family"
+      ],
+      "path_authority_evidence": {
+        "family": [
+          [
+            "state/family",
+            "state/family/"
+          ]
+        ]
+      }
     },
     {
       "schema": "life-course-registry",
@@ -142,7 +348,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "manpower-capability",
@@ -150,7 +382,9 @@
       "current_directories": [
         "state/manpower-capability"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "meta",
@@ -158,7 +392,182 @@
       "current_directories": [
         "state"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "characters",
+        "command",
+        "family",
+        "forces_institutions",
+        "health_medical",
+        "inventory_loadouts",
+        "relationships_knowledge",
+        "reputation",
+        "teams_formations",
+        "techniques_special",
+        "time_process",
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "characters": [
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "units": [
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/unit-kernel/"
+          ]
+        ],
+        "command": [
+          [
+            "state",
+            "state/cmd/"
+          ]
+        ],
+        "relationships_knowledge": [
+          [
+            "state",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "reputation": [
+          [
+            "state",
+            "state/reputation/"
+          ]
+        ],
+        "family": [
+          [
+            "state",
+            "state/family/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state",
+            "state/player.json"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/development/"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state",
+            "state/time/frontier.json"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ],
+          [
+            "state",
+            "state/runtime.json"
+          ]
+        ],
+        "teams_formations": [
+          [
+            "state",
+            "state/team/"
+          ]
+        ],
+        "forces_institutions": [
+          [
+            "state",
+            "state/force/"
+          ],
+          [
+            "state",
+            "state/org/"
+          ],
+          [
+            "state",
+            "state/house/"
+          ]
+        ],
+        "health_medical": [
+          [
+            "state",
+            "state/medical/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "inventory_loadouts": [
+          [
+            "state",
+            "state/stock/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state",
+            "state/reg/"
+          ],
+          [
+            "state",
+            "state/stock/"
+          ]
+        ]
+      }
     },
     {
       "schema": "ocular-owner-shard",
@@ -166,7 +575,18 @@
       "current_directories": [
         "state/medical/ocular/owners"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "health_medical"
+      ],
+      "path_authority_evidence": {
+        "health_medical": [
+          [
+            "state/medical/ocular/owners",
+            "state/medical/"
+          ]
+        ]
+      }
     },
     {
       "schema": "ocular-registry-index",
@@ -174,7 +594,18 @@
       "current_directories": [
         "state/medical"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "health_medical"
+      ],
+      "path_authority_evidence": {
+        "health_medical": [
+          [
+            "state/medical",
+            "state/medical/"
+          ]
+        ]
+      }
     },
     {
       "schema": "ocular-stockpile-batch",
@@ -182,7 +613,18 @@
       "current_directories": [
         "state/medical/ocular-storage"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "health_medical"
+      ],
+      "path_authority_evidence": {
+        "health_medical": [
+          [
+            "state/medical/ocular-storage",
+            "state/medical/"
+          ]
+        ]
+      }
     },
     {
       "schema": "owner-index-shard",
@@ -190,7 +632,9 @@
       "current_directories": [
         "state/index/owners"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "owner_index",
@@ -198,7 +642,9 @@
       "current_directories": [
         "state/index"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "person-lite",
@@ -210,7 +656,44 @@
       "system_contracts": [
         "characters",
         "training_development"
-      ]
+      ],
+      "path_authority_candidates": [
+        "characters",
+        "health_medical",
+        "training_development"
+      ],
+      "path_authority_evidence": {
+        "characters": [
+          [
+            "state/person/ht",
+            "state/person/"
+          ],
+          [
+            "state/person/world",
+            "state/person/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state/person/ht",
+            "state/person/"
+          ],
+          [
+            "state/person/world",
+            "state/person/"
+          ]
+        ],
+        "health_medical": [
+          [
+            "state/person/ht",
+            "state/person/"
+          ],
+          [
+            "state/person/world",
+            "state/person/"
+          ]
+        ]
+      }
     },
     {
       "schema": "place",
@@ -218,7 +701,9 @@
       "current_directories": [
         "state/place"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "player-combat-style",
@@ -226,7 +711,9 @@
       "current_directories": [
         "state/player-detail"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "process",
@@ -234,7 +721,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "process-coverage",
@@ -245,7 +743,25 @@
       "system_contracts": [
         "time_process",
         "training_development"
-      ]
+      ],
+      "path_authority_candidates": [
+        "time_process",
+        "training_development"
+      ],
+      "path_authority_evidence": {
+        "training_development": [
+          [
+            "state/time/coverage",
+            "state/time/coverage/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state/time/coverage",
+            "state/time/coverage/"
+          ]
+        ]
+      }
     },
     {
       "schema": "puppet-registry",
@@ -253,7 +769,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "relationship-edge-index",
@@ -263,7 +805,33 @@
       ],
       "system_contracts": [
         "relationships_knowledge"
-      ]
+      ],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "relationship-edge-shard",
@@ -273,7 +841,25 @@
       ],
       "system_contracts": [
         "relationships_knowledge"
-      ]
+      ],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg/relationship-edges",
+            "state/reg/relationship-edges/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg/relationship-edges",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "reputation-index",
@@ -281,7 +867,18 @@
       "current_directories": [
         "state/reputation"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "reputation"
+      ],
+      "path_authority_evidence": {
+        "reputation": [
+          [
+            "state/reputation",
+            "state/reputation/"
+          ]
+        ]
+      }
     },
     {
       "schema": "reputation-subject",
@@ -291,7 +888,18 @@
       ],
       "system_contracts": [
         "reputation"
-      ]
+      ],
+      "path_authority_candidates": [
+        "reputation"
+      ],
+      "path_authority_evidence": {
+        "reputation": [
+          [
+            "state/reputation/subjects",
+            "state/reputation/"
+          ]
+        ]
+      }
     },
     {
       "schema": "scene",
@@ -299,7 +907,182 @@
       "current_directories": [
         "state"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "characters",
+        "command",
+        "family",
+        "forces_institutions",
+        "health_medical",
+        "inventory_loadouts",
+        "relationships_knowledge",
+        "reputation",
+        "teams_formations",
+        "techniques_special",
+        "time_process",
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "characters": [
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "units": [
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/unit-kernel/"
+          ]
+        ],
+        "command": [
+          [
+            "state",
+            "state/cmd/"
+          ]
+        ],
+        "relationships_knowledge": [
+          [
+            "state",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "reputation": [
+          [
+            "state",
+            "state/reputation/"
+          ]
+        ],
+        "family": [
+          [
+            "state",
+            "state/family/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state",
+            "state/player.json"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/development/"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state",
+            "state/time/frontier.json"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ],
+          [
+            "state",
+            "state/runtime.json"
+          ]
+        ],
+        "teams_formations": [
+          [
+            "state",
+            "state/team/"
+          ]
+        ],
+        "forces_institutions": [
+          [
+            "state",
+            "state/force/"
+          ],
+          [
+            "state",
+            "state/org/"
+          ],
+          [
+            "state",
+            "state/house/"
+          ]
+        ],
+        "health_medical": [
+          [
+            "state",
+            "state/medical/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "inventory_loadouts": [
+          [
+            "state",
+            "state/stock/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state",
+            "state/reg/"
+          ],
+          [
+            "state",
+            "state/stock/"
+          ]
+        ]
+      }
     },
     {
       "schema": "seal-state-registry",
@@ -307,7 +1090,18 @@
       "current_directories": [
         "state/medical"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "health_medical"
+      ],
+      "path_authority_evidence": {
+        "health_medical": [
+          [
+            "state/medical",
+            "state/medical/"
+          ]
+        ]
+      }
     },
     {
       "schema": "shinobi-domain-registry",
@@ -317,7 +1111,33 @@
       ],
       "system_contracts": [
         "relationships_knowledge"
-      ]
+      ],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "shinobi-stock",
@@ -327,7 +1147,25 @@
       ],
       "system_contracts": [
         "inventory_loadouts"
-      ]
+      ],
+      "path_authority_candidates": [
+        "inventory_loadouts",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "inventory_loadouts": [
+          [
+            "state/stock",
+            "state/stock/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/stock",
+            "state/stock/"
+          ]
+        ]
+      }
     },
     {
       "schema": "shinobi-world-registry",
@@ -335,7 +1173,9 @@
       "current_directories": [
         "state/world"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "shinobi-world-runtime",
@@ -345,7 +1185,182 @@
       ],
       "system_contracts": [
         "time_process"
-      ]
+      ],
+      "path_authority_candidates": [
+        "characters",
+        "command",
+        "family",
+        "forces_institutions",
+        "health_medical",
+        "inventory_loadouts",
+        "relationships_knowledge",
+        "reputation",
+        "teams_formations",
+        "techniques_special",
+        "time_process",
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "characters": [
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "units": [
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/unit-kernel/"
+          ]
+        ],
+        "command": [
+          [
+            "state",
+            "state/cmd/"
+          ]
+        ],
+        "relationships_knowledge": [
+          [
+            "state",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "reputation": [
+          [
+            "state",
+            "state/reputation/"
+          ]
+        ],
+        "family": [
+          [
+            "state",
+            "state/family/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state",
+            "state/player.json"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/development/"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state",
+            "state/time/frontier.json"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ],
+          [
+            "state",
+            "state/runtime.json"
+          ]
+        ],
+        "teams_formations": [
+          [
+            "state",
+            "state/team/"
+          ]
+        ],
+        "forces_institutions": [
+          [
+            "state",
+            "state/force/"
+          ],
+          [
+            "state",
+            "state/org/"
+          ],
+          [
+            "state",
+            "state/house/"
+          ]
+        ],
+        "health_medical": [
+          [
+            "state",
+            "state/medical/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ]
+        ],
+        "inventory_loadouts": [
+          [
+            "state",
+            "state/stock/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state",
+            "state/reg/"
+          ],
+          [
+            "state",
+            "state/stock/"
+          ]
+        ]
+      }
     },
     {
       "schema": "shinobi_character",
@@ -357,7 +1372,198 @@
       "system_contracts": [
         "characters",
         "training_development"
-      ]
+      ],
+      "path_authority_candidates": [
+        "characters",
+        "command",
+        "family",
+        "forces_institutions",
+        "health_medical",
+        "inventory_loadouts",
+        "relationships_knowledge",
+        "reputation",
+        "teams_formations",
+        "techniques_special",
+        "time_process",
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "characters": [
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state/char",
+            "state/char/"
+          ]
+        ],
+        "units": [
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/unit-kernel/"
+          ]
+        ],
+        "command": [
+          [
+            "state",
+            "state/cmd/"
+          ]
+        ],
+        "relationships_knowledge": [
+          [
+            "state",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "reputation": [
+          [
+            "state",
+            "state/reputation/"
+          ]
+        ],
+        "family": [
+          [
+            "state",
+            "state/family/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state",
+            "state/player.json"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state",
+            "state/unit-capability/"
+          ],
+          [
+            "state",
+            "state/development/"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ],
+          [
+            "state/char",
+            "state/char/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state",
+            "state/time/frontier.json"
+          ],
+          [
+            "state",
+            "state/time/coverage/"
+          ],
+          [
+            "state",
+            "state/runtime.json"
+          ]
+        ],
+        "teams_formations": [
+          [
+            "state",
+            "state/team/"
+          ]
+        ],
+        "forces_institutions": [
+          [
+            "state",
+            "state/force/"
+          ],
+          [
+            "state",
+            "state/org/"
+          ],
+          [
+            "state",
+            "state/house/"
+          ]
+        ],
+        "health_medical": [
+          [
+            "state",
+            "state/medical/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/person/"
+          ],
+          [
+            "state/char",
+            "state/char/"
+          ]
+        ],
+        "inventory_loadouts": [
+          [
+            "state",
+            "state/stock/"
+          ],
+          [
+            "state",
+            "state/char/"
+          ],
+          [
+            "state",
+            "state/unit/"
+          ],
+          [
+            "state/char",
+            "state/char/"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state",
+            "state/reg/"
+          ],
+          [
+            "state",
+            "state/stock/"
+          ]
+        ]
+      }
     },
     {
       "schema": "stock",
@@ -365,7 +1571,18 @@
       "current_directories": [
         "state/house"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/house",
+            "state/house/"
+          ]
+        ]
+      }
     },
     {
       "schema": "summon-registry",
@@ -373,7 +1590,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     },
     {
       "schema": "tactical-team",
@@ -383,7 +1626,18 @@
       ],
       "system_contracts": [
         "teams_formations"
-      ]
+      ],
+      "path_authority_candidates": [
+        "teams_formations"
+      ],
+      "path_authority_evidence": {
+        "teams_formations": [
+          [
+            "state/team/tactical",
+            "state/team/"
+          ]
+        ]
+      }
     },
     {
       "schema": "team",
@@ -391,7 +1645,18 @@
       "current_directories": [
         "state/team"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "teams_formations"
+      ],
+      "path_authority_evidence": {
+        "teams_formations": [
+          [
+            "state/team",
+            "state/team/"
+          ]
+        ]
+      }
     },
     {
       "schema": "team-doctrine-registry",
@@ -399,7 +1664,18 @@
       "current_directories": [
         "state/team"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "teams_formations"
+      ],
+      "path_authority_evidence": {
+        "teams_formations": [
+          [
+            "state/team",
+            "state/team/"
+          ]
+        ]
+      }
     },
     {
       "schema": "temporal-frontier",
@@ -409,7 +1685,29 @@
       ],
       "system_contracts": [
         "time_process"
-      ]
+      ],
+      "path_authority_candidates": [
+        "time_process",
+        "training_development"
+      ],
+      "path_authority_evidence": {
+        "training_development": [
+          [
+            "state/time",
+            "state/time/coverage/"
+          ]
+        ],
+        "time_process": [
+          [
+            "state/time",
+            "state/time/frontier.json"
+          ],
+          [
+            "state/time",
+            "state/time/coverage/"
+          ]
+        ]
+      }
     },
     {
       "schema": "unit",
@@ -420,7 +1718,32 @@
       "system_contracts": [
         "training_development",
         "units"
-      ]
+      ],
+      "path_authority_candidates": [
+        "inventory_loadouts",
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "units": [
+          [
+            "state/unit",
+            "state/unit/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state/unit",
+            "state/unit/"
+          ]
+        ],
+        "inventory_loadouts": [
+          [
+            "state/unit",
+            "state/unit/"
+          ]
+        ]
+      }
     },
     {
       "schema": "unit-battle-kernel",
@@ -430,7 +1753,18 @@
       ],
       "system_contracts": [
         "units"
-      ]
+      ],
+      "path_authority_candidates": [
+        "units"
+      ],
+      "path_authority_evidence": {
+        "units": [
+          [
+            "state/unit-kernel",
+            "state/unit-kernel/"
+          ]
+        ]
+      }
     },
     {
       "schema": "unit-capability",
@@ -441,7 +1775,25 @@
       "system_contracts": [
         "training_development",
         "units"
-      ]
+      ],
+      "path_authority_candidates": [
+        "training_development",
+        "units"
+      ],
+      "path_authority_evidence": {
+        "units": [
+          [
+            "state/unit-capability",
+            "state/unit-capability/"
+          ]
+        ],
+        "training_development": [
+          [
+            "state/unit-capability",
+            "state/unit-capability/"
+          ]
+        ]
+      }
     },
     {
       "schema": "unit-path-index-shard",
@@ -449,7 +1801,9 @@
       "current_directories": [
         "state/index/units/groups"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "unit-routing-index",
@@ -457,7 +1811,9 @@
       "current_directories": [
         "state/index"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "unit-transaction-registry",
@@ -467,7 +1823,18 @@
       ],
       "system_contracts": [
         "units"
-      ]
+      ],
+      "path_authority_candidates": [
+        "forces_institutions"
+      ],
+      "path_authority_evidence": {
+        "forces_institutions": [
+          [
+            "state/org",
+            "state/org/"
+          ]
+        ]
+      }
     },
     {
       "schema": "unit_owner_index",
@@ -475,7 +1842,9 @@
       "current_directories": [
         "state/index/units"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [],
+      "path_authority_evidence": {}
     },
     {
       "schema": "world-event-registry",
@@ -483,7 +1852,33 @@
       "current_directories": [
         "state/reg"
       ],
-      "system_contracts": []
+      "system_contracts": [],
+      "path_authority_candidates": [
+        "relationships_knowledge",
+        "techniques_special"
+      ],
+      "path_authority_evidence": {
+        "relationships_knowledge": [
+          [
+            "state/reg",
+            "state/reg/relationships-knowledge.json"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edges/"
+          ],
+          [
+            "state/reg",
+            "state/reg/relationship-edge-index.json"
+          ]
+        ],
+        "techniques_special": [
+          [
+            "state/reg",
+            "state/reg/"
+          ]
+        ]
+      }
     }
   ],
   "mutable_without_system_contract": [
@@ -524,6 +1919,95 @@
     "unit-routing-index",
     "unit_owner_index",
     "world-event-registry"
+  ],
+  "missing_with_unique_path_authority": {
+    "biological-implant-state": "health_medical",
+    "command-assignments": "forces_institutions",
+    "command-group-index": "command",
+    "covenant": "forces_institutions",
+    "faction-owner": "techniques_special",
+    "family-index": "family",
+    "home_establishment_index": "forces_institutions",
+    "house": "forces_institutions",
+    "house_charter": "forces_institutions",
+    "house_units": "forces_institutions",
+    "kinship-index": "family",
+    "ocular-owner-shard": "health_medical",
+    "ocular-registry-index": "health_medical",
+    "ocular-stockpile-batch": "health_medical",
+    "process": "forces_institutions",
+    "reputation-index": "reputation",
+    "seal-state-registry": "health_medical",
+    "stock": "forces_institutions",
+    "team": "teams_formations",
+    "team-doctrine-registry": "teams_formations"
+  },
+  "missing_with_ambiguous_path_authority": {
+    "faction-registry-index": [
+      "relationships_knowledge",
+      "techniques_special"
+    ],
+    "jinchuriki-registry": [
+      "relationships_knowledge",
+      "techniques_special"
+    ],
+    "life-course-registry": [
+      "relationships_knowledge",
+      "techniques_special"
+    ],
+    "meta": [
+      "characters",
+      "command",
+      "family",
+      "forces_institutions",
+      "health_medical",
+      "inventory_loadouts",
+      "relationships_knowledge",
+      "reputation",
+      "teams_formations",
+      "techniques_special",
+      "time_process",
+      "training_development",
+      "units"
+    ],
+    "puppet-registry": [
+      "relationships_knowledge",
+      "techniques_special"
+    ],
+    "scene": [
+      "characters",
+      "command",
+      "family",
+      "forces_institutions",
+      "health_medical",
+      "inventory_loadouts",
+      "relationships_knowledge",
+      "reputation",
+      "teams_formations",
+      "techniques_special",
+      "time_process",
+      "training_development",
+      "units"
+    ],
+    "summon-registry": [
+      "relationships_knowledge",
+      "techniques_special"
+    ],
+    "world-event-registry": [
+      "relationships_knowledge",
+      "techniques_special"
+    ]
+  },
+  "missing_without_path_authority": [
+    "manpower-capability",
+    "owner-index-shard",
+    "owner_index",
+    "place",
+    "player-combat-style",
+    "shinobi-world-registry",
+    "unit-path-index-shard",
+    "unit-routing-index",
+    "unit_owner_index"
   ],
   "state_schema_without_mutable_template": [],
   "mutable_template_not_instantiated": []

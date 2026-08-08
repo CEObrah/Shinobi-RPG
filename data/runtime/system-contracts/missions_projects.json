@@ -1,0 +1,31 @@
+{
+  "schema": "system-contract.v1",
+  "system_id": "missions_projects",
+  "authority": false,
+  "authority_paths": [
+    "state/reg/missions-contracts-projects.json"
+  ],
+  "owner_templates": [
+    "shinobi-domain-registry"
+  ],
+  "read_first": [
+    "state/reg/missions-contracts-projects.json",
+    "only the issuer, team, people or institutional owners whose authority or availability changes the project"
+  ],
+  "write_order": [
+    "resolve the real institutional or contractual action first",
+    "update project/contract/mission registry status to mirror that resolved authority",
+    "create no mission, transfer, team or permission merely from a planning record"
+  ],
+  "invariants": [
+    "Projects record resolved planning state and never substitute for institutional authority.",
+    "OOC proposals and wishlists do not become active missions or assignments.",
+    "A project may become authorized only after the actual authority, staffing, obligations and blockers are resolved in their owning systems.",
+    "Formation of a team does not automatically create a mission."
+  ],
+  "validators": [
+    "tools/test_runtime.py",
+    "tools/test_semantics.py",
+    "tools/test_templates.py"
+  ]
+}

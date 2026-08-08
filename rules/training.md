@@ -5,6 +5,17 @@ A unit is compressed storage, not a training multiplier. Exact people, character
 
 Development depends on starting capability, aptitude, age/body development, scheduled hours, attendance, instructor access and quality, student-to-instructor ratio, facilities, equipment, nutrition, health, fatigue, recovery, relevance, difficulty fit, real mission experience, combat experience, current mastery, and diminishing returns.
 
+## Lazy deterministic development bank
+Development may settle lazily, but elapsed eligible work may never disappear merely because an owner is offscreen or because an integer capability did not cross a point threshold. `state/development/banks.json` stores sparse residual **development units** keyed by owner and exact capability target.
+
+A bank never stores unearned scheduled hours. On a periodic settlement, causal wake-up, direct interaction, or before a capability-dependent resolution, determine the owner-specific unresolved interval from its bank/owner development cursor. Split that interval at every injury, assignment, instructor, facility, equipment, doctrine, resource, mission, or other causal change. Resolve only actual eligible activity with the normal training formula, then add the resulting development units to the matching target credit.
+
+For an integer capability, repeatedly consume `point_cost(current_value)` development units for each whole point earned, recomputing point cost after every point. Keep the nonnegative residual in the bank. Credits never move between owners or between capability targets. A missing bank entry grants nothing; resolution begins from the authoritative owner/process cursor and creates an entry only when a residual or unit development cursor is needed.
+
+For aggregate units, the same development law applies. Residual credits remain unit-specific and target-specific; capability changes update the authoritative multidimensional distribution and invalidate/rebuild the derived battle kernel. Qualified-subset promotion remains a conserved integer personnel transfer and cannot be fabricated from a fractional bank. Routine training cannot manufacture field, combat, or command experience.
+
+The aggregate temporal frontier is not a substitute for an owner-specific development cursor. Advancing a coarse world process may defer an owner's capability materialization, but it may not erase the unresolved interval. This is the lazy-development guarantee that prevents offscreen named characters and units from freezing or losing fractional progress.
+
 ## Capacity conservation
 Instructor time, specialist equipment, training grounds, medical support, food, and facilities are finite. Group instruction is allowed, but broad supervision is not equivalent to personal correction. Advanced training scales poorly without enough qualified instructors.
 

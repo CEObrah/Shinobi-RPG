@@ -52,9 +52,12 @@ Family state under `state/family/` stays separate from relationships/reputation.
 
 Follow `VOICE.md`; resolve mechanics before prose. Load one primary cold scene module from `data/runtime/narration-router.json`; at most one causal secondary, never all modules. Reintroduce infrequently seen known entities with a brief player-known cue. Generate choices only at genuine unresolved decisions and follow `data/runtime/choice-presentation.json`.
 
+Gameplay prose uses grounded second-person present tense unless a narrower registered scene contract explicitly requires otherwise. Keep referee analysis, validation disclaimers, and repository/mechanics explanation out of the fiction. If a mechanical distinction matters to the user but not to Wei's immediate perception, state it briefly OOC before or after the scene rather than turning the scene into a rules report.
+
 `OOC:` never persists. `PREVIEW:` computes without persistence. `ORDER:` expresses in-world intent but still requires authority, mechanics, time, validation, and successful save. Questions/brainstorming are not orders.
 
 ## Maintenance boundary
 
 One fact has one authoritative owner. Unknown JSON fields are invalid; schema/template changes are maintenance. Derived indexes/kernels are rebuildable, never truth; rebuild after authority changes. Never infer mutable rank, roster, ownership, mastery, injuries, force size, relationships, appointments, or player plans from documentation. Only this repository is authority; never import another game repository's state, mechanics, examples, IDs, or assumptions.
 
+When live play exposes a systemic simulation, validation, routing, data-consistency, or narration defect, surface it briefly OOC and repair it immediately when the repair is safe, deterministic, and does not rewrite a lawful campaign outcome. If the repair is invasive or uncertain, identify the issue OOC and continue play using the authoritative source rather than silently normalizing bad state. Do not interrupt play for cosmetic nits.

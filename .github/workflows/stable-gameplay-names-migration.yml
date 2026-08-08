@@ -139,11 +139,12 @@ jobs:
         run: |
           rm -f tools/migrate_stable_gameplay_names.py
           rm -f tools/audit_gameplay_versions.py
+          rm -f .github/workflows/stable-gameplay-names-migration.yml
           rm -f maintenance/gameplay-version-audit.json
           rm -f maintenance/migration-failure.log
           rm -f maintenance/validation-failure.log
           rmdir maintenance 2>/dev/null || true
-          git checkout HEAD -- .github/workflows/audit.yml .github/workflows/stable-gameplay-names-migration.yml
+          git checkout HEAD -- .github/workflows/audit.yml
           git add -A
       - name: Validate migrated repository
         id: validate
@@ -182,6 +183,8 @@ jobs:
           git push origin HEAD:maintenance/stable-gameplay-names
       - name: Commit migrated tree
         run: |
+          git checkout HEAD -- .github/workflows/stable-gameplay-names-migration.yml
+          git add -A
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "[stable-gameplay-migration] Use stable gameplay names"

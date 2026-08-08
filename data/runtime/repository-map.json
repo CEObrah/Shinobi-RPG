@@ -24,7 +24,7 @@
     "Indexes/caches are never gameplay truth.",
     "Writes update authority first, then receipts/derived caches, then validate/read back.",
     "Only this repository is authority.",
-    "Before any structural write, load the target file template and relevant system update contract.",
+    "Before any structural write, load the target file template, registered blank owner skeleton, and relevant system update contract; existing owners/examples never define structure.",
     "Unknown route name -> use route_index to load exactly one cold route shard."
   ],
   "routes": {
@@ -81,9 +81,10 @@
     },
     "write_template_lookup": {
       "i": [
-        "data/runtime/template-index.json"
+        "data/runtime/template-index.json",
+        "data/runtime/blank-owner-index.json"
       ],
-      "note": "Before creating or structurally changing JSON, resolve target schema to one cold template shard. No unregistered fields."
+      "note": "Before creating or structurally changing JSON, resolve target schema to its cold structural template and fact-free blank skeleton. No unregistered fields; missing or ambiguous structure stops persistence."
     },
     "system_update_contract": {
       "i": [
@@ -154,5 +155,6 @@
     "world": "data/runtime/repository-routes/world.json",
     "special": "data/runtime/repository-routes/special.json"
   },
-  "directory_map": "data/runtime/directory-map.json"
+  "directory_map": "data/runtime/directory-map.json",
+  "blank_owner_index": "data/runtime/blank-owner-index.json"
 }

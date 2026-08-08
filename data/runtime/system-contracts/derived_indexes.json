@@ -1,0 +1,37 @@
+{
+  "schema": "system-contract.v1",
+  "system_id": "derived_indexes",
+  "authority": false,
+  "authority_paths": [
+    "state/index/",
+    "state/reg/factions.json"
+  ],
+  "owner_templates": [
+    "faction-registry-index",
+    "owner-index-shard",
+    "owner_index",
+    "unit-path-index-shard",
+    "unit-routing-index",
+    "unit_owner_index"
+  ],
+  "read_first": [
+    "authoritative owner(s) that changed",
+    "only the derived index being rebuilt"
+  ],
+  "write_order": [
+    "write authoritative owner change first",
+    "rebuild affected discovery index deterministically",
+    "validate every indexed path/id against authority"
+  ],
+  "invariants": [
+    "Indexes are discovery aids and never gameplay truth.",
+    "No gameplay fact may be authored first in an index.",
+    "A missing or stale index never licenses invention; direct known owner paths remain authoritative."
+  ],
+  "validators": [
+    "tools/audit.py",
+    "tools/test_routing.py",
+    "tools/test_unit_model.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

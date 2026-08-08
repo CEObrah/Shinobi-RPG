@@ -1,0 +1,37 @@
+{
+  "schema": "system-contract.v1",
+  "system_id": "world_state",
+  "authority": false,
+  "authority_paths": [
+    "state/world/",
+    "state/place/",
+    "state/reg/factions/",
+    "state/reg/world-events.json"
+  ],
+  "owner_templates": [
+    "faction-owner",
+    "place",
+    "shinobi-world-registry",
+    "world-event-registry"
+  ],
+  "read_first": [
+    "exact world/place/faction owner causally involved",
+    "only referenced process/mechanics needed to resolve change"
+  ],
+  "write_order": [
+    "validate cause, authority, elapsed time and information limits",
+    "write authoritative world owner",
+    "rebuild affected indexes and process consequences"
+  ],
+  "invariants": [
+    "Offscreen world state changes only through registered processes or resolved causal actions.",
+    "World ownership/control/resources are never inferred from labels or indexes.",
+    "Player knowledge remains separate from world truth."
+  ],
+  "validators": [
+    "tools/test_living_world.py",
+    "tools/test_runtime.py",
+    "tools/test_templates.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

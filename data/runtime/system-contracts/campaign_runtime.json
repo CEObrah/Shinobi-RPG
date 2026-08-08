@@ -1,0 +1,33 @@
+{
+  "schema": "system-contract.v1",
+  "system_id": "campaign_runtime",
+  "authority": false,
+  "authority_paths": [
+    "state/meta.json",
+    "state/scene.json"
+  ],
+  "owner_templates": [
+    "meta",
+    "scene"
+  ],
+  "read_first": [
+    "current meta",
+    "current scene only when scene-local state matters"
+  ],
+  "write_order": [
+    "resolve authoritative causal changes first",
+    "advance meta time/revision only inside the canonical transaction",
+    "write scene as the player-facing current situation after authoritative owners settle"
+  ],
+  "invariants": [
+    "Meta owns campaign clock/revision identity; scene does not override world owners.",
+    "Scene records the current observable/decision surface, not hidden world truth.",
+    "No campaign time or revision changes outside a validated gameplay transaction."
+  ],
+  "validators": [
+    "tools/test_transaction_integrity.py",
+    "tools/test_runtime.py",
+    "tools/test_templates.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

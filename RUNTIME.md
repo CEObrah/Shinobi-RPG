@@ -4,7 +4,7 @@ This repository is campaign authority: mutable truth in `state/`, reusable mecha
 
 ## Startup and causal retrieval
 
-Startup loads only `RUNTIME.md`, `VOICE.md`, `data/runtime/repository-map.json`, `state/meta.json`, `state/player.json`, and `state/scene.json`; then load the smallest causal owner/shard. Known IDs use direct refs; indexes are discovery only. Do not preload catalogs, rosters, units, techniques, social graphs, or establishments. `REPOSITORY_MAP.md` is the read/write cookbook; `PLAYER_INTERFACE.md` is load-on-demand. Stop when enough authority is loaded. Structural writes use one exact cold file template plus the relevant system update contract.
+Startup loads only `RUNTIME.md`, `VOICE.md`, `data/runtime/repository-map.json`, `state/meta.json`, `state/player.json`, and `state/scene.json`; then load the smallest causal owner/shard. Known IDs use direct refs; indexes are discovery only. Do not preload catalogs, rosters, units, techniques, social graphs, or establishments. `REPOSITORY_MAP.md` is the read/write cookbook; `PLAYER_INTERFACE.md` is load-on-demand. Stop when enough authority is loaded. Structural writes use one exact cold file template, its registered blank owner skeleton, and the relevant system update contract. Existing owners and examples never define structure.
 
 ## Player agency and intent boundary
 
@@ -58,7 +58,7 @@ Gameplay prose uses grounded second-person present tense unless a narrower regis
 
 ## Maintenance boundary
 
-One fact has one authoritative owner. Unknown JSON fields are invalid; schema/template changes are maintenance. Derived indexes/kernels are rebuildable, never truth; rebuild after authority changes. Never infer mutable rank, roster, ownership, mastery, injuries, force size, relationships, appointments, or player plans from documentation. Only this repository is authority; never import another game repository's state, mechanics, examples, IDs, or assumptions.
+One fact has one authoritative owner. Every mutable owner type has a registered structural template, a registered blank owner skeleton, and at least one registered system update contract. Create owners from the blank skeleton and fill only fields permitted by the template under that system contract. Existing owners, neighboring files, examples, indexes, chat memory, and model inference are never structural authority. A field absent from the template is illegal. Adding, removing, renaming, or changing a field/type is maintenance: update the formal schema, structural template, blank skeleton, and every affected system contract first, then validate before gameplay can write it. Blank skeletons define shape only and never supply campaign facts, defaults, resources, capability, relationships, or intent. If a template, blank skeleton, or contract is missing or ambiguous, persistence stops; do not improvise. Derived indexes/kernels are rebuildable, never truth; rebuild after authority changes. Never infer mutable rank, roster, ownership, mastery, injuries, force size, relationships, appointments, or player plans from documentation. Only this repository is authority; never import another game repository's state, mechanics, examples, IDs, or assumptions.
 
 Rules and reusable gameplay data contain only operative rules. Gameplay-facing IDs, filenames, schema IDs, template IDs, process IDs, state paths, and data records use stable semantic names without release numbers. Implementation protocol generations are confined to maintenance/tooling formats and never become campaign facts or gameplay concepts.
 

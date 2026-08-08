@@ -1,1 +1,30 @@
-{"schema":"system-contract.v1","system_id":"teams_formations","authority":false,"authority_paths":["state/team/"],"owner_templates":["tactical-team"],"read_first":["team or active formation if one exists","only referenced units/people"],"write_order":["validate authority and membership","write team state or create/update the temporary formation under the routed active-formation path using its registered template","do not move ownership implicitly"],"invariants":["Teams may combine homogeneous units and named shinobi.","Formations are temporary and own no manpower."],"validators":["tools/test_unit_model.py","tools/test_templates.py"]}
+{
+  "schema": "system-contract.v1",
+  "system_id": "teams_formations",
+  "authority": false,
+  "authority_paths": [
+    "state/team/"
+  ],
+  "owner_templates": [
+    "tactical-team",
+    "team",
+    "team-doctrine-registry"
+  ],
+  "read_first": [
+    "team or active formation if one exists",
+    "only referenced units/people"
+  ],
+  "write_order": [
+    "validate authority and membership",
+    "write team state or create/update the temporary formation under the routed active-formation path using its registered template",
+    "do not move ownership implicitly"
+  ],
+  "invariants": [
+    "Teams may combine homogeneous units and named shinobi.",
+    "Formations are temporary and own no manpower."
+  ],
+  "validators": [
+    "tools/test_unit_model.py",
+    "tools/test_templates.py"
+  ]
+}

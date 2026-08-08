@@ -1,1 +1,41 @@
-{"schema":"system-contract.v1","system_id":"forces_institutions","authority":false,"authority_paths":["state/force/","state/org/","state/house/"],"owner_templates":["force","home_establishment_owner"],"read_first":["force/institution owner","one home-establishment shard"],"write_order":["conserve source manpower","update permanent organization or source pool","rebuild owner/unit indexes"],"invariants":["World-owned forces have home organization.","Player personal organization is not invented.","Returning units restore home chain without resetting losses."],"validators":["tools/test_unit_model.py","tools/test_living_world.py"]}
+{
+  "schema": "system-contract.v1",
+  "system_id": "forces_institutions",
+  "authority": false,
+  "authority_paths": [
+    "state/force/",
+    "state/org/",
+    "state/house/",
+    "state/manpower-capability/"
+  ],
+  "owner_templates": [
+    "covenant",
+    "force",
+    "home_establishment_index",
+    "home_establishment_owner",
+    "house",
+    "house_charter",
+    "house_units",
+    "manpower-capability",
+    "process",
+    "stock"
+  ],
+  "read_first": [
+    "force/institution owner",
+    "one home-establishment shard"
+  ],
+  "write_order": [
+    "conserve source manpower",
+    "update permanent organization or source pool",
+    "rebuild owner/unit indexes"
+  ],
+  "invariants": [
+    "World-owned forces have home organization.",
+    "Player personal organization is not invented.",
+    "Returning units restore home chain without resetting losses."
+  ],
+  "validators": [
+    "tools/test_unit_model.py",
+    "tools/test_living_world.py"
+  ]
+}

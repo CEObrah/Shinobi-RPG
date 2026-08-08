@@ -1,0 +1,91 @@
+name: Stable Gameplay Schema Migration
+
+on:
+  push:
+    branches:
+      - maintenance/stable-gameplay-names
+
+jobs:
+  migrate:
+    if: ${{ !contains(github.event.head_commit.message, '[stable-schema-migration]') && !contains(github.event.head_commit.message, '[schema-migration-failure]') && !contains(github.event.head_commit.message, '[schema-validation-failure]') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install jsonschema
+      - name: Apply stable gameplay schema migration
+        id: migrate
+        shell: bash
+        run: |
+          set -o pipefail
+          rm -f maintenance/schema-migration-failure.log maintenance/schema-validation-failure.log
+          python tools/migrate_stable_gameplay_schema_ids.py 2>&1 | tee /tmp/schema-migration.log
+      - name: Publish migration failure
+        if: ${{ failure() && steps.migrate.outcome == 'failure' }}
+        shell: bash
+        run: |
+          git reset --hard HEAD
+          mkdir -p maintenance
+          cp /tmp/schema-migration.log maintenance/schema-migration-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add maintenance/schema-migration-failure.log
+          git commit -m "[schema-migration-failure] Capture stable schema migration failure"
+          git push origin HEAD:maintenance/stable-gameplay-names
+      - name: Remove temporary reports and scripts
+        run: |
+          rm -f tools/migrate_stable_gameplay_schema_ids.py
+          rm -f tools/report_gameplay_version_identifiers.py
+          rm -f maintenance/gameplay-version-identifiers.json
+          rm -f maintenance/gameplay-version-classification.json
+          rm -f maintenance/schema-migration-failure.log
+          rm -f maintenance/schema-validation-failure.log
+          rmdir maintenance 2>/dev/null || true
+          git add -A
+      - name: Validate migrated repository
+        id: validate
+        shell: bash
+        run: |
+          set -o pipefail
+          (
+            set -e
+            python tools/test_transaction_integrity.py
+            python tools/audit.py
+            python tools/test_gameplay_naming.py
+            python tools/test_development.py
+            python tools/test_mechanics.py
+            python tools/test_living_world.py
+            python tools/test_runtime.py
+            python tools/test_semantics.py
+            python tools/test_unit_model.py
+            python tools/test_reputation.py
+            python tools/test_family.py
+            python tools/test_team_consistency.py
+            python tools/test_house_tang_martial.py
+            python tools/test_templates.py
+            python tools/test_routing.py
+          ) 2>&1 | tee /tmp/schema-validation.log
+      - name: Publish validation failure
+        if: ${{ failure() && steps.validate.outcome == 'failure' }}
+        shell: bash
+        run: |
+          git reset --hard HEAD
+          mkdir -p maintenance
+          cp /tmp/schema-validation.log maintenance/schema-validation-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add maintenance/schema-validation-failure.log
+          git commit -m "[schema-validation-failure] Capture stable schema validation failure"
+          git push origin HEAD:maintenance/stable-gameplay-names
+      - name: Commit migrated tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "[stable-schema-migration] Use stable gameplay schema identities"
+          git push origin HEAD:maintenance/stable-gameplay-names

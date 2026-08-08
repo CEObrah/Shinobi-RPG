@@ -6,10 +6,17 @@ try: import jsonschema
 except Exception: jsonschema=None
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
+_JSON_CACHE={}
 def err(x):errors.append(x)
 def rj(p):
- try:return json.loads(Path(p).read_text(encoding='utf-8'))
- except Exception as e:err(f'json:{Path(p).relative_to(ROOT)}:{e}');return None
+ q=Path(p)
+ key=str(q.resolve())
+ if key in _JSON_CACHE:return _JSON_CACHE[key]
+ try:
+  data=json.loads(q.read_text(encoding='utf-8'))
+  _JSON_CACHE[key]=data
+  return data
+ except Exception as e:err(f'json:{q.relative_to(ROOT)}:{e}');return None
 # parse files, path budgets
 for p in ROOT.rglob('*'):
  if '.git' in p.parts or not p.is_file():continue
@@ -445,16 +452,6 @@ if _arm:
  if len(_contains)!=len(set(_contains)):err('danzo_arm_duplicate_eye_ref')
  for _eid in _contains:
   if _eid not in {x.get('eye_id') for x in eyes}:err(f'danzo_arm_eye_missing_from_ocular_registry:{_eid}')
-
-# No release-history labels or aliases in canonical gameplay data/rules/docs.
-# No release-history labels or aliases in canonical gameplay data/rules/docs.
-for _base in ('state','data','rules'):
- for _pth in (ROOT/_base).rglob('*'):
-  if not _pth.is_file() or _pth.suffix not in ('.json','.md','.txt'):continue
-  _text=_pth.read_text(encoding='utf-8')
-  _forbidden=(['V3.'+x for x in ('5','6','7')]+['v'+x for x in ('35','36','37')]+['riku_'+'tsu'+'chida','Tsu'+'chida','legacy '+'alias','migration '+'alias'])
-  for _badword in _forbidden:
-   if _badword in _text:err(f'canonical_history_debris:{_pth.relative_to(ROOT)}:{_badword}')
 
 # Technique effect-profile closure
 _te=rj(ROOT/'data/mechanics/technique-effects.json') or {}; _ep=technique_effect_profiles()

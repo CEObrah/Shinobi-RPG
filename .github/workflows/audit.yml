@@ -5,10 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install jsonschema
+      - run: python tools/test_transaction_integrity.py
       - run: python tools/audit.py
       - run: python tools/test_development.py
       - run: python tools/test_mechanics.py

@@ -29,9 +29,17 @@ def parse_time(value):
     if not match:
         return None
     year, month, day, hour, minute, second = map(int, match.groups())
-    # Campaign comparisons need deterministic ordering, not Gregorian leap-year semantics.
     days = year * 372 + (month - 1) * 31 + (day - 1)
     return (((days * 24) + hour) * 60 + minute) * 60 + second
+
+
+def parse_birth(value):
+    if not isinstance(value, str):
+        return None
+    match = re.fullmatch(r"SE-(-?\d+)-(\d+)-(\d+)", value)
+    if not match:
+        return None
+    return tuple(map(int, match.groups()))
 
 
 frontier = read_json(ROOT / "state/time/frontier.json")
@@ -40,6 +48,8 @@ world_time = frontier.get("world_time")
 world_key = parse_time(world_time)
 if world_key is None:
     err(f"invalid_world_time:{world_time}")
+world_match = re.fullmatch(r"SE-(-?\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)", world_time or "")
+world_year = int(world_match.group(1)) if world_match else None
 
 processes = {}
 coverage_by_process = {}
@@ -82,8 +92,10 @@ for process in frontier.get("processes", []):
     processes[process_id] = process
     coverage_by_process[process_id] = process_coverage(process)
 
-# Global runtime settlement is valid only when every continuous process has a
-# matching semantic receipt at the same exact frontier.
+# Only systems whose mechanics genuinely accrue continuously may claim exact
+# closure at every world-time update. They require a semantic receipt at the
+# same frontier. Coarse routine reviews are boundary-only and need no fake
+# partial-interval receipt.
 if runtime.get("schema") != "shinobi-world-runtime":
     err("world_runtime_schema")
 if runtime.get("last_settled_at") != world_time:
@@ -94,12 +106,14 @@ if not isinstance(receipts, dict):
     receipts = {}
 
 valid_outcomes = {"no_op", "deferred", "blocked", "failed", "succeeded"}
+continuous_ids = set()
 for process_id, process in processes.items():
     if process.get("status") != "active":
         continue
     recurrence = process.get("recurrence") or {}
     if recurrence.get("accrual_mode") != "continuous":
         continue
+    continuous_ids.add(process_id)
     if process.get("settled_through") != world_time:
         err(f"continuous_process_not_closed:{process_id}:{process.get('settled_through')}:{world_time}")
     coverage = coverage_by_process.get(process_id, [])
@@ -134,12 +148,14 @@ for process_id, process in processes.items():
 for receipt_id, receipt in receipts.items():
     if receipt_id not in processes:
         err(f"receipt_for_missing_process:{receipt_id}")
+    elif receipt_id not in continuous_ids:
+        err(f"receipt_for_noncontinuous_process:{receipt_id}")
     elif isinstance(receipt, dict) and receipt.get("process_id") != receipt_id:
         err(f"receipt_key_id_drift:{receipt_id}:{receipt.get('process_id')}")
 
-# Every saved owner-local schedule is a real clock. A slow aggregate process may
-# not hide an overdue exact owner. This scan deliberately discovers future owner
-# types instead of requiring another manually maintained list.
+# Every genuine owner-local schedule object remains a real clock. The migration
+# removes generic exact-character scheduler mirrors, so this dynamic scan now
+# covers consolidated institution and other domain-owned schedules instead.
 def walk_schedules(value, path_label):
     if isinstance(value, dict):
         if isinstance(value.get("last_settled_at"), str) and isinstance(value.get("next_due_at"), str):
@@ -164,32 +180,71 @@ def walk_schedules(value, path_label):
 
 
 for path in (ROOT / "state").rglob("*.json"):
-    # Derived indexes/caches are not liveness authority.
     if "index" in path.parts or "unit-kernel" in path.parts:
         continue
     walk_schedules(read_json(path), str(path.relative_to(ROOT)))
 
-# Exact NPCs that carry a schedule profile and a runtime cursor may not maintain
-# two disagreeing general-autonomy clocks inside the same owner.
+# Exact character owners no longer carry the general autonomous-world clock.
+# Their development and dedicated domain clocks remain separate authorities.
+characters = {}
 character_paths = [ROOT / "state/player.json"] + sorted((ROOT / "state/char").glob("*.json"))
 for path in character_paths:
     character = read_json(path)
     if character.get("schema") != "shinobi_character":
         continue
     owner_id = character.get("owner_id")
-    schedule = character.get("schedule_profile")
-    if not isinstance(schedule, dict):
-        continue
-    if schedule.get("owner_id") != owner_id:
-        err(f"character_schedule_owner_drift:{path.relative_to(ROOT)}:{schedule.get('owner_id')}:{owner_id}")
-    runtime_cursor = (character.get("runtime") or {}).get("last_settled_at")
-    schedule_cursor = schedule.get("last_settled_at")
-    if runtime_cursor is not None and schedule_cursor is not None and runtime_cursor != schedule_cursor:
-        err(f"character_autonomy_cursor_drift:{owner_id}:{runtime_cursor}:{schedule_cursor}")
+    if owner_id:
+        characters[owner_id] = (path, character)
+    for forbidden in ("runtime", "schedule_profile"):
+        if forbidden in character:
+            err(f"character_general_scheduler_mirror:{path.relative_to(ROOT)}:{forbidden}")
 
-# Active faction plans are autonomous commitments. Their own review cursor drives
-# wake-up and cannot be replaced by a monthly process timestamp. Seven days is the
-# maximum fallback gap for an active plan; causal information can wake it sooner.
+# Named-character life course is centralized under the existing registry and
+# monthly boundary process. Exact birthdays are causal wakes and cannot wait for
+# the monthly batch.
+life = read_json(ROOT / "state/reg/life-course-registry.json")
+life_state = life.get("process_state") or {}
+life_process_id = life_state.get("id")
+if life_process_id != "process_named_character_life_course":
+    err(f"life_course_process_id:{life_process_id}")
+life_process = processes.get(life_process_id)
+if not life_process:
+    err("missing_named_character_life_course_process")
+else:
+    if (life_process.get("recurrence") or {}).get("accrual_mode") != "boundary_only":
+        err("named_character_life_course_must_be_boundary_only")
+    if life_process.get("settled_through") != life_state.get("last_settled_at"):
+        err(f"life_course_cursor_drift:{life_process.get('settled_through')}:{life_state.get('last_settled_at')}")
+    expected_ref = "state/time/coverage/process_named_character_life_course.json"
+    if life_process.get("coverage_ref") != expected_ref:
+        err(f"life_course_coverage_ref:{life_process.get('coverage_ref')}")
+    if (ROOT / "state/time/coverage/process_named_characters_monthly.json").exists():
+        err("obsolete_named_character_monthly_coverage_present")
+    if "process_named_characters_monthly" in processes:
+        err("obsolete_named_character_monthly_process_present")
+
+life_cursor = parse_time(life_state.get("last_settled_at"))
+if life_cursor is None:
+    err(f"bad_life_course_cursor:{life_state.get('last_settled_at')}")
+elif world_year is not None and world_key is not None:
+    for owner_id in coverage_by_process.get(life_process_id, []):
+        entry = characters.get(owner_id)
+        if not entry:
+            err(f"life_course_missing_exact_character:{owner_id}")
+            continue
+        _, character = entry
+        birth = parse_birth(character.get("birth_date"))
+        if not birth:
+            err(f"life_course_bad_birth_date:{owner_id}:{character.get('birth_date')}")
+            continue
+        _, month, day = birth
+        birthday = parse_time(f"SE-{world_year:04d}-{month:02d}-{day:02d}T00:00:00")
+        if birthday is not None and life_cursor < birthday <= world_key:
+            err(f"unsettled_exact_birthday:{owner_id}:SE-{world_year:04d}-{month:02d}-{day:02d}T00:00:00")
+
+# Active faction plans are autonomous commitments. Their local review cursor is a
+# genuine plan clock even though routine world review remains monthly. Seven days
+# is the maximum fallback gap; causal information wakes them sooner.
 active_faction_max_gap_seconds = 7 * 24 * 60 * 60
 for path in sorted((ROOT / "state/reg/factions").glob("*.json")):
     data = read_json(path)
@@ -210,16 +265,22 @@ for path in sorted((ROOT / "state/reg/factions").glob("*.json")):
     if world_key is not None and last_review > world_key:
         err(f"faction_review_in_future:{faction_id}:{plan.get('last_review_at')}")
     active = faction.get("status") == "active" and plan.get("status") == "active"
-    if active and world_key is not None and world_key - last_review > active_faction_max_gap_seconds:
-        err(f"active_faction_review_stale:{faction_id}:{plan.get('last_review_at')}:{world_time}")
+    if active and world_key is not None and world_key - last_review >= active_faction_max_gap_seconds:
+        err(f"active_faction_review_due:{faction_id}:{plan.get('last_review_at')}:{world_time}")
     if active and not str(faction.get("current_plan") or "").strip():
         err(f"active_faction_missing_current_plan:{faction_id}")
     if active and not str(plan.get("wake_policy") or "").strip():
         err(f"active_faction_missing_wake_policy:{faction_id}")
 
-# The world-structure process must cover every authoritative top-level world
-# registry except world pressures, whose individual pressure owners have their own
-# dedicated clocks, plus every force/institution stock owner in state/stock.
+# Coarse world processes must remain boundary-only. If elapsed minutes really
+# matter, that state belongs in a narrower continuous system instead.
+for process_id in ("process_named_character_life_course", "process_world_forces_monthly", "process_world_structures_monthly", "process_living_world_monthly"):
+    process = processes.get(process_id)
+    if process and (process.get("recurrence") or {}).get("accrual_mode") != "boundary_only":
+        err(f"coarse_world_process_not_boundary_only:{process_id}")
+
+# World structures process dynamically covers every top-level world registry
+# except pressure registry, plus every institutional/force stock owner.
 world_structures = processes.get("process_world_structures_monthly")
 if not world_structures:
     err("missing_world_structures_process")
@@ -242,8 +303,11 @@ else:
             if owner_id:
                 expected.add(owner_id)
     missing = sorted(expected - actual)
+    extra = sorted(actual - expected)
     if missing:
         err(f"world_structures_uncovered:{missing}")
+    if extra:
+        err(f"world_structures_orphan_coverage:{extra}")
 
 if errors:
     print(f"WORLD LIVENESS FAIL {len(errors)}")
@@ -252,4 +316,4 @@ if errors:
     raise SystemExit(1)
 
 print("WORLD LIVENESS OK")
-print(f"continuous_receipts={sum(1 for p in processes.values() if p.get('status') == 'active' and (p.get('recurrence') or {}).get('accrual_mode') == 'continuous')} processes={len(processes)}")
+print(f"continuous_receipts={len(continuous_ids)} processes={len(processes)} exact_characters={len(characters)}")

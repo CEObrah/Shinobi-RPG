@@ -16,21 +16,29 @@
   ],
   "read_first": [
     "temporal frontier",
-    "only due process coverage/owners",
-    "world runtime only for mutable aggregate process state"
+    "world runtime receipt for each process being advanced",
+    "only due or causally awakened process coverage/owners"
   ],
   "write_order": [
-    "settle every due boundary in chronological order",
-    "instantiate supported successor actions",
-    "persist authoritative owner/runtime effects and frontier/coverage state",
-    "end with no overdue process"
+    "determine every boundary, owner-local deadline and causal wake-up crossed before the target time",
+    "settle awakened owners and every supported successor action in chronological order",
+    "persist authoritative domain-owner effects before declaring process settlement",
+    "write or replace the process latest semantic receipt in state/runtime.json with the actual outcome and coverage used",
+    "advance that process frontier cursor only to the exact reviewed_through value proven by its receipt",
+    "after every required continuous process is closed, advance the runtime/global frontier to the target",
+    "end with no overdue boundary, owner-local deadline, causal wake-up or unreceipted continuous process"
   ],
   "invariants": [
     "Offscreen does not mean frozen.",
     "Aggregate coverage may batch stable descendants but never improve their outcomes.",
+    "A process frontier timestamp is orchestration state, not evidence that its covered owners were reviewed; the matching runtime receipt supplies that evidence.",
+    "A no_op receipt requires an actual semantic review with a causal reason; silently skipping an owner or leaving a file untouched is not a no-op.",
+    "Owner-local schedules and causal wake-ups override a slower aggregate baseline such as monthly review.",
+    "Material autonomous actions are instantiated and persisted in their domain authority before successor resolution continues.",
     "No second hidden clock."
   ],
   "validators": [
+    "tools/test_world_liveness.py",
     "tools/test_runtime.py",
     "tools/test_living_world.py",
     "tools/test_templates.py"

@@ -3,9 +3,13 @@
   "id": "Invisible Court Core: Command Doctrine",
   "doctrine": {
     "id": "Invisible Court Core: Command Doctrine",
-    "version": 1,
-    "inherits": "doc.civil.general",
-    "role_profile_ref": "data/organization/doctrine-role-profiles.json#field",
-    "institution_overlay_ref": "data/organization/institution-doctrine-overlays.json#civil"
+    "inherits": "doc.house_tang.invisible_court",
+    "role_profile_ref": "data/organization/doctrine-role-profiles.json#command",
+    "institution_overlay_ref": "data/organization/institution-doctrine-overlays.json#house_tang",
+    "principles": [
+      "Delegate lanes and objectives clearly enough that subordinate House elements continue functioning through disrupted communication.",
+      "Preserve reserve capacity and explicit succession so loss or displacement of one commander does not collapse the formation.",
+      "Concentrate masters where their judgment changes the fight instead of using senior personnel as an undifferentiated front line."
+    ]
   }
 }

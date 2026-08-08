@@ -9,7 +9,7 @@ def read_json(path):
     return json.loads(path.read_text())
 
 
-# Tightly coupled House operational state belongs to the House owner.
+# House Tang: tightly coupled operational state belongs to the House owner.
 process_sidecar = ROOT / "state/house/process.json"
 if process_sidecar.exists():
     errors.append("forbidden authoritative House process sidecar remains: state/house/process.json")
@@ -25,7 +25,6 @@ for house_id, (path, house) in houses.items():
     if not isinstance(units, list):
         errors.append(f"{path.relative_to(ROOT)}: permanent_units must be an array")
         continue
-
     member_ids = set(house.get("member_ids", []))
     unit_members = []
     for unit in units:
@@ -35,26 +34,23 @@ for house_id, (path, house) in houses.items():
             unit_members.append(member_id)
             if member_id not in member_ids:
                 errors.append(f"{path.relative_to(ROOT)}: unit member {member_id} is not a House member")
-
     if len(unit_members) != len(set(unit_members)):
         errors.append(f"{path.relative_to(ROOT)}: a person appears in more than one permanent House unit")
-
     unassigned = set(house.get("unassigned_members", []))
     external = set(house.get("externally_assigned_members", []))
     if unassigned & external:
         errors.append(f"{path.relative_to(ROOT)}: member cannot be both unassigned and externally assigned")
-
     classified = set(unit_members) | unassigned | external
     if classified != member_ids:
-        missing = sorted(member_ids - classified)
-        extra = sorted(classified - member_ids)
-        errors.append(f"{path.relative_to(ROOT)}: House member classification mismatch missing={missing} extra={extra}")
-
+        errors.append(
+            f"{path.relative_to(ROOT)}: House member classification mismatch "
+            f"missing={sorted(member_ids - classified)} extra={sorted(classified - member_ids)}"
+        )
     process = house.get("operating_process")
     if not isinstance(process, dict) or not process.get("id") or not process.get("status"):
         errors.append(f"{path.relative_to(ROOT)}: embedded operating_process must have id and status")
 
-# Compatibility projection may exist, but it must be non-authoritative and exactly reproduce House-owned facts.
+# Compatibility House projection is allowed only as a derived exact projection.
 projection_path = ROOT / "state/house/units.json"
 if projection_path.exists():
     projection = read_json(projection_path)
@@ -64,27 +60,23 @@ if projection_path.exists():
     if source_ref != "state/house/tang.json":
         errors.append("state/house/units.json must source state/house/tang.json")
     source = read_json(ROOT / source_ref) if source_ref and (ROOT / source_ref).exists() else {}
-    projections = {
-        "permanent_units": "permanent_units",
-        "unassigned_members": "unassigned_members",
-        "externally_assigned_members": "externally_assigned_members",
-        "formation_library_ref": "formation_library_ref",
-        "reconstitution_policy_ref": "reconstitution_policy_ref",
-    }
-    for cache_key, source_key in projections.items():
-        if projection.get(cache_key) != source.get(source_key):
-            errors.append(f"state/house/units.json drift: {cache_key} != House owner {source_key}")
+    for key in (
+        "permanent_units",
+        "unassigned_members",
+        "externally_assigned_members",
+        "formation_library_ref",
+        "reconstitution_policy_ref",
+    ):
+        if projection.get(key) != source.get(key):
+            errors.append(f"state/house/units.json drift: {key} != House owner {key}")
     if projection.get("note") != source.get("standing_readiness_order"):
         errors.append("state/house/units.json drift: note != House standing_readiness_order")
 
-# The derived owner index must not expose the compatibility projection as an owner.
 owner_shard = read_json(ROOT / "state/index/owners/house.json")
 if "house.tang.units" in owner_shard.get("owners", {}):
     errors.append("derived House unit projection must not be registered as an owner")
 
-# Exact-character development can use the shared residual bank, but once a bank
-# exists its resolved_through field is the sole development cursor. The same
-# cursor must not also be independently writable on the character sheet.
+# Load exact characters and top-level operational teams once for cross-owner checks.
 exact_characters = {}
 exact_character_paths = [ROOT / "state/player.json"] + sorted((ROOT / "state/char").glob("*.json"))
 for path in exact_character_paths:
@@ -92,9 +84,19 @@ for path in exact_character_paths:
     if data.get("schema") == "shinobi_character" and data.get("owner_id"):
         exact_characters[data["owner_id"]] = (path, data)
 
-# Some exact-character schemas retain legacy career mirrors inside the same file.
-# Until those fields are structurally retired, identical semantic fields must be
-# exact mirrors rather than independent writable truths.
+teams = {}
+team_dir = ROOT / "state/team"
+if team_dir.exists():
+    for path in team_dir.glob("*.json"):
+        data = read_json(path)
+        team_id = data.get("id")
+        if team_id:
+            teams[team_id] = (path, data)
+
+# Legacy career mirrors may remain structurally, but rank mirrors must agree.
+# current_unit_or_office at top level may be a human-readable role label, while
+# career_state.current_unit_or_office is a stable owner ID. Validate the ID by
+# resolving it to the actual team rather than comparing unlike representations.
 for owner_id, (path, character) in exact_characters.items():
     career = character.get("career_state")
     if not isinstance(career, dict):
@@ -105,15 +107,34 @@ for owner_id, (path, character) in exact_characters.items():
         career_rank = career.get("rank")
     if official_rank is not None and career_rank is not None and official_rank != career_rank:
         errors.append(
-            f"{path.relative_to(ROOT)}: rank mirror drift official_rank_or_status={official_rank!r} career={career_rank!r}"
-        )
-    current_office = character.get("current_unit_or_office")
-    career_office = career.get("current_unit_or_office")
-    if current_office is not None and career_office is not None and current_office != career_office:
-        errors.append(
-            f"{path.relative_to(ROOT)}: assignment mirror drift current_unit_or_office={current_office!r} career={career_office!r}"
+            f"{path.relative_to(ROOT)}: rank mirror drift "
+            f"official_rank_or_status={official_rank!r} career={career_rank!r}"
         )
 
+    career_owner = career.get("current_unit_or_office")
+    if isinstance(career_owner, str) and career_owner.startswith("team."):
+        if career_owner not in teams:
+            errors.append(f"{path.relative_to(ROOT)}: career team owner missing: {career_owner}")
+            continue
+        team_path, team = teams[career_owner]
+        schema = team.get("schema")
+        if schema == "team":
+            roster = set(team.get("genin", []))
+            instructor = team.get("jonin_instructor")
+            if instructor:
+                roster.add(instructor)
+        elif schema == "special-mission-team":
+            roster = set(team.get("members", []))
+        else:
+            roster = set(team.get("members", []))
+        if owner_id not in roster:
+            errors.append(
+                f"{path.relative_to(ROOT)}: career team drift {career_owner} does not contain {owner_id} "
+                f"in {team_path.relative_to(ROOT)}"
+            )
+
+# Development: if a shared bank entry exists, its resolved_through is the sole
+# development cursor. The exact character cannot carry a second writable cursor.
 bank_path = ROOT / "state/development/banks.json"
 if bank_path.exists():
     bank = read_json(bank_path)
@@ -127,7 +148,8 @@ if bank_path.exists():
         development = character.get("development") or {}
         if "last_settled_at" in development:
             errors.append(
-                f"{path.relative_to(ROOT)}: duplicate development cursor; bank resolved_through is authoritative for {owner_id}"
+                f"{path.relative_to(ROOT)}: duplicate development cursor; "
+                f"bank resolved_through is authoritative for {owner_id}"
             )
         credits = entry.get("credits", {})
         if not isinstance(credits, dict):
@@ -137,18 +159,8 @@ if bank_path.exists():
                 if not isinstance(value, (int, float)) or isinstance(value, bool) or value < 0:
                     errors.append(f"{bank_path.relative_to(ROOT)}: invalid residual credit {owner_id}:{target}={value}")
 
-# Operational team state and assignment/provenance remain separate authorities,
-# but any assignment explicitly tied to a team must reproduce the same commander
-# and named raw-personnel roster.
-teams = {}
-team_dir = ROOT / "state/team"
-if team_dir.exists():
-    for path in team_dir.glob("*.json"):
-        data = read_json(path)
-        team_id = data.get("id")
-        if team_id:
-            teams[team_id] = (path, data)
-
+# Team operational state and assignment/provenance remain separate authorities,
+# but an assignment explicitly tied to a team must reproduce commander and roster.
 assignments_path = ROOT / "state/org/assignments.json"
 if assignments_path.exists():
     assignments = read_json(assignments_path)
@@ -178,10 +190,8 @@ if assignments_path.exists():
                     f"missing={sorted(expected - allocated)} extra={sorted(allocated - expected)}"
                 )
 
-# A force owns aggregate personnel accounting while materialized homogeneous units
-# own operational troop state. Tactical-team command personnel are real conserved
-# people represented outside those units, so force claims must equal unit personnel
-# plus separately represented tactical command personnel.
+# Force accounting remains separate from materialized homogeneous units. Tactical
+# command personnel are separately represented real people and must also conserve.
 materialized_by_force = {}
 unit_counts = {}
 unit_dir = ROOT / "state/unit"
@@ -199,9 +209,7 @@ if unit_dir.exists():
         if parent_force and isinstance(count, int):
             materialized_by_force[parent_force] = materialized_by_force.get(parent_force, 0) + count
 
-# Commanders are people, never one-person troop units. Tactical-team command
-# personnel therefore stay outside the homogeneous unit sheets but still consume
-# the parent force's claimed headcount.
+# Commanders are people, never one-person troop units.
 tactical_dir = ROOT / "state/team/tactical"
 if tactical_dir.exists():
     for path in tactical_dir.glob("*.json"):
@@ -250,7 +258,7 @@ if force_dir.exists():
                 f"{path.relative_to(ROOT)}: unit claim drift claimed={claimed_count} materialized={materialized_count}"
             )
 
-# A battle kernel is allowed to be split because it is explicitly derived.
+# Battle kernels are allowed to split only because they are explicitly derived.
 kernel_dir = ROOT / "state/unit-kernel"
 if kernel_dir.exists():
     for path in kernel_dir.glob("*.json"):

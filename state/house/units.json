@@ -1,0 +1,20 @@
+{
+  "schema": "house_units",
+  "id": "house.tang.units",
+  "owner": "house.tang",
+  "authority": false,
+  "derived_cache": true,
+  "source_ref": "state/house/tang.json",
+  "permanent_units": [
+    {"id":"unit.house_tang.sword_master_cadre","name":"House Tang Sword Master Cadre","owner":"house.tang","members":["char.zhu","char.linh"],"role":"institutional_command_training_elite_response","doctrine":"Invisible Court Core: Command Doctrine","training":"House Tang sword-master curriculum","loadout_standard":"load.ht.base","formation_library_ref":"formation.house_tang.standard","reconstitution_policy_ref":"reconstitution.house_tang","standing_procedure_ref":"procedure.house_tang.standard"},
+    {"id":"unit.house_tang.instructor_cadre","name":"House Tang Instructor Cadre","owner":"house.tang","members":["ht.m001","ht.m002","ht.m003","ht.m004","ht.m005"],"role":"instruction_manor_response","doctrine":"Invisible Court Core: Court Defense","training":"House Tang instructor curriculum","loadout_standard":"load.ht.base","formation_library_ref":"formation.house_tang.standard","reconstitution_policy_ref":"reconstitution.house_tang","standing_procedure_ref":"procedure.house_tang.standard"},
+    {"id":"unit.house_tang.senior_disciple_company","name":"House Tang Senior Disciple Company","owner":"house.tang","members":["ht.m006","ht.m007","ht.m008","ht.m009","ht.m010","ht.m011","ht.m012","ht.m013","ht.m014"],"role":"field_ready_house_unit","doctrine":"Invisible Court Core: Court Interdiction","training":"House Tang senior-disciple curriculum","loadout_standard":"load.ht.base","formation_library_ref":"formation.house_tang.standard","reconstitution_policy_ref":"reconstitution.house_tang","standing_procedure_ref":"procedure.house_tang.standard"},
+    {"id":"unit.house_tang.junior_disciple_first","name":"House Tang First Junior Disciple Section","owner":"house.tang","members":["ht.m015","ht.m016","ht.m017","ht.m018","ht.m019","ht.m020","ht.m021"],"role":"junior_training_local_defense","doctrine":"Invisible Court Core: Manor Defense","training":"House Tang junior-disciple curriculum","loadout_standard":"load.ht.base","formation_library_ref":"formation.house_tang.standard","reconstitution_policy_ref":"reconstitution.house_tang","standing_procedure_ref":"procedure.house_tang.standard"},
+    {"id":"unit.house_tang.junior_disciple_second","name":"House Tang Second Junior Disciple Section","owner":"house.tang","members":["ht.m022","ht.m023","ht.m024","ht.m025","ht.m026","ht.m027","ht.m028"],"role":"junior_training_local_defense","doctrine":"Invisible Court Core: Manor Defense","training":"House Tang junior-disciple curriculum","loadout_standard":"load.ht.base","formation_library_ref":"formation.house_tang.standard","reconstitution_policy_ref":"reconstitution.house_tang","standing_procedure_ref":"procedure.house_tang.standard"}
+  ],
+  "unassigned_members": ["pc_wei_tang"],
+  "note": "Available House military units use five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day per seven-day cycle. Lawful missions, external assignments, injury, medical restrictions, and Zhu's retained strategic/dojo authority supersede. Missed volume is not stacked later. Instructors rotate through active practice. Unit training and doctrine references define content. Kai remains externally committed to Konoha service and is not scheduled through this House unit cycle.",
+  "externally_assigned_members": ["char.kai"],
+  "formation_library_ref": "formation.house_tang.standard",
+  "reconstitution_policy_ref": "reconstitution.house_tang"
+}

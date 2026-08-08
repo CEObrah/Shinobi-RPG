@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: life course registry",
+  "type": "object",
+  "required": [
+    "owner_id",
+    "owner_type",
+    "process_state",
+    "rules",
+    "schema"
+  ],
+  "properties": {
+    "owner_id": {
+      "type": "string"
+    },
+    "owner_type": {
+      "type": "string"
+    },
+    "process_state": {
+      "type": "object"
+    },
+    "rules": {
+      "type": "object"
+    },
+    "schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

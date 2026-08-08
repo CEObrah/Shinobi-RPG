@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Unit",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "owner",
+    "troop_type",
+    "personnel",
+    "loadout_standard",
+    "doctrine",
+    "training"
+  ],
+  "properties": {
+    "schema": {
+      "const": "unit"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "troop_type": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "personnel": {
+      "type": "object"
+    },
+    "commander": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "doctrine": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "training": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tendencies": {
+      "type": [
+        "string",
+        "object",
+        "null"
+      ]
+    },
+    "cohesion": {
+      "type": "number"
+    },
+    "morale": {
+      "type": "number"
+    },
+    "readiness": {
+      "type": "number"
+    },
+    "tendency_profile_ref": {
+      "type": "string"
+    },
+    "aptitude_profile_ref": {
+      "type": "string"
+    },
+    "issue_state": {
+      "type": "object",
+      "description": "Exception-only actual issue/readiness state. Absence means no separately materialized issue exception. May record shortage, damage, substitutes, ammunition or repair state but not a second intended standard.",
+      "properties": {
+        "status": {
+          "enum": [
+            "fully_issued",
+            "under_issued",
+            "damaged",
+            "substitute_issue",
+            "mixed_exceptions"
+          ]
+        },
+        "completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "missing": {
+          "type": "object"
+        },
+        "damaged": {
+          "type": "object"
+        },
+        "substitutes": {
+          "type": "object"
+        },
+        "ammunition_state": {
+          "type": "object"
+        },
+        "repair_backlog": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "alternate_loadout"
+            ]
+          },
+          {
+            "required": [
+              "secondary_standard"
+            ]
+          },
+          {
+            "required": [
+              "loadout_standard_distribution"
+            ]
+          }
+        ]
+      }
+    },
+    "refit_state": {
+      "type": "object",
+      "description": "Optional transition to a future standard. The current unit standard remains authoritative for organizational identity until refit completion; actual equipment during transition is resolved from issue/inventory state.",
+      "required": [
+        "status",
+        "target_loadout_standard",
+        "progress"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "planned",
+            "awaiting_stock",
+            "issuing",
+            "fitting",
+            "familiarizing",
+            "paused"
+          ]
+        },
+        "target_loadout_standard": {
+          "type": "string",
+          "minLength": 1
+        },
+        "progress": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "started_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reserved_inventory_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "familiarization_required": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "loadout_standard": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The single intended organizational standard loadout for the whole unit. Partial durable changes require split first."
+    }
+  },
+  "additionalProperties": true,
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "loadout_distribution"
+        ]
+      },
+      {
+        "required": [
+          "specialization_distribution"
+        ]
+      },
+      {
+        "required": [
+          "loadout_standard_distribution"
+        ]
+      },
+      {
+        "required": [
+          "alternate_loadout_distribution"
+        ]
+      }
+    ]
+  }
+}

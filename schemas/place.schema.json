@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: place.",
+  "type": "object",
+  "required": [
+    "id",
+    "owner",
+    "schema"
+  ],
+  "properties": {
+    "alarm": {
+      "type": "string"
+    },
+    "built_floor_m2": {
+      "type": "integer"
+    },
+    "cells": {
+      "type": "object"
+    },
+    "chartered_land_m2": {
+      "type": "integer"
+    },
+    "custody_records": {
+      "type": "array"
+    },
+    "developed_m2": {
+      "type": "integer"
+    },
+    "facilities": {
+      "type": "array"
+    },
+    "id": {
+      "type": "string"
+    },
+    "infrastructure_backbone": {
+      "type": "array"
+    },
+    "long_term_capacity_after_projects": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "rooms": {
+      "type": "array"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "systems": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

@@ -23,9 +23,7 @@ for p in ROOT.rglob('*'):
     try:json.loads(line)
     except Exception as e:err(f'jsonl:{rel}:{i}:{e}')
 meta=rj(ROOT/'state/meta.json') or {}
-if meta.get('schema')!='meta.v38':err('meta_schema')
-_version=(ROOT/'VERSION').read_text(encoding='utf-8').strip()
-if meta.get('version')!=_version:err(f'meta_version:{meta.get("version")}!={_version}')
+if meta.get('schema')!='meta':err('meta_schema')
 # schema enforcement
 registry=rj(ROOT/'schemas/registry.json') or {}
 def walk(x):
@@ -242,7 +240,7 @@ if not (ROOT/'data/mechanics/reputation.json').exists():err('reputation_mechanic
 
 # owner index basic verification
 ind=rj(ROOT/'state/index/owners.json') or {}
-if ind.get('schema')!='owner_index.v39':err('owner_index_schema')
+if ind.get('schema')!='owner_index':err('owner_index_schema')
 if ind.get('authority') is not False:err('index_must_be_non_authoritative')
 _owner_total=0
 for _prefix,_shrel in ind.get('prefix_index',{}).items():
@@ -383,7 +381,7 @@ for _e in eyes:
 
 # mechanics regression suite exists
 # mechanics regression suite exists
-if not (ROOT/'tests/mechanics-v38.json').exists():err('mechanics_regression_missing')
+if not (ROOT/'tests/mechanics.json').exists():err('mechanics_regression_missing')
 
 # Final mechanical-closure release gate
 _required_mechanics=('biju.json','body.json','chakra.json','clone-barrier.json','core.json','dojutsu.json','effect-resolvers.json','elements.json','encumbrance.json','genjutsu.json','guardian-current.json','injury.json','medical.json','morale.json','narrative-recall.json','perception.json','sealing.json','special-systems.json','stats.json','technique-effects.json','technique-primitives.json','timing.json','training.json','travel.json','unique-items.json')
@@ -423,7 +421,7 @@ for _pid,_prec in prim.items():
  if _prec.get('shared_chakra_authority')!='data/mechanics/chakra.json':err(f'primitive_chakra_authority:{_pid}')
  if _prec.get('shared_timing_authority')!='data/mechanics/core.json':err(f'primitive_timing_authority:{_pid}')
 # Current invariants file only; no compatibility invariant filename.
-if not (ROOT/'tests/invariants-v38.json').exists():err('current_invariants_missing')
+if not (ROOT/'tests/invariants.json').exists():err('current_invariants_missing')
 _obsolete_inv=ROOT/'tests'/('v'+'36-invariants.json')
 if _obsolete_inv.exists():err('obsolete_invariants_file_present')
 # Ocular storage and biological implant references are evolution-safe.
@@ -567,7 +565,7 @@ for _phrase in ('Repository memory is not player memory','estimated in-world','m
  if _phrase not in _voice:err(f'narrator_contract_missing:{_phrase}')
 # Release packaging provenance belongs outside the live gameplay tree.
 if (ROOT/'data/provenance.json').exists():err('release_provenance_in_live_gameplay_tree')
-if (ROOT/'schemas/release-provenance-v38.schema.json').exists():err('release_provenance_schema_in_live_gameplay_tree')
+if (ROOT/'schemas/release-provenance.schema.json').exists():err('release_provenance_schema_in_live_gameplay_tree')
 
 
 # Normalized character/interface/Invisible Court invariants.

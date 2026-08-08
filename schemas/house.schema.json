@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: house.",
+  "type": "object",
+  "required": [
+    "charter",
+    "covenant",
+    "field_command_warrant",
+    "home",
+    "id",
+    "leadership",
+    "member_ids",
+    "name",
+    "personal_force_model",
+    "private_guard_force",
+    "public_training_for_money",
+    "ranks",
+    "schema",
+    "support_rank",
+    "unit_policy"
+  ],
+  "properties": {
+    "charter": {
+      "type": "string"
+    },
+    "covenant": {
+      "type": "string"
+    },
+    "field_command_warrant": {
+      "type": "object"
+    },
+    "home": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "leadership": {
+      "type": "object"
+    },
+    "member_ids": {
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "personal_force_model": {
+      "type": "string"
+    },
+    "private_guard_force": {
+      "type": "boolean"
+    },
+    "public_training_for_money": {
+      "type": "boolean"
+    },
+    "ranks": {
+      "type": "array"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "support_rank": {
+      "type": "boolean"
+    },
+    "unit_policy": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

@@ -28,7 +28,7 @@ seen_active: set[str] = set()
 
 for path in sorted((ROOT / "state/team").glob("*.json")):
     data = load(path)
-    if data.get("schema") != "team.v38" or data.get("status") != "active":
+    if data.get("schema") != "team" or data.get("status") != "active":
         continue
     team_id = data.get("id")
     if not team_id:

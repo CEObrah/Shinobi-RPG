@@ -3,7 +3,7 @@ import json,math,hashlib
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 R=Path(__file__).resolve().parents[1]
-t=json.loads((R/'tests/mechanics-v38.json').read_text())['tests'];by={x['id']:x for x in t}
+t=json.loads((R/'tests/mechanics.json').read_text())['tests'];by={x['id']:x for x in t}
 def r3(x):return float(Decimal(str(x)).quantize(Decimal('0.001'),rounding=ROUND_HALF_UP))
 def chk(i,val):
  exp=by[i]['expected']

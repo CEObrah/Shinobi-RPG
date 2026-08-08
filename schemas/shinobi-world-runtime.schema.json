@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: shinobi world runtime",
+  "type": "object",
+  "required": [
+    "completed_reviews",
+    "last_settled_at",
+    "schema"
+  ],
+  "properties": {
+    "completed_reviews": {
+      "type": "object"
+    },
+    "last_settled_at": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

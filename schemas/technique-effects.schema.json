@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "technique-effects",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "authority",
+    "effect_profile_index",
+    "shards"
+  ],
+  "properties": {
+    "schema": {},
+    "version": {},
+    "authority": {},
+    "effect_profile_index": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "shards": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

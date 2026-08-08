@@ -1,5 +1,5 @@
 {
-  "schema": "morale-mechanics.v38",
+  "schema": "morale-mechanics",
   "formulas": {
     "morale_pressure": "casualty_pressure + commander_loss + flank_rear_pressure + isolation + supply_failure + fear_effects - rally - cohesion_support",
     "effective_morale": "clamp(base_morale - morale_pressure,0,200)"

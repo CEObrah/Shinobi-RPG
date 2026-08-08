@@ -9,225 +9,42 @@
   "life_status": "active",
   "village_or_affiliation": "Konoha",
   "official_rank_or_status": "chunin",
-  "roles": [
-    "inuzuka",
-    "medical_veterinarian",
-    "tracker"
-  ],
-  "attributes": {
-    "agility": 85,
-    "awareness": 92,
-    "composure": 86,
-    "coordination": 87,
-    "endurance": 82,
-    "intelligence": 90,
-    "presence": 78,
-    "strength": 80,
-    "toughness": 79
-  },
-  "chakra_dimensions": {
-    "casting_stability": 84,
-    "control": 90,
-    "efficiency": 87,
-    "hand_seal_speed": 84,
-    "multitasking": 86,
-    "output": 84,
-    "sensing": 81,
-    "suppression": 79
-  },
-  "domain_proficiencies": {
-    "earth": 0,
-    "fire": 0,
-    "genjutsu": 35,
-    "lightning": 0,
-    "medical": 92,
-    "summoning": 0,
-    "water": 0,
-    "wind": 0,
-    "yang": 0,
-    "yin": 0
-  },
-  "martial_skills": {
-    "bow": 30,
-    "grappling": 74,
-    "heavy_weapon": 0,
-    "movement": 85,
-    "polearm": 25,
-    "staff": 30,
-    "stealth": 82,
-    "sword": 77,
-    "thrown_tools": 79,
-    "unarmed": 86
-  },
-  "operational_skills": {
-    "infiltration": 82,
-    "investigation": 86,
-    "leadership": 78,
-    "medicine": 100,
-    "survival": 78,
-    "tactics": 86,
-    "team_coordination": 84,
-    "tracking": 100,
-    "traps": 74
-  },
-  "resources": {
-    "chakra": {
-      "current": 119,
-      "capacity": 119
-    },
-    "health": {
-      "current": 117,
-      "capacity": 117
-    },
-    "fatigue": {
-      "current": 0,
-      "capacity": 100
-    },
-    "strain": {
-      "current": 0,
-      "safe_capacity": 80
-    }
-  },
-  "current_location_id": "loc_inuzuka_compound",
-  "condition": {
-    "disabilities": [],
-    "illness": null,
-    "injuries": [],
-    "poison": null,
-    "readiness": "ready"
-  },
-  "equipment_loadout_id": "loadout_konoha_flak",
+  "roles": ["inuzuka","medical_veterinarian","tracker"],
+  "attributes": {"agility":85,"awareness":92,"composure":86,"coordination":87,"endurance":82,"intelligence":90,"presence":78,"strength":80,"toughness":79},
+  "chakra_dimensions": {"casting_stability":84,"control":90,"efficiency":87,"hand_seal_speed":84,"multitasking":86,"output":84,"sensing":81,"suppression":79},
+  "domain_proficiencies": {"earth":0,"fire":0,"genjutsu":35,"lightning":0,"medical":92,"summoning":0,"water":0,"wind":0,"yang":0,"yin":0},
+  "martial_skills": {"bow":30,"grappling":74,"heavy_weapon":0,"movement":85,"polearm":25,"staff":30,"stealth":82,"sword":77,"thrown_tools":79,"unarmed":86},
+  "operational_skills": {"infiltration":82,"investigation":86,"leadership":78,"medicine":100,"survival":78,"tactics":86,"team_coordination":84,"tracking":100,"traps":74},
+  "resources": {"chakra":{"current":119,"capacity":119},"health":{"current":117,"capacity":117},"fatigue":{"current":0,"capacity":100},"strain":{"current":0,"safe_capacity":80}},
+  "current_location_id": "place.sword_manor",
+  "current_unit_or_office": "team.blackhound",
+  "condition": {"disabilities":[],"illness":null,"injuries":[],"poison":null,"readiness":"ready"},
+  "equipment_loadout_id": "load.black_hound.hana",
+  "equipment_exceptions": {"add":[],"remove":[]},
   "repertoire": {
-    "packages": [
-      "PKG_KONOHA_ACADEMY_CORE",
-      "PKG_KONOHA_FIELD_CORE",
-      "PKG_KONOHA_CHUNIN_CORE",
-      "PKG_INUZUKA_CLAN_CORE",
-      "PKG_KONOHA_MEDICAL_CORE",
-      "PKG_KONOHA_TRACKER_CORE"
-    ],
-    "package_mastery": {
-      "PKG_KONOHA_ACADEMY_CORE": 79,
-      "PKG_KONOHA_FIELD_CORE": 88,
-      "PKG_KONOHA_CHUNIN_CORE": 83,
-      "PKG_INUZUKA_CLAN_CORE": 78,
-      "PKG_KONOHA_MEDICAL_CORE": 86,
-      "PKG_KONOHA_TRACKER_CORE": 82
-    },
-    "field_usable_techniques": [
-      "transformation",
-      "clone_illusion",
-      "prepared_substitution",
-      "tree_surface_adherence",
-      "basic_chakra_molding",
-      "standard_thrown_tools",
-      "water_surface_adherence",
-      "chakra_assisted_movement",
-      "field_concealment",
-      "wire_and_trap_safety",
-      "casualty_stabilization",
-      "coded_team_signals",
-      "body_flicker",
-      "advanced_substitution_setup",
-      "mission_command_signals",
-      "prisoner_restraint",
-      "counter_ambush_drill",
-      "ninken_coordination",
-      "scent_tracking",
-      "fang_rotation",
-      "medical_tissue_guidance",
-      "field_triage",
-      "poison_stabilization",
-      "trail_analysis",
-      "scent_and_sign_tracking",
-      "pursuit_rotation"
-    ],
+    "packages": ["PKG_KONOHA_ACADEMY_CORE","PKG_KONOHA_FIELD_CORE","PKG_KONOHA_CHUNIN_CORE","PKG_INUZUKA_CLAN_CORE","PKG_KONOHA_MEDICAL_CORE","PKG_KONOHA_TRACKER_CORE"],
+    "package_mastery": {"PKG_KONOHA_ACADEMY_CORE":79,"PKG_KONOHA_FIELD_CORE":88,"PKG_KONOHA_CHUNIN_CORE":83,"PKG_INUZUKA_CLAN_CORE":78,"PKG_KONOHA_MEDICAL_CORE":86,"PKG_KONOHA_TRACKER_CORE":82},
+    "field_usable_techniques": ["transformation","clone_illusion","prepared_substitution","tree_surface_adherence","basic_chakra_molding","standard_thrown_tools","water_surface_adherence","chakra_assisted_movement","field_concealment","wire_and_trap_safety","casualty_stabilization","coded_team_signals","body_flicker","advanced_substitution_setup","mission_command_signals","prisoner_restraint","counter_ambush_drill","ninken_coordination","scent_tracking","fang_rotation","medical_tissue_guidance","field_triage","poison_stabilization","trail_analysis","scent_and_sign_tracking","pursuit_rotation"],
     "latent_or_locked_techniques": [],
     "bloodlines": [],
-    "method_mastery": {
-      "transformation": 87,
-      "clone_illusion": 81,
-      "prepared_substitution": 81,
-      "tree_surface_adherence": 81,
-      "basic_chakra_molding": 80,
-      "standard_thrown_tools": 90,
-      "water_surface_adherence": 90,
-      "chakra_assisted_movement": 82,
-      "field_concealment": 86,
-      "wire_and_trap_safety": 90,
-      "casualty_stabilization": 87,
-      "coded_team_signals": 87,
-      "body_flicker": 90,
-      "advanced_substitution_setup": 79,
-      "mission_command_signals": 90,
-      "prisoner_restraint": 88,
-      "counter_ambush_drill": 82,
-      "ninken_coordination": 89,
-      "scent_tracking": 87,
-      "fang_rotation": 89,
-      "medical_tissue_guidance": 82,
-      "field_triage": 84,
-      "poison_stabilization": 80,
-      "trail_analysis": 83,
-      "scent_and_sign_tracking": 82,
-      "pursuit_rotation": 83
-    }
+    "method_mastery": {"transformation":87,"clone_illusion":81,"prepared_substitution":81,"tree_surface_adherence":81,"basic_chakra_molding":80,"standard_thrown_tools":90,"water_surface_adherence":90,"chakra_assisted_movement":82,"field_concealment":86,"wire_and_trap_safety":90,"casualty_stabilization":87,"coded_team_signals":87,"body_flicker":90,"advanced_substitution_setup":79,"mission_command_signals":90,"prisoner_restraint":88,"counter_ambush_drill":82,"ninken_coordination":89,"scent_tracking":87,"fang_rotation":89,"medical_tissue_guidance":82,"field_triage":84,"poison_stabilization":80,"trail_analysis":83,"scent_and_sign_tracking":82,"pursuit_rotation":83}
   },
-  "body": {
-    "adult_height_cm": 170.3,
-    "growth_profile_id": "human_height_to_18",
-    "growth_end_age": 18,
-    "height_anchors": [],
-    "current_weight_kg": 52.5,
-    "frame": "athletic",
-    "source": "canon_or_explicit_later_era_reference"
-  },
+  "body": {"adult_height_cm":170.3,"growth_profile_id":"human_height_to_18","growth_end_age":18,"height_anchors":[],"current_weight_kg":52.5,"frame":"athletic","source":"canon_or_explicit_later_era_reference"},
   "appearance": 72,
   "appearance_source": "stable_simulation_seed",
   "canon_status": "canon_character",
   "canon_source_notes": [],
-  "career_state": {
-    "career_revision": 1,
-    "current_rank_or_status": "chunin",
-    "current_unit_or_office": null,
-    "promotion_eligible": true,
-    "retirement_eligible": false
-  },
-  "development": {
-    "current_training": [],
-    "last_settled_at": "SE-0061-02-05T07:00:00",
-    "weighted_adaptation": null
-  },
+  "career_state": {"career_revision":1,"current_rank_or_status":"chunin","current_unit_or_office":"team.blackhound","promotion_eligible":true,"retirement_eligible":false},
+  "development": {"current_training":[],"last_settled_at":"SE-0061-02-06T21:15:00","weighted_adaptation":null},
   "goal_state": {
     "long_term_goals": [],
-    "current_goals": [
-      "protect Konoha and assigned comrades"
-    ],
-    "current_orders": [],
+    "current_goals": ["protect Konoha and assigned comrades"],
+    "current_orders": ["Black Hound is the primary standing assignment under Wei Tang. Follow team.blackhound.doctrine and its maximum-quality training cycle; no parallel standing assignment unless the Hokage changes the order. Lawful missions, injury, medical restrictions, and required travel interrupt training rather than creating stacked make-up volume."],
     "personal_desires": [],
-    "institutional_duties": [
-      "protect Konoha and assigned comrades"
-    ]
+    "institutional_duties": ["serve Black Hound under Hokage mission authority","protect Konoha and assigned comrades"]
   },
-  "background": {
-    "origin": "Konoha"
-  },
-  "aptitude": {
-    "physical_learning": 102,
-    "technical_learning": 108,
-    "tactical_learning": 107,
-    "academic_learning": 108,
-    "social_learning": 97,
-    "chakra_learning": 108,
-    "nature_transformation_learning": 102,
-    "genjutsu_learning": 99,
-    "sensory_learning": 102,
-    "medical_learning": 105,
-    "source": "simulation_seed_from_initial_capability"
-  },
-  "relationship_refs": [
-    "rel.canon_hana_inuzuka.canon_tsume.mother",
-    "rel.canon_hana_inuzuka.canon_kiba.younger_brother"
-  ],
+  "background": {"origin":"Konoha"},
+  "aptitude": {"physical_learning":102,"technical_learning":108,"tactical_learning":107,"academic_learning":108,"social_learning":97,"chakra_learning":108,"nature_transformation_learning":102,"genjutsu_learning":99,"sensory_learning":102,"medical_learning":105,"source":"simulation_seed_from_initial_capability"},
+  "relationship_refs": ["rel.canon_hana_inuzuka.canon_tsume.mother","rel.canon_hana_inuzuka.canon_kiba.younger_brother"],
   "knowledge_profile_ref": "knowledge.current_institution_observation"
 }

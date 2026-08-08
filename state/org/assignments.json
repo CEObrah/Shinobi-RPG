@@ -1,20 +1,33 @@
 {
   "schema": "command-assignments",
   "id": "org.assignments",
-  "records": [],
+  "records": [
+    {
+      "id": "assign.blackhound.named_roster",
+      "source_owner": "force_konoha_shinobi",
+      "assignment_kind": "raw_personnel",
+      "receiving_commander": "pc_wei_tang",
+      "authority_limits": {
+        "team_id": "team.blackhound",
+        "primary_assignment": "exclusive_black_hound_for_assigned_five",
+        "mission_authority": "Hokage-assigned Konoha special operations only",
+        "parallel_assignments": "none unless the Hokage changes the order"
+      },
+      "start": "SE-0061-02-06T19:30:00",
+      "return_condition": "Hokage revocation, team dissolution, lawful reassignment, retirement, death, or incapacity",
+      "return_policy_ref": "reconstitution.shinobi_village",
+      "unit_refs": [],
+      "raw_allocations": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "canon_hayama_shirakumo"
+      ]
+    }
+  ],
   "rule": "Intact unit assignments retain source owner, home unit, standards and history. Raw personnel assignments retain source accounting/home claims and may remain unorganized until the receiving commander lawfully forms homogeneous units. Assignment changes authority, not ownership.",
   "return_rule": "Return intact units or surviving raw-personnel claims to the source home chain; preserve casualties, injuries, experience, morale/cohesion, lawful promotions, equipment loss and history; dissolve receiving-only formations/orders; then invoke source reconstitution.",
-  "assignment_kinds": [
-    "intact_units",
-    "raw_personnel"
-  ],
-  "required_fields": [
-    "source_owner",
-    "assignment_kind",
-    "receiving_commander",
-    "authority_limits",
-    "start",
-    "return_condition",
-    "return_policy_ref"
-  ]
+  "assignment_kinds": ["intact_units", "raw_personnel"],
+  "required_fields": ["source_owner", "assignment_kind", "receiving_commander", "authority_limits", "start", "return_condition", "return_policy_ref"]
 }

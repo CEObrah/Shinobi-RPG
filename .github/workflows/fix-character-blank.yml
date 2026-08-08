@@ -1,0 +1,35 @@
+name: fix-character-blank
+on:
+  push:
+    branches:
+      - maintenance/world-liveness-pass
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Remove obsolete schedule array contracts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/runtime/templates/shinobi_character.template.json')
+          d=json.loads(p.read_text())
+          for k in list(d.get('array_contracts', {})):
+              if k == '/schedule_profile' or k.startswith('/schedule_profile/'):
+                  del d['array_contracts'][k]
+          p.write_text(json.dumps(d, ensure_ascii=False, indent=2)+'\n')
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/templates/shinobi_character.template.json
+          git commit -m "Remove obsolete character schedule array contracts"
+          git push origin HEAD:maintenance/world-liveness-pass

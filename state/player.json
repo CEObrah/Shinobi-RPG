@@ -1,309 +1,47 @@
 {
-  "attributes": {
-    "agility": 145,
-    "awareness": 145,
-    "composure": 115,
-    "coordination": 150,
-    "endurance": 130,
-    "intelligence": 170,
-    "presence": 90,
-    "strength": 120,
-    "toughness": 95
-  },
-  "birth_date": "SE-0044-12-02",
-  "birth_date_source": "user_defined",
-  "canon_status": "original_player_character",
-  "chakra_dimensions": {
-    "casting_stability": 125,
-    "control": 140,
-    "efficiency": 135,
-    "hand_seal_speed": 110,
-    "multitasking": 130,
-    "output": 100,
-    "sensing": 100,
-    "suppression": 120
-  },
-  "compact_personality": {
-    "discipline": "derived only from declared behavior",
-    "morale": "player_decision",
-    "player_controlled": true
-  },
-  "condition": {
-    "disabilities": [],
-    "illness": null,
-    "injuries": [],
-    "poison": null,
-    "readiness": "ready"
-  },
-  "current_external_load": {
-    "agility_penalty": 1,
-    "dedicated_training_weight_present": false,
-    "distribution": "normal_balanced_equipment",
-    "effective_burden": 0.0628,
-    "effective_external_load_kg": 17.49,
-    "height_or_body_mass_used": false,
-    "load_support_kg": 278.5,
-    "movement_penalty": 1,
-    "ordinary_equipment_kg": 17.49,
-    "stealth_penalty_including_noise": 2,
-    "total_external_load_kg": 17.49
-  },
-  "current_location_id": "loc_konoha",
-  "current_unit_or_office": "Konoha Special Missions roster; no permanent team",
-  "derived_runtime_limits": {
-    "available_wind_channels_unfatigued": 7,
-    "formula": "2 + floor((Wind + Multitasking + Intelligence Support + Awareness Support)/60) - current penalties",
-    "not_a_stat": true
-  },
-  "development": {
-    "current_training": [],
-    "last_settled_at": "SE-0061-02-05T07:00:00",
-    "training_model": "Training is activity evidence. Temporary resistance drills, ordinary field loads, sparring, climbing, sprinting, and mission movement may support development without creating persistent dedicated weight-item records."
-  },
-  "domain_proficiencies": {
-    "barrier": 15,
-    "genjutsu": 20,
-    "medical": 15,
-    "raw_chakra": 105,
-    "sealing": 25,
-    "sensory": 100,
-    "wind": 115
-  },
-  "equipment_loadout_id": "load.ht.base",
-  "equipment_mode": "house_combat_standard",
-  "goals": [],
-  "institutional_training_packages": [
-    "PKG_KONOHA_ACADEMY_CORE",
-    "PKG_KONOHA_FIELD_CORE",
-    "PKG_KONOHA_CHUNIN_CORE",
-    "PKG_KONOHA_KENJUTSU_CORE",
-    "PKG_INVISIBLE_COURT_STYLE",
-    "PKG_KONOHA_JONIN_CORE"
-  ],
-  "knowledge_state": {
-    "secrets_not_automatically_shared": true,
-    "world_information_scope": "player-appropriate information acquired through valid knowledge paths"
-  },
-  "life_course_state": {
-    "birthday_rule": "age changes automatically; celebrations, commitments, travel, training choices, and voluntary decisions remain player controlled",
-    "career_stage": "adolescent_operational",
-    "injury_events": [],
-    "location_history": [
-      {
-        "at": "SE-0061-02-05T07:00:00",
-        "location_id": "loc_konoha",
-        "reason": "initial recorded state"
-      }
-    ],
-    "player_life_choices_protected": true,
-    "rank_history": [
-      {
-        "at": "SE-0061-02-05T07:00:00",
-        "rank": "Jonin; Special Missions roster; ANBU candidate",
-        "reason": "initial recorded state"
-      }
-    ],
-    "relationship_events": [],
-    "status_history": []
-  },
-  "life_status": "alive",
-  "martial_skills": {
-    "bow": 10,
-    "grappling": 155,
-    "heavy_weapon": 10,
-    "movement": 145,
-    "polearm": 15,
-    "staff": 20,
-    "stealth": 110,
-    "sword": 125,
-    "thrown_tools": 85,
-    "unarmed": 100
-  },
-  "name": "Wei Tang",
-  "official_rank_or_status": "Jonin",
-  "operational_skills": {
-    "infiltration": 110,
-    "investigation": 75,
-    "leadership": 55,
-    "medicine": 20,
-    "survival": 75,
-    "tactics": 130,
-    "team_coordination": 70,
-    "tracking": 70,
-    "traps": 50
-  },
-  "owner_id": "pc_wei_tang",
-  "owner_type": "player_character",
-  "player_choice_protection": {
-    "allegiance": true,
-    "consent": true,
-    "dialogue": true,
-    "irreversible_decisions": true,
-    "lethal_intent": true,
-    "surrender": true,
-    "thoughts_and_emotional_conclusions": true,
-    "travel_choice": true,
-    "voluntary_spending": true
-  },
-  "resolution_tier": "player_exact",
-  "resources": {
-    "chakra": {
-      "current": 190,
-      "capacity": 190
-    },
-    "fatigue": {
-      "current": 0,
-      "capacity": 145
-    },
-    "health": {
-      "current": 180,
-      "capacity": 180
-    },
-    "strain": {
-      "current": 0,
-      "safe_capacity": 145
-    }
-  },
-  "roles": [
-    "Special Missions Jonin",
-    "player_character",
-    "swordsman",
-    "capture specialist",
-    "Wind Release practitioner",
-    "jonin",
-    "special_missions_specialist",
-    "house_tang_sword_master",
-    "house_tang_first_sword",
-    "house_field_commander"
-  ],
-  "runtime": {
-    "last_settled_at": "SE-0061-02-05T07:00:00"
-  },
-  "schema": "shinobi_character_v38",
-  "unique_methods": [
-    "listening_skin",
-    "flowing_veil",
-    "crosscurrent_zone",
-    "pressure_nails",
-    "binding_current",
-    "empty_step",
-    "returning_current",
-    "thousand_edge_field",
-    "silent_chamber",
-    "severing_wake",
-    "court_of_ten_thousand_invisible_blades",
-    "rulers_domain"
-  ],
-  "village_or_affiliation": "Konoha",
-  "knowledge_packages": [],
-  "house_tang": {
-    "rank": "sword_master",
-    "offices": [
-      "first_sword",
-      "field_commander"
-    ],
-    "standing_field_warrant": true,
-    "head_of_house": "char.zhu"
-  },
-  "body": {
-    "adult_height_cm": 167.0,
-    "growth_profile_id": "human_height_to_18",
-    "growth_end_age": 18,
-    "height_anchors": [
-      {
-        "age": 16,
-        "cm": 167
-      },
-      {
-        "age": 18,
-        "cm": 167
-      }
-    ],
-    "current_weight_kg": 61.4,
-    "frame": "athletic",
-    "source": "user_defined_height"
-  },
-  "appearance": 100,
-  "appearance_source": "cross_game_player_profile",
-  "repertoire": {
-    "packages": [
-      "PKG_HT_SWORD_MASTER",
-      "PKG_KONOHA_JONIN_CORE"
-    ],
-    "package_mastery": {},
-    "field_usable_techniques": [
-      "listening_skin",
-      "flowing_veil",
-      "crosscurrent_zone",
-      "pressure_nails",
-      "binding_current",
-      "empty_step",
-      "returning_current",
-      "thousand_edge_field",
-      "silent_chamber",
-      "severing_wake",
-      "court_of_ten_thousand_invisible_blades",
-      "body_flicker",
-      "chakra_assisted_movement",
-      "clone_illusion",
-      "deep_chakra_suppression",
-      "prepared_substitution",
-      "transformation",
-      "tree_surface_adherence",
-      "water_surface_adherence",
-      "rulers_domain"
-    ],
-    "latent_or_locked_techniques": [],
-    "bloodlines": [
-      "bloodline.guardian_current"
-    ],
-    "method_mastery": {
-      "binding_current": 100,
-      "body_flicker": 95,
-      "chakra_assisted_movement": 100,
-      "clone_illusion": 75,
-      "court_of_ten_thousand_invisible_blades": 70,
-      "crosscurrent_zone": 95,
-      "deep_chakra_suppression": 95,
-      "empty_step": 110,
-      "flowing_veil": 100,
-      "listening_skin": 105,
-      "prepared_substitution": 90,
-      "pressure_nails": 105,
-      "returning_current": 90,
-      "severing_wake": 95,
-      "silent_chamber": 80,
-      "thousand_edge_field": 85,
-      "transformation": 80,
-      "tree_surface_adherence": 95,
-      "water_surface_adherence": 90,
-      "rulers_domain": 80
-    }
-  },
-  "guardian_current": true,
-  "aptitude": {
-    "physical_learning": 195,
-    "technical_learning": 200,
-    "tactical_learning": 200,
-    "academic_learning": 195,
-    "social_learning": 185,
-    "chakra_learning": 200,
-    "nature_transformation_learning": 200,
-    "genjutsu_learning": 195,
-    "sensory_learning": 200,
-    "medical_learning": 185,
-    "source": "user_defined_family_exceptional",
-    "dojutsu_learning": 200
-  },
-  "career_state": {
-    "rank": "Jonin",
-    "assignment": "Konoha Special Missions roster",
-    "anbu_status": "candidate_not_active",
-    "command": "no permanent team"
-  },
-  "biological_compatibility": {
-    "dojutsu_transplant": 190,
-    "source": "user_defined_exceptional_family_compatibility"
-  },
-  "combat_style_ref": "state/player-detail/combat-style.json"
+  "attributes": {"agility":145,"awareness":145,"composure":115,"coordination":150,"endurance":130,"intelligence":170,"presence":90,"strength":120,"toughness":95},
+  "birth_date":"SE-0044-12-02",
+  "birth_date_source":"user_defined",
+  "canon_status":"original_player_character",
+  "chakra_dimensions":{"casting_stability":125,"control":140,"efficiency":135,"hand_seal_speed":110,"multitasking":130,"output":100,"sensing":100,"suppression":120},
+  "compact_personality":{"discipline":"derived only from declared behavior","morale":"player_decision","player_controlled":true},
+  "condition":{"disabilities":[],"illness":null,"injuries":[],"poison":null,"readiness":"ready"},
+  "current_external_load":{"agility_penalty":1,"dedicated_training_weight_present":false,"distribution":"normal_balanced_equipment","effective_burden":0.0628,"effective_external_load_kg":17.49,"height_or_body_mass_used":false,"load_support_kg":278.5,"movement_penalty":1,"ordinary_equipment_kg":17.49,"stealth_penalty_including_noise":2,"total_external_load_kg":17.49},
+  "current_location_id":"loc_konoha_academy_assignment_hall",
+  "current_unit_or_office":"Konoha Special Missions roster; Team Fujin Jōnin instructor",
+  "derived_runtime_limits":{"available_wind_channels_unfatigued":7,"formula":"2 + floor((Wind + Multitasking + Intelligence Support + Awareness Support)/60) - current penalties","not_a_stat":true},
+  "development":{"current_training":[],"last_settled_at":"SE-0061-02-05T15:00:00","training_model":"Training is activity evidence. Temporary resistance drills, ordinary field loads, sparring, climbing, sprinting, and mission movement may support development without creating persistent dedicated weight-item records."},
+  "domain_proficiencies":{"barrier":15,"genjutsu":20,"medical":15,"raw_chakra":105,"sealing":25,"sensory":100,"wind":115},
+  "equipment_loadout_id":"load.ht.base",
+  "equipment_mode":"house_combat_standard",
+  "goals":[],
+  "institutional_training_packages":["PKG_KONOHA_ACADEMY_CORE","PKG_KONOHA_FIELD_CORE","PKG_KONOHA_CHUNIN_CORE","PKG_KONOHA_KENJUTSU_CORE","PKG_INVISIBLE_COURT_STYLE","PKG_KONOHA_JONIN_CORE"],
+  "knowledge_state":{"secrets_not_automatically_shared":true,"world_information_scope":"player-appropriate information acquired through valid knowledge paths"},
+  "life_course_state":{"birthday_rule":"age changes automatically; celebrations, commitments, travel, training choices, and voluntary decisions remain player controlled","career_stage":"adolescent_operational","injury_events":[],"location_history":[{"at":"SE-0061-02-05T07:00:00","location_id":"loc_konoha","reason":"initial recorded state"},{"at":"SE-0061-02-05T08:45:00","location_id":"loc_konoha_academy_assignment_hall","reason":"reported for Team Fujin assignment and first-day training"}],"player_life_choices_protected":true,"rank_history":[{"at":"SE-0061-02-05T07:00:00","rank":"Jonin; Special Missions roster; ANBU candidate","reason":"initial recorded state"}],"relationship_events":[],"status_history":[]},
+  "life_status":"alive",
+  "martial_skills":{"bow":10,"grappling":155,"heavy_weapon":10,"movement":145,"polearm":15,"staff":20,"stealth":110,"sword":125,"thrown_tools":85,"unarmed":100},
+  "name":"Wei Tang",
+  "official_rank_or_status":"Jonin",
+  "operational_skills":{"infiltration":110,"investigation":75,"leadership":55,"medicine":20,"survival":75,"tactics":130,"team_coordination":70,"tracking":70,"traps":50},
+  "owner_id":"pc_wei_tang",
+  "owner_type":"player_character",
+  "player_choice_protection":{"allegiance":true,"consent":true,"dialogue":true,"irreversible_decisions":true,"lethal_intent":true,"surrender":true,"thoughts_and_emotional_conclusions":true,"travel_choice":true,"voluntary_spending":true},
+  "resolution_tier":"player_exact",
+  "resources":{"chakra":{"current":190,"capacity":190},"fatigue":{"current":0,"capacity":145},"health":{"current":180,"capacity":180},"strain":{"current":0,"safe_capacity":145}},
+  "roles":["Special Missions Jonin","player_character","swordsman","capture specialist","Wind Release practitioner","jonin","special_missions_specialist","house_tang_sword_master","house_tang_first_sword","house_field_commander"],
+  "runtime":{"last_settled_at":"SE-0061-02-05T15:00:00"},
+  "schema":"shinobi_character_v38",
+  "unique_methods":["listening_skin","flowing_veil","crosscurrent_zone","pressure_nails","binding_current","empty_step","returning_current","thousand_edge_field","silent_chamber","severing_wake","court_of_ten_thousand_invisible_blades","rulers_domain"],
+  "village_or_affiliation":"Konoha",
+  "knowledge_packages":[],
+  "house_tang":{"rank":"sword_master","offices":["first_sword","field_commander"],"standing_field_warrant":true,"head_of_house":"char.zhu"},
+  "body":{"adult_height_cm":167.0,"growth_profile_id":"human_height_to_18","growth_end_age":18,"height_anchors":[{"age":16,"cm":167},{"age":18,"cm":167}],"current_weight_kg":61.4,"frame":"athletic","source":"user_defined_height"},
+  "appearance":100,
+  "appearance_source":"cross_game_player_profile",
+  "repertoire":{"packages":["PKG_HT_SWORD_MASTER","PKG_KONOHA_JONIN_CORE"],"package_mastery":{},"field_usable_techniques":["listening_skin","flowing_veil","crosscurrent_zone","pressure_nails","binding_current","empty_step","returning_current","thousand_edge_field","silent_chamber","severing_wake","court_of_ten_thousand_invisible_blades","body_flicker","chakra_assisted_movement","clone_illusion","deep_chakra_suppression","prepared_substitution","transformation","tree_surface_adherence","water_surface_adherence","rulers_domain"],"latent_or_locked_techniques":[],"bloodlines":["bloodline.guardian_current"],"method_mastery":{"binding_current":100,"body_flicker":95,"chakra_assisted_movement":100,"clone_illusion":75,"court_of_ten_thousand_invisible_blades":70,"crosscurrent_zone":95,"deep_chakra_suppression":95,"empty_step":110,"flowing_veil":100,"listening_skin":105,"prepared_substitution":90,"pressure_nails":105,"returning_current":90,"severing_wake":95,"silent_chamber":80,"thousand_edge_field":85,"transformation":80,"tree_surface_adherence":95,"water_surface_adherence":90,"rulers_domain":80}},
+  "guardian_current":true,
+  "aptitude":{"physical_learning":195,"technical_learning":200,"tactical_learning":200,"academic_learning":195,"social_learning":185,"chakra_learning":200,"nature_transformation_learning":200,"genjutsu_learning":195,"sensory_learning":200,"medical_learning":185,"source":"user_defined_family_exceptional","dojutsu_learning":200},
+  "career_state":{"rank":"Jonin","assignment":"Konoha Special Missions roster","anbu_status":"candidate_not_active","command":"Team Fujin Jōnin instructor"},
+  "biological_compatibility":{"dojutsu_transplant":190,"source":"user_defined_exceptional_family_compatibility"},
+  "combat_style_ref":"state/player-detail/combat-style.json"
 }

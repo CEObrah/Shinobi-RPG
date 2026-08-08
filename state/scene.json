@@ -1,65 +1,31 @@
 {
-  "active_combat": false,
-  "decision_required": "Wei has questioned Kai about the missed assignment, completed Kai's individual baseline, and run Team Fujin's first full three-Genin coordination exercise. Kai is materially behind Riku and Mei and his saved field-ready repertoire does not currently support the team's assigned air-control role. Wei must decide how to structure the team's next step.",
-  "freeform_actions_allowed": true,
-  "loaded_owner_ids": ["pc_wei_tang", "team.konoha.fujin", "char.riku_hyuga", "char.mei_arakawa", "char.kai"],
-  "location_id": "loc_konoha_academy_assignment_hall",
-  "narrative": {
-    "active_npc_agendas": [],
-    "active_questions": [
-      "How does Wei develop Kai without letting the capability gap distort the whole team's training?",
-      "What training structure will turn three mismatched Genin into a functional team?"
-    ],
-    "approaching_consequences": [
-      "Kai's assigned timing-disruption/air-control role is not supported by any currently saved field-usable technique.",
-      "Riku and Mei remain more capable and more tactically mature than Kai.",
-      "Team Fujin has now trained as a full roster but still has no adopted permanent doctrine.",
-      "The separate special-operations personnel review remains unresolved."
-    ],
-    "available_reports": [],
-    "current_scene_type": "academy_team_training",
-    "current_tension": "full_team_present_capability_gap_exposed",
-    "known_clues": [
-      "When Wei asked about the missed assignment, Kai said he had been training at Sword Manor, lost track of the time, and failed to check the clock; this is Kai's account rather than independently verified evidence.",
-      "Kai's strongest visible baseline areas are sword handling and movement; his tactical judgment, thrown-tool handling, and team coordination are substantially less developed than Riku's and Mei's.",
-      "Kai did not demonstrate a field-ready ninjutsu or signature technique during the assessment.",
-      "The authoritative Kai record currently contains no field-usable techniques despite his House junior curriculum package and Team Fujin's assigned air-control role.",
-      "In the first full-team coordination exercise, Riku and Mei had to reduce pace and simplify lanes for Kai to stay integrated rather than becoming an isolated third mover.",
-      "Kai responded better when given one immediate timing task at a time and used his sword work more effectively inside openings created by Riku and Mei.",
-      "No permanent doctrine, promotion, relationship-score change, or integer capability increase was granted by the short block.",
-      "The formal special-operations personnel review remains separate and unresolved."
-    ],
-    "last_major_choice": "Wei asked Kai why he missed the assignment, assessed him individually, then continued directly into Team Fujin's first full three-Genin coordination exercise.",
-    "last_scene_summary": "From 11:35 to 13:15, Wei questioned Kai, ran a 35-minute individual baseline, and then a one-hour full-roster coordination exercise. Kai accepted responsibility in his own account for losing track of time at Sword Manor. The training exposed a large capability and tactical gap between Kai and the other two Genin, while also showing that he can contribute through simple timing tasks and sword pressure when Riku and Mei create stable openings.",
-    "pending_information_paths": [
-      "Independent verification, if Wei chooses to seek it, of Kai's account of why he missed 09:00.",
-      "Formal personnel availability and duty-conflict review for the proposed special-operations squad."
-    ],
-    "promises_and_threats": [],
-    "recent_reveals": [
-      "Kai is currently the developmental bottleneck in Team Fujin.",
-      "Kai's saved field-ready repertoire does not support his assigned air-control role.",
-      "Riku and Mei can adjust around Kai, but doing so reduces the pace and complexity they can sustain as a trio."
-    ],
-    "suspected_clues": [],
-    "unresolved_hooks": [
-      "Kai's capability gap and unsupported assigned role",
-      "Team Fujin training structure",
-      "Future Team Fujin doctrine",
-      "Permanent special-operations squad under formal review",
-      "Potential future dual-team command"
-    ],
-    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
+  "active_combat":false,
+  "decision_required":"After lunch, recovery, and a team self-assessment, Wei has established a provisional split-development cycle through Team Fujin's first weekly review. The team remains at the Academy and Wei must decide how to use the rest of the afternoon or whether to investigate Kai's unsupported air-control designation.",
+  "freeform_actions_allowed":true,
+  "loaded_owner_ids":["pc_wei_tang","team.konoha.fujin","char.riku_hyuga","char.mei_arakawa","char.kai"],
+  "location_id":"loc_konoha_academy_assignment_hall",
+  "narrative":{
+    "active_npc_agendas":[],
+    "active_questions":["What did the Academy intend by assigning Kai an air-control role when he has no field-ready technique supporting it?","How does Wei use the remainder of Team Fujin's first day now that a provisional development structure exists?"],
+    "approaching_consequences":["Riku recovered part of his spent chakra over lunch but is not completely refilled; Mei is back at full chakra and Kai remained full.","The provisional split-development cycle runs only until the first Team Fujin weekly review at SE-0061-02-12T09:00:00 unless Wei changes it earlier.","No permanent Team Fujin doctrine has been adopted.","The separate special-operations personnel review remains unresolved."],
+    "available_reports":[],
+    "current_scene_type":"academy_team_training",
+    "current_tension":"provisional_plan_set_role_gap_unresolved",
+    "known_clues":["Riku's own assessment is that compensating for Kai forces him to solve too much of the team's spacing himself and reduces the difficulty he can sustain.","Mei identifies two linked problems: Kai watches the immediate target more than his teammates, and she begins compensating for him too early instead of allowing a clear cue-and-consequence cycle.","Kai acknowledges that he is behind the other two and wants work that lets him catch up rather than having the team remain permanently slowed to his current level.","Wei's provisional cycle keeps a shared team-timing block for all three while splitting individual development by need.","Kai's provisional emphasis is fundamentals, team awareness, timing discipline, ordinary tool competence, and field-ready House junior curriculum; the institutional air-control label is not treated as an ability he already possesses.","Riku receives harder parallel terrain-control/objective problems and Mei harder sensor, deception, contingency, and acting-leader problems so neither must plateau while Kai catches up."],
+    "last_major_choice":"Wei broke for lunch and recovery, asked Riku, Mei, and Kai for their own assessment of the morning, then established a provisional split-development cycle through the first weekly Team Fujin review.",
+    "last_scene_summary":"From 13:15 to 15:00, Team Fujin ate and recovered on Academy grounds, then discussed the morning. Riku objected to solving too much space for Kai, Mei identified Kai's target fixation and her own tendency to compensate too soon, and Kai acknowledged the gap and asked to work through it. Wei then set a one-week provisional structure: shared timing practice, focused fundamentals for Kai, and harder parallel work for Riku and Mei.",
+    "pending_information_paths":["The Academy basis for Kai's timing-disruption/air-control role.","Formal personnel availability and duty-conflict review for the proposed special-operations squad."],
+    "promises_and_threats":[],
+    "recent_reveals":["The three Genin can identify different parts of the same coordination failure without needing Wei to supply the answer for them.","Kai does not want Riku and Mei permanently held to his present training ceiling.","A split-development structure can preserve full-team practice while preventing Kai's gap from becoming a ceiling on the other two."],
+    "suspected_clues":[],
+    "unresolved_hooks":["Kai's capability gap and unsupported air-control designation","First weekly Team Fujin development review","Future Team Fujin doctrine","Permanent special-operations squad under formal review","Potential future dual-team command"],
+    "choice_generation":"derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
-  "scene_id": "scene_konoha_academy_team_fujin_full_roster_training",
-  "scene_summary": "At 13:15 Team Fujin has completed its first full-roster exercise. Kai's individual capability gap and unsupported air-control role are now directly apparent to Wei.",
-  "schema": "scene.v38",
-  "time_passage_allowed": true,
-  "world_time": "SE-0061-02-05T13:15:00",
-  "known_clock_boundaries": [],
-  "observable_pressures": [
-    "Kai needs focused development before he can match the complexity Riku and Mei can already handle.",
-    "Riku and Mei have already spent chakra and training effort earlier in the day.",
-    "The full team needs food, recovery, and a deliberate next training decision before another hard block."
-  ]
+  "scene_id":"scene_konoha_academy_team_fujin_development_planning",
+  "scene_summary":"At 15:00 Team Fujin has eaten, recovered, and established a provisional split-development cycle through its first weekly review; the Academy's air-control designation for Kai remains unexplained.",
+  "schema":"scene.v38",
+  "time_passage_allowed":true,
+  "world_time":"SE-0061-02-05T15:00:00",
+  "known_clock_boundaries":[],
+  "observable_pressures":["Riku has recovered to 99 of 112 chakra; Mei and Kai are at full chakra.","The team now has a provisional development structure but no permanent doctrine.","Kai's institutional role label still outruns his demonstrated field-ready capability."]
 }

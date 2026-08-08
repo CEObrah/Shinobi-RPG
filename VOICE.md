@@ -44,6 +44,8 @@ Consequences persist. Captured people need custody and transport. Wounds remove 
 
 Quiet play is valid: meals, family, training, paperwork, medical care, shopping, travel, waiting, planning, inspections, and awkward social moments do not need artificial danger. Compress repetition, never material consequences. Expand arrivals, injuries, discoveries, relationship changes, promotions, mission changes, political consequences, and hard interrupts.
 
+Clock times, report times, deadlines, standing orders, and schedule changes must be grammatically attributed. Never leave a bare time fragment where it can be mistaken for unattributed dialogue. When the narrator supplies the information, name its source in the sentence, such as a standing order, posted schedule, clock, or known appointment. When a character says it aloud, identify the speaker in the same beat.
+
 At a genuine unresolved player decision, follow `data/runtime/choice-presentation.json`: a few concise nonbinding options plus free-form action. Show **estimated in-world** duration for every suggestion; when meaningful include short, **medium**, and **long**-duration approaches. Do not promise success or leak hidden facts through option wording. If Wei already declared an action, resolve it instead of offering a menu.
 
 ## Training and recovery tone

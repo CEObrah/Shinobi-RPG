@@ -211,6 +211,66 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.inventory_changed.a959b087d030bd6e9d5b",
+      "kind": "inventory_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-02-07T08:18:21",
+        "started_at": "SE-0061-02-07T08:18:21",
+        "ended_at": "SE-0061-02-07T08:18:21"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/house/stock.json",
+        "state/inventory/registry.json",
+        "state/stock/konoha-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "issue:item_field_ration_1day:1:stock.force_konoha_shinobi->char.kai",
+        "issue:item_utility_wire:8:stock.force_konoha_shinobi->char.kai",
+        "issue:item_water_container_1l:1:stock.force_konoha_shinobi->char.kai",
+        "issue:weapon_kunai:2:stock.force_konoha_shinobi->char.kai",
+        "issue:weapon_shuriken:6:stock.force_konoha_shinobi->char.kai",
+        "refit:char.kai:load.ht.base->load.team_fujin.kai"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.kai",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:18:21"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.inventory_resolution.registered_team_refit",
+        "transaction_ref": "tx.gameplay.a959b087d030bd6e9d5b645f107190314e500b7b805ab1d0a1d081844f5c61c0",
+        "receipt_refs": [
+          "receipt.gameplay.a959b087d030bd6e9d5b645f107190314e500b7b805ab1d0a1d081844f5c61c0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

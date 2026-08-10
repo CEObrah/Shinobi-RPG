@@ -51,19 +51,37 @@ for rel in ('runtime/contracts/template-index.json','runtime/contracts/system-co
 sc=rj('runtime/contracts/system-contract-index.json')
 for sid,rel in sc.get('systems',{}).items():
     if not (R/rel).exists():err(f'system_contract_missing:{sid}:{rel}')
-# Human map must be an operating cookbook, not only a directory list.
-h=(R/'REPOSITORY_MAP.md').read_text(encoding='utf-8')
-for phrase in ('Minimum-context routes','Structural write contract','Common update matrix','Updating a formation','Updating an NPC','Large battle workflow'):
+# Canonical human update cookbook lives in the Shinobi Game Master Skill, not retired root manuals.
+skill_root=R/'plugins/shinobi-rpg/skills/shinobi-game-master'
+human_map=skill_root/'references/repository-map.md'
+if not human_map.exists():
+    err('canonical_skill_repository_map_missing')
+    h=''
+else:
+    h=human_map.read_text(encoding='utf-8')
+for phrase in ('Minimum-context development routes','Structural write contract','Common update matrix','People and materialization','Teams, forces, and formations','Large battle workflow'):
     if phrase.lower() not in h.lower():err(f'human_map_missing:{phrase}')
-for phrase in ('template-index.json','system-contract-index.json','authority first','validator'):
+for phrase in ('template-index.json','system-contract-index.json','authority','validator'):
     if phrase.lower() not in h.lower():err(f'human_map_write_contract_missing:{phrase}')
-# Family direct kinship and behavior-depth routing should be discoverable.
-for route in ('family_kinship','character_behavior'):
+# Family direct kinship, behavior depth, and clan profile routing should be discoverable.
+for route in ('family_kinship','character_behavior','clan_known_id'):
     if route not in all_routes:err(f'important_route_missing:{route}')
-# Game isolation: routing/runtime docs may not teach the other game's vocabulary/representation.
+# Game isolation: routing/runtime/Skill docs may not teach the other game's vocabulary/representation.
 texts=[]
-for rel in ('RUNTIME.md','VOICE.md','REPOSITORY_MAP.md','PLAYER_INTERFACE.md','runtime/contracts/repository-map.json','runtime/contracts/rule-router.json'):
-    texts.append((rel,(R/rel).read_text(encoding='utf-8').lower()))
+doc_paths=(
+    'plugins/shinobi-rpg/skills/shinobi-game-master/references/runtime-architecture.md',
+    'plugins/shinobi-rpg/skills/shinobi-game-master/references/narration.md',
+    'plugins/shinobi-rpg/skills/shinobi-game-master/references/repository-map.md',
+    'plugins/shinobi-rpg/skills/shinobi-game-master/references/player-interface.md',
+    'runtime/contracts/repository-map.json',
+    'runtime/contracts/rule-router.json',
+)
+for rel in doc_paths:
+    p=R/rel
+    if not p.exists():
+        err(f'canonical_routing_doc_missing:{rel}')
+        continue
+    texts.append((rel,p.read_text(encoding='utf-8').lower()))
 if GAME=='sword':
     banned=('shinobi','konoha','anbu','chakra','jutsu')
 else:

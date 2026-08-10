@@ -16,6 +16,7 @@ jobs:
       - run: python tools/test_templates.py
       - run: python tools/test_routing.py
       - run: python tools/test_causal_world_state.py
+      - run: python -m pytest tests/runtime/test_route_discovery.py -q
       - run: python tools/test_state_consolidation.py
       - run: python tools/test_population_model.py
       - run: python tools/test_person_model.py

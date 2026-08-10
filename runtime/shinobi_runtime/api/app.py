@@ -33,7 +33,8 @@ from shinobi_runtime.api.models import (
     PersonSheetResponse,
 )
 from shinobi_runtime.api.ooc import RepositoryOocAudit
-from shinobi_runtime.api.operations import CampaignOperations, OperationError
+from shinobi_runtime.api.operations import OperationError
+from shinobi_runtime.api.route_discovery import RouteAwareCampaignOperations
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.people import RepositoryPersonSheetResolver
@@ -157,7 +158,7 @@ def create_app(
         max_body_bytes=settings.max_body_bytes,
     )
     bearer = HTTPBearer(auto_error=False)
-    operations = CampaignOperations(
+    operations = RouteAwareCampaignOperations(
         repository=repository,
         coordinator=coordinator,
         command_planner=command_planner,
@@ -244,7 +245,6 @@ def create_app(
         ),
     ) -> Mapping[str, Any]:
         return operations.person_sheet(person_id)
-
 
     @router.get(
         "/v1/object/{object_ref}",

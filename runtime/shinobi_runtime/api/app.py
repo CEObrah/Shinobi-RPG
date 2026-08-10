@@ -36,7 +36,7 @@ from shinobi_runtime.api.ooc import RepositoryOocAudit
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.api.route_discovery import RouteAwareCampaignOperations
 from shinobi_runtime.commands import CommandEnvelope
-from shinobi_runtime.commands.planner import RepositoryCommandPlanner
+from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
 from shinobi_runtime.people import RepositoryPersonSheetResolver
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.tx import (
@@ -321,7 +321,7 @@ def create_app_from_env() -> FastAPI:
     app = create_app(
         repository=repository,
         coordinator=coordinator,
-        command_planner=RepositoryCommandPlanner(repository),
+        command_planner=CampaignCommandPlanner(repository),
         sheet_resolver=RepositoryPersonSheetResolver(repository),
         audit_provider=RepositoryOocAudit(repository, runtime),
         settings=settings,

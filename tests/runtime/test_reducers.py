@@ -66,6 +66,18 @@ def test_training_residual_survives_without_integer_gain():
     assert result.residual_units > Decimal("0.125")
 
 
+def test_training_progression_remains_legal_above_200():
+    inputs = training("exact")
+    uncapped = TrainingInputs(**{
+        **inputs.__dict__,
+        "current_value": 205,
+        "residual_units": "20",
+    })
+    result = settle_training(uncapped)
+    assert result.ending_value > 205
+    assert result.residual_units >= Decimal("0")
+
+
 def pool(pool_id, total, rank, availability):
     return PopulationPool(
         pool_id=pool_id,

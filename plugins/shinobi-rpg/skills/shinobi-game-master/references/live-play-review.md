@@ -117,12 +117,16 @@ Look for:
 - command descriptors that hide legal values, required nulls, variants, authority, timing, or eligibility;
 - rejection messages that say an action is blocked without saying who, why, or what state would make it possible;
 - important state that exists but is not discoverable from the player interface;
+- plausible, player-valid actions disappearing from choice scaffolding solely because the runtime cannot yet construct them;
+- capability validation that silently shrinks the player's apparent possibility space and thereby masks an interface or feature defect;
 - too much low-value ceremony for common actions;
 - accidental teleportation, stranded appointments, duplicated transactions, or workflows that stop before obvious prerequisite logistics;
 - stale projections or summaries that contradict committed state;
 - features that technically exist but never create interesting decisions;
 - repeated manual bookkeeping that should become a bounded semantic operation;
 - opportunities for a new feature when play repeatedly requires the same unsupported workaround.
+
+Do not confuse an implementation blocker with an in-world prohibition. When an action is lawful and plausible but blocked only because the runtime lacks a discoverable reference, discriminator, payload shape, capability, or read path, keep the action visible as a QA finding rather than quietly deleting it from consideration. The GM must not present it as executable, but must preserve declared intent and report the implementation gap when it materially affects play.
 
 Prefer improving the generic system over adding a one-off special case for Wei.
 

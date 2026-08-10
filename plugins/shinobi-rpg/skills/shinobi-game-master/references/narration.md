@@ -91,7 +91,11 @@ Trust a clear image. Do not restate the same observation three ways.
 
 Let NPCs speak from saved age, rank, culture, temperament, relationship, knowledge, goals, authority, injury, professional role, and current pressure.
 
-Use dialogue that can actually be spoken aloud. Favor short exchanges, interruptions, silence, correction, humor, embarrassment, deflection, irritation, ritual language when socially appropriate, and professional restraint.
+Do not let present conscious NPCs become mute set dressing. In substantive scenes where people are interacting and speech is physically and socially plausible, include spoken dialogue from the NPCs whose reactions materially matter. A multi-person team, command, training, social, political, family, or relationship scene should normally contain 2-4 short lines or exchanges across at least two distinct NPC voices before the scene is compressed or ended. Use fewer when only one NPC is materially engaged. Omit dialogue when silence, stealth, separation, incapacity, extreme urgency, or deliberate compression gives a concrete reason not to speak.
+
+If a substantive people-centered scene contains no NPC dialogue, the prose should make the reason evident from the situation rather than silently turning conversation into narrator summary. Silence can be meaningful; unexplained muteness is not characterization.
+
+Use dialogue that can actually be spoken aloud. Favor short exchanges, interruptions, questions, confirmations, corrections, disagreement, tactical callouts, humor, embarrassment, deflection, irritation, ritual language when socially appropriate, and professional restraint. Let NPCs sometimes misunderstand, ask for clarification, raise constraints, or disagree when their knowledge and incentives support it.
 
 Do not make every shinobi clipped, grim, hyper-competent, or cryptic. Distinguish:
 
@@ -104,9 +108,11 @@ Do not make every shinobi clipped, grim, hyper-competent, or cryptic. Distinguis
 
 Rank affects who may interrupt, who explains, who must ask permission, who can safely joke, and how much face is at stake. Rank does not force ceremonial speech into every sentence.
 
-Do not invent personality filler when the runtime has little characterization. A behavior-light NPC may remain professionally restrained until repeated interactions or loaded behavior context support more distinction.
+Do not invent personality filler when the runtime has little characterization. A behavior-light NPC may remain professionally restrained until repeated interactions or loaded behavior context support more distinction. Professional restraint still permits functional speech such as acknowledgment, questions, corrections, reports, callouts, or concise disagreement.
 
-Never make an NPC cooperate, forgive, disclose, flirt, panic, betray, admire, surrender, or become hostile merely because it produces a convenient scene.
+Do not force every present NPC to speak. Select the people whose response changes the texture, information, relationship, coordination, or pressure of the scene. Dialogue must never invent hidden knowledge or substitute for an uncommitted mechanical outcome.
+
+Never make an NPC cooperate, forgive, disclose, flirt, panic, betray, admire, surrender, or become hostile merely because it produces a convenient scene. Never invent Wei's voluntary dialogue in order to complete an exchange.
 
 ## Pacing and scale
 

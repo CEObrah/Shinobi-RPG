@@ -6,6 +6,16 @@ A shinobi clan or house may be a family, military lineage, economic household, p
 
 The static clan catalog is reference authority only. Current clan heads, elders, rosters, branches, compounds, stock, instructors, politics, casualties, and access rules belong to mutable campaign owners when they become causal. Never infer those facts merely because a later canon article names them.
 
+## Names, compounds, and storage models
+
+Do not treat `house`, `clan`, `family`, `lineage`, `school`, or similar in-world styles as mutually exclusive technical species unless current campaign authority actually distinguishes them. A group may be socially a clan while using `House` as its formal name.
+
+Likewise, a manor, compound, estate, district, dojo, shrine, workshop, or headquarters is normally a place or facility belonging to the institution, not a second institution merely because important work happens there.
+
+Technical owner/schema names are storage models, not automatic statements about social identity. Do not duplicate one existing institution under a new owner merely to make the technical prefix match the player's vocabulary. Preserve stable identity, relationships, roster, property, authority, history, and provenance unless an explicit migration changes the owner model.
+
+For the current campaign, interpret **House Tang** as the Tang clan/house institution and **Sword Manor** as its home and working compound. Do not create a separate Tang clan entity or treat Sword Manor as a second clan solely for terminology.
+
 ## Clan training is parallel, not free
 
 Clan training uses the same generic training reducer as village, team, mentor, institutional, and self-directed training. There is no separate clan XP and no surname bonus.

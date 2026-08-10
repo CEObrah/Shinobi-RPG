@@ -191,8 +191,10 @@ Do not regenerate lost manpower automatically.
 
 ## Deployment-sensitive paths
 
-Railway deployment watches runtime/game source and deployment configuration, not ordinary state-only gameplay commits. Preserve that separation.
+The current production topology uses one Git branch for runtime/game source, Skill/docs, and durable campaign state. Railway therefore watches every repository path except `state/**`. State-only runtime gameplay commits are the sole deployment exclusion.
+
+This is required by Git remote durability: before a new gameplay transaction, the live checkout must match the configured remote branch exactly. Any direct non-state GitHub commit that advanced the branch without a deployment would leave the Railway checkout behind and make the next write fail closed at remote-synchronization preflight.
 
 Before changing deployment-sensitive files, read `docs/RUNTIME_SERVICE_DEPLOYMENT.md` and `references/ooc-dev.md`.
 
-Skill-only documentation changes should not require the live game runtime to redeploy unless runtime contracts/source were changed at the same time.
+Skill-only or docs-only commits still trigger a Railway deployment in this shared-branch topology so bootstrap can fast-forward the persistent checkout. That deployment does not install the ChatGPT Skill; upload the newly packaged Skill separately when GM behavior changed.

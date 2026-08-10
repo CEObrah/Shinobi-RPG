@@ -77,14 +77,16 @@ ChatGPT action
 Development flow:
 
 ```text
-OOC DEV source/game change
+OOC DEV non-state repository change
 -> GitHub commit
--> deployment trigger when watched paths changed
+-> Railway deployment trigger
 -> bootstrap safe fetch/fast-forward
--> new runtime process
+-> new runtime process at the remote branch head
 ```
 
-State-only gameplay commits must not create a deployment loop.
+The production Railway watch policy is `**` followed by `!/state/**`: every non-state commit redeploys, while a runtime-generated state-only gameplay commit does not. This is deliberate because Git remote durability requires the live checkout HEAD to equal the remote branch before the next gameplay transaction.
+
+State-only gameplay commits must not create a deployment loop. Do not add a non-state file to routine gameplay transaction commits.
 
 ## Skill maintenance
 
@@ -108,6 +110,6 @@ Use configured secret stores and environment variables.
 
 ## Resume live play
 
-After meaningful runtime/game changes, confirm the deployed runtime is compatible before resuming consequential IC play.
+After any non-state GitHub change, confirm the Railway deployment succeeded and the live checkout is synchronized before resuming consequential IC play.
 
-After Skill-only changes, upload the new validated Skill before expecting new GM behavior in fresh chats.
+After Skill changes, also upload the new validated `skill.zip` before expecting new GM behavior in fresh chats. The Railway redeploy synchronizes the repository checkout; it does not replace the Skill installed in ChatGPT.

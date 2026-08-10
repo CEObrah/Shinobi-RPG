@@ -104,20 +104,34 @@ When changing GM behavior:
 7. refresh or replace the ChatGPT-installed Skill when the current environment exposes a supported Skill update mechanism;
 8. verify the installed Skill is actually synchronized before claiming that it is.
 
+Prefer a supported direct ChatGPT Skill update when the current conversation exposes one. Do not require a manual download/re-upload workflow when a writable Skill-management action can complete the update directly.
+
 Do not claim that a GitHub commit automatically updated the ChatGPT-installed Skill unless the installed `skills://` resource is verified to contain the change. Do not claim a direct ChatGPT Skill update when no writable Skill-management action is available.
 
 ## Live-play feedback loop
 
-Use actual campaign play to find problems worth fixing. Good candidates include:
+Use actual campaign play as continuous integration, playtesting, narrative review, and feature discovery. Read `references/live-play-review.md` for the full quality rubric.
 
-- player-facing contracts that hide required enum values or nullability;
-- stale projections that contradict committed state;
-- mechanics that block actions without explaining who, why, or until when;
-- narration rules that produce confusing dialogue, mute NPCs, weak continuity, or missing choices;
-- repetitive interaction patterns that make NPCs feel interchangeable;
-- opportunities to deepen simulation without adding unnecessary complexity.
+Judge the game across all relevant layers, including:
 
-Record the observed symptom, identify its authoritative owner, distinguish bug from design opportunity, and make the smallest coherent correction. Never turn speculative improvement ideas into campaign truth.
+- narration clarity, scene transitions, pacing, repetition, atmosphere, and decision handoff;
+- character voice, dialogue, relationships, cast clarity, NPC-to-NPC interaction, and social continuity;
+- combat mechanics, tactical depth, action economy, geometry, counters, objectives, resource pressure, injuries, AI behavior, and balance;
+- combat narration, exchange readability, technique presentation, spatial continuity, consequences, uncertainty, and ally/opponent agency;
+- training, teams, travel, economy, equipment, missions, relationships, institutions, family, forces, intelligence, and other feature workflows;
+- player-interface discoverability, confusing command contracts, opaque rejection reasons, unnecessary friction, and missing repeated capabilities;
+- simulation fairness across villages, clans, institutions, factions, exact characters, cohorts, and aggregate actors;
+- progression, economy, institutional throughput, autonomous world behavior, canon pressure, and long-run simulation depth.
+
+For a meaningful finding, record the observed symptom and player impact, identify the authoritative owner, classify confidence, distinguish defect from tuning or feature opportunity, suggest the smallest reusable correction, and identify a regression check.
+
+Urgent correctness, agency, false-truth, exploit, or consequential-decision problems should be surfaced immediately. Lower-severity craft and design findings should wait for a natural stopping point so the review loop does not damage pacing more than the issue it is trying to fix.
+
+Repeated symptoms carry more weight than isolated outcomes. Do not rebalance combat because of one lucky exchange, rewrite narration doctrine because of one awkward sentence, or add a major feature because of one hypothetical edge case.
+
+During ordinary play, proactively suggest worthwhile GitHub changes without silently applying them. When the player explicitly requests development or implementation, edit the correct source owner and keep campaign-state repair separate from source improvement.
+
+Never turn speculative improvement ideas into campaign truth.
 
 ## Secrets and credentials
 

@@ -99,7 +99,7 @@ def test_registered_team_refits_preview_and_plan_without_mutating_campaign():
         assert plan.result["action"] == "refit"
         assert plan.result["assignment_ref"] == TEAM_REF
         assert plan.result["loadout_ref"] == loadout_ref
-        assert plan.result["supply_stock_refs"] == policy["supply_stock_refs"]
+        assert list(plan.result["supply_stock_refs"]) == policy["supply_stock_refs"]
         assert plan.result["authority_basis"].startswith("team_refit_policy:")
 
     assert repository.read_json("state/meta.json") == before_meta

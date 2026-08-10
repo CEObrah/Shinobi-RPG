@@ -2,17 +2,25 @@
 
 Persistent ChatGPT-operated campaign repository.
 
-- Runtime procedure: `RUNTIME.md`
-- Narrator contract: `VOICE.md`
-- Optional player controls: `PLAYER_INTERFACE.md`
-- Repository guide: `REPOSITORY_MAP.md`
-- Machine retrieval map: `runtime/contracts/repository-map.json`
-- Private runtime, Railway, OAuth, and ChatGPT Project plugin setup:
-  `docs/RUNTIME_SERVICE_DEPLOYMENT.md`
-- ChatGPT/Codex plugin package: `plugins/shinobi-rpg/`
-- Current world truth: `state/`
-- Structured mechanics/content: `game/data/`
+The canonical ChatGPT game-master operating package lives under:
 
-`README.md` is orientation only and is not gameplay authority.
+`plugins/shinobi-rpg/skills/shinobi-game-master/`
 
-- Sparse family lifecycle: courtship/proposals, betrothal/marriage, households, parentage/adoption/guardianship, widowhood/divorce/remarriage, inheritance/succession, all knowledge-gated and player-agency-safe.
+Use these Skill references for human/OOC DEV orientation:
+
+- GM operating procedure: `plugins/shinobi-rpg/skills/shinobi-game-master/SKILL.md`
+- Narration and voice: `plugins/shinobi-rpg/skills/shinobi-game-master/references/narration.md`
+- Player interface: `plugins/shinobi-rpg/skills/shinobi-game-master/references/player-interface.md`
+- Runtime architecture: `plugins/shinobi-rpg/skills/shinobi-game-master/references/runtime-architecture.md`
+- Repository/update map: `plugins/shinobi-rpg/skills/shinobi-game-master/references/repository-map.md`
+- OOC development procedure: `plugins/shinobi-rpg/skills/shinobi-game-master/references/ooc-dev.md`
+
+Repository authority remains:
+
+- `runtime/`: deterministic execution, transactions, scheduling, reducers, and APIs.
+- `game/`: static rules, schemas, content, world definitions, and canon/reference data.
+- `state/`: mutable truth for the current campaign.
+
+Deployment and private Runtime/MCP/Railway setup lives in `docs/RUNTIME_SERVICE_DEPLOYMENT.md`.
+
+`README.md`, Skill prose, tests, indexes, caches, narration, chat history, and model memory are never mutable campaign truth.

@@ -82,6 +82,8 @@ Avoid monolithic faction personalities. Different offices, commanders, clans, fa
 
 Treat shinobi clans and houses as living social institutions, not surnames, bloodline packages, or interchangeable aesthetic factions.
 
+For this campaign, **House Tang is the Tang clan institution**. `House Tang` is its formal in-world institutional name, while **Sword Manor** is its home and working compound. Do not split the clan and compound into separate organizations, and do not treat a technical `house` owner/schema label as evidence that the institution is socially something other than a clan.
+
 House Tang is one example of this institutional scale: a clan or house may have a physical seat or compound, households, elders, leadership offices, dependents, retainers, property, military obligations, internal customs, economic interests, training traditions, and relationships with the village and other clans. Apply comparable institutional depth to other established clans when authoritative state supports it.
 
 When a clan or house becomes causal, consider the player-visible and persisted facts that exist for:

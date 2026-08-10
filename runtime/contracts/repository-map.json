@@ -2,8 +2,9 @@
   "schema": "repository-map",
   "purpose": "Machine retrieval/write router. Mutable truth is never stored here.",
   "hot": [
-    "RUNTIME.md",
-    "VOICE.md",
+    "plugins/shinobi-rpg/skills/shinobi-game-master/SKILL.md",
+    "plugins/shinobi-rpg/skills/shinobi-game-master/references/narration.md",
+    "plugins/shinobi-rpg/skills/shinobi-game-master/references/runtime-architecture.md",
     "runtime/contracts/repository-map.json",
     "state/meta.json",
     "state/player.json",
@@ -13,6 +14,7 @@
   "mechanics_router": "runtime/contracts/rule-router.json",
   "temporal_engine": "runtime/contracts/temporal-settlement.json",
   "maintenance": [
+    "plugins/shinobi-rpg/skills/shinobi-game-master/",
     "game/schemas/",
     "tools/",
     "tests/"
@@ -30,44 +32,30 @@
   ],
   "routes": {
     "current_time_revision": {
-      "r": [
-        "state/meta.json"
-      ],
-      "w": [
-        "state/meta.json"
-      ]
+      "r": ["state/meta.json"],
+      "w": ["state/meta.json"]
     },
     "player_core": {
-      "r": [
-        "state/player.json"
-      ],
-      "w": [
-        "state/player.json"
-      ]
+      "r": ["state/player.json"],
+      "w": ["state/player.json"]
     },
     "current_scene": {
-      "r": [
-        "state/scene.json"
-      ],
-      "w": [
-        "state/scene.json"
-      ]
+      "r": ["state/scene.json"],
+      "w": ["state/scene.json"]
     },
     "owner_lookup": {
-      "i": [
-        "state/index/owners.json"
-      ],
+      "i": ["state/index/owners.json"],
       "note": "Known owner_id -> use prefix_index and load only matching owner-index prefix shard."
     },
     "mechanics": {
-      "i": [
-        "runtime/contracts/rule-router.json"
-      ],
+      "i": ["runtime/contracts/rule-router.json"],
       "note": "Select one action-specific domain, not a broad union."
     },
     "player_interface": {
       "r": [
-        "PLAYER_INTERFACE.md"
+        "plugins/shinobi-rpg/skills/shinobi-game-master/references/player-interface.md",
+        "plugins/shinobi-rpg/skills/shinobi-game-master/references/choices.md",
+        "plugins/shinobi-rpg/skills/shinobi-game-master/references/agency-and-knowledge.md"
       ]
     },
     "choice_presentation": {
@@ -81,16 +69,12 @@
       "note": "Before creating or structurally changing JSON, resolve target schema to its cold structural template and fact-free blank skeleton. No unregistered fields; missing or ambiguous structure stops persistence."
     },
     "system_update_contract": {
-      "i": [
-        "runtime/contracts/system-contract-index.json"
-      ],
+      "i": ["runtime/contracts/system-contract-index.json"],
       "note": "Before mutating a system, load only that system contract for authority/write order/invariants."
     },
     "narration_module": {
-      "i": [
-        "runtime/contracts/narration-router.json"
-      ],
-      "note": "Load one primary scene module; at most one secondary when independently causal. VOICE.md remains the core persona."
+      "i": ["runtime/contracts/narration-router.json"],
+      "note": "Load one primary scene module; at most one secondary when independently causal. The Shinobi Game Master Skill narration reference is the core persona and prose contract."
     }
   },
   "route_index": {

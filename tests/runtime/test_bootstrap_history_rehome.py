@@ -48,25 +48,29 @@ def settings(tmp_path: Path, remote: Path) -> CheckoutSettings:
     )
 
 
-def test_bootstrap_rehomes_clean_divergent_history_when_campaign_authority_matches(
+def test_bootstrap_rehomes_clean_replaced_history_when_campaign_authority_matches(
     tmp_path: Path,
 ) -> None:
     source, remote = source_and_remote(tmp_path)
     configured = settings(tmp_path, remote)
     checkout = ensure_checkout(configured)
-    git(checkout, "config", "user.email", "runtime@example.invalid")
-    git(checkout, "config", "user.name", "Runtime Test")
+    old_checkout_head = git(checkout, "rev-parse", "HEAD")
 
-    (checkout / "README.md").write_text("local old-lineage docs\n", encoding="utf-8")
-    git(checkout, "add", "README.md")
-    git(checkout, "commit", "-qm", "local old lineage")
-
+    # Simulate the production repository being recreated/replaced while the
+    # Railway volume still contains the old lineage. Campaign truth is copied
+    # byte-for-byte into the replacement root, but source/docs history is new.
+    git(source, "checkout", "--orphan", "replacement")
+    git(source, "rm", "-rf", ".")
+    (source / "state").mkdir()
+    (source / "state" / "meta.json").write_text('{"revision":18}\n', encoding="utf-8")
     (source / "README.md").write_text("remote replacement docs\n", encoding="utf-8")
-    git(source, "add", "README.md")
-    git(source, "commit", "-qm", "remote replacement lineage")
-    git(source, "push", "-q", "origin", "main")
+    git(source, "add", "state/meta.json", "README.md")
+    git(source, "commit", "-qm", "replacement root")
+    git(source, "branch", "-M", "main")
+    git(source, "push", "-q", "--force", "origin", "main")
     remote_head = git(source, "rev-parse", "HEAD")
 
+    assert old_checkout_head != remote_head
     assert ensure_checkout(configured) == checkout
     assert git(checkout, "rev-parse", "HEAD") == remote_head
     assert (checkout / "README.md").read_text(encoding="utf-8") == "remote replacement docs\n"

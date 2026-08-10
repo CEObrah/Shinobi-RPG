@@ -12,7 +12,57 @@
       "type": "object",
       "required": [
         "id"
-      ]
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "refit_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assignment_ref",
+            "holder_ref",
+            "authorized_team_roles",
+            "supply_stock_refs"
+          ],
+          "properties": {
+            "assignment_ref": {
+              "type": "string",
+              "pattern": "^team\\."
+            },
+            "holder_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authorized_team_roles": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "leader",
+                  "deputy",
+                  "instructor",
+                  "holder_self"
+                ]
+              }
+            },
+            "supply_stock_refs": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 8,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^stock\\."
+              }
+            }
+          }
+        }
+      }
     }
   },
   "additionalProperties": true

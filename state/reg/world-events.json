@@ -151,6 +151,66 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.travel_completed.81250b04c1cd6214f9f5",
+      "kind": "travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-02-07T08:18:21",
+        "started_at": "SE-0061-02-07T08:18:21",
+        "ended_at": "SE-0061-02-07T08:18:21"
+      },
+      "host_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:pc_wei_tang:place.konoha.academy.assignment.hall"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_local"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:18:21"
+      },
+      "execution": {
+        "reducer_ref": "game/data/mechanics/travel.json",
+        "transaction_ref": "tx.gameplay.81250b04c1cd6214f9f5b214ceaf08fa99c3178275567589421ac988ed0a03ef",
+        "receipt_refs": [
+          "receipt.gameplay.81250b04c1cd6214f9f5b214ceaf08fa99c3178275567589421ac988ed0a03ef"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

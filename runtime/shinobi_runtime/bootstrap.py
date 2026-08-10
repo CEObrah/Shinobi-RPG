@@ -1,9 +1,10 @@
 """Safe Railway checkout bootstrap followed by the private ASGI service.
 
-Railway build files are ephemeral.  Campaign commits therefore live in a Git
+Railway build files are ephemeral. Campaign commits therefore live in a Git
 checkout on the mounted volume, while WAL and idempotency receipts live beside
-it in a separate runtime directory.  This module creates that checkout once,
-fast-forwards it on later boots, and refuses every divergent or dirty state.
+it in a separate runtime directory. This module creates that checkout once,
+safely synchronizes it on later boots, and refuses dirty or authority-changing
+history divergence.
 """
 
 from __future__ import annotations
@@ -19,6 +20,7 @@ from urllib.parse import urlsplit
 
 
 _SAFE_REF = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._/-]{0,127}$")
+_CAMPAIGN_AUTHORITY_PATHS = ("state", "data", "schemas")
 
 
 class BootstrapError(RuntimeError):
@@ -85,14 +87,18 @@ class CheckoutSettings:
     @classmethod
     def from_env(cls) -> "CheckoutSettings":
         return cls(
-            campaign_root=Path(_required_text(
-                os.environ.get("SHINOBI_CAMPAIGN_ROOT"),
-                "SHINOBI_CAMPAIGN_ROOT",
-            )),
-            runtime_root=Path(_required_text(
-                os.environ.get("SHINOBI_RUNTIME_ROOT"),
-                "SHINOBI_RUNTIME_ROOT",
-            )),
+            campaign_root=Path(
+                _required_text(
+                    os.environ.get("SHINOBI_CAMPAIGN_ROOT"),
+                    "SHINOBI_CAMPAIGN_ROOT",
+                )
+            ),
+            runtime_root=Path(
+                _required_text(
+                    os.environ.get("SHINOBI_RUNTIME_ROOT"),
+                    "SHINOBI_RUNTIME_ROOT",
+                )
+            ),
             git_url=_required_text(
                 os.environ.get("SHINOBI_GIT_URL"),
                 "SHINOBI_GIT_URL",
@@ -141,7 +147,7 @@ def _run(
     )
     if completed.returncode:
         # Git output may echo a credential-bearing URL from a user's local
-        # configuration.  Do not include stdout/stderr in the exception.
+        # configuration. Do not include stdout/stderr in the exception.
         raise BootstrapError(
             "Git bootstrap operation failed with exit code %d" % completed.returncode
         )
@@ -173,6 +179,42 @@ def _is_ancestor(settings: CheckoutSettings, older: str, newer: str) -> bool:
     )
     if completed.returncode not in (0, 1):
         raise BootstrapError("Git ancestry check failed")
+    return completed.returncode == 0
+
+
+def _campaign_authority_matches(
+    settings: CheckoutSettings,
+    local_head: str,
+    remote_head: str,
+) -> bool:
+    """Return whether both commits contain identical committed campaign truth.
+
+    This intentionally compares only repository paths that may contain campaign
+    authority. It is used solely for clean-checkout recovery after a repository
+    history rewrite or replacement. Source/docs/plugin differences are allowed
+    because the remote production branch is source authority; any difference in
+    campaign truth still fails closed.
+    """
+
+    completed = subprocess.run(
+        [
+            settings.git_binary,
+            "diff",
+            "--quiet",
+            "--exit-code",
+            local_head,
+            remote_head,
+            "--",
+            *_CAMPAIGN_AUTHORITY_PATHS,
+        ],
+        cwd=str(settings.campaign_root),
+        env=_askpass_environment(settings),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    if completed.returncode not in (0, 1):
+        raise BootstrapError("Git campaign-authority comparison failed")
     return completed.returncode == 0
 
 
@@ -222,11 +264,11 @@ def ensure_checkout(settings: CheckoutSettings) -> Path:
     dirty = bool(_checkout_status(settings))
     if dirty:
         # A process can die after WAL preparation and owner-byte application
-        # but before the Git commit.  The transaction coordinator has the
+        # but before the Git commit. The transaction coordinator has the
         # bounded before-images needed to repair that state, but only after
-        # Uvicorn starts constructing the app.  Preserve a dirty checkout here
+        # Uvicorn starts constructing the app. Preserve a dirty checkout here
         # only when its committed HEAD still exactly matches the fetched
-        # production branch.  Startup recovery will either restore the WAL
+        # production branch. Startup recovery will either restore the WAL
         # paths and become pristine or fail closed on any unrelated dirt.
         if local_head != remote_head:
             raise BootstrapError(
@@ -245,9 +287,31 @@ def ensure_checkout(settings: CheckoutSettings) -> Path:
         return settings.campaign_root
     if _is_ancestor(settings, remote_head, local_head):
         # A crash may leave a verified local transaction commit awaiting remote
-        # recovery.  Preserve it; TransactionCoordinator.recover owns the push.
+        # recovery. Preserve it; TransactionCoordinator.recover owns the push.
         return settings.campaign_root
-    raise BootstrapError("local and remote campaign histories diverged")
+
+    # A repository may be intentionally recreated or its branch history may be
+    # replaced while the Railway volume still contains the old lineage. A clean
+    # checkout can safely adopt the remote lineage only when all committed
+    # campaign-authority paths are identical. This preserves fail-closed
+    # behavior for any unpushed gameplay transaction or campaign-state drift.
+    if _campaign_authority_matches(settings, local_head, remote_head):
+        _run(
+            settings,
+            ("reset", "--hard", remote_ref),
+            cwd=settings.campaign_root,
+        )
+        _assert_clean(settings)
+        print(
+            "Shinobi bootstrap: adopted remote Git history after verifying "
+            "identical campaign authority",
+            file=sys.stderr,
+        )
+        return settings.campaign_root
+
+    raise BootstrapError(
+        "local and remote campaign histories diverged with different campaign authority"
+    )
 
 
 def main() -> int:

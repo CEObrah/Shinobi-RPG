@@ -1,9 +1,9 @@
 """Player-visible route discovery for place inspection.
 
 The travel reducer requires exact registered route IDs, while callers are not
-allowed to guess hidden IDs.  This projection resolves only the route relation
+allowed to guess hidden IDs. This projection resolves only the route relation
 between the campaign player's current location and one already-authorized
-place inspection.  It never exposes the broader route graph.
+place inspection. It never exposes the broader route graph.
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ def discover_route_options(
 
     Local travel is represented by the reducer's stable ``route_local`` token.
     Strategic travel exposes only a registered route whose endpoints connect
-    the origin anchor to the requested destination anchor.  If the requested
+    the origin anchor to the requested destination anchor. If the requested
     place is below that destination anchor, the caller is told that a second
     local leg remains instead of being allowed to teleport to the sub-place.
     """
@@ -40,6 +40,7 @@ def discover_route_options(
     origin_anchor = graph.anchor(origin_id)
     destination_anchor = graph.anchor(destination_id)
     options: list[dict[str, Any]] = []
+    options_truncated = False
 
     if origin_id != destination_id and origin_anchor == destination_anchor:
         local_rules = mechanics.get("local_travel") if isinstance(mechanics, Mapping) else None
@@ -80,6 +81,7 @@ def discover_route_options(
                 continue
             candidates.append(route)
         candidates.sort(key=lambda row: str(row.get("id")))
+        options_truncated = len(candidates) > _MAX_ROUTE_OPTIONS
         for route in candidates[:_MAX_ROUTE_OPTIONS]:
             option = {
                 "route_id": route["id"],
@@ -101,7 +103,7 @@ def discover_route_options(
         "destination_id": destination_id,
         "destination_anchor_ref": destination_anchor,
         "route_options": options,
-        "options_truncated": len(options) >= _MAX_ROUTE_OPTIONS,
+        "options_truncated": options_truncated,
     }
 
 

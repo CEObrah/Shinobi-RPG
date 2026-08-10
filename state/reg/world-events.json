@@ -271,6 +271,74 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.inventory_changed.41cbb1beaca62a73a66e",
+      "kind": "inventory_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-02-07T08:18:21",
+        "started_at": "SE-0061-02-07T08:18:21",
+        "ended_at": "SE-0061-02-07T08:18:21"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/riku-hyuga.json",
+        "state/house/stock.json",
+        "state/inventory/registry.json",
+        "state/stock/konoha-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "issue:armor_house_court:1:stock.house.tang->char.riku_hyuga",
+        "issue:item_chakra_suppression_cuffs:1:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_explosive_tag:8:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_field_pack_standard:1:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_field_ration_1day:2:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_medical_dressing:4:stock.house.tang->char.riku_hyuga",
+        "issue:item_smoke_bomb:1:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_standard_restraints:1:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_utility_wire:20:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:item_water_container_1l:2:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:weapon_kunai:6:stock.force_konoha_shinobi->char.riku_hyuga",
+        "issue:weapon_shuriken:12:stock.force_konoha_shinobi->char.riku_hyuga",
+        "refit:char.riku_hyuga:load.char.riku->load.team_fujin.riku",
+        "return:armor_light_shinobi:1:char.riku_hyuga->stock.force_konoha_shinobi"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:18:21"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.inventory_resolution.registered_team_refit",
+        "transaction_ref": "tx.gameplay.41cbb1beaca62a73a66e8a6ffbae61d0cf349d3f9f4b12aaf90bdcbc8e30d379",
+        "receipt_refs": [
+          "receipt.gameplay.41cbb1beaca62a73a66e8a6ffbae61d0cf349d3f9f4b12aaf90bdcbc8e30d379"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

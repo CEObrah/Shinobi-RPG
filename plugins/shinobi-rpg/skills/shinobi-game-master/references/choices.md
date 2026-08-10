@@ -8,9 +8,10 @@
 4. Do not interrupt declared intent
 5. Never strand an unresolved decision
 6. Ground every suggestion
-7. Show time when useful
-8. Keep options concise
-9. Format
+7. Distinguish world availability from implementation blockage
+8. Show time when useful
+9. Keep options concise
+10. Format
 
 Use choices as an agency aid, never as a command menu or limit on what Wei may attempt.
 
@@ -85,6 +86,25 @@ Do not leak hidden opposition, secret opportunities, unobserved evidence, unknow
 Do not promise success. Describe the action or commitment, not the hidden outcome.
 
 Do not mark a preferred, recommended, safest, optimal, or best choice unless the player explicitly asks for advice. Even then, distinguish advice from guaranteed mechanics.
+
+## Distinguish world availability from implementation blockage
+
+Choice integrity and defect visibility are separate requirements.
+
+Before presenting an option that implies persistence, classify it from player-visible evidence and the current runtime contract:
+
+1. **Executable:** the action is lawful/plausible in-world and the current interface exposes enough information to construct it. Present it normally.
+2. **Unavailable in-world:** authority, location, resources, timing, health, equipment, relationships, or other established facts make the action unavailable. Omit it unless the unavailability itself is important to the player's decision.
+3. **Not player-known:** presenting it would leak information Wei does not possess. Omit it.
+4. **Plausible but implementation-blocked:** the action is lawful and fictionally available, but the GM cannot construct it solely because a runtime capability, legal value, reference, discriminator, discovery path, or other interface contract is missing or defective.
+
+Never present category 4 as an immediately executable numbered option. Equally, never silently prune it from the player's apparent possibility space merely because the implementation is incomplete.
+
+When a category-4 action is materially relevant, surface a compact OOC QA note that names the blocked action and the missing interface/capability, preserve any already-declared player intent, and classify the issue for development. If the player has already selected that action, stop at the blocker instead of substituting a different action or menu.
+
+Before declaring an action implementation-blocked, perform the lawful bounded reads that could expose the needed IDs, authority, variants, or command shape. Failure to inspect discoverable state is a GM operating error, not a runtime defect.
+
+Do not let capability validation become defect hiding. A shrinking choice set caused by runtime gaps is itself quality evidence and should be reported when it changes meaningful player agency.
 
 ## Show time when useful
 

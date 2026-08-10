@@ -2,6 +2,8 @@
 
 Representation is not a training multiplier. Exact people, rostered cohorts, and aggregate personnel use the same underlying development law. Compression may reduce calculation/storage cost but may not increase training speed, experience, recovery, qualification, or resource efficiency.
 
+Trainable capability values and learning aptitudes are nonnegative and have no hard maximum. `200` is only an ordinary-reference/outlier threshold. Earned progression above 200 continues under the same diminishing-returns and point-cost laws unless a more specific subsystem explicitly defines a separate bounded quantity.
+
 `state/development/banks.json` stores sparse residual development credit keyed by authoritative owner and exact capability target. A bank stores earned fractional development, never unearned scheduled hours.
 
 On settlement, determine the owner's unresolved interval from its authoritative cursor. Split the interval at every injury, assignment, instructor, facility, equipment, doctrine, resource, mission, or other causal change that affects eligibility. Resolve only actual eligible activity, add resulting development credit to the matching target, and advance the cursor only through settled time.

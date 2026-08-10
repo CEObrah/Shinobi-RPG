@@ -1,0 +1,34 @@
+{
+  "schema": "shinobi-team-types",
+  "authority": "Team types define legal organizational shapes only; they never create a roster or assignment.",
+  "types": {
+    "academy_team": {
+      "roster": "institution_defined"
+    },
+    "standard_mission_team": {
+      "roster": "institution_defined"
+    },
+    "special_mission_cell": {
+      "named_member_range": [
+        4,
+        8
+      ],
+      "requires_lawful_assignment": true
+    },
+    "anbu_cell": {
+      "roster": "institution_defined"
+    },
+    "temporary_task_force": {
+      "named_member_range": [
+        2,
+        12
+      ]
+    },
+    "personal_force_team": {
+      "named_member_range": [
+        2,
+        12
+      ]
+    }
+  }
+}

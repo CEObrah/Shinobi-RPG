@@ -1,0 +1,1608 @@
+{
+  "schema": "population-registry",
+  "id": "registry.population",
+  "pools": {
+    "pool.iwa.academy": {
+      "owner_ref": "faction_iwa",
+      "category": "academy",
+      "count": 960,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 960,
+            "mean": 11.5,
+            "sd": 2.3,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "academy": 960
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 365,
+            "adult": 0,
+            "child": 595,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 192,
+            "low": 77,
+            "standard": 691,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 946,
+            "limited": 14
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 960,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.iwa.civilian_general": {
+      "owner_ref": "faction_iwa",
+      "category": "civilian_general",
+      "count": 45500,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5; military_total_anchor=force_iwa_shinobi:10500",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 45500,
+            "mean": 31.0,
+            "sd": 17.0,
+            "min": 0,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "civilian_general": 45500
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 4550,
+            "adult": 29120,
+            "child": 7280,
+            "elder": 4550
+          },
+          "chakra_potential": {
+            "high": 1820,
+            "low": 23660,
+            "standard": 15470,
+            "unassessed": 4550
+          },
+          "health": {
+            "fit": 40040,
+            "limited": 5460
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 45500,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.iwa.shinobi_service": {
+      "owner_ref": "faction_iwa",
+      "category": "shinobi_service",
+      "count": 10500,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5; military_total_anchor=force_iwa_shinobi:10500",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 10500,
+            "mean": 27.0,
+            "sd": 10.5,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "shinobi_service": 10500
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1575,
+            "adult": 8610,
+            "child": 105,
+            "elder": 210
+          },
+          "chakra_potential": {
+            "high": 2100,
+            "low": 105,
+            "standard": 8295,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 9660,
+            "limited": 840
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 10493,
+        "rostered_count": 7,
+        "rostered_person_refs": [
+          "canon_akatsuchi",
+          "canon_deidara",
+          "canon_han_jinchuriki",
+          "canon_kitsuchi",
+          "canon_kurotsuchi",
+          "canon_onoki",
+          "canon_roshi"
+        ]
+      },
+      "linked_force_ref": null
+    },
+    "pool.iwa.support_service": {
+      "owner_ref": "faction_iwa",
+      "category": "support_service",
+      "count": 1280,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 1280,
+            "mean": 34.0,
+            "sd": 13.0,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "support_service": 1280
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 102,
+            "adult": 1088,
+            "child": 0,
+            "elder": 90
+          },
+          "chakra_potential": {
+            "high": 64,
+            "low": 576,
+            "standard": 576,
+            "unassessed": 64
+          },
+          "health": {
+            "fit": 1152,
+            "limited": 128
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 1280,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.iwa.youth_candidate": {
+      "owner_ref": "faction_iwa",
+      "category": "youth_candidate",
+      "count": 5760,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 5760,
+            "mean": 10.5,
+            "sd": 2.7,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "youth_candidate": 5760
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1843,
+            "adult": 0,
+            "child": 3917,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 461,
+            "low": 2880,
+            "standard": 2419,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 5530,
+            "limited": 230
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 5760,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kiri.academy": {
+      "owner_ref": "faction_kiri",
+      "category": "academy",
+      "count": 480,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 480,
+            "mean": 11.5,
+            "sd": 2.3,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "academy": 480
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 182,
+            "adult": 0,
+            "child": 298,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 96,
+            "low": 38,
+            "standard": 346,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 473,
+            "limited": 7
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 480,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kiri.civilian_general": {
+      "owner_ref": "faction_kiri",
+      "category": "civilian_general",
+      "count": 19500,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5; military_total_anchor=force_kiri_shinobi:8500",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 19500,
+            "mean": 31.0,
+            "sd": 17.0,
+            "min": 0,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "civilian_general": 19500
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1950,
+            "adult": 12480,
+            "child": 3120,
+            "elder": 1950
+          },
+          "chakra_potential": {
+            "high": 780,
+            "low": 10140,
+            "standard": 6630,
+            "unassessed": 1950
+          },
+          "health": {
+            "fit": 17160,
+            "limited": 2340
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 19500,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kiri.shinobi_service": {
+      "owner_ref": "faction_kiri",
+      "category": "shinobi_service",
+      "count": 8500,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5; military_total_anchor=force_kiri_shinobi:8500",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 8500,
+            "mean": 27.0,
+            "sd": 10.5,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "shinobi_service": 8500
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1275,
+            "adult": 6971,
+            "child": 84,
+            "elder": 170
+          },
+          "chakra_potential": {
+            "high": 1700,
+            "low": 84,
+            "standard": 6716,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 7820,
+            "limited": 680
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 8495,
+        "rostered_count": 5,
+        "rostered_person_refs": [
+          "canon_ao",
+          "canon_chojuro",
+          "canon_haku",
+          "canon_mei",
+          "canon_zabuza"
+        ]
+      },
+      "linked_force_ref": "force.kiri.shinobi"
+    },
+    "pool.kiri.support_service": {
+      "owner_ref": "faction_kiri",
+      "category": "support_service",
+      "count": 640,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 640,
+            "mean": 34.0,
+            "sd": 13.0,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "support_service": 640
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 51,
+            "adult": 544,
+            "child": 0,
+            "elder": 45
+          },
+          "chakra_potential": {
+            "high": 32,
+            "low": 288,
+            "standard": 288,
+            "unassessed": 32
+          },
+          "health": {
+            "fit": 576,
+            "limited": 64
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 640,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kiri.youth_candidate": {
+      "owner_ref": "faction_kiri",
+      "category": "youth_candidate",
+      "count": 2880,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 2880,
+            "mean": 10.5,
+            "sd": 2.7,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "youth_candidate": 2880
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 922,
+            "adult": 0,
+            "child": 1958,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 230,
+            "low": 1440,
+            "standard": 1210,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 2765,
+            "limited": 115
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 2880,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.konoha.academy": {
+      "owner_ref": "faction_konoha",
+      "category": "academy",
+      "count": 1200,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 1200,
+            "mean": 11.5,
+            "sd": 2.3,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "academy": 1200
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 456,
+            "adult": 0,
+            "child": 744,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 240,
+            "low": 96,
+            "standard": 864,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 1182,
+            "limited": 18
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 1189,
+        "rostered_count": 11,
+        "rostered_person_refs": [
+          "canon_choji",
+          "canon_hanabi",
+          "canon_hinata",
+          "canon_ino",
+          "canon_kiba",
+          "canon_konohamaru",
+          "canon_naruto",
+          "canon_sakura",
+          "canon_sasuke",
+          "canon_shikamaru",
+          "canon_shino"
+        ]
+      }
+    },
+    "pool.konoha.civilian_general": {
+      "owner_ref": "faction_konoha",
+      "category": "civilian_general",
+      "count": 58000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5; military_total_anchor=force_konoha_shinobi:12000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 58000,
+            "mean": 31.0,
+            "sd": 17.0,
+            "min": 0,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "civilian_general": 58000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 5800,
+            "adult": 37120,
+            "child": 9280,
+            "elder": 5800
+          },
+          "chakra_potential": {
+            "high": 2320,
+            "low": 30160,
+            "standard": 19720,
+            "unassessed": 5800
+          },
+          "health": {
+            "fit": 51040,
+            "limited": 6960
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 57969,
+        "rostered_count": 31,
+        "rostered_person_refs": [
+          "canon_ayame",
+          "canon_teuchi",
+          "char.linh",
+          "char.zhu",
+          "ht.core.001",
+          "ht.core.002",
+          "ht.core.003",
+          "ht.core.004",
+          "ht.core.005",
+          "ht.core.006",
+          "ht.core.007",
+          "ht.core.008",
+          "ht.core.009",
+          "ht.core.010",
+          "ht.core.011",
+          "ht.core.012",
+          "ht.core.013",
+          "ht.core.014",
+          "ht.core.015",
+          "ht.core.016",
+          "ht.core.017",
+          "ht.core.018",
+          "ht.core.019",
+          "ht.core.020",
+          "ht.core.021",
+          "ht.core.022",
+          "ht.core.023",
+          "ht.core.024",
+          "ht.core.025",
+          "ht.core.026",
+          "ht.core.027"
+        ]
+      }
+    },
+    "pool.konoha.shinobi_service": {
+      "owner_ref": "faction_konoha",
+      "category": "shinobi_service",
+      "count": 12000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5; military_total_anchor=force_konoha_shinobi:12000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 12000,
+            "mean": 27.0,
+            "sd": 10.5,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "shinobi_service": 12000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1800,
+            "adult": 9840,
+            "child": 120,
+            "elder": 240
+          },
+          "chakra_potential": {
+            "high": 2400,
+            "low": 120,
+            "standard": 9480,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 11040,
+            "limited": 960
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 11945,
+        "rostered_count": 55,
+        "rostered_person_refs": [
+          "canon_anko",
+          "canon_aoba",
+          "canon_asuma",
+          "canon_choza",
+          "canon_daikoku_funeno",
+          "canon_danzo",
+          "canon_ebisu",
+          "canon_ensui_nara",
+          "canon_fu_yamanaka",
+          "canon_genma",
+          "canon_guy",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hayate",
+          "canon_hiashi",
+          "canon_hiruzen",
+          "canon_hoheto_hyuga",
+          "canon_homura",
+          "canon_ibiki",
+          "canon_inoichi",
+          "canon_iruka",
+          "canon_iwashi",
+          "canon_izumo",
+          "canon_jiraiya",
+          "canon_kakashi",
+          "canon_koharu",
+          "canon_kosuke_maruboshi",
+          "canon_kotetsu",
+          "canon_kurenai",
+          "canon_lee",
+          "canon_misumi_tsurugi",
+          "canon_mizuki",
+          "canon_muta",
+          "canon_neji",
+          "canon_raidou",
+          "canon_sai",
+          "canon_shibi",
+          "canon_shikaku",
+          "canon_shizune",
+          "canon_suzaku_nara",
+          "canon_suzume",
+          "canon_tekuno_kanden",
+          "canon_tenten",
+          "canon_tokuma",
+          "canon_torune_aburame",
+          "canon_tsume",
+          "canon_tsunade",
+          "canon_yamato",
+          "canon_yoroi_akado",
+          "canon_yugao",
+          "canon_zaji",
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ]
+      },
+      "linked_force_ref": null
+    },
+    "pool.konoha.support_service": {
+      "owner_ref": "faction_konoha",
+      "category": "support_service",
+      "count": 1600,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 1600,
+            "mean": 34.0,
+            "sd": 13.0,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "support_service": 1600
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 128,
+            "adult": 1360,
+            "child": 0,
+            "elder": 112
+          },
+          "chakra_potential": {
+            "high": 80,
+            "low": 720,
+            "standard": 720,
+            "unassessed": 80
+          },
+          "health": {
+            "fit": 1440,
+            "limited": 160
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 1600,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.konoha.youth_candidate": {
+      "owner_ref": "faction_konoha",
+      "category": "youth_candidate",
+      "count": 7200,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 7200,
+            "mean": 10.5,
+            "sd": 2.7,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "youth_candidate": 7200
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 2304,
+            "adult": 0,
+            "child": 4896,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 576,
+            "low": 3600,
+            "standard": 3024,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 6912,
+            "limited": 288
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 7200,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kumo.academy": {
+      "owner_ref": "faction_kumo",
+      "category": "academy",
+      "count": 720,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 720,
+            "mean": 11.5,
+            "sd": 2.3,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "academy": 720
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 274,
+            "adult": 0,
+            "child": 446,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 144,
+            "low": 58,
+            "standard": 518,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 709,
+            "limited": 11
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 720,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kumo.civilian_general": {
+      "owner_ref": "faction_kumo",
+      "category": "civilian_general",
+      "count": 32000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5; military_total_anchor=force_kumo_shinobi:10000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 32000,
+            "mean": 31.0,
+            "sd": 17.0,
+            "min": 0,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "civilian_general": 32000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3200,
+            "adult": 20480,
+            "child": 5120,
+            "elder": 3200
+          },
+          "chakra_potential": {
+            "high": 1280,
+            "low": 16640,
+            "standard": 10880,
+            "unassessed": 3200
+          },
+          "health": {
+            "fit": 28160,
+            "limited": 3840
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 32000,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kumo.shinobi_service": {
+      "owner_ref": "faction_kumo",
+      "category": "shinobi_service",
+      "count": 10000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5; military_total_anchor=force_kumo_shinobi:10000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 10000,
+            "mean": 27.0,
+            "sd": 10.5,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "shinobi_service": 10000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1500,
+            "adult": 8200,
+            "child": 101,
+            "elder": 199
+          },
+          "chakra_potential": {
+            "high": 2000,
+            "low": 101,
+            "standard": 7899,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 9200,
+            "limited": 800
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 9990,
+        "rostered_count": 10,
+        "rostered_person_refs": [
+          "canon_atsui",
+          "canon_c",
+          "canon_darui",
+          "canon_karui",
+          "canon_killer_b",
+          "canon_mabui",
+          "canon_omoi",
+          "canon_raikage_a",
+          "canon_samui",
+          "canon_yugito_nii"
+        ]
+      },
+      "linked_force_ref": null
+    },
+    "pool.kumo.support_service": {
+      "owner_ref": "faction_kumo",
+      "category": "support_service",
+      "count": 960,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 960,
+            "mean": 34.0,
+            "sd": 13.0,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "support_service": 960
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 77,
+            "adult": 816,
+            "child": 0,
+            "elder": 67
+          },
+          "chakra_potential": {
+            "high": 48,
+            "low": 432,
+            "standard": 432,
+            "unassessed": 48
+          },
+          "health": {
+            "fit": 864,
+            "limited": 96
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 960,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kumo.youth_candidate": {
+      "owner_ref": "faction_kumo",
+      "category": "youth_candidate",
+      "count": 4320,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 4320,
+            "mean": 10.5,
+            "sd": 2.7,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "youth_candidate": 4320
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1382,
+            "adult": 0,
+            "child": 2938,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 346,
+            "low": 2160,
+            "standard": 1814,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 4147,
+            "limited": 173
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 4320,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.suna.academy": {
+      "owner_ref": "faction_suna",
+      "category": "academy",
+      "count": 480,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 480,
+            "mean": 11.5,
+            "sd": 2.3,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "academy": 480
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 182,
+            "adult": 0,
+            "child": 298,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 96,
+            "low": 38,
+            "standard": 346,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 473,
+            "limited": 7
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 480,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.suna.civilian_general": {
+      "owner_ref": "faction_suna",
+      "category": "civilian_general",
+      "count": 21000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5; military_total_anchor=force_suna_shinobi:7000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 21000,
+            "mean": 31.0,
+            "sd": 17.0,
+            "min": 0,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "civilian_general": 21000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 2100,
+            "adult": 13440,
+            "child": 3360,
+            "elder": 2100
+          },
+          "chakra_potential": {
+            "high": 840,
+            "low": 10920,
+            "standard": 7140,
+            "unassessed": 2100
+          },
+          "health": {
+            "fit": 18480,
+            "limited": 2520
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 21000,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.suna.shinobi_service": {
+      "owner_ref": "faction_suna",
+      "category": "shinobi_service",
+      "count": 7000,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5; military_total_anchor=force_suna_shinobi:7000",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 7000,
+            "mean": 27.0,
+            "sd": 10.5,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "shinobi_service": 7000
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 1050,
+            "adult": 5740,
+            "child": 71,
+            "elder": 139
+          },
+          "chakra_potential": {
+            "high": 1400,
+            "low": 71,
+            "standard": 5529,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 6439,
+            "limited": 561
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 6991,
+        "rostered_count": 9,
+        "rostered_person_refs": [
+          "canon_baki",
+          "canon_chiyo",
+          "canon_ebizo",
+          "canon_gaara",
+          "canon_kankuro",
+          "canon_maki",
+          "canon_rasa",
+          "canon_temari",
+          "canon_yura"
+        ]
+      },
+      "linked_force_ref": null
+    },
+    "pool.suna.support_service": {
+      "owner_ref": "faction_suna",
+      "category": "support_service",
+      "count": 640,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 640,
+            "mean": 34.0,
+            "sd": 13.0,
+            "min": 12,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "support_service": 640
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 51,
+            "adult": 544,
+            "child": 0,
+            "elder": 45
+          },
+          "chakra_potential": {
+            "high": 32,
+            "low": 288,
+            "standard": 288,
+            "unassessed": 32
+          },
+          "health": {
+            "fit": 576,
+            "limited": 64
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 640,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.suna.youth_candidate": {
+      "owner_ref": "faction_suna",
+      "category": "youth_candidate",
+      "count": 2880,
+      "status": "active",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5",
+      "profile": {
+        "numeric_distributions": {
+          "age_years": {
+            "count": 2880,
+            "mean": 10.5,
+            "sd": 2.7,
+            "min": 6,
+            "max": 90
+          }
+        },
+        "category_counts": {
+          "youth_candidate": 2880
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 922,
+            "adult": 0,
+            "child": 1958,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 230,
+            "low": 1440,
+            "standard": 1210,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 2765,
+            "limited": 115
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "simulation_estimate",
+          "not_canon_census"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 2880,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.konoha.deceased_service": {
+      "owner_ref": "faction_konoha",
+      "category": "deceased_service",
+      "count": 0,
+      "status": "exhausted",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5; military_total_anchor=force_konoha_shinobi:12000; casualty_sink_for_conservation=true",
+      "profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "deceased_service": 0
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 0,
+            "adult": 0,
+            "child": 0,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 0,
+            "low": 0,
+            "standard": 0,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 0,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "deceased_service",
+          "conservation_sink"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 0,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.iwa.deceased_service": {
+      "owner_ref": "faction_iwa",
+      "category": "deceased_service",
+      "count": 0,
+      "status": "exhausted",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5; military_total_anchor=force_iwa_shinobi:10500; casualty_sink_for_conservation=true",
+      "profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "deceased_service": 0
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 0,
+            "adult": 0,
+            "child": 0,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 0,
+            "low": 0,
+            "standard": 0,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 0,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "deceased_service",
+          "conservation_sink"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 0,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kumo.deceased_service": {
+      "owner_ref": "faction_kumo",
+      "category": "deceased_service",
+      "count": 0,
+      "status": "exhausted",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5; military_total_anchor=force_kumo_shinobi:10000; casualty_sink_for_conservation=true",
+      "profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "deceased_service": 0
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 0,
+            "adult": 0,
+            "child": 0,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 0,
+            "low": 0,
+            "standard": 0,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 0,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "deceased_service",
+          "conservation_sink"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 0,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.suna.deceased_service": {
+      "owner_ref": "faction_suna",
+      "category": "deceased_service",
+      "count": 0,
+      "status": "exhausted",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5; military_total_anchor=force_suna_shinobi:7000; casualty_sink_for_conservation=true",
+      "profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "deceased_service": 0
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 0,
+            "adult": 0,
+            "child": 0,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 0,
+            "low": 0,
+            "standard": 0,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 0,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "deceased_service",
+          "conservation_sink"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 0,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    },
+    "pool.kiri.deceased_service": {
+      "owner_ref": "faction_kiri",
+      "category": "deceased_service",
+      "count": 0,
+      "status": "exhausted",
+      "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5; military_total_anchor=force_kiri_shinobi:8500; casualty_sink_for_conservation=true",
+      "profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "deceased_service": 0
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 0,
+            "adult": 0,
+            "child": 0,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 0,
+            "low": 0,
+            "standard": 0,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 0,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "aggregate_population",
+          "deceased_service",
+          "conservation_sink"
+        ]
+      },
+      "last_changed_at": "SE-0061-02-06T21:15:00",
+      "representation": {
+        "anonymous_count": 0,
+        "rostered_count": 0,
+        "rostered_person_refs": []
+      }
+    }
+  },
+  "transfers": [],
+  "demographic_reviews": []
+}

@@ -1,0 +1,1321 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.suna.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.suna.shinobi",
+  "formations": [
+    {
+      "id": "formation.suna.desert.1",
+      "name": "Suna Northern Desert Patrol, First Tactical Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 77,
+      "morale": 76,
+      "readiness": 82,
+      "location_ref": "place.wind.northern.route",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.desert.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.desert.1.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.1.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 4,
+            "support": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.desert.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.desert.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.desert.2",
+      "name": "Suna Western Oasis Guard, First Tactical Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 73,
+      "morale": 77,
+      "readiness": 79,
+      "location_ref": "place.wind.western.oasis",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.desert.2.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.desert.2.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.2.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 2,
+            "support": 1,
+            "special_jonin": 1,
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.2.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.desert.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.desert.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.desert.3",
+      "name": "Suna Eastern Dune Patrol, First Tactical Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 72,
+      "morale": 76,
+      "readiness": 84,
+      "location_ref": "place.wind.eastern.dunes",
+      "activity_summary": "eastern desert patrol readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.desert.3.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.desert.3.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.3.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 4,
+            "special_jonin": 1,
+            "support": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.3.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.desert.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.desert.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.desert.4",
+      "name": "Suna Southern Caravan Guard, First Tactical Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 79,
+      "morale": 77,
+      "readiness": 82,
+      "location_ref": "place.wind.southern.route",
+      "activity_summary": "caravan route security",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.desert.4.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.desert.4.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.4.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3,
+            "support": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.desert.4.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.desert.4.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.desert.4.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.intelligence.1",
+      "name": "Suna Intelligence Service, First Field Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 78,
+      "morale": 68,
+      "readiness": 79,
+      "location_ref": "place.suna",
+      "activity_summary": "field intelligence collection readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.intelligence.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.intelligence.1.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "support": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.intelligence.1.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.intelligence.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.intelligence.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.intelligence.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.oasis.1",
+      "name": "Suna Oasis Defense Command, First Guard Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 71,
+      "morale": 70,
+      "readiness": 84,
+      "location_ref": "place.wind.major.oasis",
+      "activity_summary": "water-source and oasis defense",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.oasis.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.oasis.1.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 3,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.oasis.1.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 3,
+            "chunin": 2,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.oasis.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.oasis.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.oasis.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.poison.1",
+      "name": "Suna Poison and Antidote Corps, First Field Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 80,
+      "morale": 72,
+      "readiness": 77,
+      "location_ref": "place.suna",
+      "activity_summary": "poison response and controlled deployment",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.poison.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.poison.1.ranged_control",
+          "troop_type": "poison_specialists",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.poison.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.poison.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.poison.1.support.puppeteers",
+          "troop_type": "puppeteers",
+          "role": "support",
+          "count": 8,
+          "rank_distribution": {
+            "genin": 3,
+            "chunin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.poison.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.puppet.1",
+      "name": "Suna Puppet Corps, First Field Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 76,
+      "morale": 70,
+      "readiness": 87,
+      "location_ref": "place.suna.training.quarter",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.puppet.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.puppet.1.ranged_control",
+          "troop_type": "poison_specialists",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.puppet.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.puppet.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.puppet.1.support.puppeteers",
+          "troop_type": "puppeteers",
+          "role": "support",
+          "count": 8,
+          "rank_distribution": {
+            "genin": 5,
+            "special_jonin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 8
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.puppet.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.puppet.2",
+      "name": "Suna Puppet Corps, Second Field Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 74,
+      "morale": 76,
+      "readiness": 86,
+      "location_ref": "place.suna",
+      "activity_summary": "puppet field deployment readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.puppet.2.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.puppet.2.ranged_control",
+          "troop_type": "poison_specialists",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.puppet.2.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.puppet.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.puppet.2.support.puppeteers",
+          "troop_type": "puppeteers",
+          "role": "support",
+          "count": 8,
+          "rank_distribution": {
+            "chunin": 4,
+            "genin": 4
+          },
+          "condition": {
+            "healthy": 8
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.puppet.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.suna.wind.1",
+      "name": "Suna Wind Corps, First Suppression Element",
+      "force_ref": "force.suna.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.suna.field",
+      "training_ref": "train.suna.field",
+      "cohesion": 80,
+      "morale": 75,
+      "readiness": 82,
+      "location_ref": "place.suna",
+      "activity_summary": "range control and wind suppression readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.suna.wind.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.suna.wind.1.ranged_control.trap-specialists",
+          "troop_type": "trap_specialists",
+          "role": "ranged_control",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 3,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.wind.1.ranged_control.wind-skirmishers",
+          "troop_type": "wind_skirmishers",
+          "role": "ranged_control",
+          "count": 7,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "chunin": 3,
+            "genin": 2,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.suna.wind.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.suna.wind.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.suna.wind.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

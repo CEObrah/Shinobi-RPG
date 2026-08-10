@@ -1,0 +1,109 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.civil.wind",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.civil.wind",
+  "formations": [
+    {
+      "id": "formation.land.wind.palace.guard",
+      "name": "Land of Wind Daimyo Guard, First Palace Element",
+      "force_ref": "force.civil.wind",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.civil.field",
+      "training_ref": "train.civil.field",
+      "cohesion": 67,
+      "morale": 72,
+      "readiness": 82,
+      "location_ref": "place.wind.capital",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "guard": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.land.wind.palace.guard.assault",
+          "troop_type": "guards",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "guard": 13,
+            "senior_guard": 2,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.land.wind.palace.guard.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "guard": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.land.wind.palace.guard.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "guard": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.land.wind.palace.guard.support",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "commander": 1,
+            "senior_guard": 1
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

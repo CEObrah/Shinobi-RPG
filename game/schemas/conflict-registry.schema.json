@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conflict-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "conflict-registry"
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "status",
+          "side_refs",
+          "objectives",
+          "started_at",
+          "ended_at",
+          "ceasefire_consents",
+          "end_consents",
+          "fronts"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "status": {
+            "enum": [
+              "active",
+              "ceasefire",
+              "ended"
+            ]
+          },
+          "side_refs": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 8,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "objectives": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 500
+              }
+            }
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "ended_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fronts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "name",
+                "status",
+                "place_refs",
+                "route_refs",
+                "formation_refs",
+                "control_ref",
+                "fortification_milli",
+                "route_state",
+                "occupations"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "status": {
+                  "enum": [
+                    "active",
+                    "closed"
+                  ]
+                },
+                "place_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "route_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "formation_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "control_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "fortification_milli": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "route_state": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "controller_ref",
+                      "disruption_milli",
+                      "evidence_event_ref"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "open",
+                          "contested",
+                          "disrupted",
+                          "blocked"
+                        ]
+                      },
+                      "controller_ref": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "disruption_milli": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                      },
+                      "evidence_event_ref": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "occupations": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "place_ref",
+                      "controller_ref",
+                      "evidence_event_ref",
+                      "since"
+                    ],
+                    "properties": {
+                      "place_ref": {
+                        "type": "string"
+                      },
+                      "controller_ref": {
+                        "type": "string"
+                      },
+                      "evidence_event_ref": {
+                        "type": "string"
+                      },
+                      "since": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "ceasefire_consents": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "end_consents": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

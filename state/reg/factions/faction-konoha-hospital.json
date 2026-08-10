@@ -1,0 +1,56 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.konoha_hospital",
+    "name": "Konoha Medical Network",
+    "status": "active",
+    "leadership_ids": [
+      "support.hospital.akemi_hoshino"
+    ],
+    "key_member_ids": [
+      "canon_shizune"
+    ],
+    "goal": "treat casualties, preserve medical assets, and maintain surgical capacity",
+    "current_plan": "Keep trauma teams, surgical rooms, and recovery beds available for expected village demand.",
+    "resources": [
+      "medical staff",
+      "surgical facilities",
+      "pharmacy",
+      "recovery beds"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_anbu",
+        "relationship_type": "covert_casualty_support",
+        "stance": "cooperative",
+        "intensity": 72
+      },
+      {
+        "target_id": "faction.konoha_mission_office",
+        "relationship_type": "mission_casualty_and_clearance_coordination",
+        "stance": "cooperative",
+        "intensity": 64
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Medical availability is a resource and scheduling constraint, not random surgery failure."
+    ],
+    "goals": [
+      "preserve treatment capacity",
+      "triage and treat mission casualties without political favoritism"
+    ],
+    "constraints": [
+      "staff fatigue",
+      "bed capacity",
+      "supply availability"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-02-05T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery"
+    },
+    "scope": "Konoha medical facilities, field casualty routing, and specialist care",
+    "leadership_model": "medical_administration"
+  }
+}

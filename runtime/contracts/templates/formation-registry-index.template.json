@@ -1,0 +1,52 @@
+{
+  "schema": "file-template",
+  "template_id": "template.formation-registry-index",
+  "target_schema": "formation-registry-index",
+  "source_schema": "game/schemas/formation-registry-index.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/formation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "registries",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "registries"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "registries"
+      ]
+    },
+    "/registries": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/registries": [
+      "object"
+    ],
+    "/registries/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Derived routing index from force-to-formation registry authority."
+  ]
+}

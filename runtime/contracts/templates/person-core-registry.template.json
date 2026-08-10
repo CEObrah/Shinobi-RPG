@@ -1,0 +1,246 @@
+{
+  "schema": "file-template",
+  "template_id": "template.person-core-registry",
+  "target_schema": "person-core-registry",
+  "source_schema": "game/schemas/person-core-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/person-core"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "owner_ref",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "owner_ref",
+        "people"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "owner_ref",
+        "people"
+      ]
+    },
+    "/people": {
+      "mode": "open_map",
+      "value_contract": "/people/*"
+    },
+    "/people/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "aliases",
+        "pronouns",
+        "birth_date",
+        "birth_date_source",
+        "origin",
+        "life_status",
+        "affiliation_ref",
+        "location_ref",
+        "cohort_ref",
+        "cohort_slot",
+        "role_profile_ref",
+        "duty_tags",
+        "resolved_through",
+        "identity_cues",
+        "component_refs",
+        "provenance"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "aliases",
+        "pronouns",
+        "birth_date",
+        "birth_date_source",
+        "origin",
+        "life_status",
+        "affiliation_ref",
+        "location_ref",
+        "cohort_ref",
+        "cohort_slot",
+        "role_profile_ref",
+        "duty_tags",
+        "resolved_through",
+        "identity_cues",
+        "component_refs",
+        "provenance"
+      ]
+    },
+    "/people/*/identity_cues": {
+      "mode": "closed",
+      "allowed_keys": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ],
+      "canonical_order": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ]
+    },
+    "/people/*/component_refs": {
+      "mode": "open_map",
+      "value_contract": "string"
+    },
+    "/people/*/provenance": {
+      "mode": "closed",
+      "allowed_keys": [
+        "source_kind",
+        "source_ref",
+        "materialized_at",
+        "selection_method"
+      ],
+      "canonical_order": [
+        "source_kind",
+        "source_ref",
+        "materialized_at",
+        "selection_method"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/owner_ref": [
+      "string"
+    ],
+    "/people": [
+      "object"
+    ],
+    "/people/*": [
+      "object"
+    ],
+    "/people/*/id": [
+      "string"
+    ],
+    "/people/*/name": [
+      "string"
+    ],
+    "/people/*/aliases": [
+      "array"
+    ],
+    "/people/*/aliases/*": [
+      "string"
+    ],
+    "/people/*/pronouns": [
+      "string"
+    ],
+    "/people/*/birth_date": [
+      "null",
+      "string"
+    ],
+    "/people/*/birth_date_source": [
+      "null",
+      "string"
+    ],
+    "/people/*/origin": [
+      "string"
+    ],
+    "/people/*/life_status": [
+      "string"
+    ],
+    "/people/*/location_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/cohort_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/cohort_slot": [
+      "integer",
+      "null"
+    ],
+    "/people/*/role_profile_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/duty_tags": [
+      "array"
+    ],
+    "/people/*/duty_tags/*": [
+      "string"
+    ],
+    "/people/*/resolved_through": [
+      "string"
+    ],
+    "/people/*/identity_cues": [
+      "object"
+    ],
+    "/people/*/identity_cues/appearance": [
+      "string"
+    ],
+    "/people/*/identity_cues/temperament": [
+      "string"
+    ],
+    "/people/*/identity_cues/doctrine_expression": [
+      "string"
+    ],
+    "/people/*/component_refs": [
+      "object"
+    ],
+    "/people/*/component_refs/*": [
+      "string"
+    ],
+    "/people/*/provenance": [
+      "object"
+    ],
+    "/people/*/provenance/source_kind": [
+      "string"
+    ],
+    "/people/*/provenance/source_ref": [
+      "string"
+    ],
+    "/people/*/provenance/materialized_at": [
+      "null",
+      "string"
+    ],
+    "/people/*/provenance/selection_method": [
+      "string"
+    ],
+    "/people/*/affiliation_ref": [
+      "null",
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/people/*/aliases": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/people/*/duty_tags": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "A core is a real persistent person identity, never anonymous aggregate headcount.",
+    "The referenced cohort owns shared capability, training and routine readiness until an individual component lawfully diverges.",
+    "Resolving or narrating a full sheet composes this core with its cohort baseline and only the explicitly referenced individual components.",
+    "Routine cohort change updates the cohort owner once and does not fan out writes across person cores.",
+    "Materialization, transfer, injury, death or other individual divergence conserves the same person and must preserve the source cohort distribution.",
+    "Identity cues constrain characterization but grant no capability, knowledge, relationship, authority, equipment or outcome.",
+    "component_refs may add only registered component namespaces whose owners have their own structural authority."
+  ]
+}

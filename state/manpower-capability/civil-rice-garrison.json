@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.rice.garrison",
+  "pool_id": "civil.rice.garrison",
+  "source_owner": "force.civil.rice",
+  "stats": {
+    "attributes": {
+      "strength": 46,
+      "endurance": 47,
+      "awareness": 40
+    },
+    "skills": {
+      "weapons": 47,
+      "formation": 46,
+      "tactics": 32
+    },
+    "morale": 54,
+    "discipline": 49,
+    "experience": 31
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 167,
+      "sd": 6.5
+    },
+    "weight_kg": {
+      "mean": 62,
+      "sd": 7.7
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 98,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "schema": "file-template",
+  "template_id": "template.formation-registry",
+  "target_schema": "formation-registry",
+  "source_schema": "game/schemas/formation-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/formation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "force_ref",
+    "formations",
+    "owner_id",
+    "owner_type",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "authority",
+        "force_ref",
+        "formations"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "authority",
+        "force_ref",
+        "formations"
+      ]
+    },
+    "/formations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "force_ref",
+        "role",
+        "lifecycle_origin",
+        "personnel_total",
+        "authorized_personnel",
+        "doctrine_ref",
+        "training_ref",
+        "cohesion",
+        "morale",
+        "readiness",
+        "location_ref",
+        "activity_summary",
+        "tendencies",
+        "command_slot",
+        "command_personnel",
+        "components",
+        "operational_objective"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "force_ref",
+        "role",
+        "lifecycle_origin",
+        "personnel_total",
+        "authorized_personnel",
+        "doctrine_ref",
+        "training_ref",
+        "cohesion",
+        "morale",
+        "readiness",
+        "location_ref",
+        "activity_summary",
+        "tendencies",
+        "command_slot",
+        "command_personnel",
+        "components",
+        "operational_objective"
+      ]
+    },
+    "/formations/*/tendencies": {
+      "mode": "open_map"
+    },
+    "/formations/*/command_slot": {
+      "mode": "closed",
+      "allowed_keys": [
+        "representation",
+        "profile_ref"
+      ],
+      "canonical_order": [
+        "representation",
+        "profile_ref"
+      ]
+    },
+    "/formations/*/command_personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "representation",
+        "count",
+        "includes_commander_slot",
+        "groups"
+      ],
+      "canonical_order": [
+        "representation",
+        "count",
+        "includes_commander_slot",
+        "groups"
+      ]
+    },
+    "/formations/*/components/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "troop_type",
+        "role",
+        "count",
+        "rank_distribution",
+        "condition",
+        "tendency_profile_ref"
+      ],
+      "canonical_order": [
+        "id",
+        "troop_type",
+        "role",
+        "count",
+        "rank_distribution",
+        "condition",
+        "tendency_profile_ref"
+      ]
+    },
+    "/formations/*/components/*/rank_distribution": {
+      "mode": "open_map"
+    },
+    "/formations/*/components/*/condition": {
+      "mode": "open_map"
+    },
+    "/formations/*/command_personnel/groups/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "rank_distribution",
+        "condition"
+      ],
+      "canonical_order": [
+        "count",
+        "rank_distribution",
+        "condition"
+      ]
+    },
+    "/formations/*/command_personnel/groups/*/rank_distribution": {
+      "mode": "open_map"
+    },
+    "/formations/*/command_personnel/groups/*/condition": {
+      "mode": "open_map"
+    },
+    "/formations/*/operational_objective": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "target_refs",
+        "lethal_authorized"
+      ],
+      "canonical_order": [
+        "kind",
+        "target_refs",
+        "lethal_authorized"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/force_ref": [
+      "string"
+    ],
+    "/formations": [
+      "array"
+    ],
+    "/formations/*": [
+      "object"
+    ],
+    "/formations/*/id": [
+      "string"
+    ],
+    "/formations/*/name": [
+      "string"
+    ],
+    "/formations/*/force_ref": [
+      "string"
+    ],
+    "/formations/*/role": [
+      "null",
+      "string"
+    ],
+    "/formations/*/personnel_total": [
+      "integer"
+    ],
+    "/formations/*/doctrine_ref": [
+      "null",
+      "string"
+    ],
+    "/formations/*/training_ref": [
+      "null",
+      "string"
+    ],
+    "/formations/*/cohesion": [
+      "null",
+      "number"
+    ],
+    "/formations/*/morale": [
+      "null",
+      "number"
+    ],
+    "/formations/*/readiness": [
+      "null",
+      "number"
+    ],
+    "/formations/*/location_ref": [
+      "null",
+      "string"
+    ],
+    "/formations/*/activity_summary": [
+      "null",
+      "string"
+    ],
+    "/formations/*/tendencies": [
+      "object"
+    ],
+    "/formations/*/command_slot": [
+      "null",
+      "object"
+    ],
+    "/formations/*/command_personnel": [
+      "null",
+      "object"
+    ],
+    "/formations/*/components": [
+      "array"
+    ],
+    "/formations/*/components/*": [
+      "object"
+    ],
+    "/formations/*/components/*/id": [
+      "string"
+    ],
+    "/formations/*/components/*/troop_type": [
+      "null",
+      "string"
+    ],
+    "/formations/*/components/*/role": [
+      "null",
+      "string"
+    ],
+    "/formations/*/components/*/count": [
+      "integer"
+    ],
+    "/formations/*/components/*/rank_distribution": [
+      "object"
+    ],
+    "/formations/*/components/*/condition": [
+      "object"
+    ],
+    "/formations/*/components/*/tendency_profile_ref": [
+      "null",
+      "string"
+    ],
+    "/formations/*/command_slot/representation": [
+      "string"
+    ],
+    "/formations/*/command_slot/profile_ref": [
+      "string"
+    ],
+    "/formations/*/command_personnel/representation": [
+      "string"
+    ],
+    "/formations/*/command_personnel/count": [
+      "integer"
+    ],
+    "/formations/*/command_personnel/includes_commander_slot": [
+      "boolean"
+    ],
+    "/formations/*/command_personnel/groups": [
+      "array"
+    ],
+    "/formations/*/command_personnel/groups/*": [
+      "object"
+    ],
+    "/formations/*/command_personnel/groups/*/count": [
+      "integer"
+    ],
+    "/formations/*/command_personnel/groups/*/rank_distribution": [
+      "object"
+    ],
+    "/formations/*/command_personnel/groups/*/rank_distribution/*": [
+      "integer"
+    ],
+    "/formations/*/command_personnel/groups/*/condition": [
+      "object"
+    ],
+    "/formations/*/command_personnel/groups/*/condition/*": [
+      "integer"
+    ],
+    "/formations/*/authorized_personnel": [
+      "integer"
+    ],
+    "/formations/*/lifecycle_origin": [
+      "string"
+    ],
+    "/formations/*/operational_objective": [
+      "object"
+    ],
+    "/formations/*/operational_objective/kind": [
+      "string"
+    ],
+    "/formations/*/operational_objective/target_refs": [
+      "array"
+    ],
+    "/formations/*/operational_objective/target_refs/*": [
+      "string"
+    ],
+    "/formations/*/operational_objective/lethal_authorized": [
+      "boolean"
+    ]
+  },
+  "array_contracts": {
+    "/formations": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/formations/*/components": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/formations/*/command_personnel/groups": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/formations/*/operational_objective/target_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Formation registries contain bounded aggregate operational formations, not exact-person rosters.",
+    "Every explicit formation headcount is a conserved subset of the source force deployed personnel. Named consequential people remain exact person owners and are not added twice.",
+    "Components are internal capability/accounting groups. Do not create one mutable file per ordinary squad or soldier.",
+    "Inline formation tendencies are optional causal overrides only. Normal tendencies are derived from personnel-weighted component tendency_profile_ref values."
+  ]
+}

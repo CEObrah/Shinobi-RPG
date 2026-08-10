@@ -1,0 +1,45 @@
+{
+  "schema": "system-contract",
+  "system_id": "characters",
+  "authority": false,
+  "authority_paths": [
+    "state/char/",
+    "state/person/",
+    "state/person-core/"
+  ],
+  "owner_templates": [
+    "shinobi_character",
+    "person",
+    "person-core-registry",
+    "person-continuity-registry"
+  ],
+  "read_first": [
+    "exact person owner or one bounded person-core registry",
+    "for a rostered core, its one referenced cohort baseline",
+    "only causal health, relationship, knowledge, career, command, training or dedicated deadline references"
+  ],
+  "write_order": [
+    "validate causal evidence and elapsed time",
+    "write character-owned fields only",
+    "write health/relationship/knowledge/office/command changes to their dedicated owners",
+    "write general autonomous review timing only through the time_process authority; never add a second character scheduler cursor",
+    "rebuild only affected derived indexes"
+  ],
+  "invariants": [
+    "Never invent player intent.",
+    "Unknown is better than filler.",
+    "No skill/rank/behavior growth without causal evidence and time.",
+    "General autonomous scheduling is centralized in the temporal runtime; exact character owners do not persist runtime or schedule_profile mirrors.",
+    "Development, recovery, deployment, mission and other real domain clocks remain separate when their mechanics require them.",
+    "Do not back-project future canon achievements.",
+    "Every named person is a persistent identity. A rostered core composes with its cohort baseline into a full logical sheet and may not be treated as anonymous headcount.",
+    "Identity cues grant no capability, knowledge, relationship, authority, equipment or outcome.",
+    "Routine shared development changes the cohort host once; individual divergence materializes a component for the same conserved person."
+  ],
+  "validators": [
+    "tools/test_templates.py",
+    "tools/test_development.py",
+    "tools/test_semantics.py",
+    "tools/test_world_liveness.py"
+  ]
+}

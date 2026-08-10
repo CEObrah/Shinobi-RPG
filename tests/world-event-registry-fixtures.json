@@ -1,0 +1,193 @@
+{
+  "authority": false,
+  "purpose": "Structural and lifecycle regression fixtures only; these records are not campaign events.",
+  "valid_records": [
+    {
+      "id": "event.fixture.scheduled",
+      "kind": "mission_market_shift",
+      "status": "scheduled",
+      "timing": {
+        "scheduled_for": "SE-0061-02-07T08:00:00",
+        "occurred_at": null,
+        "started_at": null,
+        "ended_at": null
+      },
+      "host_refs": [
+        "front.fixture.market"
+      ],
+      "actor_refs": [
+        "faction.fixture.office"
+      ],
+      "place_refs": [
+        "place.fixture.village"
+      ],
+      "causal_refs": [
+        "pressure.fixture.contracts"
+      ],
+      "affected_owner_refs": [],
+      "material_consequence_refs": [],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_process",
+        "source_refs": [
+          "process.fixture.market"
+        ],
+        "archetype_ref": "event.fixture.archetype",
+        "recorded_at": "SE-0061-02-06T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "reducer.world_event.schedule",
+        "transaction_ref": "tx.fixture.scheduled",
+        "receipt_refs": [
+          "receipt.fixture.scheduled"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null,
+      "display_summary": "A fixture event is scheduled for structural validation."
+    },
+    {
+      "id": "event.fixture.resolved",
+      "kind": "courier_interception",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-02-07T08:00:00",
+        "occurred_at": "SE-0061-02-07T08:25:00",
+        "started_at": "SE-0061-02-07T08:05:00",
+        "ended_at": "SE-0061-02-07T08:30:00"
+      },
+      "host_refs": [
+        "mission.fixture.courier"
+      ],
+      "actor_refs": [
+        "char.fixture.courier",
+        "faction.fixture.interceptors"
+      ],
+      "place_refs": [
+        "place.fixture.road"
+      ],
+      "causal_refs": [
+        "event.fixture.scheduled"
+      ],
+      "affected_owner_refs": [
+        "mission.fixture.courier",
+        "char.fixture.courier"
+      ],
+      "material_consequence_refs": [
+        "receipt.fixture.courier_outcome"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "char.fixture.courier"
+        ],
+        "audience_refs": [
+          "faction.fixture.office"
+        ],
+        "knowledge_refs": [
+          "knowledge.fixture.courier_report"
+        ],
+        "route_refs": [
+          "route.fixture.report"
+        ]
+      },
+      "provenance": {
+        "source_kind": "mission_resolution",
+        "source_refs": [
+          "mission.fixture.courier"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:30:00"
+      },
+      "execution": {
+        "reducer_ref": "reducer.world_event.resolve",
+        "transaction_ref": "tx.fixture.resolved",
+        "receipt_refs": [
+          "receipt.fixture.resolved"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null,
+      "display_summary": "A fixture courier interception reaches a terminal state."
+    }
+  ],
+  "invalid_mutations": [
+    {
+      "id": "missing_transaction_ref",
+      "base_record_id": "event.fixture.resolved",
+      "operation": "delete",
+      "path": [
+        "execution",
+        "transaction_ref"
+      ],
+      "expected_failure": "schema"
+    },
+    {
+      "id": "mechanical_outcome_in_prose",
+      "base_record_id": "event.fixture.resolved",
+      "operation": "add",
+      "path": [
+        "mechanical_outcome"
+      ],
+      "value": "The prose says the target was captured, so mechanics must accept it.",
+      "expected_failure": "schema"
+    },
+    {
+      "id": "unknown_status",
+      "base_record_id": "event.fixture.scheduled",
+      "operation": "replace",
+      "path": [
+        "status"
+      ],
+      "value": "done",
+      "expected_failure": "schema"
+    },
+    {
+      "id": "active_without_start",
+      "base_record_id": "event.fixture.scheduled",
+      "operation": "replace",
+      "path": [
+        "status"
+      ],
+      "value": "active",
+      "expected_failure": "schema"
+    },
+    {
+      "id": "terminal_without_consequence",
+      "base_record_id": "event.fixture.resolved",
+      "operation": "replace",
+      "path": [
+        "material_consequence_refs"
+      ],
+      "value": [],
+      "expected_failure": "schema"
+    },
+    {
+      "id": "reverse_interval",
+      "base_record_id": "event.fixture.resolved",
+      "operation": "replace",
+      "path": [
+        "timing",
+        "started_at"
+      ],
+      "value": "SE-0061-02-07T08:45:00",
+      "expected_failure": "semantic"
+    }
+  ],
+  "invalid_registries": [
+    {
+      "id": "duplicate_event_id",
+      "record_ids": [
+        "event.fixture.scheduled",
+        "event.fixture.scheduled"
+      ],
+      "expected_failure": "semantic"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "birth_date",
+    "body",
+    "appearance",
+    "stats",
+    "resolved_through"
+  ],
+  "properties": {
+    "schema": {
+      "const": "person"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "string"
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "adult_height_cm",
+        "growth_end_age",
+        "current_weight_kg",
+        "frame"
+      ]
+    },
+    "appearance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "stats": {
+      "type": "object"
+    },
+    "resolved_through": {
+      "type": "string",
+      "pattern": "^SE-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "system-contract",
+  "system_id": "world_state",
+  "authority": false,
+  "authority_paths": [
+    "state/world/",
+    "state/place/",
+    "state/reg/factions/",
+    "state/reg/world-events.json",
+    "state/history/events/"
+  ],
+  "owner_templates": [
+    "faction-owner",
+    "place",
+    "shinobi-world-registry",
+    "world-event-registry",
+    "world-event-archive"
+  ],
+  "read_first": [
+    "exact world/place/faction owner causally involved",
+    "world-event registry only when an event lifecycle or persisted consequence is causally relevant",
+    "only referenced process/mechanics needed to resolve change",
+    "for a consequential site question, verify compact place state is sufficient before resolution"
+  ],
+  "write_order": [
+    "validate cause, authority, elapsed time and information limits",
+    "settle any causally relevant site operational module through the exact reached time",
+    "instantiate a scheduled or active world-event record before resolving a material autonomous operation",
+    "write authoritative world, place, faction or other domain consequences before marking the event terminal",
+    "write separate personnel, force, stock, inventory or process owners only when their own authority actually changes",
+    "write witness, audience, knowledge and route references only after their dedicated information authorities support delivery",
+    "transition the event lifecycle only after affected-owner, material-consequence, visibility, reducer, transaction and receipt references exist",
+    "rebuild affected indexes and process consequences"
+  ],
+  "invariants": [
+    "Offscreen world state changes only through registered processes or resolved causal actions.",
+    "World-event IDs are stable and unique; lifecycle time fields remain chronological and status-consistent.",
+    "Cold archetypes may be referenced as provenance but are never copied into mutable state as unresolved templates.",
+    "The event registry records lifecycle, causal scope and provenance; referenced domain owners and receipts remain authority for material outcomes.",
+    "Terminal events resolve affected-owner and material-consequence references and retain reducer reference, transaction and receipt provenance.",
+    "World ownership/control/resources are never inferred from labels or indexes.",
+    "Player and NPC knowledge remain separate from world truth; visibility classification alone grants no knowledge.",
+    "Event display_summary text is non-authoritative and never supplies mechanics, status, visibility or consequences.",
+    "Any world object capable of changing a consequential outcome must have sufficient authoritative state for that causal role or route to registered deeper authority before resolution.",
+    "Missing site detail is never silently treated as neutral, favorable, hostile or retroactively selected after a plan is revealed.",
+    "Static ambient locations establish ontology only and never imply mutable security, staff, supply, capacity, damage, access or readiness.",
+    "Strategic places persist only applicable causal modules; detailed personnel, formations, stock, inventory and mechanics remain separate authorities referenced rather than duplicated."
+  ],
+  "validators": [
+    "tools/test_world_events.py",
+    "tools/test_living_world.py",
+    "tools/test_runtime.py",
+    "tools/test_templates.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

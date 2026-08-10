@@ -1,0 +1,31 @@
+{
+  "active_combat": false,
+  "decision_required": "At 21:15 at Sword Manor, Black Hound is an active six-person special-mission team under Hokage authority. Its first lawful muster is complete, Hayama is deputy, the Black Hound Combat Doctrine is active but unpracticed at familiarity 0 for all six, and the six members have completed tonight's armor/equipment issue to fully stock-backed permanent standards. No mission is assigned. Team Fujin still has a standing 08:00 report tomorrow.",
+  "freeform_actions_allowed": true,
+  "loaded_owner_ids": ["pc_wei_tang","team.konoha.fujin","team.blackhound","team.blackhound.doctrine","canon_hiruzen","canon_ensui_nara","canon_hana_inuzuka","canon_hoheto_hyuga","canon_tekuno_kanden","canon_hayama_shirakumo","char.zhu"],
+  "location_id": "place.sword_manor",
+  "narrative": {
+    "active_npc_agendas": [],
+    "active_questions": ["How does Wei use the remaining night before Team Fujin's 08:00 report?","When does Wei fit and issue the registered Team Fujin permanent loadouts to Kai, Riku and Mei without disrupting their standing training week?"],
+    "approaching_consequences": ["Team Fujin's standing heavy-week order requires Kai, Riku and Mei to report at 08:00 on SE-0061-02-07.","Black Hound's five non-Wei members now have the team as their primary standing assignment; its training cycle begins SE-0061-02-07 under Hayama whenever Wei is occupied by Team Fujin.","No Black Hound mission exists until the Hokage or another lawful Konoha authority assigns one."],
+    "available_reports": [],
+    "current_scene_type": "institutional_command",
+    "current_tension": "new_team_active_before_first_training_cycle",
+    "known_clues": ["Hiruzen accepted the name Black Hound and retained the previously stated mission restrictions.","The five non-Wei assignment orders were served in time for a 19:30 first muster at Sword Manor.","Zhu approved a narrow House Tang stock-policy exception for Head-of-House-authorized permanent teammates; this does not create House membership.","Black Hound adopted Find. Fix. Shape. Close. Finish. Extract. as its operational doctrine, with Hayama as deputy and immediate command successor.","Doctrine familiarity begins at 0 for all six because tonight's briefing created no practiced execution credit.","Black Hound's five non-Wei members have no parallel standing assignment unless the Hokage changes the order.","The Black Hound permanent standards contain only stock-backed equipment. Existing Konoha field tools were reused and stores issued only the conserved delta; catalog-only items without tracked stock were omitted rather than invented.","Team Fujin's permanent loadout standards exist, but Kai, Riku and Mei were not summoned for bespoke fitting tonight, so their final personal issue remains pending."],
+    "last_major_choice": "Wei named the new special-operations team Black Hound, completed formation administration first, pushed for an evening muster, established Hayama as deputy and the six role assignments, adopted the posted combat doctrine and maximum-quality training cycle, and arranged Sword Manor/Konoha equipment issue.",
+    "last_scene_summary": "From 17:15 to 18:00 Wei completed Black Hound formation administration at the Hokage Tower and had assignment orders dispatched. He returned to Sword Manor at 19:10. The five assigned members reported by 19:30, activating Black Hound. From 19:30 to 20:15 Wei established the command structure, roles, doctrine and training cycle. Zhu authorized the narrow permanent-teammate Court Armor issue. From 20:15 to 21:15 Sword Manor fitted the five new Court Armor sets while House and Konoha stores completed the fully stock-backed role equipment issue. No training credit or mission was created by the briefing and fitting.",
+    "pending_information_paths": ["First practiced Black Hound doctrine session and resulting familiarity change.","Team Fujin bespoke armor fitting and personal issue for Kai, Riku and Mei."],
+    "promises_and_threats": [],
+    "recent_reveals": ["The team now uses the stable owner ID team.blackhound.","Black Hound is active rather than forming.","Zhu allows conserved House equipment issue to specifically authorized permanent teammates without changing their House affiliation."],
+    "suspected_clues": [],
+    "unresolved_hooks": ["Black Hound first training cycle","Team Fujin heavy training week","House Tang elite field-readiness cycle"],
+    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
+  },
+  "scene_id": "scene_sword_manor_black_hound_first_muster_complete",
+  "scene_summary": "At 21:15 Black Hound is active at Sword Manor after its first lawful muster, doctrine briefing and fully stock-backed equipment issue; no mission is assigned and Team Fujin reports at 08:00 tomorrow.",
+  "schema": "scene",
+  "time_passage_allowed": true,
+  "world_time": "SE-0061-02-06T21:15:00",
+  "known_clock_boundaries": [{"due_at":"SE-0061-02-07T08:00:00","event_id":"team_fujin_heavy_week_report_day_two","visibility":"player_known"}],
+  "observable_pressures": ["Black Hound is newly active but has not yet practiced its doctrine.","No special-operations mission is currently assigned.","Team Fujin's next standing report is 08:00 tomorrow."]
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.fire.trained_reserve",
+  "pool_id": "civil.fire.trained_reserve",
+  "source_owner": "force.civil.fire",
+  "stats": {
+    "attributes": {
+      "strength": 40,
+      "endurance": 41,
+      "awareness": 35
+    },
+    "skills": {
+      "weapons": 41,
+      "formation": 43,
+      "tactics": 29
+    },
+    "morale": 60,
+    "discipline": 56,
+    "experience": 39
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 165,
+      "sd": 6.1
+    },
+    "weight_kg": {
+      "mean": 59,
+      "sd": 7.1
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 86,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

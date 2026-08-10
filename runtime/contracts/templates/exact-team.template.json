@@ -1,0 +1,292 @@
+{
+  "schema": "file-template",
+  "template_id": "template.exact-team",
+  "target_schema": "exact-team",
+  "source_schema": "game/schemas/exact-team.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/team"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "name",
+    "status",
+    "team_type",
+    "parent_institution_ref",
+    "assignment_authority_ref",
+    "leader_ref",
+    "deputy_ref",
+    "member_refs",
+    "roles",
+    "classification",
+    "activation",
+    "doctrine_ref",
+    "current_assignment_ref",
+    "embedded_member_refs",
+    "training"
+  ],
+  "object_contracts": {
+    "/roles": {
+      "mode": "open_map"
+    },
+    "/activation": {
+      "mode": "closed",
+      "allowed_keys": [
+        "at",
+        "basis"
+      ],
+      "canonical_order": [
+        "at",
+        "basis"
+      ]
+    },
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "name",
+        "status",
+        "team_type",
+        "parent_institution_ref",
+        "assignment_authority_ref",
+        "leader_ref",
+        "deputy_ref",
+        "member_refs",
+        "roles",
+        "classification",
+        "activation",
+        "doctrine_ref",
+        "current_assignment_ref",
+        "embedded_member_refs",
+        "training"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "name",
+        "status",
+        "team_type",
+        "parent_institution_ref",
+        "assignment_authority_ref",
+        "leader_ref",
+        "deputy_ref",
+        "member_refs",
+        "roles",
+        "classification",
+        "activation",
+        "doctrine_ref",
+        "current_assignment_ref",
+        "embedded_member_refs",
+        "training"
+      ]
+    },
+    "/training": {
+      "mode": "closed",
+      "allowed_keys": [
+        "model_ref",
+        "instructor_refs",
+        "facility_refs",
+        "recent_sessions"
+      ],
+      "canonical_order": [
+        "model_ref",
+        "instructor_refs",
+        "facility_refs",
+        "recent_sessions"
+      ]
+    },
+    "/training/recent_sessions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "session_ref",
+        "started_at",
+        "ended_at",
+        "active_hours",
+        "member_refs",
+        "instructor_ref",
+        "targets"
+      ],
+      "canonical_order": [
+        "session_ref",
+        "started_at",
+        "ended_at",
+        "active_hours",
+        "member_refs",
+        "instructor_ref",
+        "targets"
+      ]
+    },
+    "/training/recent_sessions/*/targets": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/name": [
+      "string"
+    ],
+    "/status": [
+      "string"
+    ],
+    "/team_type": [
+      "string"
+    ],
+    "/parent_institution_ref": [
+      "string",
+      "null"
+    ],
+    "/assignment_authority_ref": [
+      "string"
+    ],
+    "/leader_ref": [
+      "string"
+    ],
+    "/deputy_ref": [
+      "string",
+      "null"
+    ],
+    "/member_refs": [
+      "array"
+    ],
+    "/member_refs/*": [
+      "string"
+    ],
+    "/roles": [
+      "object"
+    ],
+    "/roles/*": [
+      "string"
+    ],
+    "/classification": [
+      "string"
+    ],
+    "/activation": [
+      "object"
+    ],
+    "/activation/at": [
+      "string",
+      "null"
+    ],
+    "/activation/basis": [
+      "string"
+    ],
+    "/doctrine_ref": [
+      "string",
+      "null"
+    ],
+    "/training": [
+      "object"
+    ],
+    "/training/model_ref": [
+      "string"
+    ],
+    "/training/instructor_refs": [
+      "array"
+    ],
+    "/training/instructor_refs/*": [
+      "string"
+    ],
+    "/training/facility_refs": [
+      "array"
+    ],
+    "/training/facility_refs/*": [
+      "string"
+    ],
+    "/current_assignment_ref": [
+      "string",
+      "null"
+    ],
+    "/training/recent_sessions": [
+      "array"
+    ],
+    "/training/recent_sessions/*": [
+      "object"
+    ],
+    "/training/recent_sessions/*/session_ref": [
+      "string"
+    ],
+    "/training/recent_sessions/*/started_at": [
+      "string"
+    ],
+    "/training/recent_sessions/*/ended_at": [
+      "string"
+    ],
+    "/training/recent_sessions/*/active_hours": [
+      "string"
+    ],
+    "/training/recent_sessions/*/member_refs": [
+      "array"
+    ],
+    "/training/recent_sessions/*/member_refs/*": [
+      "string"
+    ],
+    "/training/recent_sessions/*/instructor_ref": [
+      "string"
+    ],
+    "/training/recent_sessions/*/targets": [
+      "object"
+    ],
+    "/training/recent_sessions/*/targets/*": [
+      "string"
+    ],
+    "/embedded_member_refs": [
+      "array"
+    ],
+    "/embedded_member_refs/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/member_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/training/instructor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/training/facility_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/training/recent_sessions": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/training/recent_sessions/*/member_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/embedded_member_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "All exact named teams use this representation regardless of narrative function.",
+    "The runtime uses one generic team-training model; doctrine, instructors, facilities, membership, authority and classification are data.",
+    "Every member_ref is a persistent exact person; aggregate formations use the formation model instead.",
+    "leader_ref and deputy_ref, when present, must be members.",
+    "Do not add team-name-specific runtime fields or unregistered gameplay fields.",
+    "current_assignment_ref is an operational overlay only; an exact team assigned to a formation is already included in that formation headcount.",
+    "embedded_member_refs is the exact identity overlay currently counted inside current_assignment_ref; it is always a subset of member_refs and never changes formation headcount by itself.",
+    "recent_sessions is a bounded mechanical ledger for schedule and recovery enforcement; semantic events keep long-form training history."
+  ]
+}

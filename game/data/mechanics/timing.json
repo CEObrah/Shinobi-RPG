@@ -1,0 +1,32 @@
+{
+  "schema": "timing-mechanics",
+  "authority": "Structured numerical authority for action phases, reactions, weapon timing, interruption and contact time.",
+  "geometry": [
+    "position",
+    "facing",
+    "elevation",
+    "reach",
+    "range",
+    "line of effect",
+    "cover",
+    "area shape",
+    "required medium",
+    "movement path",
+    "ally exposure"
+  ],
+  "reaction_rules": [
+    "recognition uses awareness plus information and visibility",
+    "prepared reactions reserve attention and timing",
+    "substitution requires a real prepared decoy and legal path",
+    "Body Flicker is movement, not teleportation",
+    "sustained techniques reserve chakra and multitasking nodes"
+  ],
+  "weapon_timing": {
+    "requirement": "Every combat weapon must resolve a maneuver_package_id. Every maneuver has base startup, contact window, geometry, grip, reach rule, recovery and interruption conditions.",
+    "timing_score": "weapon_skill + coordination_support + floor(agility_support/2) + equipment_support - fatigue - injury - external_load - disruption",
+    "phase_multiplier": "clamp(0.55, 1.50, 1.25 - timing_score/400)",
+    "actual_phase_time": "base_phase_time * phase_multiplier",
+    "actual_contact_time": "recognition_delay + adjusted_startup + required_movement + projectile_travel",
+    "minimum_rule": "No mastery reduces a physical phase to zero; recovery and occupied limbs remain real."
+  }
+}

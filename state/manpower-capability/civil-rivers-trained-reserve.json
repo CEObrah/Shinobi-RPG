@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.rivers.trained_reserve",
+  "pool_id": "civil.rivers.trained_reserve",
+  "source_owner": "force.civil.rivers",
+  "stats": {
+    "attributes": {
+      "strength": 39,
+      "endurance": 40,
+      "awareness": 35
+    },
+    "skills": {
+      "weapons": 40,
+      "formation": 40,
+      "tactics": 27
+    },
+    "morale": 53,
+    "discipline": 48,
+    "experience": 34
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 174,
+      "sd": 6.6
+    },
+    "weight_kg": {
+      "mean": 67,
+      "sd": 7.6
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 91,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "exact-team",
+  "id": "team.blackhound",
+  "name": "Black Hound",
+  "status": "active",
+  "team_type": "special_mission_cell",
+  "parent_institution_ref": "institution.konoha.hokage_administration",
+  "assignment_authority_ref": "canon_hiruzen",
+  "leader_ref": "pc_wei_tang",
+  "deputy_ref": "canon_hayama_shirakumo",
+  "member_refs": [
+    "pc_wei_tang",
+    "canon_ensui_nara",
+    "canon_hana_inuzuka",
+    "canon_hoheto_hyuga",
+    "canon_tekuno_kanden",
+    "canon_hayama_shirakumo"
+  ],
+  "roles": {
+    "pc_wei_tang": "captain_primary_combat_capture",
+    "canon_ensui_nara": "control_specialist_restraint_and_battlefield_control",
+    "canon_hana_inuzuka": "tracking_medical_specialist",
+    "canon_hoheto_hyuga": "reconnaissance_specialist",
+    "canon_tekuno_kanden": "demolitions_engineering_specialist",
+    "canon_hayama_shirakumo": "deputy_secondary_frontline_field_command"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-02-06T19:30:00",
+    "basis": "Hokage assignment orders were served and all six named members completed the first lawful muster at Sword Manor."
+  },
+  "doctrine_ref": "team.blackhound.doctrine",
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "pc_wei_tang",
+      "canon_hayama_shirakumo"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "embedded_member_refs": []
+}

@@ -1,0 +1,221 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.blackhound.doctrine",
+  "team_id": "team.blackhound",
+  "name": "Black Hound Combat Doctrine",
+  "status": "active",
+  "familiarity": {
+    "pc_wei_tang": 0,
+    "canon_ensui_nara": 0,
+    "canon_hana_inuzuka": 0,
+    "canon_hoheto_hyuga": 0,
+    "canon_tekuno_kanden": 0,
+    "canon_hayama_shirakumo": 0
+  },
+  "effective_from": "SE-0061-02-06T20:15:00",
+  "approved_by": "pc_wei_tang",
+  "motto": "Find. Fix. Shape. Close. Finish. Extract.",
+  "command": {
+    "captain": "pc_wei_tang",
+    "deputy": "canon_hayama_shirakumo",
+    "succession_order": [
+      "canon_hayama_shirakumo"
+    ]
+  },
+  "roles": {
+    "pc_wei_tang": "Captain / primary combatant / capture",
+    "canon_ensui_nara": "Control specialist / restraint and battlefield control",
+    "canon_hana_inuzuka": "Tracking / pursuit / medical specialist",
+    "canon_hoheto_hyuga": "Byakugan reconnaissance / overwatch specialist",
+    "canon_tekuno_kanden": "Demolitions / engineering / traps / sabotage specialist",
+    "canon_hayama_shirakumo": "Deputy / secondary frontline / field command"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "FIND",
+      "primary_members": [
+        "canon_hana_inuzuka",
+        "canon_hoheto_hyuga"
+      ],
+      "objective": "Locate the target and establish a reliable trail, exact position, and immediate environmental picture.",
+      "procedures": [
+        "Hana establishes and follows the trail through scent, ninken reconnaissance, and pursuit.",
+        "Hoheto uses Byakugan reconnaissance to determine the target's exact position, nearby threats, routes, and terrain.",
+        "Cross-check both information channels so a target that defeats one method remains exposed to the other."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "FIX",
+      "primary_members": [
+        "canon_hana_inuzuka",
+        "canon_hoheto_hyuga",
+        "pc_wei_tang"
+      ],
+      "objective": "Maintain contact after discovery and prevent the target from disappearing unless continued movement is deliberately useful to the mission.",
+      "procedures": [
+        "Hana maintains the scent trail.",
+        "Hoheto maintains observation and updates the battlefield picture.",
+        "Wei decides whether to attack, continue surveillance, or deliberately allow movement to expose more useful information or terrain."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "SHAPE",
+      "primary_members": [
+        "canon_tekuno_kanden",
+        "pc_wei_tang"
+      ],
+      "objective": "Control where and how the engagement develops before and after contact.",
+      "procedures": [
+        "Tekuno uses traps, explosives, sabotage, chokepoints, breaching, route denial, false escape routes, and protected extraction routes when lawful and tactically appropriate.",
+        "Wei uses Invisible Court to reshape the immediate engagement after contact.",
+        "Make apparently open movement options serve Black Hound's preferred geometry whenever possible."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "CLOSE",
+      "primary_members": [
+        "canon_ensui_nara",
+        "pc_wei_tang"
+      ],
+      "objective": "Remove useful movement options until restraint or decisive engagement becomes the target's least-bad remaining outcome.",
+      "procedures": [
+        "Wei applies movement disruption, hand-seal interference, close-range pressure, positioning control, and weapon pressure.",
+        "Ensui watches the forced movement and establishes shadow restraint when the geometry becomes favorable.",
+        "Prefer inducing the target to choose the controlled route over visibly forcing a single obvious trap line."
+      ]
+    },
+    {
+      "order": 5,
+      "name": "FINISH",
+      "primary_members": [
+        "pc_wei_tang",
+        "canon_hayama_shirakumo"
+      ],
+      "objective": "End the mission by neutralizing the priority threat while denying secondary enemies the ability to interfere.",
+      "procedures": [
+        "Wei handles the mission's priority target or threat when that is the fastest lawful route to mission completion.",
+        "Hayama organizes the secondary engagement and keeps the rest of the battlefield from disrupting the primary action.",
+        "Ensui controls movement, Tekuno separates routes and groups, and Hana and Hoheto preserve awareness rather than allowing six independent duels."
+      ]
+    },
+    {
+      "order": 6,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_hayama_shirakumo",
+        "canon_hana_inuzuka"
+      ],
+      "objective": "Withdraw the team, casualties, prisoners, or rescued people without allowing pursuit to reverse the mission result.",
+      "procedures": [
+        "Hayama organizes withdrawal and assumes immediate command if Wei is unable to continue.",
+        "Hana provides medical stabilization, locates separated or injured teammates, and determines who remains mobile.",
+        "Tekuno prepares or destroys pursuit routes, Ensui delays pursuers, Hoheto watches the rear, and Wei remains the primary deterrent against a breakthrough."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "One engagement",
+      "rule": "Never give the enemy six separate fights.",
+      "procedures": [
+        "Every member should influence the same engagement through tracking, observation, shaping, restraint, secondary control, or decisive action.",
+        "Do not devolve into independent duels when coordinated concentration can isolate the priority problem."
+      ]
+    },
+    {
+      "name": "Preparation advantage",
+      "rule": "A fair fight means preparation failed.",
+      "procedures": [
+        "Use available preparation time to shape routes, information, separation, and extraction rather than accepting a straightforward equal-number exchange.",
+        "Whenever lawful and feasible, isolate an enemy formation into smaller pieces and concentrate the squad against one decisive problem at a time."
+      ]
+    },
+    {
+      "name": "Regain control",
+      "rule": "If control is lost, regain control.",
+      "procedures": [
+        "Hoheto establishes the battlefield picture.",
+        "Hana identifies threats, trails, separated people, and casualties.",
+        "Ensui restricts the most dangerous movement.",
+        "Tekuno creates emergency obstacles, traps, barriers, or escape routes within his actual registered capabilities and equipment.",
+        "Hayama stabilizes the formation.",
+        "Wei attacks or controls the threat causing the greatest mission disruption."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "capture",
+      "directive": "Disable, control, restrain, and preserve any required live target under the assigned mission authority."
+    },
+    {
+      "mode": "assassination",
+      "directive": "Only when a lawful assigned mission explicitly authorizes lethal action: kill the designated target quickly and withdraw without expanding the target list beyond mission authority."
+    },
+    {
+      "mode": "rescue",
+      "directive": "Break enemy access to the protected person, secure a viable extraction route, and remove the rescued person from the engagement."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Neutralize the enemy commander or strongest mission-critical threat first when doing so most directly secures the assigned objective."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Hoheto establishes the battlefield picture.",
+      "Hana identifies threats, trails, and casualties.",
+      "Ensui restricts the most dangerous movement.",
+      "Tekuno creates emergency barriers, traps, obstacles, or escape routes using actual capability and available equipment.",
+      "Hayama stabilizes the formation and command flow.",
+      "Wei addresses the threat causing the greatest disruption."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_hayama_shirakumo",
+      "canon_hana_inuzuka"
+    ],
+    "procedures": [
+      "Hayama owns withdrawal organization and immediate command succession.",
+      "Hana owns casualty triage, stabilization, and separated-person location within her actual capabilities.",
+      "Tekuno protects or destroys pursuit routes; Ensui delays pursuit; Hoheto watches the rear; Wei deters breakthrough threats."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "pc_wei_tang",
+      "canon_hayama_shirakumo"
+    ],
+    "scheduled_sessions": [
+      "Cycle anchored SE-0061-02-07: five six-active-hour training days with meal, hydration, correction, and recovery time inside each duty day.",
+      "Sixth cycle day: four active-hour taper with reduced volume and readiness emphasis.",
+      "Seventh cycle day: recovery and readiness only; missed volume is never stacked as make-up work.",
+      "Hayama leads Black Hound training whenever Wei is occupied by Team Fujin or another lawful duty; Wei receives Black Hound credit only for sessions he actually attends."
+    ],
+    "shared_drills": [
+      "Find-Fix-Shape-Close-Finish-Extract integrated pursuit and capture problems",
+      "six-versus-one isolation and sequential target separation",
+      "loss-of-control recovery from ambush and surprise",
+      "captain-down succession and five-person detachment control",
+      "casualty extraction and pursuit denial",
+      "capture, rescue, direct-combat, and lawful mission-specific lethal variants"
+    ],
+    "role_focus": {
+      "pc_wei_tang": "priority-threat control, command, capture, Invisible Court integration, and decisions about when not to strike",
+      "canon_ensui_nara": "shadow-restraint geometry, movement control, delayed restraint timing, and pursuit delay",
+      "canon_hana_inuzuka": "scent persistence, ninken coordination, pursuit, casualty location, and field stabilization",
+      "canon_hoheto_hyuga": "Byakugan reconnaissance, multi-target observation, route intelligence, and rear security",
+      "canon_tekuno_kanden": "trap geometry, demolition, sabotage, breaching, false routes, extraction preparation, and safe explosive deconfliction",
+      "canon_hayama_shirakumo": "deputy command, secondary engagement control, succession, kenjutsu/Wind support, and extraction organization"
+    },
+    "attendance_rule": "Only exact attended hours supported by location, health, duty, instructor/facility access, and equipment create training credit.",
+    "interrupt_rule": "Lawful missions, Hokage orders, injury, medical restriction, travel, missing facilities, or required Team Fujin coverage interrupt training; missed hours are not stacked later. The five non-Wei members have Black Hound as their primary standing assignment unless the Hokage changes the order.",
+    "no_double_counting": true
+  },
+  "identity": "Black Hound is a pursuit, containment, and controlled-engagement squad. It does not chase forever: once it has a valid trail and mission authority, the hunt should progressively remove the target's useful options until the assigned objective is closed and the team extracts."
+}

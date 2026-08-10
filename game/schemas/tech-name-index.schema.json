@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "count",
+    "lookup_by_initial"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tech-name-index"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "lookup_by_initial": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

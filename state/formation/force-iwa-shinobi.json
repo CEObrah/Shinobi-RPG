@@ -1,0 +1,1635 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.iwa.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.iwa.shinobi",
+  "formations": [
+    {
+      "id": "formation.iwa.demolition.1",
+      "name": "Iwa Demolition Corps, First Breach Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 77,
+      "morale": 81,
+      "readiness": 82,
+      "location_ref": "place.iwa",
+      "activity_summary": "controlled breach readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.demolition.1.assault",
+          "troop_type": "heavy_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.demolition.1.ranged_control.demolition",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.demolition.1.ranged_control.earth-control",
+          "troop_type": "earth_control",
+          "role": "ranged_control",
+          "count": 6,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1,
+            "jonin": 2,
+            "chunin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.demolition.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.demolition.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.demolition.2",
+      "name": "Iwa Demolition Corps, Second Route-Denial Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 78,
+      "morale": 73,
+      "readiness": 84,
+      "location_ref": "place.earth.southern.routes",
+      "activity_summary": "route denial readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.demolition.2.assault",
+          "troop_type": "heavy_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.demolition.2.ranged_control.demolition",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.demolition.2.ranged_control.earth-control",
+          "troop_type": "earth_control",
+          "role": "ranged_control",
+          "count": 6,
+          "rank_distribution": {
+            "genin": 1,
+            "support": 1,
+            "jonin": 2,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.demolition.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.demolition.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.earth.1",
+      "name": "Iwa Western Earthwork Company, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 77,
+      "morale": 71,
+      "readiness": 87,
+      "location_ref": "place.earth.western.frontier",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.earth.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.earth.1.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.earth.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.earth.1.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "genin": 4,
+            "chunin": 3,
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.earth.2",
+      "name": "Iwa Capital Fortification Corps, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 85,
+      "morale": 71,
+      "readiness": 87,
+      "location_ref": "place.iwa.perimeter",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.earth.2.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1,
+            "jonin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.earth.2.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.earth.2.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.earth.2.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "genin": 3,
+            "special_jonin": 1,
+            "chunin": 5
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.earth.3",
+      "name": "Iwa Northern Earthwork Company, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 83,
+      "morale": 75,
+      "readiness": 88,
+      "location_ref": "place.earth.northern.border",
+      "activity_summary": "northern fortification readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.earth.3.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.earth.3.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.earth.3.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.earth.3.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "genin": 4,
+            "jonin": 1,
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.earth.4",
+      "name": "Iwa Eastern Earthwork Company, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 84,
+      "morale": 79,
+      "readiness": 82,
+      "location_ref": "place.earth.eastern.border",
+      "activity_summary": "eastern fortification readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.earth.4.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.earth.4.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.earth.4.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.earth.4.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "genin": 4,
+            "chunin": 4,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.4.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.4.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.earth.5",
+      "name": "Iwa Tunnel Corps, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 86,
+      "morale": 77,
+      "readiness": 90,
+      "location_ref": "place.iwa.tunnel.network",
+      "activity_summary": "tunnel security and excavation readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.earth.5.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1,
+            "jonin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.earth.5.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.earth.5.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.earth.5.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "special_jonin": 2,
+            "chunin": 4,
+            "genin": 2,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.5.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.earth.5.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.heavy.1",
+      "name": "Iwa Heavy Assault Company, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 80,
+      "morale": 81,
+      "readiness": 88,
+      "location_ref": "place.iwa.barracks",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.heavy.1.assault",
+          "troop_type": "heavy_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.heavy.1.ranged_control.demolition",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.1.ranged_control.earth-control",
+          "troop_type": "earth_control",
+          "role": "ranged_control",
+          "count": 6,
+          "rank_distribution": {
+            "genin": 1,
+            "jonin": 2,
+            "chunin": 1,
+            "support": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.heavy.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.heavy.2",
+      "name": "Iwa Heavy Assault Company, Second Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 79,
+      "morale": 81,
+      "readiness": 82,
+      "location_ref": "place.iwa",
+      "activity_summary": "heavy assault reinforcement readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.heavy.2.assault",
+          "troop_type": "heavy_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.heavy.2.ranged_control.demolition",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.2.ranged_control.earth-control",
+          "troop_type": "earth_control",
+          "role": "ranged_control",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2,
+            "jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.heavy.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.heavy.3",
+      "name": "Iwa Heavy Assault Company, Third Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 79,
+      "morale": 73,
+      "readiness": 89,
+      "location_ref": "place.earth.western.front",
+      "activity_summary": "western heavy assault readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.heavy.3.assault",
+          "troop_type": "heavy_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.heavy.3.ranged_control.demolition",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.3.ranged_control.earth-control",
+          "troop_type": "earth_control",
+          "role": "ranged_control",
+          "count": 6,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 2,
+            "jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.heavy.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.heavy.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.logistics.1",
+      "name": "Iwa Logistics Corps, First Field Support Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 78,
+      "morale": 81,
+      "readiness": 83,
+      "location_ref": "place.iwa.logistics.yard",
+      "activity_summary": "siege and supply support readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.logistics.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1,
+            "jonin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.logistics.1.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.logistics.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.logistics.1.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "chunin": 4,
+            "genin": 2,
+            "support": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 7,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.logistics.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.logistics.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.recon.1",
+      "name": "Iwa Terrain Reconnaissance, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 83,
+      "morale": 73,
+      "readiness": 91,
+      "location_ref": "place.earth.border.highlands",
+      "activity_summary": "terrain reconnaissance readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.recon.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.recon.1.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.recon.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.recon.1.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 4,
+            "chunin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 9
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.recon.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.recon.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iwa.route.denial.1",
+      "name": "Iwa Route-Denial Command, First Tactical Element",
+      "force_ref": "force.iwa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iwa.field",
+      "training_ref": "train.iwa.field",
+      "cohesion": 79,
+      "morale": 76,
+      "readiness": 84,
+      "location_ref": "place.earth.mountain.routes",
+      "activity_summary": "mountain route denial readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iwa.route.denial.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iwa.route.denial.1.ranged_control",
+          "troop_type": "demolition",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iwa.route.denial.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iwa.route.denial.1.support.earthwork-specialists",
+          "troop_type": "earthwork_specialists",
+          "role": "support",
+          "count": 9,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 5,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.route.denial.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iwa.route.denial.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

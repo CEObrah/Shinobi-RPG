@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "combat-operation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "operation_id",
+    "opened_at",
+    "location_id",
+    "scale",
+    "status",
+    "authority_model",
+    "participants",
+    "outcome"
+  ],
+  "properties": {
+    "schema": {
+      "const": "combat-operation"
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "opened_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "location_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scale": {
+      "enum": [
+        "formation",
+        "battle"
+      ]
+    },
+    "status": {
+      "enum": [
+        "resolved",
+        "ongoing",
+        "awaiting_named_zoom"
+      ]
+    },
+    "authority_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "participant_ref",
+          "force_ref",
+          "population_pool_id",
+          "capability_source_refs",
+          "supply_state",
+          "fortification_milli",
+          "side_ref",
+          "command_authority_ref",
+          "command_authority_basis",
+          "operational_attachment_ref",
+          "source_availability_class",
+          "committed_count",
+          "aggregate_resolved_count",
+          "location_id",
+          "personnel",
+          "named_actor_refs",
+          "formation_ref",
+          "doctrine_ref",
+          "training_ref",
+          "readiness",
+          "morale",
+          "cohesion",
+          "formation_personnel_after",
+          "named_actor_team_refs",
+          "named_actor_accounting"
+        ],
+        "properties": {
+          "participant_ref": {
+            "type": "string"
+          },
+          "population_pool_id": {
+            "type": "string"
+          },
+          "side_ref": {
+            "type": "string"
+          },
+          "command_authority_ref": {
+            "type": "string"
+          },
+          "operational_attachment_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_availability_class": {
+            "type": "string"
+          },
+          "committed_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "location_id": {
+            "type": "string"
+          },
+          "personnel": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "total",
+              "active",
+              "wounded",
+              "incapacitated",
+              "killed",
+              "captured",
+              "escaped"
+            ],
+            "properties": {
+              "total": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "active": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "wounded": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "incapacitated": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "killed": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "captured": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "escaped": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "named_actor_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "command_authority_basis": {
+            "type": "string"
+          },
+          "formation_ref": {
+            "type": "string"
+          },
+          "doctrine_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "training_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "readiness": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "morale": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "cohesion": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "formation_personnel_after": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "capability_source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "supply_state": {
+            "enum": [
+              "supported",
+              "strained",
+              "critical",
+              "cut_off"
+            ]
+          },
+          "fortification_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "aggregate_resolved_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "named_actor_team_refs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          },
+          "named_actor_accounting": {
+            "const": "exact_subset_of_committed_count_not_additional_personnel"
+          },
+          "force_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs"
+      ],
+      "properties": {
+        "resolution_mode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "victorious_side_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "wake_triggers": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "semantic_event_id": {
+          "type": "string"
+        },
+        "effect_plan_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "pending_named_actor_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "resolved_zoom_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

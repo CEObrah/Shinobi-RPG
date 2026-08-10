@@ -1,0 +1,58 @@
+{
+  "schema": "system-contract",
+  "system_id": "training_development",
+  "authority": false,
+  "authority_paths": [
+    "state/player.json",
+    "state/char/",
+    "state/person/",
+    "state/person-core/",
+    "state/development/",
+    "state/house/"
+  ],
+  "owner_templates": [
+    "shinobi_character",
+    "person",
+    "person-core-registry",
+    "development-bank-registry",
+    "house",
+    "exact-team"
+  ],
+  "read_first": [
+    "target learner/person/cohort/formation",
+    "state/development/banks.json when unresolved fractional development or a lazy owner cursor is relevant",
+    "its inline development/training state",
+    "relevant time coverage",
+    "instructor/facility/equipment/health only when causal",
+    "for rostered Sword Manor people, load state/house/tang.json plus the one bounded person-core registry rather than every individual component"
+  ],
+  "write_order": [
+    "identify the owner-specific unresolved interval from exactly one cursor: use bank resolved_through when that owner has a bank entry, otherwise use the owner development cursor",
+    "split at every causal change",
+    "settle eligible activity with the normal capacity/recovery/relevance/difficulty law",
+    "add residual development credit to the owner-specific bank only when a residual or lazy cursor is needed",
+    "consume current point_cost repeatedly for whole capability gains and recompute cost after each threshold",
+    "retain nonnegative residual credit and advance the same authoritative cursor; when a bank entry exists do not also write a duplicate owner development cursor",
+    "update the authoritative learner/cohort/formation capability and rebuild a derived formation battle kernel when aggregate formation capability changes",
+    "update process coverage/receipts when required",
+    "for a House roster cohort, update its capability distribution and embedded residual credits once; individually divergent components settle only for hours they actually share"
+  ],
+  "invariants": [
+    "Compression never grants free progress.",
+    "No progression without time and opportunity.",
+    "A bank stores development credit already earned from resolved eligible activity; it never stores unearned scheduled hours.",
+    "Credits never transfer between owners or capability targets.",
+    "Each owner has exactly one authoritative development cursor; a bank entry's resolved_through supersedes and forbids a duplicate writable cursor on that exact character.",
+    "Aggregate process settled_through never erases an owner-specific unresolved development interval.",
+    "Routine training cannot manufacture field experience, combat experience, command experience, promotion, or qualification gates.",
+    "Replacement personnel do not inherit veteran experience for free.",
+    "House cohort compression is representation-neutral and cannot make anonymous members train faster than equivalent individually resolved people.",
+    "A shared House training interval is not copied into one write per rostered person; cohort state owns common development and individual components own only real divergence."
+  ],
+  "validators": [
+    "tools/test_development.py",
+    "tools/test_state_consolidation.py",
+    "tools/test_runtime.py",
+    "tools/test_templates.py"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "shinobi-life-course-rules",
+  "authority": "game_definition",
+  "rules": {
+    "birthdays_exact_when_birth_date_known": true,
+    "career_and_mission_changes_require_autonomous_npc_authority": true,
+    "no_player_life_choice": true,
+    "player_age_updates_only": true,
+    "family_lifecycle_ref": "game/data/mechanics/family.json",
+    "player_marriage_parenthood_choices_protected": true
+  },
+  "progression_model": "People resolve lazily from their stable core, cohort baselines, material events, and causal host boundaries; routine people are not periodically polled."
+}

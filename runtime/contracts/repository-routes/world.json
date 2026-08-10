@@ -1,0 +1,29 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "world",
+  "routes": {
+    "doctrine_known_id": {"path_template": "game/data/organization/doctrine-records/{doctrine_id}.json"},
+    "training_known_id": {"path_template": "game/data/organization/training-records/{training_id}.json"},
+    "player_combat_detail": {"domain": "player_combat_detail"},
+    "ambient_location_known_id": {
+      "r": ["game/data/content/ambient-locations.json"],
+      "note": "Static scene/travel location references only. Do not infer mutable inventory, staff, finances, security, damage, schedule, availability, ownership changes, or process state from this catalog; persistent mechanical state belongs in registered mutable authority."
+    },
+    "strategic_place_known_id": {
+      "i": ["state/index/owners.json"],
+      "domain": "strategic_site_resolution",
+      "note": "Known place.* ID -> use owner prefix shard state/index/owners/place.json, then load only the exact state/place owner. Ambient ontology never substitutes for strategic mutable state."
+    },
+    "population_recruitment": {
+      "r": ["state/population/registry.json"],
+      "w": ["state/population/registry.json"],
+      "domain": "population_recruitment",
+      "note": "Recruitment is aggregate for mass forces. Sword Manor preserves every accepted member as a stable core in one bounded roster while shared capability remains cohort-hosted."
+    },
+    "mission_runtime_known_id": {
+      "path_template": "state/mission/{mission_id}.json",
+      "domain": "mission_lifecycle",
+      "note": "Known stable mission ID resolves one executable mission owner. Mission creation still requires verified issuer, participant, timing, and institutional authority; a typed gameplay command may mutate only an existing owner."
+    }
+  }
+}

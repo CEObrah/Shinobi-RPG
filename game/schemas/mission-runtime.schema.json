@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Executable mission lifecycle owner",
+  "type": "object",
+  "required": [
+    "schema",
+    "mission_id",
+    "issuer_ref",
+    "authority_ref",
+    "mission_rank",
+    "funding_holder_ref",
+    "escrow_holder_ref",
+    "opened_at",
+    "authorized_at",
+    "starts_at",
+    "deadline_at",
+    "next_due_at",
+    "operation_ref",
+    "closed_at",
+    "state",
+    "participant_refs",
+    "objectives",
+    "settlement_terms",
+    "terminal_reason_ref",
+    "settlement"
+  ],
+  "properties": {
+    "schema": {
+      "const": "mission-runtime"
+    },
+    "mission_id": {
+      "type": "string",
+      "pattern": "^mission\\.[a-z0-9][a-z0-9._:-]*$"
+    },
+    "issuer_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "opened_at": {
+      "type": "string",
+      "pattern": "^SE-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+    },
+    "authorized_at": {
+      "type": "string",
+      "pattern": "^SE-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+    },
+    "starts_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deadline_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_due_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "operation_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "closed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state": {
+      "enum": [
+        "offered",
+        "accepted",
+        "active",
+        "resolving",
+        "succeeded",
+        "failed",
+        "aborted",
+        "expired"
+      ]
+    },
+    "participant_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "objective_id",
+          "kind",
+          "required",
+          "dependencies",
+          "status",
+          "progress_milli",
+          "resolution_ref"
+        ],
+        "properties": {
+          "objective_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "kind": {
+            "enum": [
+              "reach",
+              "observe",
+              "identify",
+              "investigate",
+              "intercept",
+              "recover",
+              "deliver",
+              "secure",
+              "protect",
+              "preserve",
+              "escort",
+              "rescue",
+              "capture",
+              "restrain",
+              "defeat",
+              "hold",
+              "destroy",
+              "sabotage",
+              "extract",
+              "escape",
+              "survive",
+              "negotiate",
+              "conceal",
+              "prevent"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+            },
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "progress_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "resolution_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "settlement_terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "term_id",
+          "direction",
+          "account_ref",
+          "asset_ref",
+          "quantity",
+          "applies_on",
+          "objective_id",
+          "objective_status"
+        ],
+        "properties": {
+          "term_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "direction": {
+            "enum": [
+              "reward",
+              "cost"
+            ]
+          },
+          "account_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asset_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "applies_on": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "enum": [
+                "succeeded",
+                "failed",
+                "aborted",
+                "expired"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "objective_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "objective_status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "terminal_reason_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "settlement": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "mission_id",
+        "outcome",
+        "settlement_token",
+        "reward_term_ids",
+        "cost_term_ids"
+      ],
+      "properties": {
+        "mission_id": {
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "aborted",
+            "expired"
+          ]
+        },
+        "settlement_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reward_term_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "cost_term_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "mission_rank": {
+      "enum": [
+        "D",
+        "C",
+        "B",
+        "A",
+        "S"
+      ]
+    },
+    "funding_holder_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "escrow_holder_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "description": "One authoritative executable mission. Lifecycle metadata remains separate from participant, account, inventory, operation, health, and institutional authorities."
+}

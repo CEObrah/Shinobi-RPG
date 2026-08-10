@@ -1,0 +1,302 @@
+{
+  "schema": "mechanics-regression-tests",
+  "tests": [
+    {
+      "id": "sharingan_perfect_passive_drain",
+      "inputs": {
+        "base": 10,
+        "integration": 200,
+        "ocular_control": 200
+      },
+      "expected": 0.0
+    },
+    {
+      "id": "sharingan_190_190_passive_drain",
+      "inputs": {
+        "base": 10,
+        "integration": 190,
+        "ocular_control": 190
+      },
+      "expected": 0.025
+    },
+    {
+      "id": "sharingan_active_transplant_penalty",
+      "inputs": {
+        "integration": 150,
+        "ocular_control": 140
+      },
+      "expected": 1.275
+    },
+    {
+      "id": "dojutsu_effective_mastery",
+      "inputs": {
+        "feature_mastery": 160,
+        "integration": 150,
+        "ocular_control": 140
+      },
+      "expected": 115.931
+    },
+    {
+      "id": "riku_byakugan_range",
+      "inputs": {
+        "feature_mastery": 164,
+        "integration": 200,
+        "ocular_control": 180
+      },
+      "expected": 877.92
+    },
+    {
+      "id": "riku_byakugan_blind_spot",
+      "inputs": {
+        "feature_mastery": 150,
+        "integration": 200,
+        "ocular_control": 180
+      },
+      "expected": 1.51
+    },
+    {
+      "id": "riku_byakugan_multi_target_capacity",
+      "inputs": {
+        "feature_mastery": 178,
+        "integration": 200,
+        "ocular_control": 180
+      },
+      "expected": 17
+    },
+    {
+      "id": "body_unarmed_reach_170cm",
+      "inputs": {
+        "height_m": 1.7
+      },
+      "expected": 0.765
+    },
+    {
+      "id": "fall_energy_70kg_3m",
+      "inputs": {
+        "mass_kg": 70,
+        "height_m": 3
+      },
+      "expected": 2059.397
+    },
+    {
+      "id": "wei_chakra_efficiency_factor",
+      "inputs": {
+        "efficiency": 135,
+        "control_demand": 75,
+        "control": 140
+      },
+      "expected": 0.86
+    },
+    {
+      "id": "wei_chidori_example_cost",
+      "inputs": {
+        "base_cost": 18,
+        "factor": 0.86
+      },
+      "expected": 15.48
+    },
+    {
+      "id": "injury_post_protection",
+      "inputs": {
+        "incoming": 80,
+        "armor_protection": 6,
+        "integrity_factor": 1,
+        "barrier_reduction": 5
+      },
+      "expected": 39.0
+    },
+    {
+      "id": "linh_bilateral_transplant_margin",
+      "inputs": {
+        "operative_score": 189.95,
+        "tissue_viability": 193.25,
+        "difficulty": 110
+      },
+      "expected": 81.105
+    },
+    {
+      "id": "tang_first_week_integration_gain",
+      "inputs": {
+        "ceiling": 200,
+        "current": 117.75,
+        "aptitude": 200,
+        "controlled_use": 1
+      },
+      "expected": 4.113
+    },
+    {
+      "id": "genjutsu_margin_example",
+      "inputs": {
+        "attack": 249.5,
+        "resistance": 109.5
+      },
+      "expected": 140.0
+    },
+    {
+      "id": "sealing_margin_example",
+      "inputs": {
+        "seal_strength": 291,
+        "break_capacity": 208
+      },
+      "expected": 83.0
+    },
+    {
+      "id": "guardian_overflow_200_vs_180",
+      "inputs": {
+        "incoming": 200,
+        "ceiling": 180
+      },
+      "expected": 0.1
+    },
+    {
+      "id": "gate7_entry_example",
+      "inputs": {
+        "mastery": 190,
+        "endurance": 165,
+        "toughness": 180,
+        "composure": 150,
+        "difficulty": 135,
+        "strain": 0
+      },
+      "expected": 187.75
+    },
+    {
+      "id": "gate7_strain_12_seconds",
+      "inputs": {
+        "strain_per_6s": 45,
+        "seconds": 12
+      },
+      "expected": 90.0
+    },
+    {
+      "id": "kurama_partial_manifestation_ball",
+      "inputs": {
+        "factor": 1.55,
+        "state_output_multiplier": 2.0,
+        "mastery": 100
+      },
+      "expected": 279.0
+    },
+    {
+      "id": "elemental_advantage_modifier",
+      "inputs": {
+        "attacker": "fire",
+        "defender": "wind"
+      },
+      "expected": 15
+    },
+    {
+      "id": "morale_example",
+      "inputs": {
+        "base": 100,
+        "pressure": 24
+      },
+      "expected": 76.0
+    },
+    {
+      "id": "representation_efficiency",
+      "inputs": {},
+      "expected": {
+        "exact": 1.0,
+        "person": 1.0,
+        "formation": 1.0
+      }
+    },
+    {
+      "id": "guardian_current_fixed_ceiling",
+      "inputs": {},
+      "expected": {
+        "instant_impulse_score": 180,
+        "pressure_score": 180,
+        "sustained_force_score": 165
+      }
+    },
+    {
+      "id": "encumbrance_example",
+      "inputs": {
+        "strength": 100,
+        "endurance": 100,
+        "toughness": 100,
+        "coordination": 100,
+        "load_kg": 30,
+        "distribution": 1.0
+      },
+      "expected": 0.13
+    },
+    {
+      "id": "travel_reference_fire_capital_konoha",
+      "inputs": {
+        "min_days": 2,
+        "max_days": 4
+      },
+      "expected": 3.0
+    },
+    {
+      "id": "travel_hours_example",
+      "inputs": {
+        "reference_days": 3,
+        "route_status": 1.0,
+        "weather": 1.0,
+        "burden": 1.0,
+        "party_speed": 1.15
+      },
+      "expected": 62.609
+    },
+    {
+      "id": "attribute_support_90",
+      "inputs": {
+        "attribute": 90
+      },
+      "expected": 30
+    },
+    {
+      "id": "universal_action_example",
+      "inputs": {
+        "mastery": 80,
+        "primary_attribute": 90,
+        "secondary_attribute": 60,
+        "equipment": 5,
+        "preparation": 4,
+        "position": 3,
+        "team": 2,
+        "fatigue": 6,
+        "injury": 4,
+        "external_load": 2,
+        "disruption": 1,
+        "environment": 3
+      },
+      "expected": 120
+    },
+    {
+      "id": "ocular_extraction_success",
+      "inputs": {
+        "qualified_operator": 1,
+        "physical_access": 1
+      },
+      "expected": 1
+    },
+    {
+      "id": "ocular_preservation_success",
+      "inputs": {
+        "registered_facility": 1
+      },
+      "expected": 1
+    },
+    {
+      "id": "ocular_implantation_success",
+      "inputs": {
+        "medical_eligibility": 1,
+        "qualified_operator": 1,
+        "proper_facility": 1
+      },
+      "expected": 1
+    },
+    {
+      "id": "ocular_storage_decay_30d",
+      "inputs": {
+        "registered_facility": 1
+      },
+      "expected": 0
+    }
+  ]
+}

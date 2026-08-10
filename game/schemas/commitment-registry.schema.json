@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Commitment Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "commitment-registry"
+    },
+    "owner_id": {
+      "const": "registry.commitments"
+    },
+    "owner_type": {
+      "const": "commitment_registry"
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "subject_ref",
+          "target_ref",
+          "host_ref",
+          "created_at",
+          "due_at",
+          "status",
+          "summary",
+          "visibility",
+          "authority_basis"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^commitment\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "kind": {
+            "enum": [
+              "promise",
+              "order",
+              "obligation"
+            ]
+          },
+          "subject_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "host_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "due_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "overdue",
+              "completed",
+              "cancelled",
+              "failed"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "authority_basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolved_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "resolution_summary": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1000
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

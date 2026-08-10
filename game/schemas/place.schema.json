@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Strategic mutable place state",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "owner"
+  ],
+  "properties": {
+    "schema": {
+      "const": "place"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "alarm": {
+      "type": "string"
+    },
+    "visibility": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Compact mutable state for strategically consequential places. Stable architecture and site topology remain cold content; mechanical capacity/security/custody belongs to the world and custody authorities consumed by reducers."
+}

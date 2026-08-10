@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "authority",
+    "subject_refs",
+    "source_refs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "family-event"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "courtship_started",
+        "proposal_made",
+        "betrothal_formed",
+        "marriage_formed",
+        "household_formed",
+        "birth",
+        "adoption",
+        "guardianship_started",
+        "separation",
+        "divorce",
+        "annulment",
+        "widowhood",
+        "death_family_settlement",
+        "succession_change",
+        "inheritance_settlement",
+        "remarriage",
+        "courtship_ended",
+        "proposal_accepted",
+        "proposal_declined",
+        "proposal_withdrawn",
+        "parentage_recognized",
+        "kinship_recognized",
+        "household_changed",
+        "parenthood_started",
+        "parenthood_ended"
+      ]
+    },
+    "occurred_at": {
+      "type": "string"
+    },
+    "authority": {
+      "const": true
+    },
+    "subject_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

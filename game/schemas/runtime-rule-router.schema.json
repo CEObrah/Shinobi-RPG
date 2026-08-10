@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "domains"
+  ],
+  "properties": {
+    "schema": {
+      "const": "runtime-rule-router"
+    },
+    "domains": {
+      "type": "object",
+      "properties": {
+        "mission_lifecycle": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

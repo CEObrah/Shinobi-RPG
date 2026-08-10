@@ -1,0 +1,29 @@
+{
+  "schema": "biological-implant-state",
+  "authority": "individual biological implant instances are conserved physical state",
+  "instances": [
+    {
+      "id": "bio.arm.danzo.modified_right",
+      "profile_id": "implant.danzo_modified_right_arm",
+      "origin": "Danzo modified right arm with Hashirama cells",
+      "current_owner_id": "canon_danzo",
+      "current_location": "right_arm",
+      "condition": "functional",
+      "contains": [
+        "bio.eye.danzo.arm.01",
+        "bio.eye.danzo.arm.02",
+        "bio.eye.danzo.arm.03",
+        "bio.eye.danzo.arm.04",
+        "bio.eye.danzo.arm.05",
+        "bio.eye.danzo.arm.06",
+        "bio.eye.danzo.arm.07",
+        "bio.eye.danzo.arm.08",
+        "bio.eye.danzo.arm.09",
+        "bio.eye.danzo.arm.10"
+      ],
+      "availability": "installed_not_loot",
+      "eye_registry": "state/medical/ocular-registry.json"
+    }
+  ],
+  "ocular_instance_authority": "state/medical/ocular-registry.json"
+}

@@ -1,0 +1,111 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "military",
+  "routes": {
+    "loadout_known_id": {
+      "i": [
+        "game/data/loadouts.json"
+      ],
+      "path_template": "game/data/loadout-records/{loadout_id}.json",
+      "domain": "equipment_standard",
+      "note": "Index is discovery only. Standard is formation-level; issue/custody stays in state."
+    },
+    "command_capacity": {
+      "domain": "formation_command_validation",
+      "note": "Load commander plus direct reporting formations/subordinate command nodes. One shared personnel/slot budget regardless of ownership."
+    },
+    "mass_battle": {
+      "domain": "mass_battle",
+      "note": "Load real participating formations and compact battle kernels first; wake detailed capability only on material asymmetry/close thresholds."
+    },
+    "teams": {
+      "i": [
+        "state/index/owners.json"
+      ],
+      "g": [
+        "state/team/*.json"
+      ],
+      "domain": "team_setup"
+    },
+    "forces": {
+      "i": [
+        "state/index/owners.json"
+      ],
+      "g": [
+        "state/force/*.json"
+      ]
+    },
+    "institutional_role_slot": {
+      "domain": "institutional_role_continuity",
+      "note": "Load the known institution's role-slot registry only when an unmaterialized office, vacancy, succession, appointment continuity or officeholder materialization is causally relevant. Role slots are institutional continuity, not hidden characters."
+    },
+    "team_doctrine": {
+      "domain": "team_doctrine"
+    },
+    "formation": {
+      "domain": "formation_design",
+      "note": "Templates are reusable data. Active formation exists only inside a mapped mission/operation/state owner when instantiated and owns no manpower."
+    },
+    "equipment": {
+      "domain": "equipment_standard",
+      "i": [
+        "game/data/loadouts.json"
+      ],
+      "note": "Known loadout ID uses direct path template in loadout_known_id; index only for discovery."
+    },
+    "formation_deployment": {
+      "domain": "formation_deployment",
+      "note": "Only after an active operation/battle has instantiated explicit formations/command nodes."
+    },
+    "command_group": {
+      "i": [
+        "state/cmd/command-groups/index.json"
+      ],
+      "path_template": "state/cmd/command-groups/{command_group_id}.json",
+      "domain": "formation_command_validation",
+      "note": "Command-only node, owns no manpower. Parent counts one slot; descendants load on subordinate."
+    },
+    "command_tree": {
+      "i": [
+        "state/cmd/command-groups/index.json"
+      ],
+      "domain": "formation_command_validation",
+      "note": "Load root commander and only directly referenced formations/people/groups; recurse only as far as needed. Do not load unrelated armies."
+    },
+    "combat_operations": {
+      "g": [
+        "state/operation/*.json"
+      ],
+      "domain": "mass_battle",
+      "note": "Bounded operational commitments. Source force retains manpower ownership; operation owns temporary committed-formation condition and battle result."
+    },
+    "formations": {
+      "g": [
+        "state/formation/*.json"
+      ],
+      "domain": "formation_inspect",
+      "note": "Bounded aggregate formations and force commitments. Named consequential people remain person owners."
+    },
+    "formation_refit": {
+      "domain": "formation_refit",
+      "note": "Load target formation, exact loadout record, inventory/issue owners. Target standard does not instantly issue gear."
+    },
+    "formation_resolution": {
+      "domain": "formation_resolution"
+    },
+    "formation_return_reconstitution": {
+      "domain": "formation_return_reconstitution"
+    },
+    "formation_development": {
+      "domain": "character_training",
+      "note": "Load formation + training profile + capability refs only as needed; rebuild kernel after authoritative capability changes."
+    },
+    "formation_split_merge": {
+      "domain": "formation_split_merge",
+      "r": [
+        "game/data/mechanics/formation-partition.json"
+      ],
+      "note": "Split or merge aggregate formations deterministically. Conserve personnel, named-member claims, equipment, injuries, experience and history through the normal semantic transaction receipt."
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Information delivery registry",
+  "description": "Authoritative epistemic claims and lawful deliveries. World truth remains in domain owners; this registry records who learned which claim, from whom, when, through which channel, and with what confidence.",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "claims",
+    "deliveries",
+    "knowledge"
+  ],
+  "properties": {
+    "schema": {
+      "const": "information-registry"
+    },
+    "owner_id": {
+      "const": "registry.information"
+    },
+    "owner_type": {
+      "const": "information_registry"
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "subject_ref",
+          "source_ref",
+          "collected_at",
+          "epistemic_kind",
+          "confidence_milli",
+          "evidence_refs"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^claim\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "subject_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "collected_at": {
+            "type": "string",
+            "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+          },
+          "epistemic_kind": {
+            "enum": [
+              "observation",
+              "report",
+              "inference",
+              "rumor"
+            ]
+          },
+          "confidence_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "deliveries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "delivery_id",
+          "claim_id",
+          "sender_ref",
+          "recipient_ref",
+          "channel",
+          "delivered_at",
+          "resulting_epistemic_kind",
+          "resulting_confidence_milli",
+          "evidence_refs"
+        ],
+        "properties": {
+          "delivery_id": {
+            "type": "string",
+            "pattern": "^delivery\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "claim_id": {
+            "type": "string",
+            "pattern": "^claim\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "sender_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recipient_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "channel": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]*$"
+          },
+          "delivered_at": {
+            "type": "string",
+            "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+          },
+          "resulting_epistemic_kind": {
+            "enum": [
+              "observation",
+              "report",
+              "inference",
+              "rumor"
+            ]
+          },
+          "resulting_confidence_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^claim\\.[a-z0-9][a-z0-9._-]*$"
+        },
+        "uniqueItems": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

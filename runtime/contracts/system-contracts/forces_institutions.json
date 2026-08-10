@@ -1,0 +1,58 @@
+{
+  "schema": "system-contract",
+  "system_id": "forces_institutions",
+  "authority": false,
+  "authority_paths": [
+    "state/force/",
+    "state/formation/",
+    "state/org/",
+    "state/house/",
+    "state/manpower-capability/",
+    "state/person-core/",
+    "state/operation/"
+  ],
+  "owner_templates": [
+    "covenant",
+    "force",
+    "formation-registry",
+    "formation-registry-index",
+    "house",
+    "house_charter",
+    "manpower-capability",
+    "person-core-registry",
+    "role-slot-registry",
+    "stock",
+    "combat-operation",
+    "command-assignments"
+  ],
+  "read_first": [
+    "source force or institution owner",
+    "only the explicit formation registry when operational formations are causally relevant",
+    "role-slot registry only when an unmaterialized office, vacancy or succession is causal"
+  ],
+  "write_order": [
+    "conserve source manpower and availability partitions",
+    "update exact formation state only for operational bodies that are materialized",
+    "update role-slot continuity when vacancy, succession or officeholder materialization changes",
+    "update genuinely separate authorities such as stock only when causally changed",
+    "rebuild derived routing indexes only when necessary"
+  ],
+  "invariants": [
+    "A force is the single aggregate manpower owner.",
+    "Explicit formation headcount is a subset of deployed force personnel and never exceeds it.",
+    "A force may have deployed personnel that remain abstract until an operation requires explicit formation state.",
+    "A named exact team embedded in a formation is included in formation headcount rather than added to it.",
+    "One semantic mutable fact has one writable owner; sidecars exist only for genuinely separate authority or rebuildable derived data.",
+    "House member_ids contains every persistent House identity, whether exact or roster-core backed.",
+    "Routine House cohort development is one aggregate capability-host write; do not fan out routine training writes across rostered person cores.",
+    "An unmaterialized role slot is institutional continuity state, never a hidden person sheet.",
+    "Materializing an officeholder preserves incumbency and may not grant free capability, knowledge, equipment, relationships, authority or retroactive outcome convenience.",
+    "Large-force operations separate source ownership, command authority, operational attachment and location; an operation never becomes a second manpower owner."
+  ],
+  "validators": [
+    "tools/test_formation_model.py",
+    "tools/test_living_world.py",
+    "tools/test_state_consolidation.py",
+    "tools/test_templates.py"
+  ]
+}

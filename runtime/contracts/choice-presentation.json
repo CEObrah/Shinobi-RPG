@@ -1,0 +1,34 @@
+{
+  "schema": "choice-presentation",
+  "when_to_offer": "only at a genuine unresolved player decision when the player has not already declared an action",
+  "suggested_choice_count": {
+    "minimum": 2,
+    "maximum": 4
+  },
+  "free_form_option_required": true,
+  "duration_required_for_every_suggested_choice": true,
+  "duration_display": "square-bracketed estimated in-world duration or narrow justified range",
+  "legality_gate": [
+    "current authority",
+    "current knowledge",
+    "current location",
+    "current equipment/resources",
+    "current health/status",
+    "known deadlines and interrupts"
+  ],
+  "horizons": {
+    "short": "seconds to about 15 minutes",
+    "medium": "roughly 30 minutes to 6 hours",
+    "long": "roughly 6 hours to multiple days or a deliberate skip"
+  },
+  "normal_scene_horizon_mix": [
+    "use only materially different approaches",
+    "include short, medium, or long horizons only when each is legal and useful",
+    "do not add a filler option merely to complete a horizon mix"
+  ],
+  "crisis_rule": "Do not manufacture medium/long waiting options during immediate danger; only legal crisis-resolving actions qualify.",
+  "interrupt_rule": "If a choice crosses a known scheduled obligation or hard interrupt, annotate that expected boundary.",
+  "information_rule": "Choices may state predictable commitments and player-known tradeoffs, but may not promise success, imply a hidden best answer, reveal unseen opposition, or encode repository-only facts.",
+  "menu_rule": "Choices are concise, nonbinding suggestions with no default or recommended option unless the user asks for advice. Any legal free-form action remains allowed.",
+  "storage_rule": "Never cache generated choice menus in scene state."
+}

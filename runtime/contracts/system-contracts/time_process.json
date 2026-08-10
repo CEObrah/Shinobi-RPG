@@ -1,0 +1,40 @@
+{
+  "schema": "system-contract",
+  "system_id": "time_process",
+  "authority": false,
+  "authority_paths": [
+    "state/time/causal-scheduler.json",
+    "state/meta.json"
+  ],
+  "owner_templates": [
+    "causal-scheduler-registry",
+    "meta"
+  ],
+  "read_first": [
+    "causal scheduler host/event registry",
+    "only the due or causally awakened domain owners"
+  ],
+  "write_order": [
+    "resolve due work from the causal scheduler without broad directory/person scans",
+    "settle awakened owners and supported successors in chronological order",
+    "persist authoritative domain-owner effects before declaring their causal events settled",
+    "advance host resolved_through/safe_through and enqueue exact successor wakes",
+    "advance scheduler and campaign clocks to the exact reached time and end with no overdue causal event"
+  ],
+  "invariants": [
+    "Offscreen does not mean frozen.",
+    "A safe horizon is a causal proof that no earlier outward wake is pending, not evidence of periodic polling.",
+    "Owner-local schedules and causal wake-ups override slower aggregate baselines.",
+    "Material autonomous actions are instantiated and persisted in their domain authority before successor resolution continues.",
+    "No second hidden clock.",
+    "Production boundary discovery scales with queued causal work, not total named-person count.",
+    "Routine birthdays are derived from birth dates and do not require global scans or annual per-person events unless an outward material consequence is explicitly scheduled.",
+    "The causal scheduler is the only writable temporal frontier authority."
+  ],
+  "validators": [
+    "tools/test_world_liveness.py",
+    "tools/test_runtime.py",
+    "tools/test_living_world.py",
+    "tools/test_templates.py"
+  ]
+}

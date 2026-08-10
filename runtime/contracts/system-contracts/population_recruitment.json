@@ -1,0 +1,48 @@
+{
+  "schema": "system-contract",
+  "system_id": "population_recruitment",
+  "authority": false,
+  "authority_paths": [
+    "state/population/",
+    "state/house/",
+    "state/force/",
+    "state/person/",
+    "state/person-core/"
+  ],
+  "owner_templates": [
+    "population-registry",
+    "house",
+    "force",
+    "formation-registry",
+    "person",
+    "person-core-registry"
+  ],
+  "read_first": [
+    "the one source population pool actually recruited from",
+    "the destination House/force/formation only",
+    "selection mechanics and source/destination capability state only when the recruitment test changes composition"
+  ],
+  "write_order": [
+    "resolve applicant count and selection from the source pool without pre-creating ordinary mass-force individuals",
+    "remove only accepted personnel from the source population; rejected applicants remain in the source pool",
+    "update an aggregate force/formation once with accepted count and selected composition; large ordinary forces remain aggregate",
+    "for house.tang, create one persistent person core for every accepted Sword Manor member inside the bounded House roster registry and place each ID in exactly one cohort roster_refs array",
+    "store shared capability and routine development once in the House cohort profile; create an individual component only for real divergence",
+    "record one conserved population transfer and rebuild only affected derived indexes"
+  ],
+  "invariants": [
+    "Recruitment never creates personnel from nothing.",
+    "Mass force, village, country, clan, mercenary and civilian-security recruitment remains aggregate and cannot automatically emit named person owners.",
+    "Sword Manor membership is identity-preserving: every accepted member receives one stable person core without one-file-per-person write fan-out.",
+    "A core is a real person, while its cohort reference is a shared capability host rather than anonymous population.",
+    "A descriptive source category such as hunter or villager is stored inside a pool/profile when causally relevant and does not require its own file.",
+    "Selection changes the accepted population profile; eight selected from fifty are not treated as eight unselected random civilians.",
+    "Compression cannot improve aptitude, age/body composition, capability, experience, survival, equipment, promotion or training outcomes."
+  ],
+  "validators": [
+    "tools/test_population_model.py",
+    "tools/test_state_consolidation.py",
+    "tools/test_templates.py",
+    "tools/test_development.py"
+  ]
+}

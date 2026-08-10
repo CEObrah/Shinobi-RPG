@@ -1,0 +1,377 @@
+{
+  "schema": "file-template",
+  "template_id": "template.directory-map",
+  "target_schema": "directory-map",
+  "source_schema": "game/schemas/directory-map.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/runtime"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "dirs",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "dirs",
+        "schema"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "dirs"
+      ]
+    },
+    "/dirs": {
+      "mode": "closed",
+      "allowed_keys": [
+        "state/canon",
+        "state/char",
+        "state/development",
+        "state/force",
+        "state/history",
+        "state/house",
+        "state/index",
+        "state/manpower-capability",
+        "state/medical",
+        "state/mission",
+        "state/org",
+        "state/person",
+        "state/person-core",
+        "state/place",
+        "state/player-detail",
+        "state/reg",
+        "state/stock",
+        "state/team",
+        "state/time",
+        "state/world",
+        "state/conflict",
+        "state/inventory",
+        "game/data/canon",
+        "game/data/canon/history",
+        "game/data/canon/history/public",
+        "game/data/canon/history/restricted",
+        "game/data/canon/history/secret",
+        "game/data/combat",
+        "game/data/content",
+        "game/data/development",
+        "game/data/house",
+        "game/data/items",
+        "game/data/loadout-records",
+        "game/data/mechanics",
+        "game/data/medical",
+        "game/data/organization",
+        "game/data/people",
+        "game/data/runtime",
+        "game/data/team",
+        "game/data/tech",
+        "state/reg/relationship-edges",
+        "state/index/owners",
+        "state/medical/ocular/owners",
+        "state/reputation",
+        "game/data/reputation",
+        "state/cmd/command-groups",
+        "state/cmd",
+        "state/family",
+        "state/population",
+        "state/operation",
+        "state/formation",
+        "game/rules",
+        "game/world",
+        "game/data",
+        "game/schemas"
+      ],
+      "canonical_order": [
+        "state/canon",
+        "state/char",
+        "state/development",
+        "state/force",
+        "state/history",
+        "state/house",
+        "state/index",
+        "state/manpower-capability",
+        "state/medical",
+        "state/mission",
+        "state/org",
+        "state/person",
+        "state/person-core",
+        "state/place",
+        "state/player-detail",
+        "state/reg",
+        "state/stock",
+        "state/team",
+        "state/time",
+        "state/world",
+        "state/conflict",
+        "state/inventory",
+        "game/data/canon",
+        "game/data/canon/history",
+        "game/data/canon/history/public",
+        "game/data/canon/history/restricted",
+        "game/data/canon/history/secret",
+        "game/data/combat",
+        "game/data/content",
+        "game/data/development",
+        "game/data/house",
+        "game/data/items",
+        "game/data/loadout-records",
+        "game/data/mechanics",
+        "game/data/medical",
+        "game/data/organization",
+        "game/data/people",
+        "game/data/runtime",
+        "game/data/team",
+        "game/data/tech",
+        "state/reg/relationship-edges",
+        "state/index/owners",
+        "state/medical/ocular/owners",
+        "state/reputation",
+        "game/data/reputation",
+        "state/cmd/command-groups",
+        "state/cmd",
+        "state/family",
+        "state/population",
+        "state/operation",
+        "state/formation",
+        "game/rules",
+        "game/world",
+        "game/data",
+        "game/schemas"
+      ]
+    },
+    "/dirs/game/data": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "note"
+      ],
+      "canonical_order": [
+        "authority",
+        "note"
+      ]
+    },
+    "/dirs/game/schemas": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "note"
+      ],
+      "canonical_order": [
+        "authority",
+        "note"
+      ]
+    },
+    "/dirs/*": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/authority": [
+      "boolean"
+    ],
+    "/dirs": [
+      "object"
+    ],
+    "/dirs/state/canon": [
+      "string"
+    ],
+    "/dirs/game/data/canon": [
+      "string"
+    ],
+    "/dirs/game/data/canon/history": [
+      "string"
+    ],
+    "/dirs/game/data/canon/history/public": [
+      "string"
+    ],
+    "/dirs/game/data/canon/history/restricted": [
+      "string"
+    ],
+    "/dirs/game/data/canon/history/secret": [
+      "string"
+    ],
+    "/dirs/game/data/combat": [
+      "string"
+    ],
+    "/dirs/game/data/content": [
+      "string"
+    ],
+    "/dirs/game/data/development": [
+      "string"
+    ],
+    "/dirs/game/data/house": [
+      "string"
+    ],
+    "/dirs/game/data/items": [
+      "string"
+    ],
+    "/dirs/game/data/loadout-records": [
+      "string"
+    ],
+    "/dirs/game/data/mechanics": [
+      "string"
+    ],
+    "/dirs/game/data/medical": [
+      "string"
+    ],
+    "/dirs/game/data/organization": [
+      "string"
+    ],
+    "/dirs/game/data/people": [
+      "string"
+    ],
+    "/dirs/game/data/reputation": [
+      "string"
+    ],
+    "/dirs/game/data/runtime": [
+      "string"
+    ],
+    "/dirs/game/data/team": [
+      "string"
+    ],
+    "/dirs/game/data/tech": [
+      "string"
+    ],
+    "/dirs/state/char": [
+      "string"
+    ],
+    "/dirs/state/cmd": [
+      "string"
+    ],
+    "/dirs/state/cmd/command-groups": [
+      "string"
+    ],
+    "/dirs/state/development": [
+      "string"
+    ],
+    "/dirs/state/family": [
+      "string"
+    ],
+    "/dirs/state/force": [
+      "string"
+    ],
+    "/dirs/state/house": [
+      "string"
+    ],
+    "/dirs/state/index": [
+      "string"
+    ],
+    "/dirs/state/index/owners": [
+      "string"
+    ],
+    "/dirs/state/manpower-capability": [
+      "string"
+    ],
+    "/dirs/state/medical": [
+      "string"
+    ],
+    "/dirs/state/medical/ocular/owners": [
+      "string"
+    ],
+    "/dirs/state/mission": [
+      "string"
+    ],
+    "/dirs/state/org": [
+      "string"
+    ],
+    "/dirs/state/person": [
+      "string"
+    ],
+    "/dirs/state/person-core": [
+      "string"
+    ],
+    "/dirs/state/place": [
+      "string"
+    ],
+    "/dirs/state/player-detail": [
+      "string"
+    ],
+    "/dirs/state/reg": [
+      "string"
+    ],
+    "/dirs/state/reg/relationship-edges": [
+      "string"
+    ],
+    "/dirs/state/reputation": [
+      "string"
+    ],
+    "/dirs/state/stock": [
+      "string"
+    ],
+    "/dirs/state/team": [
+      "string"
+    ],
+    "/dirs/state/time": [
+      "string"
+    ],
+    "/dirs/state/world": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/dirs/*": [
+      "string"
+    ],
+    "/dirs/state/population": [
+      "string"
+    ],
+    "/dirs/state/operation": [
+      "string"
+    ],
+    "/dirs/state/formation": [
+      "string"
+    ],
+    "/dirs/game/rules": [
+      "string"
+    ],
+    "/dirs/game/world": [
+      "string"
+    ],
+    "/dirs/game/data": [
+      "object"
+    ],
+    "/dirs/game/data/authority": [
+      "string"
+    ],
+    "/dirs/game/data/note": [
+      "string"
+    ],
+    "/dirs/game/schemas": [
+      "object"
+    ],
+    "/dirs/game/schemas/authority": [
+      "string"
+    ],
+    "/dirs/game/schemas/note": [
+      "string"
+    ],
+    "/dirs/state/history": [
+      "string"
+    ],
+    "/dirs/state~1history": [
+      "string"
+    ],
+    "/dirs/state/conflict": [
+      "string"
+    ],
+    "/dirs/state/inventory": [
+      "string"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

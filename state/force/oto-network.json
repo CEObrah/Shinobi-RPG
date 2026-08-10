@@ -1,0 +1,118 @@
+{
+  "schema": "force",
+  "id": "force.oto.network",
+  "name": "Force Oto Network",
+  "total": 1500,
+  "availability": {
+    "deployed": 100,
+    "ready_24h": 252,
+    "mobilizable_7d": 448,
+    "mobilizable_30d": 308,
+    "training_or_instruction": 168,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 224
+  },
+  "military_identity": [
+    "small experimental force",
+    "high variance",
+    "infiltration and unusual capabilities"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.field_ready",
+      "count": 420,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_oto_network.field_ready",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-oto-network-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.garrison_security",
+      "count": 308,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_oto_network.garrison_security",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-oto-network-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.intelligence_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_oto_network.intelligence_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.medical_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_oto_network.medical_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.logistics_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_oto_network.logistics_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.training_instruction",
+      "count": 196,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_oto_network.training_instruction",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-oto-network-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.reserve_recovery",
+      "count": 308,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_oto_network.reserve_recovery",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-oto-network-reserve-recovery.json"
+    }
+  ],
+  "owner_ref": "faction_oto",
+  "formation_registry_ref": "state/formation/force-oto-network.json",
+  "mobilization_anchor_ref": "place.oto.network"
+}

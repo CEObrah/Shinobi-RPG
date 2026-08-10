@@ -1,0 +1,44 @@
+{
+  "schema": "player-combat-style",
+  "authority": "player_combat_doctrine",
+  "combat_style": {
+    "name": "Invisible Court Style",
+    "identity": "Intelligence-led close-range one-handed katana and grappling discipline. Wei conserves chakra by solving threats through observation, movement, timing, terrain, tools, weapon work, and body control whenever those methods are sufficient.",
+    "primary_rule": "Treat an enemy hand-seal sequence as an attack and suppress it before discovering the intended jutsu.",
+    "default_grip": "katana in dominant hand; opposite hand free",
+    "engagement_goal": "End or decisively control the fight before the opponent completes a second meaningful hand-seal sequence.",
+    "default_sequence": [
+      "read",
+      "provoke_or_force_reaction",
+      "interrupt",
+      "remove_mobility_or_weapon_function",
+      "take_blind_side",
+      "control_finish_or_disengage"
+    ],
+    "priority_targets": [
+      "sealing hands and fingers",
+      "wrists and forearm tendons",
+      "weapon arm and armpit",
+      "supporting ankle and Achilles line",
+      "back of knee",
+      "blind side",
+      "neck only when player declares lethal force"
+    ],
+    "physical_first_rule": "Use ordinary perception, positioning, terrain, katana, grappling, tools, and movement first when they can legally solve the problem inside the real timing window.",
+    "technique_escalation_rule": "Use the least expensive necessary Wind method when the physical answer is too slow, illegal, materially more dangerous, or tactically insufficient.",
+    "resource_posture": {
+      "default": "physical_first_chakra_conserving",
+      "normal_reserve_target_percent": 60,
+      "autonomous_emergency_floor_percent": 35,
+      "reserve_rule": "Below 60 percent, subordinate jutsu use requires a strong timing, defense, rescue, escape, or mission-critical reason. Below 35 percent, autonomous expenditure is limited to preventing immediate death, capture, catastrophic mission failure, or severe harm to a protected ally."
+    },
+    "major_field_rule": "Major fields are not routine answers. Use them only when the tactical problem justifies the cost and saved reserve doctrine permits it.",
+    "rulers_domain_rule": "Ruler's Domain is a major mobile suppression field, not an automatic freeze. Focused restraint trades broad control for stronger opposed restraint on one target; ally-safe corridors consume additional control.",
+    "ultimate": "court_of_ten_thousand_invisible_blades",
+    "ultimate_authorization": "Court of Ten Thousand Invisible Blades is never selected by subordinate automatic execution. It requires explicit player authorization after cost, setup, ally risk, counters, and reserve consequences are presented.",
+    "player_override": "Any explicit player instruction overrides this default within legal mechanics and agency protections.",
+    "detail_ref": "game/data/combat/invisible-court-tactics.json",
+    "technique_package_ref": "game/data/tech/packages.json#PKG_INVISIBLE_COURT_STYLE"
+  },
+  "player_ref": "pc_wei_tang"
+}

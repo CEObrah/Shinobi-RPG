@@ -1,0 +1,101 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "r",
+  "templates": {
+    "reconstitution-policies": {
+      "path": "runtime/contracts/templates/reconstitution-policies.template.json",
+      "source_schema": "game/schemas/reconstitution-policies.schema.json",
+      "scope": "static_data"
+    },
+    "relationship-edge-index": {
+      "path": "runtime/contracts/templates/relationship-edge-index.template.json",
+      "source_schema": "game/schemas/relationship-edge-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "relationship-edge-shard": {
+      "path": "runtime/contracts/templates/relationship-edge-shard.template.json",
+      "source_schema": "game/schemas/relationship-edge-shard.schema.json",
+      "scope": "mutable_state"
+    },
+    "repository-map": {
+      "path": "runtime/contracts/templates/repository-map.template.json",
+      "source_schema": "game/schemas/repository-map.schema.json",
+      "scope": "static_data"
+    },
+    "repository-route-shard": {
+      "path": "runtime/contracts/templates/repository-route-shard.template.json",
+      "source_schema": "game/schemas/repository-route-shard.schema.json",
+      "scope": "static_data"
+    },
+    "reputation-audience-profile": {
+      "path": "runtime/contracts/templates/reputation-audience-profile.template.json",
+      "source_schema": "game/schemas/reputation-audience-profile.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "reputation-audience-segments": {
+      "path": "runtime/contracts/templates/reputation-audience-segments.template.json",
+      "source_schema": "game/schemas/reputation-audience-segments.schema.json",
+      "scope": "static_data"
+    },
+    "reputation-dimensions": {
+      "path": "runtime/contracts/templates/reputation-dimensions.template.json",
+      "source_schema": "game/schemas/reputation-dimensions.schema.json",
+      "scope": "static_data"
+    },
+    "reputation-event": {
+      "path": "runtime/contracts/templates/reputation-event.template.json",
+      "source_schema": "game/schemas/reputation-event.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "reputation-index": {
+      "path": "runtime/contracts/templates/reputation-index.template.json",
+      "source_schema": "game/schemas/reputation-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "reputation-mechanics": {
+      "path": "runtime/contracts/templates/reputation-mechanics.template.json",
+      "source_schema": "game/schemas/reputation-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "reputation-subject": {
+      "path": "runtime/contracts/templates/reputation-subject.template.json",
+      "source_schema": "game/schemas/reputation-subject.schema.json",
+      "scope": "mutable_state"
+    },
+    "role-profiles": {
+      "path": "runtime/contracts/templates/role-profiles.template.json",
+      "source_schema": "game/schemas/role-profiles.schema.json",
+      "scope": "static_data"
+    },
+    "role-slot-registry": {
+      "path": "runtime/contracts/templates/role-slot-registry.template.json",
+      "source_schema": "game/schemas/role-slot-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "routine-profiles": {
+      "path": "runtime/contracts/templates/routine-profiles.template.json",
+      "source_schema": "game/schemas/routine-profiles.schema.json",
+      "scope": "static_data"
+    },
+    "rulers-domain-tests": {
+      "path": "runtime/contracts/templates/rulers-domain-tests.template.json",
+      "source_schema": "game/schemas/rulers-domain-tests.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "runtime-catchup-tests": {
+      "path": "runtime/contracts/templates/runtime-catchup-tests.template.json",
+      "source_schema": "game/schemas/runtime-catchup-tests.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "runtime-rule-router": {
+      "path": "runtime/contracts/templates/runtime-rule-router.template.json",
+      "source_schema": "game/schemas/runtime-rule-router.schema.json",
+      "scope": "static_data"
+    },
+    "reputation-event-signals": {
+      "path": "runtime/contracts/templates/reputation-event-signals.template.json",
+      "source_schema": "game/schemas/reputation-event-signals.schema.json",
+      "scope": "static_data"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "support_mechanics",
+  "authority": "Shinobi RPG only",
+  "combat_classes": {
+    "line_combat": "Eligible for normal assault/contact according to position and technique range.",
+    "combat_support": "Primary value is reconnaissance, barriers, engineering, sensors, couriers or other specialist support. No automatic assault frontage; may fight when ordered/exposed using its own formation capability.",
+    "service_support": "Communications and logistics are targetable military support formations. They do not add default assault frontage; self-defense or deliberate commitment resolves from their own saved capability.",
+    "noncombat_support": "Training/civilian/noncombat personnel do not become combatants without a lawful conversion/mobilization transaction."
+  },
+  "capacities": {
+    "medical_nin": "treatment_capacity = fit medical personnel x current medical skill/control x usable supplies/facility x available treatment time; treatment changes real injury outcomes but never erases anatomy or elapsed time.",
+    "sensor_information": "information_capacity = fit sensor/recon personnel x relevant sensing/scouting capability x coverage geometry x communication quality x elapsed observation time.",
+    "communications": "relay_capacity and order delay depend on fit communicators, range/path, equipment/techniques, interference and commander load.",
+    "logistics": "throughput depends on fit support personnel, transport, route, available stores, handling time and security."
+  },
+  "named_exception": "Named combat medics/sensors resolve from their exact sheets. Their specialty role never deletes their real combat ability.",
+  "casualty_rule": "Support casualties reduce the corresponding support capacity immediately and persist like all other casualties."
+}

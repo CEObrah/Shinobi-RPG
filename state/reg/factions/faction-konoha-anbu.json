@@ -1,0 +1,63 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.konoha_anbu",
+    "name": "Konoha ANBU",
+    "status": "active",
+    "leadership_ids": [
+      "canon_hiruzen"
+    ],
+    "key_member_ids": [
+      "canon_yugao",
+      "canon_aoba",
+      "canon_hayate"
+    ],
+    "goal": "execute Hokage-authorized covert missions and village protection",
+    "current_plan": "Maintain current covert coverage, process classified mission demand, and evaluate candidates only through lawful command channels.",
+    "resources": [
+      "ANBU teams",
+      "classified intelligence",
+      "secure briefing and medical support"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.root",
+        "relationship_type": "jurisdictional_conflict",
+        "stance": "wary_adversarial",
+        "intensity": 82
+      },
+      {
+        "target_id": "faction.konoha_mission_office",
+        "relationship_type": "operational_coordination",
+        "stance": "cooperative",
+        "intensity": 78
+      },
+      {
+        "target_id": "faction.konoha_hospital",
+        "relationship_type": "covert_medical_support",
+        "stance": "cooperative",
+        "intensity": 72
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "ANBU mission cells are selected operatives, not generic Genin units."
+    ],
+    "goals": [
+      "protect the Hokage and village against covert threats",
+      "execute classified reconnaissance, capture, protection, and counterintelligence missions"
+    ],
+    "constraints": [
+      "Hokage authority",
+      "secrecy and compartmentation",
+      "personnel availability"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-02-05T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery"
+    },
+    "scope": "Konoha covert security and Hokage-directed operations",
+    "leadership_model": "hokage_command"
+  }
+}

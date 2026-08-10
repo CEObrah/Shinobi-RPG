@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Causal Scheduler Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "authority",
+    "world_time",
+    "seeded_at",
+    "bootstrap_source",
+    "hosts",
+    "events",
+    "metrics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "causal-scheduler-registry"
+    },
+    "owner_id": {
+      "const": "runtime.causal_scheduler"
+    },
+    "owner_type": {
+      "const": "causal_scheduler"
+    },
+    "authority": {
+      "const": true
+    },
+    "world_time": {
+      "type": "string"
+    },
+    "seeded_at": {
+      "type": "string"
+    },
+    "hosts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "state",
+          "authority_kind",
+          "owner_ref",
+          "metadata"
+        ],
+        "properties": {
+          "state": {
+            "type": "object",
+            "required": [
+              "host_id",
+              "kind",
+              "resolved_through",
+              "safe_through",
+              "handler_ref",
+              "rng_namespace",
+              "next_due"
+            ],
+            "properties": {
+              "host_id": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "resolved_through": {
+                "type": "string"
+              },
+              "safe_through": {
+                "type": "string"
+              },
+              "handler_ref": {
+                "type": "string"
+              },
+              "rng_namespace": {
+                "type": "string"
+              },
+              "next_due": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "authority_kind": {
+            "type": "string"
+          },
+          "owner_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "kind",
+          "due_at",
+          "priority",
+          "source_host",
+          "target_host",
+          "payload",
+          "dedupe_key",
+          "visibility",
+          "requires_player",
+          "causation_id",
+          "correlation_id"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "due_at": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "source_host": {
+            "type": "string"
+          },
+          "target_host": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          },
+          "dedupe_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "visibility": {
+            "type": "string"
+          },
+          "requires_player": {
+            "type": "boolean"
+          },
+          "causation_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "bootstrap_source": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

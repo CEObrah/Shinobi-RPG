@@ -1,0 +1,39 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.fujin",
+  "name": "Team Fujin",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "institution.konoha.academy",
+  "leader_ref": "pc_wei_tang",
+  "deputy_ref": "char.mei_arakawa",
+  "member_refs": [
+    "pc_wei_tang",
+    "char.kai",
+    "char.riku_hyuga",
+    "char.mei_arakawa"
+  ],
+  "roles": {
+    "pc_wei_tang": "jonin_instructor_and_team_leader",
+    "char.kai": "timing_disruption_and_sword_pressure",
+    "char.riku_hyuga": "ground_control_frontline_reconnaissance_and_objective_defense",
+    "char.mei_arakawa": "sensor_perception_control_and_field_lead"
+  },
+  "classification": "public",
+  "activation": {
+    "at": "SE-0061-02-05T09:00:00",
+    "basis": "Lawful Konoha Academy / village team assignment process."
+  },
+  "doctrine_ref": null,
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "pc_wei_tang"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "embedded_member_refs": []
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "f",
+  "templates": {
+    "faction-owner": {
+      "path": "runtime/contracts/templates/faction-owner.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "faction-registry-index": {
+      "path": "runtime/contracts/templates/faction-registry-index.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "family-courtship": {
+      "path": "runtime/contracts/templates/family-courtship.template.json",
+      "source_schema": "game/schemas/family-courtship.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-event": {
+      "path": "runtime/contracts/templates/family-event.template.json",
+      "source_schema": "game/schemas/family-event.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-household": {
+      "path": "runtime/contracts/templates/family-household.template.json",
+      "source_schema": "game/schemas/family-household.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-index": {
+      "path": "runtime/contracts/templates/family-index.template.json",
+      "source_schema": "game/schemas/family-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "family-kinship": {
+      "path": "runtime/contracts/templates/family-kinship.template.json",
+      "source_schema": "game/schemas/family-kinship.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-mechanics": {
+      "path": "runtime/contracts/templates/family-mechanics.template.json",
+      "source_schema": "game/schemas/family-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "family-parentage": {
+      "path": "runtime/contracts/templates/family-parentage.template.json",
+      "source_schema": "game/schemas/family-parentage.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-proposal": {
+      "path": "runtime/contracts/templates/family-proposal.template.json",
+      "source_schema": "game/schemas/family-proposal.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-succession": {
+      "path": "runtime/contracts/templates/family-succession.template.json",
+      "source_schema": "game/schemas/family-succession.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "family-union": {
+      "path": "runtime/contracts/templates/family-union.template.json",
+      "source_schema": "game/schemas/family-union.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "file-template": {
+      "path": "runtime/contracts/templates/file-template.template.json",
+      "source_schema": "game/schemas/file-template.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "force": {
+      "path": "runtime/contracts/templates/force.template.json",
+      "source_schema": "game/schemas/force.schema.json",
+      "scope": "mutable_state"
+    },
+    "formation-registry": {
+      "path": "runtime/contracts/templates/formation-registry.template.json",
+      "source_schema": "game/schemas/formation-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "formation-registry-index": {
+      "path": "runtime/contracts/templates/formation-registry-index.template.json",
+      "source_schema": "game/schemas/formation-registry-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "formation_combat_resolution": {
+      "path": "runtime/contracts/templates/formation_combat_resolution.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "formation_model": {
+      "path": "runtime/contracts/templates/formation_model.template.json",
+      "source_schema": "game/schemas/formation-model.schema.json",
+      "scope": "static_data"
+    },
+    "formation_partition_mechanics": {
+      "path": "runtime/contracts/templates/formation_partition_mechanics.template.json",
+      "source_schema": "game/schemas/formation-partition-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "formation_resolution_mechanics": {
+      "path": "runtime/contracts/templates/formation_resolution_mechanics.template.json",
+      "source_schema": "game/schemas/formation-resolution-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "formation_tendency_profiles": {
+      "path": "runtime/contracts/templates/formation_tendency_profiles.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "family-parenthood": {
+      "path": "runtime/contracts/templates/family-parenthood.template.json",
+      "source_schema": "game/schemas/family-parenthood.schema.json",
+      "scope": "registered_json_structure"
+    }
+  }
+}

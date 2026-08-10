@@ -1,0 +1,57 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.suna_puppet_corps",
+    "name": "Suna Puppet and Poison Corps",
+    "status": "active",
+    "leadership_ids": [
+      "canon_chiyo"
+    ],
+    "key_member_ids": [
+      "canon_kankuro",
+      "canon_maki"
+    ],
+    "goal": "maintain puppet, poison, desert, and specialist capability",
+    "current_plan": "Keep specialist teams supplied and ready while preserving scarce puppets, antidotes, and expert personnel.",
+    "resources": [
+      "puppeteers",
+      "poison expertise",
+      "workshops",
+      "specialist stores"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.kiri_hunter_office",
+        "relationship_type": "specialist_security_competition",
+        "stance": "neutral_competitive",
+        "intensity": 35
+      },
+      {
+        "target_id": "faction.oto_research_cells",
+        "relationship_type": "technical_and_biological_security_concern",
+        "stance": "distrustful",
+        "intensity": 58
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Puppets and poison use existing mechanical registries."
+    ],
+    "goals": [
+      "maintain puppet and poison capability",
+      "protect specialist knowledge and replacement capacity"
+    ],
+    "constraints": [
+      "small manpower base",
+      "replacement time",
+      "material scarcity"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-02-05T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery"
+    },
+    "scope": "Sunagakure puppet, poison, desert-specialist, and technical combat establishment",
+    "leadership_model": "village_specialist_corps"
+  }
+}

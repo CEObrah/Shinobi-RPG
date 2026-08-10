@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.hot-water.standing",
+  "pool_id": "civil.hot-water.standing",
+  "source_owner": "force.civil.hot-water",
+  "stats": {
+    "attributes": {
+      "strength": 51,
+      "endurance": 52,
+      "awareness": 46
+    },
+    "skills": {
+      "weapons": 52,
+      "formation": 51,
+      "tactics": 37
+    },
+    "morale": 55,
+    "discipline": 50,
+    "experience": 31
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 168,
+      "sd": 5.6
+    },
+    "weight_kg": {
+      "mean": 63,
+      "sd": 7.3
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 101,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

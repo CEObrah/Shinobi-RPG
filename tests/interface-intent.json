@@ -1,0 +1,20 @@
+{
+  "schema": "interface-intent-tests",
+  "cases": [
+    {
+      "input": "OOC: Would Kosuke be good on a future team?",
+      "expected_persistence": false,
+      "reason": "discussion_only"
+    },
+    {
+      "input": "Could we reorganize the available House Tang members into two different teams?",
+      "expected_persistence": false,
+      "reason": "hypothetical_only"
+    },
+    {
+      "input": "Form the approved team using the shown roster.",
+      "expected_persistence": "normal_transaction_required",
+      "reason": "explicit_in_world_instruction"
+    }
+  ]
+}

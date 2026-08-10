@@ -1,0 +1,1707 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.kumo.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.kumo.shinobi",
+  "formations": [
+    {
+      "id": "formation.kumo.assault.1",
+      "name": "Kumo Southern Reaction Company, First Assault Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 82,
+      "morale": 76,
+      "readiness": 86,
+      "location_ref": "place.lightning.southern.border",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.assault.1.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.1.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "special_jonin": 1,
+            "genin": 2,
+            "jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.1.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.assault.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.assault.2",
+      "name": "Kumo Capital Guard, First Shock Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 76,
+      "morale": 73,
+      "readiness": 86,
+      "location_ref": "place.kumo.perimeter",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.assault.2.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.2.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 4,
+            "genin": 4,
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.2.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.2.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.assault.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.assault.3",
+      "name": "Kumo Northern Pass Company, First Assault Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 83,
+      "morale": 80,
+      "readiness": 86,
+      "location_ref": "place.lightning.northern.pass",
+      "activity_summary": "northern pass reaction readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.assault.3.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.3.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 3,
+            "support": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 8,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.3.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.3.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.assault.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.assault.4",
+      "name": "Kumo Western Ridge Company, First Assault Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 83,
+      "morale": 83,
+      "readiness": 83,
+      "location_ref": "place.lightning.western.ridge",
+      "activity_summary": "western ridge reaction readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.assault.4.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.4.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 3,
+            "special_jonin": 1,
+            "chunin": 5,
+            "support": 1
+          },
+          "condition": {
+            "light_healing_injury": 2,
+            "healthy": 8
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.4.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.4.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.4.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.assault.4.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.assault.5",
+      "name": "Kumo Capital Rapid Company, First Shock Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 75,
+      "morale": 74,
+      "readiness": 87,
+      "location_ref": "place.kumo",
+      "activity_summary": "capital rapid response readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.assault.5.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.5.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 2,
+            "special_jonin": 2,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.assault.5.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.5.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.assault.5.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.assault.5.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.logistics.1",
+      "name": "Kumo Logistics Corps, First Route Support Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 85,
+      "morale": 73,
+      "readiness": 92,
+      "location_ref": "place.kumo.logistics.yard",
+      "activity_summary": "mountain route support readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.logistics.1.assault.line-combatants",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.logistics.1.assault.pursuit",
+          "troop_type": "pursuit",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.logistics.1.communications",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 5,
+          "rank_distribution": {
+            "special_jonin": 2,
+            "genin": 2,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "component.kumo.logistics.1.recon",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.logistics.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.logistics.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.mountain.1",
+      "name": "Kumo Mountain Reconnaissance, First Tactical Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 85,
+      "morale": 80,
+      "readiness": 83,
+      "location_ref": "place.lightning.highlands",
+      "activity_summary": "mountain reconnaissance readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "special_jonin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.mountain.1.assault.line-combatants",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 2,
+            "jonin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.mountain.1.assault.pursuit",
+          "troop_type": "pursuit",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "support": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.mountain.1.communications",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 3,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "component.kumo.mountain.1.recon",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.mountain.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.mountain.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.pursuit.1",
+      "name": "Kumo Pursuit Division, First Tactical Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 85,
+      "morale": 80,
+      "readiness": 87,
+      "location_ref": "place.kumo",
+      "activity_summary": "high-speed pursuit readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.pursuit.1.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 4,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.pursuit.1.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 3,
+            "special_jonin": 1,
+            "jonin": 1,
+            "chunin": 4,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.pursuit.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.pursuit.1.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.pursuit.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.pursuit.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.relay.1",
+      "name": "Kumo Sensor Relay Corps, First Mobile Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 75,
+      "morale": 82,
+      "readiness": 83,
+      "location_ref": "place.lightning.relay.route",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.relay.1.assault.line-combatants",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 2,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.1.assault.pursuit",
+          "troop_type": "pursuit",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.1.communications",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "component.kumo.relay.1.recon",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.relay.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.relay.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.relay.2",
+      "name": "Kumo Sensor Relay Corps, Second Mobile Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 82,
+      "morale": 73,
+      "readiness": 91,
+      "location_ref": "place.lightning.southern.route",
+      "activity_summary": "southern relay coverage readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "special_jonin": 1,
+              "chunin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.relay.2.assault.line-combatants",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 3,
+          "rank_distribution": {
+            "jonin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.2.assault.pursuit",
+          "troop_type": "pursuit",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "support": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.2.communications",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "component.kumo.relay.2.recon",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.relay.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.relay.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.relay.3",
+      "name": "Kumo Sensor Relay Corps, Third Mobile Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 83,
+      "morale": 78,
+      "readiness": 86,
+      "location_ref": "place.lightning.northern.route",
+      "activity_summary": "northern relay coverage readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "chunin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.relay.3.assault.line-combatants",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.3.assault.pursuit",
+          "troop_type": "pursuit",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 4,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.relay.3.communications",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 3,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "component.kumo.relay.3.recon",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.relay.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.relay.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.strategic.guard.1",
+      "name": "Kumo Strategic Asset Guard, First Tactical Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 79,
+      "morale": 75,
+      "readiness": 86,
+      "location_ref": "place.kumo.secure.compound",
+      "activity_summary": "strategic asset protection readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.strategic.guard.1.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.strategic.guard.1.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "special_jonin": 2,
+            "genin": 2,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.strategic.guard.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.strategic.guard.1.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "support": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.strategic.guard.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.strategic.guard.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.kumo.taijutsu.1",
+      "name": "Kumo Heavy Taijutsu Corps, First Assault Element",
+      "force_ref": "force.kumo.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kumo.field",
+      "training_ref": "train.kumo.field",
+      "cohesion": 79,
+      "morale": 75,
+      "readiness": 91,
+      "location_ref": "place.kumo.training.ground",
+      "activity_summary": "close assault readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "special_jonin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kumo.taijutsu.1.assault.heavy-taijutsu",
+          "troop_type": "heavy_taijutsu",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 1,
+            "chunin": 3,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 4,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.taijutsu.1.assault.lightning-assault",
+          "troop_type": "lightning_assault",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 5,
+            "jonin": 1,
+            "genin": 3,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 9,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.kumo.taijutsu.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 3,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.taijutsu.1.recon.sensors",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.kumo.taijutsu.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.kumo.taijutsu.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

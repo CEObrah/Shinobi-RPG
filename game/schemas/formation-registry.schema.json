@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formation-registry.schema.json",
+  "title": "Formation Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "authority",
+    "force_ref",
+    "formations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "formation-registry"
+    },
+    "owner_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_type": {
+      "const": "formation_registry"
+    },
+    "authority": {
+      "const": true
+    },
+    "force_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "formations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "force_ref",
+          "personnel_total",
+          "authorized_personnel",
+          "components"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "force_ref": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "personnel_total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "doctrine_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "training_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cohesion": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "morale": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "readiness": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "location_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tendencies": {
+            "type": "object"
+          },
+          "command_slot": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "command_personnel": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "count"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "troop_type": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "role": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "rank_distribution": {
+                  "type": "object"
+                },
+                "condition": {
+                  "type": "object"
+                },
+                "tendency_profile_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "authorized_personnel": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "lifecycle_origin": {
+            "enum": [
+              "standing",
+              "mobilized",
+              "split"
+            ]
+          },
+          "operational_objective": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "target_refs",
+              "lethal_authorized"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "capture",
+                  "escape",
+                  "extract",
+                  "eliminate",
+                  "hold",
+                  "secure",
+                  "delay",
+                  "disengage"
+                ]
+              },
+              "target_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "lethal_authorized": {
+                "type": "boolean"
+              }
+            }
+          },
+          "activity_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

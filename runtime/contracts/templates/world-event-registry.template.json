@@ -1,0 +1,406 @@
+{
+  "schema": "file-template",
+  "template_id": "template.world-event-registry",
+  "target_schema": "world-event-registry",
+  "source_schema": "game/schemas/world-event-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "events",
+    "owner_id",
+    "owner_type",
+    "schema",
+    "segment_limit",
+    "archived_event_count",
+    "archive_refs",
+    "next_archive_seq"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "archetype_catalog_ref",
+        "events",
+        "owner_id",
+        "owner_type",
+        "schema",
+        "segment_limit",
+        "archived_event_count",
+        "archive_refs",
+        "next_archive_seq"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "segment_limit",
+        "archived_event_count",
+        "archive_refs",
+        "next_archive_seq",
+        "events",
+        "archetype_catalog_ref"
+      ]
+    },
+    "/events/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "actor_refs",
+        "affected_owner_refs",
+        "causal_refs",
+        "display_summary",
+        "execution",
+        "host_refs",
+        "id",
+        "kind",
+        "material_consequence_refs",
+        "place_refs",
+        "provenance",
+        "status",
+        "superseded_by_ref",
+        "supersedes_ref",
+        "timing",
+        "visibility"
+      ],
+      "canonical_order": [
+        "id",
+        "kind",
+        "status",
+        "timing",
+        "host_refs",
+        "actor_refs",
+        "place_refs",
+        "causal_refs",
+        "affected_owner_refs",
+        "material_consequence_refs",
+        "visibility",
+        "provenance",
+        "execution",
+        "supersedes_ref",
+        "superseded_by_ref",
+        "display_summary"
+      ]
+    },
+    "/events/*/timing": {
+      "mode": "closed",
+      "allowed_keys": [
+        "ended_at",
+        "occurred_at",
+        "scheduled_for",
+        "started_at"
+      ],
+      "canonical_order": [
+        "scheduled_for",
+        "occurred_at",
+        "started_at",
+        "ended_at"
+      ]
+    },
+    "/events/*/visibility": {
+      "mode": "closed",
+      "allowed_keys": [
+        "audience_refs",
+        "classification",
+        "knowledge_refs",
+        "route_refs",
+        "witness_refs"
+      ],
+      "canonical_order": [
+        "classification",
+        "witness_refs",
+        "audience_refs",
+        "knowledge_refs",
+        "route_refs"
+      ]
+    },
+    "/events/*/provenance": {
+      "mode": "closed",
+      "allowed_keys": [
+        "archetype_ref",
+        "recorded_at",
+        "source_kind",
+        "source_refs"
+      ],
+      "canonical_order": [
+        "source_kind",
+        "source_refs",
+        "archetype_ref",
+        "recorded_at"
+      ]
+    },
+    "/events/*/execution": {
+      "mode": "closed",
+      "allowed_keys": [
+        "receipt_refs",
+        "reducer_ref",
+        "transaction_ref"
+      ],
+      "canonical_order": [
+        "reducer_ref",
+        "transaction_ref",
+        "receipt_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/archetype_catalog_ref": [
+      "string"
+    ],
+    "/events": [
+      "array"
+    ],
+    "/events/*": [
+      "object"
+    ],
+    "/events/*/actor_refs": [
+      "array"
+    ],
+    "/events/*/actor_refs/*": [
+      "string"
+    ],
+    "/events/*/affected_owner_refs": [
+      "array"
+    ],
+    "/events/*/affected_owner_refs/*": [
+      "string"
+    ],
+    "/events/*/causal_refs": [
+      "array"
+    ],
+    "/events/*/causal_refs/*": [
+      "string"
+    ],
+    "/events/*/display_summary": [
+      "string"
+    ],
+    "/events/*/execution": [
+      "object"
+    ],
+    "/events/*/execution/receipt_refs": [
+      "array"
+    ],
+    "/events/*/execution/receipt_refs/*": [
+      "string"
+    ],
+    "/events/*/execution/reducer_ref": [
+      "string"
+    ],
+    "/events/*/execution/transaction_ref": [
+      "string"
+    ],
+    "/events/*/host_refs": [
+      "array"
+    ],
+    "/events/*/host_refs/*": [
+      "string"
+    ],
+    "/events/*/id": [
+      "string"
+    ],
+    "/events/*/kind": [
+      "string"
+    ],
+    "/events/*/material_consequence_refs": [
+      "array"
+    ],
+    "/events/*/material_consequence_refs/*": [
+      "string"
+    ],
+    "/events/*/place_refs": [
+      "array"
+    ],
+    "/events/*/place_refs/*": [
+      "string"
+    ],
+    "/events/*/provenance": [
+      "object"
+    ],
+    "/events/*/provenance/archetype_ref": [
+      "null",
+      "string"
+    ],
+    "/events/*/provenance/recorded_at": [
+      "string"
+    ],
+    "/events/*/provenance/source_kind": [
+      "string"
+    ],
+    "/events/*/provenance/source_refs": [
+      "array"
+    ],
+    "/events/*/provenance/source_refs/*": [
+      "string"
+    ],
+    "/events/*/status": [
+      "string"
+    ],
+    "/events/*/superseded_by_ref": [
+      "null",
+      "string"
+    ],
+    "/events/*/supersedes_ref": [
+      "null",
+      "string"
+    ],
+    "/events/*/timing": [
+      "object"
+    ],
+    "/events/*/timing/ended_at": [
+      "null",
+      "string"
+    ],
+    "/events/*/timing/occurred_at": [
+      "null",
+      "string"
+    ],
+    "/events/*/timing/scheduled_for": [
+      "null",
+      "string"
+    ],
+    "/events/*/timing/started_at": [
+      "null",
+      "string"
+    ],
+    "/events/*/visibility": [
+      "object"
+    ],
+    "/events/*/visibility/audience_refs": [
+      "array"
+    ],
+    "/events/*/visibility/audience_refs/*": [
+      "string"
+    ],
+    "/events/*/visibility/classification": [
+      "string"
+    ],
+    "/events/*/visibility/knowledge_refs": [
+      "array"
+    ],
+    "/events/*/visibility/knowledge_refs/*": [
+      "string"
+    ],
+    "/events/*/visibility/route_refs": [
+      "array"
+    ],
+    "/events/*/visibility/route_refs/*": [
+      "string"
+    ],
+    "/events/*/visibility/witness_refs": [
+      "array"
+    ],
+    "/events/*/visibility/witness_refs/*": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/segment_limit": [
+      "integer"
+    ],
+    "/archived_event_count": [
+      "integer"
+    ],
+    "/archive_refs": [
+      "array"
+    ],
+    "/archive_refs/*": [
+      "string"
+    ],
+    "/next_archive_seq": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/events": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/events/*/actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/affected_owner_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/causal_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/execution/receipt_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/host_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/material_consequence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/place_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/provenance/source_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/visibility/audience_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/visibility/knowledge_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/visibility/route_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/visibility/witness_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/archive_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing the world-event registry.",
+    "Create stable event IDs and transition lifecycle fields; never replace a cold archetype with active state by copying it verbatim.",
+    "Material outcomes remain authoritative in their referenced domain owners and receipts; this registry coordinates lifecycle and provenance without duplicating their mechanics.",
+    "Visibility classification never grants knowledge. Record witnesses, audiences, knowledge records and delivery routes only after their own authorities support them.",
+    "Reducer, reducer-version, transaction and receipt references are mandatory deterministic provenance.",
+    "display_summary is non-authoritative rendering text and may never supply an outcome, consequence, visibility fact or mechanic.",
+    "Do not add an unregistered field. A new field requires maintenance-time schema and template revision first.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

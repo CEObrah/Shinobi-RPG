@@ -339,6 +339,68 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.inventory_changed.fa45ae711a0a5b76f74a",
+      "kind": "inventory_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-02-07T08:18:21",
+        "started_at": "SE-0061-02-07T08:18:21",
+        "ended_at": "SE-0061-02-07T08:18:21"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/mei-arakawa.json",
+        "state/house/stock.json",
+        "state/inventory/registry.json",
+        "state/stock/konoha-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "issue:armor_house_court:1:stock.house.tang->char.mei_arakawa",
+        "issue:item_field_ration_1day:1:stock.force_konoha_shinobi->char.mei_arakawa",
+        "issue:item_medical_dressing:2:stock.house.tang->char.mei_arakawa",
+        "issue:item_standard_restraints:1:stock.force_konoha_shinobi->char.mei_arakawa",
+        "issue:item_utility_wire:10:stock.force_konoha_shinobi->char.mei_arakawa",
+        "issue:weapon_senbon:30:stock.force_konoha_shinobi->char.mei_arakawa",
+        "refit:char.mei_arakawa:load.char.mei_arakawa->load.team_fujin.mei",
+        "return:armor_light_shinobi:1:char.mei_arakawa->stock.force_konoha_shinobi"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.mei_arakawa",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:18:21"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.inventory_resolution.registered_team_refit",
+        "transaction_ref": "tx.gameplay.fa45ae711a0a5b76f74ac4e4de853315e2f3b27549384d1980699577cd1f08ec",
+        "receipt_refs": [
+          "receipt.gameplay.fa45ae711a0a5b76f74ac4e4de853315e2f3b27549384d1980699577cd1f08ec"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

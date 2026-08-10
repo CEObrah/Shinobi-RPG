@@ -103,6 +103,7 @@ def test_registered_route_is_scoped_to_requested_destination_anchor():
     ]
     assert result["route_options"][0]["destination_id"] == "place.border"
     assert result["route_options"][0]["requires_local_completion"] is False
+    assert result["options_truncated"] is False
 
 
 def test_subplace_destination_exposes_anchor_leg_then_local_completion():
@@ -129,3 +130,41 @@ def test_same_place_returns_no_route_instead_of_noop_command_hint():
     )
 
     assert result["route_options"] == []
+    assert result["options_truncated"] is False
+
+
+def test_truncation_flag_means_routes_were_actually_omitted():
+    world = _world()
+    world["payload"]["routes"] = [
+        {
+            "id": f"route_parallel_{index:02d}",
+            "from": "place.village",
+            "to": "place.border",
+            "mode": "road",
+            "status": "open",
+            "travel_days_band": [1, 2],
+            "reference_travel_days": 1.5,
+        }
+        for index in range(17)
+    ]
+
+    exactly_sixteen = dict(world)
+    exactly_sixteen["payload"] = dict(world["payload"])
+    exactly_sixteen["payload"]["routes"] = world["payload"]["routes"][:16]
+    result_16 = discover_route_options(
+        exactly_sixteen,
+        _mechanics(),
+        origin_id="place.manor",
+        destination_id="place.border",
+    )
+    result_17 = discover_route_options(
+        world,
+        _mechanics(),
+        origin_id="place.manor",
+        destination_id="place.border",
+    )
+
+    assert len(result_16["route_options"]) == 16
+    assert result_16["options_truncated"] is False
+    assert len(result_17["route_options"]) == 16
+    assert result_17["options_truncated"] is True

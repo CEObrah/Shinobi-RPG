@@ -495,22 +495,6 @@
         "policy_ref": "demography.great_villages.baseline"
       }
     },
-    "host.scene.current": {
-      "state": {
-        "host_id": "host.scene.current",
-        "kind": "scene",
-        "resolved_through": "SE-0061-02-06T21:15:00",
-        "safe_through": "SE-0061-02-07T07:59:59",
-        "handler_ref": "causal.scheduler",
-        "rng_namespace": "scene",
-        "next_due": "SE-0061-02-07T08:00:00"
-      },
-      "authority_kind": "scene_boundary_index",
-      "owner_ref": "state/scene.json",
-      "metadata": {
-        "scene_id": "scene_sword_manor_black_hound_first_muster_complete"
-      }
-    },
     "host.team.team.blackhound": {
       "state": {
         "host_id": "host.team.team.blackhound",
@@ -617,22 +601,6 @@
     }
   },
   "events": [
-    {
-      "event_id": "evt.causal.0677debfaf31a31a666630a8",
-      "kind": "scene.player_boundary",
-      "due_at": "SE-0061-02-07T08:00:00",
-      "priority": 10,
-      "source_host": "host.scene.current",
-      "target_host": "host.scene.current",
-      "payload": {
-        "scene_event_id": "team_fujin_heavy_week_report_day_two"
-      },
-      "dedupe_key": "scene.player_boundary:team_fujin_heavy_week_report_day_two",
-      "visibility": "player_known",
-      "requires_player": true,
-      "causation_id": null,
-      "correlation_id": null
-    },
     {
       "event_id": "evt.causal.06f20ab9dae224795c1b8e4d",
       "kind": "canon_pressure.periodic_review",
@@ -1431,8 +1399,8 @@
     }
   ],
   "metrics": {
-    "host_count": 36,
-    "pending_event_count": 36,
+    "host_count": 35,
+    "pending_event_count": 35,
     "global_person_scans": 0,
     "global_faction_directory_scans": 0,
     "last_requested_target": "SE-0061-02-07T08:00:00",

@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": "The boundary team_fujin_heavy_week_report_day_two requires an explicit player response.",
+  "decision_required": "Choose the next consequential action.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "pc_wei_tang",
@@ -61,17 +61,11 @@
     "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
   },
   "scene_id": "scene_sword_manor_black_hound_first_muster_complete",
-  "scene_summary": "Time reaches SE-0061-02-07T08:00:00 at place.sword_manor. The causal boundary team_fujin_heavy_week_report_day_two is due; no player response has been chosen.",
+  "scene_summary": "At 08:00 Wei prioritizes Team Fujin's standing heavy-week obligation. Black Hound remains under Hayama's existing training delegation while Wei turns to Team Fujin duty.",
   "schema": "scene",
-  "time_passage_allowed": false,
+  "time_passage_allowed": true,
   "world_time": "SE-0061-02-07T08:00:00",
-  "known_clock_boundaries": [
-    {
-      "due_at": "SE-0061-02-07T08:00:00",
-      "event_id": "team_fujin_heavy_week_report_day_two",
-      "visibility": "player_known"
-    }
-  ],
+  "known_clock_boundaries": [],
   "observable_pressures": [
     "Black Hound is newly active but has not yet practiced its doctrine.",
     "No special-operations mission is currently assigned.",

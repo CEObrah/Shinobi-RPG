@@ -95,6 +95,62 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.scene_clock_boundary_resolved.86144e6e4a55c8c9384d",
+      "kind": "scene_clock_boundary_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-02-07T08:00:00",
+        "started_at": "SE-0061-02-07T08:00:00",
+        "ended_at": "SE-0061-02-07T08:00:00"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [
+        "team_fujin_heavy_week_report_day_two"
+      ],
+      "affected_owner_refs": [
+        "state/scene.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "clock-boundary:team_fujin_heavy_week_report_day_two"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-02-07T08:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.resolve_clock_boundary",
+        "transaction_ref": "tx.gameplay.86144e6e4a55c8c9384d5bee02488006225978abf268e90141a2fd8d74c08a67",
+        "receipt_refs": [
+          "receipt.gameplay.86144e6e4a55c8c9384d5bee02488006225978abf268e90141a2fd8d74c08a67"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

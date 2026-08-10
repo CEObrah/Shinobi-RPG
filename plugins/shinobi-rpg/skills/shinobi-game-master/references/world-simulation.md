@@ -1,5 +1,16 @@
 # Living World and Autonomous Simulation
 
+## Contents
+
+1. World independence
+2. Offscreen progression
+3. Representation scale
+4. Teams, forces, and formations
+5. Institutions and factions
+6. Strategic causality
+7. Canon and setting
+8. Callbacks and continuity
+
 ## World independence
 
 Treat the world as causally active even when Wei is not present.

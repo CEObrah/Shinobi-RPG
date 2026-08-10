@@ -1,5 +1,16 @@
 # OOC Development Procedure
 
+## Contents
+
+1. Development boundary
+2. Repository roles
+3. Source changes
+4. Campaign repair
+5. Git and Railway
+6. Skill maintenance
+7. Secrets and credentials
+8. Resume live play
+
 Use this reference only for `OOC DEV:` work.
 
 ## Development boundary

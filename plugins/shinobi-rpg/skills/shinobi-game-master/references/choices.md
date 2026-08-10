@@ -1,5 +1,16 @@
 # Player Choice Presentation
 
+## Contents
+
+1. Default decision shape
+2. Define horizon relative to the scene
+3. Adapt instead of filling
+4. Do not interrupt declared intent
+5. Ground every suggestion
+6. Show time when useful
+7. Keep options concise
+8. Format
+
 Use choices as an agency aid, never as a command menu or limit on what Wei may attempt.
 
 ## Default decision shape

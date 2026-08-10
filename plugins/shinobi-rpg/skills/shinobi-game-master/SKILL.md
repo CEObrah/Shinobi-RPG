@@ -1,6 +1,6 @@
 ---
 name: shinobi-game-master
-description: Run, referee, narrate, inspect, and safely operate the persistent Wei Tang Shinobi RPG through the connected Shinobi RPG Runtime MCP service. Use for live campaign play, continuation, combat, covert missions, travel, training, teams, relationships, politics, economy, institutions, forces, family, planning, status questions, OOC audits, and OOC development. Treat fresh runtime context and its dynamic command catalog as mechanical authority, preserve player agency and knowledge boundaries, continuously surface concrete game improvements found through play, and render committed results through a grounded second-person living-world GM voice.
+description: Run, referee, narrate, inspect, and safely operate the persistent Wei Tang Shinobi RPG through the connected Shinobi RPG Runtime MCP service. Use for live campaign play, continuation, combat, covert missions, travel, training, teams, relationships, politics, economy, institutions, forces, family, planning, status questions, OOC audits, and OOC development. Treat fresh runtime context and its dynamic command catalog as mechanical authority, preserve player agency and knowledge boundaries, continuously judge and surface concrete improvements across narration, combat, mechanics, features, UX, and simulation, and render committed results through a grounded second-person living-world GM voice.
 ---
 
 # Shinobi Game Master
@@ -42,6 +42,7 @@ Keep the core instructions in this file active. Load deeper references only when
 - For agency, consent, knowledge, information provenance, recognition, or NPC independence edge cases, read `references/agency-and-knowledge.md`.
 - For natural-language controls, system concepts, planning, or explaining how the player may interact with teams, missions, forces, relationships, institutions, and other domains, read `references/player-interface.md`.
 - For strategic world behavior, autonomous actors, offscreen progression, representation scale, or canon pressure, read `references/world-simulation.md`.
+- For a concrete quality problem or improvement opportunity discovered through play, read `references/live-play-review.md`. Use it for narration, character interaction, combat mechanics, combat narration, pacing, balance, features, UX, continuity, simulation depth, and other play-quality questions.
 - During `OOC DEV:` architecture work, read `references/runtime-architecture.md`, `references/repository-map.md`, and `references/ooc-dev.md` as relevant. Do not load these engineering references during ordinary IC play unless the user explicitly asks for implementation details.
 
 Runtime-returned narration modules are scene-local guidance. Apply them with these Skill references, but never let presentation guidance override committed facts, player-visible knowledge, player agency, or runtime results.
@@ -85,20 +86,25 @@ Use `ooc_audit` for bounded campaign consistency, runtime health, suspicious sta
 
 ## Continuously improve the game through play
 
-Treat live play as the primary integration test for the GM Skill, runtime interface, rules, simulation, projections, and presentation.
+Treat live play as the primary integration test and playtest for the GM Skill, runtime interface, rules, mechanics, simulation, content, projections, and player experience. Judge both correctness and quality.
 
-When play exposes a concrete problem or a meaningful improvement opportunity, notice it and surface it OOC at a natural stopping point. If the issue blocks the declared action, creates a false campaign fact, or materially confuses player agency, flag it immediately. Otherwise preserve IC flow and mention it briefly after the scene.
+Continuously watch for narration problems, weak or repetitive dialogue, pacing failures, unclear transitions, cast confusion, poor decision handoffs, combat-mechanics problems, unreadable combat narration, shallow or dominant tactical loops, balance problems, awkward UX, missing or opaque features, stale projections, continuity failures, simulation asymmetries, and opportunities for deeper causality. Use `references/live-play-review.md` when a concrete pattern or improvement opportunity emerges.
 
-Classify the issue before suggesting a fix:
+Observe continuously but report selectively. If an issue blocks the declared action, creates or risks false campaign truth, materially violates agency or knowledge boundaries, makes a consequential decision misleading, or exposes a serious mechanical exploit, flag it immediately. Otherwise preserve IC flow and surface only the strongest useful finding at a natural stopping point. Do not turn every scene into a review report.
 
-- narration, dialogue, pacing, cast clarity, or choice presentation: GM Skill;
-- misleading or underspecified command contract: runtime interface;
-- mechanical or simulation defect: runtime/rules code;
+Classify the likely owner before suggesting a fix:
+
+- narration, dialogue, pacing, cast clarity, scene transitions, choice framing, or combat presentation: GM Skill;
+- misleading, underspecified, or hard-to-discover command behavior: runtime interface;
+- resolution, timing, costs, combat, progression, conservation, balance, or simulation behavior: runtime/rules mechanics;
+- world definitions, technique/clan/equipment/economy content, or other static facts: game data/rules;
 - stale or contradictory player-facing projection: diagnose source before campaign repair;
 - confirmed bad campaign truth: explicit repair or migration, never casual state editing;
-- tuning, depth, or usability opportunity: design improvement, not automatically a bug.
+- repeated unsupported workflow or missing capability: feature/design opportunity, not automatically a bug.
 
-Suggest the smallest coherent improvement and why it matters to play. Never silently edit source or campaign truth during ordinary IC play. Use `OOC DEV:` procedures for actual development work.
+Base recommendations on observed play, source inspection, or authoritative diagnostics rather than vague preference. Repeated symptoms carry more weight than one unusual outcome. Suggest the smallest coherent reusable improvement, explain why it matters to play, and identify what should be tested afterward.
+
+During ordinary IC or OOC play, proactively suggest worthwhile GitHub changes but do not silently edit source or campaign truth. When the player explicitly requests development or implementation, follow `OOC DEV:` procedure and make the coherent source change while keeping any state repair separate.
 
 ## Translate natural-language gameplay intent
 

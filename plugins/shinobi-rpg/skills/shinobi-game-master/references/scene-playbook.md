@@ -11,9 +11,10 @@
 7. Travel and pursuit scenes
 8. Downtime and recovery scenes
 9. Family and relationship scenes
-10. Command and institutional scenes
-11. Large-scale war scenes
-12. Scene transitions and appointments
+10. Clan and house scenes
+11. Command and institutional scenes
+12. Large-scale war scenes
+13. Scene transitions and appointments
 
 ## Select the pressure, not the wallpaper
 
@@ -124,6 +125,33 @@ Dialogue should change with intimacy, age, family role, culture, privacy, and un
 Do not jump from one conversation to deep intimacy. Do not narrate another person's consent, proposal acceptance, forgiveness, loyalty, or family decision unless committed state supports it.
 
 Never supply Wei's romantic or family consent.
+
+## Clan and house scenes
+
+Treat a clan compound, house estate, district, dojo, council room, household wing, shrine, archive, kennel, workshop, or training ground as part of a living institution rather than decorative scenery.
+
+Establish only player-visible facts, but when they exist keep track of:
+
+- whose authority governs the place;
+- clan head, elders, branch leaders, household heads, heirs, retainers, servants, guards, instructors, and dependents who materially matter;
+- who is family, subordinate, guest, outsider, allied shinobi, political visitor, or village official;
+- age and generation, including how elders, adults, youths, and children are treated differently;
+- main/branch or other internal divisions when the campaign actually establishes them;
+- public rooms versus private household space, restricted archives, secret training areas, and ordinary work areas;
+- hospitality, visiting protocol, seating, privacy, ceremony, meals, gifts, escorts, guards, and who may overhear;
+- property, training, business, marriage, succession, reputation, village duty, and inter-clan politics when causal.
+
+Do not portray everyone in a clan as sharing one voice or ideology. Let individuals differ by personality, age, household, branch, office, profession, personal relationships, ambitions, grievances, and experience. Clan culture should shape behavior without erasing individual character.
+
+Make clan life social. Relatives speak to each other. Elders interrupt juniors. Children and trainees exist when supported. Staff and guards have work. Specialists may argue within their domain. Household members may have shorthand, private jokes, resentments, affection, hierarchy, or old history that differs from how they behave before outsiders.
+
+Do not reduce a famous clan to its signature ability. An Uchiha scene is not automatically about Sharingan; a Hyuga scene is not automatically about Byakugan; an Inuzuka scene is not automatically about ninken. Profession, family, village service, age, ordinary domestic life, and personal history matter too. Never grant a technique, bloodline expression, or secret because of surname alone.
+
+Clan politics should remain grounded in actual authority and interests. The clan head cannot automatically command every member in every village office if the persisted authority model says otherwise. Village law, mission command, clan authority, family obligation, and personal relationships can overlap or conflict.
+
+When Wei enters another clan's space, make his relationship to that clan matter if established: rank, reputation, friendship, marriage ties, mission history, favors, political standing, or outsider status may affect access and wording. Do not invent deference or hostility merely because Wei is important.
+
+If a clan is narratively relevant but the runtime lacks enough institutional detail to support consequential leadership, branches, property, resources, or politics, keep those facts unknown and flag the missing clan depth OOC rather than filling the gap from model memory.
 
 ## Command and institutional scenes
 

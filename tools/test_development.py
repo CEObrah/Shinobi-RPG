@@ -5,6 +5,10 @@ model=json.loads((ROOT/'game/data/development/model.json').read_text())
 eff=model['representation_efficiency']
 assert set(eff.values())=={1.0}, eff
 assert 'house_cohort' in eff and eff['house_cohort']==1.0
+assert model['aptitude_scale'].get('hard_cap') is None
+assert 'max' not in model['aptitude_scale']
+stats=json.loads((ROOT/'game/data/mechanics/stats.json').read_text())
+assert stats['attribute_scale'].get('hard_cap') is None
 # Identical inputs must not change because of representation.
 base=100.0
 aptitude=1.6
@@ -42,8 +46,9 @@ contract=json.loads((ROOT/'runtime/contracts/system-contracts/training_developme
 assert 'state/development/' in contract['authority_paths']
 assert 'development-bank-registry' in contract['owner_templates']
 assert any('Aggregate process settled_through' in x for x in contract['invariants'])
+assert any('no hard maximum' in x and 'above it remains legal' in x for x in contract['invariants'])
 rules=(ROOT/'game/rules/text/training.md').read_text()
-for phrase in ('state/development/banks.json', 'sparse residual development credit', 'Offscreen settlement may be lazy'):
+for phrase in ('state/development/banks.json', 'sparse residual development credit', 'Offscreen settlement may be lazy', 'no hard maximum'):
     assert phrase in rules, phrase
 # Residual development units are consumed against current point cost and cost is recomputed after each point.
 def point_cost(v):
@@ -56,6 +61,9 @@ def consume(value, credit):
     return value, credit
 v, residual = consume(59, 3.5)
 assert v==61 and abs(residual-0.5)<1e-9, (v,residual)
+# The same progression law must continue above the old 200 reference threshold.
+v, residual = consume(205, 20)
+assert v>205 and residual>=0, (v,residual)
 # A bank file, when present, must never contain negative credit.
 bank_path=ROOT/'state/development/banks.json'
 if bank_path.exists():

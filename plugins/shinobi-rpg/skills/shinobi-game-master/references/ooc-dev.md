@@ -101,12 +101,25 @@ When changing GM behavior:
 4. avoid root-level duplicate manuals;
 5. validate structure and references when tooling permits;
 6. commit the complete coherent Skill change to GitHub;
-7. refresh or replace the ChatGPT-installed Skill when the current environment exposes a supported Skill update mechanism;
-8. verify the installed Skill is actually synchronized before claiming that it is.
+7. trigger the ChatGPT Skill change from the complete canonical Skill bundle when the conversation exposes the review/edit flow;
+8. let the user review and accept the ChatGPT Skill change;
+9. after acceptance, verify `skills://shinobi-game-master` contains the changed files and markers before claiming synchronization.
 
-Prefer a supported direct ChatGPT Skill update when the current conversation exposes one. Do not require a manual download/re-upload workflow when a writable Skill-management action can complete the update directly.
+For supported in-chat Skill updates, use this sequence explicitly:
 
-Do not claim that a GitHub commit automatically updated the ChatGPT-installed Skill unless the installed `skills://` resource is verified to contain the change. Do not claim a direct ChatGPT Skill update when no writable Skill-management action is available.
+```text
+edit canonical GitHub Skill source
+-> validate the complete Skill
+-> trigger/stage the ChatGPT Skill change
+-> user reviews and accepts the change
+-> verify the installed `skills://` bundle afterward
+```
+
+Do not treat creation of a review card or pending edit as installation success. Until the user accepts it, the prior installed Skill remains authoritative for what ChatGPT has actually loaded. After acceptance, re-list the installed Skill resources and read at least one changed marker or file before reporting success.
+
+Prefer this supported direct ChatGPT Skill update over asking the user to manually download and re-upload a ZIP. If the review/edit flow is unavailable or fails to surface, package the complete validated Skill as `skill.zip` as a fallback and state that the installed Skill has not yet been synchronized.
+
+Do not claim that a GitHub commit automatically updated the ChatGPT-installed Skill unless the installed `skills://` resource is verified to contain the change. Do not claim a direct ChatGPT Skill update before the review has been accepted and verified.
 
 ## Live-play feedback loop
 

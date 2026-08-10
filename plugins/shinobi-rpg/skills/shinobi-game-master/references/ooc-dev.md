@@ -8,8 +8,9 @@
 4. Campaign repair
 5. Git and Railway
 6. Skill maintenance
-7. Secrets and credentials
-8. Resume live play
+7. Live-play feedback loop
+8. Secrets and credentials
+9. Resume live play
 
 Use this reference only for `OOC DEV:` work.
 
@@ -43,7 +44,7 @@ For requested runtime/game work:
 2. identify the authoritative owner of the behavior;
 3. make the smallest coherent change;
 4. update tests/contracts/docs that define the same behavior;
-5. run relevant validators/tests;
+5. run relevant validators/tests when execution access is available;
 6. commit with a specific message;
 7. verify deployment/compatibility when the changed path is deployment-sensitive.
 
@@ -90,17 +91,33 @@ State-only gameplay commits must not create a deployment loop. Do not add a non-
 
 ## Skill maintenance
 
-Treat the Skill directory as canonical GM documentation.
+Treat the GitHub Skill directory as canonical source for GM behavior.
 
 When changing GM behavior:
 
 1. update `SKILL.md` for always-relevant operating rules;
 2. update the smallest relevant reference for detailed craft;
-3. update runtime presentation contracts only when they independently encode the same player-facing contract, such as `choice-presentation.json`;
+3. update runtime presentation contracts only when they independently encode the same player-facing contract;
 4. avoid root-level duplicate manuals;
-5. validate the Skill;
-6. package the complete Skill as `skill.zip` for ChatGPT upload;
-7. keep the GitHub source and uploaded Skill synchronized.
+5. validate structure and references when tooling permits;
+6. commit the complete coherent Skill change to GitHub;
+7. refresh or replace the ChatGPT-installed Skill when the current environment exposes a supported Skill update mechanism;
+8. verify the installed Skill is actually synchronized before claiming that it is.
+
+Do not claim that a GitHub commit automatically updated the ChatGPT-installed Skill unless the installed `skills://` resource is verified to contain the change. Do not claim a direct ChatGPT Skill update when no writable Skill-management action is available.
+
+## Live-play feedback loop
+
+Use actual campaign play to find problems worth fixing. Good candidates include:
+
+- player-facing contracts that hide required enum values or nullability;
+- stale projections that contradict committed state;
+- mechanics that block actions without explaining who, why, or until when;
+- narration rules that produce confusing dialogue, mute NPCs, weak continuity, or missing choices;
+- repetitive interaction patterns that make NPCs feel interchangeable;
+- opportunities to deepen simulation without adding unnecessary complexity.
+
+Record the observed symptom, identify its authoritative owner, distinguish bug from design opportunity, and make the smallest coherent correction. Never turn speculative improvement ideas into campaign truth.
 
 ## Secrets and credentials
 
@@ -110,6 +127,6 @@ Use configured secret stores and environment variables.
 
 ## Resume live play
 
-After any non-state GitHub change, confirm the Railway deployment succeeded and the live checkout is synchronized before resuming consequential IC play.
+After any non-state GitHub change, confirm the live runtime is synchronized with the relevant source before relying on changed runtime behavior in consequential IC play.
 
-After Skill changes, also upload the new validated `skill.zip` before expecting new GM behavior in fresh chats. The Railway redeploy synchronizes the repository checkout; it does not replace the Skill installed in ChatGPT.
+For Skill-only narration changes, distinguish GitHub source from the ChatGPT-installed Skill. Verify the installed Skill separately before claiming new narration behavior is active in the current ChatGPT environment.

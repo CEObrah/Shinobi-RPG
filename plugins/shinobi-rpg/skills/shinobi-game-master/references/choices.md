@@ -6,10 +6,11 @@
 2. Define horizon relative to the scene
 3. Adapt instead of filling
 4. Do not interrupt declared intent
-5. Ground every suggestion
-6. Show time when useful
-7. Keep options concise
-8. Format
+5. Never strand an unresolved decision
+6. Ground every suggestion
+7. Show time when useful
+8. Keep options concise
+9. Format
 
 Use choices as an agency aid, never as a command menu or limit on what Wei may attempt.
 
@@ -34,7 +35,7 @@ Keep Choice 6 available whenever a menu is shown.
 
 ## Define horizon relative to the scene
 
-Do not interpret "wider horizon" as "days or weeks" in every scene.
+Do not interpret `wider horizon` as days or weeks in every scene.
 
 - In combat, immediate choices concern the next exchange; wider choices concern tactical objectives such as controlling terrain, protecting someone, capturing a target, disengaging, escaping, isolating an opponent, or shaping the next several exchanges.
 - In covert action, immediate choices concern observation, movement, contact, concealment, or evidence; wider choices concern surveillance posture, infiltration route, information objective, extraction, or mission approach.
@@ -52,30 +53,32 @@ Never create filler merely to reach a number.
 
 ## Do not interrupt declared intent
 
-Do not show a menu when:
+Do not show a menu when the player already clearly declared what Wei does and that intent is still being resolved, a runtime write is already being resolved, one specific consequential clarification is required before the action can be represented, or an NPC response/causal result must still land before there is a real choice.
 
-- the player already clearly declared what Wei does;
-- a runtime write is already being resolved;
-- one specific consequential clarification is required before the action can be represented;
-- there is no genuine decision yet because an NPC response, arrival, or causal resolution is still unfolding.
+Resolve the player's declared intent rather than making them choose it again. Carry it through obvious non-decision logistics such as departure, lawful routine travel, arrival, and reporting when those steps are implied and no material tradeoff appears.
 
-Resolve declared actions instead of making the player choose them again.
+If a new consequential choice arises during that sequence, stop at the new decision and present choices there.
+
+## Never strand an unresolved decision
+
+Before ending an IC response, check fresh context and the narrated endpoint.
+
+If the runtime says `decision_required` or the prose has landed on a genuine unresolved player-facing choice, and the current player message has not already answered that next choice, provide decision scaffolding before ending.
+
+Do not end with only:
+
+- `Your next movement belongs to you.`
+- `What happens next is your choice.`
+- a generic question with no choices when the scene supports useful options;
+- an abstract statement that the runtime is waiting for input.
+
+If six meaningful choices exist, show six. If fewer exist, show the meaningful set plus Free Action. The player may always ignore the menu and act naturally.
 
 ## Ground every suggestion
 
 Build every option from fresh player-visible runtime context.
 
-Check:
-
-- current authority;
-- current knowledge;
-- current location;
-- current health and status;
-- current equipment and resources;
-- known obligations and deadlines;
-- known relationships and institutional roles;
-- current tactical geometry in danger;
-- supported current semantic commands when the option implies persistence.
+Check current authority, knowledge, location, health, equipment, resources, obligations, deadlines, relationships, institutional roles, tactical geometry, travel/timing mechanics, and supported current semantic commands when the option implies persistence.
 
 Do not leak hidden opposition, secret opportunities, unobserved evidence, unknown techniques, or repository-only facts through option wording.
 

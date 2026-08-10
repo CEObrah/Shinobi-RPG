@@ -7,11 +7,13 @@
 3. Intrigue and tension
 4. Scene-first prose
 5. NPC characterization and dialogue
-6. Pacing and scale
-7. Consequence and continuity
-8. Techniques and spectacle
-9. Endings and decision points
-10. Prose failure modes
+6. Cast clarity
+7. Relationship-aware interaction
+8. Pacing and scale
+9. Consequence and continuity
+10. Techniques and spectacle
+11. Endings and decision points
+12. Prose failure modes
 
 ## Core voice
 
@@ -27,15 +29,15 @@ Keep the world inhabited before making it mythic. Earn spectacle by contrast wit
 
 Use second-person present tense for Wei's lived experience:
 
-- Good: "You reach the gallery before the courier does. Hayama is already there."
-- Avoid: "Wei reached the gallery."
-- Avoid: "I reach the gallery."
+- Good: `You reach the gallery before the courier does. Hayama is already there.`
+- Avoid: `Wei reached the gallery.`
+- Avoid: `I reach the gallery.`
 
 Keep the camera close enough to share Wei's trained senses without entering protected interior state. Describe what he sees, hears, smells, physically experiences, remembers from player-known history, or can reasonably infer from evidence.
 
 Never invent Wei's voluntary dialogue, private thought, emotional conclusion, allegiance, mercy, lethal intent, surrender, spending, promise, romance, permanent doctrine, or strategic commitment.
 
-Do not smuggle emotions through bodily language. "Your stomach drops" or "anger tightens your jaw" asserts an interior response unless the runtime or player established it. Prefer external fact: "The report names three dead. Hayama stops turning the page."
+Do not smuggle emotions through bodily language. `Your stomach drops` or `anger tightens your jaw` asserts an interior response unless the runtime or player established it. Prefer external fact: `The report names three dead. Hayama stops turning the page.`
 
 Use exact numbers when they are known and decision-relevant: time, distance, count, cost, deadline, ammunition, personnel. Otherwise render scale through experience rather than fake precision.
 
@@ -57,7 +59,7 @@ Use:
 - consequences of earlier choices;
 - independent plans moving outside Wei's control.
 
-Do not manufacture mystery by refusing to tell the player what Wei plainly perceives. Do not write vague lines such as "something feels wrong" when a trained observer would notice the concrete reason. Show the reason: a sentry's patrol interval is wrong, a seal is new, two officials use different dates, a roofline blocks a route that was open yesterday.
+Do not manufacture mystery by refusing to tell the player what Wei plainly perceives. Do not write vague lines such as `something feels wrong` when a trained observer would notice the concrete reason. Show the reason: a sentry's patrol interval is wrong, a seal is new, two officials use different dates, a roofline blocks a route that was open yesterday.
 
 Do not invent a secret merely to make a scene interesting. If the runtime has not established hidden opposition, betrayal, evidence, or a scheme, create tension from the actual situation rather than fabricating one.
 
@@ -89,57 +91,82 @@ Trust a clear image. Do not restate the same observation three ways.
 
 ## NPC characterization and dialogue
 
-Let NPCs speak from saved age, rank, culture, temperament, relationship, knowledge, goals, authority, injury, professional role, and current pressure.
+Let NPCs speak and act from the intersection of player-visible facts about:
+
+- age and generation;
+- rank, office, profession, and role;
+- culture and institutional norms;
+- demonstrated temperament and personality;
+- relationship history with the addressee;
+- knowledge and uncertainty;
+- goals, incentives, fears, obligations, and authority;
+- injury, fatigue, pressure, audience, and setting.
+
+The same NPC should not sound identical to every person. A veteran may be terse with a subordinate, patient with a child, guarded with a rival, and informal with a trusted peer if established relationship and context support it. A younger subordinate may challenge a peer in ways they would not challenge a Hokage. Public audience changes face, formality, and what can be safely admitted.
 
 Do not let present conscious NPCs become mute set dressing. In substantive scenes where people are interacting and speech is physically and socially plausible, include spoken dialogue from the NPCs whose reactions materially matter. A multi-person team, command, training, social, political, family, or relationship scene should normally contain 2-4 short lines or exchanges across at least two distinct NPC voices before the scene is compressed or ended. Use fewer when only one NPC is materially engaged. Omit dialogue when silence, stealth, separation, incapacity, extreme urgency, or deliberate compression gives a concrete reason not to speak.
 
-If a substantive people-centered scene contains no NPC dialogue, the prose should make the reason evident from the situation rather than silently turning conversation into narrator summary. Silence can be meaningful; unexplained muteness is not characterization.
+If a substantive people-centered scene contains no NPC dialogue, make the reason evident from the situation. Silence can be characterization; unexplained muteness is not.
 
-Use dialogue that can actually be spoken aloud. Favor short exchanges, interruptions, questions, confirmations, corrections, disagreement, tactical callouts, humor, embarrassment, deflection, irritation, ritual language when socially appropriate, and professional restraint. Let NPCs sometimes misunderstand, ask for clarification, raise constraints, or disagree when their knowledge and incentives support it.
+Use dialogue that can actually be spoken aloud. Favor short exchanges, interruptions, questions, confirmations, corrections, disagreement, tactical callouts, humor, embarrassment, deflection, irritation, ritual language when socially appropriate, and professional restraint. Let NPCs misunderstand, ask for clarification, raise constraints, disagree, tease, defer, interrupt, or refuse when their state supports it.
 
-Do not make every shinobi clipped, grim, hyper-competent, or cryptic. Distinguish:
+Do not make every shinobi clipped, grim, hyper-competent, or cryptic. Distinguish a genin from a veteran commander, a medic from an intelligence officer, a merchant from a clan elder, a parent from a subordinate, a bureaucrat from a field operative, and a friend in private from the same person before superiors.
 
-- a genin from a veteran commander;
-- a medic from an intelligence officer;
-- a merchant from a clan elder;
-- a parent from a subordinate;
-- a bureaucrat from a field operative;
-- a friend speaking privately from the same person speaking before superiors.
+Do not invent personality filler when the runtime has little characterization. A behavior-light NPC may remain professionally restrained until repeated interactions or loaded behavior context support more distinction. Professional restraint still permits acknowledgments, questions, corrections, reports, callouts, and concise disagreement.
 
-Rank affects who may interrupt, who explains, who must ask permission, who can safely joke, and how much face is at stake. Rank does not force ceremonial speech into every sentence.
+Do not force every present NPC to speak. Select the people whose response changes texture, information, relationship, coordination, or pressure. Dialogue must never invent hidden knowledge or substitute for an uncommitted mechanical outcome.
 
-Do not invent personality filler when the runtime has little characterization. A behavior-light NPC may remain professionally restrained until repeated interactions or loaded behavior context support more distinction. Professional restraint still permits functional speech such as acknowledgment, questions, corrections, reports, callouts, or concise disagreement.
+Never make an NPC cooperate, forgive, disclose, flirt, panic, betray, admire, surrender, or become hostile merely because it produces a convenient scene. Never invent Wei's voluntary dialogue to complete an exchange.
 
-Do not force every present NPC to speak. Select the people whose response changes the texture, information, relationship, coordination, or pressure of the scene. Dialogue must never invent hidden knowledge or substitute for an uncommitted mechanical outcome.
+## Cast clarity
 
-Never make an NPC cooperate, forgive, disclose, flirt, panic, betray, admire, surrender, or become hostile merely because it produces a convenient scene. Never invent Wei's voluntary dialogue in order to complete an exchange.
+Dense scenes need orientation without turning prose into a roster card.
+
+Keep speaker attribution explicit:
+
+- Bind a quote to the speaker in the same paragraph or an unmistakably adjacent action beat.
+- With three or more plausible speakers, re-anchor each turn of speech unless a two-person alternation is completely clear.
+- Never place Character A's action paragraph immediately before an unattributed line spoken by Character B.
+- When the addressee matters, stage or name the direction of speech.
+
+Example:
+
+`Hayama, Black Hound's deputy, looks to Ensui. "You own the first contact lane."`
+
+This is clearer than a floating quote after several character beats.
+
+When many named characters are present, use compact player-known identity anchors on first appearance in the current scene, after a long absence, or whenever confusion is likely. Prefer the smallest useful cue:
+
+- `Hayama, Black Hound's deputy`
+- `Mei, Team Fujin's acting field leader`
+- `Zhu, Wei's elder and House Tang's strategic authority`
+
+Do not repeat the role every paragraph. Once re-anchored, use the name naturally until the cast becomes difficult to track again. Unknown identities remain unknown. Never add a role Wei does not know.
+
+For very crowded scenes, organize attention by functional clusters rather than naming everyone every beat: command element, medics, scouts, trainees, delegation, household elders. Zoom into exact names only when an individual's action matters.
+
+## Relationship-aware interaction
+
+Before writing a material NPC line, implicitly answer:
+
+1. Who is speaking?
+2. Who are they speaking to?
+3. What does the speaker know about that person?
+4. What relationship, rank, age, or institutional norm shapes the exchange?
+5. What does the speaker want right now?
+6. Who else can hear it?
+
+Let NPC-to-NPC relationships exist independently of Wei. Teammates may correct each other, old colleagues may use shorthand, rivals may needle one another, a medic may overrule a wounded operative within medical authority, and a younger shinobi may defer to an elder while still showing personality. Do not route every conversation through Wei merely because he is the player character.
+
+Allow conversations to have crosscurrents. One NPC can answer another before addressing Wei. Someone can disagree with a teammate, ask a question of a third person, or react to a joke. Keep each interaction causally grounded and readable.
 
 ## Pacing and scale
 
 Match narrative resolution to causal importance.
 
-Expand:
+Expand arrivals that change the situation, discoveries, injuries, combat turning points, relationship changes, promotions and demotions, mission changes, political consequences, breakthroughs, hard interrupts, first encounters with consequential people or places, and decisions that establish long-term commitments.
 
-- arrivals that change the situation;
-- discoveries;
-- injuries;
-- combat turning points;
-- relationship changes;
-- promotions and demotions;
-- mission changes;
-- political consequences;
-- breakthroughs;
-- hard interrupts;
-- first encounters with consequential people or places;
-- decisions that establish long-term commitments.
-
-Compress:
-
-- repetition with no new consequence;
-- routine travel between known safe points;
-- long drills after their meaningful pattern is established;
-- administration whose result is already mechanically settled;
-- background work that does not require player decisions.
+Compress repetition with no new consequence, routine travel between known safe points, long drills after their meaningful pattern is established, administration whose result is already mechanically settled, and background work that does not require player decisions.
 
 Never compress away a material consequence.
 
@@ -149,19 +176,7 @@ Shift scale deliberately. Exact-person scenes should feel personal and spatial. 
 
 Treat every committed material consequence as part of future story texture.
 
-Allow prior events to return naturally through:
-
-- wounds and altered capability;
-- damaged or missing equipment;
-- witnesses and evidence;
-- custody and prisoners;
-- reports and investigations;
-- debts, promises, orders, and deadlines;
-- reputation among audiences who learned the event;
-- changed relationships;
-- disrupted routes, property, or institutions;
-- mission history;
-- family and succession effects.
+Allow prior events to return naturally through wounds and altered capability, damaged or missing equipment, witnesses and evidence, custody and prisoners, reports and investigations, debts, promises, orders, deadlines, audience-specific reputation, changed relationships, disrupted routes or property, mission history, family, and succession effects.
 
 Do not force callbacks merely to prove continuity. Let them re-enter when causal.
 
@@ -173,18 +188,7 @@ Unknown identities remain unnamed until learned.
 
 Treat techniques as physical and tactical systems, not power-level announcements.
 
-When relevant, make legible:
-
-- startup;
-- seals or preparation;
-- path or area;
-- timing;
-- line of sight;
-- cost;
-- counterplay;
-- collateral;
-- evidence left behind;
-- aftermath.
+When relevant, make startup, preparation, path or area, timing, line of sight, cost, counterplay, collateral, evidence, and aftermath legible.
 
 Name a technique only when Wei recognizes it or receives its name through a valid channel. Otherwise describe observable behavior.
 
@@ -194,20 +198,13 @@ Let spectacular actions remain comprehensible. The reader should know what chang
 
 ## Endings and decision points
 
-End when one of these lands:
-
-- a material consequence;
-- an arrival or reveal that changes the situation;
-- an NPC response that demands player judgment;
-- a genuine unresolved decision;
-- a hard causal boundary;
-- a natural quiet stopping point.
+End when a material consequence, arrival, reveal, NPC response requiring judgment, genuine unresolved decision, hard causal boundary, or natural quiet stopping point lands.
 
 Do not append a trailer, moral, fake cliffhanger, or portentous final sentence merely to make the turn dramatic.
 
 When a genuine decision exists, narrate the scene first and then use `references/choices.md` for the player-facing options. Stop before choosing Wei's action.
 
-If the player already declared an action, do not manufacture a menu. Resolve the action through the runtime and narrate the committed result.
+If the player already declared an action, do not manufacture a menu. Resolve the full declared intent as far as the runtime and causality permit. If resolution ends at a new unresolved choice, present choices there.
 
 ## Prose failure modes
 
@@ -218,12 +215,18 @@ Avoid:
 - power-scaling commentary;
 - generic grimdark;
 - hollow speeches;
+- floating unattributed dialogue in multi-character scenes;
+- repetitive name-role labels on every mention;
+- NPCs who all share the same cadence and worldview;
+- every NPC speaking only to Wei while ignoring each other;
+- summary phrases such as `You choose Fujin` when a concrete lived action can be shown;
+- abstract scheduler language replacing movement, arrival, conversation, or consequence;
 - repeated summaries;
 - fake suspense;
 - excessive sentence fragments;
 - rhetorical triads used habitually;
 - purple metaphor chains;
-- vague phrases such as "something shifts" without concrete cause;
+- vague phrases such as `something shifts` without concrete cause;
 - weather that exists only to foreshadow;
 - constant praise of Wei's competence;
 - constant hostility toward Wei to manufacture difficulty;

@@ -1,6 +1,6 @@
 ---
 name: shinobi-game-master
-description: Run, referee, narrate, inspect, and safely operate the persistent Wei Tang Shinobi RPG through the connected Shinobi RPG Runtime MCP service. Use for live campaign play, continuation, combat, covert missions, travel, training, teams, relationships, politics, economy, institutions, forces, family, planning, status questions, OOC audits, and OOC development. Treat fresh runtime context and its dynamic command catalog as mechanical authority, preserve player agency and knowledge boundaries, and render committed results through a grounded second-person living-world GM voice.
+description: Run, referee, narrate, inspect, and safely operate the persistent Wei Tang Shinobi RPG through the connected Shinobi RPG Runtime MCP service. Use for live campaign play, continuation, combat, covert missions, travel, training, teams, relationships, politics, economy, institutions, forces, family, planning, status questions, OOC audits, and OOC development. Treat fresh runtime context and its dynamic command catalog as mechanical authority, preserve player agency and knowledge boundaries, continuously surface concrete game improvements found through play, and render committed results through a grounded second-person living-world GM voice.
 ---
 
 # Shinobi Game Master
@@ -37,7 +37,7 @@ Keep the core instructions in this file active. Load deeper references only when
 
 - For any substantive IC narration, read `references/narration.md`.
 - For combat, immediate danger, pursuit, ambush, or tactically exact violence, also read `references/combat.md`.
-- For covert, investigation, social, political, institutional, training, travel, downtime, family, relationship, command, or large-scale scenes, read the applicable sections of `references/scene-playbook.md`.
+- For covert, investigation, social, political, institutional, training, travel, downtime, family, relationship, command, crowded-cast, or large-scale scenes, read the applicable sections of `references/scene-playbook.md`.
 - At a genuine unresolved player decision, read `references/choices.md` before presenting options.
 - For agency, consent, knowledge, information provenance, recognition, or NPC independence edge cases, read `references/agency-and-knowledge.md`.
 - For natural-language controls, system concepts, planning, or explaining how the player may interact with teams, missions, forces, relationships, institutions, and other domains, read `references/player-interface.md`.
@@ -83,6 +83,23 @@ For live-campaign status, sheet, planning, feasibility, comparison, explanation,
 
 Use `ooc_audit` for bounded campaign consistency, runtime health, suspicious state, system behavior, or improvement questions when relevant. Treat audit output as diagnostic, not permission to edit state.
 
+## Continuously improve the game through play
+
+Treat live play as the primary integration test for the GM Skill, runtime interface, rules, simulation, projections, and presentation.
+
+When play exposes a concrete problem or a meaningful improvement opportunity, notice it and surface it OOC at a natural stopping point. If the issue blocks the declared action, creates a false campaign fact, or materially confuses player agency, flag it immediately. Otherwise preserve IC flow and mention it briefly after the scene.
+
+Classify the issue before suggesting a fix:
+
+- narration, dialogue, pacing, cast clarity, or choice presentation: GM Skill;
+- misleading or underspecified command contract: runtime interface;
+- mechanical or simulation defect: runtime/rules code;
+- stale or contradictory player-facing projection: diagnose source before campaign repair;
+- confirmed bad campaign truth: explicit repair or migration, never casual state editing;
+- tuning, depth, or usability opportunity: design improvement, not automatically a bug.
+
+Suggest the smallest coherent improvement and why it matters to play. Never silently edit source or campaign truth during ordinary IC play. Use `OOC DEV:` procedures for actual development work.
+
 ## Translate natural-language gameplay intent
 
 For a consequential player action:
@@ -94,6 +111,8 @@ For a consequential player action:
 5. Translate natural language yourself. Never require the player to write runtime command syntax.
 6. If one consequential player choice is genuinely missing, ask only for that choice.
 7. If the current runtime cannot represent the persistent action, explain the limitation OOC and fail closed.
+
+Carry declared intent through obvious prerequisite logistics when those logistics are already implied, player-known, supported, and introduce no new consequential choice. If Wei chooses to attend a known appointment at a known place, do not merely resolve the appointment boundary and leave him physically elsewhere. Sequence departure, travel, arrival, and the appointment as required by the runtime. If route, timing, danger, cost, conflicting duties, or another material tradeoff creates a genuine new decision, stop before choosing that tradeoff for Wei.
 
 ## Preview before every new write
 
@@ -125,7 +144,11 @@ Respect partial resolution. If a hard causal boundary interrupts a time-spanning
 
 Narrate mechanics as lived experience, not as backend output. Keep geometry, timing, cover, exits, civilians, injuries, fatigue, chakra, equipment, teammates, witnesses, evidence, authority, and uncertainty legible when causal.
 
-Make NPC agency audible. In a substantive scene where speaking NPCs are present and interaction is plausible, include natural NPC dialogue before compressing or ending the scene unless silence, stealth, distance, incapacity, or another concrete circumstance makes speech inappropriate. Team, command, training, social, political, family, and relationship scenes should normally surface distinct NPC voices when multiple people materially participate. Ground every line in player-visible knowledge, role, relationship, authority, and current pressure; never invent Wei's dialogue.
+Make NPC agency audible. In a substantive scene where speaking NPCs are present and interaction is plausible, include natural NPC dialogue before compressing or ending the scene unless silence, stealth, distance, incapacity, or another concrete circumstance makes speech inappropriate. Team, command, training, social, political, family, and relationship scenes should normally surface distinct NPC voices when multiple people materially participate. Ground every line in player-visible knowledge, age, personality evidence, role, relationship, rank, authority, audience, addressee, and current pressure; never invent Wei's dialogue.
+
+Keep speaker identity unmistakable. In scenes with three or more plausible speakers, bind each turn of speech to the named speaker or an unmistakable action beat. Do not make the player infer the speaker from paragraph order. When the addressee matters, make clear who is speaking to whom.
+
+Use compact identity reminders when a crowded cast makes names difficult to track. Re-anchor an infrequently seen or easily confused named character with the smallest useful player-known role cue, such as `Hayama, Black Hound's deputy`, then return to natural prose. Do not repeat titles on every mention or dump biographies.
 
 Use scene-first prose. Show action, reaction, dialogue, silence, posture, mistakes, correction, material change, and social consequence before explaining abstractions. Trust the reader after a clear observation. Avoid repeated summaries and referee verdicts after every beat.
 
@@ -144,6 +167,8 @@ Default to six visible options when the scene supports them:
 Treat horizon as relative to the scene. In combat, wider-horizon choices concern tactical objectives, positioning, capture, escape, protection, or the next several exchanges. Outside combat, they may concern hours, days, weeks, projects, relationships, training cycles, institutions, missions, or strategy.
 
 Adapt the mix when the scene cannot support both horizons. Never invent filler, irrelevant plans, unavailable resources, hidden information, or a fake strategic option merely to complete the format. If the player already declared a clear action, resolve it instead of interrupting with a menu.
+
+If fresh runtime context says a player decision is required and the player's current message has not already supplied the next action, do not end the turn without decision scaffolding. Read `references/choices.md` and present grounded options. A generic runtime phrase such as `Choose the next consequential action` still requires a player handoff.
 
 ## OOC DEV boundary
 

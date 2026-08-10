@@ -784,6 +784,136 @@
         "target_refs": [],
         "lethal_authorized": false
       }
+    },
+    {
+      "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75",
+      "name": "faction.ame_security_network Operational Formation 7",
+      "force_ref": "force.ame.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 850,
+      "authorized_personnel": 850,
+      "doctrine_ref": "doc.ame.field",
+      "training_ref": "train.ame.field",
+      "cohesion": 74,
+      "morale": 64,
+      "readiness": 83,
+      "location_ref": "place.ame",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 34,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 34,
+            "rank_distribution": {
+              "chunin": 17,
+              "jonin": 17
+            },
+            "condition": {
+              "healthy": 34
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.01",
+          "troop_type": "bridge_control",
+          "role": "assault",
+          "count": 142,
+          "rank_distribution": {
+            "support": 35,
+            "chunin": 107
+          },
+          "condition": {
+            "healthy": 142
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.02",
+          "troop_type": "rooftop_assault",
+          "role": "assault",
+          "count": 177,
+          "rank_distribution": {
+            "chunin": 71,
+            "special_jonin": 35,
+            "genin": 71
+          },
+          "condition": {
+            "healthy": 142,
+            "light_healing_injury": 35
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.03",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 71,
+          "rank_distribution": {
+            "chunin": 36,
+            "genin": 35
+          },
+          "condition": {
+            "healthy": 71
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.04",
+          "troop_type": "surveillance",
+          "role": "recon",
+          "count": 284,
+          "rank_distribution": {
+            "genin": 142,
+            "chunin": 107,
+            "special_jonin": 35
+          },
+          "condition": {
+            "healthy": 284
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.05",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 36,
+          "rank_distribution": {
+            "genin": 36
+          },
+          "condition": {
+            "healthy": 36
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.ame.security.network.b0cd0cca75.component.06",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 106,
+          "rank_distribution": {
+            "genin": 106
+          },
+          "condition": {
+            "healthy": 71,
+            "light_healing_injury": 35
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
     }
   ]
 }

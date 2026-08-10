@@ -2,7 +2,7 @@
   "schema": "faction-owner",
   "faction": {
     "id": "faction.fire_daimyo_liaison",
-    "name": "Fire Daimy\u014d Liaison Office",
+    "name": "Fire Daimyō Liaison Office",
     "status": "active",
     "leadership_ids": [
       "support.daimyo.noboru_shimizu"
@@ -44,14 +44,17 @@
       "prevent jurisdiction disputes from becoming security crises"
     ],
     "constraints": [
-      "Daimy\u014d prerogatives",
+      "Daimyō prerogatives",
       "Konoha autonomy",
       "political optics"
     ],
     "plan_state": {
       "status": "active",
-      "last_review_at": "SE-0061-02-05T07:00:00",
-      "wake_policy": "registered causal review or immediate causal trigger/information delivery"
+      "last_review_at": "SE-0061-12-31T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [
+        "mission.autonomy.a0fa4e2254207fe30b"
+      ]
     },
     "scope": "Fire Country civil authority interface with Konoha and major civilian interests",
     "leadership_model": "civil_administration"

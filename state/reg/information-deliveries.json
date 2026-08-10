@@ -2,7 +2,69 @@
   "schema": "information-registry",
   "owner_id": "registry.information",
   "owner_type": "information_registry",
-  "claims": {},
+  "claims": {
+    "claim.autonomy.4511c76023dbc81f1a": {
+      "claim_id": "claim.autonomy.4511c76023dbc81f1a",
+      "subject_ref": "faction.konoha_anbu",
+      "source_ref": "canon_hiruzen",
+      "collected_at": "SE-0061-12-31T07:00:00",
+      "epistemic_kind": "report",
+      "confidence_milli": 700,
+      "evidence_refs": []
+    },
+    "claim.autonomy.506d0da2059335c443": {
+      "claim_id": "claim.autonomy.506d0da2059335c443",
+      "subject_ref": "faction.kumo_military_intelligence",
+      "source_ref": "canon_c",
+      "collected_at": "SE-0061-12-31T07:00:00",
+      "epistemic_kind": "report",
+      "confidence_milli": 700,
+      "evidence_refs": []
+    },
+    "claim.autonomy.1bc4c118ad9660e04d": {
+      "claim_id": "claim.autonomy.1bc4c118ad9660e04d",
+      "subject_ref": "faction.bounty_broker_network",
+      "source_ref": "support.bounty.goro_kaneda",
+      "collected_at": "SE-0061-12-31T07:00:00",
+      "epistemic_kind": "report",
+      "confidence_milli": 700,
+      "evidence_refs": []
+    },
+    "claim.autonomy.353c709703616ed895": {
+      "claim_id": "claim.autonomy.353c709703616ed895",
+      "subject_ref": "faction.fire_border_authority",
+      "source_ref": "support.border.kazuo_murata",
+      "collected_at": "SE-0061-12-31T07:00:00",
+      "epistemic_kind": "report",
+      "confidence_milli": 700,
+      "evidence_refs": []
+    },
+    "claim.autonomy.7b009d21b7bd77cb65": {
+      "claim_id": "claim.autonomy.7b009d21b7bd77cb65",
+      "subject_ref": "faction.kiri_hunter_office",
+      "source_ref": "canon_ao",
+      "collected_at": "SE-0061-12-31T07:00:00",
+      "epistemic_kind": "report",
+      "confidence_milli": 700,
+      "evidence_refs": []
+    }
+  },
   "deliveries": [],
-  "knowledge": {}
+  "knowledge": {
+    "canon_hiruzen": [
+      "claim.autonomy.4511c76023dbc81f1a"
+    ],
+    "canon_c": [
+      "claim.autonomy.506d0da2059335c443"
+    ],
+    "support.bounty.goro_kaneda": [
+      "claim.autonomy.1bc4c118ad9660e04d"
+    ],
+    "support.border.kazuo_murata": [
+      "claim.autonomy.353c709703616ed895"
+    ],
+    "canon_ao": [
+      "claim.autonomy.7b009d21b7bd77cb65"
+    ]
+  }
 }

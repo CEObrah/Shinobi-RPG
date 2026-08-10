@@ -1,0 +1,162 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.konoha.guy.doctrine",
+  "team_id": "team.konoha.guy",
+  "name": "Team Guy Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_guy": 12,
+    "canon_lee": 12,
+    "canon_neji": 12,
+    "canon_tenten": 12
+  },
+  "effective_from": "SE-0061-12-25T21:15:00",
+  "approved_by": "canon_guy",
+  "motto": "See together. Move together. Finish together.",
+  "command": {
+    "captain": "canon_guy",
+    "deputy": "canon_lee",
+    "succession_order": [
+      "canon_lee",
+      "canon_neji",
+      "canon_tenten"
+    ]
+  },
+  "roles": {
+    "canon_guy": "jonin_instructor_and_team_leader",
+    "canon_lee": "close_combat_specialist",
+    "canon_neji": "reconnaissance_and_precision_combat",
+    "canon_tenten": "weapons_and_ranged_support"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "ASSESS",
+      "primary_members": [
+        "canon_guy",
+        "canon_lee"
+      ],
+      "objective": "Establish the mission picture, authority, threats, and viable routes before committing the team.",
+      "procedures": [
+        "Share verified observations.",
+        "Confirm the immediate objective and constraints."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "COORDINATE",
+      "primary_members": [
+        "canon_guy",
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "objective": "Concentrate complementary roles on the same mission problem instead of fragmenting into unrelated actions.",
+      "procedures": [
+        "Maintain command signals.",
+        "Use roles as responsibilities rather than isolated duels."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "COMPLETE",
+      "primary_members": [
+        "canon_guy",
+        "canon_lee"
+      ],
+      "objective": "Close the assigned objective while preserving the team and required information or captives.",
+      "procedures": [
+        "Prefer the mission objective over unnecessary attrition.",
+        "Transition to extraction once the objective is secured."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_guy",
+        "canon_lee"
+      ],
+      "objective": "Return personnel, casualties, prisoners, evidence, and reports through lawful channels.",
+      "procedures": [
+        "Account for every member.",
+        "Preserve classified information and evidence custody."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Mission authority",
+      "rule": "Team action remains inside lawful assignment authority.",
+      "procedures": [
+        "Escalate when the mission exceeds granted authority."
+      ]
+    },
+    {
+      "name": "Shared fight",
+      "rule": "The team coordinates on common objectives rather than seeking disconnected personal engagements.",
+      "procedures": [
+        "Support the member currently carrying the decisive objective burden."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "reconnaissance",
+      "directive": "Observe, verify, preserve secrecy, and report."
+    },
+    {
+      "mode": "capture",
+      "directive": "Control and restrain the authorized target while preserving required evidence."
+    },
+    {
+      "mode": "protection",
+      "directive": "Keep the protected person or asset viable and preserve an extraction route."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Use coordinated force only as required to secure the assigned objective."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Re-establish contact and command.",
+      "Account for members and casualties.",
+      "Create a viable withdrawal or regrouping route."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_guy",
+      "canon_lee"
+    ],
+    "procedures": [
+      "Account for personnel and material objectives.",
+      "Move through the safest lawful route consistent with mission urgency."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_guy"
+    ],
+    "scheduled_sessions": [
+      "Training is scheduled as a team commitment and grants credit only for actual attendance."
+    ],
+    "shared_drills": [
+      "team coordination",
+      "reconnaissance",
+      "objective control",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_guy": "jonin_instructor_and_team_leader",
+      "canon_lee": "close_combat_specialist",
+      "canon_neji": "reconnaissance_and_precision_combat",
+      "canon_tenten": "weapons_and_ranged_support"
+    },
+    "attendance_rule": "Only attended training supported by time, location, health, instructor, and facility state grants mechanical credit.",
+    "interrupt_rule": "Missions, injury, travel, higher lawful orders, or missing facilities interrupt training without make-up double counting.",
+    "no_double_counting": true
+  },
+  "identity": "balanced mission-team doctrine"
+}

@@ -537,9 +537,9 @@
       "authorized_personnel": 25,
       "doctrine_ref": "doc.kiri.field",
       "training_ref": "train.kiri.field",
-      "cohesion": 71,
-      "morale": 69,
-      "readiness": 84,
+      "cohesion": 75,
+      "morale": 73,
+      "readiness": 88,
       "location_ref": "place.kiri.harbor",
       "activity_summary": "boarding and harbor response readiness",
       "command_slot": {
@@ -1562,6 +1562,136 @@
       ],
       "operational_objective": {
         "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96",
+      "name": "faction.kiri_hunter_office Operational Formation 13",
+      "force_ref": "force.kiri.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 2000,
+      "authorized_personnel": 2000,
+      "doctrine_ref": "doc.kiri.field",
+      "training_ref": "train.kiri.field",
+      "cohesion": 72,
+      "morale": 66,
+      "readiness": 89,
+      "location_ref": "place.kiri",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 80,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 80,
+            "rank_distribution": {
+              "genin": 40,
+              "support": 40
+            },
+            "condition": {
+              "healthy": 80
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.01",
+          "troop_type": "mist_assault",
+          "role": "assault",
+          "count": 751,
+          "rank_distribution": {
+            "chunin": 334,
+            "genin": 250,
+            "special_jonin": 167
+          },
+          "condition": {
+            "healthy": 584,
+            "light_healing_injury": 167
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.02",
+          "troop_type": "water_control",
+          "role": "ranged_control",
+          "count": 501,
+          "rank_distribution": {
+            "chunin": 334,
+            "genin": 84,
+            "special_jonin": 83
+          },
+          "condition": {
+            "healthy": 501
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.03",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 250,
+          "rank_distribution": {
+            "chunin": 84,
+            "genin": 83,
+            "jonin": 83
+          },
+          "condition": {
+            "healthy": 250
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.04",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 84,
+          "rank_distribution": {
+            "genin": 84
+          },
+          "condition": {
+            "healthy": 84
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.05",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 84,
+          "rank_distribution": {
+            "chunin": 84
+          },
+          "condition": {
+            "healthy": 84
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.kiri.hunter.office.fa1b557f96.component.06",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 250,
+          "rank_distribution": {
+            "genin": 167,
+            "chunin": 83
+          },
+          "condition": {
+            "healthy": 250
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
         "target_refs": [],
         "lethal_authorized": false
       }

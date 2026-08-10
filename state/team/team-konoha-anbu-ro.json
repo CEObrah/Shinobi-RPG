@@ -1,0 +1,37 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.anbu.ro",
+  "name": "ANBU Ro Cell",
+  "status": "active",
+  "team_type": "anbu_cell",
+  "parent_institution_ref": "institution.konoha.hokage_administration",
+  "assignment_authority_ref": "canon_hiruzen",
+  "leader_ref": "canon_yugao",
+  "deputy_ref": "canon_aoba",
+  "member_refs": [
+    "canon_yugao",
+    "canon_aoba",
+    "canon_hayate"
+  ],
+  "roles": {
+    "canon_yugao": "team_leader",
+    "canon_aoba": "operative",
+    "canon_hayate": "operative"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-12-31T07:00:00",
+    "basis": "Autonomous lawful organization by faction.konoha_anbu under registered policy authority canon_hiruzen."
+  },
+  "doctrine_ref": null,
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_yugao"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  }
+}

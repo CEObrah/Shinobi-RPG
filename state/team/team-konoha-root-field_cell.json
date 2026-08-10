@@ -1,0 +1,37 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.root.field_cell",
+  "name": "Root Field Cell",
+  "status": "active",
+  "team_type": "anbu_cell",
+  "parent_institution_ref": "faction.root",
+  "assignment_authority_ref": "canon_danzo",
+  "leader_ref": "canon_fu_yamanaka",
+  "deputy_ref": "canon_torune_aburame",
+  "member_refs": [
+    "canon_fu_yamanaka",
+    "canon_torune_aburame",
+    "canon_sai"
+  ],
+  "roles": {
+    "canon_fu_yamanaka": "team_leader",
+    "canon_torune_aburame": "operative",
+    "canon_sai": "operative"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-12-31T07:00:00",
+    "basis": "Autonomous lawful organization by faction.root under registered policy authority canon_danzo."
+  },
+  "doctrine_ref": null,
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_fu_yamanaka"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  }
+}

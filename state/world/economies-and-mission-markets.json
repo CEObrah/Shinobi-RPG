@@ -3,7 +3,7 @@
   "owner_type": "world_registry",
   "payload": {
     "economies_and_mission_markets": {
-      "last_settled_at": "SE-0061-02-05T07:00:00",
+      "last_settled_at": "SE-0061-12-01T07:00:00",
       "markets": [
         {
           "competition": [
@@ -55,8 +55,8 @@
       "section": "economy_and_mission_market",
       "treasury_rule": "country, village, institution, force, and personal money remain separate",
       "finance": {
-        "last_settled_at": "SE-0061-02-05T07:00:00",
-        "next_due_at": "SE-0061-03-01T07:00:00",
+        "last_settled_at": "SE-0061-12-01T07:00:00",
+        "next_due_at": "SE-0062-01-01T07:00:00",
         "currency_ref": "currency.ryo",
         "funding_exact": {
           "canon_hiruzen": "treasury.konoha",
@@ -595,7 +595,16 @@
           }
         ],
         "arrears_ryo": {},
-        "last_period": null,
+        "last_period": {
+          "settled_at": "SE-0061-12-01T07:00:00",
+          "expected_ryo": 118684800000,
+          "paid_ryo": 118684800000,
+          "unpaid_current_ryo": 0,
+          "arrears_before_ryo": 0,
+          "arrears_after_ryo": 0,
+          "flow_count": 370,
+          "partial_flow_count": 0
+        },
         "capital_assets": {
           "place.sword_manor": {
             "replacement_value_ryo": 480000000,

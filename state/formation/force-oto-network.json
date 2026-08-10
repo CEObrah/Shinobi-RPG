@@ -475,6 +475,124 @@
         "target_refs": [],
         "lethal_authorized": false
       }
+    },
+    {
+      "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa",
+      "name": "faction.oto_research_cells Operational Formation 5",
+      "force_ref": "force.oto.network",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 650,
+      "authorized_personnel": 650,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 70,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.oto.network",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 26,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 26,
+            "rank_distribution": {
+              "chunin": 26
+            },
+            "condition": {
+              "healthy": 13,
+              "light_healing_injury": 13
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa.component.01",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 136,
+          "rank_distribution": {
+            "chunin": 82,
+            "genin": 54
+          },
+          "condition": {
+            "healthy": 136
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa.component.02",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 136,
+          "rank_distribution": {
+            "chunin": 55,
+            "genin": 54,
+            "special_jonin": 27
+          },
+          "condition": {
+            "healthy": 136
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa.component.03",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 217,
+          "rank_distribution": {
+            "chunin": 136,
+            "genin": 27,
+            "special_jonin": 54
+          },
+          "condition": {
+            "healthy": 190,
+            "light_healing_injury": 27
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa.component.04",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 54,
+          "rank_distribution": {
+            "jonin": 27,
+            "genin": 27
+          },
+          "condition": {
+            "healthy": 54
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.ce78ee7eaa.component.05",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 81,
+          "rank_distribution": {
+            "support": 27,
+            "special_jonin": 27,
+            "genin": 27
+          },
+          "condition": {
+            "healthy": 81
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
     }
   ]
 }

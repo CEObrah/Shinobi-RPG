@@ -3051,6 +3051,135 @@
         "target_refs": [],
         "lethal_authorized": false
       }
+    },
+    {
+      "id": "formation.mobilized.faction.konoha.4b5a1250bf",
+      "name": "faction_konoha Operational Formation 17",
+      "force_ref": "force.konoha.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 2000,
+      "authorized_personnel": 2000,
+      "doctrine_ref": "doc.konoha.field",
+      "training_ref": "train.konoha.anbu",
+      "cohesion": 81,
+      "morale": 77,
+      "readiness": 86,
+      "location_ref": "place.konoha",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 80,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 80,
+            "rank_distribution": {
+              "jonin": 40,
+              "special_jonin_or_anbu_specialist": 40
+            },
+            "condition": {
+              "healthy": 80
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.01",
+          "troop_type": "capture_specialists",
+          "role": "assault",
+          "count": 668,
+          "rank_distribution": {
+            "jonin": 167,
+            "anbu_operatives": 418,
+            "special_jonin_or_anbu_specialist": 83
+          },
+          "condition": {
+            "healthy": 585,
+            "light_healing_injury": 83
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.02",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 501,
+          "rank_distribution": {
+            "anbu_operatives": 251,
+            "special_jonin_or_anbu_specialist": 250
+          },
+          "condition": {
+            "healthy": 418,
+            "light_healing_injury": 83
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.03",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 167,
+          "rank_distribution": {
+            "anbu_operatives": 167
+          },
+          "condition": {
+            "healthy": 167
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.04",
+          "troop_type": "trackers",
+          "role": "recon",
+          "count": 417,
+          "rank_distribution": {
+            "jonin": 83,
+            "special_jonin_or_anbu_specialist": 167,
+            "anbu_operatives": 167
+          },
+          "condition": {
+            "healthy": 417
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.05",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 84,
+          "rank_distribution": {
+            "anbu_specialist": 84
+          },
+          "condition": {
+            "healthy": 84
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.4b5a1250bf.component.06",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 83,
+          "rank_distribution": {
+            "anbu_specialist": 83
+          },
+          "condition": {
+            "healthy": 83
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
     }
   ]
 }

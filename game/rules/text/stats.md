@@ -22,6 +22,8 @@ Attribute Support is calculated by `game/data/mechanics/stats.json`.
 - 160-199 legendary
 - 200+ extreme historical outlier
 
+The universal capability scale has no hard maximum. `200` is an outlier reference threshold, not a cap. Attributes, martial skills, operational skills, domain proficiencies, repertoire method mastery, and other trainable capabilities may exceed 200 when earned progression and the governing subsystem mechanics support it.
+
 ## Universal action score
 
 The fallback action-score formula and margin bands are owned by `game/data/mechanics/stats.json`. Use the exact subsystem authority whenever one exists. Body geometry, chakra, dōjutsu, injury, training, morale, and technique primitives may add or replace terms through their registered mechanics.

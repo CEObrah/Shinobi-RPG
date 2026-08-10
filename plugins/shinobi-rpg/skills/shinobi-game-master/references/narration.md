@@ -168,6 +168,8 @@ Expand arrivals that change the situation, discoveries, injuries, combat turning
 
 Compress repetition with no new consequence, routine travel between known safe points, long drills after their meaningful pattern is established, administration whose result is already mechanically settled, and background work that does not require player decisions.
 
+Treat routine safe travel as a transition, not an invitation to invent motion filler. When no route-specific player-visible detail matters, cut cleanly from departure to arrival and state elapsed time when it is useful. When route, transport, weather, crowding, checkpoints, terrain, companions, or another feature is established and causal, use those concrete facts. Never manufacture an unsupported manner of movement or competence phrase such as `at a shinobi's working pace` merely to fill the transition.
+
 Never compress away a material consequence.
 
 Shift scale deliberately. Exact-person scenes should feel personal and spatial. Team scenes should make coordination and role visible. Institutional scenes should show authority, process, resources, and audiences. Large wars should emphasize formations, sectors, command, routes, reserves, morale, logistics, and named actors only where individual causality matters.
@@ -221,6 +223,7 @@ Avoid:
 - every NPC speaking only to Wei while ignoring each other;
 - summary phrases such as `You choose Fujin` when a concrete lived action can be shown;
 - abstract scheduler language replacing movement, arrival, conversation, or consequence;
+- generic transition filler that invents how Wei moves, travels, or works when no player-visible fact establishes it;
 - repeated summaries;
 - fake suspense;
 - excessive sentence fragments;

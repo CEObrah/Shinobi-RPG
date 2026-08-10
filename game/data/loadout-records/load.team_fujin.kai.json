@@ -1,4 +1,27 @@
 {
-  "schema":"loadout-record",
-  "loadout":{"id":"load.team_fujin.kai","items":[{"item_id":"armor_house_court","quantity":1},{"item_id":"weapon_katana","quantity":1},{"item_id":"weapon_kunai","quantity":6},{"item_id":"weapon_shuriken","quantity":12},{"item_id":"item_smoke_bomb","quantity":2},{"item_id":"item_utility_wire","quantity":8,"unit":"m"},{"item_id":"item_medical_dressing","quantity":2},{"item_id":"item_water_container_1l","quantity":1},{"item_id":"item_field_ration_1day","quantity":1}],"inherits":null,"source":"team_permanent_standard","role_profile":"Team Fujin mobile disruptor / close-range pursuit","purpose":"Permanent role loadout; mission-specific expendables/support may be adjusted before deployment without stacking replacement armor."}
+  "schema": "loadout-record",
+  "loadout": {
+    "id": "load.team_fujin.kai",
+    "items": [
+      {"item_id": "armor_house_court", "quantity": 1},
+      {"item_id": "weapon_katana", "quantity": 1},
+      {"item_id": "weapon_kunai", "quantity": 6},
+      {"item_id": "weapon_shuriken", "quantity": 12},
+      {"item_id": "item_smoke_bomb", "quantity": 2},
+      {"item_id": "item_utility_wire", "quantity": 8, "unit": "m"},
+      {"item_id": "item_medical_dressing", "quantity": 2},
+      {"item_id": "item_water_container_1l", "quantity": 1},
+      {"item_id": "item_field_ration_1day", "quantity": 1}
+    ],
+    "inherits": null,
+    "source": "team_permanent_standard",
+    "role_profile": "Team Fujin mobile disruptor / close-range pursuit",
+    "purpose": "Permanent role loadout; mission-specific expendables/support may be adjusted before deployment without stacking replacement armor.",
+    "refit_policy": {
+      "assignment_ref": "team.konoha.fujin",
+      "holder_ref": "char.kai",
+      "authorized_team_roles": ["leader", "instructor"],
+      "supply_stock_refs": ["stock.force_konoha_shinobi", "stock.house.tang"]
+    }
+  }
 }

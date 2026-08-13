@@ -5133,6 +5133,416 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_doctrine_reviewed.a930e998364e215f26da8fb2",
+      "kind": "team_doctrine_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-05T21:15:00",
+        "occurred_at": "SE-0061-06-05T21:15:00",
+        "started_at": "SE-0061-06-05T21:15:00",
+        "ended_at": "SE-0061-06-05T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.guy"
+      ],
+      "actor_refs": [
+        "canon_guy"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/team/doctrine/team-konoha-guy.json",
+        "state/team/guy.json"
+      ],
+      "material_consequence_refs": [
+        "team.konoha.guy.doctrine"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "canon_guy"
+        ],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_guy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-05T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.team_doctrine_reviewed",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.68cc4d33f669e8f3ac03be2f",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-05T21:15:00",
+        "occurred_at": "SE-0061-06-05T21:15:00",
+        "started_at": "SE-0061-06-05T21:15:00",
+        "ended_at": "SE-0061-06-05T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.guy"
+      ],
+      "actor_refs": [
+        "canon_guy",
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "place_refs": [
+        "place.konoha.training_ground.3"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/guy.json",
+        "state/char/lee.json",
+        "state/char/neji.json",
+        "state/char/tenten.json",
+        "state/development/banks.json",
+        "state/team/doctrine/team-konoha-guy.json",
+        "state/team/guy.json",
+        "state/team/history/team.konoha.guy.json"
+      ],
+      "material_consequence_refs": [
+        "training:canon_guy:attributes.awareness:99->101",
+        "training:canon_lee:operational_skills.tactics:59->63",
+        "training:canon_neji:operational_skills.tactics:43->51",
+        "training:canon_tenten:attributes.awareness:58->62"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "canon_guy",
+          "canon_lee",
+          "canon_neji",
+          "canon_tenten"
+        ],
+        "audience_refs": [
+          "canon_guy",
+          "canon_lee",
+          "canon_neji",
+          "canon_tenten"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_guy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-05T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.team_training_session_resolved",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.b73d3581f41e04b6adcee555",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-07T07:00:00",
+        "occurred_at": "SE-0061-06-07T07:00:00",
+        "started_at": "SE-0061-06-07T07:00:00",
+        "ended_at": "SE-0061-06-07T07:00:00"
+      },
+      "host_refs": [
+        "pressure_great_village_mission_market"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_great_village_mission_market"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-07T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.2518e4c2e14dcb74bb12f531",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-07T07:00:00",
+        "occurred_at": "SE-0061-06-07T07:00:00",
+        "started_at": "SE-0061-06-07T07:00:00",
+        "ended_at": "SE-0061-06-07T07:00:00"
+      },
+      "host_refs": [
+        "pressure_kiri_transition"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_kiri_transition"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-07T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.d6097c52e55d63d853b949e5",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-07T07:00:00",
+        "occurred_at": "SE-0061-06-07T07:00:00",
+        "started_at": "SE-0061-06-07T07:00:00",
+        "ended_at": "SE-0061-06-07T07:00:00"
+      },
+      "host_refs": [
+        "pressure_akatsuki_intelligence"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_akatsuki_intelligence"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-07T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.dee628aa3962467bf0c509a9",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-07T07:00:00",
+        "occurred_at": "SE-0061-06-07T07:00:00",
+        "started_at": "SE-0061-06-07T07:00:00",
+        "ended_at": "SE-0061-06-07T07:00:00"
+      },
+      "host_refs": [
+        "pressure_suna_funding"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_suna_funding"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-07T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0",
+        "receipt_refs": [
+          "receipt.gameplay.63769ddcb42234d096ee624491c90e46758e04c744ba5246f3e906cf85bf93d0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.protected_travel_completed.db5465314429dd94c645",
+      "kind": "protected_travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-07T14:46:14",
+        "started_at": "SE-0061-06-07T14:46:14",
+        "ended_at": "SE-0061-06-07T14:46:14"
+      },
+      "host_refs": [
+        "place.fire.capital",
+        "place.konoha.mission_assignment_desk"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "pc_wei_tang",
+        "support.daimyo.noboru_shimizu"
+      ],
+      "place_refs": [
+        "place.fire.capital",
+        "place.konoha.mission_assignment_desk"
+      ],
+      "causal_refs": [
+        "mission.offer.0a7361790026211550"
+      ],
+      "affected_owner_refs": [
+        "state/char/ensui-nara.json",
+        "state/char/hana-inuzuka.json",
+        "state/char/hayama-shirakumo.json",
+        "state/char/hoheto-hyuga.json",
+        "state/char/tekuno-kanden.json",
+        "state/person/world/support-daimyo-noboru_shimizu.json",
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:canon_ensui_nara:place.fire.capital",
+        "location:canon_hana_inuzuka:place.fire.capital",
+        "location:canon_hayama_shirakumo:place.fire.capital",
+        "location:canon_hoheto_hyuga:place.fire.capital",
+        "location:canon_tekuno_kanden:place.fire.capital",
+        "location:pc_wei_tang:place.fire.capital",
+        "protected_subject:support.daimyo.noboru_shimizu:place.fire.capital"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang",
+          "support.daimyo.noboru_shimizu"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_fire_capital_konoha"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang",
+          "support.daimyo.noboru_shimizu"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-07T14:46:14"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.mission_subject_transport",
+        "transaction_ref": "tx.gameplay.db5465314429dd94c6459c035b5ae2aee888004f5785bac388ef8615967beeb7",
+        "receipt_refs": [
+          "receipt.gameplay.db5465314429dd94c6459c035b5ae2aee888004f5785bac388ef8615967beeb7"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

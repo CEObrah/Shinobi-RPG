@@ -38,7 +38,8 @@ class RouteAwareCampaignOperations(_Base):
                 "project_type": project_type,
                 "module_kind": row.get("module_kind"),
                 "currency_cost_ryo": row.get("currency_cost_ryo"),
-                "work_required_milli": row.get("work_required_milli"),
+                "required_work_units": row.get("required_work_units"),
+                "work_units_per_active_hour": row.get("work_units_per_active_hour"),
                 "resource_costs": dict(row.get("resource_costs", {})) if isinstance(row.get("resource_costs", {}), Mapping) else {},
             })
 
@@ -91,13 +92,22 @@ class RouteAwareCampaignOperations(_Base):
                 if not isinstance(pool_id, str) or not isinstance(pool, Mapping):
                     continue
                 if pool.get("status") == "active" and pool.get("owner_ref") in source_owners and pool.get("category") in categories:
-                    candidates.append({"source_pool_id": pool_id, "category": pool.get("category"), "owner_ref": pool.get("owner_ref")})
+                    candidates.append({
+                        "source_pool_id": pool_id,
+                        "category": pool.get("category"),
+                        "owner_ref": pool.get("owner_ref"),
+                        "anonymous_count": (pool.get("representation") or {}).get("anonymous_count") if isinstance(pool.get("representation"), Mapping) else None,
+                    })
             recruitment_rows.append({
                 "policy_ref": policy_ref,
                 "eligible_source_categories": list(categories),
                 "source_pool_candidates": candidates,
-                "selection_model": policy.get("selection_model"),
-                "materialization": policy.get("materialization"),
+                "selection_model": policy.get("selection_model", policy.get("selection_mode")),
+                "materialization": policy.get("materialization", policy.get("materialization_policy")),
+                "destination_owner_ref": policy.get("destination_owner_ref"),
+                "destination_pool_id": policy.get("destination_pool_id"),
+                "decision_authority_ref": policy.get("decision_authority_ref"),
+                "oath_required": policy.get("oath_required", False),
             })
         return {
             "player_house_growth": house_rows,

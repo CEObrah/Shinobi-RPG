@@ -61,6 +61,20 @@ Every consequential persistent mutation should preserve this sequence:
 
 Duplicate request IDs with identical commands are idempotent. Reused IDs with changed commands fail. Stale revisions fail. A failed write is never narrated as completed.
 
+Receipt recovery keeps a durable per-campaign maximum committed-revision index in runtime-private storage. Legacy receipt directories scan once to build it. Normal startup does not walk lifetime receipt history when the indexed maximum is at or behind current campaign revision; a deliberate rollback/repair that places receipts ahead of state still triggers the exhaustive exact invalidation check. Never reintroduce a lifetime receipt cap to solve startup scaling.
+
+## Scalability invariant
+
+The logical world has no engine-imposed lifetime/cardinality ceiling. Never make a fixed first-N slice, hot-window size, file-size warning, work budget, page size, or context budget decide whether a lawful person, event, mission, team, formation, relationship, claim, institution, host, or historical consequence exists or remains eligible.
+
+Fixed bounds are legitimate only when they are one of these:
+
+- a genuine game/domain rule, such as a defined stat scale or biological-parent semantics;
+- a security/transport envelope for untrusted input or one response;
+- a bounded projection/page/shard/work target with completeness metadata and an exact retrieval/continuation route.
+
+When a work target is reached, settle a coherent causal chunk and resume later. Never advance a cursor across work that was skipped, evict a still-live obligation merely to make room, forget exact provenance needed for idempotency/deduplication, or silently stop considering actors after an arbitrary index. Growth pressure should trigger pagination, deterministic sharding, indexing, or resumable settlement rather than invalidating the campaign. Size/count lint may warn about maintenance pressure but must not make a valid large world fail verification solely for being large.
+
 ## Time and causal scheduling
 
 Treat `state/time/causal-scheduler.json` as production scheduling authority unless runtime contracts explicitly migrate that ownership.
@@ -156,7 +170,7 @@ A large cold catalog may contain many people, teams, clans, settlements, institu
 
 ## Narration boundary
 
-Resolve mechanics first. Return only player-safe context/results. Then let ChatGPT narrate through the Shinobi Game Master Skill and the selected cold narration module.
+Resolve mechanics first. Return only player-safe context/results plus compact narration routing tags. Then let ChatGPT narrate through the Shinobi Game Master Skill and the selected Skill reference; do not ship duplicate narration prose through the runtime.
 
 Narration may add bounded sensory and stylistic detail that does not change mechanical truth. It may never invent outcomes, knowledge, resources, relationships, injuries, authority, or history.
 

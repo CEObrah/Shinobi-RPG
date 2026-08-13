@@ -3,8 +3,10 @@
 The base living-world trainer deliberately excludes the authenticated player.
 This mixin preserves that safe default and permits participation only when a
 persisted campaign policy names the player, the exact team, and a bounded target
-cycle.  It also permits routine non-player team assembly at a registered base
-when that movement is already covered by a standing team order.
+cycle. It also permits routine non-player team assembly at a registered base
+when that movement is already covered by a standing team order. Training
+instructor policy is independent from player participation so a team may exclude
+the player from autonomous hours while still replacing weak routine instructors.
 """
 from __future__ import annotations
 
@@ -18,6 +20,26 @@ from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.sim.scheduler import CausalSchedulerRegistry
 
 _POLICY_PATH = "game/rules/training/autonomy-participation.json"
+
+
+def _registered_training_instructors(
+    policy: Mapping[str, Any], team_instructors: Sequence[str]
+) -> Tuple[str, ...]:
+    strategy = policy.get("instructor_strategy", "augment_team_instructors")
+    if strategy not in ("augment_team_instructors", "replace_team_instructors"):
+        raise CommandRejectedError("team_training_participation_policy_invalid")
+    ordered: list[str] = [] if strategy == "replace_team_instructors" else [
+        ref for ref in team_instructors if isinstance(ref, str) and ref
+    ]
+    policy_refs = policy.get("instructor_refs", [])
+    if not isinstance(policy_refs, list) or any(
+        not isinstance(ref, str) or not ref for ref in policy_refs
+    ):
+        raise CommandRejectedError("team_training_participation_policy_invalid")
+    for ref in policy_refs:
+        if ref not in ordered:
+            ordered.append(ref)
+    return tuple(ordered)
 
 
 class StandingTrainingParticipationMixin:
@@ -43,6 +65,7 @@ class StandingTrainingParticipationMixin:
             or any(not isinstance(value, str) or not value for value in target_cycle)
         ):
             raise CommandRejectedError("team_training_participation_policy_invalid")
+        _registered_training_instructors(policy, ())
         return policy
 
     def _training_candidates(
@@ -84,7 +107,7 @@ class StandingTrainingParticipationMixin:
         record_writes: Mapping[str, Mapping[str, Any]],
     ) -> Optional[Tuple[str, Mapping[str, Any], str, list[Tuple[str, str, Dict[str, Any]]]]]:
         policy = self._team_participation_policy(team)
-        if policy is None or policy.get("participates_in_autonomous_training") is not True:
+        if policy is None:
             return super()._eligible_autonomous_group(team=team, record_writes=record_writes)
 
         training = team.get("training")
@@ -93,36 +116,42 @@ class StandingTrainingParticipationMixin:
         if not isinstance(members, list) or not isinstance(instructors, list):
             return None
         participant_ref = policy.get("participant_ref")
+        player_participates = policy.get("participates_in_autonomous_training") is True
         member_rows: list[Tuple[str, str, Dict[str, Any]]] = []
         for member_ref in members:
             if not isinstance(member_ref, str):
                 continue
             try:
-                path, _digest, view = self._resolve_covered_owner_view(member_ref, cache=_OwnerResolutionCache())
+                path, _digest, view = self._resolve_covered_owner_view(
+                    member_ref, cache=_OwnerResolutionCache()
+                )
             except CommandRejectedError:
                 continue
             source = record_writes.get(path)
-            resolved = copy.deepcopy(dict(source if source is not None else view)) if isinstance(source if source is not None else view, Mapping) else None
+            candidate_view = source if source is not None else view
+            resolved = (
+                copy.deepcopy(dict(candidate_view))
+                if isinstance(candidate_view, Mapping)
+                else None
+            )
             if not isinstance(resolved, dict):
                 continue
-            if player_controlled_record(resolved) and member_ref != participant_ref:
-                continue
-            if player_controlled_record(resolved) and member_ref == participant_ref and policy.get("participates_in_autonomous_training") is not True:
-                continue
+            if player_controlled_record(resolved):
+                if member_ref != participant_ref or not player_participates:
+                    continue
             profile = capability_profile_from_record(member_ref, resolved)
             location = resolved.get("current_location_id")
             if not profile.available or not isinstance(location, str) or not location:
                 continue
             member_rows.append((member_ref, path, resolved))
 
-        registered_instructors = list(instructors)
-        for ref in policy.get("instructor_refs", []):
-            if isinstance(ref, str) and ref not in registered_instructors:
-                registered_instructors.append(ref)
+        registered_instructors = _registered_training_instructors(policy, instructors)
         best = None
-        for instructor_ref in sorted(value for value in registered_instructors if isinstance(value, str)):
+        for instructor_ref in sorted(registered_instructors):
             try:
-                _path, _digest, view = self._resolve_covered_owner_view(instructor_ref, cache=_OwnerResolutionCache())
+                _path, _digest, view = self._resolve_covered_owner_view(
+                    instructor_ref, cache=_OwnerResolutionCache()
+                )
             except CommandRejectedError:
                 continue
             if not isinstance(view, Mapping) or player_controlled_record(view):
@@ -135,7 +164,11 @@ class StandingTrainingParticipationMixin:
             if len(group) < 2:
                 continue
             candidate = (instructor_ref, view, location, group)
-            if best is None or len(group) > len(best[3]) or (len(group) == len(best[3]) and instructor_ref < best[0]):
+            if (
+                best is None
+                or len(group) > len(best[3])
+                or (len(group) == len(best[3]) and instructor_ref < best[0])
+            ):
                 best = candidate
         return best
 
@@ -167,11 +200,18 @@ class StandingTrainingParticipationMixin:
 
         for member_ref in members:
             try:
-                path, _digest, view = self._resolve_covered_owner_view(member_ref, cache=_OwnerResolutionCache())
+                path, _digest, view = self._resolve_covered_owner_view(
+                    member_ref, cache=_OwnerResolutionCache()
+                )
             except CommandRejectedError:
                 continue
             source = record_writes.get(path)
-            record = copy.deepcopy(dict(source if source is not None else view)) if isinstance(source if source is not None else view, Mapping) else None
+            candidate_view = source if source is not None else view
+            record = (
+                copy.deepcopy(dict(candidate_view))
+                if isinstance(candidate_view, Mapping)
+                else None
+            )
             if not isinstance(record, dict) or player_controlled_record(record):
                 continue
             profile = capability_profile_from_record(member_ref, record)
@@ -230,4 +270,4 @@ class StandingTrainingParticipationMixin:
         )
 
 
-__all__ = ["StandingTrainingParticipationMixin"]
+__all__ = ["StandingTrainingParticipationMixin", "_registered_training_instructors"]

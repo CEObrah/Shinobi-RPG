@@ -1,5 +1,6 @@
 """Composed living-world autonomy mixin."""
 from .living_world_policy import LivingWorldPolicyMixin
+from .living_world_team_vitality import LivingWorldTeamVitalityMixin
 from .living_world_mission_briefing import LivingWorldMissionBriefingMixin
 from .living_world_mission import LivingWorldMissionMixin
 from .living_world_consequences import LivingWorldConsequencesMixin
@@ -14,6 +15,7 @@ from .living_world_house import LivingWorldHouseMixin
 
 class LivingWorldIntelligenceMixin(
     LivingWorldPolicyMixin,
+    LivingWorldTeamVitalityMixin,
     LivingWorldMissionBriefingMixin,
     LivingWorldMissionMixin,
     LivingWorldConsequencesMixin,

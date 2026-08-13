@@ -1,26 +1,35 @@
 {
   "schema": "promotion-exam-rules",
-  "version": 1,
+  "version": 2,
   "profiles": {
     "promotion_exam.konoha.chunin": {
       "id": "promotion_exam.konoha.chunin",
       "enabled": true,
       "world_arc_kind": "institutional_promotion_cycle",
       "canon_status": "campaign_institutional_not_future_canon",
-      "faction_ref": "faction.konoha_mission_office",
-      "institution_ref": "institution.konoha.hokage_administration",
+      "institution_ref": "institution.konoha.academy",
       "authority_ref": "canon_hiruzen",
       "service_village": "konoha",
       "source_rank": "Genin",
       "target_rank": "Chunin",
-      "cycle_months": [1, 7],
-      "cycle_day": 1,
-      "cycle_hour": 9,
+      "cycle_start_months": [
+        1,
+        7
+      ],
+      "phases": [
+        "registration",
+        "qualification",
+        "field_evaluation",
+        "finals",
+        "promotion_review",
+        "closed"
+      ],
       "rules": [
-        "This cadence is Konoha institutional procedure for the campaign, not a forced future-canon date or outcome.",
-        "Opening a cycle identifies exact Genin who already have persisted promotion eligibility; it never invents eligibility.",
-        "Opening the cycle does not silently choose examination results or promotions for named shinobi.",
-        "Any later exact promotion must pass the evidence-gated career reducer and can advance only one rank.",
+        "The Konoha world-registry institution scheduler is the only temporal authority for phase reviews; this file does not create a second clock.",
+        "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
+        "Each later scheduled Academy review advances at most one phase.",
+        "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",
+        "Exact promotion still requires persisted promotion eligibility and may advance only one rank.",
         "Every exact rank change synchronizes conserved aggregate village rank counts."
       ]
     }

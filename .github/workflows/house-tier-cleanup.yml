@@ -1,8 +1,8 @@
 name: house-tier-cleanup
 
 on:
-  push:
-    branches: [ooc-dev-clan-rank-progression]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 2
       - name: Apply exact House Tang tier metadata cleanup
         shell: bash

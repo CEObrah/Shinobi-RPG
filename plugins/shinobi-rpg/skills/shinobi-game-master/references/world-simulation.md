@@ -4,14 +4,15 @@
 
 1. World independence
 2. Persistent autonomy versus presentation motion
-3. Offscreen progression
-4. Representation scale
-5. Teams, forces, and formations
-6. Institutions and factions
-7. Clans and houses
-8. Strategic causality
-9. Canon and setting
-10. Callbacks and continuity
+3. Causal throughput and player-facing delivery
+4. Offscreen progression
+5. Representation scale
+6. Teams, forces, and formations
+7. Institutions and factions
+8. Clans and houses
+9. Strategic causality
+10. Canon and setting
+11. Callbacks and continuity
 
 ## World independence
 
@@ -35,6 +36,20 @@ Presentation motion is not an autonomous simulation shortcut. It cannot create a
 
 This distinction exists so strict persistence does not freeze ordinary life. Use presentation motion for moment-to-moment texture and runtime autonomy for anything that changes what the world will be tomorrow.
 
+## Causal throughput and player-facing delivery
+
+Keep **world activity** and **player awareness** separate. An event may happen offscreen without Wei knowing it. Player knowledge should arrive only through a lawful route: direct observation, public consequence, information claim and delivery, mission offer, institutional report, teammate contact, or another persisted player-visible channel.
+
+A living world therefore needs both generation and propagation. Do not judge autonomy only by whether scheduled hosts wake or offscreen events are committed. Also ask whether consequential developments can produce follow-on work and whether player-relevant information can actually reach play. A growing pile of undelivered reports or perpetually latent fronts is not evidence of healthy story flow.
+
+For world fronts or canon pressures, allow **lawful bootstrap** only from actions the saved source actor or institution could already take under ordinary autonomy. Bootstrap may select or tag an already-legal mission/report/priority action as evidence; it may not invent a hidden fact, future-canon outcome, hostile success, resource, participant, casualty, or revelation merely to start an arc. Future canon remains pressure, not destiny.
+
+For player missions, preserve the separation between institutional demand and player consent. A lawful faction or office may generate and persist an offer for an eligible player-led team. The offer itself may advance relevant world pressure, but it never accepts the mission, selects dialogue, allegiance, travel, spending, or risk tolerance for Wei. Background NPC workload must not silently starve a configured player-offer lane.
+
+For information, preserve provenance. Offscreen activity can create claims for lawful knowers; delivery through an explicit channel can make those claims available to Wei with appropriate confidence. Do not equate repository truth with delivered knowledge, and do not suppress a real delivered report merely because a long time advance otherwise reached its target.
+
+A healthy campaign does not require constant drama or a quota of encounters. Quiet days and quiet weeks may be correct. The failure condition is **structural starvation**: active actors repeatedly produce no lawful situation, or real offscreen situations repeatedly have no route to the player. Diagnose and fix the pipeline instead of compensating with narrator-authored plot.
+
 ## Offscreen progression
 
 Offscreen does not mean frozen and does not mean fully simulated person-by-person.
@@ -48,7 +63,9 @@ Respect the runtime's bounded causal model:
 
 Do not imply that every named person receives a hidden monthly scene or exact tick.
 
-When runtime time settlement surfaces a player-facing report, mission offer, team check-in, commitment, or other fresh pressure, treat it as a real bridge between offscreen autonomy and current play. Do not erase it merely because the requested time advance otherwise completed quietly.
+When runtime time settlement surfaces a player-facing report, mission offer, team check-in, commitment, institutional transition, public consequence, or other fresh pressure, treat it as a real bridge between offscreen autonomy and current play. Do not erase it merely because the requested time advance otherwise completed quietly.
+
+If an event-seeking downtime command is available, treat it as a bounded search across the same causal scheduler and domain mechanics, not as a second plot generator. It should stop on real player-facing consequences, not invent an event to satisfy the wording of the request.
 
 ## Representation scale
 
@@ -61,8 +78,6 @@ Respect three broad human representation levels:
 Materialization identifies an already represented person. It never creates a free human, skill set, relationship, equipment package, or history.
 
 Do not demand exact-person detail merely to decorate narration.
-
-An unnamed background role used under presentation latitude does not become a fourth representation level. It is scene texture only and has no persistent identity until runtime materialization or an existing person owner establishes one.
 
 ## Teams, forces, and formations
 
@@ -82,18 +97,7 @@ Player leadership does not make a team socially inert. Runtime autonomy may surf
 
 Give organizations memory through committed state rather than authorial personality.
 
-When an institution acts, consider:
-
-- formal authority;
-- resources;
-- personnel;
-- doctrine and policy;
-- current projects and missions;
-- information actually held;
-- relationships and opposition;
-- risk policy;
-- previous losses or successes;
-- deadlines and strategic pressure.
+When an institution acts, consider formal authority, resources, personnel, doctrine and policy, current projects and missions, information actually held, relationships and opposition, risk policy, previous losses or successes, deadlines, and strategic pressure.
 
 Avoid monolithic faction personalities. Different offices, commanders, clans, families, or subgroups can have different lawful interests when state supports that distinction.
 
@@ -107,26 +111,13 @@ For this campaign, **House Tang is the Tang clan institution**. `House Tang` is 
 
 House Tang is one example of this institutional scale: a clan or house may have a physical seat or compound, households, elders, leadership offices, dependents, retainers, property, military obligations, internal customs, economic interests, training traditions, and relationships with the village and other clans. Apply comparable institutional depth to other established clans when authoritative state supports it.
 
-When a clan or house becomes causal, consider the player-visible and persisted facts that exist for:
-
-- recognized status and political standing;
-- clan head, elders, councils, branch leadership, and succession;
-- main and branch households or other internal divisions;
-- compound, estate, district, dojo, shrine, archive, kennels, workshops, gardens, or other real places and facilities;
-- population, dependents, workforce, retainers, and shinobi manpower where represented;
-- property, income, trade, contracts, and material resources;
-- military specialties, doctrine, training culture, and lawful village obligations;
-- inherited traits, secret techniques, specialist knowledge, and access restrictions;
-- marriage, adoption, guardianship, kinship, inheritance, and alliance practice;
-- reputation, grievances, favors, debts, rivalries, and inter-clan relationships;
-- internal factions, generational differences, family disputes, and competing legitimate interests;
-- relationship with the Hokage, village offices, police, academy, missions system, and other institutions.
+When a clan or house becomes causal, consider the player-visible and persisted facts that exist for recognized status and political standing; leadership and succession; households or internal divisions; real places and facilities; population, dependents, workforce, retainers, and shinobi manpower where represented; property, income, trade, contracts, and resources; military specialties, doctrine, training culture, and village obligations; inherited traits, secret techniques, specialist knowledge, and access restrictions; family lifecycle; reputation, grievances, favors, debts, rivalries, and inter-clan relationships; internal factions and generational differences; and relationships with village institutions.
 
 Do not treat a clan as a single personality. Clan membership influences a person through upbringing, obligations, opportunities, restrictions, relationships, and culture, but individuals retain their own age, temperament, goals, loyalties, friendships, resentments, offices, and experiences.
 
 Do not assume every member possesses or has mastered the clan's famous ability. Distinguish hereditary capacity, trained technique, secret access, professional specialty, and individual mastery. Do not grant bloodline traits or hidden techniques merely because of a surname.
 
-Make compounds feel inhabited when the runtime establishes them. A clan seat should contain ordinary life as well as prestige: children, elders, trainees, meals, repairs, guards, clerks, family disputes, work, ceremonies, equipment care, visitors, and people who are not combatants. Use presentation latitude for anonymous ordinary life only when the place supports it; do not use it to invent exact clan membership, named relatives, security staffing, political factions, or hidden family facts.
+Make compounds feel inhabited when the runtime establishes them. A clan seat should contain ordinary life as well as prestige: children, elders, trainees, meals, repairs, guards, clerks, family disputes, work, ceremonies, equipment care, visitors, and people who are not combatants. Do not turn every clan compound into a throne room or military barracks.
 
 Inter-clan politics should emerge from real interests: marriages, missions, offices, land, prestige, succession, casualties, training access, intelligence, commerce, village policy, historic disputes, and personal relationships. Do not manufacture permanent hostility or alliance from canon stereotypes.
 
@@ -134,20 +125,9 @@ If a major clan becomes relevant but authoritative data is too thin to support c
 
 ## Strategic causality
 
-Let long-term consequences emerge from interacting systems:
-
-- recruitment changes available population and manpower;
-- casualties reduce future capability;
-- training consumes time and may alter readiness;
-- equipment must exist and be issued;
-- missions create information, reputation, losses, obligations, and follow-on work;
-- relationships change access and cooperation only for involved actors;
-- institutional projects consume time/resources and can create later capabilities;
-- territory, routes, custody, and supply matter when represented by current mechanics.
+Let long-term consequences emerge from interacting systems: recruitment changes available population and manpower; casualties reduce future capability; training consumes time and may alter readiness; equipment must exist and be issued; missions create information, reputation, losses, obligations, and follow-on work; relationships change access and cooperation only for involved actors; institutional projects consume time/resources and can create later capabilities; territory, routes, custody, and supply matter when represented by current mechanics.
 
 Never create resources because a story beat would benefit from them.
-
-Presentation motion never substitutes for strategic causality. If a scene detail would change future capability, access, obligations, knowledge, relationships, or resources, it has crossed the line into runtime-owned truth.
 
 ## Canon and setting
 
@@ -163,19 +143,7 @@ For clans specifically, canon may establish broad historical identity or well-kn
 
 ## Callbacks and continuity
 
-Allow prior committed events to influence later behavior through actual state:
-
-- reputation among informed audiences;
-- relationships;
-- injuries;
-- mission history;
-- information claims;
-- damaged assets;
-- deaths and vacancies;
-- promotions and offices;
-- family and clan events;
-- orders and promises;
-- strategic losses or gains.
+Allow prior committed events to influence later behavior through actual state: reputation among informed audiences, relationships, injuries, mission history, information claims, damaged assets, deaths and vacancies, promotions and offices, family and clan events, orders and promises, and strategic losses or gains.
 
 Do not manufacture callbacks that the runtime has not preserved. Do not ignore a relevant persisted consequence merely because it complicates the current scene.
 

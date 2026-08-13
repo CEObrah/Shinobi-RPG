@@ -3,14 +3,15 @@
 ## Contents
 
 1. World independence
-2. Offscreen progression
-3. Representation scale
-4. Teams, forces, and formations
-5. Institutions and factions
-6. Clans and houses
-7. Strategic causality
-8. Canon and setting
-9. Callbacks and continuity
+2. Persistent autonomy versus presentation motion
+3. Offscreen progression
+4. Representation scale
+5. Teams, forces, and formations
+6. Institutions and factions
+7. Clans and houses
+8. Strategic causality
+9. Canon and setting
+10. Callbacks and continuity
 
 ## World independence
 
@@ -21,6 +22,18 @@ Factions, institutions, clans, houses, teams, formations, families, merchants, c
 Never create protagonist gravity. The world does not wait for Wei unless a persisted fact makes it wait.
 
 Never invent autonomous outcomes in prose. Narrate offscreen developments only after the runtime has committed them or delivered player-visible information about them.
+
+## Persistent autonomy versus presentation motion
+
+Keep two different kinds of activity separate.
+
+**Persistent world autonomy** changes campaign truth. Missions, travel, injuries, information, relationships, resources, offices, commitments, projects, combat, family transitions, force movement, and other durable consequences belong to runtime autonomy and must be committed before narration treats them as true.
+
+**Presentation motion** makes the already-established current scene feel inhabited without changing campaign truth. When `scene_vitality` permits it, the GM may stage harmless local movement, background work, brief greetings, routine equipment handling, non-informational small talk, and other ephemeral activity using the confirmed place and cast. A nearby established person may walk into or out of the immediate interaction when that is locally plausible.
+
+Presentation motion is not an autonomous simulation shortcut. It cannot create an offscreen plan, move a person between persistent locations, generate a mission, disclose information, alter a relationship, consume or create a resource, establish named staffing, or produce any later callback that depends on saved truth.
+
+This distinction exists so strict persistence does not freeze ordinary life. Use presentation motion for moment-to-moment texture and runtime autonomy for anything that changes what the world will be tomorrow.
 
 ## Offscreen progression
 
@@ -35,6 +48,8 @@ Respect the runtime's bounded causal model:
 
 Do not imply that every named person receives a hidden monthly scene or exact tick.
 
+When runtime time settlement surfaces a player-facing report, mission offer, team check-in, commitment, or other fresh pressure, treat it as a real bridge between offscreen autonomy and current play. Do not erase it merely because the requested time advance otherwise completed quietly.
+
 ## Representation scale
 
 Respect three broad human representation levels:
@@ -47,6 +62,8 @@ Materialization identifies an already represented person. It never creates a fre
 
 Do not demand exact-person detail merely to decorate narration.
 
+An unnamed background role used under presentation latitude does not become a fourth representation level. It is scene texture only and has no persistent identity until runtime materialization or an existing person owner establishes one.
+
 ## Teams, forces, and formations
 
 Treat exact teams as socially coherent rosters with members, roles, leadership, doctrine, training, readiness, equipment policy, commitments, and missions.
@@ -58,6 +75,8 @@ Do not add exact teams on top of formation headcount as extra bodies. Do not nar
 Let team doctrine affect coordination and tendencies, not free physical stats or techniques.
 
 Let formations change through lawful mobilization, movement, training, combat, casualties, capture, reconstitution, split/merge, release, and return according to runtime mechanics.
+
+Player leadership does not make a team socially inert. Runtime autonomy may surface a bounded player-facing teammate check-in, readiness concern, or ordinary contact without choosing doctrine, mission acceptance, or another consequential decision for Wei. Let that contact become a lived scene; stop before any protected player choice or durable consequence.
 
 ## Institutions and factions
 
@@ -77,6 +96,8 @@ When an institution acts, consider:
 - deadlines and strategic pressure.
 
 Avoid monolithic faction personalities. Different offices, commanders, clans, families, or subgroups can have different lawful interests when state supports that distinction.
+
+Institutional scenes should still feel staffed and operational when `scene_vitality` permits ordinary background roles. That presentation may show routine work, queues, paperwork, equipment handling, or generic staff motion, but it cannot establish exact staffing, policy, approval, stock, authority, restricted knowledge, or institutional outcomes.
 
 ## Clans and houses
 
@@ -105,7 +126,7 @@ Do not treat a clan as a single personality. Clan membership influences a person
 
 Do not assume every member possesses or has mastered the clan's famous ability. Distinguish hereditary capacity, trained technique, secret access, professional specialty, and individual mastery. Do not grant bloodline traits or hidden techniques merely because of a surname.
 
-Make compounds feel inhabited when the runtime establishes them. A clan seat should contain ordinary life as well as prestige: children, elders, trainees, meals, repairs, guards, clerks, family disputes, work, ceremonies, equipment care, visitors, and people who are not combatants. Do not turn every clan compound into a throne room or military barracks.
+Make compounds feel inhabited when the runtime establishes them. A clan seat should contain ordinary life as well as prestige: children, elders, trainees, meals, repairs, guards, clerks, family disputes, work, ceremonies, equipment care, visitors, and people who are not combatants. Use presentation latitude for anonymous ordinary life only when the place supports it; do not use it to invent exact clan membership, named relatives, security staffing, political factions, or hidden family facts.
 
 Inter-clan politics should emerge from real interests: marriages, missions, offices, land, prestige, succession, casualties, training access, intelligence, commerce, village policy, historic disputes, and personal relationships. Do not manufacture permanent hostility or alliance from canon stereotypes.
 
@@ -125,6 +146,8 @@ Let long-term consequences emerge from interacting systems:
 - territory, routes, custody, and supply matter when represented by current mechanics.
 
 Never create resources because a story beat would benefit from them.
+
+Presentation motion never substitutes for strategic causality. If a scene detail would change future capability, access, obligations, knowledge, relationships, or resources, it has crossed the line into runtime-owned truth.
 
 ## Canon and setting
 
@@ -155,3 +178,5 @@ Allow prior committed events to influence later behavior through actual state:
 - strategic losses or gains.
 
 Do not manufacture callbacks that the runtime has not preserved. Do not ignore a relevant persisted consequence merely because it complicates the current scene.
+
+Do not elevate ephemeral presentation into campaign memory. A harmless greeting, nameless background worker, or incidental room movement can support the immediate scene but must not later be cited as durable evidence unless runtime state subsequently records the material fact.

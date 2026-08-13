@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World front escalation policy",
+  "type": "object",
+  "required": ["schema", "version", "principle", "phase_thresholds", "material_action_kinds", "non_material_action_kinds", "fronts"],
+  "properties": {
+    "schema": {"const": "world-front-policy"},
+    "version": {"const": 1},
+    "principle": {"type": "string", "minLength": 1},
+    "phase_thresholds": {
+      "type": "object",
+      "required": ["developing_evidence", "operational_evidence", "crisis_evidence"],
+      "properties": {
+        "developing_evidence": {"type": "integer", "minimum": 1},
+        "operational_evidence": {"type": "integer", "minimum": 2},
+        "crisis_evidence": {"type": "integer", "minimum": 3}
+      },
+      "additionalProperties": false
+    },
+    "material_action_kinds": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "non_material_action_kinds": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "fronts": {
+      "type": "object",
+      "propertyNames": {"pattern": "^pressure_[a-z0-9][a-z0-9_]*$"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["faction_roles", "strategic_action_cycle", "player_visibility", "canon_forcing"],
+        "properties": {
+          "faction_roles": {"type": "object", "additionalProperties": {"enum": ["source", "opposition"]}},
+          "strategic_action_cycle": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "player_visibility": {"enum": ["knowledge_only", "public_or_knowledge"]},
+          "canon_forcing": {"const": false}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

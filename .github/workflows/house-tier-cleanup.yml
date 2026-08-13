@@ -1,0 +1,52 @@
+name: house-tier-cleanup
+
+on:
+  push:
+    branches: [ooc-dev-clan-rank-progression]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Apply exact House Tang tier metadata cleanup
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('state/house/tang.json')
+          before = path.read_text(encoding='utf-8')
+          old_training = '"training": "House Tang instructor curriculum"'
+          new_training = '"training": "House Tang instructor standing development"'
+          old_package = '"package:PKG_HT_INSTRUCTOR": 5'
+          new_package = '"package:PKG_HT_SENIOR": 5'
+          assert before.count(old_training) == 1
+          assert before.count(old_package) == 1
+          assert new_training not in before
+          after = before.replace(old_training, new_training).replace(old_package, new_package)
+          before_lines = before.splitlines()
+          after_lines = after.splitlines()
+          changes = [(i, a, b) for i, (a, b) in enumerate(zip(before_lines, after_lines), 1) if a != b]
+          assert len(before_lines) == len(after_lines)
+          assert len(changes) == 2, changes
+          assert changes[0][1].strip() == old_training and changes[0][2].strip() == new_training
+          assert changes[1][1].strip() == old_package and changes[1][2].strip() == new_package
+          path.write_text(after, encoding='utf-8')
+          PY
+          git diff --check
+          git diff -- state/house/tang.json
+      - name: Commit state repair and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/house-tier-cleanup.yml
+          git add state/house/tang.json
+          git commit -m 'Migrate House Tang instructor standing to Senior technical access'
+          git push origin HEAD:ooc-dev-clan-rank-progression

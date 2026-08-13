@@ -1,151 +1,80 @@
 {
-  "schema": "clan-training-progression.v1",
-  "authority": "Static institutional instruction-access and promotion-review policy. Access permits instruction only; it never grants knowledge, mastery, bloodline expression, office, or village career rank.",
+  "schema": "clan-training-progression.v2",
   "principles": {
     "instruction_access_is_not_mastery": true,
     "promotion_is_not_automatic_from_capability": true,
-    "bloodline_or_hereditary_eligibility_is_separate": true,
     "village_career_rank_is_separate": true,
-    "formal_social_rank_only_when_institution_defines_one": true,
-    "cumulative_access": true,
-    "sparse_clans_deepen_when_causal": true
+    "standing_and_technical_tier_are_separate": true
   },
   "institutions": {
     "house.tang": {
       "kind": "formal_rank_ladder",
-      "formal_social_rank": true,
       "rank_requirements_ref": "game/data/house/ranks.json",
-      "grade_order": ["junior_disciple", "senior_disciple", "assistant_instructor", "senior_instructor", "sword_master"],
+      "standing_order": [
+        "junior_disciple",
+        "senior_disciple",
+        "assistant_instructor",
+        "senior_instructor",
+        "sword_master"
+      ],
+      "technical_tier_order": ["junior", "senior", "master"],
+      "standing_to_technical_tier": {
+        "junior_disciple": "junior",
+        "senior_disciple": "senior",
+        "assistant_instructor": "senior",
+        "senior_instructor": "senior",
+        "sword_master": "master"
+      },
+      "technical_tiers": {
+        "junior": {"package_ref": "PKG_HT_JUNIOR"},
+        "senior": {"package_ref": "PKG_HT_SENIOR"},
+        "master": {"package_ref": "PKG_HT_SWORD_MASTER"}
+      },
       "promotion": {
         "automatic": false,
-        "direct_next_grade_only": true,
+        "direct_next_standing_only": true,
         "require_all_numeric_minimums": true,
         "require_all_credentials": true,
         "review_authority_refs": ["char.zhu"],
         "delegated_review_refs": ["char.linh"],
         "rostered_promotion_requires_identity_preservation": true,
         "rostered_promotion_materializes_exact_person": true
-      },
-      "access_by_grade": {
-        "junior_disciple": {
-          "package_ref": "PKG_HT_JUNIOR",
-          "adds_methods": ["flowing_veil", "returning_current", "binding_current"],
-          "curriculum_methods": ["transformation", "clone_illusion", "prepared_substitution", "tree_surface_adherence", "water_surface_adherence", "flowing_veil", "returning_current", "binding_current"]
-        },
-        "senior_disciple": {
-          "package_ref": "PKG_HT_SENIOR",
-          "adds_methods": ["listening_skin", "pressure_nails", "empty_step", "crosscurrent_zone"],
-          "curriculum_methods": ["listening_skin", "pressure_nails", "empty_step", "crosscurrent_zone"]
-        },
-        "assistant_instructor": {
-          "package_ref": "PKG_HT_INSTRUCTOR",
-          "adds_methods": ["carrying_veil", "mind_anchor_protocol", "breaking_step", "sheltering_current", "clear_air_court"],
-          "note": "Assistant Instructors unlock rescue, safety, escape, anti-genjutsu and protective-court instruction before the A-rank offensive/control curriculum.",
-          "curriculum_methods": ["carrying_veil", "mind_anchor_protocol", "breaking_step", "sheltering_current", "clear_air_court"]
-        },
-        "senior_instructor": {
-          "package_ref": "PKG_HT_INSTRUCTOR",
-          "adds_methods": ["silent_chamber", "thousand_edge_field", "severing_wake"],
-          "note": "Senior Instructors unlock the high-control A-rank field and lethal-control curriculum.",
-          "curriculum_methods": ["silent_chamber", "thousand_edge_field", "severing_wake"]
-        },
-        "sword_master": {
-          "package_ref": "PKG_HT_SWORD_MASTER",
-          "adds_methods": ["rulers_domain", "court_of_ten_thousand_invisible_blades"],
-          "note": "Sword Master access includes the S-rank domain/network apex methods; access remains separate from actual mastery.",
-          "curriculum_methods": ["rulers_domain", "court_of_ten_thousand_invisible_blades"]
-        }
       }
     },
     "clan.nara": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["shadow_possession"], "requires_field_usable_methods": []},
-        "advanced": {"adds_methods": ["shadow_extension_control"], "requires_field_usable_methods": ["shadow_possession"]}
-      },
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Nara", "Nara Clan", "clan.nara"]
+      "membership_package_ref": "PKG_NARA_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true}
     },
     "clan.yamanaka": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "core", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["mental_security"], "requires_field_usable_methods": []},
-        "core": {"adds_methods": ["telepathic_contact"], "requires_field_usable_methods": ["mental_security"]},
-        "advanced": {"adds_methods": ["mind_transfer"], "requires_field_usable_methods": ["telepathic_contact"]}
-      },
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Yamanaka", "Yamanaka Clan", "clan.yamanaka"]
+      "membership_package_ref": "PKG_YAMANAKA_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true}
     },
     "clan.akimichi": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "core", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["calorie_conversion_safety"], "requires_field_usable_methods": []},
-        "core": {"adds_methods": ["partial_expansion"], "requires_field_usable_methods": ["calorie_conversion_safety"]},
-        "advanced": {"adds_methods": ["expansion"], "requires_field_usable_methods": ["partial_expansion"]}
-      },
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Akimichi", "Akimichi Clan", "clan.akimichi"]
+      "membership_package_ref": "PKG_AKIMICHI_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true}
     },
     "clan.aburame": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "core", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["kikaichu_command"], "requires_field_usable_methods": []},
-        "core": {"adds_methods": ["insect_tracking"], "requires_field_usable_methods": ["kikaichu_command"]},
-        "advanced": {"adds_methods": ["chakra_consumption_swarm"], "requires_field_usable_methods": ["insect_tracking"]}
-      },
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Aburame", "Aburame Clan", "clan.aburame"]
+      "membership_package_ref": "PKG_ABURAME_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true}
     },
     "clan.inuzuka": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "core", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["scent_tracking"], "requires_field_usable_methods": []},
-        "core": {"adds_methods": ["ninken_coordination"], "requires_field_usable_methods": ["scent_tracking"]},
-        "advanced": {"adds_methods": ["fang_rotation"], "requires_field_usable_methods": ["ninken_coordination"]}
-      },
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Inuzuka", "Inuzuka Clan", "clan.inuzuka"]
+      "membership_package_ref": "PKG_INUZUKA_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true}
     },
     "clan.hyuga": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation", "core", "advanced"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": ["byakugan_activation"], "requires_field_usable_methods": []},
-        "core": {"adds_methods": ["gentle_fist"], "requires_field_usable_methods": ["byakugan_activation"]},
-        "advanced": {"adds_methods": ["chakra_point_disruption"], "requires_field_usable_methods": ["gentle_fist"]}
-      },
-      "note": "Branch/household restrictions remain separate from this pedagogical access grade and can further restrict advanced teaching.",
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Hyuga", "Hyūga", "Hyuga Clan", "Hyūga Clan", "clan.hyuga"]
+      "membership_package_ref": "PKG_HYUGA_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true, "additional_family_restrictions_may_apply": true}
     },
     "clan.uchiha": {
       "kind": "instruction_access_ladder",
-      "formal_social_rank": false,
-      "default_member_grade": "foundation",
-      "grade_order": ["foundation"],
-      "access_by_grade": {
-        "foundation": {"adds_methods": [], "curriculum_methods": ["fire_foundations", "shuriken_wire_coordination", "sharingan_adaptation_when_awakened"], "requires_field_usable_methods": [], "note": "Sharingan adaptation is gated by actual ocular awakening/technique prerequisites rather than an invented clan teaching rank."}
-      },
-      "note": "Sharingan instruction access never causes awakening; the separate hereditary/ocular prerequisite must already be satisfied.",
-      "access_progression": {"mode": "mastery_gated_instruction", "formal_promotion": false, "clan_membership_required": true, "clan_authority_and_teacher_still_required": true, "village_rank_does_not_auto_advance_access": true},
-      "membership_aliases": ["Uchiha", "Uchiha Clan", "clan.uchiha"]
+      "membership_package_ref": "PKG_UCHIHA_CLAN_CORE",
+      "access_progression": {"mode": "package_order_mastery_gated", "village_rank_does_not_auto_advance_access": true, "separate_hereditary_prerequisites_apply": true}
     }
   }
 }

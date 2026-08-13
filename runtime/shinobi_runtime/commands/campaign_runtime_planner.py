@@ -15,7 +15,6 @@ from typing import Any, Callable, Dict, Mapping, Sequence
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.autonomy_error_boundaries import AutonomyErrorBoundaryMixin
 from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner as _BaseCampaignCommandPlanner
-from shinobi_runtime.commands.campaign_repair_20260813 import CampaignRepair20260813Mixin
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.development_breakthrough_dossier import DevelopmentBreakthroughDossierMixin
 from shinobi_runtime.commands.development_cursor_authority import DevelopmentCursorAuthorityMixin
@@ -28,7 +27,6 @@ from shinobi_runtime.commands.mission_subject_transport import MissionSubjectTra
 from shinobi_runtime.commands.player_mission_offer_policy import PlayerMissionOfferPolicyMixin
 from shinobi_runtime.commands.player_mission_reward_funding import PlayerMissionRewardFundingMixin
 from shinobi_runtime.commands.runtime_stability import RuntimeStabilityMixin
-from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
 from shinobi_runtime.commands.standing_training_mission_absence import StandingTrainingMissionAbsenceMixin
 from shinobi_runtime.commands.standing_training_participation import StandingTrainingParticipationMixin
 from shinobi_runtime.commands.team_intelligence import TeamIntelligenceMixin
@@ -59,19 +57,6 @@ _VALIDATOR_FAILURE_SUFFIXES = {
     "House progression after-image differs from settled plan": "house_progression_after_image",
     "House development cursor advanced beyond reviewed time": "house_progression_cursor",
 }
-
-# Temporary, exact maintenance command. The canonical command registry remains
-# the single dispatch authority even during repair; this entry is removed after
-# the verified one-shot receipt.
-COMMAND_SPECS.setdefault(
-    "campaign_repair_resolution",
-    CommandSpec(
-        required_fields=("repair_id",),
-        summary="Apply one exact guarded campaign repair for confirmed June progression defects.",
-        payload_hints={"repair_id": "repair.2026-08-13.fujin-training-and-blackhound-reward"},
-        availability="explicit_ooc_campaign_repair_only",
-    ),
-)
 
 
 def _refresh_time_advanced_plan(plan: _BuiltPlan, scene_path: str) -> _BuiltPlan:
@@ -149,7 +134,6 @@ def _guard_plan_validator(
 
 
 class CampaignCommandPlanner(
-    CampaignRepair20260813Mixin,
     PlayerMissionRewardFundingMixin,
     PlayerMissionOfferPolicyMixin,
     MissionPlayerAgencyMixin,
@@ -168,8 +152,6 @@ class CampaignCommandPlanner(
     _BaseCampaignCommandPlanner,
 ):
     """Production planner with living-world autonomy and stability guards."""
-
-    COMMAND_TYPES = frozenset((*_BaseCampaignCommandPlanner.COMMAND_TYPES, "campaign_repair_resolution"))
 
     def _training_facility_capacity(
         self,

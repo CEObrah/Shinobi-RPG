@@ -12,7 +12,7 @@ def create_app_from_env():
     from shinobi_runtime.api.campaign_ooc import RepositoryOocAudit
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.commands import campaign_planner as planner_module
-    from shinobi_runtime.commands.campaign_manufacturing import CampaignCommandPlanner
+    from shinobi_runtime.commands.campaign_intake_onboarding import CampaignCommandPlanner
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
     from shinobi_runtime.commands.promotion_exam_cycle import install_promotion_exam_projection
 

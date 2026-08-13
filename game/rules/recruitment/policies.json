@@ -35,6 +35,13 @@
       "max_intake_per_batch": 12,
       "max_applicants_per_batch": 24,
       "cooldown_days": 30,
+      "onboarding_loadout_ref": "load.ht.base",
+      "onboarding_stock_ref": "stock.house.tang",
+      "onboarding_require_full_loadout": true,
+      "capacity_gate": {
+        "module_kind": "training",
+        "capacity_field": "capacity_slots"
+      },
       "cohort_baseline": {
         "numeric_values": {
           "age_years": 21,

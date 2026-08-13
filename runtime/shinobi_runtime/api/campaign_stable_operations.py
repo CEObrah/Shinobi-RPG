@@ -5,7 +5,8 @@ campaign needs one additional bounded signal so a rolled-back gameplay write can
 be diagnosed without shell access to the Railway volume. Production reads also
 surface player-safe cold site topology after the base visibility check so the GM
 can narrate established places without duplicating static world content into
-mutable campaign state.
+mutable campaign state. Mission handoff routing stays bounded while distinguishing
+current mission work from historical participant missions.
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ from shinobi_runtime.api.contracts import (
     PlannerUnavailableError,
 )
 from shinobi_runtime.api.operations import OperationError, PlanStateChangedError
+from shinobi_runtime.commands.mission_owner import MissionOwner
 from shinobi_runtime.tx.canonical import thaw_json
 from shinobi_runtime.tx.errors import (
     DirtyRepositoryError,
@@ -45,6 +47,14 @@ _TRANSACTION_FAILURE_CODES = {
 _SITE_DEFINITION_PATH = "game/data/content/strategic-site-definitions.json"
 _MAX_SITE_LIST_ITEMS = 96
 _MAX_SITE_TEXT = 512
+_CURRENT_MISSION_STATES = frozenset(("offered", "accepted", "active", "resolving"))
+_MAX_MISSION_OWNER_FILES = 256
+_MAX_CONTEXT_MISSION_IDS = 16
+_MISSION_COMMANDS = (
+    "mission_transition",
+    "mission_objective_update",
+    "mission_derive_and_settle",
+)
 
 
 def transaction_failure_code(exc: TransactionError) -> str:
@@ -92,8 +102,132 @@ def _bounded_site_list(value: object) -> list[Any] | None:
     return result
 
 
+def _apply_current_mission_handoff(
+    payload: Mapping[str, Any],
+    *,
+    mission_ids: tuple[str, ...],
+    briefing_ids: tuple[str, ...],
+    missions_truncated: bool,
+) -> dict[str, Any]:
+    """Replace historical mission routing with bounded current-mission routing."""
+
+    projected = dict(payload)
+    commands = projected.get("commands")
+    if not isinstance(commands, Mapping):
+        raise OperationError(503, "mission_context_invalid")
+    updated_commands = dict(commands)
+    updated_commands["active_mission_owner_ids"] = list(mission_ids)
+
+    command_types = updated_commands.get("command_types")
+    if isinstance(command_types, Mapping):
+        updated_types = {
+            key: dict(value) if isinstance(value, Mapping) else value
+            for key, value in command_types.items()
+        }
+        for command_name in _MISSION_COMMANDS:
+            descriptor = updated_types.get(command_name)
+            if not isinstance(descriptor, dict):
+                continue
+            descriptor["availability"] = (
+                "available" if mission_ids else "no_mission_owner"
+            )
+        objective_descriptor = updated_types.get("mission_objective_update")
+        if mission_ids and isinstance(objective_descriptor, dict):
+            objective_descriptor["availability"] = (
+                "requires_persisted_terminal_world_event_evidence"
+            )
+        updated_commands["command_types"] = updated_types
+    projected["commands"] = updated_commands
+
+    projected["mission_reads"] = {
+        "operational_brief_owner_ids": list(briefing_ids),
+        "use": (
+            "Inspect the exact mission owner before presenting a mission briefing, "
+            "acceptance or activation, departure or travel, objective resolution, "
+            "or reporting when operational details materially matter."
+        ),
+    }
+
+    context_policy = projected.get("context_policy")
+    if isinstance(context_policy, Mapping):
+        updated_policy = dict(context_policy)
+        raw_truncated = updated_policy.get("truncated_fields", [])
+        truncated_fields = [
+            value
+            for value in raw_truncated
+            if isinstance(value, str)
+            and value != "commands.active_mission_owner_ids"
+        ]
+        if missions_truncated:
+            truncated_fields.append("commands.active_mission_owner_ids")
+        updated_policy["truncated_fields"] = sorted(set(truncated_fields))
+        projected["context_policy"] = updated_policy
+    return projected
+
+
 class RouteAwareCampaignOperations(_BaseRouteAwareCampaignOperations):
     """Production operations with diagnostics and player-safe place topology."""
+
+    def _current_player_mission_context(
+        self,
+        player_id: str,
+    ) -> tuple[tuple[str, ...], tuple[str, ...], bool]:
+        """Return current participant missions plus briefing read hints.
+
+        Historical terminal missions remain authorized through the inherited
+        exact-object read path. This selector is only for current play handoff.
+        """
+
+        mission_directory = self.repository.resolve("state/mission")
+        if not mission_directory.is_dir():
+            return (), (), False
+        paths = sorted(mission_directory.glob("mission.*.json"))
+        if len(paths) > _MAX_MISSION_OWNER_FILES:
+            raise OperationError(503, "mission_context_out_of_bounds")
+
+        current: list[MissionOwner] = []
+        try:
+            for path in paths:
+                relative_path = path.relative_to(self.repository.root).as_posix()
+                owner = MissionOwner.from_record(
+                    self.repository.read_json(relative_path)
+                )
+                if (
+                    player_id in owner.mission.participant_refs
+                    and owner.mission.state in _CURRENT_MISSION_STATES
+                ):
+                    current.append(owner)
+        except (TypeError, ValueError) as exc:
+            raise OperationError(503, "mission_context_invalid") from exc
+
+        selected = current[:_MAX_CONTEXT_MISSION_IDS]
+        mission_ids = tuple(owner.mission_id for owner in selected)
+        briefing_ids = tuple(
+            owner.mission_id for owner in selected if owner.briefing is not None
+        )
+        return mission_ids, briefing_ids, len(current) > _MAX_CONTEXT_MISSION_IDS
+
+    def _project_play_context(
+        self,
+        meta: object,
+        scene: object,
+        player: object,
+        state_root: str,
+    ) -> Mapping[str, Any]:
+        payload = super()._project_play_context(meta, scene, player, state_root)
+        campaign = payload.get("campaign") if isinstance(payload, Mapping) else None
+        player_id = campaign.get("player_id") if isinstance(campaign, Mapping) else None
+        if not isinstance(player_id, str):
+            raise OperationError(503, "mission_context_invalid")
+        mission_ids, briefing_ids, missions_truncated = (
+            self._current_player_mission_context(player_id)
+        )
+        return _apply_current_mission_handoff(
+            payload,
+            mission_ids=mission_ids,
+            briefing_ids=briefing_ids,
+            missions_truncated=missions_truncated,
+        )
 
     def _authored_site_context(self, object_ref: str) -> Mapping[str, Any] | None:
         try:
@@ -239,4 +373,8 @@ class RouteAwareCampaignOperations(_BaseRouteAwareCampaignOperations):
         return self._receipt_response(execution.status, execution.receipt)
 
 
-__all__ = ["RouteAwareCampaignOperations", "transaction_failure_code"]
+__all__ = [
+    "RouteAwareCampaignOperations",
+    "_apply_current_mission_handoff",
+    "transaction_failure_code",
+]

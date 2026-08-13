@@ -8,7 +8,7 @@ def create_app_from_env():
     # The base classes remain reusable for isolated unit tests and generic runtimes.
     from shinobi_runtime.api import ooc as ooc_module
     from shinobi_runtime.api import route_discovery as route_discovery_module
-    from shinobi_runtime.api.campaign_action_discovery import RouteAwareCampaignOperations
+    from shinobi_runtime.api.campaign_growth_discovery import RouteAwareCampaignOperations
     from shinobi_runtime.api.campaign_ooc import RepositoryOocAudit
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.commands import campaign_planner as planner_module

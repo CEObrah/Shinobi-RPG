@@ -43,7 +43,7 @@ Resolve mixed blocks in order. If mode ambiguity could cause a write, fail close
 
 ## Dynamic capability rule
 
-Treat fresh `get_play_context` command metadata as the only current capability contract.
+Treat fresh `get_play_context` command metadata as the only current capability/availability contract. Retrieve the full payload specification for only the selected command with `get_command_contract` immediately before preview.
 
 Never hardcode that a domain is supported or unsupported merely because this reference discusses it. A system concept may exist in the game model while a particular persistent operation is not currently exposed to the player-facing runtime.
 
@@ -164,3 +164,9 @@ Use force/formation scale for large conflicts. Do not create thousands of exact 
 Named exact actors may cross into exact combat when individual causality matters, then reconcile back into the aggregate battle exactly once.
 
 Player-facing strategic intent must still be limited to Wei's lawful authority. NPC/faction strategic intent is runtime-internal autonomy, not a client-selectable impersonation mode.
+
+
+## Cold world reference
+
+Use `search_world_reference` only when cold setting context materially helps a scene, plan, lookup, or materialization decision. Treat returned entries as static reference truth, never automatic player knowledge or mutable campaign state. Do not call it every turn.
+When the result says `results_truncated`, use `next_offset` to page only if the omitted matches are still relevant. Never reinterpret the page size as a limit on the cold world.

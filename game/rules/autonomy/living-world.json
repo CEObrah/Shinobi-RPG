@@ -143,16 +143,32 @@
     }
   },
   "team_profiles": {
-    "default": {"autonomous_training_hours": 3},
-    "standard_mission_team": {"autonomous_training_hours": 4},
-    "special_mission_cell": {"autonomous_training_hours": 4},
-    "anbu_cell": {"autonomous_training_hours": 4},
-    "temporary_task_force": {"autonomous_training_hours": 2},
+    "default": {
+      "autonomous_training_hours": 3,
+      "player_led_contact_chance_milli": 350
+    },
+    "standard_mission_team": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 450
+    },
+    "special_mission_cell": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 700
+    },
+    "anbu_cell": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 550
+    },
+    "temporary_task_force": {
+      "autonomous_training_hours": 2,
+      "player_led_contact_chance_milli": 650
+    },
     "irregular_cell": {
       "training_focus": ["operational security", "coordinated contact", "escape and extraction"],
       "doctrine_identity": "irregular paired-cell doctrine",
       "motto": "Choose the ground. Control the contact. Leave on your terms.",
-      "autonomous_training_hours": 3
+      "autonomous_training_hours": 3,
+      "player_led_contact_chance_milli": 400
     }
   }
 }

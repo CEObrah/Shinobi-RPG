@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.core import _BuiltPlan
+from shinobi_runtime.commands.core import _BuiltPlan, _exact_payload
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
@@ -43,6 +43,7 @@ def _meaningful(result: Mapping[str, Any]) -> bool:
 
 
 def _advance_until_event(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime) -> _BuiltPlan:
+    _exact_payload(command.payload, ("target_time",), command.command_type)
     raw_target = command.payload.get("target_time")
     try:
         requested = CampaignTime.parse(raw_target)

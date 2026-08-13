@@ -52,5 +52,10 @@ jobs:
             tests/runtime/test_character_life_course_template.py \
             tests/runtime/test_route_discovery.py \
             tests/runtime/test_team_playability_interface.py \
+            tests/runtime/test_mission_briefing_policy_integrity.py \
+            tests/runtime/test_promotion_exam_cycle.py \
+            tests/runtime/test_promotion_exam_scheduler.py \
+            tests/runtime/test_world_front_progression.py \
+            tests/runtime/test_advance_until_event.py \
             -q
       - run: git diff --check HEAD^ HEAD

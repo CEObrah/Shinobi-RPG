@@ -120,7 +120,7 @@ def _exam_profiles(repository: Any) -> tuple[Mapping[str, Any], ...]:
     except (FileNotFoundError, ValueError) as exc:
         raise CommandRejectedError("promotion_exam_rules_invalid") from exc
     profiles = rules.get("profiles") if isinstance(rules, Mapping) else None
-    if rules.get("schema") != "promotion-exam-rules" or rules.get("version") != 1 or not isinstance(profiles, Mapping):
+    if not isinstance(rules, Mapping) or rules.get("schema") != "promotion-exam-rules" or rules.get("version") != 1 or not isinstance(profiles, Mapping):
         raise CommandRejectedError("promotion_exam_rules_invalid")
     return tuple(
         profile for key, profile in sorted(profiles.items())
@@ -207,6 +207,10 @@ def _install_exam_cycle() -> None:
             cycle_id = f"promotion_exam_cycle.{profile['id']}.{at.year:04d}-{at.month:02d}-{at.day:02d}"
             if any(isinstance(row, Mapping) and row.get("cycle_id") == cycle_id for row in pipeline["history"]): continue
             eligible = []; player_team_eligible = []
+            source_rank = _rank_key(profile.get("source_rank"))
+            service_village = profile.get("service_village")
+            if source_rank is None or not isinstance(service_village, str):
+                raise CommandRejectedError("promotion_exam_rules_invalid")
             for team_ref in refs:
                 if not isinstance(team_ref, str): continue
                 try: _team_path, team = self._exact_team(team_ref)
@@ -218,7 +222,11 @@ def _install_exam_cycle() -> None:
                     try: _path, _digest, person = self._resolve_covered_owner_view(person_ref, cache=_OwnerResolutionCache())
                     except CommandRejectedError: continue
                     career = person.get("career_state") if isinstance(person, Mapping) else None
-                    if _rank_key(person.get("official_rank_or_status")) == "genin" and isinstance(career, Mapping) and career.get("promotion_eligible") is True:
+                    try:
+                        person_village = _service_village(person, pipeline)
+                    except CommandRejectedError:
+                        continue
+                    if _rank_key(person.get("official_rank_or_status")) == source_rank and person_village == service_village and isinstance(career, Mapping) and career.get("promotion_eligible") is True:
                         if person_ref not in eligible: eligible.append(person_ref)
                         if team.get("leader_ref") == command.actor_id and person_ref not in player_team_eligible: player_team_eligible.append(person_ref)
             _append_history(pipeline, {"kind":"promotion_exam_cycle_opened","at":str(at),"cycle_id":cycle_id,"profile_ref":profile.get("id"),"eligible_exact_refs":eligible,"player_team_eligible_refs":player_team_eligible,"canon_status":"campaign_institutional_not_future_canon"})

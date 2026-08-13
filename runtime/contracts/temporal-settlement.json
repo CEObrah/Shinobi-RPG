@@ -2,6 +2,12 @@
   "schema": "temporal-settlement-runtime",
   "purpose": "Deterministic full-interval catch-up. A process is never considered settled merely because its first overdue boundary or aggregate clock was resolved.",
   "closure_target": "exact reached world time or earlier hard player interrupt",
+  "player_boundary_semantics": {
+    "internal_boundary": "Scheduler, training, recovery, mission, movement, economy, institution, faction, team, formation, population, or other causal work that changes persistent truth but creates no new player-facing situation. Event-seeking callers continue automatically; this boundary never sets decision_required and never closes time passage by itself.",
+    "soft_player_facing_event": "A committed report, mission offer, teammate contact, public consequence, institutional transition, observable pressure, or other player-visible development that merits narration but does not itself require a protected Wei choice. Event-seeking callers stop so ChatGPT can render the scene; decision_required remains null and time passage remains allowed unless a separate hard decision exists.",
+    "hard_player_decision": "A protected player choice that cannot be lawfully supplied by standing orders, delegation, or deterministic mechanics. Time stops at the exact boundary, time_passage_allowed becomes false, and decision_required identifies the unresolved choice."
+  },
+  "event_seeking_rule": "Event-seeking downtime is a caller policy over the same temporal settlement path: process one bounded causal boundary, continue automatically across internal-only results, stop softly on the first committed player-facing event, and stop hard on the first protected player decision. It never invents an event to satisfy the request.",
   "selection_order": "globally earliest unresolved process boundary, owner-local deadline, or causal trigger first; deterministic tie order by stable process/owner id unless a registered dependency overrides it",
   "scheduled_loop": [
     "collect all active processes with next_due <= target plus every covered owner whose saved local next_due/deadline <= target plus every causal wake-up created inside the interval",
@@ -14,7 +20,7 @@
   ],
   "continuous_residual": "After all full boundaries and owner-local wakes, every active unblocked process with accrual_mode=continuous resolves its remaining span through exact target. Its frontier cursor may advance only with a matching state/runtime.json semantic receipt; a slower monthly/weekly next_due does not suppress owner-local or causal review.",
   "new_process_rule": "Any process created or activated at time <= target must itself be settled/caught up through target unless completed, paused, blocked, or stopped by player interrupt.",
-  "hard_interrupt_rule": "At a required player choice, stop at the interrupt timestamp and make that the reached world time. Never simulate beyond it.",
+  "hard_interrupt_rule": "Only a protected player choice is a hard interrupt. At that decision, stop at the exact interrupt timestamp and make that the reached world time. Never simulate beyond it. A report, offer, contact, or other player-visible development without a protected choice is a soft event, not a hard interrupt.",
   "safe_batching": {
     "allowed": true,
     "require_equivalent_result": true,
@@ -79,7 +85,10 @@
     "catch_up_repeats_until_next_due_after_target": true,
     "continuous_processes_settle_partial_final_span": true,
     "successor_plans_continue_through_remaining_skip": true,
-    "newly_activated_processes_catch_up_to_target": true
+    "newly_activated_processes_catch_up_to_target": true,
+    "internal_boundary_never_sets_decision_required": true,
+    "soft_player_event_does_not_close_time_passage": true,
+    "decision_required_means_hard_player_decision_only": true
   },
   "efficiency_policy": {
     "baseline": "Distant inactive owners may use coarse monthly/weekly aggregate fallbacks. Saved owner-local deadlines, active plan milestones, mission/deployment clocks, information delivery, combat, assignment, movement, injury, resource thresholds, or player contact wake the affected owner immediately. Compression may reduce review work only when the equivalent semantic result is proven; it may never replace an owner review with aggregate timestamp advancement.",

@@ -54,6 +54,8 @@ For this repository, when the player requests implementation and does not explic
 
 Do not create compatibility layers that become second writable authorities.
 
+Never solve scale by adding a lifetime/cardinality ceiling or silently slicing eligibility to the first/last N records. Use deterministic routing, pagination, sharding, bounded projections with exact rehydration, or resumable causal work. Security/transport bounds and genuine domain rules are distinct and should remain explicit.
+
 When the user requests deletion or consolidation, inspect each candidate before deleting it. Delete only sources that are truly redundant after unique guidance has been preserved in the canonical owner. If no redundant file exists, do not manufacture a deletion or delete runtime machinery merely because its filename contains `command`, `ooc`, `dev`, `interface`, or similar words.
 
 ## Completion and delivery gate
@@ -91,7 +93,7 @@ If a software bug produced a confirmed bad campaign fact:
 
 ## Git and Railway
 
-Treat the Railway volume checkout as the live writable campaign workspace and GitHub as versioned source plus replicated campaign history.
+Treat the Railway volume checkout as the live writable campaign workspace and GitHub as versioned source plus replicated campaign history. Live gameplay reads current truth through MCP, not by crawling GitHub. GitHub is the OOC development, provenance, recovery, and durable history surface.
 
 Gameplay flow:
 
@@ -103,19 +105,32 @@ ChatGPT action
 -> Git commit/push
 ```
 
-Development flow:
+Runtime-affecting development flow:
 
 ```text
-OOC DEV non-state repository change
+runtime/game/dependency/deployment change
 -> GitHub commit on main unless branch/PR was explicitly requested or required
--> Railway deployment trigger
+-> Railway deployment
 -> bootstrap safe fetch/fast-forward
 -> new runtime process at the remote branch head
 ```
 
-The production Railway watch policy is `**` followed by `!/state/**`: every non-state commit redeploys, while a runtime-generated state-only gameplay commit does not. This is deliberate because Git remote durability requires the live checkout HEAD to equal the remote branch before the next gameplay transaction.
+Runtime-neutral development flow:
 
-State-only gameplay commits must not create a deployment loop. Do not add a non-state file to routine gameplay transaction commits.
+```text
+Skill/docs/tests/tools/workflow/README-only change
+-> GitHub commit
+-> no Railway restart
+-> next locked preflight may fast-forward the strict-descendant neutral commit
+```
+
+The Railway watch policy excludes `state/**` plus the explicit runtime-neutral paths `plugins/**`, `docs/**`, `tests/**`, `tools/**`, `.github/**`, and root `README.md`. Remote preflight may adopt only a strict-descendant commit containing exclusively those neutral paths. Any remote-ahead `state/**`, runtime/game/dependency/deployment change, mixed unsafe change, or unknown path fails closed and requires deployment or deliberate repair. Keep the in-process rule as an allowlist.
+
+State-only gameplay commits must not create a deployment loop. Do not add a non-state file to routine gameplay transaction commits. A GitHub Skill commit still does not install the ChatGPT Skill; synchronize that separately.
+
+Relevant runtime-affecting pushes to `main` and pull requests run only the cheap path-filtered quick workflow. Select deeper replay/soak diagnostics explicitly by changed subsystem when a concrete failure class warrants them. Production Python is repository-pinned and the HTTP/MCP dependencies are normal production dependencies, so do not depend on an untracked Railway install override.
+
+When an MCP tool name, input schema, output contract, or action metadata changes, deployment of the runtime is not sufficient proof that ChatGPT sees the new contract. Treat the ChatGPT app action snapshot as a separate delivery target: verify the deployed MCP server, then refresh/review or recreate/republish the custom app as required by the workspace plan, and verify the current tool schema before consequential play.
 
 ## Skill maintenance
 
@@ -146,7 +161,7 @@ edit canonical GitHub Skill source
 
 Do not treat creation of a review card or pending edit as installation success. Until the user accepts it, the prior installed Skill remains authoritative for what ChatGPT has actually loaded. After acceptance, re-list the installed Skill resources and read at least one changed marker or file before reporting success.
 
-Prefer the supported direct ChatGPT Skill update when an actual update/install control is exposed. If that control is unavailable or fails to surface, package the **complete validated Skill directory**, not merely changed files, as `shinobi-game-master.zip` and state that the GitHub source is updated but the ChatGPT-installed Skill has not yet been synchronized.
+Prefer the supported direct ChatGPT Skill update when an actual update/install control is exposed. If that control is unavailable or fails to surface, package the **complete validated Skill directory**, not merely changed files, as `skill.zip` and state that the GitHub source is updated but the ChatGPT-installed Skill has not yet been synchronized.
 
 Do not claim that a GitHub commit automatically updated the ChatGPT-installed Skill unless the installed `skills://` resource is verified to contain the change. Do not claim a direct ChatGPT Skill update before the review has been accepted and verified.
 
@@ -183,6 +198,6 @@ Use configured secret stores and environment variables.
 
 ## Resume live play
 
-After any non-state GitHub change, confirm the live runtime is synchronized with the relevant source before relying on changed runtime behavior in consequential IC play.
+After any runtime-affecting GitHub change, confirm Railway is deployed/synchronized before relying on changed mechanics in consequential IC play. After a runtime-neutral strict-descendant change, remote preflight may synchronize the checkout without a restart, but Skill installation must still be verified separately when GM behavior changed.
 
 For Skill-only narration or operating-procedure changes, distinguish GitHub source from the ChatGPT-installed Skill. Verify the installed Skill separately before claiming new behavior is active in the current ChatGPT environment.

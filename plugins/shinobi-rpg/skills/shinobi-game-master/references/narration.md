@@ -5,19 +5,20 @@
 1. Core voice
 2. Diegetic firewall
 3. Narrative camera
-4. Intrigue and tension
-5. Scene-first prose
-6. Translate mechanics into lived consequence
-7. Use authored places as real spaces
-8. NPC characterization and dialogue
-9. Cast clarity
-10. Relationship-aware interaction
-11. Pacing and scale
-12. Quiet time and non-events
-13. Consequence and continuity
-14. Techniques and spectacle
-15. Endings and decision points
-16. Prose failure modes
+4. Presentation latitude and scene life
+5. Intrigue and tension
+6. Scene-first prose
+7. Translate mechanics into lived consequence
+8. Use authored places as real spaces
+9. NPC characterization and dialogue
+10. Cast clarity
+11. Relationship-aware interaction
+12. Pacing and scale
+13. Quiet time and non-events
+14. Consequence and continuity
+15. Techniques and spectacle
+16. Endings and decision points
+17. Prose failure modes
 
 ## Core voice
 
@@ -56,6 +57,28 @@ Never invent Wei's voluntary dialogue, private thought, emotional conclusion, al
 Do not smuggle emotions through bodily language. `Your stomach drops` or `anger tightens your jaw` asserts an interior response unless the runtime or player established it. Prefer external fact: `The report names three dead. Hayama stops turning the page.`
 
 Use exact numbers when they are known and decision-relevant in-world: time, distance, count, cost, deadline, ammunition, personnel. Do not expose abstract stat values, residual training credits, hidden difficulty numbers, scheduler counters, or other backend quantities as if Wei perceives them. Put those in OOC only when the player asks or needs them to understand a mechanical choice.
+
+## Presentation latitude and scene life
+
+Do not confuse strict persistence with a requirement that every footstep, greeting, background worker, or conversational opening be mechanically committed.
+
+Use fresh `scene_cast` when available. Treat `present_people` / `visible_people` as immediate-scene presence, `nearby_people` as established at the same live site or on a co-located exact team, and `referenced_people` as relevance without presence. Never promote a merely referenced person into the room without another valid basis.
+
+When `scene_vitality.ephemeral_motion_allowed` is true, add ordinary nonpersistent motion when it makes the scene more legible or human. Examples include:
+
+- people already present shifting position, checking equipment, working, eating, waiting, cleaning, writing, or reacting visibly;
+- a nearby established person walking into or out of the immediate interaction when the local geometry makes that ordinary;
+- brief greetings, acknowledgments, jokes, corrections, or non-informational small talk consistent with known relationships and roles;
+- unnamed background clerks, guards, servants, trainees, laborers, customers, or civilians performing an obvious routine function appropriate to an established place;
+- doors, footsteps, paperwork, tools, meals, lamps, benches, training gear, animals, and other ordinary scene texture that does not establish a new scarce asset, clue, security condition, or mechanical advantage.
+
+Keep this material deliberately ephemeral. An unnamed background worker is not a newly materialized persistent identity. A nearby teammate crossing a courtyard into the room is not a strategic travel action. A clerk stamping routine paperwork does not prove a new approval, office policy, staffing level, or authority decision.
+
+Do not use presentation latitude to create information, clues, secrets, promises, mission orders, relationships, attraction, hostility, money, inventory, injuries, recovery, promotions, authority, access decisions, persistent location changes, combat outcomes, or any other durable fact. Those remain runtime-owned.
+
+Before an ephemeral interaction becomes substantive, restore authoritative detail. Load the targeted person sheet when voice, knowledge, relationship, health, authority, or commitment matters. Use the appropriate runtime command when the interaction would create a persistent consequence.
+
+Do not force activity simply because latitude exists. A quiet room may stay quiet. The purpose is to remove artificial stillness, not to replace causality with random encounters or compulsory banter.
 
 ## Intrigue and tension
 
@@ -126,6 +149,8 @@ Choose the smallest place detail that serves the current action. A sword session
 Do not dump an entire site catalog into prose. Establish one or two relevant spaces, their relationship to the present action, and any causal transition between them. Reuse established spatial facts consistently so the place develops memory.
 
 Static authored topology is scene context, not mutable truth. Do not infer current guards, access, stock, damage, occupancy, security alert, medical capacity, weather, or staffing merely from a facility name. Those require current player-visible state.
+
+Presentation latitude may populate an established ordinary-use space with unnamed routine activity when `scene_vitality` permits it, but that activity cannot establish named staffing, exact headcount, security posture, access, stock, or another durable condition.
 
 When the runtime exposes only a generic place summary even though authored site detail should exist, avoid inventing generic filler. Keep the prose conservative and flag the missing projection OOC during development rather than compensating with unsupported scenery.
 
@@ -230,6 +255,8 @@ Those lines describe the GM's event-generation process rather than Wei's experie
 
 When time passes without a player-facing event, compress toward what actually occupies the interval: sleep, meals, paperwork, equipment care, training, travel, ordinary conversation, duty, household routine, observation, or simply a clean time cut when none of those details are established or important.
 
+Presentation latitude may supply small routine beats inside a known place, but do not convert every quiet interval into a scene. Use ordinary life to make inhabited time visible when it helps pacing or relationships, then compress.
+
 Mention an absence only when the absence itself is player-visible and meaningful. An expected courier being late, a teammate missing a scheduled muster, a silent alarm bell after an evacuation order, or an empty office at an appointed time can matter. `No random encounter happened` cannot.
 
 Do not manufacture danger to avoid quiet. A quiet evening can end as a quiet evening.
@@ -243,6 +270,8 @@ Allow prior events to return naturally through wounds and altered capability, da
 Do not force callbacks merely to prove continuity. Let them re-enter when causal.
 
 When an infrequently seen known person, team, place, agreement, faction, or technique returns, give one compact player-known recognition cue and continue. Do not dump biography.
+
+Do not promote ephemeral presentation detail into a durable callback. A nameless clerk, incidental joke, or harmless room movement is usable within the immediate scene but is not saved campaign history unless the runtime later records a material consequence from it.
 
 Unknown identities remain unnamed until learned.
 
@@ -285,6 +314,8 @@ Avoid:
 - repetitive name-role labels on every mention;
 - NPCs who all share the same cadence and worldview;
 - every NPC speaking only to Wei while ignoring each other;
+- treating strict persistence as a reason for physically present or nearby people to become inert;
+- turning presentation latitude into random encounters, hidden facts, named disposable NPCs, or persistent consequences;
 - summary phrases such as `You choose Fujin` when a concrete lived action can be shown;
 - abstract scheduler language replacing movement, arrival, conversation, or consequence;
 - generic facility phrases when player-safe authored spaces are available;

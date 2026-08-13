@@ -10,11 +10,13 @@ def create_app_from_env():
     from shinobi_runtime.api import route_discovery as route_discovery_module
     from shinobi_runtime.api.campaign_ooc import RepositoryOocAudit
     from shinobi_runtime.api.campaign_stable_operations import RouteAwareCampaignOperations
+    from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.commands import campaign_planner as planner_module
     from shinobi_runtime.commands.campaign_runtime_planner import CampaignCommandPlanner
     from shinobi_runtime.commands.promotion_exam_cycle import install_promotion_exam_projection
 
     install_promotion_exam_projection()
+    install_preview_validation()
     ooc_module.RepositoryOocAudit = RepositoryOocAudit
     route_discovery_module.RouteAwareCampaignOperations = RouteAwareCampaignOperations
     planner_module.CampaignCommandPlanner = CampaignCommandPlanner

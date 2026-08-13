@@ -130,6 +130,21 @@ def apply_scene_vitality_handoff(
     scene_cast: Mapping[str, Any],
 ) -> dict[str, Any]:
     projected = dict(payload)
+
+    # Read-side guard for legacy/stale scene projections. An open time-passage
+    # surface is not a protected decision merely because an older time reducer
+    # left decision_required populated. This changes only the player-safe
+    # projection; the next non-interrupting time write normalizes persisted state.
+    scene = projected.get("scene")
+    if (
+        isinstance(scene, Mapping)
+        and scene.get("time_passage_allowed") is True
+        and scene.get("decision_required") is not None
+    ):
+        updated_scene = dict(scene)
+        updated_scene["decision_required"] = None
+        projected["scene"] = updated_scene
+
     cast = dict(scene_cast)
     projected["scene_cast"] = cast
 

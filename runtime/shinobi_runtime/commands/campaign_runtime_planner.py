@@ -2,9 +2,9 @@
 
 The generic planner preserves scene narrative metadata across time settlement.
 That is useful for stable history, but temporal handoff fields can become false
-once the campaign clock moves. This production extension removes only fields
-whose truth is tied to the pre-advance decision surface while composing bounded
-living-world behavior over the existing authoritative domain reducers.
+once the campaign clock moves. This production extension removes only inherited
+fields whose truth is tied to the pre-advance decision surface, then rebuilds
+fresh player-facing pressure from newly settled causal results.
 """
 
 from __future__ import annotations
@@ -38,6 +38,7 @@ _TRANSIENT_TIME_HANDOFF_FIELDS = (
     "current_tension",
     "active_questions",
     "approaching_consequences",
+    "available_reports",
 )
 _OPERATIONAL_TEAM_DRILL_CATEGORIES = frozenset(("combat", "tracking", "stealth"))
 _VALIDATOR_FAILURE_SUFFIXES = {
@@ -57,9 +58,75 @@ _VALIDATOR_FAILURE_SUFFIXES = {
     "House progression after-image differs from settled plan": "house_progression_after_image",
     "House development cursor advanced beyond reviewed time": "house_progression_cursor",
 }
+_MISSING = object()
 
 
-def _refresh_time_advanced_plan(plan: _BuiltPlan, scene_path: str) -> _BuiltPlan:
+def _append_unique(values: list[str], value: object) -> None:
+    if isinstance(value, str) and value and value not in values:
+        values.append(value)
+
+
+def _fresh_player_facing_time_handoff(
+    result: Mapping[str, Any],
+) -> tuple[list[str], list[str], list[str]]:
+    """Derive only player-safe fresh scene pressure from newly settled results.
+
+    This is a presentation projection, not a second simulation layer. It uses
+    result kinds that are already explicitly player-facing by construction and
+    never exposes arbitrary autonomous events, hidden institutions, or secret
+    faction activity merely because they were processed during the same skip.
+    """
+
+    pressures: list[str] = []
+    reports: list[str] = []
+    approaching: list[str] = []
+
+    actions = result.get("autonomous_actions", [])
+    if isinstance(actions, list):
+        for action in actions:
+            if not isinstance(action, Mapping):
+                continue
+            if action.get("kind") == "player_mission_offer" and not action.get("skipped"):
+                _append_unique(
+                    pressures,
+                    "A new mission offer from the Mission Office is awaiting review.",
+                )
+                _append_unique(
+                    reports,
+                    "The Mission Office has new operational tasking available for review.",
+                )
+
+    team_reviews = result.get("team_reviews", [])
+    if isinstance(team_reviews, list):
+        for review in team_reviews:
+            if not isinstance(review, Mapping):
+                continue
+            if review.get("kind") == "player_led_team_checkin":
+                team_name = review.get("team_name")
+                label = team_name if isinstance(team_name, str) and team_name else "Your team"
+                _append_unique(
+                    pressures,
+                    f"{label} has a fresh internal check-in ready.",
+                )
+                _append_unique(
+                    reports,
+                    f"{label} has routine field, training, or readiness matters ready to discuss.",
+                )
+            if isinstance(review.get("training_commitment_id"), str):
+                _append_unique(
+                    approaching,
+                    "A scheduled team-training obligation is now part of the near-term workload.",
+                )
+
+    return pressures[:12], reports[:6], approaching[:8]
+
+
+def _refresh_time_advanced_plan(
+    plan: _BuiltPlan,
+    scene_path: str,
+    *,
+    previous_scene: Mapping[str, Any],
+) -> _BuiltPlan:
     raw_scene = plan.writes.get(scene_path)
     if raw_scene is None:
         return plan
@@ -67,25 +134,52 @@ def _refresh_time_advanced_plan(plan: _BuiltPlan, scene_path: str) -> _BuiltPlan
         scene = json.loads(raw_scene.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise CommandRejectedError("campaign_scene_invalid") from exc
-    if not isinstance(scene, dict):
+    if not isinstance(scene, dict) or not isinstance(previous_scene, Mapping):
         raise CommandRejectedError("campaign_scene_invalid")
 
     changed = False
     pressures = scene.get("observable_pressures")
-    if isinstance(pressures, list) and pressures:
-        scene["observable_pressures"] = []
-        changed = True
-    elif pressures is not None and not isinstance(pressures, list):
+    prior_pressures = previous_scene.get("observable_pressures", _MISSING)
+    if pressures is not None and not isinstance(pressures, list):
         raise CommandRejectedError("campaign_scene_invalid")
+    if isinstance(pressures, list) and prior_pressures is not _MISSING:
+        if not isinstance(prior_pressures, list):
+            raise CommandRejectedError("campaign_scene_invalid")
+        if pressures and pressures == prior_pressures:
+            scene["observable_pressures"] = []
+            changed = True
 
     narrative = scene.get("narrative")
+    previous_narrative = previous_scene.get("narrative", {})
     if narrative is not None:
-        if not isinstance(narrative, dict):
+        if not isinstance(narrative, dict) or not isinstance(previous_narrative, Mapping):
             raise CommandRejectedError("campaign_scene_invalid")
         for field in _TRANSIENT_TIME_HANDOFF_FIELDS:
-            if field in narrative:
+            if field not in narrative:
+                continue
+            previous_value = previous_narrative.get(field, _MISSING)
+            if previous_value is not _MISSING and narrative.get(field) == previous_value:
                 narrative.pop(field)
                 changed = True
+
+    fresh_pressures, fresh_reports, fresh_approaching = _fresh_player_facing_time_handoff(
+        plan.result
+    )
+    if fresh_pressures:
+        if scene.get("observable_pressures") != fresh_pressures:
+            scene["observable_pressures"] = fresh_pressures
+            changed = True
+    if fresh_reports or fresh_approaching:
+        if narrative is None:
+            narrative = {}
+            scene["narrative"] = narrative
+            changed = True
+        if fresh_reports and narrative.get("available_reports") != fresh_reports:
+            narrative["available_reports"] = fresh_reports
+            changed = True
+        if fresh_approaching and narrative.get("approaching_consequences") != fresh_approaching:
+            narrative["approaching_consequences"] = fresh_approaching
+            changed = True
 
     if not changed:
         return plan
@@ -192,6 +286,13 @@ class CampaignCommandPlanner(
         meta: Mapping[str, Any],
         current_time: CampaignTime,
     ) -> _BuiltPlan:
+        try:
+            previous_scene = self.repository.read_json(self.scene_path)
+        except (FileNotFoundError, ValueError) as exc:
+            raise CommandRejectedError("campaign_scene_invalid") from exc
+        if not isinstance(previous_scene, Mapping):
+            raise CommandRejectedError("campaign_scene_invalid")
+
         plan = super()._advance_time(command, meta, current_time)
         base_writes = plan.writes
         plan = _guard_plan_validator(
@@ -202,7 +303,11 @@ class CampaignCommandPlanner(
             ),
         )
         plan = self._apply_house_progression_to_time_plan(plan)
-        plan = _refresh_time_advanced_plan(plan, self.scene_path)
+        plan = _refresh_time_advanced_plan(
+            plan,
+            self.scene_path,
+            previous_scene=previous_scene,
+        )
         return _guard_plan_validator(plan, "advance_time_composed_validation_invalid")
 
 

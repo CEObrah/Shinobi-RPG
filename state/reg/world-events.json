@@ -5980,6 +5980,150 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.77a9b9c841a2357d1f6acc95",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-05T21:15:00",
+        "occurred_at": "SE-0061-06-05T21:15:00",
+        "started_at": "SE-0061-06-05T21:15:00",
+        "ended_at": "SE-0061-06-05T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [
+        "char.kai",
+        "char.linh",
+        "char.mei_arakawa",
+        "char.riku_hyuga"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/char/mei-arakawa.json",
+        "state/char/riku-hyuga.json",
+        "state/development/banks.json",
+        "state/team/doctrine/team-konoha-fujin.json",
+        "state/team/fujin.json",
+        "state/team/history/team.konoha.fujin.json"
+      ],
+      "material_consequence_refs": [
+        "training:char.kai:martial_skills.movement:102->104",
+        "training:char.mei_arakawa:martial_skills.movement:100->102",
+        "training:char.riku_hyuga:attributes.awareness:109->111"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "char.kai",
+          "char.linh",
+          "char.mei_arakawa",
+          "char.riku_hyuga"
+        ],
+        "audience_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "char.linh"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-05T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.team_training_session_resolved",
+        "transaction_ref": "tx.gameplay.148b579ceb5aea440e88735d236f6ce475ab10953df30514d7922a05966cae93",
+        "receipt_refs": [
+          "receipt.gameplay.148b579ceb5aea440e88735d236f6ce475ab10953df30514d7922a05966cae93"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_resolution.148b579ceb5aea440e88",
+      "kind": "campaign_repair_resolution",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-10T01:14:37",
+        "started_at": "SE-0061-06-10T01:14:37",
+        "ended_at": "SE-0061-06-10T01:14:37"
+      },
+      "host_refs": [
+        "mission.offer.0a7361790026211550",
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [
+        "event.team_training_session_resolved.77a9b9c841a2357d1f6acc95"
+      ],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/char/mei-arakawa.json",
+        "state/char/riku-hyuga.json",
+        "state/development/banks.json",
+        "state/inventory/registry.json",
+        "state/mission/mission.offer.0a7361790026211550.json",
+        "state/reg/relationship-edge-index.json",
+        "state/reg/relationship-edges/char.kai.json",
+        "state/reg/relationship-edges/char.mei_arakawa.json",
+        "state/reg/relationship-edges/char.riku_hyuga.json",
+        "state/team/doctrine/team-konoha-fujin.json",
+        "state/team/fujin.json",
+        "state/team/history/team.konoha.fujin.json"
+      ],
+      "material_consequence_refs": [
+        "event.team_training_session_resolved.77a9b9c841a2357d1f6acc95",
+        "mission.offer.0a7361790026211550",
+        "mission_reward_repair_total_ryo:420000",
+        "repair.2026-08-13.fujin-training-and-blackhound-reward",
+        "repair_reward:currency.ryo:70000:treasury.konoha->canon_ensui_nara",
+        "repair_reward:currency.ryo:70000:treasury.konoha->canon_hana_inuzuka",
+        "repair_reward:currency.ryo:70000:treasury.konoha->canon_hayama_shirakumo",
+        "repair_reward:currency.ryo:70000:treasury.konoha->canon_hoheto_hyuga",
+        "repair_reward:currency.ryo:70000:treasury.konoha->canon_tekuno_kanden",
+        "repair_reward:currency.ryo:70000:treasury.konoha->pc_wei_tang"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "runtime.campaign_repair"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-10T01:14:37"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_repair_20260813",
+        "transaction_ref": "tx.gameplay.148b579ceb5aea440e88735d236f6ce475ab10953df30514d7922a05966cae93",
+        "receipt_refs": [
+          "receipt.gameplay.148b579ceb5aea440e88735d236f6ce475ab10953df30514d7922a05966cae93"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

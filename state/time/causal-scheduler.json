@@ -3,7 +3,7 @@
   "owner_id": "runtime.causal_scheduler",
   "owner_type": "causal_scheduler",
   "authority": true,
-  "world_time": "SE-0061-06-10T01:14:37",
+  "world_time": "SE-0061-06-11T01:14:37",
   "seeded_at": "SE-0061-02-06T21:15:00",
   "bootstrap_source": "seeded_causal_host_authority",
   "hosts": {
@@ -79,11 +79,11 @@
       "state": {
         "host_id": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
         "kind": "canon_pressure",
-        "resolved_through": "SE-0061-05-13T18:00:00",
-        "safe_through": "SE-0061-06-10T17:59:59",
+        "resolved_through": "SE-0061-06-10T18:00:00",
+        "safe_through": "SE-0061-06-17T17:59:59",
         "handler_ref": "causal.scheduler",
         "rng_namespace": "pressure_mizuki_forbidden_scroll",
-        "next_due": "SE-0061-06-10T18:00:00"
+        "next_due": "SE-0061-06-17T18:00:00"
       },
       "authority_kind": "canon_pressure",
       "owner_ref": "state/canon/pressures.json",
@@ -769,29 +769,6 @@
     }
   },
   "events": [
-    {
-      "event_id": "evt.causal.df439ede59a77fdd8d4787e4",
-      "kind": "canon_pressure.periodic_review",
-      "due_at": "SE-0061-06-10T18:00:00",
-      "priority": 80,
-      "source_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
-      "target_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
-      "payload": {
-        "identity": "pressure_mizuki_forbidden_scroll",
-        "owner_ref": "state/canon/pressures.json",
-        "pressure_id": "pressure_mizuki_forbidden_scroll",
-        "recurrence": {
-          "accrual_mode": "boundary_only",
-          "interval_seconds": 604800,
-          "kind": "fixed_interval"
-        }
-      },
-      "dedupe_key": "canon_pressure.periodic_review:pressure_mizuki_forbidden_scroll",
-      "visibility": "hidden",
-      "requires_player": false,
-      "causation_id": null,
-      "correlation_id": null
-    },
     {
       "event_id": "evt.causal.0499cd8f500b80473be6f11c",
       "kind": "faction.periodic_review",
@@ -1675,6 +1652,29 @@
       "correlation_id": null
     },
     {
+      "event_id": "evt.causal.4a2f2bfff77702679f6277d6",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-06-17T18:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
+      "target_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
+      "payload": {
+        "identity": "pressure_mizuki_forbidden_scroll",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_mizuki_forbidden_scroll",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_mizuki_forbidden_scroll",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
       "event_id": "evt.causal.bba8e17630b3b759bde72c50",
       "kind": "economy.periodic_review",
       "due_at": "SE-0061-07-01T07:00:00",
@@ -1835,10 +1835,10 @@
     "pending_event_count": 47,
     "global_person_scans": 0,
     "global_faction_directory_scans": 0,
-    "last_requested_target": "SE-0061-06-10T01:14:37",
-    "last_reached_time": "SE-0061-06-10T01:14:37",
-    "last_processed_event_count": 0,
-    "last_public_fact_count": 0,
+    "last_requested_target": "SE-0061-06-11T01:14:37",
+    "last_reached_time": "SE-0061-06-11T01:14:37",
+    "last_processed_event_count": 1,
+    "last_public_fact_count": 1,
     "last_unsafe_host_count": 0
   }
 }

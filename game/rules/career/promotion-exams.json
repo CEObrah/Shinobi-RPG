@@ -1,0 +1,28 @@
+{
+  "schema": "promotion-exam-rules",
+  "version": 1,
+  "profiles": {
+    "promotion_exam.konoha.chunin": {
+      "id": "promotion_exam.konoha.chunin",
+      "enabled": true,
+      "world_arc_kind": "institutional_promotion_cycle",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "faction_ref": "faction.konoha_mission_office",
+      "institution_ref": "institution.konoha.hokage_administration",
+      "authority_ref": "canon_hiruzen",
+      "service_village": "konoha",
+      "source_rank": "Genin",
+      "target_rank": "Chunin",
+      "cycle_months": [1, 7],
+      "cycle_day": 1,
+      "cycle_hour": 9,
+      "rules": [
+        "This cadence is Konoha institutional procedure for the campaign, not a forced future-canon date or outcome.",
+        "Opening a cycle identifies exact Genin who already have persisted promotion eligibility; it never invents eligibility.",
+        "Opening the cycle does not silently choose examination results or promotions for named shinobi.",
+        "Any later exact promotion must pass the evidence-gated career reducer and can advance only one rank.",
+        "Every exact rank change synchronizes conserved aggregate village rank counts."
+      ]
+    }
+  }
+}

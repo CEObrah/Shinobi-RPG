@@ -1,11 +1,4 @@
-"""Production campaign planner freshness guards and living-world orchestration.
-
-The generic planner preserves scene narrative metadata across time settlement.
-That is useful for stable history, but temporal handoff fields can become false
-once the campaign clock moves. This production extension removes only inherited
-fields whose truth is tied to the pre-advance decision surface, then rebuilds
-fresh player-facing pressure from newly settled causal results.
-"""
+"""Production campaign planner freshness guards and living-world orchestration."""
 
 from __future__ import annotations
 
@@ -31,6 +24,11 @@ from shinobi_runtime.commands.standing_training_mission_absence import StandingT
 from shinobi_runtime.commands.standing_training_participation import StandingTrainingParticipationMixin
 from shinobi_runtime.commands.team_intelligence import TeamIntelligenceMixin
 from shinobi_runtime.commands.team_lifecycle_intelligence import TeamLifecycleIntelligenceMixin
+from shinobi_runtime.people.repertoire import (
+    field_usable_method_refs,
+    technique_prerequisites_met,
+    training_package_refs,
+)
 from shinobi_runtime.sim.events import CampaignTime
 
 _TRANSIENT_TIME_HANDOFF_FIELDS = (
@@ -41,6 +39,8 @@ _TRANSIENT_TIME_HANDOFF_FIELDS = (
     "available_reports",
 )
 _OPERATIONAL_TEAM_DRILL_CATEGORIES = frozenset(("combat", "tracking", "stealth"))
+_TRAINING_PROGRESSION_PATH = "game/data/clans/training-progression.json"
+_TECH_PACKAGES_PATH = "game/data/tech/packages.json"
 _VALIDATOR_FAILURE_SUFFIXES = {
     "time command write set changed after planning": "write_set",
     "time command core clocks diverge": "core_clocks",
@@ -69,13 +69,7 @@ def _append_unique(values: list[str], value: object) -> None:
 def _fresh_player_facing_time_handoff(
     result: Mapping[str, Any],
 ) -> tuple[list[str], list[str], list[str]]:
-    """Derive only player-safe fresh scene pressure from newly settled results.
-
-    This is a presentation projection, not a second simulation layer. It uses
-    result kinds that are already explicitly player-facing by construction and
-    never exposes arbitrary autonomous events, hidden institutions, or secret
-    faction activity merely because they were processed during the same skip.
-    """
+    """Derive only player-safe fresh scene pressure from newly settled results."""
 
     pressures: list[str] = []
     reports: list[str] = []
@@ -246,6 +240,188 @@ class CampaignCommandPlanner(
     _BaseCampaignCommandPlanner,
 ):
     """Production planner with living-world autonomy and stability guards."""
+
+    def _training_progression_institutions(self) -> Mapping[str, Any]:
+        try:
+            data = self.repository.read_json(_TRAINING_PROGRESSION_PATH)
+        except (FileNotFoundError, ValueError) as exc:
+            raise CommandRejectedError("training_progression_invalid") from exc
+        institutions = data.get("institutions") if isinstance(data, Mapping) else None
+        if not isinstance(institutions, Mapping):
+            raise CommandRejectedError("training_progression_invalid")
+        return institutions
+
+    def _tech_package_registry(self) -> Mapping[str, Any]:
+        try:
+            data = self.repository.read_json(_TECH_PACKAGES_PATH)
+        except (FileNotFoundError, ValueError) as exc:
+            raise CommandRejectedError("technique_package_registry_invalid") from exc
+        packages = data.get("packages") if isinstance(data, Mapping) else None
+        if not isinstance(packages, Mapping):
+            raise CommandRejectedError("technique_package_registry_invalid")
+        return packages
+
+    @staticmethod
+    def _package_methods(packages: Mapping[str, Any], package_ref: str) -> tuple[str, ...]:
+        package = packages.get(package_ref)
+        methods = package.get("methods") if isinstance(package, Mapping) else None
+        if not isinstance(methods, list) or any(
+            not isinstance(item, str) or not item for item in methods
+        ):
+            raise CommandRejectedError("technique_package_registry_invalid")
+        return tuple(methods)
+
+    def _house_protected_methods(
+        self,
+        institutions: Mapping[str, Any],
+        packages: Mapping[str, Any],
+    ) -> frozenset[str]:
+        policy = institutions.get("house.tang")
+        tiers = policy.get("technical_tiers") if isinstance(policy, Mapping) else None
+        if not isinstance(tiers, Mapping):
+            raise CommandRejectedError("training_progression_invalid")
+        tier_refs: set[str] = set()
+        house_methods: set[str] = set()
+        for tier in tiers.values():
+            package_ref = tier.get("package_ref") if isinstance(tier, Mapping) else None
+            if not isinstance(package_ref, str) or not package_ref:
+                raise CommandRejectedError("training_progression_invalid")
+            tier_refs.add(package_ref)
+            house_methods.update(self._package_methods(packages, package_ref))
+        ordinary_methods: set[str] = set()
+        for package_ref in packages:
+            if package_ref in tier_refs or package_ref == "PKG_INVISIBLE_COURT_STYLE":
+                continue
+            ordinary_methods.update(self._package_methods(packages, package_ref))
+        return frozenset(house_methods - ordinary_methods)
+
+    def _house_technique_allowed(
+        self,
+        record: Mapping[str, Any],
+        technique_ref: str,
+        institutions: Mapping[str, Any],
+        packages: Mapping[str, Any],
+    ) -> bool:
+        policy = institutions.get("house.tang")
+        house_state = record.get("house_tang")
+        standing = house_state.get("rank") if isinstance(house_state, Mapping) else None
+        if not isinstance(policy, Mapping) or not isinstance(standing, str):
+            return False
+        mapping = policy.get("standing_to_technical_tier")
+        order = policy.get("technical_tier_order")
+        tiers = policy.get("technical_tiers")
+        if not isinstance(mapping, Mapping) or not isinstance(order, list) or not isinstance(tiers, Mapping):
+            raise CommandRejectedError("training_progression_invalid")
+        tier_id = mapping.get(standing)
+        if not isinstance(tier_id, str) or tier_id not in order:
+            raise CommandRejectedError("house_technical_tier_unresolved")
+        allowed: set[str] = set()
+        for current_tier in order:
+            tier = tiers.get(current_tier)
+            package_ref = tier.get("package_ref") if isinstance(tier, Mapping) else None
+            if not isinstance(package_ref, str):
+                raise CommandRejectedError("training_progression_invalid")
+            allowed.update(self._package_methods(packages, package_ref))
+            if current_tier == tier_id:
+                break
+        return technique_ref in allowed
+
+    def _clan_policy_for_method(
+        self,
+        technique_ref: str,
+        institutions: Mapping[str, Any],
+        packages: Mapping[str, Any],
+    ) -> Mapping[str, Any] | None:
+        matches: list[Mapping[str, Any]] = []
+        for institution_ref, policy in institutions.items():
+            if institution_ref == "house.tang" or not isinstance(policy, Mapping):
+                continue
+            package_ref = policy.get("membership_package_ref")
+            if not isinstance(package_ref, str):
+                continue
+            if technique_ref in self._package_methods(packages, package_ref):
+                matches.append(policy)
+        if len(matches) > 1:
+            raise CommandRejectedError("technique_institution_access_ambiguous")
+        return matches[0] if matches else None
+
+    def _clan_technique_allowed(
+        self,
+        record: Mapping[str, Any],
+        technique_ref: str,
+        policy: Mapping[str, Any],
+        packages: Mapping[str, Any],
+    ) -> bool:
+        package_ref = policy.get("membership_package_ref")
+        if not isinstance(package_ref, str) or package_ref not in training_package_refs(record):
+            return False
+        methods = self._package_methods(packages, package_ref)
+        try:
+            index = methods.index(technique_ref)
+            known = field_usable_method_refs(record)
+        except ValueError as exc:
+            raise CommandRejectedError("technique_repertoire_invalid") from exc
+        if index == 0:
+            return True
+        return methods[index - 1] in known
+
+    def _assert_institutional_technique_access(
+        self,
+        student: Mapping[str, Any],
+        teacher: Mapping[str, Any],
+        technique_ref: str,
+    ) -> None:
+        institutions = self._training_progression_institutions()
+        packages = self._tech_package_registry()
+        if technique_ref in self._house_protected_methods(institutions, packages):
+            if not self._house_technique_allowed(student, technique_ref, institutions, packages):
+                raise CommandRejectedError("house_technical_tier_access_denied")
+            if not self._house_technique_allowed(teacher, technique_ref, institutions, packages):
+                raise CommandRejectedError("house_teacher_access_denied")
+            return
+        policy = self._clan_policy_for_method(technique_ref, institutions, packages)
+        if policy is None:
+            return
+        if not self._clan_technique_allowed(student, technique_ref, policy, packages):
+            raise CommandRejectedError("clan_instruction_access_denied")
+        if not self._clan_technique_allowed(teacher, technique_ref, policy, packages):
+            raise CommandRejectedError("clan_teacher_access_denied")
+
+    @staticmethod
+    def _technique_prerequisites_met(
+        student: Mapping[str, Any],
+        record: Mapping[str, Any],
+    ) -> bool:
+        try:
+            return technique_prerequisites_met(student, record)
+        except ValueError as exc:
+            raise CommandRejectedError("technique_repertoire_invalid") from exc
+
+    def _technique_learning_resolution(
+        self,
+        command: CommandEnvelope,
+        meta: Mapping[str, Any],
+        current_time: CampaignTime,
+    ) -> _BuiltPlan:
+        if command.payload.get("action") == "begin":
+            student_ref = command.payload.get("student_ref")
+            teacher_ref = command.payload.get("teacher_ref")
+            technique_ref = command.payload.get("technique_ref")
+            if (
+                isinstance(student_ref, str)
+                and student_ref == command.actor_id
+                and isinstance(teacher_ref, str)
+                and teacher_ref != student_ref
+                and isinstance(technique_ref, str)
+            ):
+                _student_path, student = self._resolve_actor_for_write(student_ref)
+                _teacher_path, teacher = self._resolve_actor_for_write(teacher_ref)
+                self._assert_institutional_technique_access(
+                    student,
+                    teacher,
+                    technique_ref,
+                )
+        return super()._technique_learning_resolution(command, meta, current_time)
 
     def _training_facility_capacity(
         self,

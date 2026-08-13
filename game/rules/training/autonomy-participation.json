@@ -1,16 +1,54 @@
 {
   "schema": "team-training-participation-policies",
-  "version": 1,
+  "version": 2,
   "policies": {
     "team.konoha.fujin": {
       "enabled": true,
       "participant_ref": "pc_wei_tang",
       "participates_in_autonomous_training": true,
-      "target_cycle": ["operational_skills.tactics", "operational_skills.team_coordination", "operational_skills.leadership", "martial_skills.movement", "martial_skills.sword", "domain_proficiencies.wind"],
+      "target_cycle": [
+        "operational_skills.tactics",
+        "operational_skills.team_coordination",
+        "operational_skills.leadership",
+        "martial_skills.movement",
+        "martial_skills.sword",
+        "domain_proficiencies.wind"
+      ],
       "assembly_location_ref": "place.sword_manor",
       "assemble_nonplayer_members": true,
-      "instructor_refs": ["char.zhu", "char.linh"],
-      "basis": "persisted Team Fujin training and Sword Manor supervision orders"
+      "instructor_refs": [
+        "char.zhu",
+        "char.linh"
+      ],
+      "active_hours_per_week": 34,
+      "training_days_per_cycle": 6,
+      "full_training_day_hours": 6,
+      "taper_day_hours": 4,
+      "recovery_days_per_cycle": 1,
+      "target_strategy": "weakness_strength_balanced",
+      "team_target_cycle": [
+        "operational_skills.team_coordination",
+        "martial_skills.movement",
+        "operational_skills.investigation",
+        "operational_skills.tactics",
+        "attributes.awareness",
+        "martial_skills.stealth"
+      ],
+      "assessment_paths": [
+        "attributes.awareness",
+        "attributes.coordination",
+        "attributes.endurance",
+        "chakra_dimensions.control",
+        "chakra_dimensions.efficiency",
+        "martial_skills.movement",
+        "martial_skills.stealth",
+        "operational_skills.investigation",
+        "operational_skills.survival",
+        "operational_skills.tactics",
+        "operational_skills.team_coordination",
+        "operational_skills.tracking"
+      ],
+      "basis": "Team Fujin uses Sword Manor as its standing intensive-development base: five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day. Instruction remediates weak mission fundamentals while rotating back through role strengths and team coordination. Lawful missions, injury, travel, medical restrictions and higher orders preempt the schedule; missed hours are not stacked."
     },
     "team.blackhound": {
       "enabled": true,
@@ -19,7 +57,9 @@
       "target_cycle": [],
       "assembly_location_ref": "place.sword_manor",
       "assemble_nonplayer_members": true,
-      "instructor_refs": ["canon_hayama_shirakumo"],
+      "instructor_refs": [
+        "canon_hayama_shirakumo"
+      ],
       "basis": "Hayama-led routine training avoids double-counting Wei across simultaneous team schedules"
     }
   }

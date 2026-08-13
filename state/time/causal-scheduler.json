@@ -465,22 +465,6 @@
         "identity": "house.tang"
       }
     },
-    "host.mission.offer.0a7361790026211550": {
-      "state": {
-        "host_id": "host.mission.offer.0a7361790026211550",
-        "kind": "mission",
-        "resolved_through": "SE-0061-06-07T14:46:14",
-        "safe_through": "SE-0061-06-11T07:00:00",
-        "handler_ref": "causal.scheduler",
-        "rng_namespace": "mission.offer.0a7361790026211550",
-        "next_due": "SE-0061-06-11T07:00:01"
-      },
-      "authority_kind": "mission",
-      "owner_ref": "state/mission/mission.offer.0a7361790026211550.json",
-      "metadata": {
-        "mission_id": "mission.offer.0a7361790026211550"
-      }
-    },
     "host.person_continuity": {
       "state": {
         "host_id": "host.person_continuity",
@@ -1510,23 +1494,6 @@
       "correlation_id": null
     },
     {
-      "event_id": "evt.causal.ec03dc52a9f7a6675ac75e01",
-      "kind": "mission.boundary",
-      "due_at": "SE-0061-06-11T07:00:01",
-      "priority": 20,
-      "source_host": "host.mission.offer.0a7361790026211550",
-      "target_host": "host.mission.offer.0a7361790026211550",
-      "payload": {
-        "mission_id": "mission.offer.0a7361790026211550",
-        "owner_ref": "state/mission/mission.offer.0a7361790026211550.json"
-      },
-      "dedupe_key": "mission.boundary:mission.offer.0a7361790026211550",
-      "visibility": "player_known",
-      "requires_player": true,
-      "causation_id": null,
-      "correlation_id": null
-    },
-    {
       "event_id": "evt.causal.29c2aa77166efb036832fbb8",
       "kind": "canon_pressure.periodic_review",
       "due_at": "SE-0061-06-11T09:00:00",
@@ -1864,8 +1831,8 @@
     }
   ],
   "metrics": {
-    "host_count": 48,
-    "pending_event_count": 48,
+    "host_count": 47,
+    "pending_event_count": 47,
     "global_person_scans": 0,
     "global_faction_directory_scans": 0,
     "last_requested_target": "SE-0061-06-07T14:46:14",

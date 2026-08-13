@@ -56,6 +56,22 @@ for base in ['state','data','game']:
         if p.is_dir(): actual.add(base+'/'+p.name)
 for rel in sorted(actual-mapped): err(f'unmapped_directory:{rel}')
 
+# House Tang has three technical tiers only; instructor is a standing, not a jutsu tier.
+retired_house_terms=(
+    'PKG_HT_'+'INSTRUCTOR',
+    'House Tang instructor '+'curriculum',
+)
+for rel in (
+    'game/data/tech/packages.json',
+    'game/data/clans/training-progression.json',
+    'game/data/house/training-policies.json',
+    'state/house/tang.json',
+):
+    try: text=(ROOT/rel).read_text(encoding='utf-8')
+    except Exception as e: err(f'house_tier_read:{rel}:{e}'); continue
+    for term in retired_house_terms:
+        if term in text: err(f'retired_house_technical_tier_present:{rel}:{term}')
+
 # temporal engine flags and causal authority
 te=rj('runtime/contracts/temporal-settlement.json')
 for term in ['continuous_residual','new_process_rule','hard_interrupt_rule','safe_batching','postconditions']:

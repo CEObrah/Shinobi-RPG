@@ -1,0 +1,11 @@
+{
+  "schema": "sword-manor-character-continuity-policy",
+  "policy_ref": "recruitment.sword_manor_disciple",
+  "representation": "persistent_character_lite_over_cohort_simulation",
+  "invariants": [
+    "Every accepted disciple receives a stable persistent identity core.",
+    "Numeric capabilities and learning aptitudes resolve deterministically per roster slot; cohort summaries are simulation/storage layers, not substitute characters.",
+    "Promotion to a heavyweight exact character must preserve the same person ID, identity, established individualized capability values, learning aptitudes, cohort/intake provenance, affiliations, and accumulated history.",
+    "Exact promotion must not reroll or regenerate an established disciple."
+  ]
+}

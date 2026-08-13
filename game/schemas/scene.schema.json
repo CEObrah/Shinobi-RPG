@@ -20,7 +20,10 @@
       "type": "boolean"
     },
     "decision_required": {
-      "type": "string"
+      "type": [
+        "null",
+        "string"
+      ]
     },
     "freeform_actions_allowed": {
       "type": "boolean"
@@ -51,5 +54,5 @@
     }
   },
   "additionalProperties": true,
-  "description": "Canonical scene context only. Choice menus are generated from current state and are never stored as authority."
+  "description": "Canonical scene context only. decision_required is null unless a protected player choice is currently unresolved. Choice menus are generated from current state and are never stored as authority."
 }

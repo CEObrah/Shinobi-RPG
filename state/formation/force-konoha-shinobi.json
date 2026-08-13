@@ -15,9 +15,9 @@
       "authorized_personnel": 25,
       "doctrine_ref": "doc.konoha.field",
       "training_ref": "train.konoha.anbu",
-      "cohesion": 81,
-      "morale": 77,
-      "readiness": 86,
+      "cohesion": 82,
+      "morale": 78,
+      "readiness": 87,
       "location_ref": "place.konoha.anbu_headquarters",
       "activity_summary": "ANBU-qualified covert operations readiness",
       "command_slot": {
@@ -830,9 +830,9 @@
       "authorized_personnel": 25,
       "doctrine_ref": "doc.konoha.field",
       "training_ref": "train.konoha.field",
-      "cohesion": 76,
-      "morale": 75,
-      "readiness": 87,
+      "cohesion": 77,
+      "morale": 76,
+      "readiness": 88,
       "location_ref": "place.fire.eastern.border",
       "activity_summary": "standing_readiness",
       "command_slot": {
@@ -4605,6 +4605,186 @@
       ],
       "operational_objective": {
         "kind": "capture",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d",
+      "name": "faction.konoha_anbu Operational Formation 25",
+      "force_ref": "force.konoha.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 500,
+      "authorized_personnel": 500,
+      "doctrine_ref": "doc.konoha.field",
+      "training_ref": "train.konoha.field",
+      "cohesion": 87,
+      "morale": 83,
+      "readiness": 88,
+      "location_ref": "place.konoha",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 20,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 10,
+            "rank_distribution": {
+              "genin": 10
+            },
+            "condition": {
+              "healthy": 10
+            }
+          },
+          {
+            "count": 10,
+            "rank_distribution": {
+              "genin": 10
+            },
+            "condition": {
+              "healthy": 10
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.01",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 83,
+          "rank_distribution": {
+            "chunin": 62,
+            "genin": 21
+          },
+          "condition": {
+            "healthy": 83
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.02",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 21,
+          "rank_distribution": {
+            "chunin": 21
+          },
+          "condition": {
+            "healthy": 21
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.03",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 42,
+          "rank_distribution": {
+            "genin": 21,
+            "special_jonin": 21
+          },
+          "condition": {
+            "healthy": 42
+          },
+          "tendency_profile_ref": "formation.tendency.02"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.04",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 42,
+          "rank_distribution": {
+            "chunin": 21,
+            "support": 21
+          },
+          "condition": {
+            "healthy": 42
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.05",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 21,
+          "rank_distribution": {
+            "chunin": 21
+          },
+          "condition": {
+            "healthy": 21
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.06",
+          "troop_type": "barrier_specialists",
+          "role": "support",
+          "count": 83,
+          "rank_distribution": {
+            "special_jonin": 21,
+            "genin": 21,
+            "chunin": 41
+          },
+          "condition": {
+            "light_healing_injury": 21,
+            "healthy": 62
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.07",
+          "troop_type": "barrier_specialists",
+          "role": "support",
+          "count": 83,
+          "rank_distribution": {
+            "special_jonin": 21,
+            "genin": 21,
+            "chunin": 41
+          },
+          "condition": {
+            "healthy": 83
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.08",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 42,
+          "rank_distribution": {
+            "jonin": 21,
+            "genin": 21
+          },
+          "condition": {
+            "healthy": 21,
+            "light_healing_injury": 21
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.0612c7cb0d.component.09",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 63,
+          "rank_distribution": {
+            "genin": 21,
+            "chunin": 42
+          },
+          "condition": {
+            "healthy": 63
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
         "target_refs": [],
         "lethal_authorized": false
       }

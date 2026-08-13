@@ -1,0 +1,132 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.offer.2132adf0c1e8a6f134",
+  "issuer_ref": "faction.konoha_mission_office",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": "escrow.mission.offer.2132adf0c1e8a6f134",
+  "opened_at": "SE-0061-06-11T07:00:00",
+  "authorized_at": "SE-0061-06-11T07:00:00",
+  "starts_at": null,
+  "deadline_at": "SE-0061-06-18T07:00:00",
+  "next_due_at": null,
+  "operation_ref": "team.blackhound",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.offer.2132adf0c1e8a6f134",
+    "objective_kind": "investigate",
+    "subject_kind": "place",
+    "subject_ref": "place.fire.western.border",
+    "subject_label": "Western-border cargo-transfer discrepancy",
+    "report_place_ref": "place.konoha.mission_assignment_desk",
+    "origin_place_ref": "place.konoha",
+    "destination_place_ref": "place.fire.western.border",
+    "route_id": "route_konoha_fire_west",
+    "threat_summary": "Possible deliberate interference with controlled cargo records on the western Fire Country route; criminal or hostile involvement is unconfirmed.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "Determine whether the discrepancy is clerical, criminal, or hostile before attributing intent.",
+      "Preserve records, physical evidence, and available witnesses."
+    ],
+    "report_at": "SE-0061-06-11T09:00:00",
+    "depart_by": "SE-0061-06-11T13:00:00",
+    "completion_condition": "Establish a defensible account of the discrepancy and return the preserved evidence and findings to the Mission Office."
+  },
+  "state": "offered",
+  "participant_refs": [
+    "canon_ensui_nara",
+    "canon_hana_inuzuka",
+    "canon_hayama_shirakumo",
+    "canon_hoheto_hyuga",
+    "canon_tekuno_kanden",
+    "pc_wei_tang"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.2132adf0c1e8a6f134",
+      "kind": "investigate",
+      "required": true,
+      "dependencies": [],
+      "status": "pending",
+      "progress_milli": 0,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.canon.ensui.nara",
+      "direction": "reward",
+      "account_ref": "canon_ensui_nara",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.canon.hana.inuzuka",
+      "direction": "reward",
+      "account_ref": "canon_hana_inuzuka",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.canon.hayama.shirakumo",
+      "direction": "reward",
+      "account_ref": "canon_hayama_shirakumo",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.canon.hoheto.hyuga",
+      "direction": "reward",
+      "account_ref": "canon_hoheto_hyuga",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.canon.tekuno.kanden",
+      "direction": "reward",
+      "account_ref": "canon_tekuno_kanden",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.2132adf0c1e8a6f134.reward.pc.wei.tang",
+      "direction": "reward",
+      "account_ref": "pc_wei_tang",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    }
+  ],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

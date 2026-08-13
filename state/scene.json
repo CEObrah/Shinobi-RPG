@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": "The prior unresolved decision surface remains; this wait creates no additional consequential player choice.",
+  "decision_required": null,
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "canon_ensui_nara",
@@ -19,7 +19,6 @@
   "location_id": "place.sword_manor",
   "narrative": {
     "active_npc_agendas": [],
-    "available_reports": [],
     "known_clues": [
       "Hiruzen accepted the name Black Hound and retained the previously stated mission restrictions.",
       "The five non-Wei assignment orders were served in time for a 19:30 first muster at Sword Manor.",
@@ -45,13 +44,18 @@
       "Team Fujin heavy training week",
       "House Tang elite field-readiness cycle"
     ],
-    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
+    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state",
+    "available_reports": [
+      "The Mission Office has new operational tasking available for review."
+    ]
   },
   "scene_id": "scene_sword_manor_black_hound_first_muster_complete",
-  "scene_summary": "Time advances from SE-0061-06-10T01:14:37 to SE-0061-06-11T01:14:37 at place.sword_manor; no player decision boundary was reached.",
+  "scene_summary": "Time advances from SE-0061-06-11T01:14:37 to SE-0061-06-11T07:00:00 at place.sword_manor; no player decision boundary was reached.",
   "schema": "scene",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-06-11T01:14:37",
+  "world_time": "SE-0061-06-11T07:00:00",
   "known_clock_boundaries": [],
-  "observable_pressures": []
+  "observable_pressures": [
+    "A new mission offer from the Mission Office is awaiting review."
+  ]
 }

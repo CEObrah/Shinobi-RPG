@@ -56,3 +56,43 @@ Separately, the runtime projection now exposes exact-team recovery eligibility, 
 ### Acceptance
 
 Before consequential play resumes, verify that the live Runtime still reports revision `26` at `SE-0061-02-07T14:18:21`, that Black Hound inspection exposes its latest resolved session ending `SE-0061-02-06T22:15:00`, that the next all-member recovery eligibility is `SE-0061-02-09T06:15:00`, and that live play context no longer claims Black Hound has never practiced or Team Fujin refits are pending.
+
+## 2026-08-13 - Repair delegated Fujin training and Black Hound B-rank compensation
+
+- Campaign: `shinobi-wei-main`
+- Repair request: `ooc-repair-probe-20260813-r97`
+- Repair transaction: `tx.gameplay.148b579ceb5aea440e88735d236f6ce475ab10953df30514d7922a05966cae93`
+- Repair revision: `97 -> 98`
+- World time: retained at `SE-0061-06-10T01:14:37`
+- Repair event: `event.campaign_repair_resolution.148b579ceb5aea440e88`
+- Historical Fujin training event: `event.team_training_session_resolved.77a9b9c841a2357d1f6acc95`
+- Affected mission: `mission.offer.0a7361790026211550`
+- Mission compensation: `70,000 ryō` per participant, six participants, `420,000 ryō` total from `treasury.konoha`
+
+### Diagnosis
+
+The June 4-10 mission travel and time advance were correctly relayed to the causal scheduler. Team Fujin's periodic host actually consumed its `SE-0061-06-05T21:15:00` review and the scheduler later reported no overdue work. The missing training was therefore not a clock-relay defect.
+
+The exact-team autonomous training reducer treated any active mission involving any team member as a whole-team training preemption. Wei's unrelated Black Hound deployment consequently froze Team Fujin even though persisted standing policy explicitly authorized routine assembly at Sword Manor under Zhu or Linh when Wei was unavailable. The source fix now excludes only the policy-named absent player participant from that one delegated training review; a mission involving any remaining trainee still preempts the session.
+
+Separately, living-world player mission offers bypassed the generic mission-creation escrow path. The B-rank Black Hound escort was created with `funding_holder_ref=treasury.konoha` but no settlement terms and no escrow, so successful terminal settlement lawfully produced no transfer. Future player mission offers now create conserved rank-banded participant reward terms and fund them from institutional treasury at offer creation.
+
+House Tang was audited separately and was not missing progression. Its standing seven-day readiness program uses deliberate lazy development settlement on the House review host; unresolved daily windows remain recoverable and are settled deterministically at the next lawful review rather than written every day.
+
+### Repair
+
+A temporary guarded semantic repair command was deployed, previewed at revision 97, and executed through the normal transaction coordinator. It reused the canonical autonomous team-training reducer at the consumed June 5 boundary rather than hand-editing character skills. Wei was excluded because he was deployed. Linh instructed the three eligible Fujin members for eight active hours:
+
+- Kai: `martial_skills.movement` `102 -> 104` (`+2`)
+- Mei Arakawa: `martial_skills.movement` `100 -> 102` (`+2`)
+- Riku Hyuga: `attributes.awareness` `109 -> 111` (`+2`)
+
+The same repair conserved the omitted B-rank compensation directly from Konoha treasury: `70,000 ryō` to each of Ensui Nara, Hana Inuzuka, Hayama Shirakumo, Hoheto Hyuga, Tekuno Kanden, and Wei Tang, for `420,000 ryō` total. The original terminal mission settlement remains unchanged with empty reward terms so historical provenance is not rewritten; the explicit repair event records the corrective transfer.
+
+After the committed receipt was verified, the one-shot repair command was removed from the production planner and its reducer file deleted. The permanent delegated-training and future mission-offer reward fixes remain.
+
+### Verification and acceptance
+
+Live runtime verification immediately after repair reported revision `98` at the unchanged world time `SE-0061-06-10T01:14:37`. Team Fujin inspection showed the repaired session from `SE-0061-06-05T13:15:00` through `21:15:00`, instructor `char.linh`, and only Kai, Mei, and Riku as trainees. Wei's inventory summary reported `1,540,000 ryō`, including the repaired `70,000 ryō` mission payment. The completed mission remains rank B and succeeded with its original empty settlement terms.
+
+Regression tests were committed for both permanent fixes, but GitHub Actions did not execute them because GitHub rejected the jobs before startup with an account billing/spending-limit annotation. Do not record those workflow runs as test failures or passes. Production runtime import/preview/execution verified the repaired path; ordinary CI remains externally blocked until GitHub can start jobs again.

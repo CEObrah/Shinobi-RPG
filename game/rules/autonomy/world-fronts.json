@@ -1,0 +1,93 @@
+{
+  "schema": "world-front-policy",
+  "version": 1,
+  "principle": "future canon is conditional pressure; only committed ordinary-domain events may advance a front",
+  "phase_thresholds": {
+    "developing_evidence": 1,
+    "operational_evidence": 3,
+    "crisis_evidence": 6
+  },
+  "material_action_kinds": [
+    "information_report",
+    "mission_generate",
+    "mission_advance",
+    "formation_expand",
+    "formation_reconstitute",
+    "formation_split",
+    "formation_merge",
+    "institution_priority_review",
+    "team_form"
+  ],
+  "non_material_action_kinds": [
+    "routine_summary"
+  ],
+  "fronts": {
+    "pressure_oto_konoha_infiltration": {
+      "faction_roles": {
+        "faction.oto_research_cells": "source",
+        "faction.konoha_anbu": "opposition"
+      },
+      "strategic_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    },
+    "pressure_suna_funding": {
+      "faction_roles": {},
+      "strategic_action_cycle": [
+        "mission_generate",
+        "institution_priority_review"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    },
+    "pressure_kiri_transition": {
+      "faction_roles": {
+        "faction.kiri_hunter_office": "source"
+      },
+      "strategic_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    },
+    "pressure_great_village_mission_market": {
+      "faction_roles": {
+        "faction.konoha_mission_office": "source"
+      },
+      "strategic_action_cycle": [
+        "mission_generate",
+        "information_report"
+      ],
+      "player_visibility": "public_or_knowledge",
+      "canon_forcing": false
+    },
+    "pressure_konoha_academy_graduation": {
+      "faction_roles": {},
+      "strategic_action_cycle": [],
+      "player_visibility": "public_or_knowledge",
+      "canon_forcing": false
+    },
+    "pressure_mizuki_forbidden_scroll": {
+      "faction_roles": {},
+      "strategic_action_cycle": [],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    },
+    "pressure_wave_gato_bridge": {
+      "faction_roles": {},
+      "strategic_action_cycle": [],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    },
+    "pressure_akatsuki_intelligence": {
+      "faction_roles": {},
+      "strategic_action_cycle": [],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false
+    }
+  }
+}

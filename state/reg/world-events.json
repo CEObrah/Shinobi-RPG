@@ -5762,6 +5762,139 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.a23d68618f0e1ade810feb0c",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-09T07:00:00",
+        "occurred_at": "SE-0061-06-09T07:00:00",
+        "started_at": "SE-0061-06-09T07:00:00",
+        "ended_at": "SE-0061-06-09T07:00:00"
+      },
+      "host_refs": [
+        "pressure_wave_gato_bridge"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_wave_gato_bridge"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-09T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.462a053cfd477af55be0315e716d40c4f8c66f092631c8db72646ba433e938cd",
+        "receipt_refs": [
+          "receipt.gameplay.462a053cfd477af55be0315e716d40c4f8c66f092631c8db72646ba433e938cd"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.travel_completed.8c0661dc89b1f5548bdc",
+      "kind": "travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-10T00:30:33",
+        "started_at": "SE-0061-06-10T00:30:33",
+        "ended_at": "SE-0061-06-10T00:30:33"
+      },
+      "host_refs": [
+        "place.fire.capital",
+        "place.konoha"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.fire.capital",
+        "place.konoha"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/ensui-nara.json",
+        "state/char/hana-inuzuka.json",
+        "state/char/hayama-shirakumo.json",
+        "state/char/hoheto-hyuga.json",
+        "state/char/tekuno-kanden.json",
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:canon_ensui_nara:place.konoha",
+        "location:canon_hana_inuzuka:place.konoha",
+        "location:canon_hayama_shirakumo:place.konoha",
+        "location:canon_hoheto_hyuga:place.konoha",
+        "location:canon_tekuno_kanden:place.konoha",
+        "location:pc_wei_tang:place.konoha"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_fire_capital_konoha"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-10T00:30:33"
+      },
+      "execution": {
+        "reducer_ref": "game/data/mechanics/travel.json",
+        "transaction_ref": "tx.gameplay.8c0661dc89b1f5548bdc5c24b4bc8d7e43c77abd36fb9175e19382004bb28306",
+        "receipt_refs": [
+          "receipt.gameplay.8c0661dc89b1f5548bdc5c24b4bc8d7e43c77abd36fb9175e19382004bb28306"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

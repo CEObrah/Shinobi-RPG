@@ -6,7 +6,9 @@ be diagnosed without shell access to the Railway volume. Production reads also
 surface player-safe cold site topology after the base visibility check so the GM
 can narrate established places without duplicating static world content into
 mutable campaign state. Mission handoff routing stays bounded while distinguishing
-current mission work from historical participant missions.
+current mission work from historical participant missions. Scene-vitality routing
+projects already-authoritative locality into a bounded cast without making
+presentation detail a second source of campaign truth.
 """
 
 from __future__ import annotations
@@ -22,6 +24,10 @@ from shinobi_runtime.api.contracts import (
     PlannerUnavailableError,
 )
 from shinobi_runtime.api.operations import OperationError, PlanStateChangedError
+from shinobi_runtime.api.scene_vitality import (
+    apply_scene_vitality_handoff,
+    build_scene_cast,
+)
 from shinobi_runtime.commands.mission_owner import MissionOwner
 from shinobi_runtime.tx.canonical import thaw_json
 from shinobi_runtime.tx.errors import (
@@ -207,6 +213,53 @@ class RouteAwareCampaignOperations(_BaseRouteAwareCampaignOperations):
         )
         return mission_ids, briefing_ids, len(current) > _MAX_CONTEXT_MISSION_IDS
 
+    def _player_scene_cast(
+        self,
+        *,
+        player_id: str,
+        scene: Mapping[str, Any],
+        payload: Mapping[str, Any],
+    ) -> Mapping[str, Any]:
+        """Project local known people without inferring immediate presence."""
+
+        permitted_ids = self._permitted_person_lookup_ids(player_id=player_id)
+        person_records: dict[str, Mapping[str, Any]] = {}
+        for person_id in permitted_ids:
+            if person_id == player_id:
+                continue
+            try:
+                _path, record = self._owner_record(person_id)
+            except (FileNotFoundError, ValueError, OperationError):
+                continue
+            if record.get("schema") in ("shinobi_character", "person"):
+                person_records[person_id] = record
+
+        team_records: dict[str, Mapping[str, Any]] = {}
+        object_reads = payload.get("object_reads")
+        team_refs = (
+            object_reads.get("suggested_exact_team_refs")
+            if isinstance(object_reads, Mapping)
+            else None
+        )
+        if isinstance(team_refs, list):
+            for team_ref in team_refs:
+                if not isinstance(team_ref, str) or not team_ref.startswith("team."):
+                    continue
+                try:
+                    _path, team = self._owner_record(team_ref)
+                except (FileNotFoundError, ValueError, OperationError):
+                    continue
+                if team.get("schema") == "exact-team":
+                    team_records[team_ref] = team
+
+        return build_scene_cast(
+            scene=scene,
+            player_id=player_id,
+            permitted_person_ids=permitted_ids,
+            person_records=person_records,
+            team_records=team_records,
+        )
+
     def _project_play_context(
         self,
         meta: object,
@@ -222,11 +275,22 @@ class RouteAwareCampaignOperations(_BaseRouteAwareCampaignOperations):
         mission_ids, briefing_ids, missions_truncated = (
             self._current_player_mission_context(player_id)
         )
-        return _apply_current_mission_handoff(
+        projected = _apply_current_mission_handoff(
             payload,
             mission_ids=mission_ids,
             briefing_ids=briefing_ids,
             missions_truncated=missions_truncated,
+        )
+        if not isinstance(scene, Mapping):
+            raise OperationError(503, "scene_vitality_invalid")
+        scene_cast = self._player_scene_cast(
+            player_id=player_id,
+            scene=scene,
+            payload=projected,
+        )
+        return apply_scene_vitality_handoff(
+            projected,
+            scene_cast=scene_cast,
         )
 
     def _authored_site_context(self, object_ref: str) -> Mapping[str, Any] | None:

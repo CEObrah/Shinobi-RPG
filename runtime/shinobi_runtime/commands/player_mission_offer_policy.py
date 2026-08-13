@@ -1,9 +1,11 @@
-"""Player-offer objective selection independent from generic faction missions.
+"""Player-offer policy independent from generic faction mission pressure.
 
 A faction profile may support abstract mission kinds whose material mechanics are
-not yet suitable for a player-facing assignment.  The optional player_offer
-objective_cycle narrows only the player offer surface; autonomous faction work
-continues to use the generic profile cycle.
+not yet suitable for a player-facing assignment. The optional ``player_offer``
+policy narrows the player offer surface and may request one offer review per
+real faction review. Player offers are evaluated before background NPC mission
+capacity so ordinary autonomous work cannot crowd the player out of lawful
+tasking. No offer is acceptance, travel, mission start, or player dialogue.
 """
 
 from __future__ import annotations
@@ -20,7 +22,9 @@ from shinobi_runtime.sim.scheduler import CausalSchedulerRegistry
 class PlayerMissionOfferPolicyMixin:
     def _player_offer_objective_cycle(self, faction_id: str) -> tuple[str, ...]:
         try:
-            _profile, assignment = self._autonomy_policy_book().faction_context(faction_id)
+            _profile, assignment = self._autonomy_policy_book().faction_context(
+                faction_id
+            )
         except (TypeError, ValueError, CommandRejectedError):
             return ()
         config = assignment.get("player_offer") if isinstance(assignment, Mapping) else None
@@ -87,6 +91,48 @@ class PlayerMissionOfferPolicyMixin:
                     pass
             else:
                 self._active_player_offer_objective_cycle = prior
+
+    def _apply_autonomous_decision(
+        self,
+        *,
+        decision: Any,
+        at: CampaignTime,
+        command: CommandEnvelope,
+        scheduler: CausalSchedulerRegistry,
+        world_events: Dict[str, Any],
+        record_writes: Dict[str, Dict[str, Any]],
+        faction_record: Dict[str, Any],
+    ) -> Mapping[str, Any]:
+        """Give an opted-in player offer first refusal on mission demand.
+
+        The base mission reducer historically checked the faction's NPC mission
+        capacity before invoking the player-offer path. That allowed unrelated
+        background missions to starve a valid player-led team. This production
+        layer evaluates the already-authorized offer first. If no offer is
+        eligible, normal faction mission generation proceeds unchanged.
+        """
+
+        if getattr(decision, "kind", None) == "mission_generate":
+            offer = self._maybe_offer_player_mission(
+                decision=decision,
+                at=at,
+                command=command,
+                scheduler=scheduler,
+                world_events=world_events,
+                record_writes=record_writes,
+                faction_record=faction_record,
+            )
+            if offer is not None:
+                return offer
+        return super()._apply_autonomous_decision(
+            decision=decision,
+            at=at,
+            command=command,
+            scheduler=scheduler,
+            world_events=world_events,
+            record_writes=record_writes,
+            faction_record=faction_record,
+        )
 
 
 __all__ = ["PlayerMissionOfferPolicyMixin"]

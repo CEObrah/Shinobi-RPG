@@ -1,0 +1,50 @@
+{
+  "schema": "formation_model",
+  "id": "formation_model.shinobi",
+  "authority": "game/data/organization/formation-model.json",
+  "definition": "A formation is an explicit operational body representing a conserved subset of one source force. Its size is chosen for useful simulation resolution rather than a mandatory echelon.",
+  "component_rule": "A formation may contain aggregate components with different roles or troop pools. Components are internal accounting and capability groups, not separate manpower owners.",
+  "named_team_rule": "An exact named team may be attached to or embedded in a formation. Its members are already included in formation headcount. A four-person team inside a 500-person formation means four exact people plus 496 aggregate personnel, never 504.",
+  "large_war_rule": "Represent a 10,000-person field commitment with a bounded number of operational formations appropriate to the theater. Ordinary squad structure remains implicit in doctrine and composition; materialize exact teams only when identity can change local causality.",
+  "split_transaction": {
+    "trigger": "Use split when a durable subset becomes independently assigned or needs persistent state that differs materially from the remainder.",
+    "conservation": [
+      "personnel",
+      "named member claims",
+      "equipment and ammunition claims when tracked",
+      "injury and fatigue state when tracked",
+      "experience",
+      "cohesion and morale inputs",
+      "history and lineage"
+    ],
+    "default_partition": "Anonymous aggregate state is partitioned proportionally and deterministically. Do not silently put the best personnel into one child.",
+    "selected_partition": "Selecting particular people requires an explicit lawful selection action; resulting child state is recalculated from that selection.",
+    "identity": "The remainder may keep the parent formation ID while the detached child receives a new stable formation ID. Personnel claims may never overlap."
+  },
+  "merge_transaction": {
+    "preconditions": [
+      "same source force",
+      "compatible operational composition or explicit reconciliation",
+      "doctrine, training and command differences resolved"
+    ],
+    "result": "Headcount and material claims are conserved. Readiness and morale combine by weighted state; integration may temporarily reduce cohesion.",
+    "forbidden": "Merge never heals casualties, resets fatigue, recreates equipment, erases history or creates free capability."
+  },
+  "vectorized_resolution": {
+    "purpose": "Efficiency only; never persistent organization.",
+    "rule": "Equivalent formations or components may be evaluated together when all materially relevant inputs are equivalent.",
+    "settlement": "Allocate casualties, fatigue, ammunition, equipment loss and other consequences deterministically back to the real formation IDs.",
+    "no_hidden_layer": "Do not persist a resolution batch as another organization layer."
+  },
+  "core_invariants": [
+    "The source force is the single aggregate manpower owner.",
+    "Explicit formation personnel never exceed source-force deployed personnel.",
+    "Named people and exact teams embedded in a formation are subsets of its headcount.",
+    "Split and merge conserve all represented people and material claims.",
+    "Command authority does not duplicate manpower ownership.",
+    "Large ordinary formations stay aggregate until exact identity becomes causally relevant."
+  ],
+  "aggregate_combat_authority": "game/data/mechanics/formation-resolution.json",
+  "partition_authority": "game/data/mechanics/formation-partition.json",
+  "command_authority": "game/data/mechanics/command.json"
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "content-archetypes",
+  "kind": "mission_archetypes",
+  "authority": "cold_non_state_content",
+  "assignment_rule": "An archetype becomes a mission only when issuer, assignee/team, objective, location, timing, authority/reward, known information, hidden facts, opposition, and success/failure conditions are committed before player tactics.",
+  "archetypes": [
+    {
+      "id": "team_fujin.initial_assessment",
+      "assignment_scope": "team",
+      "region": "Konoha",
+      "description": "Team establishment and field assessment under Wei after the assignment scene"
+    },
+    {
+      "id": "team_fujin.local_escort",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Escort a civilian or low-risk official through a known route"
+    },
+    {
+      "id": "team_fujin.route_recon",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Reconnoiter a route, verify reports, and return actionable information"
+    },
+    {
+      "id": "team_fujin.bandit_suppression",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Locate and stop an armed non-shinobi threat while protecting civilians"
+    },
+    {
+      "id": "team_fujin.infrastructure_protection",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Protect a bridge, road, depot, work crew, or settlement from an identified threat."
+    },
+    {
+      "id": "team_fujin.counter_infiltration",
+      "assignment_scope": "team",
+      "region": "Konoha / Fire Country",
+      "description": "Investigate signs of infiltration, identify the source, and report or act within mission authority."
+    },
+    {
+      "id": "team_fujin.capture",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Capture a specified target alive under mission constraints"
+    },
+    {
+      "id": "team_fujin.hostage_recovery",
+      "assignment_scope": "team",
+      "region": "variable",
+      "description": "Recover hostages from a pre-seeded site and opposition"
+    },
+    {
+      "id": "team_fujin.border_patrol",
+      "assignment_scope": "team",
+      "region": "Fire Country border",
+      "description": "Patrol a border sector, verify alarms, and avoid unauthorized escalation"
+    },
+    {
+      "id": "team_fujin.convoy_security",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Protect a logistics convoy with time, route, and civilian constraints"
+    },
+    {
+      "id": "team_fujin.missing_nin_investigation",
+      "assignment_scope": "team",
+      "region": "variable",
+      "description": "Investigate a missing-nin lead before any capture authorization"
+    },
+    {
+      "id": "team_fujin.tunnel_or_bunker_search",
+      "assignment_scope": "team",
+      "region": "variable",
+      "description": "Search an underground or fortified site and return verified information or complete the assigned objective."
+    },
+    {
+      "id": "team_fujin.disaster_response",
+      "assignment_scope": "team",
+      "region": "Land of Fire",
+      "description": "Rescue, stabilize, secure, and investigate after a natural or man-made disaster"
+    },
+    {
+      "id": "team_fujin.diplomatic_escort",
+      "assignment_scope": "team",
+      "region": "variable",
+      "description": "Protect a diplomatic party while respecting political restrictions"
+    },
+    {
+      "id": "team_fujin.counter_smuggling",
+      "assignment_scope": "team",
+      "region": "Fire Country",
+      "description": "Investigate and interdict a smuggling route using lawfully acquired evidence"
+    },
+    {
+      "id": "solo.reconnaissance",
+      "assignment_scope": "individual",
+      "region": "variable",
+      "description": "A qualified individual performs limited reconnaissance where team deployment would be inappropriate."
+    },
+    {
+      "id": "solo.courier",
+      "assignment_scope": "individual",
+      "region": "variable",
+      "description": "A qualified individual carries time-sensitive material with explicit route and security constraints."
+    },
+    {
+      "id": "solo.contact_meeting",
+      "assignment_scope": "individual",
+      "region": "variable",
+      "description": "A qualified individual meets a contact under controlled security conditions."
+    },
+    {
+      "id": "solo.surveillance",
+      "assignment_scope": "individual",
+      "region": "variable",
+      "description": "A qualified individual conducts bounded surveillance with an explicit extraction plan."
+    },
+    {
+      "id": "solo.specialist_inspection",
+      "assignment_scope": "individual",
+      "region": "variable",
+      "description": "A qualified individual inspects a technical site when institutional policy permits solo deployment."
+    },
+    {
+      "id": "root_arc.verify_lead",
+      "assignment_scope": "player_or_authorized_team",
+      "region": "Konoha / Fire Country",
+      "description": "Verify one Root-related lead without treating rumor as truth."
+    },
+    {
+      "id": "root_arc.identify_actor",
+      "assignment_scope": "player_or_authorized_team",
+      "region": "variable",
+      "description": "Identify a Root-linked person or compartment through evidence."
+    },
+    {
+      "id": "root_arc.map_access",
+      "assignment_scope": "player_or_authorized_team",
+      "region": "variable",
+      "description": "Map one access route, checkpoint, or facility boundary without generating the facility after the plan."
+    },
+    {
+      "id": "root_arc.acquire_records",
+      "assignment_scope": "player_or_authorized_team",
+      "region": "variable",
+      "description": "Acquire or copy records if physically and legally/covertly reachable."
+    },
+    {
+      "id": "root_arc.counter_surveillance",
+      "assignment_scope": "player_or_authorized_team",
+      "region": "variable",
+      "description": "Detect, evade, or document Root surveillance when evidence establishes that surveillance is active."
+    },
+    {
+      "id": "root_arc.operation",
+      "assignment_scope": "player_chosen_force",
+      "region": "Root facility",
+      "description": "Execute the eventual raid/infiltration only after opposition and layout are committed."
+    }
+  ]
+}

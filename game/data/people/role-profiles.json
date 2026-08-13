@@ -1,0 +1,78 @@
+{
+  "schema": "role-profiles",
+  "authority": "Reusable role defaults only. Current individual state and explicit per-person overrides win.",
+  "profiles": {
+    "role.house_tang.junior_disciple": {
+      "owner_default": "house.tang",
+      "rank": "junior_disciple",
+      "equipment_standard": "load.ht.base",
+      "loyalty": "covenant_absolute",
+      "narration_priority": "role_until_relevant",
+      "default_goal": "improve within House Tang curriculum while carrying assigned duties",
+      "background_policy": "House membership persistence is structural state; do not repeat data-model persistence prose as biography.",
+      "relationship_defaults": [
+        {
+          "target_id": "house.tang",
+          "relationship_type": "sworn_member",
+          "trust": 90,
+          "respect": 85,
+          "duty": 95
+        }
+      ]
+    },
+    "role.house_tang.senior_disciple": {
+      "owner_default": "house.tang",
+      "rank": "senior_disciple",
+      "equipment_standard": "load.ht.base",
+      "loyalty": "covenant_absolute",
+      "narration_priority": "role_until_relevant",
+      "default_goal": "improve within House Tang curriculum while carrying assigned duties",
+      "background_policy": "House membership persistence is structural state; do not repeat data-model persistence prose as biography.",
+      "relationship_defaults": [
+        {
+          "target_id": "house.tang",
+          "relationship_type": "sworn_member",
+          "trust": 90,
+          "respect": 85,
+          "duty": 95
+        }
+      ]
+    },
+    "role.house_tang.assistant_instructor": {
+      "owner_default": "house.tang",
+      "rank": "assistant_instructor",
+      "equipment_standard": "load.ht.base",
+      "loyalty": "covenant_absolute",
+      "narration_priority": "role_until_relevant",
+      "default_goal": "improve within House Tang curriculum while carrying assigned duties",
+      "background_policy": "House membership persistence is structural state; do not repeat data-model persistence prose as biography.",
+      "relationship_defaults": [
+        {
+          "target_id": "house.tang",
+          "relationship_type": "sworn_member",
+          "trust": 90,
+          "respect": 85,
+          "duty": 95
+        }
+      ]
+    },
+    "role.house_tang.senior_instructor": {
+      "owner_default": "house.tang",
+      "rank": "senior_instructor",
+      "equipment_standard": "load.ht.base",
+      "loyalty": "covenant_absolute",
+      "narration_priority": "role_until_relevant",
+      "default_goal": "improve within House Tang curriculum while carrying assigned duties",
+      "background_policy": "House membership persistence is structural state; do not repeat data-model persistence prose as biography.",
+      "relationship_defaults": [
+        {
+          "target_id": "house.tang",
+          "relationship_type": "sworn_member",
+          "trust": 90,
+          "respect": 85,
+          "duty": 95
+        }
+      ]
+    }
+  }
+}

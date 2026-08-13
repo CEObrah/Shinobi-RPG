@@ -1,0 +1,118 @@
+{
+  "schema": "force",
+  "id": "force.ame.shinobi",
+  "name": "Force Ame Shinobi",
+  "total": 3500,
+  "availability": {
+    "deployed": 1000,
+    "ready_24h": 0,
+    "mobilizable_7d": 825,
+    "mobilizable_30d": 737,
+    "training_or_instruction": 402,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 536
+  },
+  "military_identity": [
+    "urban/rain combat",
+    "surveillance",
+    "war-hardened small force"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.field_ready",
+      "count": 1005,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_ame_shinobi.field_ready",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.garrison_security",
+      "count": 737,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_ame_shinobi.garrison_security",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.intelligence_support",
+      "count": 134,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_ame_shinobi.intelligence_support",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.medical_support",
+      "count": 134,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_ame_shinobi.medical_support",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.logistics_support",
+      "count": 134,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_ame_shinobi.logistics_support",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.training_instruction",
+      "count": 469,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_ame_shinobi.training_instruction",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_ame_shinobi.reserve_recovery",
+      "count": 737,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_ame_shinobi.reserve_recovery",
+      "doctrine": "doc.force_ame_shinobi.field",
+      "training": "train.force_ame_shinobi.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-ame-shinobi-reserve-recovery.json"
+    }
+  ],
+  "owner_ref": "faction_ame",
+  "formation_registry_ref": "state/formation/force-ame-shinobi.json",
+  "mobilization_anchor_ref": "place.ame"
+}

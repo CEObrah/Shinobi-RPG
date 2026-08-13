@@ -1,0 +1,31 @@
+{
+  "schema": "file-template",
+  "template_id": "template.living-world-autonomy-policy",
+  "target_schema": "living-world-autonomy-policy",
+  "source_schema": "game/schemas/living-world-autonomy-policy.schema.json",
+  "scope": "static_data",
+  "current_directories": ["game/rules/autonomy"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "faction_assignments", "team_profiles"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["schema", "faction_assignments", "team_profiles"], "canonical_order": ["schema", "faction_assignments", "team_profiles"]},
+    "/faction_assignments": {"mode": "open_map"},
+    "/faction_assignments/*": {"mode": "open"},
+    "/team_profiles": {"mode": "open_map"},
+    "/team_profiles/*": {"mode": "open"}
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/faction_assignments": ["object"],
+    "/faction_assignments/*": ["object"],
+    "/team_profiles": ["object"],
+    "/team_profiles/*": ["object"]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This overlay may tune or extend generic autonomy data but may not encode faction-specific runtime branches.",
+    "Exact people named as candidates are opportunities, not forced future membership; current rank, availability, knowledge, authority and active commitments still govern selection.",
+    "The base autonomy policy remains authoritative for fields not overridden here."
+  ]
+}

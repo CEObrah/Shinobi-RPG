@@ -1,0 +1,913 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.iron.samurai",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.iron.samurai",
+  "formations": [
+    {
+      "id": "formation.iron.samurai.1",
+      "name": "Iron Northern Pass Garrison, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 75,
+      "morale": 67,
+      "readiness": 85,
+      "location_ref": "place.iron.northern.pass",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.1.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.1.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.1.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.2",
+      "name": "Iron Diplomatic Guard, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 66,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.2.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.2.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.2.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.3",
+      "name": "Iron Western Pass Garrison, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 66,
+      "morale": 68,
+      "readiness": 78,
+      "location_ref": "place.iron.western.pass",
+      "activity_summary": "western pass defense readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.3.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.3.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.3.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.4",
+      "name": "Iron Capital Guard, First Armored Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 68,
+      "morale": 69,
+      "readiness": 78,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "capital defense readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.4.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.4.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.4.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.4.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.4.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.5",
+      "name": "Iron Treaty Escort Command, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 69,
+      "morale": 64,
+      "readiness": 80,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "treaty escort readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.5.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.5.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.5.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.5.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.5.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.6",
+      "name": "Iron Mountain Reserve, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 69,
+      "morale": 65,
+      "readiness": 85,
+      "location_ref": "place.iron.mountain.reserve",
+      "activity_summary": "mountain reserve readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.6.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.6.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.6.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.6.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.6.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.7",
+      "name": "Iron Longbow Corps, First Support Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 67,
+      "morale": 73,
+      "readiness": 78,
+      "location_ref": "place.iron.northern.pass",
+      "activity_summary": "pass archery support readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.7.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.7.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.7.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.7.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.7.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.iron.samurai.8",
+      "name": "Iron Armored Response Command, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 68,
+      "morale": 72,
+      "readiness": 86,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "armored response readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.8.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.iron.samurai.8.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01"
+        },
+        {
+          "id": "component.iron.samurai.8.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.iron.samurai.8.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.iron.samurai.8.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

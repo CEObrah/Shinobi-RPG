@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.waterfalls.emergency_levy",
+  "pool_id": "civil.waterfalls.emergency_levy",
+  "source_owner": "force.civil.waterfalls",
+  "stats": {
+    "attributes": {
+      "strength": 28,
+      "endurance": 30,
+      "awareness": 23
+    },
+    "skills": {
+      "weapons": 29,
+      "formation": 30,
+      "tactics": 15
+    },
+    "morale": 57,
+    "discipline": 54,
+    "experience": 35
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 166,
+      "sd": 6.9
+    },
+    "weight_kg": {
+      "mean": 59,
+      "sd": 7.8
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 80,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

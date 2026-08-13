@@ -1,0 +1,73 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.oto_research_cells",
+    "name": "Oto Research Cells",
+    "status": "active",
+    "leadership_ids": [
+      "canon_orochimaru"
+    ],
+    "key_member_ids": [
+      "canon_kabuto"
+    ],
+    "goal": "pursue experiments, recruitment, infiltration, and irregular operations",
+    "current_plan": "Continue compartmented experiments and acquisition tasks while concealing facilities and subjects.",
+    "resources": [
+      "laboratories",
+      "irregular operatives",
+      "experimental subjects",
+      "technical knowledge"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.kiri_hunter_office",
+        "relationship_type": "security_and_secret_recovery",
+        "stance": "hostile",
+        "intensity": 67
+      },
+      {
+        "target_id": "faction.suna_puppet_corps",
+        "relationship_type": "technical_and_biological_security_concern",
+        "stance": "opportunistic",
+        "intensity": 58
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Operates through saved facilities, people, projects, and techniques rather than encounter-time invention."
+    ],
+    "goals": [
+      "advance Orochimaru-directed research and recruitment",
+      "protect laboratories and experimental secrecy"
+    ],
+    "constraints": [
+      "secrecy",
+      "unstable personnel",
+      "external scrutiny"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-04T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.fc514e86c741c8bf"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.a2eacba27df71c78",
+        "priority.autonomy.2d8cb8fe906338ab",
+        "priority.autonomy.34deb4a71d4e7947",
+        "priority.autonomy.1a90539cbcaa8796",
+        "priority.autonomy.f30d34909ff555d9",
+        "priority.autonomy.eb42f2cc50cbd005"
+      ],
+      "autonomous_mission_refs": [
+        "mission.autonomy.ce04ade5d4b4eb56a3"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.ce04ade5d4b4eb56a3"
+      ]
+    },
+    "scope": "Otogakure laboratories, irregular operatives, experimental programs, and infiltration cells",
+    "leadership_model": "orochimaru_cell_network"
+  }
+}

@@ -1,0 +1,56 @@
+name: audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'runtime/**'
+      - 'game/**'
+      - 'tools/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'railway.toml'
+      - '.github/workflows/audit.yml'
+  pull_request:
+    paths:
+      - 'runtime/**'
+      - 'game/**'
+      - 'tools/**'
+      - 'tests/**'
+      - 'pyproject.toml'
+      - 'railway.toml'
+      - '.github/workflows/audit.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: audit-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -e '.[service,service-test]' jsonschema
+      - name: Structural and transaction integrity
+        run: |
+          python tools/test_transaction_integrity.py
+          python tools/test_templates.py
+          python tools/test_routing.py
+          python tools/audit.py
+      - name: Runtime smoke regressions
+        run: |
+          python tools/test_runtime.py
+          python -m pytest \
+            tests/runtime/test_character_life_course_template.py \
+            tests/runtime/test_route_discovery.py \
+            tests/runtime/test_team_playability_interface.py \
+            -q
+      - run: git diff --check HEAD^ HEAD

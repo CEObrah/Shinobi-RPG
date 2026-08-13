@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "status",
+    "team_type",
+    "parent_institution_ref",
+    "assignment_authority_ref",
+    "leader_ref",
+    "deputy_ref",
+    "member_refs",
+    "roles",
+    "classification",
+    "activation",
+    "doctrine_ref",
+    "current_assignment_ref",
+    "embedded_member_refs",
+    "training"
+  ],
+  "properties": {
+    "schema": {"const": "exact-team"},
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "status": {"enum": ["forming", "active", "inactive", "dissolved"]},
+    "team_type": {"type": "string", "minLength": 1},
+    "parent_institution_ref": {"type": ["string", "null"]},
+    "assignment_authority_ref": {"type": "string", "minLength": 1},
+    "leader_ref": {"type": "string", "minLength": 1},
+    "deputy_ref": {"type": ["string", "null"]},
+    "member_refs": {
+      "type": "array", "minItems": 2, "maxItems": 16, "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "roles": {"type": "object", "additionalProperties": {"type": "string"}},
+    "classification": {"enum": ["public", "restricted", "secret"]},
+    "activation": {
+      "type": "object",
+      "required": ["at", "basis"],
+      "properties": {"at": {"type": ["string", "null"]}, "basis": {"type": "string"}},
+      "additionalProperties": false
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": [
+        "purpose_kind", "purpose_ref", "purpose_status", "replacement_policy",
+        "target_size", "exclusive_active_membership", "autonomy_owner_ref"
+      ],
+      "properties": {
+        "purpose_kind": {"enum": ["standing", "mission_bound"]},
+        "purpose_ref": {"type": ["string", "null"]},
+        "purpose_status": {"enum": ["active", "ended", "failed", "cancelled", "superseded"]},
+        "replacement_policy": {"enum": ["maintain_strength", "authority_review", "none"]},
+        "target_size": {"type": "integer", "minimum": 2, "maximum": 16},
+        "exclusive_active_membership": {"const": true},
+        "autonomy_owner_ref": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "doctrine_ref": {"type": ["string", "null"]},
+    "current_assignment_ref": {"type": ["string", "null"]},
+    "training": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_ref", "instructor_refs", "facility_refs", "recent_sessions"],
+      "properties": {
+        "model_ref": {"type": "string", "minLength": 1},
+        "instructor_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "facility_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "recent_sessions": {
+          "type": "array",
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["session_ref", "started_at", "ended_at", "active_hours", "member_refs", "instructor_ref", "targets"],
+            "properties": {
+              "session_ref": {"type": "string", "minLength": 1},
+              "started_at": {"type": "string", "minLength": 1},
+              "ended_at": {"type": "string", "minLength": 1},
+              "active_hours": {"type": "string", "minLength": 1},
+              "member_refs": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+              "instructor_ref": {"type": "string", "minLength": 1},
+              "targets": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+            }
+          }
+        }
+      }
+    },
+    "embedded_member_refs": {"type": "array", "maxItems": 16, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  },
+  "additionalProperties": false
+}

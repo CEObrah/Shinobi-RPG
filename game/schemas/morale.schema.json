@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "formulas",
+    "thresholds",
+    "rule",
+    "trigger_formulas",
+    "transition_rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "morale-mechanics"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "thresholds": {
+      "type": "object"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "trigger_formulas": {
+      "type": "object"
+    },
+    "transition_rule": {
+      "type": "string"
+    }
+  }
+}

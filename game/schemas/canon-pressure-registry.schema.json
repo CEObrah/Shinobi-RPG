@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canon pressure registry",
+  "description": "Mutable executable pressures derived from saved world pressures. Front truth, visibility and personal knowledge remain separate.",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "authority",
+    "canon_rule",
+    "pressures"
+  ],
+  "properties": {
+    "schema": {
+      "const": "canon-pressure-registry"
+    },
+    "owner_id": {
+      "const": "world_world_pressures"
+    },
+    "owner_type": {
+      "const": "canon_pressure_registry"
+    },
+    "authority": {
+      "const": true
+    },
+    "canon_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pressures": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^pressure_[a-z0-9][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "host_ref",
+          "status",
+          "goal",
+          "stakes",
+          "actors",
+          "resources",
+          "constraints",
+          "opposition",
+          "current_step",
+          "next_boundary",
+          "reducer_ref",
+          "source_refs",
+          "evidence_refs",
+          "visibility",
+          "knowledge",
+          "chronology"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^pressure_[a-z0-9][a-z0-9_]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "host_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "goal": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "stakes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "actors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "constraints": {
+            "type": "object",
+            "required": [
+              "canon_forcing",
+              "refs"
+            ],
+            "properties": {
+              "canon_forcing": {
+                "type": "boolean"
+              },
+              "refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "opposition": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "current_step": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "next_boundary": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "host_ref",
+              "settled_through",
+              "due_at"
+            ],
+            "properties": {
+              "settled_through": {
+                "type": "string",
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              },
+              "due_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              },
+              "host_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "reducer_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "visibility": {
+            "type": "object",
+            "required": [
+              "classification",
+              "basis_refs"
+            ],
+            "properties": {
+              "classification": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "public",
+                  "restricted",
+                  "secret",
+                  "hidden",
+                  null
+                ]
+              },
+              "basis_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "knowledge": {
+            "type": "object",
+            "required": [
+              "player_refs",
+              "npc_refs"
+            ],
+            "properties": {
+              "player_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "npc_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "chronology": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "entry_id",
+                "at",
+                "kind",
+                "status_before",
+                "status_after",
+                "source_refs"
+              ],
+              "properties": {
+                "entry_id": {
+                  "type": "string",
+                  "pattern": "^front_history\\.[a-z0-9][a-z0-9._-]*$"
+                },
+                "at": {
+                  "type": "string",
+                  "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+                },
+                "kind": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status_before": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                },
+                "status_after": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                },
+                "source_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

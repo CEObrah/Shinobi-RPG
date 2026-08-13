@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "formulas",
+    "transplant_required_inputs",
+    "rule",
+    "preservation",
+    "ocular_transfer_policy",
+    "procedure_thresholds",
+    "procedure_rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "medical-mechanics"
+    },
+    "formulas": {
+      "type": "object",
+      "required": [
+        "surgical_quality",
+        "initial_integration",
+        "weekly_integration_gain",
+        "poison_absorbed_dose",
+        "poison_effect_score"
+      ],
+      "properties": {
+        "surgical_quality": {
+          "type": "string"
+        },
+        "initial_integration": {
+          "type": "string"
+        },
+        "weekly_integration_gain": {
+          "type": "string"
+        },
+        "poison_absorbed_dose": {
+          "type": "string"
+        },
+        "poison_effect_score": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "transplant_required_inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rule": {
+      "type": "string"
+    },
+    "preservation": {
+      "type": "object",
+      "required": [
+        "registered_medical_preservation_decay_per_30_days",
+        "improper_storage"
+      ],
+      "properties": {
+        "registered_medical_preservation_decay_per_30_days": {
+          "type": "integer"
+        },
+        "improper_storage": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ocular_transfer_policy": {
+      "type": "object",
+      "required": [
+        "extraction",
+        "proper_preservation",
+        "implantation",
+        "random_rejection",
+        "random_eye_damage",
+        "random_surgical_destruction",
+        "purpose"
+      ],
+      "properties": {
+        "extraction": {
+          "type": "string"
+        },
+        "proper_preservation": {
+          "type": "string"
+        },
+        "implantation": {
+          "type": "string"
+        },
+        "random_rejection": {
+          "type": "string"
+        },
+        "random_eye_damage": {
+          "type": "string"
+        },
+        "random_surgical_destruction": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "procedure_thresholds": {
+      "type": "object",
+      "required": [
+        "stabilize",
+        "treat",
+        "surgery",
+        "implant",
+        "remove_implant"
+      ],
+      "properties": {
+        "stabilize": {
+          "type": "object",
+          "required": [
+            "minimum_quality",
+            "base_health_restore",
+            "requires_medical_facility"
+          ],
+          "properties": {
+            "minimum_quality": {
+              "type": "integer"
+            },
+            "base_health_restore": {
+              "type": "integer"
+            },
+            "requires_medical_facility": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "treat": {
+          "type": "object",
+          "required": [
+            "minimum_quality",
+            "base_health_restore",
+            "requires_medical_facility"
+          ],
+          "properties": {
+            "minimum_quality": {
+              "type": "integer"
+            },
+            "base_health_restore": {
+              "type": "integer"
+            },
+            "requires_medical_facility": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "surgery": {
+          "type": "object",
+          "required": [
+            "minimum_quality",
+            "base_health_restore",
+            "requires_medical_facility"
+          ],
+          "properties": {
+            "minimum_quality": {
+              "type": "integer"
+            },
+            "base_health_restore": {
+              "type": "integer"
+            },
+            "requires_medical_facility": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "implant": {
+          "type": "object",
+          "required": [
+            "minimum_quality",
+            "base_health_restore",
+            "requires_medical_facility"
+          ],
+          "properties": {
+            "minimum_quality": {
+              "type": "integer"
+            },
+            "base_health_restore": {
+              "type": "integer"
+            },
+            "requires_medical_facility": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "remove_implant": {
+          "type": "object",
+          "required": [
+            "minimum_quality",
+            "base_health_restore",
+            "requires_medical_facility"
+          ],
+          "properties": {
+            "minimum_quality": {
+              "type": "integer"
+            },
+            "base_health_restore": {
+              "type": "integer"
+            },
+            "requires_medical_facility": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "procedure_rule": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "required":["schema","faction_assignments","team_profiles"],
+  "properties":{
+    "schema":{"const":"living-world-autonomy-policy"},
+    "faction_assignments":{"type":"object","additionalProperties":{"type":"object"}},
+    "team_profiles":{"type":"object","additionalProperties":{"type":"object"}}
+  },
+  "additionalProperties":false
+}

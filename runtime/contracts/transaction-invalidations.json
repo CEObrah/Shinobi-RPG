@@ -1,0 +1,17 @@
+{
+  "schema": "shinobi.transaction-invalidations",
+  "version": 1,
+  "records": [
+    {
+      "campaign_id": "shinobi-wei-main",
+      "transaction_id": "tx.gameplay.ecca343a8f38bd33d1881d4fa972d3536deb79ca239e3f6f4dc95a1e6595d258",
+      "request_id": "wei.advance.until.next.causal.r26",
+      "request_digest": "ecca343a8f38bd33d1881d4fa972d3536deb79ca239e3f6f4dc95a1e6595d258",
+      "invalidated_revision": 27,
+      "restored_revision": 26,
+      "bad_commit": "2080fa82f111671d59c4e450598f282c83934512",
+      "repair_commit": "7780d94794457439c6c0aa1bc8ee1573c7f1a795",
+      "reason": "Test advance_time transaction was explicitly removed by the recorded revision-26 campaign repair."
+    }
+  ]
+}

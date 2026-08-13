@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "loadouts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "loadout-index"
+    },
+    "authority": {
+      "type": "boolean"
+    },
+    "loadouts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

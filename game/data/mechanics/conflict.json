@@ -1,0 +1,21 @@
+{
+  "authority": "game/data/mechanics/conflict.json",
+  "purpose": "Bounded strategic-conflict mechanics. Front state changes must come from typed conflict actions; formations and forces retain manpower authority.",
+  "fortification": {
+    "max_milli": 1000,
+    "minimum_active_hours": 1,
+    "size_rates_milli_per_active_hour": [
+      {"max_personnel": 50, "rate": 2},
+      {"max_personnel": 100, "rate": 3},
+      {"max_personnel": 250, "rate": 5},
+      {"max_personnel": 500, "rate": 7},
+      {"max_personnel": 1000, "rate": 9},
+      {"max_personnel": 2500, "rate": 12},
+      {"max_personnel": 1000000, "rate": 15}
+    ],
+    "rule": "Fortification increases only through elapsed active work by one assigned formation physically present on the front. The caller never supplies the resulting fortification value."
+  },
+  "route_control": {
+    "rule": "Route-control changes require persisted combat or mission evidence causally tied to the route/front."
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canon history shard",
+  "description": "Static, source-backed pre-anchor history records for one visibility lane.",
+  "type": "object",
+  "required": [
+    "schema",
+    "shard_id",
+    "continuity_id",
+    "lane",
+    "campaign_authority",
+    "events"
+  ],
+  "properties": {
+    "schema": {
+      "const": "canon-history-shard"
+    },
+    "shard_id": {
+      "type": "string",
+      "pattern": "^canon\\.history\\.(public|restricted|secret)\\.[a-z0-9][a-z0-9._-]*$"
+    },
+    "continuity_id": {
+      "const": "continuity.naruto.manga_primary_anime_compatible"
+    },
+    "lane": {
+      "enum": [
+        "public",
+        "restricted",
+        "secret"
+      ]
+    },
+    "campaign_authority": {
+      "const": false
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "paraphrase",
+          "support_kind",
+          "anchor_relation",
+          "predecessor_refs",
+          "subject_refs",
+          "place_refs",
+          "source_locators"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^canon\\.event\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paraphrase": {
+            "type": "string",
+            "minLength": 1
+          },
+          "support_kind": {
+            "enum": [
+              "directly_depicted",
+              "explicitly_stated"
+            ]
+          },
+          "anchor_relation": {
+            "const": "before"
+          },
+          "predecessor_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^canon\\.event\\.[a-z0-9][a-z0-9._-]*$"
+            },
+            "uniqueItems": true
+          },
+          "subject_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "place_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "source_locators": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "work_id",
+                "locator_kind",
+                "volume",
+                "chapter",
+                "episode",
+                "section"
+              ],
+              "properties": {
+                "work_id": {
+                  "type": "string",
+                  "pattern": "^canon\\.source\\.[a-z0-9][a-z0-9._-]*$"
+                },
+                "locator_kind": {
+                  "enum": [
+                    "volume_chapter",
+                    "episode",
+                    "section"
+                  ]
+                },
+                "volume": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                },
+                "chapter": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                },
+                "episode": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                },
+                "section": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "attribute_scale",
+    "formulas",
+    "margin_bands",
+    "rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "stats-mechanics"
+    },
+    "attribute_scale": {
+      "type": "object"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "margin_bands": {
+      "type": "object"
+    },
+    "rule": {
+      "type": "string"
+    }
+  }
+}

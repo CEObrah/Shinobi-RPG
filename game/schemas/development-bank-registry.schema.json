@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "entries"],
+  "properties": {
+    "schema": {"const": "development-bank-registry"},
+    "id": {"const": "development_banks"},
+    "entries": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["owner_type", "resolved_through", "credits"],
+        "properties": {
+          "owner_type": {"type": "string", "enum": ["character", "person", "formation"]},
+          "resolved_through": {"type": "string"},
+          "credits": {
+            "type": "object",
+            "additionalProperties": {"type": "number", "minimum": 0}
+          },
+          "breakthrough_event_refs": {
+            "type": "array",
+            "items": {"type": "string"},
+            "uniqueItems": true,
+            "maxItems": 512
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.1beaefabe259c4af49",
+  "issuer_ref": "faction.fire_daimyo_liaison",
+  "authority_ref": "support.daimyo.noboru_shimizu",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.land_fire",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-05-07T07:00:00",
+  "authorized_at": "SE-0061-05-07T07:00:00",
+  "starts_at": "SE-0061-05-07T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "faction.fire_daimyo_liaison",
+  "closed_at": "SE-0061-06-04T07:00:00",
+  "state": "succeeded",
+  "participant_refs": [
+    "support.daimyo.noboru_shimizu"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.1beaefabe259c4af49",
+      "kind": "escort",
+      "required": true,
+      "dependencies": [],
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.724a94d5c3da56d64cad8dd9"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": {
+    "mission_id": "mission.autonomy.1beaefabe259c4af49",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.1cb3e0eb769eb942cd0d",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

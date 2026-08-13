@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "global_fixed_profile",
+    "ceiling",
+    "resolution",
+    "non_protection",
+    "forbidden_extensions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "guardian-current-mechanics"
+    },
+    "global_fixed_profile": {
+      "type": "boolean"
+    },
+    "ceiling": {
+      "type": "object"
+    },
+    "resolution": {
+      "type": "object"
+    },
+    "non_protection": {
+      "type": "array"
+    },
+    "forbidden_extensions": {
+      "type": "array"
+    }
+  }
+}

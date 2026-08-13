@@ -1,0 +1,95 @@
+{
+  "schema": "development-model",
+  "aptitude_scale": {
+    "min": 0,
+    "typical": 100,
+    "gifted": 130,
+    "exceptional": 160,
+    "prodigy": 180,
+    "extraordinary": 190,
+    "reference_extreme": 200,
+    "hard_cap": null
+  },
+  "capability_scale": {
+    "professional_reference": 100,
+    "advanced_reference": 120,
+    "elite_reference": 150,
+    "legendary_reference": 170,
+    "transcendent_reference": 185,
+    "god_tier_reference": 200,
+    "routine_training_ceiling": 160,
+    "generic_breakthrough_ceiling": 185,
+    "hard_cap": null
+  },
+  "representation_efficiency": {
+    "exact": 1.0,
+    "person": 1.0,
+    "house_cohort": 1.0,
+    "formation": 1.0
+  },
+  "development_inputs": [
+    "starting_capability",
+    "aptitude",
+    "age_body_development",
+    "scheduled_training",
+    "attendance",
+    "instructor_access",
+    "instructor_quality",
+    "student_to_instructor_ratio",
+    "facility_quality",
+    "equipment_availability",
+    "nutrition",
+    "health",
+    "fatigue",
+    "recovery",
+    "curriculum_relevance",
+    "difficulty_fit",
+    "current_mastery",
+    "diminishing_returns"
+  ],
+  "capacity_rules": {
+    "instructor_time_conserved": true,
+    "facility_capacity_conserved": true,
+    "equipment_capacity_conserved": true,
+    "elite_training_scales_poorly": true,
+    "mass_basic_training_scales_better_than_elite_training": true
+  },
+  "experience_rules": {
+    "routine_training_ceiling": 160,
+    "field_experience_required_for_high_tier_progression": true,
+    "generic_training_cannot_create_legendary_progression": true,
+    "generic_breakthrough_ceiling": 185,
+    "breakthrough_points_per_consumed_event": 1,
+    "breakthrough_event_consumed_once_per_person": true,
+    "command_experience_cannot_be_awarded_by_classroom_only": true,
+    "combat_experience_cannot_be_bulk_created": true,
+    "breakthrough_evidence_must_be_persisted": true,
+    "breakthrough_evidence_cannot_be_caller_asserted": true
+  },
+  "promotion_rule": {
+    "mode": "qualified_subset_transfer",
+    "personnel_conservation_required": true,
+    "whole_unit_promotion_forbidden": true
+  },
+  "batching_rule": {
+    "batch_equivalence_required": true,
+    "split_on_causal_change": true,
+    "causal_split_examples": [
+      "injury",
+      "promotion",
+      "assignment_change",
+      "war",
+      "supply_change",
+      "instructor_change",
+      "facility_change",
+      "equipment_shortage"
+    ]
+  },
+  "elite_resolution_rule": {
+    "enabled": true,
+    "principle": "Higher rank, rarity, specialization, political importance, and capability require progressively finer representation. Routine aggregate or cohort training cannot manufacture a legendary individual; exceptional advancement resolves at exact-person granularity from persisted causal evidence."
+  },
+  "formula_authority": "game/data/mechanics/training.json",
+  "development_formula": "development_units = effective_training_hours * (aptitude/100) * experience_modifier * diminishing_returns; consume units point-by-point only while current capability is below the routine training ceiling",
+  "point_cost": "1 + tier^2 + 2*max(0,tier-3)^2, where tier=floor(max(0,current_value-40)/20)"
+}

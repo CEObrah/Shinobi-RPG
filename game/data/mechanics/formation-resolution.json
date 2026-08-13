@@ -1,0 +1,18 @@
+{
+  "schema": "formation_resolution_mechanics",
+  "principle": "A large ordinary formation is one aggregate combat actor. The formation is not expanded into one character per soldier. Aggregate statistics are the authoritative mass-resolution representation; named people remain separate bodies.",
+  "resolution_depths": {
+    "organization_only": "For ownership, assignment, splitting, merging, command, location or logistics queries, load the formation owner and only the referenced organizational standards needed. Do not load combat capability unless the question requires it.",
+    "mass_battle_kernel": "For broad large-battle screening, movement/contact, expected exchange, morale pressure and command synchronization, use the formation battle kernel plus live headcount, troop type, loadout/issue state, morale, cohesion, readiness, fatigue/condition, commander chain, terrain and order.",
+    "full_formation_capability": "Load the full formation capability distribution when variance/tails, specialist skill, unusual terrain/equipment interaction, threshold qualification, technique use, medical/engineering detail, named-person action or a close result could materially change the outcome.",
+    "exact_person": "Named actors resolve from their full logical sheets, whether exact-owned or roster-composed. Never replace them with an unrelated formation mean once individually represented."
+  },
+  "kernel_authority": "Battle kernels are derived caches, never independent truth. They preserve the source capability mean and spread vectors and carry a source hash. If the hash is stale, rebuild from the full capability before resolution.",
+  "vectorization": "Several materially equivalent formations may be evaluated together for computation only. Equivalence requires matching troop type, standard/issue state, relevant capability kernel, doctrine familiarity, commander chain quality, order, sector/terrain/exposure, supply, morale/cohesion/readiness/fatigue and specialist state. Settle every result deterministically back to the real formation IDs; any divergence ends batching.",
+  "determinism": "Same authoritative state, same player/NPC orders and same registered deterministic random inputs must produce the same mechanical result. Narrative wording and model variation are never random inputs.",
+  "anti_overcompression": "Never collapse a formation to one scalar power score. Preserve multidimensional capability, headcount, equipment, morale, cohesion, readiness, fatigue, injuries/casualties, experience, doctrine familiarity, terrain, supply and command as separate causal inputs.",
+  "casualty_settlement": "Casualties/injuries/equipment loss reduce the real formation state and remain conserved. Aggregate casualties may be deterministic expected allocations or registered deterministic draws only where the mechanic explicitly requires distribution sampling.",
+  "support": "Service/combat-support capacity is resolved through its own support mechanics and does not become free line frontage.",
+  "authority": "game/data/mechanics/formation-resolution.json",
+  "game_scope": "This repository only."
+}

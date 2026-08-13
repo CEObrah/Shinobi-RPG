@@ -1,0 +1,172 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.konoha.generated.f6a64a78e8.doctrine",
+  "team_id": "team.konoha.generated.f6a64a78e8",
+  "name": "Konoha Mission Team F6A64A78E8 Combat Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_asuma": 0,
+    "canon_ino": 0,
+    "canon_shikamaru": 0,
+    "canon_choji": 0
+  },
+  "effective_from": "SE-0061-06-04T07:00:01",
+  "approved_by": "faction.konoha_mission_office",
+  "motto": "See together. Move together. Finish together.",
+  "command": {
+    "captain": "canon_asuma",
+    "deputy": "canon_shikamaru",
+    "succession_order": [
+      "canon_ino",
+      "canon_shikamaru",
+      "canon_choji"
+    ]
+  },
+  "roles": {
+    "canon_asuma": "field_lead",
+    "canon_ino": "battlefield_control",
+    "canon_shikamaru": "infiltration",
+    "canon_choji": "reconnaissance_sensor"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "SEE",
+      "primary_members": [
+        "canon_asuma",
+        "canon_shikamaru"
+      ],
+      "objective": "Establish positions, threats, routes, and uncertainty before committing force.",
+      "procedures": [
+        "Cross-check observations before acting on them."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "SHAPE",
+      "primary_members": [
+        "canon_asuma",
+        "canon_shikamaru"
+      ],
+      "objective": "Alter movement, terrain, information, or routes to create team advantage.",
+      "procedures": [
+        "Create openings for teammates rather than isolated duels."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "BREAK",
+      "primary_members": [
+        "canon_asuma",
+        "canon_shikamaru"
+      ],
+      "objective": "Exploit the shaped engagement to disrupt coherent enemy action.",
+      "procedures": [
+        "Concentrate on the mission-critical problem."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "SECURE",
+      "primary_members": [
+        "canon_asuma",
+        "canon_shikamaru"
+      ],
+      "objective": "Complete the authorized objective and stabilize control.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    },
+    {
+      "order": 5,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_asuma",
+        "canon_shikamaru"
+      ],
+      "objective": "Account for the team and remove personnel, captives, evidence, or protected assets safely.",
+      "procedures": [
+        "Preserve command and a viable withdrawal route."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Shared objective",
+      "rule": "Openings belong to the team, not the individual who created them.",
+      "procedures": [
+        "Exploit teammate-created advantages when lawful and useful."
+      ]
+    },
+    {
+      "name": "Mission first",
+      "rule": "Do not trade the assigned objective for an unnecessary fight.",
+      "procedures": [
+        "Reorient when combat no longer advances the mission."
+      ]
+    },
+    {
+      "name": "Recover control",
+      "rule": "When coordination breaks, restore information, command, spacing, and an exit before escalating.",
+      "procedures": [
+        "Stabilize before chasing a collapsing plan."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "reconnaissance",
+      "directive": "Verify while preserving concealment and a report route."
+    },
+    {
+      "mode": "capture",
+      "directive": "Create control, restrain the authorized target, and preserve evidence."
+    },
+    {
+      "mode": "protection",
+      "directive": "Keep the protected person or asset viable and preserve extraction."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Re-establish the battlefield picture.",
+      "Confirm command and member accountability.",
+      "Create a regroup or withdrawal route."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_asuma",
+      "canon_shikamaru"
+    ],
+    "procedures": [
+      "Account for every member and material objective before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_asuma"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "team coordination",
+      "reconnaissance",
+      "objective control",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_asuma": "field_lead",
+      "canon_ino": "battlefield_control",
+      "canon_shikamaru": "infiltration",
+      "canon_choji": "reconnaissance_sensor"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance under the team training model.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "balanced mission-team doctrine"
+}

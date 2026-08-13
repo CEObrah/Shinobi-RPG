@@ -1,0 +1,13 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "time",
+  "routes": {
+    "causal_scheduler": {
+      "r": [
+        "state/time/causal-scheduler.json"
+      ],
+      "domain": "time_settlement",
+      "note": "Production host/event scheduling authority. Domain facts remain in their own owners; the scheduler owns only temporal frontier state."
+    }
+  }
+}

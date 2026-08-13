@@ -1,0 +1,388 @@
+{
+  "schema": "file-template",
+  "template_id": "template.combat-operation",
+  "target_schema": "combat-operation",
+  "source_schema": "game/schemas/combat-operation.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/operation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "operation_id",
+    "opened_at",
+    "location_id",
+    "scale",
+    "status",
+    "authority_model",
+    "participants",
+    "outcome"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "operation_id",
+        "opened_at",
+        "location_id",
+        "scale",
+        "status",
+        "authority_model",
+        "participants",
+        "outcome"
+      ],
+      "canonical_order": [
+        "schema",
+        "operation_id",
+        "opened_at",
+        "location_id",
+        "scale",
+        "status",
+        "authority_model",
+        "participants",
+        "outcome"
+      ]
+    },
+    "/participants/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "participant_ref",
+        "force_ref",
+        "population_pool_id",
+        "capability_source_refs",
+        "supply_state",
+        "fortification_milli",
+        "side_ref",
+        "command_authority_ref",
+        "operational_attachment_ref",
+        "source_availability_class",
+        "committed_count",
+        "location_id",
+        "personnel",
+        "named_actor_refs",
+        "command_authority_basis",
+        "formation_ref",
+        "doctrine_ref",
+        "training_ref",
+        "readiness",
+        "morale",
+        "cohesion",
+        "formation_personnel_after",
+        "aggregate_resolved_count",
+        "named_actor_team_refs",
+        "named_actor_accounting"
+      ],
+      "canonical_order": [
+        "participant_ref",
+        "force_ref",
+        "population_pool_id",
+        "capability_source_refs",
+        "supply_state",
+        "fortification_milli",
+        "side_ref",
+        "command_authority_ref",
+        "command_authority_basis",
+        "operational_attachment_ref",
+        "source_availability_class",
+        "committed_count",
+        "location_id",
+        "formation_ref",
+        "doctrine_ref",
+        "training_ref",
+        "readiness",
+        "morale",
+        "cohesion",
+        "formation_personnel_after",
+        "personnel",
+        "named_actor_refs",
+        "aggregate_resolved_count",
+        "named_actor_team_refs",
+        "named_actor_accounting"
+      ]
+    },
+    "/participants/*/personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/outcome": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs"
+      ],
+      "canonical_order": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs"
+      ]
+    },
+    "/outcome/wake_triggers/*": {
+      "mode": "open_map"
+    },
+    "/participants/*/named_actor_team_refs": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/operation_id": [
+      "null",
+      "string"
+    ],
+    "/opened_at": [
+      "null",
+      "string"
+    ],
+    "/location_id": [
+      "null",
+      "string"
+    ],
+    "/scale": [
+      "string"
+    ],
+    "/status": [
+      "string"
+    ],
+    "/authority_model": [
+      "string"
+    ],
+    "/participants": [
+      "array"
+    ],
+    "/participants/*": [
+      "object"
+    ],
+    "/participants/*/participant_ref": [
+      "string"
+    ],
+    "/participants/*/population_pool_id": [
+      "string"
+    ],
+    "/participants/*/side_ref": [
+      "string"
+    ],
+    "/participants/*/command_authority_ref": [
+      "string"
+    ],
+    "/participants/*/operational_attachment_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/source_availability_class": [
+      "string"
+    ],
+    "/participants/*/committed_count": [
+      "integer"
+    ],
+    "/participants/*/location_id": [
+      "string"
+    ],
+    "/participants/*/personnel": [
+      "object"
+    ],
+    "/participants/*/named_actor_refs": [
+      "array"
+    ],
+    "/participants/*/named_actor_refs/*": [
+      "string"
+    ],
+    "/participants/*/personnel/total": [
+      "integer"
+    ],
+    "/participants/*/personnel/active": [
+      "integer"
+    ],
+    "/participants/*/personnel/wounded": [
+      "integer"
+    ],
+    "/participants/*/personnel/incapacitated": [
+      "integer"
+    ],
+    "/participants/*/personnel/killed": [
+      "integer"
+    ],
+    "/participants/*/personnel/captured": [
+      "integer"
+    ],
+    "/participants/*/personnel/escaped": [
+      "integer"
+    ],
+    "/outcome": [
+      "object"
+    ],
+    "/outcome/resolution_mode": [
+      "string"
+    ],
+    "/outcome/status": [
+      "string"
+    ],
+    "/outcome/victorious_side_refs": [
+      "array"
+    ],
+    "/outcome/victorious_side_refs/*": [
+      "string"
+    ],
+    "/outcome/wake_triggers": [
+      "array"
+    ],
+    "/outcome/wake_triggers/*": [
+      "object"
+    ],
+    "/outcome/semantic_event_id": [
+      "null",
+      "string"
+    ],
+    "/outcome/effect_plan_sha256": [
+      "null",
+      "string"
+    ],
+    "/participants/*/command_authority_basis": [
+      "string"
+    ],
+    "/participants/*/formation_ref": [
+      "string"
+    ],
+    "/participants/*/doctrine_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/training_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/readiness": [
+      "integer"
+    ],
+    "/participants/*/morale": [
+      "integer"
+    ],
+    "/participants/*/cohesion": [
+      "integer"
+    ],
+    "/participants/*/formation_personnel_after": [
+      "integer"
+    ],
+    "/participants/*/capability_source_refs": [
+      "array"
+    ],
+    "/participants/*/capability_source_refs/*": [
+      "string"
+    ],
+    "/participants/*/supply_state": [
+      "string"
+    ],
+    "/participants/*/fortification_milli": [
+      "integer"
+    ],
+    "/participants/*/aggregate_resolved_count": [
+      "integer"
+    ],
+    "/participants/*/named_actor_team_refs": [
+      "object"
+    ],
+    "/participants/*/named_actor_team_refs/*": [
+      "array"
+    ],
+    "/participants/*/named_actor_team_refs/*/*": [
+      "string"
+    ],
+    "/participants/*/named_actor_accounting": [
+      "string"
+    ],
+    "/outcome/pending_named_actor_refs": [
+      "array"
+    ],
+    "/outcome/pending_named_actor_refs/*": [
+      "string"
+    ],
+    "/outcome/resolved_zoom_refs": [
+      "array"
+    ],
+    "/outcome/resolved_zoom_refs/*": [
+      "string"
+    ],
+    "/participants/*/force_ref": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/participants": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/participants/*/named_actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/victorious_side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/wake_triggers": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/outcome/pending_named_actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/resolved_zoom_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participants/*/named_actor_team_refs/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participants/*/capability_source_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Source force owner remains manpower/ownership authority; the operation owner owns only the temporary committed slice and its combat condition.",
+    "Command authority, force ownership, operational attachment, and location are separate facts.",
+    "Aggregate battle persistence is bounded by force/operation hosts, never participant headcount.",
+    "Named actors wake detailed combat when relevant but are not silently selected from aggregate casualties."
+  ]
+}

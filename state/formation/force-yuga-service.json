@@ -1,0 +1,244 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.yuga.service",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.yuga.service",
+  "formations": [
+    {
+      "id": "formation.yuga.civil.guard.1",
+      "name": "Yuga Civil Protection Service, First Guard Element",
+      "force_ref": "force.yuga.service",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.yuga.field",
+      "training_ref": "train.yuga.field",
+      "cohesion": 65,
+      "morale": 72,
+      "readiness": 87,
+      "location_ref": "place.yuga",
+      "activity_summary": "civil protection readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.yuga.civil.guard.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "jonin": 1,
+            "genin": 4,
+            "support": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.yuga.civil.guard.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 4,
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.yuga.civil.guard.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.yuga.civil.guard.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.yuga.civil.guard.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.yuga.route.patrol.1",
+      "name": "Yuga Hot-Springs Route Patrol, First Tactical Element",
+      "force_ref": "force.yuga.service",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.yuga.field",
+      "training_ref": "train.yuga.field",
+      "cohesion": 75,
+      "morale": 72,
+      "readiness": 81,
+      "location_ref": "place.hot.water.trade.route",
+      "activity_summary": "commercial route patrol readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.yuga.route.patrol.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.yuga.route.patrol.1.recon.infiltrators",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 3,
+            "chunin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.yuga.route.patrol.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 4,
+            "special_jonin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.yuga.route.patrol.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.yuga.route.patrol.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

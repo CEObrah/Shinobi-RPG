@@ -1,0 +1,64 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.generated.7509160457",
+  "name": "Konoha Mission Team 7509160457",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "faction.konoha_mission_office",
+  "leader_ref": "canon_kakashi",
+  "deputy_ref": "canon_sasuke",
+  "member_refs": [
+    "canon_kakashi",
+    "canon_naruto",
+    "canon_sasuke",
+    "canon_sakura"
+  ],
+  "roles": {
+    "canon_kakashi": "field_lead",
+    "canon_naruto": "assault_finisher",
+    "canon_sasuke": "engineering_traps",
+    "canon_sakura": "support_recovery"
+  },
+  "classification": "public",
+  "activation": {
+    "at": "SE-0061-03-05T07:00:00",
+    "basis": "Autonomous standing-team assignment from current graduated unassigned exact personnel."
+  },
+  "doctrine_ref": "team.konoha.generated.7509160457.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_kakashi"
+    ],
+    "facility_refs": [],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.autonomy.b0d0414c9ed5cfa10de876b6",
+        "started_at": "SE-0061-03-11T23:00:00",
+        "ended_at": "SE-0061-03-12T07:00:00",
+        "active_hours": "8",
+        "member_refs": [
+          "canon_shikamaru",
+          "canon_suzaku_nara"
+        ],
+        "instructor_ref": "canon_suzaku_nara",
+        "targets": {
+          "canon_shikamaru": "operational_skills.leadership",
+          "canon_suzaku_nara": "martial_skills.movement"
+        }
+      }
+    ]
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.konoha_mission_office"
+  }
+}

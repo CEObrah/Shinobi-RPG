@@ -1,0 +1,89 @@
+{
+  "schema": "temporal-settlement-runtime",
+  "purpose": "Deterministic full-interval catch-up. A process is never considered settled merely because its first overdue boundary or aggregate clock was resolved.",
+  "closure_target": "exact reached world time or earlier hard player interrupt",
+  "selection_order": "globally earliest unresolved process boundary, owner-local deadline, or causal trigger first; deterministic tie order by stable process/owner id unless a registered dependency overrides it",
+  "scheduled_loop": [
+    "collect all active processes with next_due <= target plus every covered owner whose saved local next_due/deadline <= target plus every causal wake-up created inside the interval",
+    "resolve the globally earliest process boundary, owner-local deadline, or causal wake-up from its actual owner/process cursor to that exact time",
+    "apply authoritative outputs and wake every causally affected owner even when its aggregate baseline is not due",
+    "if an autonomous owner remains active after review, select a lawful next action or persist an explicit no-material-action result; if a plan completes, create or activate a lawful successor immediately",
+    "advance only the recurrence or owner-local deadline actually reviewed, to a strictly later due time unless completed/blocked",
+    "write the semantic process receipt after all covered work for the reviewed span is resolved",
+    "reinsert process, owner deadlines, causal wakes and new successor processes and continue until none are due through target"
+  ],
+  "continuous_residual": "After all full boundaries and owner-local wakes, every active unblocked process with accrual_mode=continuous resolves its remaining span through exact target. Its frontier cursor may advance only with a matching state/runtime.json semantic receipt; a slower monthly/weekly next_due does not suppress owner-local or causal review.",
+  "new_process_rule": "Any process created or activated at time <= target must itself be settled/caught up through target unless completed, paused, blocked, or stopped by player interrupt.",
+  "hard_interrupt_rule": "At a required player choice, stop at the interrupt timestamp and make that the reached world time. Never simulate beyond it.",
+  "safe_batching": {
+    "allowed": true,
+    "require_equivalent_result": true,
+    "must_process_internal_cycle_count": true,
+    "split_on": [
+      "owner-local deadline",
+      "causal wake-up",
+      "injury",
+      "death",
+      "promotion",
+      "retirement",
+      "assignment_change",
+      "battle",
+      "resource_shortage",
+      "resource_exhaustion",
+      "leadership_change",
+      "doctrine_change",
+      "facility_change",
+      "equipment_change",
+      "new_information",
+      "relationship_threshold",
+      "plan_completion",
+      "new_opposition",
+      "player_decision",
+      "any dependency/threshold crossing"
+    ]
+  },
+  "recurrence_kinds": {
+    "fixed_interval": "next_due += interval_seconds",
+    "calendar_month_start": "advance to first day of next calendar month at registered clock",
+    "calendar_month_end": "advance to last day of next calendar month at registered clock",
+    "calendar_quarter_start": "advance to first day of next calendar quarter at registered clock",
+    "calendar_quarter_end": "advance to last day of next calendar quarter at registered clock",
+    "calendar_year_start": "advance to first day of next calendar year at registered clock; historical calendars have no year zero",
+    "one_shot": "after resolution process completes or is superseded; no automatic recurrence",
+    "triggered": "no next_due; resolve whenever registered trigger becomes true"
+  },
+  "accrual_modes": {
+    "continuous": "all elapsed time counts, including final partial interval",
+    "boundary_only": "state changes only on due boundary/trigger; no invented partial-cycle result",
+    "event": "one exact event",
+    "triggered": "condition-driven"
+  },
+  "postconditions": [
+    "no active scheduled next_due <= world_time",
+    "no covered owner-local next_due/deadline <= world_time remains unresolved",
+    "no unresolved triggered condition with trigger_time <= world_time",
+    "continuous active unblocked processes settled_through == world_time",
+    "every continuous process at world_time has a matching semantic receipt reviewed_through == its frontier cursor with the coverage used for that review",
+    "state/runtime.json last_settled_at == world_time only after all required continuous receipts close",
+    "every newly activated process caught up through world_time",
+    "every evolving owner has process coverage",
+    "no elapsed eligible development/resource/recovery time lost"
+  ],
+  "autonomous_world_contract": "runtime/contracts/autonomous-world-simulation.json",
+  "autonomous_action_rule": "At every aggregate boundary, owner-local deadline, or causal wake-up, evaluate lawful next actions from current goals, knowledge, authority, resources, location, opposition, and standing orders. Material actions instantiate an operation/mission/event before resolution and remain inside catch-up through the target time. A no-op is valid only after that evaluation is actually performed and receipted.",
+  "frontier_invariants": {
+    "no_overdue_active_process_after_commit": true,
+    "long_skip_settles_complete_interval": true,
+    "batch_repetition_allowed_only_until_material_interrupt": true,
+    "player_required_event_hard_interrupts_time_skip": true,
+    "catch_up_repeats_until_next_due_after_target": true,
+    "continuous_processes_settle_partial_final_span": true,
+    "successor_plans_continue_through_remaining_skip": true,
+    "newly_activated_processes_catch_up_to_target": true
+  },
+  "efficiency_policy": {
+    "baseline": "Distant inactive owners may use coarse monthly/weekly aggregate fallbacks. Saved owner-local deadlines, active plan milestones, mission/deployment clocks, information delivery, combat, assignment, movement, injury, resource thresholds, or player contact wake the affected owner immediately. Compression may reduce review work only when the equivalent semantic result is proven; it may never replace an owner review with aggregate timestamp advancement.",
+    "no_global_tick": true
+  },
+  "coverage_requirements_ref": "runtime/contracts/coverage-requirements.json"
+}

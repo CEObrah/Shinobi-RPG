@@ -1,0 +1,506 @@
+{
+  "schema": "file-template",
+  "template_id": "template.population-registry",
+  "target_schema": "population-registry",
+  "source_schema": "game/schemas/population-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/population"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "pools",
+    "transfers"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "pools",
+        "transfers",
+        "demographic_reviews"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "pools",
+        "transfers",
+        "demographic_reviews"
+      ]
+    },
+    "/pools": {
+      "mode": "open_map"
+    },
+    "/pools/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owner_ref",
+        "category",
+        "count",
+        "status",
+        "provenance",
+        "linked_force_ref",
+        "representation",
+        "profile",
+        "last_changed_at"
+      ],
+      "canonical_order": [
+        "owner_ref",
+        "category",
+        "count",
+        "status",
+        "provenance",
+        "linked_force_ref",
+        "representation",
+        "profile",
+        "last_changed_at"
+      ]
+    },
+    "/pools/*/profile": {
+      "mode": "closed",
+      "allowed_keys": [
+        "numeric_distributions",
+        "category_counts",
+        "dimension_counts",
+        "tags"
+      ],
+      "canonical_order": [
+        "numeric_distributions",
+        "category_counts",
+        "dimension_counts",
+        "tags"
+      ]
+    },
+    "/pools/*/profile/numeric_distributions": {
+      "mode": "open_map"
+    },
+    "/pools/*/profile/numeric_distributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ],
+      "canonical_order": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ]
+    },
+    "/pools/*/profile/category_counts": {
+      "mode": "open_map"
+    },
+    "/transfers/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "at",
+        "source_pool_id",
+        "destination_ref",
+        "requested_count",
+        "accepted",
+        "rejected",
+        "authority_ref",
+        "authority_basis",
+        "policy_ref",
+        "method",
+        "accepted_profile",
+        "materialized_person_ids",
+        "source_removed",
+        "destination_added",
+        "selection_note"
+      ],
+      "canonical_order": [
+        "id",
+        "at",
+        "source_pool_id",
+        "destination_ref",
+        "requested_count",
+        "accepted",
+        "rejected",
+        "authority_ref",
+        "authority_basis",
+        "policy_ref",
+        "method",
+        "accepted_profile",
+        "materialized_person_ids",
+        "source_removed",
+        "destination_added",
+        "selection_note"
+      ]
+    },
+    "/transfers/*/accepted_profile": {
+      "mode": "closed",
+      "allowed_keys": [
+        "numeric_distributions",
+        "category_counts",
+        "dimension_counts",
+        "tags"
+      ],
+      "canonical_order": [
+        "numeric_distributions",
+        "category_counts",
+        "dimension_counts",
+        "tags"
+      ]
+    },
+    "/transfers/*/accepted_profile/numeric_distributions": {
+      "mode": "open_map"
+    },
+    "/transfers/*/accepted_profile/numeric_distributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ],
+      "canonical_order": [
+        "count",
+        "mean",
+        "sd",
+        "min",
+        "max"
+      ]
+    },
+    "/transfers/*/accepted_profile/category_counts": {
+      "mode": "open_map"
+    },
+    "/pools/*/profile/dimension_counts": {
+      "mode": "open_map"
+    },
+    "/pools/*/profile/dimension_counts/*": {
+      "mode": "open_map"
+    },
+    "/transfers/*/accepted_profile/dimension_counts": {
+      "mode": "open_map"
+    },
+    "/transfers/*/accepted_profile/dimension_counts/*": {
+      "mode": "open_map"
+    },
+    "/demographic_reviews/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "at",
+        "policy_ref",
+        "compacted_years",
+        "pool_results"
+      ],
+      "canonical_order": [
+        "id",
+        "at",
+        "policy_ref",
+        "compacted_years",
+        "pool_results"
+      ]
+    },
+    "/demographic_reviews/*/pool_results/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "pool_id",
+        "before",
+        "births",
+        "deaths",
+        "after",
+        "aged_years"
+      ],
+      "canonical_order": [
+        "pool_id",
+        "before",
+        "births",
+        "deaths",
+        "after",
+        "aged_years"
+      ]
+    },
+    "/pools/*/representation": {
+      "mode": "closed",
+      "allowed_keys": [
+        "anonymous_count",
+        "rostered_count",
+        "rostered_person_refs"
+      ],
+      "canonical_order": [
+        "anonymous_count",
+        "rostered_count",
+        "rostered_person_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/pools": [
+      "object"
+    ],
+    "/pools/*": [
+      "object"
+    ],
+    "/pools/*/owner_ref": [
+      "string"
+    ],
+    "/pools/*/category": [
+      "string"
+    ],
+    "/pools/*/count": [
+      "integer"
+    ],
+    "/pools/*/status": [
+      "string"
+    ],
+    "/pools/*/provenance": [
+      "string"
+    ],
+    "/pools/*/profile": [
+      "object"
+    ],
+    "/pools/*/last_changed_at": [
+      "string"
+    ],
+    "/pools/*/profile/numeric_distributions": [
+      "object"
+    ],
+    "/pools/*/profile/numeric_distributions/*": [
+      "object"
+    ],
+    "/pools/*/profile/numeric_distributions/*/count": [
+      "integer"
+    ],
+    "/pools/*/profile/numeric_distributions/*/mean": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/sd": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/min": [
+      "number"
+    ],
+    "/pools/*/profile/numeric_distributions/*/max": [
+      "number"
+    ],
+    "/pools/*/profile/category_counts": [
+      "object"
+    ],
+    "/pools/*/profile/category_counts/*": [
+      "integer"
+    ],
+    "/pools/*/profile/tags": [
+      "array"
+    ],
+    "/pools/*/profile/tags/*": [
+      "string"
+    ],
+    "/transfers": [
+      "array"
+    ],
+    "/transfers/*": [
+      "object"
+    ],
+    "/transfers/*/id": [
+      "string"
+    ],
+    "/transfers/*/at": [
+      "string"
+    ],
+    "/transfers/*/source_pool_id": [
+      "string"
+    ],
+    "/transfers/*/destination_ref": [
+      "string"
+    ],
+    "/transfers/*/accepted": [
+      "integer"
+    ],
+    "/transfers/*/rejected": [
+      "integer"
+    ],
+    "/transfers/*/method": [
+      "string"
+    ],
+    "/transfers/*/accepted_profile": [
+      "object"
+    ],
+    "/transfers/*/materialized_person_ids": [
+      "array"
+    ],
+    "/transfers/*/materialized_person_ids/*": [
+      "string"
+    ],
+    "/transfers/*/source_removed": [
+      "integer"
+    ],
+    "/transfers/*/destination_added": [
+      "integer"
+    ],
+    "/transfers/*/selection_note": [
+      "null",
+      "string"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/count": [
+      "integer"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/mean": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/sd": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/min": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/numeric_distributions/*/max": [
+      "number"
+    ],
+    "/transfers/*/accepted_profile/category_counts": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/category_counts/*": [
+      "integer"
+    ],
+    "/transfers/*/accepted_profile/tags": [
+      "array"
+    ],
+    "/transfers/*/accepted_profile/tags/*": [
+      "string"
+    ],
+    "/pools/*/profile/dimension_counts": [
+      "object"
+    ],
+    "/pools/*/profile/dimension_counts/*": [
+      "object"
+    ],
+    "/pools/*/profile/dimension_counts/*/*": [
+      "integer"
+    ],
+    "/transfers/*/accepted_profile/dimension_counts": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/dimension_counts/*": [
+      "object"
+    ],
+    "/transfers/*/accepted_profile/dimension_counts/*/*": [
+      "integer"
+    ],
+    "/transfers/*/requested_count": [
+      "integer"
+    ],
+    "/transfers/*/authority_ref": [
+      "string"
+    ],
+    "/transfers/*/authority_basis": [
+      "string"
+    ],
+    "/transfers/*/policy_ref": [
+      "null",
+      "string"
+    ],
+    "/demographic_reviews": [
+      "array"
+    ],
+    "/demographic_reviews/*": [
+      "object"
+    ],
+    "/demographic_reviews/*/id": [
+      "string"
+    ],
+    "/demographic_reviews/*/at": [
+      "string"
+    ],
+    "/demographic_reviews/*/policy_ref": [
+      "string"
+    ],
+    "/demographic_reviews/*/compacted_years": [
+      "integer"
+    ],
+    "/demographic_reviews/*/pool_results": [
+      "array"
+    ],
+    "/demographic_reviews/*/pool_results/*": [
+      "object"
+    ],
+    "/demographic_reviews/*/pool_results/*/before": [
+      "integer"
+    ],
+    "/demographic_reviews/*/pool_results/*/births": [
+      "integer"
+    ],
+    "/demographic_reviews/*/pool_results/*/deaths": [
+      "integer"
+    ],
+    "/demographic_reviews/*/pool_results/*/after": [
+      "integer"
+    ],
+    "/demographic_reviews/*/pool_results/*/pool_id": [
+      "string"
+    ],
+    "/demographic_reviews/*/pool_results/*/aged_years": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/pools/*/profile/tags": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/transfers": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/transfers/*/materialized_person_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/transfers/*/accepted_profile/tags": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/demographic_reviews": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/demographic_reviews/*/pool_results": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/pools/*/representation/rostered_person_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Population pools are aggregate reservoirs and recruitment provenance, not hidden person sheets.",
+    "Recruitment conserves accepted people from source pool to destination; rejected applicants remain in the source population.",
+    "Mass recruitment never creates named people as a side effect. Sword Manor alone records every accepted member as one stable identity inside its bounded person-core registry while shared mechanics remain cohort-hosted.",
+    "Labels such as hunter, farmer, villager, academy trainee or veteran are categories inside this registry when causal, never mandatory separate files."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.kumo_military_intelligence",
+    "name": "Kumo Military Intelligence",
+    "status": "active",
+    "leadership_ids": [
+      "canon_c"
+    ],
+    "key_member_ids": [
+      "canon_darui",
+      "canon_mabui"
+    ],
+    "goal": "collect military intelligence and support Kumo operations",
+    "current_plan": "Refresh village readiness estimates and watch neighboring force movements for actionable changes.",
+    "resources": [
+      "sensor/intelligence personnel",
+      "military reports",
+      "relay network"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.iwa_engineering_command",
+        "relationship_type": "great_village_strategic_competition",
+        "stance": "competitive",
+        "intensity": 58
+      },
+      {
+        "target_id": "faction.ame_security_network",
+        "relationship_type": "regional_intelligence_watch",
+        "stance": "wary",
+        "intensity": 45
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Uses existing information, sensing, and force mechanics."
+    ],
+    "goals": [
+      "maintain foreign military awareness",
+      "support Kumo readiness and operational initiative"
+    ],
+    "constraints": [
+      "terrain and distance",
+      "counterintelligence",
+      "command priorities"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-04T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_team_refs": [
+        "team.kumo.military.intelligence.auto.021c09f80884",
+        "team.kumo.military.intelligence.auto.42f5d569ba6c"
+      ],
+      "autonomous_mission_refs": [
+        "mission.autonomy.c778f746dffd8ffff4",
+        "mission.autonomy.528941e32428a2648b",
+        "mission.autonomy.e23fe0ae28fb901d36"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.c778f746dffd8ffff4"
+      ]
+    },
+    "scope": "Kumogakure military intelligence, sensors, relays, and operational analysis",
+    "leadership_model": "village_military_network"
+  }
+}

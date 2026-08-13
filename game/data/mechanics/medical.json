@@ -1,0 +1,60 @@
+{
+  "schema": "medical-mechanics",
+  "formulas": {
+    "surgical_quality": "0.50*Medicine + 0.30*chakra_control + 0.20*ocular_surgery_mastery",
+    "initial_integration": "clamp(40 + 0.25*body_compatibility + 0.25*surgical_quality + 0.20*dojutsu_aptitude, 0, 180)",
+    "weekly_integration_gain": "(200-current_integration) * (0.02 + 0.02*dojutsu_aptitude/200 + 0.01*controlled_use_factor)",
+    "poison_absorbed_dose": "delivered_dose * route_absorption_fraction * (1-countermeasure_fraction)",
+    "poison_effect_score": "toxicity * absorbed_dose / reference_dose * metabolism_modifier"
+  },
+  "transplant_required_inputs": [
+    "body_compatibility",
+    "surgeon_medicine",
+    "surgeon_chakra_control",
+    "ocular_surgery_mastery",
+    "facility_available",
+    "recipient_medically_eligible"
+  ],
+  "rule": "Qualified extraction, proper preservation, and medically eligible implantation are deterministic successes. Linh may operate on others but cannot be the sole operating surgeon for her own bilateral transplant.",
+  "preservation": {
+    "registered_medical_preservation_decay_per_30_days": 0,
+    "improper_storage": "Handle only through explicit environmental/injury state; never random decay."
+  },
+  "ocular_transfer_policy": {
+    "extraction": "100_percent_if_eye_is_physically_accessible_and_a_qualified_medical_operator_can_complete_the_procedure",
+    "proper_preservation": "100_percent_with_no_time_decay_in_a_registered_medical_preservation_facility",
+    "implantation": "100_percent_if_recipient_is_medically_eligible_and_a_qualified_operator_and_facility_are_available",
+    "random_rejection": "none",
+    "random_eye_damage": "none",
+    "random_surgical_destruction": "none",
+    "purpose": "Keep acquisition, custody, allocation, integration, mastery, secrecy, and Mangekyo-use decisions consequential without adding low-value random surgery failure."
+  },
+  "procedure_thresholds": {
+    "stabilize": {
+      "minimum_quality": 35,
+      "base_health_restore": 4,
+      "requires_medical_facility": false
+    },
+    "treat": {
+      "minimum_quality": 65,
+      "base_health_restore": 10,
+      "requires_medical_facility": false
+    },
+    "surgery": {
+      "minimum_quality": 120,
+      "base_health_restore": 18,
+      "requires_medical_facility": true
+    },
+    "implant": {
+      "minimum_quality": 150,
+      "base_health_restore": 0,
+      "requires_medical_facility": true
+    },
+    "remove_implant": {
+      "minimum_quality": 135,
+      "base_health_restore": 4,
+      "requires_medical_facility": true
+    }
+  },
+  "procedure_rule": "Procedure thresholds are deterministic qualification gates. Meeting the gate never bypasses anatomy, custody, patient eligibility, facility, authority, or conservation requirements."
+}

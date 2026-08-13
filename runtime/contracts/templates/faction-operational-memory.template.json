@@ -1,0 +1,41 @@
+{
+  "schema": "file-template",
+  "template_id": "template.faction-operational-memory",
+  "target_schema": "faction-operational-memory",
+  "source_schema": "game/schemas/faction-operational-memory.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/autonomy/faction-memory"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "faction_id", "as_of", "active_mission_team_refs", "team_performance", "recent_report_refs"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["schema", "faction_id", "as_of", "active_mission_team_refs", "team_performance", "recent_report_refs"], "canonical_order": ["schema", "faction_id", "as_of", "active_mission_team_refs", "team_performance", "recent_report_refs"]},
+    "/active_mission_team_refs": {"mode": "open_map"},
+    "/team_performance": {"mode": "open_map"},
+    "/team_performance/*": {"mode": "closed", "allowed_keys": ["missions_total", "missions_succeeded", "missions_failed", "last_mission_ref", "last_result_at"], "canonical_order": ["missions_total", "missions_succeeded", "missions_failed", "last_mission_ref", "last_result_at"]}
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/faction_id": ["string"],
+    "/as_of": ["string"],
+    "/active_mission_team_refs": ["object"],
+    "/active_mission_team_refs/*": ["string"],
+    "/team_performance": ["object"],
+    "/team_performance/*": ["object"],
+    "/team_performance/*/missions_total": ["integer"],
+    "/team_performance/*/missions_succeeded": ["integer"],
+    "/team_performance/*/missions_failed": ["integer"],
+    "/team_performance/*/last_mission_ref": ["string", "null"],
+    "/team_performance/*/last_result_at": ["string", "null"],
+    "/recent_report_refs": ["array"],
+    "/recent_report_refs/*": ["string"]
+  },
+  "array_contracts": {
+    "/recent_report_refs": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "This compact memory stores only bounded operational evidence an institution has actually received.",
+    "Mission assignment may consult saved performance and audience-specific reputation, but memory never overrides current health, availability, authority, or mission truth.",
+    "Keep reports bounded; detailed history remains in semantic world events and mission owners."
+  ]
+}

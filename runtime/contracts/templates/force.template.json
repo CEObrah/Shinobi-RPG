@@ -1,0 +1,242 @@
+{
+  "schema": "file-template",
+  "template_id": "template.force",
+  "target_schema": "force",
+  "source_schema": "game/schemas/force.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/force"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "id",
+    "name",
+    "schema",
+    "total",
+    "troop_pools"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "availability",
+        "id",
+        "military_identity",
+        "name",
+        "reconstitution_policy_ref",
+        "schema",
+        "total",
+        "troop_pools",
+        "population_pool_id",
+        "owner_ref",
+        "formation_registry_ref",
+        "mobilization_anchor_ref"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "name",
+        "total",
+        "availability",
+        "military_identity",
+        "reconstitution_policy_ref",
+        "population_pool_id",
+        "troop_pools",
+        "owner_ref",
+        "formation_registry_ref",
+        "mobilization_anchor_ref"
+      ]
+    },
+    "/availability": {
+      "mode": "closed",
+      "allowed_keys": [
+        "deployed",
+        "essential_fixed_duty",
+        "medical_or_recovery",
+        "mobilizable_30d",
+        "mobilizable_7d",
+        "ready_24h",
+        "training_or_instruction",
+        "captured_or_missing"
+      ],
+      "canonical_order": [
+        "deployed",
+        "ready_24h",
+        "mobilizable_7d",
+        "mobilizable_30d",
+        "training_or_instruction",
+        "medical_or_recovery",
+        "captured_or_missing",
+        "essential_fixed_duty"
+      ]
+    },
+    "/troop_pools/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capability_ref",
+        "count",
+        "doctrine",
+        "id",
+        "loadout",
+        "quality",
+        "readiness_class",
+        "role",
+        "schema",
+        "specialties",
+        "training",
+        "troop_type"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "count",
+        "quality",
+        "role",
+        "loadout",
+        "doctrine",
+        "training",
+        "specialties",
+        "troop_type",
+        "readiness_class",
+        "capability_ref"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/availability": [
+      "object"
+    ],
+    "/availability/deployed": [
+      "integer"
+    ],
+    "/availability/essential_fixed_duty": [
+      "integer"
+    ],
+    "/availability/medical_or_recovery": [
+      "integer"
+    ],
+    "/availability/mobilizable_30d": [
+      "integer"
+    ],
+    "/availability/mobilizable_7d": [
+      "integer"
+    ],
+    "/availability/ready_24h": [
+      "integer"
+    ],
+    "/availability/training_or_instruction": [
+      "integer"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/military_identity": [
+      "array"
+    ],
+    "/military_identity/*": [
+      "string"
+    ],
+    "/name": [
+      "string"
+    ],
+    "/reconstitution_policy_ref": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/total": [
+      "integer"
+    ],
+    "/troop_pools": [
+      "array"
+    ],
+    "/troop_pools/*": [
+      "object"
+    ],
+    "/troop_pools/*/capability_ref": [
+      "string"
+    ],
+    "/troop_pools/*/count": [
+      "integer"
+    ],
+    "/troop_pools/*/doctrine": [
+      "string"
+    ],
+    "/troop_pools/*/id": [
+      "string"
+    ],
+    "/troop_pools/*/loadout": [
+      "string"
+    ],
+    "/troop_pools/*/quality": [
+      "string"
+    ],
+    "/troop_pools/*/readiness_class": [
+      "string"
+    ],
+    "/troop_pools/*/role": [
+      "string"
+    ],
+    "/troop_pools/*/schema": [
+      "string"
+    ],
+    "/troop_pools/*/specialties": [
+      "array"
+    ],
+    "/troop_pools/*/specialties/*": [
+      "string"
+    ],
+    "/troop_pools/*/training": [
+      "string"
+    ],
+    "/troop_pools/*/troop_type": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/population_pool_id": [
+      "string"
+    ],
+    "/availability/captured_or_missing": [
+      "integer"
+    ],
+    "/owner_ref": [
+      "null",
+      "string"
+    ],
+    "/formation_registry_ref": [
+      "null",
+      "string"
+    ],
+    "/mobilization_anchor_ref": [
+      "null",
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/military_identity": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/troop_pools": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/troop_pools/*/specialties": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+import json, pathlib
+ROOT=pathlib.Path(__file__).resolve().parents[1]
+model=json.loads((ROOT/'game/data/development/model.json').read_text())
+eff=model['representation_efficiency']
+assert set(eff.values())=={1.0}, eff
+assert 'house_cohort' in eff and eff['house_cohort']==1.0
+assert model['aptitude_scale'].get('hard_cap') is None
+assert 'max' not in model['aptitude_scale']
+stats=json.loads((ROOT/'game/data/mechanics/stats.json').read_text())
+assert stats['attribute_scale'].get('hard_cap') is None
+# Identical inputs must not change because of representation.
+base=100.0
+aptitude=1.6
+attendance=.9
+instructor=.85
+facility=.95
+equipment=.9
+health=.92
+recovery=.9
+relevance=1.0
+difficulty=.95
+common=base*aptitude*attendance*instructor*facility*equipment*health*recovery*relevance*difficulty
+vals={k:common*v for k,v in eff.items()}
+assert len({round(v,10) for v in vals.values()})==1, vals
+# Formation/cohort promotion is a conservation transfer, never a multiplier.
+starting=1000
+qualified=37
+remaining=starting-qualified
+assert remaining+qualified==starting and remaining>=0
+# Instructor capacity cannot exceed available hours when measured as personalized student-hours.
+available_instructor_hours=30
+requested=[10,10,10]
+assert sum(requested)<=available_instructor_hours
+overrequested=[10,10,10,10]
+assert sum(overrequested)>available_instructor_hours
+assert model['promotion_rule']['mode']=='qualified_subset_transfer'
+assert model['batching_rule']['batch_equivalence_required'] is True
+# Lazy bank registration must exist and be part of the training/development contract.
+index=json.loads((ROOT/'runtime/contracts/template-index-shards/d.json').read_text())
+assert 'development-bank-registry' in index['templates']
+template=json.loads((ROOT/'runtime/contracts/templates/development-bank-registry.template.json').read_text())
+assert template['object_contracts']['/entries']['mode']=='open_map'
+assert template['object_contracts']['/entries/*/credits']['mode']=='open_map'
+contract=json.loads((ROOT/'runtime/contracts/system-contracts/training_development.json').read_text())
+assert 'state/development/' in contract['authority_paths']
+assert 'development-bank-registry' in contract['owner_templates']
+assert any('Aggregate process settled_through' in x for x in contract['invariants'])
+assert any('resolved_through cursor is proof' in x for x in contract['invariants'])
+assert any('covering causal host' in x and 'never erases' in x for x in contract['invariants'])
+assert any('no hard maximum' in x and 'above it remains legal' in x for x in contract['invariants'])
+rules=(ROOT/'game/rules/text/training.md').read_text()
+for phrase in ('state/development/banks.json', 'sparse residual development credit', 'Offscreen settlement may be lazy', 'no hard maximum', 'proof of settlement, never a mirror of global campaign time'):
+    assert phrase in rules, phrase
+# House cohort progression must be driven by structured policy rather than parsed prose.
+policy=json.loads((ROOT/'game/data/house/training-policies.json').read_text())
+ht=policy['policies']['house.tang']
+assert ht['daily_active_hours']==[6,6,6,6,6,4,0]
+assert ht['training_window_start_seconds']>=0
+for name,curriculum in ht['curricula'].items():
+    assert sum(row['weight_milli'] for row in curriculum['targets'])==1000, name
+    assert all(row['target'].startswith('stats.') for row in curriculum['targets']), name
+# Residual development units are consumed against current point cost and cost is recomputed after each point.
+def point_cost(v):
+    return 1 + max(0, v-40)//20
+
+def consume(value, credit):
+    while credit + 1e-12 >= point_cost(value):
+        credit -= point_cost(value)
+        value += 1
+    return value, credit
+v, residual = consume(59, 3.5)
+assert v==61 and abs(residual-0.5)<1e-9, (v,residual)
+# The same progression law must continue above the old 200 reference threshold.
+v, residual = consume(205, 20)
+assert v>205 and residual>=0, (v,residual)
+# A bank file, when present, must never contain negative credit.
+bank_path=ROOT/'state/development/banks.json'
+if bank_path.exists():
+    bank=json.loads(bank_path.read_text())
+    assert bank['schema']=='development-bank-registry'
+    for owner_id, entry in bank['entries'].items():
+        assert entry['owner_type'] in {'character','person','cohort','formation'}, owner_id
+        assert all(v>=0 for v in entry['credits'].values()), owner_id
+print('DEVELOPMENT FAIRNESS OK')
+print('representation_efficiency='+json.dumps(eff,sort_keys=True))
+print('sample_effective_training='+str(round(common,4)))

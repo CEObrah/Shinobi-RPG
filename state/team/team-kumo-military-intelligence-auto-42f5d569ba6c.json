@@ -1,0 +1,48 @@
+{
+  "schema": "exact-team",
+  "id": "team.kumo.military.intelligence.auto.42f5d569ba6c",
+  "name": "Kumo Military Intelligence Field Cell",
+  "status": "active",
+  "team_type": "temporary_task_force",
+  "parent_institution_ref": "faction.kumo_military_intelligence",
+  "assignment_authority_ref": "canon_c",
+  "leader_ref": "canon_killer_b",
+  "deputy_ref": "canon_darui",
+  "member_refs": [
+    "canon_killer_b",
+    "canon_darui",
+    "canon_samui",
+    "canon_karui"
+  ],
+  "roles": {
+    "canon_killer_b": "field_lead",
+    "canon_darui": "mobile_interdiction",
+    "canon_samui": "support_recovery",
+    "canon_karui": "assault_finisher"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-02-19T07:00:00",
+    "basis": "Autonomous roster selection by faction.kumo_military_intelligence from its bounded lawful personnel pool."
+  },
+  "doctrine_ref": "team.kumo.military.intelligence.auto.42f5d569ba6c.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_killer_b"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.kumo_military_intelligence"
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "schema": "file-template",
+  "template_id": "template.canon-pressure-registry",
+  "target_schema": "canon-pressure-registry",
+  "source_schema": "game/schemas/canon-pressure-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/canon"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "canon_rule",
+    "pressures",
+    "owner_id",
+    "owner_type",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "canon_rule",
+        "pressures",
+        "owner_id",
+        "owner_type",
+        "schema"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "authority",
+        "canon_rule",
+        "pressures"
+      ]
+    },
+    "/pressures": {
+      "mode": "open_map"
+    },
+    "/pressures/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "actors",
+        "chronology",
+        "constraints",
+        "current_step",
+        "evidence_refs",
+        "goal",
+        "host_ref",
+        "id",
+        "knowledge",
+        "next_boundary",
+        "opposition",
+        "reducer_ref",
+        "resources",
+        "source_refs",
+        "stakes",
+        "status",
+        "title",
+        "visibility"
+      ],
+      "canonical_order": [
+        "id",
+        "title",
+        "host_ref",
+        "status",
+        "goal",
+        "stakes",
+        "actors",
+        "resources",
+        "constraints",
+        "opposition",
+        "current_step",
+        "next_boundary",
+        "reducer_ref",
+        "source_refs",
+        "evidence_refs",
+        "visibility",
+        "knowledge",
+        "chronology"
+      ]
+    },
+    "/pressures/*/constraints": {
+      "mode": "closed",
+      "allowed_keys": [
+        "canon_forcing",
+        "refs"
+      ],
+      "canonical_order": [
+        "canon_forcing",
+        "refs"
+      ]
+    },
+    "/pressures/*/next_boundary": {
+      "mode": "closed",
+      "allowed_keys": [
+        "due_at",
+        "host_ref",
+        "settled_through"
+      ],
+      "canonical_order": [
+        "host_ref",
+        "settled_through",
+        "due_at"
+      ]
+    },
+    "/pressures/*/visibility": {
+      "mode": "closed",
+      "allowed_keys": [
+        "basis_refs",
+        "classification"
+      ],
+      "canonical_order": [
+        "classification",
+        "basis_refs"
+      ]
+    },
+    "/pressures/*/knowledge": {
+      "mode": "closed",
+      "allowed_keys": [
+        "npc_refs",
+        "player_refs"
+      ],
+      "canonical_order": [
+        "player_refs",
+        "npc_refs"
+      ]
+    },
+    "/pressures/*/chronology/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "at",
+        "entry_id",
+        "kind",
+        "source_refs",
+        "status_after",
+        "status_before"
+      ],
+      "canonical_order": [
+        "entry_id",
+        "at",
+        "kind",
+        "status_before",
+        "status_after",
+        "source_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/canon_rule": [
+      "string"
+    ],
+    "/pressures": [
+      "object"
+    ],
+    "/pressures/*": [
+      "object"
+    ],
+    "/pressures/*/id": [
+      "string"
+    ],
+    "/pressures/*/title": [
+      "string"
+    ],
+    "/pressures/*/host_ref": [
+      "string"
+    ],
+    "/pressures/*/status": [
+      "string"
+    ],
+    "/pressures/*/goal": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/stakes": [
+      "array"
+    ],
+    "/pressures/*/stakes/*": [
+      "string"
+    ],
+    "/pressures/*/actors": [
+      "array"
+    ],
+    "/pressures/*/actors/*": [
+      "string"
+    ],
+    "/pressures/*/resources": [
+      "array"
+    ],
+    "/pressures/*/resources/*": [
+      "string"
+    ],
+    "/pressures/*/constraints": [
+      "object"
+    ],
+    "/pressures/*/constraints/canon_forcing": [
+      "boolean"
+    ],
+    "/pressures/*/constraints/refs": [
+      "array"
+    ],
+    "/pressures/*/constraints/refs/*": [
+      "string"
+    ],
+    "/pressures/*/opposition": [
+      "array"
+    ],
+    "/pressures/*/opposition/*": [
+      "string"
+    ],
+    "/pressures/*/current_step": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/next_boundary": [
+      "null",
+      "object"
+    ],
+    "/pressures/*/next_boundary/settled_through": [
+      "string"
+    ],
+    "/pressures/*/next_boundary/due_at": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/reducer_ref": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/source_refs": [
+      "array"
+    ],
+    "/pressures/*/source_refs/*": [
+      "string"
+    ],
+    "/pressures/*/evidence_refs": [
+      "array"
+    ],
+    "/pressures/*/evidence_refs/*": [
+      "string"
+    ],
+    "/pressures/*/visibility": [
+      "object"
+    ],
+    "/pressures/*/visibility/classification": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/visibility/basis_refs": [
+      "array"
+    ],
+    "/pressures/*/visibility/basis_refs/*": [
+      "string"
+    ],
+    "/pressures/*/knowledge": [
+      "object"
+    ],
+    "/pressures/*/knowledge/player_refs": [
+      "array"
+    ],
+    "/pressures/*/knowledge/player_refs/*": [
+      "string"
+    ],
+    "/pressures/*/knowledge/npc_refs": [
+      "array"
+    ],
+    "/pressures/*/knowledge/npc_refs/*": [
+      "string"
+    ],
+    "/pressures/*/chronology": [
+      "array"
+    ],
+    "/pressures/*/chronology/*": [
+      "object"
+    ],
+    "/pressures/*/chronology/*/entry_id": [
+      "string"
+    ],
+    "/pressures/*/chronology/*/at": [
+      "string"
+    ],
+    "/pressures/*/chronology/*/kind": [
+      "string"
+    ],
+    "/pressures/*/chronology/*/status_before": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/chronology/*/status_after": [
+      "null",
+      "string"
+    ],
+    "/pressures/*/chronology/*/source_refs": [
+      "array"
+    ],
+    "/pressures/*/chronology/*/source_refs/*": [
+      "string"
+    ],
+    "/pressures/*/next_boundary/host_ref": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/pressures/*/stakes": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/actors": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/resources": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/constraints/refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/opposition": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/source_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/visibility/basis_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/knowledge/player_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/knowledge/npc_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/pressures/*/chronology": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/pressures/*/chronology/*/source_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template and the canon_pressures system contract before creating or structurally editing the registry.",
+    "Front IDs are stable. The map key and record id must remain identical across status transitions.",
+    "Never fill a null goal/current step or an empty actor, resource, opposition, source, evidence or knowledge collection by inference.",
+    "Stakes are conditional possibilities, never scheduled canon outcomes or promises that they will occur.",
+    "World truth, visibility classification, player knowledge and each NPC knowledge reference are separate authorities.",
+    "Chronology is append-only. Existing entries may not be rewritten or deleted, and every new entry requires causal source references.",
+    "An active front boundary and its temporal-frontier process must match exactly; no second clock is permitted.",
+    "A reducer may change only fields supported by elapsed time, causal evidence, source owners and lawful information delivery."
+  ]
+}

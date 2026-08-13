@@ -1,0 +1,54 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.earth.trained_reserve",
+  "pool_id": "civil.earth.trained_reserve",
+  "source_owner": "force.civil.earth",
+  "stats": {
+    "attributes": {
+      "strength": 43,
+      "endurance": 46,
+      "awareness": 32
+    },
+    "skills": {
+      "weapons": 42,
+      "formation": 47,
+      "tactics": 29
+    },
+    "morale": 58,
+    "discipline": 59,
+    "experience": 40
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 170,
+      "sd": 5.8
+    },
+    "weight_kg": {
+      "mean": 59,
+      "sd": 7.0
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 86,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

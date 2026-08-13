@@ -1,0 +1,31 @@
+{
+  "schema": "system-contract",
+  "system_id": "player_combat_detail",
+  "authority": false,
+  "authority_paths": [
+    "state/player-detail/"
+  ],
+  "owner_templates": [
+    "player-combat-style"
+  ],
+  "read_first": [
+    "player combat-detail owner",
+    "referenced static combat/technique package only when execution requires it"
+  ],
+  "write_order": [
+    "require explicit player-authored doctrine change",
+    "validate referenced mechanics and legal technique access",
+    "persist only the declared doctrine/detail change"
+  ],
+  "invariants": [
+    "Permanent player doctrine is player-controlled intent and is never invented or silently normalized.",
+    "Combat style cannot grant techniques, stats, equipment, knowledge, authority, or resources.",
+    "Temporary tactical choices do not rewrite permanent doctrine unless the player explicitly makes them standing policy."
+  ],
+  "validators": [
+    "tools/test_mechanics.py",
+    "tools/test_semantics.py",
+    "tools/test_templates.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

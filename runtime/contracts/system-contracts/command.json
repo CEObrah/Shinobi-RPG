@@ -1,0 +1,37 @@
+{
+  "schema": "system-contract",
+  "system_id": "command",
+  "authority": false,
+  "authority_paths": [
+    "state/cmd/",
+    "state/org/assignments.json"
+  ],
+  "owner_templates": [
+    "command-assignments",
+    "command-group-index",
+    "command-group"
+  ],
+  "read_first": [
+    "commander person",
+    "one command group and only requested descendants",
+    "command mechanics"
+  ],
+  "write_order": [
+    "validate legal authority",
+    "recompute direct personnel and direct command slots",
+    "write command-group hierarchy",
+    "update derived index",
+    "validate succession/delegation"
+  ],
+  "invariants": [
+    "Commander is a real person, never an aggregate troop formation.",
+    "Personal and assigned forces share the same command budget.",
+    "A subordinate command group consumes one parent command slot; its descendants load the subordinate, not the parent directly.",
+    "Commander combat state stays on the person owner."
+  ],
+  "validators": [
+    "tools/test_templates.py",
+    "tools/test_formation_model.py",
+    "tools/test_semantics.py"
+  ]
+}

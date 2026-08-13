@@ -1,0 +1,117 @@
+{
+  "schema": "force",
+  "id": "force.taki.shinobi",
+  "name": "Force Taki Shinobi",
+  "total": 1600,
+  "availability": {
+    "deployed": 75,
+    "ready_24h": 274,
+    "mobilizable_7d": 488,
+    "mobilizable_30d": 335,
+    "training_or_instruction": 183,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 245
+  },
+  "military_identity": [
+    "defensive terrain",
+    "small-village field craft"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.field_ready",
+      "count": 458,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_taki_shinobi.field_ready",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.garrison_security",
+      "count": 336,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_taki_shinobi.garrison_security",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.intelligence_support",
+      "count": 61,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_taki_shinobi.intelligence_support",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.medical_support",
+      "count": 61,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_taki_shinobi.medical_support",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.logistics_support",
+      "count": 61,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_taki_shinobi.logistics_support",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.training_instruction",
+      "count": 214,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_taki_shinobi.training_instruction",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_taki_shinobi.reserve_recovery",
+      "count": 334,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_taki_shinobi.reserve_recovery",
+      "doctrine": "doc.force_taki_shinobi.field",
+      "training": "train.force_taki_shinobi.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-taki-shinobi-reserve-recovery.json"
+    }
+  ],
+  "owner_ref": "faction_taki",
+  "formation_registry_ref": "state/formation/force-taki-shinobi.json",
+  "mobilization_anchor_ref": "place.taki"
+}

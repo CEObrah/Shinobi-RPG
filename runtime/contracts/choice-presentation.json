@@ -1,0 +1,38 @@
+{
+  "schema": "choice-presentation",
+  "when_to_offer": "only at a genuine unresolved player decision when the player has not already declared an action",
+  "suggested_choice_count": {
+    "minimum": 2,
+    "maximum": 5,
+    "default": 5
+  },
+  "default_visible_total": 6,
+  "default_horizon_mix": {
+    "immediate": 3,
+    "wider_horizon": 2,
+    "free_action": 1
+  },
+  "free_form_option_required": true,
+  "free_form_label": "Free Action",
+  "duration_required_for_every_suggested_choice": false,
+  "duration_rule": "Show an estimated in-world duration, narrow justified range, or qualitative scene-relative horizon when time materially affects the decision and current player-visible context supports it.",
+  "legality_gate": [
+    "current authority",
+    "current knowledge",
+    "current location",
+    "current equipment/resources",
+    "current health/status",
+    "known deadlines and interrupts",
+    "current tactical geometry when danger is immediate",
+    "current player-facing semantic capability when persistence is implied"
+  ],
+  "horizon_rule": "Horizon is relative to the scene, not a fixed clock category.",
+  "normal_scene_rule": "Prefer three materially different immediate actions plus two materially different wider-horizon actions or objectives, then Free Action. Adapt the mix when the scene cannot support both horizons and never add filler merely to reach the default count.",
+  "combat_horizon_rule": "In active combat or immediate danger, wider-horizon choices are tactical objectives for the next several exchanges or battle objective, such as positioning, protection, capture, escape, isolation, or disengagement. Do not offer unrelated long-term administration.",
+  "strategic_horizon_rule": "In downtime, command, political, institutional, training, relationship, or planning scenes, wider-horizon choices may concern hours, days, weeks, projects, training cycles, commitments, delegation, missions, relationships, institutions, or strategy when player-visible and lawful.",
+  "interrupt_rule": "If a suggestion crosses a known scheduled obligation or hard causal interrupt, state the expected boundary in player-visible terms.",
+  "information_rule": "Choices may state predictable commitments and player-known tradeoffs, but may not promise success, imply a hidden best answer, reveal unseen opposition, leak unknown facts, or encode repository-only information.",
+  "declared_intent_rule": "If the player already declared a clear action, resolve it instead of presenting a menu. If one consequential clarification is required, ask only for that clarification.",
+  "menu_rule": "Choices are concise, nonbinding suggestions with no default or recommended option unless the player explicitly asks for advice. Any legal natural-language free-form action remains allowed.",
+  "storage_rule": "Never cache generated choice menus in scene state."
+}

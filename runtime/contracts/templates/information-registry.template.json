@@ -1,0 +1,209 @@
+{
+  "schema": "file-template",
+  "template_id": "template.information-registry",
+  "target_schema": "information-registry",
+  "source_schema": "game/schemas/information-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "claims",
+    "deliveries",
+    "knowledge",
+    "owner_id",
+    "owner_type",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "claims",
+        "deliveries",
+        "knowledge",
+        "owner_id",
+        "owner_type",
+        "schema"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "claims",
+        "deliveries",
+        "knowledge"
+      ]
+    },
+    "/claims": {
+      "mode": "open_map"
+    },
+    "/claims/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "claim_id",
+        "collected_at",
+        "confidence_milli",
+        "epistemic_kind",
+        "evidence_refs",
+        "source_ref",
+        "subject_ref"
+      ],
+      "canonical_order": [
+        "claim_id",
+        "subject_ref",
+        "source_ref",
+        "collected_at",
+        "epistemic_kind",
+        "confidence_milli",
+        "evidence_refs"
+      ]
+    },
+    "/deliveries/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "channel",
+        "claim_id",
+        "delivered_at",
+        "delivery_id",
+        "evidence_refs",
+        "recipient_ref",
+        "resulting_confidence_milli",
+        "resulting_epistemic_kind",
+        "sender_ref"
+      ],
+      "canonical_order": [
+        "delivery_id",
+        "claim_id",
+        "sender_ref",
+        "recipient_ref",
+        "channel",
+        "delivered_at",
+        "resulting_epistemic_kind",
+        "resulting_confidence_milli",
+        "evidence_refs"
+      ]
+    },
+    "/knowledge": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/claims": [
+      "object"
+    ],
+    "/claims/*": [
+      "object"
+    ],
+    "/claims/*/claim_id": [
+      "string"
+    ],
+    "/claims/*/subject_ref": [
+      "string"
+    ],
+    "/claims/*/source_ref": [
+      "string"
+    ],
+    "/claims/*/collected_at": [
+      "string"
+    ],
+    "/claims/*/epistemic_kind": [
+      "string"
+    ],
+    "/claims/*/confidence_milli": [
+      "integer"
+    ],
+    "/claims/*/evidence_refs": [
+      "array"
+    ],
+    "/claims/*/evidence_refs/*": [
+      "string"
+    ],
+    "/deliveries": [
+      "array"
+    ],
+    "/deliveries/*": [
+      "object"
+    ],
+    "/deliveries/*/delivery_id": [
+      "string"
+    ],
+    "/deliveries/*/claim_id": [
+      "string"
+    ],
+    "/deliveries/*/sender_ref": [
+      "string"
+    ],
+    "/deliveries/*/recipient_ref": [
+      "string"
+    ],
+    "/deliveries/*/channel": [
+      "string"
+    ],
+    "/deliveries/*/delivered_at": [
+      "string"
+    ],
+    "/deliveries/*/resulting_epistemic_kind": [
+      "string"
+    ],
+    "/deliveries/*/resulting_confidence_milli": [
+      "integer"
+    ],
+    "/deliveries/*/evidence_refs": [
+      "array"
+    ],
+    "/deliveries/*/evidence_refs/*": [
+      "string"
+    ],
+    "/knowledge": [
+      "object"
+    ],
+    "/knowledge/*": [
+      "array"
+    ],
+    "/knowledge/*/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/claims/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/deliveries": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/deliveries/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/knowledge/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "World truth is not knowledge; a claim/delivery may never mutate its subject owner by itself.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Indexes/caches are rebuildable and never bless new authoritative fields."
+  ]
+}

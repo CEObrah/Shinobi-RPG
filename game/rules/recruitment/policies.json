@@ -1,0 +1,21 @@
+{
+  "schema": "recruitment-policy-registry",
+  "authority": "Recruitment policies define eligibility and representation. The runtime determines accepted headcount from eligible conserved population; callers do not choose acceptance results.",
+  "policies": {
+    "recruitment.general": {
+      "eligible_source_categories": ["civilian_general", "youth_candidate", "academy", "shinobi_service", "support_service"],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    },
+    "recruitment.academy": {
+      "eligible_source_categories": ["youth_candidate"],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    },
+    "recruitment.shinobi_service": {
+      "eligible_source_categories": ["academy"],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    }
+  }
+}

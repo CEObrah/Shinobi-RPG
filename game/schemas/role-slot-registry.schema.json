@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema", "institution_id", "slots"],
+  "properties": {
+    "schema": {"const": "role-slot-registry"},
+    "institution_id": {"type": "string"},
+    "slots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["office_id", "office_name", "authority_scope", "occupancy", "last_settled_at"],
+        "properties": {
+          "office_id": {"type": "string"},
+          "office_name": {"type": "string"},
+          "authority_scope": {"type": "array", "items": {"type": "string"}},
+          "occupancy": {"enum": ["occupied_unmaterialized", "occupied_materialized", "vacant"]},
+          "incumbency_id": {"type": ["string", "null"]},
+          "materialized_person_id": {"type": ["string", "null"]},
+          "incumbent_age_band": {"type": ["string", "null"]},
+          "incumbent_years_in_role": {"type": ["number", "null"], "minimum": 0},
+          "functional_capability_band": {"type": ["string", "null"]},
+          "health_availability": {"type": ["string", "null"]},
+          "operational_availability": {"type": ["string", "null"]},
+          "service_development_credit": {"type": ["number", "null"], "minimum": 0},
+          "retirement_status": {"type": ["string", "null"]},
+          "succession_status": {"type": ["string", "null"]},
+          "last_settled_at": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

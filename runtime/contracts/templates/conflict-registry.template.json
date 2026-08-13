@@ -1,0 +1,281 @@
+{
+  "schema": "file-template",
+  "template_id": "template.conflict-registry",
+  "target_schema": "conflict-registry",
+  "source_schema": "game/schemas/conflict-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/conflict"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "records"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "records"
+      ]
+    },
+    "/records": {
+      "mode": "open_map"
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "side_refs",
+        "objectives",
+        "started_at",
+        "ended_at",
+        "ceasefire_consents",
+        "end_consents",
+        "fronts"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "side_refs",
+        "objectives",
+        "started_at",
+        "ended_at",
+        "ceasefire_consents",
+        "end_consents",
+        "fronts"
+      ]
+    },
+    "/records/*/objectives": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "place_refs",
+        "route_refs",
+        "formation_refs",
+        "control_ref",
+        "fortification_milli",
+        "route_state",
+        "occupations"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "place_refs",
+        "route_refs",
+        "formation_refs",
+        "control_ref",
+        "fortification_milli",
+        "route_state",
+        "occupations"
+      ]
+    },
+    "/records/*/fronts/*/route_state": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/route_state/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "status",
+        "controller_ref",
+        "disruption_milli",
+        "evidence_event_ref"
+      ],
+      "canonical_order": [
+        "status",
+        "controller_ref",
+        "disruption_milli",
+        "evidence_event_ref"
+      ]
+    },
+    "/records/*/fronts/*/occupations": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/occupations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "place_ref",
+        "controller_ref",
+        "evidence_event_ref",
+        "since"
+      ],
+      "canonical_order": [
+        "place_ref",
+        "controller_ref",
+        "evidence_event_ref",
+        "since"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/records": [
+      "object"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/id": [
+      "string"
+    ],
+    "/records/*/name": [
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/side_refs": [
+      "array"
+    ],
+    "/records/*/side_refs/*": [
+      "string"
+    ],
+    "/records/*/objectives": [
+      "object"
+    ],
+    "/records/*/started_at": [
+      "string"
+    ],
+    "/records/*/ended_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts": [
+      "object"
+    ],
+    "/records/*/fronts/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/id": [
+      "string"
+    ],
+    "/records/*/fronts/*/name": [
+      "string"
+    ],
+    "/records/*/fronts/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/place_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/route_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/formation_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/control_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/fortification_milli": [
+      "integer"
+    ],
+    "/records/*/fronts/*/route_state": [
+      "object"
+    ],
+    "/records/*/fronts/*/route_state/*": [
+      "object"
+    ],
+    "/records/*/objectives/*": [
+      "array"
+    ],
+    "/records/*/objectives/*/*": [
+      "string"
+    ],
+    "/records/*/ceasefire_consents": [
+      "array"
+    ],
+    "/records/*/ceasefire_consents/*": [
+      "string"
+    ],
+    "/records/*/end_consents": [
+      "array"
+    ],
+    "/records/*/end_consents/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/controller_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/disruption_milli": [
+      "integer"
+    ],
+    "/records/*/fronts/*/route_state/*/evidence_event_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/occupations": [
+      "object"
+    ],
+    "/records/*/fronts/*/occupations/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/records/*/side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/place_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/route_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/formation_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/objectives/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/ceasefire_consents": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/end_consents": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new stable IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

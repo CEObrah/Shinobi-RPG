@@ -1,0 +1,187 @@
+{
+  "schema": "shinobi-career-pipeline",
+  "version": 1,
+  "last_review_at": "SE-0061-06-01T07:00:00",
+  "villages": {
+    "konoha": {
+      "service_pool_ref": "pool.konoha.shinobi_service",
+      "force_ref": "force.konoha.shinobi",
+      "rank_counts": {
+        "genin": 8880,
+        "chunin": 2683,
+        "jonin": 485
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 609000,
+        "chunin_to_jonin": 195600
+      }
+    },
+    "iwa": {
+      "service_pool_ref": "pool.iwa.shinobi_service",
+      "force_ref": "force.iwa.shinobi",
+      "rank_counts": {
+        "genin": 7768,
+        "chunin": 2348,
+        "jonin": 424
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 151000,
+        "chunin_to_jonin": 795400
+      }
+    },
+    "kiri": {
+      "service_pool_ref": "pool.kiri.shinobi_service",
+      "force_ref": "force.kiri.shinobi",
+      "rank_counts": {
+        "genin": 6289,
+        "chunin": 1900,
+        "jonin": 343
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 220000,
+        "chunin_to_jonin": 262600
+      }
+    },
+    "kumo": {
+      "service_pool_ref": "pool.kumo.shinobi_service",
+      "force_ref": "force.kumo.shinobi",
+      "rank_counts": {
+        "genin": 7398,
+        "chunin": 2235,
+        "jonin": 403
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 665000,
+        "chunin_to_jonin": 661900
+      }
+    },
+    "suna": {
+      "service_pool_ref": "pool.suna.shinobi_service",
+      "force_ref": "force.suna.shinobi",
+      "rank_counts": {
+        "genin": 5184,
+        "chunin": 1566,
+        "jonin": 282
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 786000,
+        "chunin_to_jonin": 865100
+      }
+    }
+  },
+  "history": [
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-03-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-04-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-05-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 1
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-06-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    }
+  ],
+  "provenance": "simulation_estimate rank distribution initialized from current conserved service totals; review cursor starts at the existing person-continuity baseline so the first settlement catches up missed lower-throughput career reviews"
+}

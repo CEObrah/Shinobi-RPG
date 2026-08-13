@@ -1,0 +1,176 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.konoha.fujin.doctrine",
+  "team_id": "team.konoha.fujin",
+  "name": "Team Fujin Combat Doctrine",
+  "status": "active",
+  "familiarity": {
+    "pc_wei_tang": 100,
+    "char.kai": 100,
+    "char.riku_hyuga": 100,
+    "char.mei_arakawa": 100
+  },
+  "effective_from": "SE-0061-02-24T18:36:42",
+  "approved_by": "pc_wei_tang",
+  "motto": "Control the space. Break the decision. End the fight.",
+  "command": {
+    "captain": "pc_wei_tang",
+    "deputy": "char.mei_arakawa",
+    "succession_order": [
+      "char.kai",
+      "char.riku_hyuga",
+      "char.mei_arakawa"
+    ]
+  },
+  "roles": {
+    "pc_wei_tang": "jonin_instructor_and_team_leader",
+    "char.kai": "timing_disruption_and_sword_pressure",
+    "char.riku_hyuga": "ground_control_frontline_reconnaissance_and_objective_defense",
+    "char.mei_arakawa": "sensor_perception_control_and_field_lead"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "SEE",
+      "primary_members": [
+        "char.mei_arakawa",
+        "pc_wei_tang"
+      ],
+      "objective": "Establish positions, threats, routes, and uncertainty before committing force.",
+      "procedures": [
+        "Cross-check observations before acting on them."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "SHAPE",
+      "primary_members": [
+        "char.mei_arakawa",
+        "pc_wei_tang"
+      ],
+      "objective": "Alter movement, terrain, information, or routes to create team advantage.",
+      "procedures": [
+        "Create openings for teammates rather than isolated duels."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "BREAK",
+      "primary_members": [
+        "pc_wei_tang",
+        "char.riku_hyuga"
+      ],
+      "objective": "Exploit the shaped engagement to disrupt coherent enemy action.",
+      "procedures": [
+        "Concentrate on the mission-critical problem."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "SECURE",
+      "primary_members": [
+        "pc_wei_tang",
+        "char.mei_arakawa"
+      ],
+      "objective": "Complete the authorized objective and stabilize control.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    },
+    {
+      "order": 5,
+      "name": "EXTRACT",
+      "primary_members": [
+        "pc_wei_tang",
+        "char.mei_arakawa"
+      ],
+      "objective": "Account for the team and remove personnel, captives, evidence, or protected assets safely.",
+      "procedures": [
+        "Preserve command and a viable withdrawal route."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Shared objective",
+      "rule": "Openings belong to the team, not the individual who created them.",
+      "procedures": [
+        "Exploit teammate-created advantages when lawful and useful."
+      ]
+    },
+    {
+      "name": "Mission first",
+      "rule": "Do not trade the assigned objective for an unnecessary fight.",
+      "procedures": [
+        "Reorient when combat no longer advances the mission."
+      ]
+    },
+    {
+      "name": "Recover control",
+      "rule": "When coordination breaks, restore information, command, spacing, and an exit before escalating.",
+      "procedures": [
+        "Stabilize before chasing a collapsing plan."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "reconnaissance",
+      "directive": "Verify while preserving concealment and a report route."
+    },
+    {
+      "mode": "capture",
+      "directive": "Create control, restrain the authorized target, and preserve evidence."
+    },
+    {
+      "mode": "protection",
+      "directive": "Keep the protected person or asset viable and preserve extraction."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Re-establish the battlefield picture.",
+      "Confirm command and member accountability.",
+      "Create a regroup or withdrawal route."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "pc_wei_tang",
+      "char.mei_arakawa"
+    ],
+    "procedures": [
+      "Account for every member and material objective before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "pc_wei_tang",
+      "char.zhu",
+      "char.linh"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "overlapping sensing and battlefield picture",
+      "terrain-air-perception layered control",
+      "formation division and concentrated exploitation",
+      "Mei-led three-genin command without Wei",
+      "mission-objective discipline under combat pressure",
+      "casualty and objective extraction"
+    ],
+    "role_focus": {
+      "pc_wei_tang": "jonin_instructor_and_team_leader",
+      "char.kai": "timing_disruption_and_sword_pressure",
+      "char.riku_hyuga": "ground_control_frontline_reconnaissance_and_objective_defense",
+      "char.mei_arakawa": "sensor_perception_control_and_field_lead"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance under the team training model.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "Battlefield-control doctrine built around layered movement, terrain, and perception pressure until the enemy's useful decisions collapse."
+}

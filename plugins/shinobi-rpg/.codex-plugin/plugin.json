@@ -1,0 +1,22 @@
+{
+  "name": "shinobi-rpg",
+  "version": "0.1.0",
+  "description": "Run the private persistent Shinobi RPG campaign through its authenticated MCP service.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Shinobi RPG",
+    "shortDescription": "Safely operate the supported Shinobi campaign slice.",
+    "longDescription": "Loads bounded live campaign context, narrates persisted scenes, reads permitted people, previews and commits supported time or existing-mission commands, and keeps OOC audits separate from campaign state through the private Shinobi RPG MCP service.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Show my current Shinobi RPG situation and supported actions.",
+      "Advance campaign time until the next player decision.",
+      "OOC: audit the campaign for possible improvements."
+    ]
+  }
+}

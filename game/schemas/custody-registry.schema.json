@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "custody-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "custody-registry"
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "subject_kind",
+          "subject_ref",
+          "force_ref",
+          "count",
+          "custodian_ref",
+          "place_ref",
+          "status",
+          "captured_at",
+          "detained_at",
+          "updated_at",
+          "summary",
+          "visibility"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subject_kind": {
+            "enum": [
+              "exact",
+              "aggregate"
+            ]
+          },
+          "subject_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "force_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "custodian_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "place_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "captured_pending_placement",
+              "detained",
+              "released",
+              "exchanged",
+              "escaped"
+            ]
+          },
+          "detained_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "updated_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "captured_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_combat_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

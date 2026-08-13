@@ -1,0 +1,100 @@
+{
+  "schema": "exact-team",
+  "id": "team.blackhound",
+  "name": "Black Hound",
+  "status": "active",
+  "team_type": "special_mission_cell",
+  "parent_institution_ref": "institution.konoha.hokage_administration",
+  "assignment_authority_ref": "canon_hiruzen",
+  "leader_ref": "pc_wei_tang",
+  "deputy_ref": "canon_hayama_shirakumo",
+  "member_refs": [
+    "pc_wei_tang",
+    "canon_ensui_nara",
+    "canon_hana_inuzuka",
+    "canon_hoheto_hyuga",
+    "canon_tekuno_kanden",
+    "canon_hayama_shirakumo"
+  ],
+  "roles": {
+    "pc_wei_tang": "captain_primary_combat_capture",
+    "canon_ensui_nara": "control_specialist_restraint_and_battlefield_control",
+    "canon_hana_inuzuka": "tracking_medical_specialist",
+    "canon_hoheto_hyuga": "reconnaissance_specialist",
+    "canon_tekuno_kanden": "demolitions_engineering_specialist",
+    "canon_hayama_shirakumo": "deputy_secondary_frontline_field_command"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-02-06T19:30:00",
+    "basis": "Hokage assignment orders were served and all six named members completed the first lawful muster at Sword Manor."
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "authority_review",
+    "target_size": 6,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": null
+  },
+  "doctrine_ref": "team.blackhound.doctrine",
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "pc_wei_tang",
+      "canon_hayama_shirakumo"
+    ],
+    "facility_refs": [
+      "place.sword_manor"
+    ],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.autonomy.d6cff2ce8211559d36330152",
+        "started_at": "SE-0061-05-29T09:15:00",
+        "ended_at": "SE-0061-05-29T21:15:00",
+        "active_hours": "12",
+        "member_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden"
+        ],
+        "instructor_ref": "canon_hayama_shirakumo",
+        "targets": {
+          "canon_ensui_nara": "operational_skills.infiltration",
+          "canon_hana_inuzuka": "operational_skills.investigation",
+          "canon_hayama_shirakumo": "operational_skills.traps",
+          "canon_hoheto_hyuga": "operational_skills.infiltration",
+          "canon_tekuno_kanden": "operational_skills.infiltration"
+        }
+      },
+      {
+        "session_ref": "training.session.0207d5493ec6a8d269ad86a2fb11992c",
+        "started_at": "SE-0061-06-04T07:00:01",
+        "ended_at": "SE-0061-06-04T08:30:01",
+        "active_hours": "1",
+        "member_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "canon_hayama_shirakumo",
+        "targets": {
+          "canon_ensui_nara": "operational_skills.team_coordination",
+          "canon_hana_inuzuka": "operational_skills.tracking",
+          "canon_hayama_shirakumo": "operational_skills.tactics",
+          "canon_hoheto_hyuga": "attributes.awareness",
+          "canon_tekuno_kanden": "operational_skills.traps",
+          "pc_wei_tang": "operational_skills.leadership"
+        }
+      }
+    ]
+  },
+  "embedded_member_refs": []
+}

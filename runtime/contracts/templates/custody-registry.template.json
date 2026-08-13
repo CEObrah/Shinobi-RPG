@@ -1,0 +1,131 @@
+{
+  "schema": "file-template",
+  "template_id": "template.custody-registry",
+  "target_schema": "custody-registry",
+  "source_schema": "game/schemas/custody-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "records"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "records"
+      ]
+    },
+    "/records": {
+      "mode": "open_map"
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "subject_kind",
+        "subject_ref",
+        "force_ref",
+        "count",
+        "custodian_ref",
+        "place_ref",
+        "status",
+        "captured_at",
+        "detained_at",
+        "source_combat_ref",
+        "updated_at",
+        "summary",
+        "visibility"
+      ],
+      "canonical_order": [
+        "id",
+        "subject_kind",
+        "subject_ref",
+        "force_ref",
+        "count",
+        "custodian_ref",
+        "place_ref",
+        "status",
+        "captured_at",
+        "detained_at",
+        "source_combat_ref",
+        "updated_at",
+        "summary",
+        "visibility"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/records": [
+      "object"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/id": [
+      "string"
+    ],
+    "/records/*/subject_kind": [
+      "string"
+    ],
+    "/records/*/subject_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/force_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/count": [
+      "integer"
+    ],
+    "/records/*/custodian_ref": [
+      "string"
+    ],
+    "/records/*/place_ref": [
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/detained_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/updated_at": [
+      "string"
+    ],
+    "/records/*/summary": [
+      "string"
+    ],
+    "/records/*/visibility": [
+      "string"
+    ],
+    "/records/*/captured_at": [
+      "string"
+    ],
+    "/records/*/source_combat_ref": [
+      "null",
+      "string"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new stable IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

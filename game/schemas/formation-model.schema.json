@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "authority",
+    "definition",
+    "component_rule",
+    "named_team_rule",
+    "large_war_rule",
+    "split_transaction",
+    "merge_transaction",
+    "vectorized_resolution",
+    "core_invariants",
+    "aggregate_combat_authority",
+    "partition_authority",
+    "command_authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "formation_model"
+    },
+    "id": {
+      "type": "string"
+    },
+    "authority": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "component_rule": {
+      "type": "string"
+    },
+    "named_team_rule": {
+      "type": "string"
+    },
+    "large_war_rule": {
+      "type": "string"
+    },
+    "split_transaction": {
+      "type": "object",
+      "required": [
+        "trigger",
+        "conservation",
+        "default_partition",
+        "selected_partition",
+        "identity"
+      ],
+      "properties": {
+        "trigger": {
+          "type": "string"
+        },
+        "conservation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default_partition": {
+          "type": "string"
+        },
+        "selected_partition": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "merge_transaction": {
+      "type": "object",
+      "required": [
+        "preconditions",
+        "result",
+        "forbidden"
+      ],
+      "properties": {
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "result": {
+          "type": "string"
+        },
+        "forbidden": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "vectorized_resolution": {
+      "type": "object",
+      "required": [
+        "purpose",
+        "rule",
+        "settlement",
+        "no_hidden_layer"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "rule": {
+          "type": "string"
+        },
+        "settlement": {
+          "type": "string"
+        },
+        "no_hidden_layer": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "core_invariants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "aggregate_combat_authority": {
+      "type": "string"
+    },
+    "partition_authority": {
+      "type": "string"
+    },
+    "command_authority": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

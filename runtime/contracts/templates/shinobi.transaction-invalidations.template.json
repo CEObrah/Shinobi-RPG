@@ -1,0 +1,46 @@
+{
+  "schema": "file-template",
+  "template_id": "template.shinobi.transaction-invalidations",
+  "target_schema": "shinobi.transaction-invalidations",
+  "source_schema": null,
+  "scope": "static_data",
+  "current_directories": ["runtime/contracts"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "version", "records"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "version", "records"],
+      "canonical_order": ["schema", "version", "records"]
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": ["campaign_id", "transaction_id", "request_id", "request_digest", "invalidated_revision", "restored_revision", "bad_commit", "repair_commit", "reason"],
+      "canonical_order": ["campaign_id", "transaction_id", "request_id", "request_digest", "invalidated_revision", "restored_revision", "bad_commit", "repair_commit", "reason"]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/version": ["integer"],
+    "/records": ["array"],
+    "/records/*": ["object"],
+    "/records/*/campaign_id": ["string"],
+    "/records/*/transaction_id": ["string"],
+    "/records/*/request_id": ["string"],
+    "/records/*/request_digest": ["string"],
+    "/records/*/invalidated_revision": ["integer"],
+    "/records/*/restored_revision": ["integer"],
+    "/records/*/bad_commit": ["string"],
+    "/records/*/repair_commit": ["string"],
+    "/records/*/reason": ["string"]
+  },
+  "array_contracts": {
+    "/records": {"item_types": ["object"]}
+  },
+  "writing_rules": [
+    "This maintenance registry records explicit invalidations of already-known transaction receipts.",
+    "Adding an invalidation requires a diagnosed repair trail; gameplay never writes this registry opportunistically.",
+    "Template controls structure, not the validity of a repair decision."
+  ]
+}

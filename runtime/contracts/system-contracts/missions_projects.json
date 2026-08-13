@@ -1,0 +1,60 @@
+{
+  "schema": "system-contract",
+  "system_id": "missions_projects",
+  "authority": false,
+  "authority_paths": [
+    "state/reg/missions-contracts-projects.json",
+    "state/mission/",
+    "state/reg/commitments.json",
+    "state/reg/",
+    "state/team/"
+  ],
+  "owner_templates": [
+    "shinobi-domain-registry",
+    "mission-runtime",
+    "commitment-registry",
+    "faction-operational-memory",
+    "team-operational-history"
+  ],
+  "read_first": [
+    "state/reg/missions-contracts-projects.json",
+    "one exact state/mission owner when its stable mission ID is known",
+    "the assigned exact team plus its bounded operational history when autonomous assignment quality depends on prior outcomes",
+    "the issuing faction's bounded operational memory when it has actually received relevant reports",
+    "game/data/mechanics/institution-projects.json plus the exact institution, stock and place owners when a real facility project is being resolved",
+    "only the issuer, team, people, operation or institutional owners whose authority, availability or state changes the commitment"
+  ],
+  "write_order": [
+    "resolve the real institutional, contractual or operational action first",
+    "for an executable mission, mutate only its exact pre-existing mission-runtime owner through the typed reducer; gameplay may not create an offering from client claims alone",
+    "for an autonomous mission outcome, update only bounded faction memory and team operational history derived from the committed mission/report event; these compact owners never replace mission, casualty, person, reputation, relationship, or training authority",
+    "for a real institutional facility project, authorize it through institution leadership, consume declared stock once at start, accrue work only through elapsed active time, and mutate the place module only when required work completes",
+    "project records own project lifecycle and progress only; they never duplicate the place capability, stock balance, institutional authority or workforce state they reference",
+    "for an active or blocked commitment, set the next exact review boundary unless a referenced exact operation/domain process owns it",
+    "when a commitment completes, fails or is cancelled, close its lifecycle record and evaluate lawful successor actions immediately",
+    "create no mission, transfer, team, permission, facility effect or resource merely from a planning priority or wishlist"
+  ],
+  "invariants": [
+    "Institutional priorities and autonomous goals are planning state, not facility projects and not capability changes.",
+    "A real institution_project record is authorized executable work with conserved startup resources, deterministic work progress, and a separate place capability effect only on completion.",
+    "OOC proposals and wishlists do not become active missions, assignments or projects.",
+    "A project may start only after institution authority, target place, project mechanics and required stock are resolved in their owning systems.",
+    "Formation of a team does not automatically create a mission.",
+    "Active and blocked commitments cannot be timeless: they carry a next_due_at or reference an exact operation/domain process that owns the next boundary.",
+    "Commitment and project records do not duplicate rosters, command, equipment, injuries, property, stock balances or place capability state.",
+    "Team operational history and faction operational memory are bounded evidence caches; they never award progression or invent mission truth.",
+    "Their concrete owner files may be created lazily under the registered state roots; an empty leaf directory is never required as campaign truth.",
+    "Completion, failure or cancellation wakes the responsible autonomous owner to evaluate a successor instead of leaving stale active state.",
+    "A mission-runtime settlement selects declared terms exactly once but cannot claim account, inventory or property transfer unless those owning authorities are updated atomically.",
+    "For a selected mission reward term, the mission issuer is the payment source and the term account_ref is the receiver. For a selected cost term, account_ref pays the issuer.",
+    "Mission settlement moves only conserved integer inventory assets, including currency.ryo, and rejects if the source holder is missing or underfunded; settlement never mints payment.",
+    "The mission owner and every affected inventory holder after-image commit in the same transaction as terminal settlement."
+  ],
+  "validators": [
+    "tools/test_world_liveness.py",
+    "tools/test_runtime.py",
+    "tools/test_semantics.py",
+    "tools/test_templates.py",
+    "tools/test_structural_determinism.py"
+  ]
+}

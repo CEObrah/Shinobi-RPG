@@ -1,0 +1,26 @@
+{
+  "schema": "team-training-participation-policies",
+  "version": 1,
+  "policies": {
+    "team.konoha.fujin": {
+      "enabled": true,
+      "participant_ref": "pc_wei_tang",
+      "participates_in_autonomous_training": true,
+      "target_cycle": ["operational_skills.tactics", "operational_skills.team_coordination", "operational_skills.leadership", "martial_skills.movement", "martial_skills.sword", "domain_proficiencies.wind"],
+      "assembly_location_ref": "place.sword_manor",
+      "assemble_nonplayer_members": true,
+      "instructor_refs": ["char.zhu", "char.linh"],
+      "basis": "persisted Team Fujin training and Sword Manor supervision orders"
+    },
+    "team.blackhound": {
+      "enabled": true,
+      "participant_ref": "pc_wei_tang",
+      "participates_in_autonomous_training": false,
+      "target_cycle": [],
+      "assembly_location_ref": "place.sword_manor",
+      "assemble_nonplayer_members": true,
+      "instructor_refs": ["canon_hayama_shirakumo"],
+      "basis": "Hayama-led routine training avoids double-counting Wei across simultaneous team schedules"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "authority": true,
+  "purpose": "Deterministic institutional facility projects. Project records own lifecycle progress only; stock owns resources and the world place registry owns completed facility capability.",
+  "project_types": {
+    "training_expansion": {
+      "module_kind": "training",
+      "required_work_units": 160,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 4,
+        "item_field_pack_standard": 12
+      },
+      "create_defaults": {
+        "capacity_slots": 0,
+        "quality_milli": 900,
+        "supported_categories": [
+          "martial",
+          "chakra",
+          "team_drill"
+        ]
+      },
+      "effects": {
+        "capacity_slots": 8,
+        "quality_milli": 25
+      },
+      "caps": {
+        "capacity_slots": 512,
+        "quality_milli": 1500
+      },
+      "currency_cost_ryo": 6000000
+    },
+    "medical_expansion": {
+      "module_kind": "medical",
+      "required_work_units": 220,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 6,
+        "item_field_medical_kit": 10
+      },
+      "create_defaults": {
+        "quality_milli": 850,
+        "specialties": [
+          "stabilization",
+          "surgery"
+        ]
+      },
+      "effects": {
+        "quality_milli": 30
+      },
+      "caps": {
+        "quality_milli": 1500
+      },
+      "currency_cost_ryo": 12000000
+    },
+    "custody_expansion": {
+      "module_kind": "custody",
+      "required_work_units": 200,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 6,
+        "item_standard_restraints": 12
+      },
+      "create_defaults": {
+        "capacity_slots": 0,
+        "security_milli": 700
+      },
+      "effects": {
+        "capacity_slots": 6,
+        "security_milli": 5
+      },
+      "caps": {
+        "capacity_slots": 256,
+        "security_milli": 1000
+      },
+      "currency_cost_ryo": 7000000
+    }
+  },
+  "rules": {
+    "resource_payment": "All listed stock costs are consumed exactly once when the project starts.",
+    "labor": "Authorized institutional labor is represented by deterministic work units per active hour. A project does not create a separate population body.",
+    "completion": "A facility module changes only when accumulated work reaches the required work units.",
+    "cancellation": "Cancelling stops future work and does not refund already consumed resources.",
+    "concurrency": "At most one active project of the same type may target the same place.",
+    "financial_payment": "Each project type also pays its registered ryō cost exactly once at project start from the institution funding account into the contractor economy. Currency is transferred, never destroyed.",
+    "facility_prerequisites": "A project may declare requires_modules only when another existing mechanical module is genuinely required. No decorative prerequisite module is created merely to unlock a project."
+  }
+}

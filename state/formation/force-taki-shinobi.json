@@ -1,0 +1,365 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.taki.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.taki.shinobi",
+  "formations": [
+    {
+      "id": "formation.taki.ambush.1",
+      "name": "Taki Hidden Approach Guard, First Ambush Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 75,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.taki.hidden.approach",
+      "activity_summary": "hidden approach ambush readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.ambush.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 5,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.ambush.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 3,
+            "support": 1,
+            "chunin": 1,
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.ambush.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.taki.ambush.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.taki.ambush.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.taki.defense.1",
+      "name": "Taki Waterfall Guard, First Defense Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 74,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.taki.hidden.approach",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.defense.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.defense.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 5,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.defense.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.taki.defense.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.taki.defense.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    },
+    {
+      "id": "formation.taki.reserve.1",
+      "name": "Taki Elite Reserve, First Tactical Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 67,
+      "morale": 67,
+      "readiness": 77,
+      "location_ref": "place.taki",
+      "activity_summary": "elite reserve readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.reserve.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.reserve.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "support": 1,
+            "genin": 4,
+            "special_jonin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05"
+        },
+        {
+          "id": "component.taki.reserve.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04"
+        },
+        {
+          "id": "component.taki.reserve.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        },
+        {
+          "id": "component.taki.reserve.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03"
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      }
+    }
+  ]
+}

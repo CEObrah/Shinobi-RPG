@@ -1,0 +1,158 @@
+{
+  "schema": "living-world-autonomy-policy",
+  "faction_assignments": {
+    "faction.ame_security_network": {"max_active_missions": 3},
+    "faction.bounty_broker_network": {"max_active_missions": 2},
+    "faction.fire_border_authority": {"max_active_missions": 2},
+    "faction.fire_daimyo_liaison": {"max_active_missions": 2},
+    "faction.fire_merchant_network": {"max_active_missions": 2},
+    "faction.fire_smuggling_network": {"max_active_missions": 2},
+    "faction.hyuga_clan": {"max_active_missions": 2},
+    "faction.iwa_engineering_command": {"max_active_missions": 3},
+    "faction.kiri_hunter_office": {"max_active_missions": 3},
+    "faction.konoha_anbu": {"max_active_missions": 3},
+    "faction.konoha_hospital": {"max_active_missions": 2},
+    "faction.konoha_mission_office": {
+      "max_active_missions": 4,
+      "player_offer": {
+        "enabled": true,
+        "team_refs": ["team.blackhound"],
+        "response_deadline_days": 7,
+        "max_pending": 1,
+        "objective_cycle": ["escort", "protect", "investigate"],
+        "briefing_templates": {
+          "protect": {
+            "subject_kind": "person",
+            "subject_ref": "support.daimyo.noboru_shimizu",
+            "subject_label": "Noboru Shimizu — Fire Daimyō civil-military liaison",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.capital",
+            "route_id": "route_fire_capital_konoha",
+            "threat_summary": "Credible risk of targeted interception against Fire Country liaison traffic; no hostile actor has been identified.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Do not attribute the threat to a faction or individual without evidence.",
+              "Preserve the principal and a viable withdrawal route over unnecessary pursuit."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Keep Noboru Shimizu alive and free and deliver him to the Fire Capital under Konoha protection."
+          },
+          "escort": {
+            "subject_kind": "person",
+            "subject_ref": "support.daimyo.noboru_shimizu",
+            "subject_label": "Noboru Shimizu — Fire Daimyō civil-military liaison",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.capital",
+            "route_id": "route_fire_capital_konoha",
+            "threat_summary": "Elevated interception risk on civil-military liaison travel; no hostile actor has been identified.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Treat route anomalies as evidence to verify, not proof of a named enemy.",
+              "The principal takes priority over pursuit."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Escort Noboru Shimizu from Konoha to the Fire Capital without capture or incapacitation."
+          },
+          "investigate": {
+            "subject_kind": "place",
+            "subject_ref": "place.konoha.gate_west",
+            "subject_label": "West Gate cargo-transfer discrepancy",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.konoha.gate_west",
+            "route_id": "route_local",
+            "threat_summary": "Possible deliberate interference with controlled cargo records; criminal or hostile involvement is unconfirmed.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Determine whether the discrepancy is clerical, criminal, or hostile before attributing intent.",
+              "Preserve records, physical evidence, and available witnesses."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Establish a defensible account of the discrepancy and return the preserved evidence and findings to the Mission Office."
+          }
+        }
+      },
+      "team_creation": {
+        "mode": "academy_dynamic",
+        "team_type": "standard_mission_team",
+        "max_active_teams": 12,
+        "purpose_kind": "standing",
+        "replacement_policy": "maintain_strength",
+        "graduate_candidate_refs": [
+          "canon_naruto",
+          "canon_sasuke",
+          "canon_sakura",
+          "canon_ino",
+          "canon_shikamaru",
+          "canon_choji",
+          "canon_hinata",
+          "canon_kiba",
+          "canon_shino"
+        ],
+        "instructor_candidate_refs": [
+          "canon_kakashi",
+          "canon_asuma",
+          "canon_kurenai",
+          "canon_genma",
+          "canon_hayate",
+          "canon_ebisu"
+        ],
+        "allow_service_pool_instructors": false,
+        "cohort_affinity_groups": [
+          {
+            "student_refs": ["canon_naruto", "canon_sasuke", "canon_sakura"],
+            "preferred_instructor_refs": ["canon_kakashi"]
+          },
+          {
+            "student_refs": ["canon_hinata", "canon_kiba", "canon_shino"],
+            "preferred_instructor_refs": ["canon_kurenai"]
+          },
+          {
+            "student_refs": ["canon_ino", "canon_shikamaru", "canon_choji"],
+            "preferred_instructor_refs": ["canon_asuma"]
+          }
+        ],
+        "team_id_prefix": "team.konoha.generated",
+        "team_name_prefix": "Konoha Mission Team",
+        "parent_institution_ref": "institution.konoha.academy",
+        "assignment_authority_ref": "faction.konoha_mission_office",
+        "classification": "public"
+      }
+    },
+    "faction.kumo_military_intelligence": {"max_active_missions": 3},
+    "faction.oto_research_cells": {"max_active_missions": 3},
+    "faction.root": {"max_active_missions": 3},
+    "faction.suna_puppet_corps": {"max_active_missions": 3},
+    "faction.yamanaka_intelligence": {"max_active_missions": 2},
+    "faction.akatsuki": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": ["team.akatsuki.itachi_kisame"],
+      "mission_participant_refs": ["canon_nagato", "canon_konan", "canon_itachi", "canon_kisame"],
+      "max_active_missions": 3
+    },
+    "faction.zabuza_mercenary_cell": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": ["team.zabuza_haku"],
+      "mission_participant_refs": ["canon_zabuza", "canon_haku"],
+      "max_active_missions": 1
+    }
+  },
+  "team_profiles": {
+    "default": {"autonomous_training_hours": 3},
+    "standard_mission_team": {"autonomous_training_hours": 4},
+    "special_mission_cell": {"autonomous_training_hours": 4},
+    "anbu_cell": {"autonomous_training_hours": 4},
+    "temporary_task_force": {"autonomous_training_hours": 2},
+    "irregular_cell": {
+      "training_focus": ["operational security", "coordinated contact", "escape and extraction"],
+      "doctrine_identity": "irregular paired-cell doctrine",
+      "motto": "Choose the ground. Control the contact. Leave on your terms.",
+      "autonomous_training_hours": 3
+    }
+  }
+}

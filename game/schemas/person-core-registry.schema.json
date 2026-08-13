@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "person-core-registry",
+  "title": "Bounded registry of persistent person identities backed by shared causal hosts",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "owner_ref",
+    "people"
+  ],
+  "properties": {
+    "schema": {
+      "const": "person-core-registry"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "people": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/person_core"
+      }
+    }
+  },
+  "$defs": {
+    "person_core": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "aliases",
+        "pronouns",
+        "birth_date",
+        "birth_date_source",
+        "origin",
+        "life_status",
+        "affiliation_ref",
+        "location_ref",
+        "cohort_ref",
+        "cohort_slot",
+        "role_profile_ref",
+        "duty_tags",
+        "resolved_through",
+        "identity_cues",
+        "component_refs",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "pronouns": {
+          "type": "string",
+          "minLength": 1
+        },
+        "birth_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^SE-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "birth_date_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "origin": {
+          "type": "string",
+          "minLength": 1
+        },
+        "life_status": {
+          "enum": [
+            "alive",
+            "dead",
+            "missing",
+            "unknown"
+          ]
+        },
+        "location_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "cohort_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "cohort_slot": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "role_profile_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "duty_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "resolved_through": {
+          "type": "string",
+          "pattern": "^SE-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$"
+        },
+        "identity_cues": {
+          "type": "object",
+          "required": [
+            "appearance",
+            "temperament",
+            "doctrine_expression"
+          ],
+          "properties": {
+            "appearance": {
+              "type": "string",
+              "minLength": 1
+            },
+            "temperament": {
+              "type": "string",
+              "minLength": 1
+            },
+            "doctrine_expression": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "component_refs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "required": [
+            "source_kind",
+            "source_ref",
+            "materialized_at",
+            "selection_method"
+          ],
+          "properties": {
+            "source_kind": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "materialized_at": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "selection_method": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "affiliation_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Force",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "name",
+    "total",
+    "troop_pools"
+  ],
+  "properties": {
+    "schema": {
+      "const": "force"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "availability": {
+      "type": "object"
+    },
+    "troop_pools": {
+      "type": "array"
+    },
+    "owner_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "formation_registry_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mobilization_anchor_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^place\\."
+    }
+  },
+  "additionalProperties": true
+}

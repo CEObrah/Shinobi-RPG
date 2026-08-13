@@ -18,9 +18,11 @@ from .contracts import (
 # so direct API imports cannot form an api.contracts <-> commands cycle.
 from shinobi_runtime.commands.academy_career_sync import install_academy_career_sync as _install_academy_career_sync
 from shinobi_runtime.commands.shinobi_career_progression import install_shinobi_career_progression as _install_shinobi_career_progression
+from shinobi_runtime.commands.promotion_exam_cycle import install_promotion_exam_cycle as _install_promotion_exam_cycle
 
 _install_academy_career_sync()
 _install_shinobi_career_progression()
+_install_promotion_exam_cycle()
 
 from .ooc import RepositoryOocAudit
 

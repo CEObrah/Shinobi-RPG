@@ -25,7 +25,9 @@ from shinobi_runtime.commands.living_world_intelligence import LivingWorldIntell
 from shinobi_runtime.commands.mission_player_agency import MissionPlayerAgencyMixin
 from shinobi_runtime.commands.mission_subject_transport import MissionSubjectTransportMixin
 from shinobi_runtime.commands.player_mission_offer_policy import PlayerMissionOfferPolicyMixin
+from shinobi_runtime.commands.player_mission_reward_funding import PlayerMissionRewardFundingMixin
 from shinobi_runtime.commands.runtime_stability import RuntimeStabilityMixin
+from shinobi_runtime.commands.standing_training_mission_absence import StandingTrainingMissionAbsenceMixin
 from shinobi_runtime.commands.standing_training_participation import StandingTrainingParticipationMixin
 from shinobi_runtime.commands.team_intelligence import TeamIntelligenceMixin
 from shinobi_runtime.commands.team_lifecycle_intelligence import TeamLifecycleIntelligenceMixin
@@ -132,6 +134,7 @@ def _guard_plan_validator(
 
 
 class CampaignCommandPlanner(
+    PlayerMissionRewardFundingMixin,
     PlayerMissionOfferPolicyMixin,
     MissionPlayerAgencyMixin,
     MissionSubjectTransportMixin,
@@ -141,6 +144,7 @@ class CampaignCommandPlanner(
     DevelopmentCursorAuthorityMixin,
     RuntimeStabilityMixin,
     HouseResourceConservationMixin,
+    StandingTrainingMissionAbsenceMixin,
     StandingTrainingParticipationMixin,
     LivingWorldIntelligenceMixin,
     TeamLifecycleIntelligenceMixin,

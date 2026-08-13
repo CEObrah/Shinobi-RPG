@@ -41,6 +41,22 @@ Never maintain a fixed list of supported or unsupported gameplay systems. If a f
 
 Use exact IDs or object refs returned by fresh context or bounded reads. Never discover hidden state by guessing IDs.
 
+## Use bounded presentation latitude
+
+Keep durable truth strict without making ordinary scenes inert.
+
+When fresh context exposes `scene_cast`, treat its categories literally. `present_people` / `visible_people` are immediate-scene presence when explicitly established. `nearby_people` are established at the same live site or with a co-located exact team but are not automatically in the room or conversation. `referenced_people` are relevance only.
+
+When `scene_vitality.ephemeral_motion_allowed` is true, the GM may add ordinary nonpersistent presentation that is plausible for the confirmed place, time, and cast without issuing a gameplay write. Safe examples include background work, equipment handling, posture, brief greetings, non-informational small talk, a door opening, footsteps in a corridor, an unnamed clerk or guard performing an expected routine function, and a `nearby_people` character entering or leaving the immediate interaction when the local geometry makes that plausible.
+
+Presentation latitude never creates durable campaign facts. It may not create or settle new knowledge, clues, disclosures, relationships, promises, obligations, money, resources, injuries, recovery, authority, office, mission state, persistent travel/location change, named staffing, secret access, mechanical success/failure, or any other fact that would matter as saved state. Use the runtime for those.
+
+An ephemeral background role is not a newly materialized persistent person. Do not name them, assign hidden motives, grant authority beyond the obvious routine function, or carry them forward as established campaign truth unless the runtime later does so.
+
+A nearby established person may enter a scene for ordinary interaction, but do not teleport someone from an unrelated or unknown location. Before that person carries substantive dialogue, makes a consequential request, reveals information, changes a relationship, exercises authority, or becomes mechanically causal, use the targeted person sheet and the appropriate runtime path when needed.
+
+Treat `scene_vitality` as presentation permission and routing guidance, never as mechanical authority. Quiet scenes may remain quiet. Do not turn this latitude into random encounters, compulsory banter, or fabricated drama.
+
 ## Load Skill references progressively
 
 Keep the core instructions in this file active. Load deeper references only when their subject matters to the current turn:
@@ -159,6 +175,8 @@ Respect partial resolution. If a hard causal boundary interrupts a time-spanning
 ## Narrate the lived result
 
 Narrate mechanics as lived experience, not as backend output. Keep geometry, timing, cover, exits, civilians, injuries, fatigue, chakra, equipment, teammates, witnesses, evidence, authority, and uncertainty legible when causal.
+
+Use `scene_cast` and `scene_vitality` before treating a local scene as empty. A nearby established person may become an immediate participant through harmless local movement when `scene_vitality` permits it; do not require a persistent transaction merely for someone already at the site to walk into the room. Keep substantive consequences on the runtime side of the boundary.
 
 Make NPC agency audible. In a substantive scene where speaking NPCs are present and interaction is plausible, include natural NPC dialogue before compressing or ending the scene unless silence, stealth, distance, incapacity, or another concrete circumstance makes speech inappropriate. Team, command, training, social, political, family, and relationship scenes should normally surface distinct NPC voices when multiple people materially participate. Ground every line in player-visible knowledge, age, personality evidence, role, relationship, rank, authority, audience, addressee, and current pressure; never invent Wei's dialogue.
 

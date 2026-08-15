@@ -1,4 +1,6 @@
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.api.preview_validation import (
+    _autonomy_drift_fallback,
     _schema_validation_error_code,
     _template_validation_error_code,
 )
@@ -107,3 +109,25 @@ def test_template_validation_error_code_falls_back_closed():
     assert _template_validation_error_code(error) == (
         "preview_template_validation_failed"
     )
+
+
+def _autonomy_drift_error_with_force_frame() -> CommandRejectedError:
+    owner_ref = "state/force/secret-owner.json"
+    expected_record = {"schema": "force", "hidden": "never exposed"}
+    try:
+        raise ValueError("autonomous owner after-image differs from plan")
+    except ValueError as cause:
+        error = CommandRejectedError(
+            "advance_time_base_validation_invalid__autonomous_owner_after_image"
+        )
+        error.__cause__ = cause
+        return error
+
+
+def test_autonomy_drift_fallback_exposes_only_bounded_owner_class():
+    error = _autonomy_drift_error_with_force_frame()
+    code = _autonomy_drift_fallback(error)
+    assert code == "autonomous_owner_after_image_drift__force"
+    assert "secret-owner" not in code
+    assert "hidden" not in code
+    assert "state/" not in code

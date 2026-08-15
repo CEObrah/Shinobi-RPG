@@ -17,6 +17,7 @@ def test_team_training_readiness_exposes_schedule_and_colocation_without_places(
     team = {
         "member_refs": ["member.a", "member.b", "member.c"],
         "training": {
+            "facility_refs": ["place.secret.alpha"],
             "recent_sessions": [
                 {
                     "started_at": "SE-0061-02-06T21:15:00",
@@ -29,7 +30,7 @@ def test_team_training_readiness_exposes_schedule_and_colocation_without_places(
                         "member.b": "operational_skills.team_coordination",
                     },
                 }
-            ]
+            ],
         },
     }
     members = {
@@ -58,7 +59,9 @@ def test_team_training_readiness_exposes_schedule_and_colocation_without_places(
     assert result["member_recovery"]["member.c"]["recovery_ready_now"] is True
     assert result["next_recovery_eligible_at_for_all_members"] == str(now)
     assert result["all_members_colocated_now"] is False
+    assert result["full_team_at_registered_facility_now"] is False
     assert result["can_start_full_team_session_now"] is False
+    assert result["target_specific_facility_requirements_require_preview"] is True
     assert result["colocated_member_groups"] == [
         {
             "member_refs": ["member.a", "member.b"],
@@ -76,7 +79,10 @@ def test_team_training_readiness_exposes_schedule_and_colocation_without_places(
 def test_team_training_readiness_marks_full_team_ready_when_constraints_match():
     team = {
         "member_refs": ["member.a", "member.b"],
-        "training": {"recent_sessions": []},
+        "training": {
+            "facility_refs": ["place.shared"],
+            "recent_sessions": [],
+        },
     }
     members = {
         "member.a": {"current_location_id": "place.shared"},
@@ -93,5 +99,35 @@ def test_team_training_readiness_marks_full_team_ready_when_constraints_match():
     assert result["all_members_recovery_ready_now"] is True
     assert result["all_members_colocated_now"] is True
     assert result["full_team_authorized_instructor_colocated_now"] is True
+    assert result["full_team_at_registered_facility_now"] is True
     assert result["can_start_full_team_session_now"] is True
     assert result["latest_resolved_session"] is None
+
+
+def test_team_training_readiness_rejects_colocated_wrong_facility_false_positive():
+    team = {
+        "member_refs": ["member.a", "member.b"],
+        "training": {
+            "facility_refs": ["place.sword_manor"],
+            "recent_sessions": [],
+        },
+    }
+    members = {
+        "member.a": {"current_location_id": "place.mission_desk"},
+        "member.b": {"current_location_id": "place.mission_desk"},
+    }
+
+    result = project_team_training_readiness(
+        team,
+        members,
+        {"member.a": members["member.a"]},
+        _model(),
+        current_time=CampaignTime.parse("SE-0061-06-20T07:00:00"),
+    )
+
+    assert result["all_members_recovery_ready_now"] is True
+    assert result["all_members_colocated_now"] is True
+    assert result["full_team_authorized_instructor_colocated_now"] is True
+    assert result["full_team_at_registered_facility_now"] is False
+    assert result["can_start_full_team_session_now"] is False
+    assert "place.mission_desk" not in repr(result)

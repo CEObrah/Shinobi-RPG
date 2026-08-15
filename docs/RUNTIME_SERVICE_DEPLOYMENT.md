@@ -53,6 +53,12 @@ The shipped `railway.toml` watches every non-state repository path and excludes 
 
 Before a new remotely durable gameplay transaction, Git preflight requires the local checked-out branch head to equal the fetched remote branch head exactly.
 
+### Deployment freshness verification
+
+Treat a merged source commit and the running Railway process as separate release tiers. After a runtime fix is merged, verify the live MCP reproducer itself before resuming consequential play. If the repository contains the fix but the live MCP still reproduces the old defect, do not patch campaign state or add a second rules workaround merely to cross the boundary. Redeploy or restart the production Railway service from the current production branch, then repeat the same read-only reproducer against fresh play context. Only a changed live result proves the new source is loaded.
+
+Railway watch paths are gitignore-style patterns. The repository uses a broad include before the `state/**` exclusion so non-state changes remain deployment-triggering while gameplay-only state commits do not cause a deployment loop. If a non-state merge does not create a new deployment, inspect the Railway service's connected source branch and deployment status rather than weakening campaign or validator invariants.
+
 ## Checkout replacement safety
 
 A clean Railway checkout may adopt an intentionally replaced remote repository only when committed campaign-authority paths are byte-identical between the local and remote heads. Source lineage may change; campaign truth may not. If authority bytes differ, bootstrap fails closed.

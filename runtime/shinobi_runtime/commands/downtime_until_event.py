@@ -216,6 +216,14 @@ def install_downtime_until_event() -> None:
         _register_planner(FinalCampaignCommandPlanner)
     except ImportError:
         pass
+    try:
+        from shinobi_runtime.commands.campaign_player_handoffs import (
+            CampaignCommandPlanner as PlayerHandoffCampaignCommandPlanner,
+        )
+
+        _register_planner(PlayerHandoffCampaignCommandPlanner)
+    except ImportError:
+        pass
     _INSTALLED = True
 
 

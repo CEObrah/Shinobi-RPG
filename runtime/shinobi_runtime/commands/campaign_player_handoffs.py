@@ -2,9 +2,10 @@
 
 This final campaign planner layer keeps two player-facing workflows causal:
 handled reports remain readable history without repeating as fresh interruptions,
-and an exact-team leader may register a mission-assignment preference remotely
-only from an authored secure-communications site in the same country as the
-assignment desk. Neither workflow creates a mission, offer, response, or outcome.
+and an exact-team leader may register or revise a mission-assignment preference
+remotely only from an authored secure-communications site in the same country as
+the assignment desk. Neither workflow creates a mission, offer, response, or
+outcome.
 """
 from __future__ import annotations
 
@@ -36,12 +37,13 @@ _WORLD_PLACES_PATH = "state/world/routes-and-settlements.json"
 _ASSIGNMENT_SUBMISSION_MODES = frozenset(("assignment_desk", "registered_message"))
 _REPORT_HANDLINGS = frozenset(("acknowledge", "keep_compartmented"))
 _MAX_HANDLED_REPORT_REFS = 64
+_GENERIC_REPORT = "An authorized operational report about a developing world concern has reached you."
 
 
 COMMAND_SPECS["mission_assignment_request_resolution"] = CommandSpec(
     ("team_ref", "acceptable_ranks", "mission_focus"),
     ("submission_mode",),
-    "Submit one bounded mission-assignment preference; the assignment authority still derives any actual mission offer from lawful world demand.",
+    "Submit or revise one bounded mission-assignment preference; the assignment authority still derives any actual mission offer from lawful world demand.",
     {
         "team_ref": "team.<id>",
         "acceptable_ranks": "[D,C,B,A,S]",
@@ -139,37 +141,64 @@ class CampaignCommandPlanner(_Base):
                 raise CommandRejectedError("mission_assignment_request_remote_channel_out_of_scope")
 
         registry = load_assignment_request_registry(self.repository)
-        if pending_assignment_request(registry, requester_ref=command.actor_id, team_ref=team_ref) is not None:
-            raise CommandRejectedError("mission_assignment_request_already_pending")
-
-        request_ref = assignment_request_ref(team_ref, command.actor_id, command.digest)
         requests = registry["requests"]
-        if request_ref in requests:
-            raise CommandRejectedError("mission_assignment_request_conflict")
-        requests[request_ref] = {
-            "request_ref": request_ref,
-            "team_ref": team_ref,
-            "requester_ref": command.actor_id,
-            "assignment_authority_ref": authority_ref,
-            "assignment_office_ref": MISSION_ASSIGNMENT_OFFICE_REF,
-            "acceptable_ranks": list(ranks),
-            "mission_focus": focus,
-            "submission_mode": submission_mode,
-            "submitted_from_place_ref": current_place,
-            "status": "pending",
-            "submitted_at": str(current_time),
-        }
+        existing = pending_assignment_request(registry, requester_ref=command.actor_id, team_ref=team_ref)
+        updated_existing = isinstance(existing, Mapping)
+        if updated_existing:
+            request_ref = existing.get("request_ref")
+            if not isinstance(request_ref, str) or not request_ref or not isinstance(requests.get(request_ref), dict):
+                raise CommandRejectedError("mission_assignment_request_registry_invalid")
+            request = requests[request_ref]
+            old_ranks = tuple(request.get("acceptable_ranks", ()))
+            old_focus = request.get("mission_focus")
+            old_mode = request.get("submission_mode", "assignment_desk")
+            old_place = request.get("submitted_from_place_ref")
+            if (
+                old_ranks == ranks
+                and old_focus == focus
+                and old_mode == submission_mode
+                and old_place == current_place
+            ):
+                raise CommandRejectedError("mission_assignment_request_unchanged")
+            request.update({
+                "assignment_authority_ref": authority_ref,
+                "assignment_office_ref": MISSION_ASSIGNMENT_OFFICE_REF,
+                "acceptable_ranks": list(ranks),
+                "mission_focus": focus,
+                "submission_mode": submission_mode,
+                "submitted_from_place_ref": current_place,
+                "status": "pending",
+                "submitted_at": str(current_time),
+            })
+        else:
+            request_ref = assignment_request_ref(team_ref, command.actor_id, command.digest)
+            if request_ref in requests:
+                raise CommandRejectedError("mission_assignment_request_conflict")
+            requests[request_ref] = {
+                "request_ref": request_ref,
+                "team_ref": team_ref,
+                "requester_ref": command.actor_id,
+                "assignment_authority_ref": authority_ref,
+                "assignment_office_ref": MISSION_ASSIGNMENT_OFFICE_REF,
+                "acceptable_ranks": list(ranks),
+                "mission_focus": focus,
+                "submission_mode": submission_mode,
+                "submitted_from_place_ref": current_place,
+                "status": "pending",
+                "submitted_at": str(current_time),
+            }
 
         world_events = self._world_events()
+        event_kind = "mission_assignment_request_updated" if updated_existing else "mission_assignment_requested"
         event_id = self._append_semantic_event(
             world_events,
             command=command,
-            kind="mission_assignment_requested",
+            kind=event_kind,
             at=current_time,
             host_refs=(MISSION_ASSIGNMENT_OFFICE_REF, team_ref),
             actor_refs=(command.actor_id,),
             place_refs=(current_place,),
-            causal_refs=(team_ref,),
+            causal_refs=(team_ref, request_ref),
             affected_owner_refs=(MISSION_ASSIGNMENT_REQUEST_PATH,),
             material_consequence_refs=(request_ref,),
             classification="restricted",
@@ -177,14 +206,15 @@ class CampaignCommandPlanner(_Base):
             source_refs=(command.actor_id,),
             reducer_ref="shinobi_runtime.commands.campaign_player_handoffs.mission_assignment_request_resolution",
         )
+        verb = "updates" if updated_existing else "registers"
         if submission_mode == "registered_message":
             scene["scene_summary"] = (
-                f"{team_ref} registers a {focus} mission-availability preference for ranks "
+                f"{team_ref} {verb} a {focus} mission-availability preference for ranks "
                 f"{','.join(ranks)} with {MISSION_ASSIGNMENT_OFFICE_REF} by secure communication from {current_place}."
             )
         else:
             scene["scene_summary"] = (
-                f"{team_ref} submits a {focus} mission assignment request for ranks "
+                f"{team_ref} {verb} a {focus} mission assignment preference for ranks "
                 f"{','.join(ranks)} at {MISSION_ASSIGNMENT_DESK_REF}."
             )
         scene["decision_required"] = None
@@ -226,6 +256,7 @@ class CampaignCommandPlanner(_Base):
                 "submission_mode": submission_mode,
                 "submitted_from_place_ref": current_place,
                 "status": "pending",
+                "updated_existing": updated_existing,
                 "semantic_event_id": event_id,
             },
             validator=validate,
@@ -265,6 +296,12 @@ class CampaignCommandPlanner(_Base):
             raise CommandRejectedError("report_handoff_already_handled")
         handled = [*raw_handled, report_ref][-_MAX_HANDLED_REPORT_REFS:]
         narrative["handled_report_refs"] = handled
+        available = narrative.get("available_reports")
+        if isinstance(available, list):
+            narrative["available_reports"] = [
+                value for value in available
+                if isinstance(value, str) and value != _GENERIC_REPORT
+            ]
         if handling == "keep_compartmented":
             scene["scene_summary"] = f"Wei handles {report_ref} and keeps its contents compartmented."
         else:

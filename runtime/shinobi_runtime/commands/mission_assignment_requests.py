@@ -18,7 +18,7 @@ MISSION_ASSIGNMENT_REQUEST_PATH = "state/reg/mission-assignment-requests.json"
 MISSION_ASSIGNMENT_OFFICE_REF = "institution.konoha.mission_assignment"
 MISSION_ASSIGNMENT_DESK_REF = "place.konoha.mission_assignment_desk"
 MISSION_RANK_ORDER = ("D", "C", "B", "A", "S")
-MISSION_FOCI = frozenset(("combat",))
+MISSION_FOCI = frozenset(("general", "combat"))
 _COMBAT_DIMENSIONS = frozenset(("assault", "capture"))
 
 
@@ -72,7 +72,11 @@ def normalize_acceptable_ranks(value: object) -> tuple[str, ...]:
 
 
 def objective_matches_focus(focus: str, objective_kind: str) -> bool:
-    if focus != "combat" or not isinstance(objective_kind, str):
+    if not isinstance(objective_kind, str):
+        return False
+    if focus == "general":
+        return objective_kind in _OBJECTIVE_DIMENSIONS
+    if focus != "combat":
         return False
     dimensions = _OBJECTIVE_DIMENSIONS.get(objective_kind, ())
     return bool(_COMBAT_DIMENSIONS.intersection(dimensions))

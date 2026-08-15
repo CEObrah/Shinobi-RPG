@@ -71,6 +71,7 @@ ROUTES = (
         "tests/runtime/test_world_front_progression.py",
         "tests/runtime/test_long_horizon_stability.py",
         "tests/runtime/test_production_monthly_frontier.py",
+        "tests/runtime/test_institution_review_runtime_guard.py",
         "tests/runtime/test_academy_pipeline_transfer_ids.py",
     }),
     (("api/", "mcp", "route_discovery"), {

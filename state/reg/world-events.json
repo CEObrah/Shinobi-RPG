@@ -4686,6 +4686,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_resolution.fca3488c42fd68510dda",
+      "kind": "campaign_repair_resolution",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-20T07:00:00",
+        "started_at": "SE-0061-06-20T07:00:00",
+        "ended_at": "SE-0061-06-20T07:00:00"
+      },
+      "host_refs": [
+        "team.blackhound",
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/player.json",
+        "state/team/blackhound.json",
+        "state/team/doctrine/black-hound.json",
+        "state/team/doctrine/team-konoha-fujin.json",
+        "state/team/fujin.json"
+      ],
+      "material_consequence_refs": [
+        "historical_training_preserved",
+        "repair.2026-08-15.team-training-supervision",
+        "team_training_facility:place.sword_manor",
+        "team_training_supervision:team.blackhound:char.zhu,char.linh",
+        "team_training_supervision:team.konoha.fujin:char.zhu,char.linh"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "runtime.campaign_repair"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-20T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_repair_training_supervision",
+        "transaction_ref": "tx.gameplay.fca3488c42fd68510ddaf09174bad3c5a069b78d885d5b3e3fc421bed00a06a8",
+        "receipt_refs": [
+          "receipt.gameplay.fca3488c42fd68510ddaf09174bad3c5a069b78d885d5b3e3fc421bed00a06a8"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

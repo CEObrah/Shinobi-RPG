@@ -1,6 +1,7 @@
 from shinobi_runtime.commands.campaign_mission_reporting import (
     _eligible_synthesis_claim,
     _mission_report_material_ref,
+    _objective_report_event_matches,
 )
 from shinobi_runtime.commands.specs import COMMAND_SPECS
 
@@ -61,4 +62,39 @@ def test_report_material_is_objective_specific():
     ) == (
         "mission_report:mission.offer.example:objective.example:"
         "claim.investigation.synthesis"
+    )
+
+
+def test_objective_report_match_accepts_normalized_immutable_sequences():
+    event = {
+        "kind": "information_delivered",
+        "causal_refs": (
+            "mission.offer.example",
+            "objective.example",
+            "investigation.case.example",
+            "claim.investigation.synthesis",
+        ),
+        "material_consequence_refs": (
+            "delivery.example",
+            "mission_report:mission.offer.example:objective.example:"
+            "claim.investigation.synthesis",
+        ),
+    }
+    assert _objective_report_event_matches(
+        event,
+        mission_ref="mission.offer.example",
+        objective_id="objective.example",
+    )
+
+
+def test_objective_report_match_rejects_generic_delivery():
+    event = {
+        "kind": "information_delivered",
+        "causal_refs": ("mission.offer.example", "objective.example"),
+        "material_consequence_refs": ("delivery.example",),
+    }
+    assert not _objective_report_event_matches(
+        event,
+        mission_ref="mission.offer.example",
+        objective_id="objective.example",
     )

@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from shinobi_runtime.store import RegisteredTemplateValidator, RepositoryStore
+from shinobi_runtime.store.template_validation import TemplateValidationError
 
 
 def write_json(path: Path, value) -> None:
@@ -92,27 +93,65 @@ def test_registered_template_validator_accepts_exact_owner_shape(tmp_path: Path)
 
 
 @pytest.mark.parametrize(
-    "owner, message",
+    "owner, message, schema_id, reason",
     (
         (
             {"schema": "test-owner", "values": [], "invented": True},
             "unregistered keys",
+            "test-owner",
+            "unregistered_keys",
         ),
-        ({"schema": "test-owner", "values": [3]}, "array item type"),
-        ({"schema": "missing-owner", "values": []}, "no structural template"),
-        ({"schema": "test-owner"}, "missing required structural key"),
+        (
+            {"schema": "test-owner", "values": [3]},
+            "array item type",
+            "test-owner",
+            "array_item_type",
+        ),
+        (
+            {"schema": "missing-owner", "values": []},
+            "no structural template",
+            "missing-owner",
+            "missing_template",
+        ),
+        (
+            {"schema": "test-owner"},
+            "missing required structural key",
+            "test-owner",
+            "missing_required_key",
+        ),
     ),
 )
-def test_registered_template_validator_rejects_shape_drift(
-    tmp_path: Path, owner, message: str
+def test_registered_template_validator_rejects_shape_drift_with_safe_metadata(
+    tmp_path: Path,
+    owner,
+    message: str,
+    schema_id: str,
+    reason: str,
 ):
     validator = make_validator(tmp_path)
 
-    with pytest.raises(ValueError, match=message):
+    with pytest.raises(TemplateValidationError, match=message) as caught:
         validator.validate_overlay(
             FakeOverlay({"state/test.json": owner}),
             ("state/test.json",),
         )
+
+    assert isinstance(caught.value, ValueError)
+    assert caught.value.schema_id == schema_id
+    assert caught.value.reason == reason
+
+
+def test_registered_template_validator_classifies_missing_template_id(tmp_path: Path):
+    validator = make_validator(tmp_path)
+
+    with pytest.raises(TemplateValidationError) as caught:
+        validator.validate_overlay(
+            FakeOverlay({"state/test.json": {"values": []}}),
+            ("state/test.json",),
+        )
+
+    assert caught.value.schema_id is None
+    assert caught.value.reason == "missing_template_id"
 
 
 def test_registered_template_validator_skips_deletion(tmp_path: Path):

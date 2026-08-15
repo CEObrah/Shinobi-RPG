@@ -16,7 +16,7 @@ from shinobi_runtime.api.contracts import OocAuditResult
 from shinobi_runtime.sim import CampaignTime
 from shinobi_runtime.sim.scheduler_store import SchedulerStore
 from shinobi_runtime.store import RepositoryStore
-from shinobi_runtime.tx.receipts import IdempotencyReceipt
+from shinobi_runtime.tx.receipts import IdempotencyReceipt, ReceiptStore
 
 
 _TERMINAL_FRONT_STATUSES = frozenset(
@@ -42,7 +42,9 @@ def _campaign_time(value: Any) -> Optional[CampaignTime]:
         return None
 
 
-def _bounded_files(directory: Path, limit: int) -> Tuple[Tuple[Path, ...], bool]:
+def _bounded_files(
+    directory: Path, limit: int, *, receipt_only: bool = False
+) -> Tuple[Tuple[Path, ...], bool]:
     """Return the deterministic lexical prefix using at most ``limit + 1`` memory."""
 
     if not directory.is_dir():
@@ -53,7 +55,12 @@ def _bounded_files(directory: Path, limit: int) -> Tuple[Tuple[Path, ...], bool]
             (
                 path
                 for path in directory.iterdir()
-                if path.is_file() and path.suffix == ".json"
+                if path.is_file()
+                and (
+                    ReceiptStore._is_receipt_path(path)
+                    if receipt_only
+                    else path.suffix == ".json"
+                )
             ),
             key=lambda path: path.name,
         )
@@ -381,7 +388,9 @@ class RepositoryOocAudit:
             report.diagnostic("receipts:unavailable")
             report.suggestion("mount_persistent_runtime_storage_for_wal_and_receipts")
             return
-        files, truncated = _bounded_files(directory, self.max_runtime_records)
+        files, truncated = _bounded_files(
+            directory, self.max_runtime_records, receipt_only=True
+        )
         invalid = 0
         future_revision = 0
         highest_revision: Optional[int] = None

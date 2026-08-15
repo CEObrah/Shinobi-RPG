@@ -2071,6 +2071,79 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.mission_state_changed.14f7c1b78b5631065474",
+      "kind": "mission_state_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-16T16:03:12",
+        "started_at": "SE-0061-06-16T16:03:12",
+        "ended_at": "SE-0061-06-16T16:03:12"
+      },
+      "host_refs": [
+        "canon_hiruzen",
+        "faction.konoha_mission_office"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "mission.offer.2132adf0c1e8a6f134",
+        "team.blackhound"
+      ],
+      "affected_owner_refs": [
+        "state/mission/mission.offer.2132adf0c1e8a6f134.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "mission:mission.offer.2132adf0c1e8a6f134:state:resolving"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-16T16:03:12"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.missions",
+        "transaction_ref": "tx.gameplay.14f7c1b78b5631065474d57ae5dc2748795cd2ecdc6bc6a0ea987cbd2951a43b",
+        "receipt_refs": [
+          "receipt.gameplay.14f7c1b78b5631065474d57ae5dc2748795cd2ecdc6bc6a0ea987cbd2951a43b"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

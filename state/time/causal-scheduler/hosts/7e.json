@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.canon_pressure.pressure_akatsuki_intelligence",
           "kind": "canon_pressure",
-          "resolved_through": "SE-0061-06-14T07:00:00",
-          "safe_through": "SE-0061-06-21T06:59:59",
+          "resolved_through": "SE-0061-06-21T07:00:00",
+          "safe_through": "SE-0061-06-28T06:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "pressure_akatsuki_intelligence",
-          "next_due": "SE-0061-06-21T07:00:00"
+          "next_due": "SE-0061-06-28T07:00:00"
         },
         "authority_kind": "canon_pressure",
         "owner_ref": "state/canon/pressures.json",
@@ -23,9 +23,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.bd73f47fdaa1a422a4bbc285",
-          "due_at": "SE-0061-06-21T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-06-21.json",
+          "event_id": "evt.causal.08c2114a93300eca70cb0b2f",
+          "due_at": "SE-0061-06-28T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-28.json",
           "dedupe_key": "canon_pressure.periodic_review:pressure_akatsuki_intelligence"
         }
       ]

@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.canon_pressure.pressure_great_village_mission_market",
           "kind": "canon_pressure",
-          "resolved_through": "SE-0061-06-14T07:00:00",
-          "safe_through": "SE-0061-06-21T06:59:59",
+          "resolved_through": "SE-0061-06-21T07:00:00",
+          "safe_through": "SE-0061-06-28T06:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "pressure_great_village_mission_market",
-          "next_due": "SE-0061-06-21T07:00:00"
+          "next_due": "SE-0061-06-28T07:00:00"
         },
         "authority_kind": "canon_pressure",
         "owner_ref": "state/canon/pressures.json",
@@ -23,9 +23,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.98f6e55193a4954f9f5e2df3",
-          "due_at": "SE-0061-06-21T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-06-21.json",
+          "event_id": "evt.causal.321137406cca721817f7316c",
+          "due_at": "SE-0061-06-28T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-28.json",
           "dedupe_key": "canon_pressure.periodic_review:pressure_great_village_mission_market"
         }
       ]

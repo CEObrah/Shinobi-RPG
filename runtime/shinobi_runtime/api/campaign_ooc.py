@@ -62,6 +62,26 @@ class RepositoryOocAudit(_BaseRepositoryOocAudit):
             report.suggestion(
                 "load_final_institution_review_runtime_guard_before_time_advancement"
             )
+
+        # Import lazily so the audit module stays free of planner import cycles
+        # during application bootstrap.
+        from shinobi_runtime.commands.planner import RepositoryCommandPlanner
+
+        serialization_guarded = bool(
+            getattr(
+                RepositoryCommandPlanner._world_event_writes,
+                "_institution_review_serialization_guard",
+                False,
+            )
+        )
+        report.diagnostic(
+            "runtime_extensions:institution_review_serialization_guard="
+            + str(serialization_guarded).lower()
+        )
+        if not serialization_guarded:
+            report.suggestion(
+                "load_institution_review_serialization_guard_before_time_advancement"
+            )
         return result
 
     def _audit_pressures(self, report, world_time, scheduler_hosts) -> None:

@@ -971,6 +971,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.information_report_handled.fca6da1a148d948a3018",
+      "kind": "information_report_handled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-25T07:00:00",
+        "started_at": "SE-0061-06-25T07:00:00",
+        "ended_at": "SE-0061-06-25T07:00:00"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [
+        "claim.autonomy.9e9104a59607289e06",
+        "delivery.world_front.98498b31fa22df7805634ae2"
+      ],
+      "affected_owner_refs": [
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "report_handling:keep_compartmented:delivery.world_front.98498b31fa22df7805634ae2"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [
+          "claim.autonomy.9e9104a59607289e06"
+        ],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-25T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_player_handoffs.report_handoff_resolution",
+        "transaction_ref": "tx.gameplay.fca6da1a148d948a3018976b7776b01d305d8b54361136665a95d3a9279d283a",
+        "receipt_refs": [
+          "receipt.gameplay.fca6da1a148d948a3018976b7776b01d305d8b54361136665a95d3a9279d283a"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

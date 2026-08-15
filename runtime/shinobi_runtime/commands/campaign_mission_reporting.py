@@ -9,6 +9,7 @@ mission objective reducer remains the separate terminal authority.
 from __future__ import annotations
 
 import copy
+from collections.abc import Sequence
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
@@ -74,6 +75,38 @@ def _eligible_synthesis_claim(
 
 def _mission_report_material_ref(mission_ref: str, objective_id: str, claim_id: str) -> str:
     return f"mission_report:{mission_ref}:{objective_id}:{claim_id}"
+
+
+def _objective_report_event_matches(
+    event: Mapping[str, Any],
+    *,
+    mission_ref: str,
+    objective_id: str,
+) -> bool:
+    """Recognize a dedicated objective report after event normalization.
+
+    World-event readers may normalize JSON arrays to immutable sequence types.
+    The durable mission-report marker itself is the authority boundary; generic
+    information delivery cannot create that objective-scoped material ref.
+    """
+    if event.get("kind") != "information_delivered":
+        return False
+    causal_refs = event.get("causal_refs")
+    material_refs = event.get("material_consequence_refs")
+    if (
+        not isinstance(causal_refs, Sequence)
+        or isinstance(causal_refs, (str, bytes, bytearray))
+        or not isinstance(material_refs, Sequence)
+        or isinstance(material_refs, (str, bytes, bytearray))
+    ):
+        return False
+    if mission_ref not in causal_refs or objective_id not in causal_refs:
+        return False
+    prefix = f"mission_report:{mission_ref}:{objective_id}:claim."
+    return any(
+        isinstance(value, str) and value.startswith(prefix)
+        for value in material_refs
+    )
 
 
 class CampaignCommandPlanner(_Base):
@@ -298,25 +331,10 @@ class CampaignCommandPlanner(_Base):
             event = self._world_event_by_id(evidence_event_id, registry=registry)
             if not isinstance(event, Mapping) or event.get("kind") != "information_delivered":
                 raise CommandRejectedError("mission_objective_report_evidence_required")
-            causal_refs = event.get("causal_refs")
-            material = event.get("material_consequence_refs")
-            expected_material = _mission_report_material_ref(
-                owner.mission_id,
-                objective_id,
-                next(
-                    (
-                        value
-                        for value in event.get("knowledge_refs", [])
-                        if isinstance(value, str) and value.startswith("claim.")
-                    ),
-                    "claim.invalid",
-                ),
-            )
-            if (
-                not isinstance(causal_refs, list)
-                or objective_id not in causal_refs
-                or not isinstance(material, list)
-                or expected_material not in material
+            if not _objective_report_event_matches(
+                event,
+                mission_ref=owner.mission_id,
+                objective_id=objective_id,
             ):
                 raise CommandRejectedError("mission_objective_report_evidence_invalid")
         return evidence_ref, digest
@@ -326,4 +344,5 @@ __all__ = [
     "CampaignCommandPlanner",
     "_eligible_synthesis_claim",
     "_mission_report_material_ref",
+    "_objective_report_event_matches",
 ]

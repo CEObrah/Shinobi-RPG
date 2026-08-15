@@ -8,15 +8,23 @@ work. A monthly Academy, service-training, or military review can therefore make
 real state changes while the aggregate event is left with an empty material
 consequence list and fails world-event validation.
 
+The Academy graduation path also grows the service force's availability and
+training troop pool without growing the matching reserve-capability cohort. A
+later service-training or military review then detects an artificial capability
+partition drift. This module repairs only that exact staged delta proven by the
+same Academy result; unrelated force drift still fails closed.
+
 Production campaign extensions install this wrapper before other
 institution-autonomy wrappers. It keeps the missing transfer suffix context-local,
-then reconciles the aggregate review event against the reducer's own returned
-sub-results. It never owns Academy population selection, graduation, force
-accounting, or institutional policy; those remain in
+reconciles the Academy force capability partition, then reconciles the aggregate
+review event against the reducer's own returned sub-results. It never owns
+Academy population selection, graduation rates, force totals, institutional
+policy, or capability development; those remain in
 ``AutonomyCommandsMixin._apply_institution_autonomy_review``.
 
 This module should be removed once the base reducer directly binds its Academy
-transfer suffix and attributes/suppresses its aggregate review event correctly.
+transfer suffix, updates every conserved force representation during graduation,
+and attributes/suppresses its aggregate institution review event correctly.
 """
 from __future__ import annotations
 
@@ -25,6 +33,7 @@ from contextvars import ContextVar, Token
 from functools import wraps
 from typing import Any, Mapping
 
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.domains import autonomy as autonomy_module
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
 
@@ -97,6 +106,81 @@ def _derived_material_refs(result: Mapping[str, Any]) -> list[str]:
     return refs
 
 
+def repair_academy_force_reserve_capability(
+    reducer: Any,
+    result: Mapping[str, Any],
+    record_writes: Any,
+) -> None:
+    """Reconcile only the reserve-capability delta caused by Academy graduates.
+
+    The base Academy reducer already proves the graduate count, force identity,
+    population transfer, force-total growth, availability growth, and training
+    troop-pool growth in one staged transaction. It currently omits the same
+    graduate count from ``reserve_capability.training_or_instruction``. Preserve
+    the cohort's existing aggregate capability profile while adding those known
+    entrants. If the staged mismatch is anything other than exactly the proven
+    graduate count, fail closed rather than normalizing unrelated drift.
+    """
+    pipeline = result.get("population_pipeline")
+    if not isinstance(pipeline, Mapping):
+        return
+    graduates = pipeline.get("graduates")
+    force_ref = pipeline.get("force_ref")
+    if (
+        isinstance(graduates, bool)
+        or not isinstance(graduates, int)
+        or graduates < 0
+        or not isinstance(force_ref, str)
+        or not force_ref
+    ):
+        raise CommandRejectedError("institution_autonomy_force_invalid")
+    if graduates == 0:
+        return
+    if not isinstance(record_writes, Mapping):
+        raise CommandRejectedError("institution_autonomy_force_invalid")
+
+    matches = [
+        record
+        for record in record_writes.values()
+        if isinstance(record, dict)
+        and record.get("schema") == "force"
+        and record.get("id") == force_ref
+    ]
+    if len(matches) != 1:
+        raise CommandRejectedError("institution_autonomy_force_invalid")
+    force = matches[0]
+    availability = force.get("availability")
+    reserve = force.get("reserve_capability")
+    row = reserve.get("training_or_instruction") if isinstance(reserve, Mapping) else None
+    available = availability.get("training_or_instruction") if isinstance(availability, Mapping) else None
+    row_count = row.get("count") if isinstance(row, Mapping) else None
+    if (
+        isinstance(available, bool)
+        or not isinstance(available, int)
+        or available < 0
+        or isinstance(row_count, bool)
+        or not isinstance(row_count, int)
+        or row_count < 0
+    ):
+        raise CommandRejectedError("force_reserve_capability_invalid")
+
+    if row_count == available:
+        # Forward-compatible no-op once the base reducer is corrected.
+        return
+    if row_count + graduates != available:
+        raise CommandRejectedError("force_reserve_capability_drift")
+
+    try:
+        state = reducer._reserve_capability_state(row)
+        reducer._reserve_add(force, "training_or_instruction", state, graduates)
+    except CommandRejectedError:
+        raise
+    except (TypeError, ValueError, AttributeError) as exc:
+        raise CommandRejectedError("force_reserve_capability_invalid") from exc
+    if row.get("count") != available:
+        raise CommandRejectedError("force_reserve_capability_drift")
+
+
 def repair_institution_review_event(
     result: Mapping[str, Any],
     world_events: Any,
@@ -149,7 +233,7 @@ def repair_institution_review_event(
 
 
 def install_academy_pipeline_transfer_ids() -> None:
-    """Install Academy transfer-id and aggregate review-event compatibility."""
+    """Install Academy transfer-id, force-capability, and review-event compatibility."""
     global _INSTALLED
     if _INSTALLED:
         return
@@ -174,6 +258,13 @@ def install_academy_pipeline_transfer_ids() -> None:
             token = _SUFFIX.set(academy_pipeline_transfer_suffix(institution_id, at))
         try:
             result = original(self, **kwargs)
+            if not isinstance(result, Mapping):
+                raise CommandRejectedError("institution_autonomy_review_result_invalid")
+            repair_academy_force_reserve_capability(
+                self,
+                result,
+                kwargs.get("record_writes"),
+            )
             return repair_institution_review_event(result, kwargs.get("world_events"))
         finally:
             if token is not None:
@@ -181,6 +272,7 @@ def install_academy_pipeline_transfer_ids() -> None:
 
     wrapped._academy_pipeline_transfer_ids = True  # type: ignore[attr-defined]
     wrapped._institution_review_event_integrity = True  # type: ignore[attr-defined]
+    wrapped._academy_force_reserve_capability = True  # type: ignore[attr-defined]
     AutonomyCommandsMixin._apply_institution_autonomy_review = wrapped
     _INSTALLED = True
 
@@ -188,5 +280,6 @@ def install_academy_pipeline_transfer_ids() -> None:
 __all__ = [
     "academy_pipeline_transfer_suffix",
     "install_academy_pipeline_transfer_ids",
+    "repair_academy_force_reserve_capability",
     "repair_institution_review_event",
 ]

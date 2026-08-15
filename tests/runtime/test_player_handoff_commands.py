@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from shinobi_runtime.commands.campaign_player_handoffs import CampaignCommandPlanner
+from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
 from shinobi_runtime.commands.living_world_support import _OBJECTIVE_DIMENSIONS
 from shinobi_runtime.commands.mission_assignment_requests import (
     MISSION_FOCI,
@@ -79,3 +80,9 @@ def test_report_handoff_command_is_a_closed_player_choice_surface() -> None:
     assert spec.optional_fields == ()
     descriptor = spec.public_descriptor()
     assert descriptor["payload"]["handling"] == "acknowledge|keep_compartmented"
+
+
+def test_event_seeking_wait_registers_on_final_player_handoff_planner() -> None:
+    install_downtime_until_event()
+    assert "advance_until_event" in CampaignCommandPlanner.COMMAND_TYPES
+    assert hasattr(CampaignCommandPlanner, "_advance_until_event")

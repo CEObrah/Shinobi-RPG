@@ -202,7 +202,10 @@ class _TeamHarness(team_vitality.LivingWorldTeamVitalityMixin):
     def _append_internal_event(self, *args, **kwargs):
         assert kwargs["kind"] == "player_led_team_checkin_ready"
         assert kwargs["audience_refs"] == ("pc_wei_tang",)
-        assert kwargs["material_consequence_refs"] == ()
+        assert kwargs["affected_owner_refs"] == ()
+        assert kwargs["material_consequence_refs"] == (
+            "player_led_team_checkin:team.blackhound:person.hayama",
+        )
         return "event.team.checkin"
 
 

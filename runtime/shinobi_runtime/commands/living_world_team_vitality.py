@@ -109,6 +109,7 @@ class LivingWorldTeamVitalityMixin:
         classification = team.get("classification")
         if classification not in ("public", "restricted", "secret"):
             classification = "restricted"
+        contact_opportunity_ref = f"player_led_team_checkin:{team_id}:{contact_actor}"
         event_id = self._append_internal_event(
             world_events,
             command=command,
@@ -118,7 +119,10 @@ class LivingWorldTeamVitalityMixin:
             host_refs=(team_id,),
             actor_refs=(contact_actor,),
             affected_owner_refs=(),
-            material_consequence_refs=(),
+            # The durable consequence is the player-facing contact opportunity
+            # recorded by this resolved semantic event. It does not revise the
+            # player-led team's doctrine, training, assignment, or other owner.
+            material_consequence_refs=(contact_opportunity_ref,),
             classification=classification,
             audience_refs=(command.actor_id,),
             source_refs=(contact_actor,),

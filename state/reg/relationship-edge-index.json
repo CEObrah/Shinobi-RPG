@@ -1,8 +1,8 @@
 {
   "schema": "relationship-edge-index",
   "derived_index": true,
-  "edge_count": 99,
-  "source_shard_count": 44,
+  "edge_count": 105,
+  "source_shard_count": 45,
   "edge_index": {
     "rel.canon_asuma.canon_hiruzen.son": "state/reg/relationship-edges/canon_asuma.json",
     "rel.canon_choji.canon_choza.son": "state/reg/relationship-edges/canon_choji.json",
@@ -102,7 +102,13 @@
     "rel.canon_naruto.canon_kakashi.professional_teammates": "state/reg/relationship-edges/canon_naruto.json",
     "rel.canon_naruto.canon_sakura.professional_teammates": "state/reg/relationship-edges/canon_naruto.json",
     "rel.canon_sakura.canon_kakashi.professional_teammates": "state/reg/relationship-edges/canon_sakura.json",
-    "rel.canon_sakura.canon_naruto.professional_teammates": "state/reg/relationship-edges/canon_sakura.json"
+    "rel.canon_sakura.canon_naruto.professional_teammates": "state/reg/relationship-edges/canon_sakura.json",
+    "rel.canon_aoba.canon_hayate.professional_teammates": "state/reg/relationship-edges/canon_aoba.json",
+    "rel.canon_aoba.canon_yugao.professional_teammates": "state/reg/relationship-edges/canon_aoba.json",
+    "rel.canon_hayate.canon_aoba.professional_teammates": "state/reg/relationship-edges/canon_hayate.json",
+    "rel.canon_hayate.canon_yugao.professional_teammates": "state/reg/relationship-edges/canon_hayate.json",
+    "rel.canon_yugao.canon_aoba.professional_teammates": "state/reg/relationship-edges/canon_yugao.json",
+    "rel.canon_yugao.canon_hayate.professional_teammates": "state/reg/relationship-edges/canon_yugao.json"
   },
   "person_shards": {
     "canon_asuma": [
@@ -161,6 +167,7 @@
       "state/reg/relationship-edges/canon_tekuno_kanden.json"
     ],
     "canon_hayate": [
+      "state/reg/relationship-edges/canon_aoba.json",
       "state/reg/relationship-edges/canon_hayate.json",
       "state/reg/relationship-edges/canon_yugao.json"
     ],
@@ -289,6 +296,7 @@
       "state/reg/relationship-edges/canon_yamato.json"
     ],
     "canon_yugao": [
+      "state/reg/relationship-edges/canon_aoba.json",
       "state/reg/relationship-edges/canon_hayate.json",
       "state/reg/relationship-edges/canon_yugao.json"
     ],
@@ -334,6 +342,11 @@
       "state/reg/relationship-edges/canon_kakashi.json",
       "state/reg/relationship-edges/canon_naruto.json",
       "state/reg/relationship-edges/canon_sakura.json"
+    ],
+    "canon_aoba": [
+      "state/reg/relationship-edges/canon_aoba.json",
+      "state/reg/relationship-edges/canon_hayate.json",
+      "state/reg/relationship-edges/canon_yugao.json"
     ]
   },
   "rule": "Derived routing cache from relationship edge shards. Rebuild after authoritative edge changes; never use the index to invent relationship truth."

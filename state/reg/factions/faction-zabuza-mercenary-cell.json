@@ -41,7 +41,7 @@
     ],
     "plan_state": {
       "status": "active",
-      "last_review_at": "SE-0061-06-18T07:00:00",
+      "last_review_at": "SE-0061-06-25T07:00:00",
       "wake_policy": "registered causal review or immediate causal trigger/information delivery",
       "autonomous_mission_refs": [
         "mission.autonomy.0fbd16c68f28e10bcf"
@@ -51,7 +51,9 @@
       "autonomous_team_refs": [
         "team.zabuza_haku"
       ],
-      "wake_required_mission_refs": []
+      "wake_required_mission_refs": [
+        "mission.autonomy.0fbd16c68f28e10bcf"
+      ]
     },
     "scope": "Zabuza and Haku mercenary activity",
     "leadership_model": "cell_leadership"

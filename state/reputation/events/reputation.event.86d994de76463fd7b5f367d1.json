@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.86d994de76463fd7b5f367d1",
+  "subject_id": "faction.ame_security_network",
+  "event_type": "reputation.signal.security_reliability",
+  "occurred_at": "SE-0061-06-25T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.eb0137bf6a68d2817a4407fb",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 78,
+      "base_weight": 36
+    },
+    "tactical_judgment": {
+      "score": 72,
+      "base_weight": 24
+    }
+  },
+  "standing_signals": {
+    "prestige": {
+      "score": 66,
+      "base_weight": 22
+    }
+  },
+  "visibility": {
+    "audience_id": "canon_konan",
+    "source_classification": "restricted"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.eb0137bf6a68d2817a4407fb"
+  ],
+  "deliveries": {
+    "canon_konan": {
+      "profile_ref": "state/reputation/audiences/profile.9214c441b7d4dfa588fce878.json",
+      "source_event_ref": "event.institutional_operation_completed.eb0137bf6a68d2817a4407fb"
+    }
+  },
+  "status": "applied"
+}

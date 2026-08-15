@@ -19,6 +19,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
+    from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
 
     install_legacy_scheduler_compat()
     install_academy_career_sync()
@@ -27,6 +28,7 @@ def _install_campaign_extensions() -> None:
     install_promotion_exam_projection()
     install_world_front_progression()
     install_player_report_projection()
+    install_player_report_lifecycle()
     install_downtime_until_event()
     install_downtime_vitality()
     install_preview_validation()
@@ -40,7 +42,7 @@ def create_app_from_env():
     from shinobi_runtime.api.campaign_manufacturing_discovery import RouteAwareCampaignOperations
     from shinobi_runtime.api.campaign_ooc import RepositoryOocAudit
     from shinobi_runtime.commands import campaign_planner as planner_module
-    from shinobi_runtime.commands.campaign_mission_assignment import CampaignCommandPlanner
+    from shinobi_runtime.commands.campaign_player_handoffs import CampaignCommandPlanner
 
     _install_campaign_extensions()
     ooc_module.RepositoryOocAudit = RepositoryOocAudit

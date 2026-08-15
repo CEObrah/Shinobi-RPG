@@ -1,6 +1,6 @@
 {
   "active_combat": false,
-  "decision_required": null,
+  "decision_required": "Choose the next consequential action at the destination.",
   "freeform_actions_allowed": true,
   "loaded_owner_ids": [
     "canon_ensui_nara",
@@ -16,7 +16,7 @@
     "team.blackhound.doctrine",
     "team.konoha.fujin"
   ],
-  "location_id": "place.sword_manor",
+  "location_id": "place.fire.western.border",
   "narrative": {
     "active_npc_agendas": [],
     "known_clues": [
@@ -44,13 +44,20 @@
       "Team Fujin heavy training week",
       "House Tang elite field-readiness cycle"
     ],
-    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state"
+    "choice_generation": "derive from current authority, knowledge, location, resources, travel/timing mechanics, and known clock boundaries; do not cache menus in scene state",
+    "available_reports": [
+      "Black Hound has routine field, training, or readiness matters ready to discuss.",
+      "Team Fujin has routine field, training, or readiness matters ready to discuss."
+    ]
   },
   "scene_id": "scene_sword_manor_black_hound_first_muster_complete",
-  "scene_summary": "char.zhu reviews pc_wei_tang's house.tang growth request; decision=approved.",
+  "scene_summary": "Travel party arrives at place.fire.western.border at SE-0061-06-13T22:01:36 via route_konoha_fire_west; travel consumed 218252 seconds.",
   "schema": "scene",
   "time_passage_allowed": true,
-  "world_time": "SE-0061-06-11T09:24:04",
+  "world_time": "SE-0061-06-13T22:01:36",
   "known_clock_boundaries": [],
-  "observable_pressures": []
+  "observable_pressures": [
+    "Black Hound has a fresh internal check-in ready.",
+    "Team Fujin has a fresh internal check-in ready."
+  ]
 }

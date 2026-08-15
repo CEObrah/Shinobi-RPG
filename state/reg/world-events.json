@@ -5387,6 +5387,118 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.cfc798f1f12a124582f9f468",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-24T18:00:00",
+        "occurred_at": "SE-0061-06-24T18:00:00",
+        "started_at": "SE-0061-06-24T18:00:00",
+        "ended_at": "SE-0061-06-24T18:00:00"
+      },
+      "host_refs": [
+        "pressure_mizuki_forbidden_scroll"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_mizuki_forbidden_scroll"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-24T18:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.f59b8771cd16e66bd2e745c0d80708cdd1113dd389ab78e813d501b8f2de4605",
+        "receipt_refs": [
+          "receipt.gameplay.f59b8771cd16e66bd2e745c0d80708cdd1113dd389ab78e813d501b8f2de4605"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.f59b8771cd16e66bd2e7",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-24T18:00:00",
+        "started_at": "SE-0061-06-24T18:00:00",
+        "ended_at": "SE-0061-06-24T18:00:00"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:item_basic_antidote:8",
+        "manufactured:item_engineering_toolkit:2",
+        "manufactured:item_field_medical_kit:2",
+        "manufactured:weapon_katana:2",
+        "procurement:treasury.iron_samurai->economy.contractors:18000ryo",
+        "procurement:treasury.iwa->economy.contractors:30000ryo",
+        "procurement:treasury.konoha->economy.contractors:40000ryo",
+        "procurement:treasury.suna->economy.contractors:20000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-24T18:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.f59b8771cd16e66bd2e745c0d80708cdd1113dd389ab78e813d501b8f2de4605",
+        "receipt_refs": [
+          "receipt.gameplay.f59b8771cd16e66bd2e745c0d80708cdd1113dd389ab78e813d501b8f2de4605"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

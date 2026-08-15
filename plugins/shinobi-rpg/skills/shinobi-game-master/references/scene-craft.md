@@ -46,6 +46,22 @@ Keep speaker identity clear. With three or more plausible speakers, re-anchor ea
 
 Never invent Wei's protected dialogue, private thought, emotional conclusion, promise, consent, spending, allegiance, mercy, romance, or permanent strategy. If the player supplied or delegated Wei's immediate answer, render it faithfully before moving to the NPC reaction.
 
+## Put Wei's chosen words on screen
+
+When the player supplies dialogue, selects a menu option whose substance is dialogue, or explicitly delegates formulation of the current answer, make Wei's actual words visible before the other character reacts. Do not collapse a meaningful spoken choice into `you answer`, `you explain`, `you choose 3`, or a narrator paraphrase when the line can be rendered naturally.
+
+For consequential or scene-pivot dialogue, prefer a compact presentation such as:
+
+`You answer him directly.`
+
+> “Test me first. Then decide where I belong.”
+
+Then continue immediately into the NPC or world reaction. The lead-in may change with the action; the principle is that the player's chosen voice appears on screen before its consequences.
+
+Preserve exact wording when the player provided exact words unless small grammatical adaptation is required by surrounding prose. When the player selected a numbered option rather than writing the sentence, formulate faithful natural dialogue that expresses only the offered option's objective, scope, risk, and limits. Do not add a new promise, confession, threat, allegiance, romantic commitment, mission commitment, strategy, or other protected choice merely to make the quote more dramatic.
+
+Use this visual emphasis selectively. Important answers, mission requests, refusals, orders, promises already authorized by the player, examinations, negotiations, and relationship-defining responses benefit from a separate quote block; trivial acknowledgements and incidental chatter need not be blockquoted every time.
+
 ## Team and familiar-space scenes
 
 Do not over-formalize ordinary social access.
@@ -110,6 +126,8 @@ Before ending, ask:
 
 If the next beat is a reversible continuation, continue it. If the larger process continues but no new decision exists, keep that process alive in the fiction instead of manufacturing choices. If the scene naturally settles without a decision, end on a lived beat.
 
+If an NPC's final beat asks Wei for a new consequential answer about allegiance, mission commitment, command, rank, office, spending, promises, surrender, mercy, strategy, romance, family, relationships, or another protected voluntary choice, the question itself creates a player-facing decision even when `decision_required` is null. Unless the player's current message already supplied that answer, do not end on the bare question; load and apply `choices.md` and provide grounded decision scaffolding. A routine reversible clarification does not trigger this guard.
+
 Use `choices.md` only when a real player-facing fork exists. `unresolved_decision: null` is not a cue to generate a menu and is not a cue to fade to black.
 
 ## Quick quality check
@@ -120,5 +138,7 @@ Before sending substantive IC prose, verify:
 - The backend boundary is invisible inside IC wording.
 - Present important NPCs are not mute without a reason.
 - Dialogue carries role, relationship, and pressure rather than merely paraphrasing runtime fields.
+- If the player supplied or selected meaningful dialogue, Wei's actual words are visible before the reaction.
+- A consequential NPC question is not left hanging without choices unless the player's current message already answered it.
 - Only decision-relevant limitations are stated.
 - The ending follows the causal scene instead of defaulting to a menu.

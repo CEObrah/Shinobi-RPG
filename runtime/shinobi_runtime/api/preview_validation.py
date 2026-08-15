@@ -19,6 +19,7 @@ from typing import Any, Mapping
 from shinobi_runtime.api.contracts import CommandPlan, CommandRejectedError
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.store.overlay import StagedOverlay
+from shinobi_runtime.store.template_validation import TemplateValidationError
 from shinobi_runtime.tx.errors import (
     DirtyRepositoryError,
     LockUnavailableError,
@@ -32,6 +33,25 @@ _SCHEMA_FAILURE = re.compile(
 )
 _UNREGISTERED_SCHEMA = re.compile(
     r"^(?:staged JSON uses an unregistered schema|unregistered top-level schema):\s*['\"]?(?P<schema>[A-Za-z0-9._-]+)['\"]?$"
+)
+_TEMPLATE_REASONS = frozenset(
+    {
+        "array_item_type",
+        "invalid_array_contract",
+        "invalid_array_item_types",
+        "invalid_object_contract",
+        "invalid_template_requirements",
+        "missing_array_contract",
+        "missing_object_contract",
+        "missing_required_key",
+        "missing_template",
+        "missing_template_id",
+        "non_mutable_template",
+        "owner_not_object",
+        "structural_type",
+        "unknown",
+        "unregistered_keys",
+    }
 )
 
 
@@ -72,6 +92,23 @@ def _schema_validation_error_code(exc: BaseException) -> str:
     return "preview_schema_validation_failed"
 
 
+def _template_validation_error_code(exc: BaseException) -> str:
+    """Return schema + static structural reason, never mutable staged detail."""
+
+    if not isinstance(exc, TemplateValidationError):
+        return "preview_template_validation_failed"
+    reason = exc.reason if exc.reason in _TEMPLATE_REASONS else "unknown"
+    reason_token = _safe_error_token(reason)
+    if isinstance(exc.schema_id, str) and exc.schema_id:
+        return (
+            "preview_template_validation_failed_"
+            + _safe_error_token(exc.schema_id)
+            + "_"
+            + reason_token
+        )
+    return "preview_template_validation_failed_" + reason_token
+
+
 def _validate_ready_plan(operations: Any, command: Any) -> None:
     """Dry-run the exact production plan through execution-equivalent validators."""
 
@@ -102,7 +139,7 @@ def _validate_ready_plan(operations: Any, command: Any) -> None:
             if operations.template_validator is not None:
                 operations.template_validator.validate_overlay(overlay, manifest.paths)
         except (TypeError, ValueError) as exc:
-            raise OperationError(409, "preview_template_validation_failed") from exc
+            raise OperationError(409, _template_validation_error_code(exc)) from exc
 
         try:
             plan.validator(overlay, manifest)
@@ -154,4 +191,5 @@ __all__ = [
     "install_preview_validation",
     "_validate_ready_plan",
     "_schema_validation_error_code",
+    "_template_validation_error_code",
 ]

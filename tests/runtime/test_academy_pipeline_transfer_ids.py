@@ -141,9 +141,6 @@ def test_base_academy_pipeline_still_needs_compatibility_wrapper() -> None:
     # institution review event, remove this module and this test together.
     import inspect
 
-    source = inspect.getsource(AutonomyCommandsMixin._apply_institution_autonomy_review)
-    while getattr(AutonomyCommandsMixin._apply_institution_autonomy_review, "__wrapped__", None):
-        break
     base = AutonomyCommandsMixin._apply_institution_autonomy_review
     while getattr(base, "__wrapped__", None) is not None:
         base = base.__wrapped__

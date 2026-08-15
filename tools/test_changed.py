@@ -66,20 +66,23 @@ ROUTES = (
         "tests/runtime/test_training_autonomy_policy.py",
         "tests/runtime/test_training_progression_ceiling.py",
     }),
-    (("time", "scheduler", "world_front", "advance_until_event"), {
+    (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard"), {
         "tests/runtime/test_advance_until_event.py",
         "tests/runtime/test_world_front_progression.py",
         "tests/runtime/test_long_horizon_stability.py",
+        "tests/runtime/test_production_monthly_frontier.py",
+        "tests/runtime/test_academy_pipeline_transfer_ids.py",
     }),
     (("api/", "mcp", "route_discovery"), {
         "tests/runtime/test_api_service.py",
         "tests/runtime/test_mcp_plugin.py",
         "tests/runtime/test_route_discovery.py",
     }),
-    (("bootstrap", "remote.py", "railway.toml"), {
+    (("bootstrap", "remote.py", "railway.toml", "deployment_freshness"), {
         "tests/runtime/test_bootstrap.py",
         "tests/runtime/test_bootstrap_repository_replacement.py",
         "tests/runtime/test_remote_durability.py",
+        "tests/runtime/test_deployment_freshness.py",
     }),
     (("tx/", "transaction", "invalidations"), {
         "tests/runtime/test_transaction_coordinator.py",

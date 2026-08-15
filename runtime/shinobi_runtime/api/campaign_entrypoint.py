@@ -20,6 +20,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
+    from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
 
     install_legacy_scheduler_compat()
     install_academy_career_sync()
@@ -29,6 +30,7 @@ def _install_campaign_extensions() -> None:
     install_world_front_progression()
     install_player_report_projection()
     install_player_report_lifecycle()
+    install_mission_assignment_request_projection()
     install_downtime_until_event()
     install_downtime_vitality()
     install_preview_validation()

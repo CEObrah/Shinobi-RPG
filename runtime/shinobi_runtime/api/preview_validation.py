@@ -18,6 +18,10 @@ from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandPlan, CommandRejectedError
 from shinobi_runtime.api.operations import OperationError
+from shinobi_runtime.commands.production_population_owner_bridge import (
+    _closure_value,
+    _owner_class,
+)
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.store.template_validation import TemplateValidationError
 from shinobi_runtime.tx.errors import (
@@ -53,6 +57,7 @@ _TEMPLATE_REASONS = frozenset(
         "unregistered_keys",
     }
 )
+_BASE_AUTONOMY_DRIFT = "advance_time_base_validation_invalid__autonomous_owner_after_image"
 
 
 def _safe_error_token(value: str) -> str:
@@ -61,28 +66,14 @@ def _safe_error_token(value: str) -> str:
 
 
 def _schema_validation_error_code(exc: BaseException) -> str:
-    """Return a bounded diagnostic code without leaking paths or record data.
-
-    Schema validation errors frequently contain the exact staged path or field
-    value. Those details are useful to a developer but must not cross the MCP
-    boundary because preview can run against hidden autonomous-world owners.
-    Top-level schema identity is code-owned routing metadata, so it is safe to
-    expose as a bounded token even when the schema is not yet registered.
-    """
-
+    """Return a bounded diagnostic code without leaking paths or record data."""
     detail = str(exc)
     match = _SCHEMA_FAILURE.match(detail)
     if match is not None:
-        return (
-            "preview_schema_validation_failed_"
-            + _safe_error_token(match.group("schema"))
-        )
+        return "preview_schema_validation_failed_" + _safe_error_token(match.group("schema"))
     match = _UNREGISTERED_SCHEMA.match(detail)
     if match is not None:
-        return (
-            "preview_schema_validation_failed_unregistered_"
-            + _safe_error_token(match.group("schema"))
-        )
+        return "preview_schema_validation_failed_unregistered_" + _safe_error_token(match.group("schema"))
     if detail.startswith("staged state JSON requires a registered top-level schema"):
         return "preview_schema_validation_failed_missing_top_level_schema"
     if detail.startswith("invalid JSON in staged output"):
@@ -94,24 +85,36 @@ def _schema_validation_error_code(exc: BaseException) -> str:
 
 def _template_validation_error_code(exc: BaseException) -> str:
     """Return schema + static structural reason, never mutable staged detail."""
-
     if not isinstance(exc, TemplateValidationError):
         return "preview_template_validation_failed"
     reason = exc.reason if exc.reason in _TEMPLATE_REASONS else "unknown"
     reason_token = _safe_error_token(reason)
     if isinstance(exc.schema_id, str) and exc.schema_id:
-        return (
-            "preview_template_validation_failed_"
-            + _safe_error_token(exc.schema_id)
-            + "_"
-            + reason_token
-        )
+        return "preview_template_validation_failed_" + _safe_error_token(exc.schema_id) + "_" + reason_token
     return "preview_template_validation_failed_" + reason_token
+
+
+def _autonomy_drift_code(plan: Any, overlay: Any) -> str | None:
+    expected = _closure_value(getattr(plan, "validator", None), "autonomy_record_writes")
+    if not isinstance(expected, Mapping):
+        return None
+    classes: set[str] = set()
+    for path, record in expected.items():
+        if not isinstance(path, str) or not isinstance(record, Mapping):
+            continue
+        try:
+            actual = overlay.read_json(path)
+        except (FileNotFoundError, TypeError, ValueError):
+            continue
+        if actual != record:
+            classes.add(_owner_class(path, record))
+    if not classes:
+        return None
+    return "autonomous_owner_after_image_drift__" + "__".join(sorted(classes))
 
 
 def _validate_ready_plan(operations: Any, command: Any) -> None:
     """Dry-run the exact production plan through execution-equivalent validators."""
-
     with operations._locked():
         operations._require_command_base(command)
         operations.coordinator.git.assert_pristine()
@@ -144,6 +147,10 @@ def _validate_ready_plan(operations: Any, command: Any) -> None:
         try:
             plan.validator(overlay, manifest)
         except CommandRejectedError as exc:
+            if exc.code == _BASE_AUTONOMY_DRIFT:
+                diagnostic = _autonomy_drift_code(plan, overlay)
+                if diagnostic is not None:
+                    raise OperationError(422, diagnostic) from exc
             raise OperationError(422, exc.code) from exc
         except (TypeError, ValueError) as exc:
             raise OperationError(409, "preview_plan_validation_failed") from exc
@@ -153,7 +160,6 @@ def _validate_ready_plan(operations: Any, command: Any) -> None:
 
 def install_preview_validation() -> None:
     """Install production READY-preview validation once per process."""
-
     global _INSTALLED
     if _INSTALLED:
         return

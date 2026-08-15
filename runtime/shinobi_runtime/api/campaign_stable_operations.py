@@ -23,7 +23,11 @@ from shinobi_runtime.api.contracts import (
     CommandRejectedError,
     PlannerUnavailableError,
 )
-from shinobi_runtime.api.operations import OperationError, PlanStateChangedError
+from shinobi_runtime.api.operations import (
+    _MAX_CONTEXT_PERSON_IDS,
+    OperationError,
+    PlanStateChangedError,
+)
 from shinobi_runtime.api.scene_vitality import (
     apply_scene_vitality_handoff,
     build_scene_cast,

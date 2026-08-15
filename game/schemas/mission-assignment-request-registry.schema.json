@@ -35,7 +35,9 @@
             "uniqueItems": true,
             "items": {"enum": ["D", "C", "B", "A", "S"]}
           },
-          "mission_focus": {"enum": ["combat"]},
+          "mission_focus": {"enum": ["general", "combat"]},
+          "submission_mode": {"enum": ["assignment_desk", "registered_message"]},
+          "submitted_from_place_ref": {"type": "string", "minLength": 1},
           "status": {"enum": ["pending", "fulfilled"]},
           "submitted_at": {"type": "string", "minLength": 1},
           "fulfilled_at": {"type": "string", "minLength": 1},

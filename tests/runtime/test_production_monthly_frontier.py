@@ -14,6 +14,7 @@ from shinobi_runtime.api.campaign_entrypoint import _install_campaign_extensions
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.campaign_environment import CampaignCommandPlanner
+from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.store import (
     RegisteredSchemaValidator,
     RegisteredTemplateValidator,
@@ -36,6 +37,11 @@ assert getattr(
     "_institution_review_runtime_guard",
     False,
 ), "final institution review guard was not installed"
+assert getattr(
+    RepositoryCommandPlanner._world_event_writes,
+    "_institution_review_serialization_guard",
+    False,
+), "institution review serialization guard was not installed"
 
 command = CommandEnvelope(
     campaign_id=meta["campaign_id"],

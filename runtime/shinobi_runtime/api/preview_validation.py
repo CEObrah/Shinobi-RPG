@@ -13,6 +13,7 @@ real state change between preview and execution continues to fail safely.
 """
 from __future__ import annotations
 
+import re
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandPlan, CommandRejectedError
@@ -26,6 +27,40 @@ from shinobi_runtime.tx.errors import (
 )
 
 _INSTALLED = False
+_SCHEMA_FAILURE = re.compile(
+    r"^staged (?P<schema>[A-Za-z0-9._-]+) schema validation failed:"
+)
+
+
+def _safe_error_token(value: str) -> str:
+    token = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+    return token[:64] or "unknown"
+
+
+def _schema_validation_error_code(exc: BaseException) -> str:
+    """Return a bounded diagnostic code without leaking paths or record data.
+
+    Schema validation errors frequently contain the exact staged path or field
+    value.  Those details are useful to a developer but must not cross the MCP
+    boundary because preview can run against hidden autonomous-world owners.
+    The schema identity itself is safe routing metadata and is enough to locate
+    the authoritative contract during OOC development.
+    """
+
+    detail = str(exc)
+    match = _SCHEMA_FAILURE.match(detail)
+    if match is not None:
+        return (
+            "preview_schema_validation_failed_"
+            + _safe_error_token(match.group("schema"))
+        )
+    if detail.startswith("unregistered top-level schema:"):
+        return "preview_schema_validation_failed_unregistered_schema"
+    if detail.startswith("invalid JSON in staged output"):
+        return "preview_schema_validation_failed_invalid_json"
+    if "runtime-owned path" in detail and "schema" in detail:
+        return "preview_schema_validation_failed_runtime_owner_schema"
+    return "preview_schema_validation_failed"
 
 
 def _validate_ready_plan(operations: Any, command: Any) -> None:
@@ -52,7 +87,7 @@ def _validate_ready_plan(operations: Any, command: Any) -> None:
             if operations.schema_validator is not None:
                 operations.schema_validator.validate_overlay(overlay, manifest.paths)
         except (TypeError, ValueError) as exc:
-            raise OperationError(409, "preview_schema_validation_failed") from exc
+            raise OperationError(409, _schema_validation_error_code(exc)) from exc
 
         try:
             if operations.template_validator is not None:
@@ -106,4 +141,8 @@ def install_preview_validation() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_preview_validation", "_validate_ready_plan"]
+__all__ = [
+    "install_preview_validation",
+    "_validate_ready_plan",
+    "_schema_validation_error_code",
+]

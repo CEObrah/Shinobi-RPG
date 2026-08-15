@@ -1,8 +1,8 @@
 {
   "schema": "relationship-edge-index",
   "derived_index": true,
-  "edge_count": 85,
-  "source_shard_count": 39,
+  "edge_count": 99,
+  "source_shard_count": 44,
   "edge_index": {
     "rel.canon_asuma.canon_hiruzen.son": "state/reg/relationship-edges/canon_asuma.json",
     "rel.canon_choji.canon_choza.son": "state/reg/relationship-edges/canon_choji.json",
@@ -88,7 +88,21 @@
     "rel.char_riku_hyuga.canon_neji.distant_clan_peer_and_respected_sparring_reference": "state/reg/relationship-edges/char.riku_hyuga.json",
     "rel.char_riku_hyuga.char_kai.future_team_peer_pending_assignment": "state/reg/relationship-edges/char.riku_hyuga.json",
     "rel.char_riku_hyuga.char_mei_arakawa.future_team_peer_pending_assignment": "state/reg/relationship-edges/char.riku_hyuga.json",
-    "rel.char_riku_hyuga.pc_wei_tang.future_instructor_pending_assignment": "state/reg/relationship-edges/char.riku_hyuga.json"
+    "rel.char_riku_hyuga.pc_wei_tang.future_instructor_pending_assignment": "state/reg/relationship-edges/char.riku_hyuga.json",
+    "rel.canon_fu_yamanaka.canon_sai.professional_teammates": "state/reg/relationship-edges/canon_fu_yamanaka.json",
+    "rel.canon_fu_yamanaka.canon_torune_aburame.professional_teammates": "state/reg/relationship-edges/canon_fu_yamanaka.json",
+    "rel.canon_sai.canon_fu_yamanaka.professional_teammates": "state/reg/relationship-edges/canon_sai.json",
+    "rel.canon_sai.canon_torune_aburame.professional_teammates": "state/reg/relationship-edges/canon_sai.json",
+    "rel.canon_torune_aburame.canon_fu_yamanaka.professional_teammates": "state/reg/relationship-edges/canon_torune_aburame.json",
+    "rel.canon_torune_aburame.canon_sai.professional_teammates": "state/reg/relationship-edges/canon_torune_aburame.json",
+    "rel.canon_c.canon_darui.professional_teammates": "state/reg/relationship-edges/canon_c.json",
+    "rel.canon_darui.canon_c.professional_teammates": "state/reg/relationship-edges/canon_darui.json",
+    "rel.canon_kakashi.canon_naruto.professional_teammates": "state/reg/relationship-edges/canon_kakashi.json",
+    "rel.canon_kakashi.canon_sakura.professional_teammates": "state/reg/relationship-edges/canon_kakashi.json",
+    "rel.canon_naruto.canon_kakashi.professional_teammates": "state/reg/relationship-edges/canon_naruto.json",
+    "rel.canon_naruto.canon_sakura.professional_teammates": "state/reg/relationship-edges/canon_naruto.json",
+    "rel.canon_sakura.canon_kakashi.professional_teammates": "state/reg/relationship-edges/canon_sakura.json",
+    "rel.canon_sakura.canon_naruto.professional_teammates": "state/reg/relationship-edges/canon_sakura.json"
   },
   "person_shards": {
     "canon_asuma": [
@@ -118,6 +132,7 @@
     ],
     "canon_fu_yamanaka": [
       "state/reg/relationship-edges/canon_fu_yamanaka.json",
+      "state/reg/relationship-edges/canon_sai.json",
       "state/reg/relationship-edges/canon_torune_aburame.json"
     ],
     "canon_guy": [
@@ -213,7 +228,9 @@
       "state/reg/relationship-edges/canon_orochimaru.json"
     ],
     "canon_sai": [
-      "state/reg/relationship-edges/canon_sai.json"
+      "state/reg/relationship-edges/canon_fu_yamanaka.json",
+      "state/reg/relationship-edges/canon_sai.json",
+      "state/reg/relationship-edges/canon_torune_aburame.json"
     ],
     "canon_sasuke": [
       "state/reg/relationship-edges/canon_itachi.json",
@@ -256,6 +273,7 @@
     ],
     "canon_torune_aburame": [
       "state/reg/relationship-edges/canon_fu_yamanaka.json",
+      "state/reg/relationship-edges/canon_sai.json",
       "state/reg/relationship-edges/canon_torune_aburame.json"
     ],
     "canon_tsume": [
@@ -293,6 +311,29 @@
       "state/reg/relationship-edges/char.kai.json",
       "state/reg/relationship-edges/char.mei_arakawa.json",
       "state/reg/relationship-edges/char.riku_hyuga.json"
+    ],
+    "canon_c": [
+      "state/reg/relationship-edges/canon_c.json",
+      "state/reg/relationship-edges/canon_darui.json"
+    ],
+    "canon_darui": [
+      "state/reg/relationship-edges/canon_c.json",
+      "state/reg/relationship-edges/canon_darui.json"
+    ],
+    "canon_kakashi": [
+      "state/reg/relationship-edges/canon_kakashi.json",
+      "state/reg/relationship-edges/canon_naruto.json",
+      "state/reg/relationship-edges/canon_sakura.json"
+    ],
+    "canon_naruto": [
+      "state/reg/relationship-edges/canon_kakashi.json",
+      "state/reg/relationship-edges/canon_naruto.json",
+      "state/reg/relationship-edges/canon_sakura.json"
+    ],
+    "canon_sakura": [
+      "state/reg/relationship-edges/canon_kakashi.json",
+      "state/reg/relationship-edges/canon_naruto.json",
+      "state/reg/relationship-edges/canon_sakura.json"
     ]
   },
   "rule": "Derived routing cache from relationship edge shards. Rebuild after authoritative edge changes; never use the index to invent relationship truth."

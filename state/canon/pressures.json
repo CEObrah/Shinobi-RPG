@@ -155,22 +155,40 @@
         "counterintelligence detection",
         "plan revision"
       ],
-      "actors": [],
-      "resources": [],
+      "actors": [
+        "canon_orochimaru"
+      ],
+      "resources": [
+        "mission.autonomy.753f0e0b9cba4f1cd3"
+      ],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
-      "opposition": [],
-      "current_step": null,
+      "opposition": [
+        "faction.konoha_anbu",
+        "canon_hiruzen",
+        "canon_aoba",
+        "canon_hayate",
+        "canon_yugao"
+      ],
+      "current_step": "mission_generate:event.autonomous_mission_started.3672697ca1ec0a0c66da1170",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_oto_konoha_infiltration",
-        "settled_through": "SE-0061-06-11T07:00:00",
-        "due_at": "SE-0061-06-18T07:00:00"
+        "settled_through": "SE-0061-06-18T07:00:00",
+        "due_at": "SE-0061-06-25T07:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
-      "source_refs": [],
-      "evidence_refs": [],
+      "source_refs": [
+        "faction.oto_research_cells",
+        "canon_orochimaru",
+        "canon_hiruzen"
+      ],
+      "evidence_refs": [
+        "event.formation_created.45ce61e684bc0ad7982a669c",
+        "event.formation_created.4c4dbdee481c0b09237f8fd3",
+        "event.autonomous_mission_started.3672697ca1ec0a0c66da1170"
+      ],
       "visibility": {
         "classification": "hidden",
         "basis_refs": []
@@ -179,7 +197,41 @@
         "player_refs": [],
         "npc_refs": []
       },
-      "chronology": []
+      "chronology": [
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.0beeb2939667f39fc9fd",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.formation_created.4c4dbdee481c0b09237f8fd3",
+            "faction.konoha_anbu"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.493ae5e9c2b2f20ae9bc",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.formation_created.45ce61e684bc0ad7982a669c",
+            "faction.oto_research_cells"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.690c69e616912dfd717f",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_mission_started.3672697ca1ec0a0c66da1170",
+            "faction.konoha_anbu"
+          ]
+        }
+      ]
     },
     "pressure_suna_funding": {
       "id": "pressure_suna_funding",
@@ -266,22 +318,32 @@
         "recruitment",
         "target reprioritization"
       ],
-      "actors": [],
-      "resources": [],
+      "actors": [
+        "canon_itachi",
+        "canon_kisame"
+      ],
+      "resources": [
+        "mission.autonomy.900760abfcade5de96"
+      ],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
       "opposition": [],
-      "current_step": null,
+      "current_step": "mission_generate:event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_akatsuki_intelligence",
         "settled_through": "SE-0061-06-14T07:00:00",
         "due_at": "SE-0061-06-21T07:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
-      "source_refs": [],
-      "evidence_refs": [],
+      "source_refs": [
+        "faction.akatsuki",
+        "canon_nagato"
+      ],
+      "evidence_refs": [
+        "event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5"
+      ],
       "visibility": {
         "classification": "hidden",
         "basis_refs": []
@@ -290,7 +352,19 @@
         "player_refs": [],
         "npc_refs": []
       },
-      "chronology": []
+      "chronology": [
+        {
+          "entry_id": "front_history.akatsuki_intelligence.b6e8b8cbb33364b83254",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5",
+            "faction.akatsuki"
+          ]
+        }
+      ]
     },
     "pressure_great_village_mission_market": {
       "id": "pressure_great_village_mission_market",
@@ -303,22 +377,34 @@
         "diplomatic pressure",
         "border incidents"
       ],
-      "actors": [],
-      "resources": [],
+      "actors": [
+        "canon_guy",
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "resources": [
+        "mission.autonomy.da43aace7877f901af"
+      ],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
       "opposition": [],
-      "current_step": null,
+      "current_step": "mission_generate:event.autonomous_mission_started.2599d55df82cba9592189b21",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_great_village_mission_market",
         "settled_through": "SE-0061-06-14T07:00:00",
         "due_at": "SE-0061-06-21T07:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
-      "source_refs": [],
-      "evidence_refs": [],
+      "source_refs": [
+        "faction.konoha_mission_office",
+        "support.mission.haruto_seki"
+      ],
+      "evidence_refs": [
+        "event.autonomous_mission_started.2599d55df82cba9592189b21"
+      ],
       "visibility": {
         "classification": null,
         "basis_refs": []
@@ -327,7 +413,19 @@
         "player_refs": [],
         "npc_refs": []
       },
-      "chronology": []
+      "chronology": [
+        {
+          "entry_id": "front_history.great_village_mission_market.ab6e8c6b3cd1faf3b2d7",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active",
+          "status_after": "active",
+          "source_refs": [
+            "event.autonomous_mission_started.2599d55df82cba9592189b21",
+            "faction.konoha_mission_office"
+          ]
+        }
+      ]
     }
   },
   "historical_source_reconciliation": {

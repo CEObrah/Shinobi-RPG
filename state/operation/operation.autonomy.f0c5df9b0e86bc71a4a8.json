@@ -1,0 +1,49 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.f0c5df9b0e86bc71a4a8",
+  "domain": "border_control",
+  "operation_kind": "counter_smuggling",
+  "owner_ref": "faction.fire_border_authority",
+  "authority_ref": "support.border.kazuo_murata",
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "next_due_at": "SE-0061-06-25T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": "team_fujin.counter_smuggling",
+  "subject_kind": "faction",
+  "subject_ref": "faction.fire_smuggling_network",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.western.border"
+  ],
+  "route_refs": [
+    "route_fire_north_rice"
+  ],
+  "opposition_refs": [
+    "faction.fire_smuggling_network"
+  ],
+  "resource_refs": [
+    "item_evidence_kit",
+    "item_standard_restraints"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.3b44e897b1b092a7d8"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.border.kazuo_murata",
+    "faction.fire_daimyo_liaison"
+  ],
+  "progress_milli": 100,
+  "success_condition": "Intercept or document one materially supported smuggling movement without fabricating contraband or offenders.",
+  "failure_condition": "The counter_smuggling objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

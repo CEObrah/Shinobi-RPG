@@ -23293,6 +23293,2195 @@
         "lethal_authorized": false
       },
       "doctrine_familiarity": 87
+    },
+    {
+      "id": "formation.mobilized.faction.konoha.anbu.3086e93c39",
+      "name": "faction.konoha_anbu Operational Formation 26",
+      "force_ref": "force.konoha.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 500,
+      "authorized_personnel": 500,
+      "doctrine_ref": "doc.konoha.field",
+      "training_ref": "train.konoha.field",
+      "cohesion": 77,
+      "morale": 77,
+      "readiness": 82,
+      "location_ref": "place.konoha",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 20,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 20,
+            "rank_distribution": {
+              "chunin": 10,
+              "jonin": 10
+            },
+            "condition": {
+              "healthy": 20
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.01",
+          "troop_type": "capture_specialists",
+          "role": "assault",
+          "count": 45,
+          "rank_distribution": {
+            "genin": 45
+          },
+          "condition": {
+            "healthy": 45
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 77,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 73,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 71
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 10,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 10,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 8
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.02",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 45,
+          "rank_distribution": {
+            "genin": 25,
+            "special_jonin": 20
+          },
+          "condition": {
+            "healthy": 45
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.03",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 125,
+          "rank_distribution": {
+            "genin": 40,
+            "chunin": 45,
+            "special_jonin": 20,
+            "support": 20
+          },
+          "condition": {
+            "light_healing_injury": 20,
+            "healthy": 105
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.04",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 20,
+          "rank_distribution": {
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.02",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 58,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.05",
+          "troop_type": "ranged_specialists",
+          "role": "ranged_control",
+          "count": 45,
+          "rank_distribution": {
+            "chunin": 25,
+            "genin": 20
+          },
+          "condition": {
+            "healthy": 45
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 77,
+              "bow": 62,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 86,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 12,
+              "bow": 8,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 8,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.06",
+          "troop_type": "ranged_specialists",
+          "role": "ranged_control",
+          "count": 20,
+          "rank_distribution": {
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 77,
+              "bow": 62,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 86,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 12,
+              "bow": 8,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 8,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.07",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 40,
+          "rank_distribution": {
+            "genin": 20,
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 40
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 85,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.08",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 40,
+          "rank_distribution": {
+            "genin": 20,
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 20,
+            "light_healing_injury": 20
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 85,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.09",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 20,
+          "rank_distribution": {
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 93,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 20,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.10",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 20,
+          "rank_distribution": {
+            "genin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 93,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 20,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.11",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 20,
+          "rank_distribution": {
+            "genin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 45,
+              "unarmed": 55,
+              "thrown_tools": 53,
+              "bow": 42,
+              "polearm": 42,
+              "heavy_weapon": 41,
+              "ninjutsu": 66,
+              "genjutsu": 56,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 83,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.12",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 20,
+          "rank_distribution": {
+            "genin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 45,
+              "unarmed": 55,
+              "thrown_tools": 53,
+              "bow": 42,
+              "polearm": 42,
+              "heavy_weapon": 41,
+              "ninjutsu": 66,
+              "genjutsu": 56,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 83,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.konoha.anbu.3086e93c39.component.13",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 20,
+          "rank_distribution": {
+            "chunin": 20
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 39,
+              "unarmed": 49,
+              "thrown_tools": 47,
+              "bow": 36,
+              "polearm": 36,
+              "heavy_weapon": 35,
+              "ninjutsu": 60,
+              "genjutsu": 50,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 55
+    },
+    {
+      "id": "formation.mobilized.faction.root.399700c53c",
+      "name": "faction.root Operational Formation 27",
+      "force_ref": "force.konoha.shinobi",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 250,
+      "authorized_personnel": 250,
+      "doctrine_ref": "doc.konoha.field",
+      "training_ref": "train.konoha.field",
+      "cohesion": 74,
+      "morale": 79,
+      "readiness": 85,
+      "location_ref": "place.konoha",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 20,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 10,
+            "rank_distribution": {
+              "genin": 10
+            },
+            "condition": {
+              "healthy": 10
+            }
+          },
+          {
+            "count": 10,
+            "rank_distribution": {
+              "genin": 10
+            },
+            "condition": {
+              "healthy": 10
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.01",
+          "troop_type": "capture_specialists",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 77,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 73,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 71
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 10,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 10,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 8
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.02",
+          "troop_type": "capture_specialists",
+          "role": "assault",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 77,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 73,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 71
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 10,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 10,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 8
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.03",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 30,
+          "rank_distribution": {
+            "chunin": 10,
+            "genin": 10,
+            "special_jonin": 10
+          },
+          "condition": {
+            "healthy": 30
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.04",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 50,
+          "rank_distribution": {
+            "chunin": 10,
+            "genin": 30,
+            "special_jonin": 10
+          },
+          "condition": {
+            "healthy": 50
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.05",
+          "troop_type": "communications",
+          "role": "communications",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.02",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 58,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.06",
+          "troop_type": "ranged_specialists",
+          "role": "ranged_control",
+          "count": 20,
+          "rank_distribution": {
+            "chunin": 10,
+            "jonin": 10
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 77,
+              "bow": 62,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 86,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 12,
+              "bow": 8,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 8,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.07",
+          "troop_type": "ranged_specialists",
+          "role": "ranged_control",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 77,
+              "bow": 62,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 86,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 12,
+              "bow": 8,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 8,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.08",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 40,
+          "rank_distribution": {
+            "chunin": 40
+          },
+          "condition": {
+            "healthy": 20,
+            "light_healing_injury": 20
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 85,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.09",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 10,
+          "rank_distribution": {
+            "support": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 93,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 20,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.10",
+          "troop_type": "sensors",
+          "role": "recon",
+          "count": 10,
+          "rank_distribution": {
+            "chunin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 57,
+              "unarmed": 67,
+              "thrown_tools": 65,
+              "bow": 54,
+              "polearm": 54,
+              "heavy_weapon": 53,
+              "ninjutsu": 78,
+              "genjutsu": 68,
+              "traps": 63,
+              "sensory": 93,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 20,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.11",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 20,
+          "rank_distribution": {
+            "genin": 10,
+            "chunin": 10
+          },
+          "condition": {
+            "healthy": 20
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 45,
+              "unarmed": 55,
+              "thrown_tools": 53,
+              "bow": 42,
+              "polearm": 42,
+              "heavy_weapon": 41,
+              "ninjutsu": 66,
+              "genjutsu": 56,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 83,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.root.399700c53c.component.12",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 10,
+          "rank_distribution": {
+            "genin": 10
+          },
+          "condition": {
+            "healthy": 10
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-konoha-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 73,
+              "endurance": 69,
+              "chakra_control": 73,
+              "chakra_output": 68,
+              "movement": 72,
+              "tactics": 68,
+              "team_coordination": 75
+            },
+            "methods": {
+              "sword": 39,
+              "unarmed": 49,
+              "thrown_tools": 47,
+              "bow": 36,
+              "polearm": 36,
+              "heavy_weapon": 35,
+              "ninjutsu": 60,
+              "genjutsu": 50,
+              "traps": 63,
+              "sensory": 73,
+              "medical": 61,
+              "sealing": 63
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "equipment_readiness_milli": 1000,
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "spread": 12,
+            "experience": 59,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            }
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 55
     }
   ]
 }

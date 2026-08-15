@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.faction.faction.root",
           "kind": "faction",
-          "resolved_through": "SE-0061-06-11T07:00:00",
-          "safe_through": "SE-0061-06-18T06:59:59",
+          "resolved_through": "SE-0061-06-18T07:00:00",
+          "safe_through": "SE-0061-06-25T06:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "faction.root",
-          "next_due": "SE-0061-06-18T07:00:00"
+          "next_due": "SE-0061-06-25T07:00:00"
         },
         "authority_kind": "faction_plan",
         "owner_ref": "state/reg/factions/faction-root.json",
@@ -24,9 +24,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.c28cd3b2671b5a2e28689c46",
-          "due_at": "SE-0061-06-18T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "event_id": "evt.causal.a7e9a4b98410977053850d46",
+          "due_at": "SE-0061-06-25T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-25.json",
           "dedupe_key": "faction.periodic_review:faction.root"
         }
       ]

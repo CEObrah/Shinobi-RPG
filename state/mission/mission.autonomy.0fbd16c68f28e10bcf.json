@@ -1,0 +1,55 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.0fbd16c68f28e10bcf",
+  "issuer_ref": "faction.zabuza_mercenary_cell",
+  "authority_ref": "canon_zabuza",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.zabuza_mercenary_cell",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "authorized_at": "SE-0061-06-18T07:00:00",
+  "starts_at": "SE-0061-06-18T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.7718be445e54985317d9",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.0fbd16c68f28e10bcf",
+    "objective_kind": "capture",
+    "subject_kind": "person",
+    "subject_ref": "support.daimyo.noboru_shimizu",
+    "subject_label": "support.daimyo.noboru_shimizu",
+    "report_place_ref": "place.water.shipping.lane",
+    "origin_place_ref": "place.water.shipping.lane",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-06-18T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Complete the contracted objective or persist failure, exposure, casualties, and unpaid/forfeited terms."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_haku",
+    "canon_zabuza"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.0fbd16c68f28e10bcf",
+      "kind": "capture",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

@@ -6,26 +6,26 @@ resolve a later override. Install this adapter after the campaign extension stac
 so the exact concrete civil-economy method records the already-loaded population
 object in the same context-local transaction slot consumed by later Academy work.
 
-The module also performs a read-only consistency probe on the completed
-production time plan. The base time validator captures its expected autonomous
-owner after-images in a closure. When preview later reports the deliberately
-bounded `autonomous_owner_after_image` token, the exact owner class is otherwise
-lost. The probe compares only those captured expected records with the already
-planned writes and raises a bounded owner-class code. It never exposes owner
-contents or arbitrary paths and never changes plan bytes.
+The module also classifies one known base-time validator mismatch without
+exposing hidden owner content or arbitrary paths. The classifier runs only when
+the existing validator has already rejected `autonomous owner after-image differs
+from plan`; it compares the validator's captured expected autonomous owners with
+the final staged overlay and substitutes a bounded owner-class diagnostic. It
+never changes planned bytes or weakens validation.
 """
 from __future__ import annotations
 
-import json
 import re
 from functools import wraps
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.academy_pipeline_transfer_ids import _SHARED_POPULATION
+from shinobi_runtime.commands.core import _BuiltPlan
 from shinobi_runtime.commands.paths import POPULATION_REGISTRY_PATH
 
 _INSTALLED = False
+_BASE_DRIFT_CODE = "advance_time_base_validation_invalid__autonomous_owner_after_image"
 
 
 def _closure_value(callable_obj: Any, name: str, seen: set[int] | None = None) -> Any:
@@ -73,28 +73,62 @@ def _owner_class(path: str, record: Mapping[str, Any]) -> str:
     return "unknown"
 
 
-def _diagnose_autonomous_owner_drift(plan: Any) -> None:
-    expected = _closure_value(getattr(plan, "validator", None), "autonomy_record_writes")
-    writes = getattr(plan, "writes", None)
-    if not isinstance(expected, Mapping) or not isinstance(writes, Mapping):
-        return
-    mismatches: list[str] = []
+def _drift_classes(raw_validator: Any, overlay: Any) -> tuple[str, ...]:
+    expected = _closure_value(raw_validator, "autonomy_record_writes")
+    if not isinstance(expected, Mapping):
+        return ()
+    mismatches: set[str] = set()
     for path, record in expected.items():
         if not isinstance(path, str) or not isinstance(record, Mapping):
             continue
-        raw = writes.get(path)
-        if not isinstance(raw, (bytes, bytearray)):
-            continue
         try:
-            actual = json.loads(bytes(raw).decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError):
+            actual = overlay.read_json(path)
+        except (FileNotFoundError, TypeError, ValueError):
             continue
         if actual != record:
-            mismatches.append(_owner_class(path, record))
-    if mismatches:
-        raise CommandRejectedError(
-            "autonomous_owner_after_image_drift__" + "__".join(sorted(set(mismatches)))
+            mismatches.add(_owner_class(path, record))
+    return tuple(sorted(mismatches))
+
+
+def _install_final_overlay_drift_classifier() -> None:
+    from shinobi_runtime.commands import campaign_runtime_planner as runtime_module
+
+    guard = runtime_module._guard_plan_validator
+    if getattr(guard, "_autonomous_owner_final_overlay_classifier", False):
+        return
+
+    @wraps(guard)
+    def guarded(plan: _BuiltPlan, code: str, *, overlay_adapter=None) -> _BuiltPlan:
+        raw_validator = plan.validator
+        wrapped_plan = guard(plan, code, overlay_adapter=overlay_adapter)
+        if code != "advance_time_base_validation_invalid":
+            return wrapped_plan
+        existing = wrapped_plan.validator
+
+        def validate(overlay: Any, manifest: Any) -> None:
+            try:
+                existing(overlay, manifest)
+            except CommandRejectedError as exc:
+                if exc.code != _BASE_DRIFT_CODE:
+                    raise
+                candidate = overlay_adapter(overlay) if overlay_adapter is not None else overlay
+                classes = _drift_classes(raw_validator, candidate)
+                if not classes:
+                    raise
+                raise CommandRejectedError(
+                    "autonomous_owner_after_image_drift__" + "__".join(classes)
+                ) from exc
+
+        return _BuiltPlan(
+            code=wrapped_plan.code,
+            affected_refs=wrapped_plan.affected_refs,
+            writes=wrapped_plan.writes,
+            result=wrapped_plan.result,
+            validator=validate,
         )
+
+    guarded._autonomous_owner_final_overlay_classifier = True  # type: ignore[attr-defined]
+    runtime_module._guard_plan_validator = guarded
 
 
 def install_production_population_owner_bridge() -> None:
@@ -132,21 +166,11 @@ def install_production_population_owner_bridge() -> None:
         settle_civil._production_population_owner_bridge = True  # type: ignore[attr-defined]
         CampaignCommandPlanner._settle_governed_civil_economies = settle_civil
 
-    advance = CampaignCommandPlanner._advance_time
-    if not getattr(advance, "_autonomous_owner_drift_probe", False):
-        @wraps(advance)
-        def advance_time(self: Any, *args: Any, **kwargs: Any):
-            plan = advance(self, *args, **kwargs)
-            _diagnose_autonomous_owner_drift(plan)
-            return plan
-
-        advance_time._autonomous_owner_drift_probe = True  # type: ignore[attr-defined]
-        CampaignCommandPlanner._advance_time = advance_time
-
+    _install_final_overlay_drift_classifier()
     _INSTALLED = True
 
 
 __all__ = [
     "install_production_population_owner_bridge",
-    "_diagnose_autonomous_owner_drift",
+    "_drift_classes",
 ]

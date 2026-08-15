@@ -1,4 +1,8 @@
-from shinobi_runtime.api.preview_validation import _schema_validation_error_code
+from shinobi_runtime.api.preview_validation import (
+    _schema_validation_error_code,
+    _template_validation_error_code,
+)
+from shinobi_runtime.store.template_validation import TemplateValidationError
 
 
 def test_schema_validation_error_code_exposes_only_schema_identity():
@@ -58,4 +62,48 @@ def test_schema_validation_error_code_classifies_missing_top_level_schema():
 def test_schema_validation_error_code_falls_back_closed():
     assert _schema_validation_error_code(ValueError("unexpected validation detail")) == (
         "preview_schema_validation_failed"
+    )
+
+
+def test_template_validation_error_code_exposes_only_schema_and_static_reason():
+    error = TemplateValidationError(
+        "staged owner has unregistered keys at /secret/path: ['hidden-value']",
+        schema_id="mission-runtime",
+        reason="unregistered_keys",
+    )
+    code = _template_validation_error_code(error)
+    assert code == (
+        "preview_template_validation_failed_mission_runtime_unregistered_keys"
+    )
+    assert "secret" not in code
+    assert "hidden" not in code
+    assert "state/" not in code
+
+
+def test_template_validation_error_code_handles_pre_schema_failure():
+    error = TemplateValidationError(
+        "staged state JSON has no structural template ID",
+        schema_id=None,
+        reason="missing_template_id",
+    )
+    assert _template_validation_error_code(error) == (
+        "preview_template_validation_failed_missing_template_id"
+    )
+
+
+def test_template_validation_error_code_rejects_unregistered_reason_detail():
+    error = TemplateValidationError(
+        "secret-value",
+        schema_id="test-owner",
+        reason="secret-reason-from-state",
+    )
+    code = _template_validation_error_code(error)
+    assert code == "preview_template_validation_failed_test_owner_unknown"
+    assert "secret" not in code
+
+
+def test_template_validation_error_code_falls_back_closed():
+    error = ValueError("staged owner has unregistered keys at /secret: ['value']")
+    assert _template_validation_error_code(error) == (
+        "preview_template_validation_failed"
     )

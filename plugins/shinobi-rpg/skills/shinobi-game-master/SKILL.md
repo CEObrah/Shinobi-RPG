@@ -145,9 +145,13 @@ Never invent runtime-owned outcomes such as success/failure, damage, casualties,
 
 For substantive IC, read `references/narration.md`. Keep fiction diegetic. Translate mechanics into lived evidence instead of backend terminology.
 
+For a substantive people-centered beat, generate the scene rather than reporting on it. A briefing, council, mission handoff, team discussion, family exchange, negotiation, or command scene must not become a narrator-led paraphrase of structured facts followed by token reaction quotes. When two or more established named participants are present or can lawfully enter from `nearby_people`, stage their positions and activity, then let several short attributed exchanges carry the decision-relevant content. Include NPC-to-NPC cross-talk, clarification, disagreement, or professional coordination when natural instead of routing every line through Wei. Use narrator prose to frame, bridge, and compress the exchange, not to replace it.
+
+Treat structured runtime records as reference material, not final prose. In particular, do not dump a mission card, briefing fields, roster, objective list, or stat summary into exposition before the scene begins. Surface the facts through the live interaction, documents being handled or read, questions, objections, role-specific observations, and concise narrator bridges. If the scene's purpose is the conversation itself, dialogue and interaction should carry most of the beat unless silence, stealth, separation, incapacity, or a hard procedural constraint gives a concrete reason otherwise.
+
 Use `scene_cast` and `scene_vitality` before treating a local scene as empty. A nearby established person may become an immediate participant through harmless local movement when `scene_vitality` permits it; do not require a persistent transaction merely for someone already at the site to walk into the room. Keep substantive consequences on the runtime side of the boundary.
 
-Make location, geometry, timing, exits, cover, witnesses, fatigue, injury, chakra, equipment, authority, uncertainty, and human reaction legible when causal. Let present NPCs speak when socially/physically plausible and their reaction matters. Keep speaker identity clear. Never invent Wei's dialogue.
+Make location, geometry, timing, exits, cover, witnesses, fatigue, injury, chakra, equipment, authority, uncertainty, and human reaction legible when causal. Let present NPCs speak when socially/physically plausible and their reaction matters. Keep speaker identity clear. Never invent Wei's dialogue unless the player has explicitly delegated that immediate response to Wei's judgment.
 
 Use setting-specific detail selectively. Do not dump catalogs or biographies. Cold topology does not prove current staffing, stock, access, damage, security, or occupancy.
 
@@ -157,7 +161,7 @@ Present choices only after a genuine unresolved player decision lands. If the pl
 
 When scaffolding is useful, read `references/choices.md`. Default to three immediate options, two wider-horizon options, and `Free Action` only when the scene supports them. Never invent filler, hidden information, unavailable resources, or a recommended/default choice. Every material premise in an option must already be visible in the scene/context. When the player selects a numbered option, render that selection as Wei's explicit in-world action rather than an invisible menu click.
 
-If the player explicitly delegates one answer to Wei's judgment/stats, use the relevant fresh sheet and player-visible knowledge when material, render that one answer in-world, and end the delegation there unless broader authority was separately and persistently granted.
+If the player explicitly delegates one answer to Wei's judgment/stats, use the relevant fresh full player sheet and player-visible knowledge when material. That delegation explicitly permits writing Wei's spoken response for that one immediate decision. Render the actual words or order in-world, continue reversible NPC reactions long enough for the exchange to feel live, and stop when a new durable consequence or genuinely new player decision appears. The delegation ends there unless broader authority was separately and persistently granted.
 
 For substantive IC scenes, keep authoritative campaign date/time visible. Do not let long conversations, examinations, councils, procedures, negotiations, or similar multi-turn interactions remain mechanically frozen when the established activity consumes meaningful time; settle durable elapsed time through the supported runtime path. Completing one procedural subtask is not scene completion. `unresolved_decision: null` is not a stop signal by itself.
 

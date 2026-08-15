@@ -1089,6 +1089,136 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.c153f16a5c781d2057c96960",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-25T09:00:00",
+        "occurred_at": "SE-0061-06-25T09:00:00",
+        "started_at": "SE-0061-06-25T09:00:00",
+        "ended_at": "SE-0061-06-25T09:00:00"
+      },
+      "host_refs": [
+        "pressure_konoha_academy_graduation"
+      ],
+      "actor_refs": [
+        "canon_choji",
+        "canon_hinata",
+        "canon_hiruzen",
+        "canon_ino",
+        "canon_kiba",
+        "canon_naruto",
+        "canon_sakura",
+        "canon_sasuke",
+        "canon_shikamaru",
+        "canon_shino"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_konoha_academy_graduation"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_choji",
+          "canon_hinata",
+          "canon_hiruzen",
+          "canon_ino",
+          "canon_kiba",
+          "canon_naruto",
+          "canon_sakura",
+          "canon_sasuke",
+          "canon_shikamaru",
+          "canon_shino"
+        ],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-25T09:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.fc0e2a0b9f95dc975369d13191717de84efe057de48b65cd7de7810fe2870b6a",
+        "receipt_refs": [
+          "receipt.gameplay.fc0e2a0b9f95dc975369d13191717de84efe057de48b65cd7de7810fe2870b6a"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.fc0e2a0b9f95dc975369",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-25T09:00:00",
+        "started_at": "SE-0061-06-25T09:00:00",
+        "ended_at": "SE-0061-06-25T09:00:00"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:item_basic_antidote:8",
+        "manufactured:item_puppet_field_kit:1",
+        "procurement:treasury.suna->economy.contractors:20000ryo",
+        "procurement:treasury.suna->economy.contractors:30000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-25T09:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.fc0e2a0b9f95dc975369d13191717de84efe057de48b65cd7de7810fe2870b6a",
+        "receipt_refs": [
+          "receipt.gameplay.fc0e2a0b9f95dc975369d13191717de84efe057de48b65cd7de7810fe2870b6a"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

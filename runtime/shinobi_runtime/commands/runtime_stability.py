@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
+from shinobi_runtime.sim.events import ScheduledEvent
 
 
 _TERMINAL_EVENT_STATUSES = frozenset(("resolved", "failed", "cancelled", "superseded"))
@@ -61,6 +62,49 @@ def _event_by_id(registry: Mapping[str, Any], event_id: str) -> Mapping[str, Any
     if len(matches) != 1:
         raise CommandRejectedError("world_event_registry_invalid")
     return matches[0]
+
+
+def _normalize_faction_review_event(event: ScheduledEvent, repository: Any) -> ScheduledEvent:
+    """Upgrade a verified legacy faction review payload without weakening ownership.
+
+    Early scheduler bootstrap rows stored ``identity`` plus ``owner_ref``.  The
+    current time reducer consumes ``faction_id`` plus ``owner_ref``.  Only copy
+    the legacy identity forward after proving that the referenced owner envelope
+    contains that exact faction.  Current canonical rows are also checked here
+    so a mismatched owner/id pair cannot slip through this compatibility layer.
+    """
+
+    if event.kind != "faction.periodic_review":
+        return event
+    payload = event.payload
+    owner_ref = payload.get("owner_ref")
+    explicit = payload.get("faction_id")
+    legacy = payload.get("identity")
+    faction_id = explicit if isinstance(explicit, str) and explicit else legacy
+    if (
+        not isinstance(owner_ref, str)
+        or not owner_ref
+        or not isinstance(faction_id, str)
+        or not faction_id
+    ):
+        return event
+    try:
+        owner = repository.read_json(owner_ref)
+    except (FileNotFoundError, TypeError, ValueError):
+        return event
+    faction = owner.get("faction") if isinstance(owner, Mapping) else None
+    if not isinstance(faction, Mapping) or faction.get("id") != faction_id:
+        raise CommandRejectedError("faction_owner_invalid")
+    if isinstance(explicit, str) and explicit:
+        return event
+    record = dict(event.to_record())
+    enriched = dict(payload)
+    enriched["faction_id"] = faction_id
+    record["payload"] = enriched
+    try:
+        return ScheduledEvent.from_record(record)
+    except (TypeError, ValueError) as exc:
+        raise CommandRejectedError("faction_owner_invalid") from exc
 
 
 class RuntimeStabilityMixin:
@@ -146,6 +190,18 @@ class RuntimeStabilityMixin:
                     person_ref, False, "health_below_operational_threshold", profile.scores
                 )
         return profile
+
+    def _load_scheduler(self, *args: Any, **kwargs: Any):
+        """Normalize verified legacy faction-review payloads at the persistence edge."""
+
+        scheduler = super()._load_scheduler(*args, **kwargs)
+        events = scheduler.queue.snapshot()
+        normalized = tuple(
+            _normalize_faction_review_event(event, self.repository) for event in events
+        )
+        if normalized != events:
+            scheduler.queue.replace(normalized)
+        return scheduler
 
     def _apply_institution_autonomy_review(self, *args: Any, **kwargs: Any):
         """Carry scheduler-provided enclosing world authority into nested events."""

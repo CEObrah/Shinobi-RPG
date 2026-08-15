@@ -20,6 +20,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
+    from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
@@ -41,13 +42,14 @@ def _install_campaign_extensions() -> None:
     install_team_checkin_handoffs()
     install_downtime_vitality()
     install_preview_validation()
-    # Install last because institution review is wrapped by several campaign
-    # extensions.  The final guard must see the complete production chain.
+    # Install final guards after every campaign wrapper has resolved its concrete
+    # production method surface.
     install_institution_review_runtime_guard()
+    install_production_population_owner_bridge()
 
 
 def create_app_from_env():
-    # Patch concrete campaign implementations before loading api.app.  Generic
+    # Patch concrete campaign implementations before loading api.app. Generic
     # base classes remain reusable for isolated unit tests.
     from shinobi_runtime.api import ooc as ooc_module
     from shinobi_runtime.api import route_discovery as route_discovery_module

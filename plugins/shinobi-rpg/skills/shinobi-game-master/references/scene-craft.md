@@ -97,6 +97,27 @@ One or two concrete details are usually enough to give the beat physical weight.
 
 Do not invent decorative weather, crowds, security patrols, village traffic, hidden observers, chakra signatures, smells, architecture, or ceremony when current context does not support them. Sparse truth is better than decorative false precision.
 
+## Time, light, weather, and environmental continuity
+
+Before a substantive scene in which conditions can matter, make a small internal environment pass from fresh player-visible authority. Check the current campaign time, place and terrain, and any exposed current lighting, visibility, precipitation, wind, temperature, ground condition, water level, smoke, dust, fire, fatigue, injury, chakra/resource condition, or mission constraint. Use only the fields and facts that actually exist; this is a continuity check, not permission to simulate missing weather.
+
+Keep distinct:
+
+- **static place or terrain:** woodland, street, river, wall, training ground, corridor, compound, room;
+- **transient environment:** rain, snow, fog, wind, heat, cold, darkness, wet ground, flood, dust, smoke;
+- **mechanical consequence:** movement, visibility, concealment, tracking, sound/scent propagation, footing, technique interaction, fatigue, or another modifier actually owned by runtime/rules;
+- **presentation consequence:** what Wei and other people can lawfully perceive or physically deal with without creating a new mechanic or clue.
+
+A wooded location does not prove rain, mud, or concealment quality. A river does not prove flood. A late clock does not by itself establish moonlight, exact darkness, sunrise/sunset, office hours, gate closure, patrol strength, or who is awake. Conversely, when current authority does establish a condition, do not silently reset it on the next turn merely because the prose moved on. Carry it forward until time, travel, shelter, a technique, or another authoritative change gives reason for it to differ.
+
+When authoritative conditions are causal, translate them into the part of the scene they actually affect: sight lines, sound, scent, tracks, footing, concealment, pursuit geometry, fire or smoke, equipment handling, travel pace, exhaustion, civilian routine, or sensory/technique behavior only when the current mechanics support that interaction. Do not let the Skill invent a rain bonus, darkness penalty, scent rule, chakra interaction, or tracking modifier simply because such a rule would feel plausible.
+
+Time of day may shape reversible human texture only within what current context safely supports. Never infer that an office is open or closed, a superior is available, a gate is barred, a market is operating, a patrol is present, or a meeting can occur solely from the clock when access, staffing, or schedule is consequential. Those remain authoritative facts.
+
+Do not assume unspecified conditions are `clear`, `dry`, `calm`, `daylight`, or otherwise favorable simply because no environment owner was exposed. If environmental state would materially change a decision but fresh context supplies no lawful current condition or mechanic, keep the uncertainty honest and do not manufacture the missing fact. Repeated environment-blind play where weather, light, ground, visibility, or seasonal conditions should materially affect missions, travel, pursuit, covert work, combat, or village routine is an `OOC IMPROVEMENT`/feature-depth signal for runtime or game-data ownership, not a reason for the GM Skill to become a shadow weather engine.
+
+Do not repeat a weather report every paragraph. Establish one or two lived effects when they matter, then preserve them as scene continuity until an authoritative change occurs.
+
 ## Dialogue should be speakable
 
 NPC speech should sound like spoken language, not policy documentation or anime exposition.
@@ -139,6 +160,8 @@ Before sending substantive IC prose, verify:
 - Present important NPCs are not mute without a reason.
 - Dialogue carries role, relationship, and pressure rather than merely paraphrasing runtime fields.
 - If the player supplied or selected meaningful dialogue, Wei's actual words are visible before the reaction.
+- Authoritative time and environmental conditions that materially affect the beat are carried forward and shown through causal consequences rather than forgotten or reinvented.
+- Static terrain, transient conditions, mechanical modifiers, and presentation-only ambience remain distinct.
 - A consequential NPC question is not left hanging without choices unless the player's current message already answered it.
 - Only decision-relevant limitations are stated.
 - The ending follows the causal scene instead of defaulting to a menu.

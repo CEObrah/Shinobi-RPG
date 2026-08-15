@@ -33,6 +33,9 @@ from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest
 
 
+_TEAM_REGISTRY_PATH = "state/team/registry.json"
+
+
 def _install_mission_assignment_request_spec() -> None:
     COMMAND_SPECS.setdefault(
         "mission_assignment_request_resolution",
@@ -51,6 +54,64 @@ class CampaignCommandPlanner(_Base):
     """Production planner with durable player mission solicitation."""
 
     COMMAND_TYPES = frozenset(COMMAND_SPECS)
+
+    def _active_exact_team_members(
+        self,
+        record_writes: Mapping[str, Mapping[str, Any]],
+    ) -> set[str]:
+        """Return members of every active exact team, honoring staged after-images.
+
+        Academy team formation still consumes this compatibility hook while the
+        newer generic team-formation path checks membership routes per candidate.
+        The exact team owners remain authority; the registry is only the bounded
+        list of active owner IDs, and staged team writes override repository
+        before-images during one transaction.
+        """
+        staged_registry = record_writes.get(_TEAM_REGISTRY_PATH)
+        if staged_registry is None:
+            try:
+                registry = self.repository.read_json(_TEAM_REGISTRY_PATH)
+            except (FileNotFoundError, ValueError) as exc:
+                raise CommandRejectedError("exact_team_registry_invalid") from exc
+        else:
+            registry = staged_registry
+        refs = registry.get("active_teams") if isinstance(registry, Mapping) else None
+        if (
+            not isinstance(refs, list)
+            or any(not isinstance(ref, str) or not ref for ref in refs)
+        ):
+            raise CommandRejectedError("exact_team_registry_invalid")
+
+        staged_by_id: Dict[str, Mapping[str, Any]] = {}
+        for record in record_writes.values():
+            if not isinstance(record, Mapping) or record.get("schema") != "exact-team":
+                continue
+            team_id = record.get("id")
+            if isinstance(team_id, str) and team_id:
+                staged_by_id[team_id] = record
+
+        members: set[str] = set()
+        for team_ref in refs:
+            team = staged_by_id.get(team_ref)
+            if team is None:
+                try:
+                    _path, team = self._exact_team(team_ref)
+                except CommandRejectedError:
+                    continue
+            if team.get("status") == "active":
+                members.update(
+                    ref for ref in team.get("member_refs", []) if isinstance(ref, str) and ref
+                )
+
+        # A team formed earlier in the same transaction may not yet appear in
+        # the staged registry projection. It is still an authoritative staged
+        # owner and therefore must reserve its members immediately.
+        for team in staged_by_id.values():
+            if team.get("status") == "active":
+                members.update(
+                    ref for ref in team.get("member_refs", []) if isinstance(ref, str) and ref
+                )
+        return members
 
     def _mission_assignment_request_resolution(
         self,

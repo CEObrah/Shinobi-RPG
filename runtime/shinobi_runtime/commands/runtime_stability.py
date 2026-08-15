@@ -17,6 +17,7 @@ _TERMINAL_EVENT_STATUSES = frozenset(("resolved", "failed", "cancelled", "supers
 _COMPACT_UNAVAILABLE = frozenset(
     ("dead", "deceased", "captured", "incapacitated", "critical", "unconscious")
 )
+_INSTITUTION_REVIEW_KIND = "institution_autonomy_reviewed"
 
 
 def _nonempty_refs(value: object) -> bool:
@@ -52,13 +53,29 @@ def _validate_new_terminal_event(event: Mapping[str, Any]) -> None:
 
 
 def _event_by_id(registry: Mapping[str, Any], event_id: str) -> Mapping[str, Any]:
+    """Resolve one newly planned semantic event from hot or pending archive state."""
+
+    matches: list[Mapping[str, Any]] = []
     events = registry.get("events")
     if not isinstance(events, list):
         raise CommandRejectedError("world_event_registry_invalid")
-    matches = [
+    matches.extend(
         event for event in events
         if isinstance(event, Mapping) and event.get("id") == event_id
-    ]
+    )
+
+    pending = registry.get("__pending_archive_writes__", {})
+    if not isinstance(pending, Mapping):
+        raise CommandRejectedError("world_event_archive_invalid")
+    for archive in pending.values():
+        rows = archive.get("events") if isinstance(archive, Mapping) else None
+        if not isinstance(rows, list):
+            raise CommandRejectedError("world_event_archive_invalid")
+        matches.extend(
+            event for event in rows
+            if isinstance(event, Mapping) and event.get("id") == event_id
+        )
+
     if len(matches) != 1:
         raise CommandRejectedError("world_event_registry_invalid")
     return matches[0]
@@ -67,10 +84,10 @@ def _event_by_id(registry: Mapping[str, Any], event_id: str) -> Mapping[str, Any
 def _normalize_faction_review_event(event: ScheduledEvent, repository: Any) -> ScheduledEvent:
     """Upgrade a verified legacy faction review payload without weakening ownership.
 
-    Early scheduler bootstrap rows stored ``identity`` plus ``owner_ref``.  The
-    current time reducer consumes ``faction_id`` plus ``owner_ref``.  Only copy
+    Early scheduler bootstrap rows stored ``identity`` plus ``owner_ref``. The
+    current time reducer consumes ``faction_id`` plus ``owner_ref``. Only copy
     the legacy identity forward after proving that the referenced owner envelope
-    contains that exact faction.  Current canonical rows are also checked here
+    contains that exact faction. Current canonical rows are also checked here
     so a mismatched owner/id pair cannot slip through this compatibility layer.
     """
 
@@ -207,19 +224,30 @@ class RuntimeStabilityMixin:
         return scheduler
 
     def _apply_institution_autonomy_review(self, *args: Any, **kwargs: Any):
-        """Carry scheduler-provided enclosing world authority into nested events."""
+        """Carry owner authority through the review and validate its finalized aggregate."""
 
         owner_path = kwargs.pop("institution_owner_ref", None)
         if owner_path is not None and (
             not isinstance(owner_path, str) or not owner_path.startswith("state/")
         ):
             raise CommandRejectedError("institution_world_owner_invalid")
+        world_events = kwargs.get("world_events")
+        if not isinstance(world_events, dict):
+            raise CommandRejectedError("world_event_registry_invalid")
         missing = object()
         previous = getattr(self, "_stability_institution_owner_path", missing)
         if owner_path is not None:
             self._stability_institution_owner_path = owner_path
         try:
-            return super()._apply_institution_autonomy_review(*args, **kwargs)
+            result = super()._apply_institution_autonomy_review(*args, **kwargs)
+            if not isinstance(result, Mapping):
+                raise CommandRejectedError("institution_autonomy_review_result_invalid")
+            event_id = result.get("event_id")
+            if isinstance(event_id, str) and event_id:
+                _validate_new_terminal_event(_event_by_id(world_events, event_id))
+            elif event_id is not None:
+                raise CommandRejectedError("institution_autonomy_review_result_invalid")
+            return result
         finally:
             if owner_path is not None:
                 if previous is missing:
@@ -250,7 +278,7 @@ class RuntimeStabilityMixin:
             if isinstance(item, str) and item
         )
         kind = kwargs.get("kind")
-        if kind == "institution_autonomy_reviewed":
+        if kind == _INSTITUTION_REVIEW_KIND:
             owner_path = getattr(self, "_stability_institution_owner_path", None)
             if isinstance(owner_path, str) and owner_path:
                 affected = tuple(sorted(set(affected + (owner_path,))))
@@ -263,7 +291,13 @@ class RuntimeStabilityMixin:
             if affected:
                 kwargs["affected_owner_refs"] = affected
         event_id = super()._append_internal_event(registry, *args, **kwargs)
-        _validate_new_terminal_event(_event_by_id(registry, event_id))
+        # The aggregate institution review is assembled in stages. Its concrete
+        # population/service/military consequences are only known after the
+        # reducer returns through the campaign extension chain, so validate it in
+        # _apply_institution_autonomy_review after final attribution/suppression.
+        # Every other terminal event remains immediately fail-closed here.
+        if kind != _INSTITUTION_REVIEW_KIND:
+            _validate_new_terminal_event(_event_by_id(registry, event_id))
         return event_id
 
     def _append_semantic_event(self, registry: dict[str, Any], *args: Any, **kwargs: Any) -> str:

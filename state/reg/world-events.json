@@ -1203,6 +1203,103 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.information_claim_created.cf430222bf93256aedbb",
+      "kind": "information_claim_created",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-14T00:01:36",
+        "started_at": "SE-0061-06-14T00:01:36",
+        "ended_at": "SE-0061-06-14T00:01:36"
+      },
+      "host_refs": [
+        "investigation.case.49594f34135defc095b3e693",
+        "mission.offer.2132adf0c1e8a6f134"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.fire.western.border"
+      ],
+      "causal_refs": [
+        "mission.offer.2132adf0c1e8a6f134",
+        "objective.2132adf0c1e8a6f134"
+      ],
+      "affected_owner_refs": [
+        "state/reg/information-deliveries.json",
+        "state/reg/information/claims/04/81.json",
+        "state/reg/information/knowledge/38d2bcc5d5806d0138df/04.json",
+        "state/reg/information/knowledge/38d2bcc5d5806d0138df/index.json",
+        "state/reg/information/knowledge/38d2bcc5d5806d0138df/subject-b2.json",
+        "state/reg/information/knowledge/459adb0256daed4f2fb5/04.json",
+        "state/reg/information/knowledge/459adb0256daed4f2fb5/index.json",
+        "state/reg/information/knowledge/459adb0256daed4f2fb5/subject-b2.json",
+        "state/reg/information/knowledge/965e3a47b81aaeb6d5b9/04.json",
+        "state/reg/information/knowledge/965e3a47b81aaeb6d5b9/index.json",
+        "state/reg/information/knowledge/965e3a47b81aaeb6d5b9/subject-b2.json",
+        "state/reg/information/knowledge/ed18d923fe2ce80e4720/04.json",
+        "state/reg/information/knowledge/ed18d923fe2ce80e4720/index.json",
+        "state/reg/information/knowledge/ed18d923fe2ce80e4720/subject-b2.json",
+        "state/reg/information/knowledge/fb780427b67634245ad3/04.json",
+        "state/reg/information/knowledge/fb780427b67634245ad3/index.json",
+        "state/reg/information/knowledge/fb780427b67634245ad3/subject-b2.json",
+        "state/reg/information/knowledge/fdb3e0b3a9e77abba1e9/04.json",
+        "state/reg/information/knowledge/fdb3e0b3a9e77abba1e9/index.json",
+        "state/reg/information/knowledge/fdb3e0b3a9e77abba1e9/subject-b2.json",
+        "state/reg/investigations.json"
+      ],
+      "material_consequence_refs": [
+        "claim.investigation.8b9b14b91a03a39bf4d48d56",
+        "investigation:investigation.case.49594f34135defc095b3e693:located"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [
+          "claim.investigation.8b9b14b91a03a39bf4d48d56"
+        ],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "investigation.case.49594f34135defc095b3e693"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-14T00:01:36"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_investigation.investigation_resolution",
+        "transaction_ref": "tx.gameplay.cf430222bf93256aedbbceadf8cffc38b218fd980e35a635b4cf5efd1147c497",
+        "receipt_refs": [
+          "receipt.gameplay.cf430222bf93256aedbbceadf8cffc38b218fd980e35a635b4cf5efd1147c497"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

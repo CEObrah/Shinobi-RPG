@@ -1,0 +1,40 @@
+{
+  "schema": "investigation-registry",
+  "owner_id": "registry.investigations",
+  "owner_type": "investigation_registry",
+  "cases": {
+    "investigation.case.49594f34135defc095b3e693": {
+      "case_ref": "investigation.case.49594f34135defc095b3e693",
+      "mission_ref": "mission.offer.2132adf0c1e8a6f134",
+      "objective_id": "objective.2132adf0c1e8a6f134",
+      "profile_ref": "investigation.cargo_transfer_discrepancy",
+      "place_ref": "place.fire.western.border",
+      "truth_key": "criminal",
+      "status": "located",
+      "created_at": "SE-0061-06-13T22:01:36",
+      "updated_at": "SE-0061-06-14T00:01:36",
+      "locate_work_units": 242,
+      "revealed_observations": [
+        {
+          "observation_ref": "cargo_handoff_scene_bounded",
+          "stage": "locate_scene",
+          "role": "team_search",
+          "text": "Black Hound bounds the discrepancy to the physical handoff point represented by the controlled cargo transfer, where the written custody chain, cargo handling evidence, witness accounts, and approach/exit lines can be examined against one another.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 950,
+          "claim_ref": "claim.investigation.8b9b14b91a03a39bf4d48d56",
+          "revealed_at": "SE-0061-06-14T00:01:36"
+        }
+      ],
+      "located_at": "SE-0061-06-14T00:01:36",
+      "investigator_refs": [
+        "pc_wei_tang",
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "canon_hayama_shirakumo"
+      ]
+    }
+  }
+}

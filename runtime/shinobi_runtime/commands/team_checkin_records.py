@@ -98,12 +98,22 @@ def _snapshot_from_event(event: Mapping[str, Any]) -> tuple[Optional[str], list[
     return label, topics[:3]
 
 
-def _legacy_snapshot(repository: Any, team_ref: str) -> tuple[str, list[str]]:
-    try:
-        team = repository.read_json(team_ref)
-    except (FileNotFoundError, ValueError) as exc:
-        raise ValueError("team_checkin_team_unavailable") from exc
-    if not isinstance(team, Mapping):
+def _legacy_snapshot(repository: Any, team_ref: str, source_event: Mapping[str, Any]) -> tuple[str, list[str]]:
+    candidates: list[str] = []
+    affected = source_event.get("affected_owner_refs")
+    if isinstance(affected, list):
+        candidates.extend(value for value in affected if isinstance(value, str) and value)
+    candidates.append(team_ref)
+    team: Optional[Mapping[str, Any]] = None
+    for path in candidates:
+        try:
+            loaded = repository.read_json(path)
+        except (FileNotFoundError, ValueError):
+            continue
+        if isinstance(loaded, Mapping) and loaded.get("id") == team_ref:
+            team = loaded
+            break
+    if team is None:
         raise ValueError("team_checkin_team_unavailable")
     team_type = team.get("team_type")
     if not isinstance(team_type, str) or not team_type:
@@ -150,7 +160,7 @@ def project_team_checkin(repository: Any, checkin_ref: str, player_id: str) -> M
     team_name, topics = _snapshot_from_event(source)
     snapshot_basis = "event_snapshot"
     if not team_name or not topics:
-        team_name, topics = _legacy_snapshot(repository, team_ref)
+        team_name, topics = _legacy_snapshot(repository, team_ref, source)
         snapshot_basis = "legacy_reconstructed"
     handling = _handling_event(repository, source_event_id, player_id)
     handling_value: Optional[str] = None
@@ -164,9 +174,8 @@ def project_team_checkin(repository: Any, checkin_ref: str, player_id: str) -> M
         material = handling.get("material_consequence_refs")
         if isinstance(material, list):
             for ref in material:
-                prefix = _HANDLING_PREFIX
-                if isinstance(ref, str) and ref.startswith(prefix):
-                    parts = ref[len(prefix):].split(":", 1)
+                if isinstance(ref, str) and ref.startswith(_HANDLING_PREFIX):
+                    parts = ref[len(_HANDLING_PREFIX):].split(":", 1)
                     if parts and parts[0]:
                         handling_value = parts[0]
                         break

@@ -28,7 +28,7 @@ from shinobi_runtime.tx.errors import (
 
 _INSTALLED = False
 _SCHEMA_FAILURE = re.compile(
-    r"^staged (?P<schema>[A-Za-z0-9._-]+) schema validation failed:"
+    r"^staged (?P<schema>[A-Za-z0-9._-]+) schema validation failed(?: at [^:]+)?:"
 )
 
 
@@ -41,7 +41,7 @@ def _schema_validation_error_code(exc: BaseException) -> str:
     """Return a bounded diagnostic code without leaking paths or record data.
 
     Schema validation errors frequently contain the exact staged path or field
-    value.  Those details are useful to a developer but must not cross the MCP
+    value. Those details are useful to a developer but must not cross the MCP
     boundary because preview can run against hidden autonomous-world owners.
     The schema identity itself is safe routing metadata and is enough to locate
     the authoritative contract during OOC development.
@@ -54,6 +54,10 @@ def _schema_validation_error_code(exc: BaseException) -> str:
             "preview_schema_validation_failed_"
             + _safe_error_token(match.group("schema"))
         )
+    if detail.startswith("staged JSON uses an unregistered schema:"):
+        return "preview_schema_validation_failed_unregistered_schema"
+    if detail.startswith("staged state JSON requires a registered top-level schema"):
+        return "preview_schema_validation_failed_missing_top_level_schema"
     if detail.startswith("unregistered top-level schema:"):
         return "preview_schema_validation_failed_unregistered_schema"
     if detail.startswith("invalid JSON in staged output"):

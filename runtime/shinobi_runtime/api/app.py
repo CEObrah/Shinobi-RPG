@@ -24,7 +24,6 @@ from shinobi_runtime.api.models import (
     CommandEnvelopeRequest,
     CommandPreviewResponse,
     CommandReceiptResponse,
-    HealthResponse,
     GameObjectResponse,
     OocAuditRequest,
     OocAuditResponse,
@@ -37,6 +36,7 @@ from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.api.route_discovery import RouteAwareCampaignOperations
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
+from shinobi_runtime.deployment_freshness import inspect_deployment_freshness
 from shinobi_runtime.people import RepositoryPersonSheetResolver
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.tx import (
@@ -210,9 +210,25 @@ def create_app(
                 headers={"WWW-Authenticate": "Bearer"},
             )
 
-    @app.get("/health", response_model=HealthResponse, operation_id="health")
-    def health() -> Mapping[str, str]:
-        return {"status": "ok"}
+    @app.get("/health", operation_id="health")
+    def health() -> Any:
+        freshness = inspect_deployment_freshness(repository.root)
+        # Preserve the existing compact local/core health contract. Railway
+        # processes additionally prove that the immutable build image covers all
+        # non-state source/config changes in the persistent campaign checkout.
+        if not freshness.production:
+            return {"status": "ok"}
+        payload = {
+            "status": "ok" if freshness.healthy else "unhealthy",
+            "deployment_freshness": freshness.status,
+            "source_revision": freshness.source_revision,
+            "checkout_revision": freshness.checkout_revision,
+            "reason": freshness.reason,
+            "non_state_delta_count": len(freshness.non_state_paths),
+        }
+        if not freshness.healthy:
+            return JSONResponse(status_code=503, content=payload)
+        return payload
 
     router = APIRouter(dependencies=[Depends(authenticate)])
 

@@ -8,6 +8,50 @@ from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.store.repository import RepositoryStore
 
 
+_TEMPLATE_REASON_PREFIXES = (
+    ("registered structural template has invalid requirements", "invalid_template_requirements"),
+    ("staged owner is missing required structural key:", "missing_required_key"),
+    ("staged owner violates structural type at", "structural_type"),
+    ("staged owner has no object contract at", "missing_object_contract"),
+    ("registered closed-object contract is invalid", "invalid_object_contract"),
+    ("staged owner has unregistered keys at", "unregistered_keys"),
+    ("registered object contract has invalid mode", "invalid_object_contract"),
+    ("staged owner has no array contract at", "missing_array_contract"),
+    ("registered array contract is invalid", "invalid_array_contract"),
+    ("registered array item types are invalid", "invalid_array_item_types"),
+    ("staged owner violates array item type at", "array_item_type"),
+)
+
+
+class TemplateValidationError(ValueError):
+    """Structural validation failure with bounded code-owned diagnostics.
+
+    ``detail`` remains the internal developer-facing error message. ``schema_id``
+    and ``reason`` are deliberately limited to routing identity and a static
+    structural classifier so callers can expose useful diagnostics without
+    leaking staged paths, owner IDs, pointers, keys, or values.
+    """
+
+    def __init__(
+        self,
+        detail: str,
+        *,
+        schema_id: str | None,
+        reason: str,
+    ) -> None:
+        super().__init__(detail)
+        self.schema_id = schema_id
+        self.reason = reason
+
+
+def _template_reason(exc: BaseException) -> str:
+    detail = str(exc)
+    for prefix, reason in _TEMPLATE_REASON_PREFIXES:
+        if detail.startswith(prefix):
+            return reason
+    return "unknown"
+
+
 def _json_type(value: Any) -> str:
     if value is None:
         return "null"
@@ -39,8 +83,8 @@ def _child_path(parent: str, key: str) -> str:
 class RegisteredTemplateValidator:
     """Enforce the repository's exact cold structural templates at runtime.
 
-    JSON Schema and domain validators remain independent layers.  Templates
-    own closed/open object shape, pointer-specific types, and array item shape;
+    JSON Schema and domain validators remain independent layers. Templates own
+    closed/open object shape, pointer-specific types, and array item shape;
     enforcing them here prevents an otherwise schema-compatible transaction
     from silently introducing an unregistered owner field.
     """
@@ -204,23 +248,44 @@ class RegisteredTemplateValidator:
             value = overlay.read_json(path)
             if not isinstance(value, Mapping):
                 if path.startswith("state/"):
-                    raise ValueError("staged state JSON must be an owner object")
+                    raise TemplateValidationError(
+                        "staged state JSON must be an owner object",
+                        schema_id=None,
+                        reason="owner_not_object",
+                    )
                 continue
             schema_id = value.get("schema")
             if not isinstance(schema_id, str):
                 if path.startswith("state/"):
-                    raise ValueError("staged state JSON has no structural template ID")
+                    raise TemplateValidationError(
+                        "staged state JSON has no structural template ID",
+                        schema_id=None,
+                        reason="missing_template_id",
+                    )
                 continue
             template = self.templates.get(schema_id)
             if template is None:
                 if path.startswith("state/"):
-                    raise ValueError(
-                        f"staged state owner has no structural template: {schema_id}"
+                    raise TemplateValidationError(
+                        f"staged state owner has no structural template: {schema_id}",
+                        schema_id=schema_id,
+                        reason="missing_template",
                     )
                 continue
             if path.startswith("state/") and self.scopes[schema_id] != "mutable_state":
-                raise ValueError("staged state owner uses a non-mutable template")
-            self._validate_document(value, template, label=path)
+                raise TemplateValidationError(
+                    "staged state owner uses a non-mutable template",
+                    schema_id=schema_id,
+                    reason="non_mutable_template",
+                )
+            try:
+                self._validate_document(value, template, label=path)
+            except ValueError as exc:
+                raise TemplateValidationError(
+                    str(exc),
+                    schema_id=schema_id,
+                    reason=_template_reason(exc),
+                ) from exc
 
 
-__all__ = ["RegisteredTemplateValidator"]
+__all__ = ["RegisteredTemplateValidator", "TemplateValidationError"]

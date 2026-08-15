@@ -9,6 +9,8 @@ from shinobi_runtime.api.ooc import (
     _bounded_files,
     _mapping,
 )
+from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
+from shinobi_runtime.deployment_freshness import inspect_deployment_freshness
 from shinobi_runtime.tx.invalidations import (
     load_transaction_invalidations,
     receipt_is_invalidated,
@@ -35,7 +37,32 @@ def _has_material_pressure_basis(pressure: Mapping[str, Any]) -> bool:
 
 
 class RepositoryOocAudit(_BaseRepositoryOocAudit):
-    """Classify repaired receipts and distinguish latent canon clocks from arcs."""
+    """Classify repairs and expose the exact production source/extension tier."""
+
+    def _audit_meta(self, report):
+        result = super()._audit_meta(report)
+        freshness = inspect_deployment_freshness(self.repository.root)
+        report.diagnostic(freshness.diagnostic())
+        if freshness.production and not freshness.healthy:
+            report.suggestion(
+                "redeploy_connected_runtime_from_current_non_state_source_before_gameplay"
+            )
+        guarded = bool(
+            getattr(
+                AutonomyCommandsMixin._apply_institution_autonomy_review,
+                "_institution_review_runtime_guard",
+                False,
+            )
+        )
+        report.diagnostic(
+            "runtime_extensions:institution_review_runtime_guard="
+            + str(guarded).lower()
+        )
+        if not guarded:
+            report.suggestion(
+                "load_final_institution_review_runtime_guard_before_time_advancement"
+            )
+        return result
 
     def _audit_pressures(self, report, world_time, scheduler_hosts) -> None:
         super()._audit_pressures(report, world_time, scheduler_hosts)

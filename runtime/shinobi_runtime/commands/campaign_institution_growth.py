@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+from collections.abc import Sequence
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
@@ -164,7 +165,8 @@ class CampaignCommandPlanner(_Base):
         )
         raw_scopes = command.payload.get("scope_refs")
         if (
-            not isinstance(raw_scopes, list)
+            not isinstance(raw_scopes, Sequence)
+            or isinstance(raw_scopes, (str, bytes, bytearray))
             or not raw_scopes
             or len(raw_scopes) > 16
             or any(not isinstance(value, str) or not value for value in raw_scopes)

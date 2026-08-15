@@ -411,6 +411,7 @@ class CampaignCommandPlanner(_Base):
             recipe_ref, recipe = self._manufacturing_recipe(recipes, schedule.get("project_type"))
             place_ref = schedule.get("subject_ref")
             institution_ref = schedule.get("institution_ref")
+            authority_ref = schedule.get("authority_ref")
             stock_ref = schedule.get("stock_ref")
             funding_holder_ref = schedule.get("funding_holder_ref")
             batch_cost = schedule.get("currency_cost_ryo")
@@ -419,6 +420,7 @@ class CampaignCommandPlanner(_Base):
             if (
                 not isinstance(place_ref, str)
                 or not isinstance(institution_ref, str)
+                or not isinstance(authority_ref, str)
                 or not isinstance(stock_ref, str)
                 or not isinstance(funding_holder_ref, str)
                 or isinstance(batch_cost, bool)
@@ -491,8 +493,8 @@ class CampaignCommandPlanner(_Base):
 
             if stock_ref not in stock_cache:
                 stock_path, repository_stock, stock_owner = self._stock_record(stock_ref)
-                if stock_owner != institution_ref:
-                    raise CommandRejectedError("institution_manufacturing_stock_not_owned")
+                if stock_owner != institution_ref and not self._inventory_holder_authorized(authority_ref, stock_owner):
+                    raise CommandRejectedError("institution_manufacturing_stock_not_authorized")
                 planned_stock = _plan_json(base, self.repository, stock_path)
                 stock = copy.deepcopy(planned_stock) if isinstance(planned_stock, dict) else None
                 if not isinstance(stock, dict):

@@ -2,32 +2,5 @@
   "schema": "causal-scheduler-host-shard",
   "bucket": "6c",
   "authority": true,
-  "hosts": {
-    "host.mission.offer.2132adf0c1e8a6f134": {
-      "host": {
-        "state": {
-          "host_id": "host.mission.offer.2132adf0c1e8a6f134",
-          "kind": "mission",
-          "resolved_through": "SE-0061-06-16T16:03:12",
-          "safe_through": "SE-0061-06-18T06:59:59",
-          "handler_ref": "causal.scheduler",
-          "rng_namespace": "mission.offer.2132adf0c1e8a6f134",
-          "next_due": "SE-0061-06-18T07:00:00"
-        },
-        "authority_kind": "mission",
-        "owner_ref": "state/mission/mission.offer.2132adf0c1e8a6f134.json",
-        "metadata": {
-          "mission_id": "mission.offer.2132adf0c1e8a6f134"
-        }
-      },
-      "event_routes": [
-        {
-          "event_id": "evt.causal.478b1a42e8d385311545f850",
-          "due_at": "SE-0061-06-18T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
-          "dedupe_key": "mission.boundary:mission.offer.2132adf0c1e8a6f134"
-        }
-      ]
-    }
-  }
+  "hosts": {}
 }

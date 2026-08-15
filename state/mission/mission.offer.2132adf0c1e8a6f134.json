@@ -12,7 +12,7 @@
   "deadline_at": "SE-0061-06-18T07:00:00",
   "next_due_at": null,
   "operation_ref": "team.blackhound",
-  "closed_at": null,
+  "closed_at": "SE-0061-06-16T16:03:12",
   "briefing": {
     "briefing_id": "briefing.offer.2132adf0c1e8a6f134",
     "objective_kind": "investigate",
@@ -33,7 +33,7 @@
     "depart_by": "SE-0061-06-11T13:00:00",
     "completion_condition": "Establish a defensible account of the discrepancy and return the preserved evidence and findings to the Mission Office."
   },
-  "state": "resolving",
+  "state": "succeeded",
   "participant_refs": [
     "canon_ensui_nara",
     "canon_hana_inuzuka",
@@ -128,5 +128,18 @@
     }
   ],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.offer.2132adf0c1e8a6f134",
+    "outcome": "succeeded",
+    "settlement_token": "settle.8a5aecec8e643875057ff5e8d664c50bd2fa25b84fdc51c35cf4a61c75ee92ef",
+    "reward_term_ids": [
+      "term.offer.2132adf0c1e8a6f134.reward.canon.ensui.nara",
+      "term.offer.2132adf0c1e8a6f134.reward.canon.hana.inuzuka",
+      "term.offer.2132adf0c1e8a6f134.reward.canon.hayama.shirakumo",
+      "term.offer.2132adf0c1e8a6f134.reward.canon.hoheto.hyuga",
+      "term.offer.2132adf0c1e8a6f134.reward.canon.tekuno.kanden",
+      "term.offer.2132adf0c1e8a6f134.reward.pc.wei.tang"
+    ],
+    "cost_term_ids": []
+  }
 }

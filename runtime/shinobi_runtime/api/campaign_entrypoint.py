@@ -19,6 +19,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
+    from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
@@ -40,6 +41,9 @@ def _install_campaign_extensions() -> None:
     install_team_checkin_handoffs()
     install_downtime_vitality()
     install_preview_validation()
+    # Install last because institution review is wrapped by several campaign
+    # extensions.  The final guard must see the complete production chain.
+    install_institution_review_runtime_guard()
 
 
 def create_app_from_env():

@@ -1,7 +1,9 @@
 from contextvars import copy_context
 
+import copy
 import pytest
 
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands import academy_pipeline_transfer_ids as fix
 from shinobi_runtime.commands.domains import autonomy as autonomy_module
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
@@ -13,6 +15,63 @@ def _review_event(*, refs=None):
         "id": "event.review.test",
         "kind": "institution_autonomy_reviewed",
         "material_consequence_refs": list(refs or []),
+    }
+
+
+def _capability_row(count: int) -> dict:
+    return {
+        "fundamentals": {
+            "combat": 64,
+            "awareness": 68,
+            "endurance": 64,
+            "chakra_control": 68,
+            "chakra_output": 63,
+            "movement": 67,
+            "tactics": 63,
+            "team_coordination": 70,
+        },
+        "methods": {
+            "sword": 57,
+            "unarmed": 67,
+            "thrown_tools": 65,
+            "bow": 54,
+            "polearm": 54,
+            "heavy_weapon": 53,
+            "ninjutsu": 78,
+            "genjutsu": 68,
+            "traps": 63,
+            "sensory": 73,
+            "medical": 61,
+            "sealing": 63,
+        },
+        "experience": 58,
+        "count": count,
+        "spread": 17,
+    }
+
+
+def _force(*, available: int, reserve_count: int) -> dict:
+    return {
+        "schema": "force",
+        "id": "force.konoha.shinobi",
+        "availability": {"training_or_instruction": available},
+        "reserve_capability": {
+            "training_or_instruction": _capability_row(reserve_count),
+        },
+    }
+
+
+def _pipeline_result(graduates: int) -> dict:
+    return {
+        "event_id": None,
+        "population_pipeline": {
+            "graduates": graduates,
+            "force_ref": "force.konoha.shinobi",
+            "intake_transfer_id": None,
+            "graduation_transfer_id": (
+                "autonomy.graduation.test" if graduates else None
+            ),
+        },
     }
 
 
@@ -46,6 +105,56 @@ def test_suffix_proxy_is_context_local() -> None:
 
     with pytest.raises(RuntimeError, match="academy_pipeline_transfer_suffix_unbound"):
         format(proxy)
+
+
+def test_academy_graduates_extend_matching_training_reserve_capability() -> None:
+    force = _force(available=1448, reserve_count=1440)
+    before = copy.deepcopy(force["reserve_capability"]["training_or_instruction"])
+
+    fix.repair_academy_force_reserve_capability(
+        AutonomyCommandsMixin(),
+        _pipeline_result(8),
+        {"state/force/konoha-shinobi.json": force},
+    )
+
+    row = force["reserve_capability"]["training_or_instruction"]
+    assert row["count"] == 1448
+    assert row["fundamentals"] == before["fundamentals"]
+    assert row["methods"] == before["methods"]
+    assert row["experience"] == before["experience"]
+    assert row["spread"] == before["spread"]
+
+
+def test_academy_reserve_repair_is_forward_compatible_when_base_is_already_synced() -> None:
+    force = _force(available=1448, reserve_count=1448)
+    before = copy.deepcopy(force)
+
+    fix.repair_academy_force_reserve_capability(
+        AutonomyCommandsMixin(),
+        _pipeline_result(8),
+        {"state/force/konoha-shinobi.json": force},
+    )
+
+    assert force == before
+
+
+def test_academy_reserve_repair_refuses_unrelated_force_drift() -> None:
+    force = _force(available=1450, reserve_count=1440)
+
+    with pytest.raises(CommandRejectedError, match="force_reserve_capability_drift"):
+        fix.repair_academy_force_reserve_capability(
+            AutonomyCommandsMixin(),
+            _pipeline_result(8),
+            {"state/force/konoha-shinobi.json": force},
+        )
+
+
+def test_zero_graduates_do_not_require_or_mutate_force_staging() -> None:
+    fix.repair_academy_force_reserve_capability(
+        AutonomyCommandsMixin(),
+        _pipeline_result(0),
+        {},
+    )
 
 
 def test_academy_review_event_gains_transfer_material_consequences() -> None:
@@ -120,7 +229,7 @@ def test_material_free_review_suppresses_only_invalid_aggregate_event() -> None:
     assert world_events["events"] == [detailed]
 
 
-def test_campaign_installer_binds_suffix_and_review_integrity_before_wrappers() -> None:
+def test_campaign_installer_binds_all_academy_compatibility_before_wrappers() -> None:
     fix.install_academy_pipeline_transfer_ids()
     assert isinstance(autonomy_module.suffix, fix._SuffixProxy)
     assert getattr(
@@ -133,12 +242,18 @@ def test_campaign_installer_binds_suffix_and_review_integrity_before_wrappers() 
         "_institution_review_event_integrity",
         False,
     ) is True
+    assert getattr(
+        AutonomyCommandsMixin._apply_institution_autonomy_review,
+        "_academy_force_reserve_capability",
+        False,
+    ) is True
 
 
 def test_base_academy_pipeline_still_needs_compatibility_wrapper() -> None:
     # This sentinel keeps the compatibility layer honest. Once the base reducer
-    # directly constructs transfer IDs and attributes/suppresses its aggregate
-    # institution review event, remove this module and this test together.
+    # directly constructs transfer IDs, conserves every force capability
+    # representation, and attributes/suppresses its aggregate institution review
+    # event, remove this module and this test together.
     import inspect
 
     base = AutonomyCommandsMixin._apply_institution_autonomy_review
@@ -147,4 +262,6 @@ def test_base_academy_pipeline_still_needs_compatibility_wrapper() -> None:
     source = inspect.getsource(base)
     assert 'transfer_id=f"autonomy.intake.{suffix}"' in source
     assert 'transfer_id=f"autonomy.graduation.{suffix}"' in source
+    assert 'availability["training_or_instruction"] = int(availability.get("training_or_instruction", 0)) + graduation' in source
+    assert 'training_pool["count"] += graduation' in source
     assert 'kind="institution_autonomy_reviewed"' in source

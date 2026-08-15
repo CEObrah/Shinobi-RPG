@@ -1,14 +1,14 @@
 """Production preview validation parity with transaction execution.
 
-A READY preview is an attestation used by the MCP write boundary.  It must not
+A READY preview is an attestation used by the MCP write boundary. It must not
 mean only that command planning succeeded while deterministic schema, template,
-or domain validation is deferred until execute.  This installer wraps the
+or domain validation is deferred until execute. This installer wraps the
 production operations class so every READY preview dry-runs the exact planned
 manifest through the same after-image validators used before persistence.
 
 The dry run is read-only: it constructs a TransactionManifest and StagedOverlay
 but never prepares WAL state, mutates campaign owners, stages Git, or writes a
-receipt.  Execution still repeats validation under its transaction lock, so a
+receipt. Execution still repeats validation under its transaction lock, so a
 real state change between preview and execution continues to fail safely.
 """
 from __future__ import annotations
@@ -30,6 +30,9 @@ _INSTALLED = False
 _SCHEMA_FAILURE = re.compile(
     r"^staged (?P<schema>[A-Za-z0-9._-]+) schema validation failed(?: at [^:]+)?:"
 )
+_UNREGISTERED_SCHEMA = re.compile(
+    r"^(?:staged JSON uses an unregistered schema|unregistered top-level schema):\s*['\"]?(?P<schema>[A-Za-z0-9._-]+)['\"]?$"
+)
 
 
 def _safe_error_token(value: str) -> str:
@@ -43,8 +46,8 @@ def _schema_validation_error_code(exc: BaseException) -> str:
     Schema validation errors frequently contain the exact staged path or field
     value. Those details are useful to a developer but must not cross the MCP
     boundary because preview can run against hidden autonomous-world owners.
-    The schema identity itself is safe routing metadata and is enough to locate
-    the authoritative contract during OOC development.
+    Top-level schema identity is code-owned routing metadata, so it is safe to
+    expose as a bounded token even when the schema is not yet registered.
     """
 
     detail = str(exc)
@@ -54,12 +57,14 @@ def _schema_validation_error_code(exc: BaseException) -> str:
             "preview_schema_validation_failed_"
             + _safe_error_token(match.group("schema"))
         )
-    if detail.startswith("staged JSON uses an unregistered schema:"):
-        return "preview_schema_validation_failed_unregistered_schema"
+    match = _UNREGISTERED_SCHEMA.match(detail)
+    if match is not None:
+        return (
+            "preview_schema_validation_failed_unregistered_"
+            + _safe_error_token(match.group("schema"))
+        )
     if detail.startswith("staged state JSON requires a registered top-level schema"):
         return "preview_schema_validation_failed_missing_top_level_schema"
-    if detail.startswith("unregistered top-level schema:"):
-        return "preview_schema_validation_failed_unregistered_schema"
     if detail.startswith("invalid JSON in staged output"):
         return "preview_schema_validation_failed_invalid_json"
     if "runtime-owned path" in detail and "schema" in detail:

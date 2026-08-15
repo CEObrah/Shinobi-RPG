@@ -21,6 +21,7 @@ from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.commands.production_population_owner_bridge import (
     _closure_value,
     _owner_class,
+    _traceback_owner_class,
 )
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.store.template_validation import TemplateValidationError
@@ -113,6 +114,21 @@ def _autonomy_drift_code(plan: Any, overlay: Any) -> str | None:
     return "autonomous_owner_after_image_drift__" + "__".join(sorted(classes))
 
 
+def _autonomy_drift_fallback(exc: BaseException) -> str | None:
+    """Classify only the owner type already present in the rejected validator frame.
+
+    Some composed production validators do not retain the base time reducer's
+    ``autonomy_record_writes`` mapping as a directly discoverable closure value.
+    The original ValueError is still preserved as the CommandRejectedError cause,
+    so the validator frame can safely expose a bounded schema/path class without
+    exposing the hidden owner ID, path, or record contents.
+    """
+    owner_class = _traceback_owner_class(exc)
+    if owner_class is None:
+        return None
+    return "autonomous_owner_after_image_drift__" + owner_class
+
+
 def _validate_ready_plan(operations: Any, command: Any) -> None:
     """Dry-run the exact production plan through execution-equivalent validators."""
     with operations._locked():
@@ -149,6 +165,8 @@ def _validate_ready_plan(operations: Any, command: Any) -> None:
         except CommandRejectedError as exc:
             if exc.code == _BASE_AUTONOMY_DRIFT:
                 diagnostic = _autonomy_drift_code(plan, overlay)
+                if diagnostic is None:
+                    diagnostic = _autonomy_drift_fallback(exc)
                 if diagnostic is not None:
                     raise OperationError(422, diagnostic) from exc
             raise OperationError(422, exc.code) from exc
@@ -198,4 +216,5 @@ __all__ = [
     "_validate_ready_plan",
     "_schema_validation_error_code",
     "_template_validation_error_code",
+    "_autonomy_drift_fallback",
 ]

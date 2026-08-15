@@ -1,6 +1,6 @@
 {
   "schema": "choice-presentation",
-  "when_to_offer": "only at a genuine unresolved player decision when the player has not already declared an action",
+  "when_to_offer": "at a genuine unresolved player decision or a meaningful player-facing event handoff with multiple materially distinct lawful responses, when the player has not already declared the next action",
   "suggested_choice_count": {
     "minimum": 2,
     "maximum": 5,
@@ -34,9 +34,11 @@
   "information_rule": "Choices may state predictable commitments and player-known tradeoffs, but may not promise success, imply a hidden best answer, reveal unseen opposition, leak unknown facts, or encode repository-only information.",
   "premise_parity_rule": "Every material premise used by a suggested choice must already exist in fresh player-visible context or the immediately preceding narration; choice text cannot create hidden terrain, actors, resources, restrictions, or opportunities.",
   "declared_intent_rule": "If the player already declared a clear action, resolve it instead of presenting a menu. If one consequential clarification is required, ask only for that clarification.",
+  "meaningful_event_handoff_rule": "After fully presenting a delivered report, briefing, interruption, reveal, arrival consequence, or other meaningful player-facing event, offer grounded response options when two or more materially distinct lawful next actions exist even if scene.decision_required is null. Do not manufacture options when the event has only one obvious procedural continuation or the player already declared that continuation.",
+  "report_handoff_rule": "A report is not a choice by itself. Present its player-readable content first. If the content creates multiple materially distinct responses, show choices at that resulting fork; if the player already said to open, read, answer, or act on it, carry that declared action through before offering a new menu.",
   "selection_render_rule": "An unambiguous numbered/menu selection becomes an explicit in-world Wei action or line of dialogue within the exact scope of the selected option; never resolve it as an invisible interface click.",
   "bounded_delegation_rule": "Explicit permission to use Wei judgment/stats authorizes one bounded answer only; use relevant fresh sheet and player-visible knowledge when material, render the answer, and do not carry the delegation forward.",
   "menu_rule": "Choices are concise, nonbinding suggestions with no default or recommended option unless the player explicitly asks for advice. Any legal natural-language free-form action remains allowed.",
   "storage_rule": "Never cache generated choice menus in scene state.",
-  "handoff_rule": "Classify endpoints as new decision, obvious procedural continuation, standing wait/declared continuation, unavailable durable stage, or genuine completion. A null unresolved decision does not by itself end the scene."
+  "handoff_rule": "Classify endpoints as new decision, meaningful player-facing event handoff, obvious procedural continuation, standing wait/declared continuation, unavailable durable stage, or genuine completion. A null unresolved decision does not by itself end the scene or suppress useful choice scaffolding after a meaningful event."
 }

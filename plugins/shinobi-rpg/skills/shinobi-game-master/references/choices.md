@@ -7,17 +7,18 @@
 3. Adapt instead of filling
 4. Do not interrupt declared intent
 5. Never strand an unresolved decision
-6. Arrival and pending-response handoffs
-7. Ground every suggestion
-8. Preserve premise parity
-9. Render selected choices in-world
-10. Bounded judgment delegation
-11. Do not re-offer completed setup
-12. Keep implementation state out of IC choices
-13. Distinguish world availability from implementation blockage
-14. Show time when useful
-15. Keep options concise
-16. Format
+6. Meaningful event handoffs
+7. Arrival and pending-response handoffs
+8. Ground every suggestion
+9. Preserve premise parity
+10. Render selected choices in-world
+11. Bounded judgment delegation
+12. Do not re-offer completed setup
+13. Keep implementation state out of IC choices
+14. Distinguish world availability from implementation blockage
+15. Show time when useful
+16. Keep options concise
+17. Format
 
 Use choices as an agency aid, never as a command menu or limit on what Wei may attempt.
 
@@ -70,7 +71,7 @@ If a new consequential choice arises during that sequence, stop at the new decis
 
 Before ending an IC response, check fresh context and the narrated endpoint.
 
-If the runtime says `decision_required` or the prose has landed on a genuine unresolved player-facing choice, and the current player message has not already answered that next choice, provide decision scaffolding before ending.
+If the runtime says `decision_required`, the prose has landed on a genuine unresolved player-facing choice, or a meaningful player-facing event has been fully presented and leaves multiple materially distinct lawful responses, and the current player message has not already answered that next choice, provide decision scaffolding before ending.
 
 Do not end with only:
 
@@ -80,6 +81,18 @@ Do not end with only:
 - an abstract statement that the runtime is waiting for input.
 
 If six meaningful choices exist, show six. If fewer exist, show the meaningful set plus Free Action. The player may always ignore the menu and act naturally.
+
+## Meaningful event handoffs
+
+`scene.decision_required` is authoritative when it names an explicit protected decision, but a null value does not mean that no useful player-facing fork exists. Reports, briefings, interruptions, reveals, completed arrivals, newly delivered information, institutional responses, and other meaningful events may create a genuine decision surface through their content.
+
+Present the event first. Then judge the endpoint from the facts Wei actually has. If two or more materially distinct lawful next actions exist, normally provide grounded choices even when `decision_required` is null. Do not wait for a backend flag to state what the fiction has already made clear.
+
+A delivered report is not itself a menu. Read or stage the player-readable report content before offering responses. Useful responses may include acting on the report, seeking clarification, involving relevant teammates or superiors, preserving the current plan, or deliberately deferring action when those are genuinely distinct and lawful. Do not create response options from facts the report did not disclose.
+
+If the player already declared the immediate handling of the event, such as `open the seal`, `read it`, `answer him`, or `go inside`, carry that action through first. Only show a new menu after the declared action has resolved and a new fork actually exists.
+
+If the event has only one obvious procedural continuation, continue it instead of manufacturing a menu. If the event merely reports something with no current decision, a concise lived beat may be enough.
 
 ## Arrival and pending-response handoffs
 

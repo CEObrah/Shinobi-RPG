@@ -1,0 +1,3761 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.iron.samurai",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.iron.samurai",
+  "formations": [
+    {
+      "id": "formation.iron.samurai.1",
+      "name": "Iron Northern Pass Garrison, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 75,
+      "morale": 67,
+      "readiness": 85,
+      "location_ref": "place.iron.northern.pass",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.1.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.1.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.1.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 80
+    },
+    {
+      "id": "formation.iron.samurai.2",
+      "name": "Iron Diplomatic Guard, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 66,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.2.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.2.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.2.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 76
+    },
+    {
+      "id": "formation.iron.samurai.3",
+      "name": "Iron Western Pass Garrison, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 66,
+      "morale": 68,
+      "readiness": 78,
+      "location_ref": "place.iron.western.pass",
+      "activity_summary": "western pass defense readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.3.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.3.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.3.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.3.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.3.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 72
+    },
+    {
+      "id": "formation.iron.samurai.4",
+      "name": "Iron Capital Guard, First Armored Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 68,
+      "morale": 69,
+      "readiness": 78,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "capital defense readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.4.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.4.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.4.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.4.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.4.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "hold",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 73
+    },
+    {
+      "id": "formation.iron.samurai.5",
+      "name": "Iron Treaty Escort Command, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 69,
+      "morale": 64,
+      "readiness": 80,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "treaty escort readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.5.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.5.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.5.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.5.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.5.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 74
+    },
+    {
+      "id": "formation.iron.samurai.6",
+      "name": "Iron Mountain Reserve, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 69,
+      "morale": 65,
+      "readiness": 85,
+      "location_ref": "place.iron.mountain.reserve",
+      "activity_summary": "mountain reserve readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.6.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.6.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.6.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.6.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.6.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    },
+    {
+      "id": "formation.iron.samurai.7",
+      "name": "Iron Longbow Corps, First Support Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 67,
+      "morale": 73,
+      "readiness": 78,
+      "location_ref": "place.iron.northern.pass",
+      "activity_summary": "pass archery support readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "samurai": 2
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.7.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 16
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.7.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 1,
+            "senior_samurai": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.7.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.7.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.7.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 1,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 72
+    },
+    {
+      "id": "formation.iron.samurai.8",
+      "name": "Iron Armored Response Command, First Sword Element",
+      "force_ref": "force.iron.samurai",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.iron.field",
+      "training_ref": "train.iron.field",
+      "cohesion": 68,
+      "morale": 72,
+      "readiness": 86,
+      "location_ref": "place.iron.capital",
+      "activity_summary": "armored response readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "senior_samurai": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.iron.samurai.8.assault",
+          "troop_type": "armored_swordsmen",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "samurai": 13,
+            "senior_samurai": 2
+          },
+          "condition": {
+            "healthy": 14,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 102,
+              "unarmed": 50,
+              "thrown_tools": 48,
+              "bow": 52,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 12,
+              "unarmed": -8,
+              "thrown_tools": -8,
+              "bow": -10,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.8.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "samurai": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-field-ready.json",
+            "fundamentals": {
+              "combat": 74,
+              "awareness": 72,
+              "endurance": 82,
+              "chakra_control": 62,
+              "chakra_output": 65,
+              "movement": 71,
+              "tactics": 72,
+              "team_coordination": 84
+            },
+            "methods": {
+              "sword": 80,
+              "unarmed": 50,
+              "thrown_tools": 56,
+              "bow": 80,
+              "polearm": 64,
+              "heavy_weapon": 64,
+              "ninjutsu": 42,
+              "genjutsu": 27,
+              "traps": 60,
+              "sensory": 72,
+              "medical": 40,
+              "sealing": 42
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 67,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -8,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.8.recon",
+          "troop_type": "couriers",
+          "role": "recon",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-intelligence-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 78,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 75,
+              "unarmed": 43,
+              "thrown_tools": 41,
+              "bow": 47,
+              "polearm": 49,
+              "heavy_weapon": 49,
+              "ninjutsu": 29,
+              "genjutsu": 12,
+              "traps": 63,
+              "sensory": 79,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 12,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -10,
+              "unarmed": -10,
+              "thrown_tools": -10,
+              "bow": -10,
+              "polearm": -10,
+              "heavy_weapon": -10,
+              "ninjutsu": -10,
+              "genjutsu": -10,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.8.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "samurai": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-medical-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 73,
+              "unarmed": 41,
+              "thrown_tools": 39,
+              "bow": 45,
+              "polearm": 47,
+              "heavy_weapon": 47,
+              "ninjutsu": 19,
+              "genjutsu": 10,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 82,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.iron.samurai.8.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "samurai": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-iron-samurai-logistics-support.json",
+            "fundamentals": {
+              "combat": 69,
+              "awareness": 67,
+              "endurance": 77,
+              "chakra_control": 57,
+              "chakra_output": 60,
+              "movement": 66,
+              "tactics": 67,
+              "team_coordination": 79
+            },
+            "methods": {
+              "sword": 53,
+              "unarmed": 21,
+              "thrown_tools": 19,
+              "bow": 25,
+              "polearm": 27,
+              "heavy_weapon": 27,
+              "ninjutsu": 7,
+              "genjutsu": 0,
+              "traps": 55,
+              "sensory": 67,
+              "medical": 35,
+              "sealing": 37
+            },
+            "equipment_methods": [
+              "bow",
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 65,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    }
+  ]
+}

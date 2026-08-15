@@ -1,0 +1,202 @@
+{
+  "schema": "file-template",
+  "template_id": "template.command-assignments",
+  "target_schema": "command-assignments",
+  "source_schema": "game/schemas/command-assignments.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/org"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "records",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "assignment_kinds",
+        "id",
+        "records",
+        "required_fields",
+        "return_rule",
+        "rule",
+        "schema"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "records",
+        "rule",
+        "return_rule",
+        "assignment_kinds",
+        "required_fields"
+      ]
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "source_owner",
+        "assignment_kind",
+        "receiving_commander",
+        "authority_limits",
+        "start",
+        "return_condition",
+        "return_policy_ref",
+        "raw_allocations",
+        "allocated_count",
+        "source_availability_class",
+        "status",
+        "grantor_ref",
+        "formation_refs",
+        "operational_attachment_ref",
+        "expires_at"
+      ],
+      "canonical_order": [
+        "id",
+        "source_owner",
+        "assignment_kind",
+        "receiving_commander",
+        "grantor_ref",
+        "authority_limits",
+        "start",
+        "expires_at",
+        "return_condition",
+        "return_policy_ref",
+        "formation_refs",
+        "raw_allocations",
+        "allocated_count",
+        "source_availability_class",
+        "operational_attachment_ref",
+        "status"
+      ]
+    },
+    "/records/*/authority_limits": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/assignment_kinds": [
+      "array"
+    ],
+    "/assignment_kinds/*": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/records": [
+      "array"
+    ],
+    "/required_fields": [
+      "array"
+    ],
+    "/required_fields/*": [
+      "string"
+    ],
+    "/return_rule": [
+      "string"
+    ],
+    "/rule": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/id": [
+      "string"
+    ],
+    "/records/*/source_owner": [
+      "string"
+    ],
+    "/records/*/assignment_kind": [
+      "string"
+    ],
+    "/records/*/receiving_commander": [
+      "string"
+    ],
+    "/records/*/authority_limits": [
+      "object"
+    ],
+    "/records/*/start": [
+      "string"
+    ],
+    "/records/*/return_policy_ref": [
+      "string"
+    ],
+    "/records/*/raw_allocations": [
+      "array"
+    ],
+    "/records/*/allocated_count": [
+      "integer"
+    ],
+    "/records/*/source_availability_class": [
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/formation_refs": [
+      "array"
+    ],
+    "/records/*/formation_refs/*": [
+      "string"
+    ],
+    "/records/*/grantor_ref": [
+      "string"
+    ],
+    "/records/*/operational_attachment_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/expires_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/raw_allocations/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/assignment_kinds": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/required_fields": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/records/*/raw_allocations": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/formation_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

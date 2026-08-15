@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Persistent typed living-world operation",
+  "type": "object",
+  "required": [
+    "schema",
+    "operation_id",
+    "domain",
+    "operation_kind",
+    "owner_ref",
+    "authority_ref",
+    "opened_at",
+    "next_due_at",
+    "closed_at",
+    "status",
+    "archetype_ref",
+    "subject_kind",
+    "subject_ref",
+    "client_ref",
+    "place_refs",
+    "route_refs",
+    "opposition_refs",
+    "resource_refs",
+    "mission_refs",
+    "project_refs",
+    "case_refs",
+    "evidence_refs",
+    "claim_refs",
+    "delivery_refs",
+    "report_recipient_refs",
+    "progress_milli",
+    "success_condition",
+    "failure_condition",
+    "classification",
+    "result_refs",
+    "team_refs",
+    "participant_refs",
+    "blocked_reason"
+  ],
+  "properties": {
+    "schema": {
+      "const": "world-operation"
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^operation\\.[a-z0-9][a-z0-9._:-]*$"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "operation_kind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "owner_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "opened_at": {
+      "type": "string"
+    },
+    "next_due_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "closed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "active",
+        "blocked",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "archetype_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    },
+    "subject_kind": {
+      "enum": [
+        "person",
+        "force",
+        "formation",
+        "place",
+        "route",
+        "asset",
+        "information",
+        "institution",
+        "faction",
+        "population",
+        "project",
+        "case",
+        "none"
+      ]
+    },
+    "subject_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    },
+    "client_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    },
+    "place_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "route_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "opposition_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "resource_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "mission_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^mission\\."
+      },
+      "uniqueItems": true
+    },
+    "project_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "case_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "claim_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^claim\\."
+      },
+      "uniqueItems": true
+    },
+    "delivery_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^delivery\\."
+      },
+      "uniqueItems": true
+    },
+    "report_recipient_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "progress_milli": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "success_condition": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "failure_condition": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "restricted",
+        "secret"
+      ]
+    },
+    "result_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "team_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^team\\."
+      },
+      "uniqueItems": true
+    },
+    "participant_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 256
+      },
+      "uniqueItems": true
+    },
+    "blocked_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 256
+    }
+  },
+  "additionalProperties": false
+}

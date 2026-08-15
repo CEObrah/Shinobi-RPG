@@ -1,0 +1,222 @@
+{
+  "schema": "file-template",
+  "template_id": "template.causal-scheduler-host-shard",
+  "target_schema": "causal-scheduler-host-shard",
+  "source_schema": "game/schemas/causal-scheduler-host-shard.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/time/causal-scheduler/hosts"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "bucket",
+    "hosts",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "bucket",
+        "authority",
+        "hosts"
+      ],
+      "canonical_order": [
+        "schema",
+        "bucket",
+        "authority",
+        "hosts"
+      ]
+    },
+    "/hosts": {
+      "mode": "open_map"
+    },
+    "/hosts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "host",
+        "event_routes"
+      ],
+      "canonical_order": [
+        "host",
+        "event_routes"
+      ]
+    },
+    "/hosts/*/host": {
+      "mode": "closed",
+      "allowed_keys": [
+        "state",
+        "authority_kind",
+        "owner_ref",
+        "metadata"
+      ],
+      "canonical_order": [
+        "state",
+        "authority_kind",
+        "owner_ref",
+        "metadata"
+      ]
+    },
+    "/hosts/*/host/state": {
+      "mode": "closed",
+      "allowed_keys": [
+        "host_id",
+        "kind",
+        "resolved_through",
+        "safe_through",
+        "handler_ref",
+        "rng_namespace",
+        "next_due"
+      ],
+      "canonical_order": [
+        "host_id",
+        "kind",
+        "resolved_through",
+        "safe_through",
+        "handler_ref",
+        "rng_namespace",
+        "next_due"
+      ]
+    },
+    "/hosts/*/host/metadata": {
+      "mode": "closed",
+      "allowed_keys": [
+        "faction_id",
+        "pressure_id",
+        "plan_status",
+        "review_interval_seconds",
+        "status",
+        "mission_id",
+        "scene_id",
+        "commitment_id",
+        "identity",
+        "policy_ref",
+        "person_ref",
+        "force_ref",
+        "force_path",
+        "return_availability_class"
+      ],
+      "canonical_order": [
+        "faction_id",
+        "pressure_id",
+        "plan_status",
+        "review_interval_seconds",
+        "status",
+        "mission_id",
+        "scene_id",
+        "commitment_id",
+        "identity",
+        "policy_ref",
+        "person_ref",
+        "force_ref",
+        "force_path",
+        "return_availability_class"
+      ]
+    },
+    "/hosts/*/event_routes/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "event_id",
+        "due_at",
+        "path",
+        "dedupe_key"
+      ],
+      "canonical_order": [
+        "event_id",
+        "due_at",
+        "path",
+        "dedupe_key"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/bucket": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/hosts": [
+      "object"
+    ],
+    "/hosts/*": [
+      "object"
+    ],
+    "/hosts/*/host": [
+      "object"
+    ],
+    "/hosts/*/host/state": [
+      "object"
+    ],
+    "/hosts/*/host/state/host_id": [
+      "string"
+    ],
+    "/hosts/*/host/state/kind": [
+      "string"
+    ],
+    "/hosts/*/host/state/resolved_through": [
+      "string"
+    ],
+    "/hosts/*/host/state/safe_through": [
+      "string"
+    ],
+    "/hosts/*/host/state/handler_ref": [
+      "string"
+    ],
+    "/hosts/*/host/state/rng_namespace": [
+      "string"
+    ],
+    "/hosts/*/host/state/next_due": [
+      "string",
+      "null"
+    ],
+    "/hosts/*/host/authority_kind": [
+      "string"
+    ],
+    "/hosts/*/host/owner_ref": [
+      "string",
+      "null"
+    ],
+    "/hosts/*/host/metadata": [
+      "object"
+    ],
+    "/hosts/*/event_routes": [
+      "array"
+    ],
+    "/hosts/*/event_routes/*": [
+      "object"
+    ],
+    "/hosts/*/event_routes/*/event_id": [
+      "string"
+    ],
+    "/hosts/*/event_routes/*/due_at": [
+      "string"
+    ],
+    "/hosts/*/event_routes/*/path": [
+      "string"
+    ],
+    "/hosts/*/event_routes/*/dedupe_key": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/hosts/*/event_routes": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a scheduler owner.",
+    "Scheduler shards are one temporal authority; routing indexes never duplicate domain truth."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "m",
+  "templates": {
+    "manpower-capability": {
+      "path": "runtime/contracts/templates/manpower-capability.template.json",
+      "source_schema": "game/schemas/manpower-capability.schema.json",
+      "scope": "mutable_state"
+    },
+    "mechanics-core": {
+      "path": "runtime/contracts/templates/mechanics-core.template.json",
+      "source_schema": "game/schemas/mechanics-core.schema.json",
+      "scope": "static_data"
+    },
+    "medical-implant-registry": {
+      "path": "runtime/contracts/templates/medical-implant-registry.template.json",
+      "source_schema": "game/schemas/medical-implant-registry.schema.json",
+      "scope": "static_data"
+    },
+    "medical-mechanics": {
+      "path": "runtime/contracts/templates/medical-mechanics.template.json",
+      "source_schema": "game/schemas/medical.schema.json",
+      "scope": "static_data"
+    },
+    "membership-route-index": {
+      "path": "runtime/contracts/templates/membership-route-index.template.json",
+      "source_schema": "game/schemas/membership-route-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "membership-route-shard": {
+      "path": "runtime/contracts/templates/membership-route-shard.template.json",
+      "source_schema": "game/schemas/membership-route-shard.schema.json",
+      "scope": "mutable_state"
+    },
+    "meta": {
+      "path": "runtime/contracts/templates/meta.template.json",
+      "source_schema": "game/schemas/meta.schema.json",
+      "scope": "mutable_state"
+    },
+    "mission-context-index": {
+      "path": "runtime/contracts/templates/mission-context-index.template.json",
+      "source_schema": "game/schemas/mission-context-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "mission-market-runtime": {
+      "path": "runtime/contracts/templates/mission-market-runtime.template.json",
+      "source_schema": "game/schemas/mission-market-runtime.schema.json",
+      "scope": "mutable_state"
+    },
+    "mission-runtime": {
+      "path": "runtime/contracts/templates/mission-runtime.template.json",
+      "source_schema": "game/schemas/mission-runtime.schema.json",
+      "scope": "mutable_state"
+    },
+    "morale-mechanics": {
+      "path": "runtime/contracts/templates/morale-mechanics.template.json",
+      "source_schema": "game/schemas/morale-mechanics.schema.json",
+      "scope": "static_data"
+    }
+  }
+}

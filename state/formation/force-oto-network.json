@@ -1,0 +1,3288 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.oto.network",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.oto.network",
+  "formations": [
+    {
+      "id": "formation.oto.infiltration.1",
+      "name": "Oto Field Network, First Retrieval Element",
+      "force_ref": "force.oto.network",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 66,
+      "morale": 64,
+      "readiness": 77,
+      "location_ref": "place.rice.hidden.facility",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.oto.infiltration.1.assault.experimental-combatants",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 3
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.1.assault.retrieval",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.1.recon",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 8,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 7,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 3,
+          "rank_distribution": {
+            "jonin": 1,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 71
+    },
+    {
+      "id": "formation.oto.infiltration.2",
+      "name": "Oto Field Network, Second Infiltration Element",
+      "force_ref": "force.oto.network",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 70,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.rice.fields",
+      "activity_summary": "distributed infiltration readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.oto.infiltration.2.assault.experimental-combatants",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.2.assault.retrieval",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.2.recon",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 8,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 7,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.infiltration.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 3,
+          "rank_distribution": {
+            "support": 1,
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 78
+    },
+    {
+      "id": "formation.oto.laboratory.security.1",
+      "name": "Oto Laboratory Network, First Security Element",
+      "force_ref": "force.oto.network",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 74,
+      "morale": 66,
+      "readiness": 81,
+      "location_ref": "place.oto.hidden_laboratory",
+      "activity_summary": "laboratory security readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.oto.laboratory.security.1.assault.experimental-combatants",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 1,
+            "genin": 4
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.laboratory.security.1.assault.retrieval",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "chunin": 4
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.laboratory.security.1.recon",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 8,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 7,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.laboratory.security.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "genin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.laboratory.security.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    },
+    {
+      "id": "formation.oto.retrieval.2",
+      "name": "Oto Field Network, Second Retrieval Element",
+      "force_ref": "force.oto.network",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 72,
+      "morale": 68,
+      "readiness": 84,
+      "location_ref": "place.rice.fields.hidden.route",
+      "activity_summary": "retrieval operation readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 2
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.oto.retrieval.2.assault.experimental-combatants",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "chunin": 2,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.retrieval.2.assault.retrieval",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.retrieval.2.recon",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 8,
+          "rank_distribution": {
+            "chunin": 5,
+            "genin": 1,
+            "special_jonin": 2
+          },
+          "condition": {
+            "healthy": 7,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.retrieval.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.oto.retrieval.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 3,
+          "rank_distribution": {
+            "genin": 1,
+            "support": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 78
+    },
+    {
+      "id": "formation.mobilized.faction.oto.research.cells.cc53db778c",
+      "name": "faction.oto_research_cells Operational Formation 5",
+      "force_ref": "force.oto.network",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 250,
+      "authorized_personnel": 250,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 74,
+      "morale": 66,
+      "readiness": 81,
+      "location_ref": "place.oto.network",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 10,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 10,
+            "rank_distribution": {
+              "chunin": 10
+            },
+            "condition": {
+              "healthy": 5,
+              "light_healing_injury": 5
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.cc53db778c.component.01",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 52,
+          "rank_distribution": {
+            "chunin": 10,
+            "genin": 42
+          },
+          "condition": {
+            "healthy": 52
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.cc53db778c.component.02",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 52,
+          "rank_distribution": {
+            "special_jonin": 10,
+            "chunin": 42
+          },
+          "condition": {
+            "healthy": 52
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.cc53db778c.component.03",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 84,
+          "rank_distribution": {
+            "chunin": 53,
+            "genin": 10,
+            "special_jonin": 21
+          },
+          "condition": {
+            "healthy": 74,
+            "light_healing_injury": 10
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.cc53db778c.component.04",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 21,
+          "rank_distribution": {
+            "genin": 11,
+            "jonin": 10
+          },
+          "condition": {
+            "healthy": 21
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.cc53db778c.component.05",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 31,
+          "rank_distribution": {
+            "genin": 11,
+            "special_jonin": 10,
+            "support": 10
+          },
+          "condition": {
+            "healthy": 31
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    },
+    {
+      "id": "formation.mobilized.faction.oto.research.cells.e327944d53",
+      "name": "faction.oto_research_cells Operational Formation 6",
+      "force_ref": "force.oto.network",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 250,
+      "authorized_personnel": 250,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 74,
+      "morale": 66,
+      "readiness": 81,
+      "location_ref": "place.oto.network",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 10,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 10,
+            "rank_distribution": {
+              "chunin": 10
+            },
+            "condition": {
+              "healthy": 5,
+              "light_healing_injury": 5
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.e327944d53.component.01",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 52,
+          "rank_distribution": {
+            "chunin": 10,
+            "genin": 42
+          },
+          "condition": {
+            "healthy": 52
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.e327944d53.component.02",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 52,
+          "rank_distribution": {
+            "special_jonin": 10,
+            "chunin": 42
+          },
+          "condition": {
+            "healthy": 52
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.e327944d53.component.03",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 84,
+          "rank_distribution": {
+            "chunin": 53,
+            "genin": 10,
+            "special_jonin": 21
+          },
+          "condition": {
+            "healthy": 74,
+            "light_healing_injury": 10
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.e327944d53.component.04",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 21,
+          "rank_distribution": {
+            "genin": 11,
+            "jonin": 10
+          },
+          "condition": {
+            "healthy": 21
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.e327944d53.component.05",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 31,
+          "rank_distribution": {
+            "genin": 11,
+            "special_jonin": 10,
+            "support": 10
+          },
+          "condition": {
+            "healthy": 31
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    },
+    {
+      "id": "formation.mobilized.faction.oto.research.cells.2f0775edba",
+      "name": "faction.oto_research_cells Operational Formation 7",
+      "force_ref": "force.oto.network",
+      "role": "operational_ready",
+      "lifecycle_origin": "mobilized",
+      "personnel_total": 150,
+      "authorized_personnel": 150,
+      "doctrine_ref": "doc.oto.field",
+      "training_ref": "train.oto.field",
+      "cohesion": 74,
+      "morale": 66,
+      "readiness": 81,
+      "location_ref": "place.oto.network",
+      "activity_summary": null,
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 10,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 10,
+            "rank_distribution": {
+              "chunin": 10
+            },
+            "condition": {
+              "healthy": 5,
+              "light_healing_injury": 5
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.2f0775edba.component.01",
+          "troop_type": "experimental_combatants",
+          "role": "assault",
+          "count": 31,
+          "rank_distribution": {
+            "chunin": 6,
+            "genin": 25
+          },
+          "condition": {
+            "healthy": 31
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 69,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 71,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 94,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 12,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.2f0775edba.component.02",
+          "troop_type": "retrieval",
+          "role": "assault",
+          "count": 30,
+          "rank_distribution": {
+            "special_jonin": 6,
+            "chunin": 24
+          },
+          "condition": {
+            "healthy": 30
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-field-ready.json",
+            "fundamentals": {
+              "combat": 73,
+              "awareness": 70,
+              "endurance": 70,
+              "chakra_control": 74,
+              "chakra_output": 74,
+              "movement": 77,
+              "tactics": 65,
+              "team_coordination": 62
+            },
+            "methods": {
+              "sword": 61,
+              "unarmed": 77,
+              "thrown_tools": 69,
+              "bow": 58,
+              "polearm": 58,
+              "heavy_weapon": 57,
+              "ninjutsu": 82,
+              "genjutsu": 69,
+              "traps": 60,
+              "sensory": 70,
+              "medical": 62,
+              "sealing": 64
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 55,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 8,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.2f0775edba.component.03",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 49,
+          "rank_distribution": {
+            "chunin": 31,
+            "genin": 6,
+            "special_jonin": 12
+          },
+          "condition": {
+            "healthy": 43,
+            "light_healing_injury": 6
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 56,
+              "unarmed": 66,
+              "thrown_tools": 64,
+              "bow": 53,
+              "polearm": 53,
+              "heavy_weapon": 52,
+              "ninjutsu": 77,
+              "genjutsu": 72,
+              "traps": 71,
+              "sensory": 77,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.2f0775edba.component.04",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 12,
+          "rank_distribution": {
+            "genin": 6,
+            "jonin": 6
+          },
+          "condition": {
+            "healthy": 12
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-medical-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 44,
+              "unarmed": 54,
+              "thrown_tools": 52,
+              "bow": 41,
+              "polearm": 41,
+              "heavy_weapon": 40,
+              "ninjutsu": 57,
+              "genjutsu": 52,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 104,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "formation.mobilized.faction.oto.research.cells.2f0775edba.component.05",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 18,
+          "rank_distribution": {
+            "genin": 6,
+            "special_jonin": 6,
+            "support": 6
+          },
+          "condition": {
+            "healthy": 18
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json",
+            "fundamentals": {
+              "combat": 68,
+              "awareness": 65,
+              "endurance": 65,
+              "chakra_control": 69,
+              "chakra_output": 69,
+              "movement": 64,
+              "tactics": 60,
+              "team_coordination": 57
+            },
+            "methods": {
+              "sword": 24,
+              "unarmed": 34,
+              "thrown_tools": 32,
+              "bow": 21,
+              "polearm": 21,
+              "heavy_weapon": 20,
+              "ninjutsu": 45,
+              "genjutsu": 32,
+              "traps": 55,
+              "sensory": 65,
+              "medical": 57,
+              "sealing": 59
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 53,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 77
+    }
+  ]
+}

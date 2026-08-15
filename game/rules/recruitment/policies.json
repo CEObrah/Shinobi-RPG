@@ -1,0 +1,558 @@
+{
+  "schema": "recruitment-policy-registry",
+  "authority": "Recruitment policies define eligibility and representation. The runtime determines accepted headcount from eligible conserved population; callers do not choose acceptance results.",
+  "policies": {
+    "recruitment.general": {
+      "eligible_source_categories": [
+        "civilian_general",
+        "youth_candidate",
+        "academy",
+        "shinobi_service",
+        "support_service"
+      ],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    },
+    "recruitment.academy": {
+      "eligible_source_categories": [
+        "youth_candidate"
+      ],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    },
+    "recruitment.shinobi_service": {
+      "eligible_source_categories": [
+        "academy"
+      ],
+      "selection_mode": "neutral_proportional",
+      "materialization_policy": "aggregate_unless_identity_required"
+    },
+    "recruitment.sword_manor_disciple": {
+      "eligible_source_owner_refs": [
+        "faction_konoha"
+      ],
+      "eligible_source_categories": [
+        "civilian_general",
+        "support_service"
+      ],
+      "acceptance_rate_milli": 650,
+      "selection_mode": "sword_manor_open_tryout",
+      "materialization_policy": "house_identity_required",
+      "destination_owner_ref": "house.tang",
+      "person_core_registry_path": "state/person-core/house-tang.json",
+      "house_ref": "house.tang",
+      "home_place_ref": "place.sword_manor",
+      "decision_authority_ref": "char.zhu",
+      "identity_bank_ref": "game/data/people/sword-manor-intake-identities.json",
+      "role_profile_ref": "role.house_tang.junior_disciple",
+      "oath_required": true,
+      "oath_ref": "house.tang.covenant",
+      "max_intake_per_batch": 12,
+      "max_applicants_per_batch": 24,
+      "cooldown_days": 30,
+      "onboarding_loadout_ref": "load.ht.base",
+      "onboarding_stock_ref": "stock.house.tang",
+      "onboarding_require_full_loadout": true,
+      "capacity_gate": {
+        "module_kind": "training",
+        "capacity_field": "capacity_slots"
+      },
+      "cohort_baseline": {
+        "numeric_values": {
+          "age_years": 21,
+          "stats.attributes.agility": 62,
+          "stats.attributes.awareness": 62,
+          "stats.attributes.composure": 60,
+          "stats.attributes.coordination": 64,
+          "stats.attributes.endurance": 64,
+          "stats.attributes.intelligence": 60,
+          "stats.attributes.presence": 58,
+          "stats.attributes.strength": 62,
+          "stats.attributes.toughness": 62,
+          "stats.chakra_dimensions.casting_stability": 48,
+          "stats.chakra_dimensions.control": 50,
+          "stats.chakra_dimensions.efficiency": 48,
+          "stats.chakra_dimensions.hand_seal_speed": 45,
+          "stats.chakra_dimensions.multitasking": 45,
+          "stats.chakra_dimensions.output": 50,
+          "stats.chakra_dimensions.sensing": 45,
+          "stats.chakra_dimensions.suppression": 45,
+          "stats.domain_proficiencies.wind": 35,
+          "stats.martial_skills.grappling": 45,
+          "stats.martial_skills.movement": 58,
+          "stats.martial_skills.stealth": 46,
+          "stats.martial_skills.sword": 62,
+          "stats.martial_skills.unarmed": 46,
+          "stats.operational_skills.infiltration": 40,
+          "stats.operational_skills.investigation": 42,
+          "stats.operational_skills.leadership": 35,
+          "stats.operational_skills.medicine": 35,
+          "stats.operational_skills.survival": 45,
+          "stats.operational_skills.tactics": 48,
+          "stats.operational_skills.team_coordination": 48,
+          "stats.operational_skills.tracking": 40,
+          "stats.operational_skills.traps": 38,
+          "stats.resources.chakra.capacity": 75,
+          "stats.resources.chakra.current": 75,
+          "stats.resources.fatigue.capacity": 100,
+          "stats.resources.fatigue.current": 0,
+          "stats.resources.health.capacity": 85,
+          "stats.resources.health.current": 85,
+          "stats.resources.strain.current": 0,
+          "stats.resources.strain.safe_capacity": 65,
+          "appearance": 70,
+          "body.adult_height_cm": 170.0,
+          "body.current_weight_kg": 65.0,
+          "body.growth_end_age": 18,
+          "stats.domain_proficiencies.barrier": 20,
+          "stats.domain_proficiencies.genjutsu": 20,
+          "stats.domain_proficiencies.medical": 20,
+          "stats.domain_proficiencies.sealing": 20,
+          "stats.martial_skills.bow": 30,
+          "stats.martial_skills.heavy_weapon": 30,
+          "stats.martial_skills.polearm": 30,
+          "stats.martial_skills.staff": 30,
+          "stats.martial_skills.thrown_tools": 30
+        },
+        "category_tags": [
+          "assignment:manor_rotation",
+          "health:healthy",
+          "origin:Konoha / Land of Fire",
+          "qualification:sword_manor_open_tryout",
+          "rank:junior_disciple",
+          "oath:house_tang_covenant",
+          "qualification:real_katana_use",
+          "package:PKG_HT_JUNIOR"
+        ]
+      }
+    }
+  },
+  "background_profiles": {
+    "background.agricultural_labor": {
+      "population_key": "agricultural_labor",
+      "intake_offsets": {
+        "endurance": 8,
+        "combat": -8,
+        "movement": -3,
+        "survival": 6
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "endurance": 8,
+          "combat": -8,
+          "movement": -3
+        },
+        "method_offsets": {
+          "unarmed": -4,
+          "sword": -5,
+          "thrown_tools": -5,
+          "bow": -4
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "endurance": 8,
+          "combat": -8,
+          "movement": -3,
+          "survival": 6
+        },
+        "spread": 16,
+        "covariance_groups": [
+          [
+            "endurance",
+            "strength"
+          ],
+          [
+            "survival",
+            "movement"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.craft_trade": {
+      "population_key": "craft_trade",
+      "intake_offsets": {
+        "coordination": 6,
+        "intelligence": 4,
+        "combat": -6
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "team_coordination": 3,
+          "tactics": 2,
+          "combat": -6
+        },
+        "method_offsets": {
+          "traps": 4,
+          "sealing": 2,
+          "heavy_weapon": 2
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "coordination": 6,
+          "intelligence": 4,
+          "combat": -6
+        },
+        "spread": 14,
+        "covariance_groups": [
+          [
+            "coordination",
+            "technical"
+          ],
+          [
+            "intelligence",
+            "traps"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.hunting_forestry": {
+      "population_key": "hunting_forestry",
+      "intake_offsets": {
+        "awareness": 10,
+        "movement": 6,
+        "thrown_tools": 7,
+        "bow": 10,
+        "survival": 12,
+        "tracking": 12,
+        "stealth": 8
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "awareness": 10,
+          "movement": 6,
+          "endurance": 4
+        },
+        "method_offsets": {
+          "thrown_tools": 7,
+          "bow": 10,
+          "traps": 5,
+          "sensory": 5
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "awareness": 10,
+          "movement": 6,
+          "thrown_tools": 7,
+          "bow": 10,
+          "survival": 12,
+          "tracking": 12,
+          "stealth": 8
+        },
+        "spread": 15,
+        "covariance_groups": [
+          [
+            "awareness",
+            "tracking",
+            "survival"
+          ],
+          [
+            "bow",
+            "stealth",
+            "movement"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.transport_caravan": {
+      "population_key": "transport_caravan",
+      "intake_offsets": {
+        "endurance": 6,
+        "awareness": 5,
+        "survival": 6,
+        "team_coordination": 4
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "endurance": 6,
+          "awareness": 5,
+          "team_coordination": 4
+        },
+        "method_offsets": {
+          "thrown_tools": 2,
+          "traps": 2
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "endurance": 6,
+          "awareness": 5,
+          "survival": 6,
+          "team_coordination": 4
+        },
+        "spread": 15,
+        "covariance_groups": [
+          [
+            "endurance",
+            "survival"
+          ],
+          [
+            "awareness",
+            "team_coordination"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.fishing": {
+      "population_key": "fishing",
+      "intake_offsets": {
+        "endurance": 5,
+        "coordination": 4,
+        "survival": 5
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "endurance": 5,
+          "movement": 3
+        },
+        "method_offsets": {
+          "thrown_tools": 3,
+          "polearm": 3
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "endurance": 5,
+          "coordination": 4,
+          "survival": 5
+        },
+        "spread": 15,
+        "covariance_groups": [
+          [
+            "endurance",
+            "coordination"
+          ],
+          [
+            "survival",
+            "polearm"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.guard_watch": {
+      "population_key": "guard_watch",
+      "intake_offsets": {
+        "combat": 8,
+        "awareness": 7,
+        "team_coordination": 7,
+        "composure": 6
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "combat": 8,
+          "awareness": 7,
+          "team_coordination": 7,
+          "tactics": 4
+        },
+        "method_offsets": {
+          "unarmed": 6,
+          "sword": 6,
+          "polearm": 5,
+          "thrown_tools": 4
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "combat": 8,
+          "awareness": 7,
+          "team_coordination": 7,
+          "composure": 6
+        },
+        "spread": 13,
+        "covariance_groups": [
+          [
+            "combat",
+            "awareness"
+          ],
+          [
+            "team_coordination",
+            "tactics"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.clerical_admin": {
+      "population_key": "clerical_admin",
+      "intake_offsets": {
+        "intelligence": 9,
+        "investigation": 7,
+        "combat": -8
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "tactics": 5,
+          "awareness": 3,
+          "combat": -8
+        },
+        "method_offsets": {
+          "sealing": 4,
+          "sensory": 3,
+          "unarmed": -4,
+          "sword": -4
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "intelligence": 9,
+          "investigation": 7,
+          "combat": -8
+        },
+        "spread": 14,
+        "covariance_groups": [
+          [
+            "intelligence",
+            "investigation"
+          ],
+          [
+            "tactics",
+            "sealing"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.general_service": {
+      "population_key": "general_service",
+      "intake_offsets": {
+        "team_coordination": 3
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "team_coordination": 3
+        },
+        "method_offsets": {
+          "unarmed": 1
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "team_coordination": 3
+        },
+        "spread": 17,
+        "covariance_groups": [
+          [
+            "team_coordination",
+            "endurance"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.shinobi_academy": {
+      "population_key": "shinobi_academy",
+      "intake_offsets": {
+        "combat": 10,
+        "movement": 10,
+        "chakra_control": 10,
+        "team_coordination": 8
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "combat": 6,
+          "movement": 7,
+          "chakra_control": 8,
+          "team_coordination": 6
+        },
+        "method_offsets": {
+          "unarmed": 5,
+          "thrown_tools": 6,
+          "ninjutsu": 5,
+          "genjutsu": 3
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "combat": 10,
+          "movement": 10,
+          "chakra_control": 10,
+          "team_coordination": 8
+        },
+        "spread": 16,
+        "covariance_groups": [
+          [
+            "chakra_control",
+            "movement"
+          ],
+          [
+            "combat",
+            "team_coordination"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    },
+    "background.shinobi_service": {
+      "population_key": "shinobi_service",
+      "intake_offsets": {
+        "combat": 18,
+        "movement": 16,
+        "chakra_control": 16,
+        "tactics": 12,
+        "team_coordination": 14
+      },
+      "selection_visibility": "background_only",
+      "force_projection": {
+        "fundamental_offsets": {
+          "combat": 10,
+          "movement": 9,
+          "chakra_control": 9,
+          "tactics": 8,
+          "team_coordination": 9
+        },
+        "method_offsets": {
+          "unarmed": 7,
+          "thrown_tools": 7,
+          "ninjutsu": 8,
+          "genjutsu": 5,
+          "traps": 5,
+          "sensory": 5
+        }
+      },
+      "distribution": {
+        "mean_offsets": {
+          "combat": 18,
+          "movement": 16,
+          "chakra_control": 16,
+          "tactics": 12,
+          "team_coordination": 14
+        },
+        "spread": 14,
+        "covariance_groups": [
+          [
+            "combat",
+            "movement",
+            "tactics"
+          ],
+          [
+            "chakra_control",
+            "ninjutsu"
+          ]
+        ],
+        "rule": "Deterministic aggregate distribution. Identity-specific draws, if later materialized, are keyed to the persistent person/candidate identity and cannot be rerolled by preview retry."
+      }
+    }
+  },
+  "selection_rules": {
+    "deterministic_identity": "Same source state, policy, background request and request identity produce the same eligible composition; retrying cannot reroll candidates.",
+    "specialist_conservation": "A requested background can accept at most the source pool background bucket. Shortage partially fulfills instead of fabricating specialists.",
+    "scouting": "Selective quality discovery is bounded by explicit scouting/selection quality; callers never receive hidden exact candidate rolls for free.",
+    "background_is_initial_condition": "Background changes intake distribution only. Later training and field experience can overcome it."
+  }
+}

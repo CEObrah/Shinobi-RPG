@@ -1,0 +1,41 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "o",
+  "templates": {
+    "ocular-owner-shard": {
+      "path": "runtime/contracts/templates/ocular-owner-shard.template.json",
+      "source_schema": "game/schemas/ocular-owner-shard.schema.json",
+      "scope": "mutable_state"
+    },
+    "ocular-registry-index": {
+      "path": "runtime/contracts/templates/ocular-registry-index.template.json",
+      "source_schema": "game/schemas/ocular-registry-index.schema.json",
+      "scope": "mutable_state"
+    },
+    "ocular-stockpile-batch": {
+      "path": "runtime/contracts/templates/ocular-stockpile-batch.template.json",
+      "source_schema": "game/schemas/ocular-stockpile-batch.schema.json",
+      "scope": "mutable_state"
+    },
+    "operational-world-mechanics": {
+      "path": "runtime/contracts/templates/operational-world-mechanics.template.json",
+      "source_schema": "game/schemas/operational-world-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "organization-authority-model": {
+      "path": "runtime/contracts/templates/organization-authority-model.template.json",
+      "source_schema": "game/schemas/organization-authority-model.schema.json",
+      "scope": "static_data"
+    },
+    "owner-index-shard": {
+      "path": "runtime/contracts/templates/owner-index-shard.template.json",
+      "source_schema": "game/schemas/owner-index-shard.schema.json",
+      "scope": "mutable_state"
+    },
+    "owner_index": {
+      "path": "runtime/contracts/templates/owner_index.template.json",
+      "source_schema": "game/schemas/owner_index.schema.json",
+      "scope": "mutable_state"
+    }
+  }
+}

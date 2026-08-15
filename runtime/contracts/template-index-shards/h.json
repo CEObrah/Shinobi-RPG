@@ -1,0 +1,21 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "h",
+  "templates": {
+    "hierarchical_command_mechanics": {
+      "path": "runtime/contracts/templates/hierarchical_command_mechanics.template.json",
+      "source_schema": "game/schemas/hierarchical-command-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "house": {
+      "path": "runtime/contracts/templates/house.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "house_charter": {
+      "path": "runtime/contracts/templates/house_charter.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    }
+  }
+}

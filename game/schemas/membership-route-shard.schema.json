@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "membership-route-shard.schema.json",
+  "title": "Membership Route Shard",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bucket", "authority", "team_member_routes", "team_parent_routes", "team_service_routes", "team_assignment_routes", "house_member_routes"],
+  "properties": {
+    "schema": {"const": "membership-route-shard"},
+    "bucket": {"type": "string", "pattern": "^[0-9a-f]{2}$"},
+    "authority": {"const": false},
+    "team_member_routes": {"$ref": "#/$defs/routes"},
+    "team_parent_routes": {"$ref": "#/$defs/routes"},
+    "team_service_routes": {"$ref": "#/$defs/routes"},
+    "team_assignment_routes": {"$ref": "#/$defs/routes"},
+    "house_member_routes": {"$ref": "#/$defs/routes"}
+  },
+  "$defs": {
+    "routes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {"type": "string", "minLength": 1, "maxLength": 160},
+        "uniqueItems": true
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "time",
+  "routes": {
+    "causal_scheduler": {
+      "r": [
+        "state/time/causal-scheduler.json",
+        "state/time/causal-scheduler/hosts/<sha256-prefix>.json",
+        "state/time/causal-scheduler/event-index/<year>.json",
+        "state/time/causal-scheduler/events/<year>/<yyyy-mm-dd>.json"
+      ],
+      "domain": "time_settlement",
+      "note": "Temporal root routes exact sharded hosts and due-date event owners. Advance-time loads only years/days due through the requested horizon plus exact referenced host shards; full reconstruction is maintenance-only."
+    }
+  }
+}

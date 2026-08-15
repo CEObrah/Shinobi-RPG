@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "18",
+  "authority": true,
+  "hosts": {
+    "host.team.team.suna.puppet.corps.auto.09d41af9515f": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.suna.puppet.corps.auto.09d41af9515f",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-11T07:00:00",
+          "safe_through": "SE-0061-06-18T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.suna.puppet.corps.auto.09d41af9515f",
+          "next_due": "SE-0061-06-18T07:00:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/team-suna-puppet-corps-auto-09d41af9515f.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.cb66a9f087ea3a45862084d2",
+          "due_at": "SE-0061-06-18T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "dedupe_key": "team.periodic_review:team.suna.puppet.corps.auto.09d41af9515f"
+        }
+      ]
+    }
+  }
+}

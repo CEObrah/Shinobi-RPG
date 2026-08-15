@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "currency_ref",
+    "price_rules",
+    "item_prices",
+    "service_prices",
+    "mission_ranks",
+    "mission_pricing_rule",
+    "official_mission_supply",
+    "salary_bands",
+    "living_costs",
+    "macro_rules",
+    "capital_reference"
+  ],
+  "properties": {
+    "schema": {
+      "const": "economy-mechanics"
+    },
+    "currency_ref": {
+      "const": "currency.ryo"
+    },
+    "price_rules": {
+      "type": "object"
+    },
+    "item_prices": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "service_prices": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "mission_ranks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "official_mission_supply": {
+      "type": "object"
+    },
+    "salary_bands": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "living_costs": {
+      "type": "object"
+    },
+    "macro_rules": {
+      "type": "object"
+    },
+    "capital_reference": {
+      "type": "object"
+    },
+    "mission_pricing_rule": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

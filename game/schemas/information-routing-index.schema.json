@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Information routing index",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "claim_count",
+    "delivery_count",
+    "knowledge_holder_count",
+    "recent_claim_refs",
+    "recent_delivery_refs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "information-routing-index"
+    },
+    "owner_id": {
+      "const": "registry.information"
+    },
+    "owner_type": {
+      "const": "information_routing_index"
+    },
+    "claim_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "delivery_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "knowledge_holder_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "recent_claim_refs": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "pattern": "^claim\\."
+      },
+      "uniqueItems": true
+    },
+    "recent_delivery_refs": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "pattern": "^delivery\\."
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

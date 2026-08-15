@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: shinobi domain registry",
+  "type": "object",
+  "required": [
+    "owner_id",
+    "owner_type",
+    "schema"
+  ],
+  "properties": {
+    "active_missions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "issuer_ref",
+          "assignee_refs",
+          "objective",
+          "authorized_at",
+          "starts_at",
+          "deadline_at",
+          "next_due_at",
+          "target_refs",
+          "location_refs",
+          "operation_ref",
+          "result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "issuer_ref": {
+            "type": "string"
+          },
+          "assignee_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "objective": {
+            "type": "string"
+          },
+          "authorized_at": {
+            "type": "string"
+          },
+          "starts_at": {
+            "type": "string"
+          },
+          "deadline_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "next_due_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "target_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "operation_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "result": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "archetype_catalog_ref": {
+      "type": "string"
+    },
+    "captives": {
+      "type": "array"
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "issuer_ref",
+          "counterparty_refs",
+          "scope",
+          "opened_at",
+          "expires_at",
+          "next_due_at",
+          "result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "issuer_ref": {
+            "type": "string"
+          },
+          "counterparty_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "scope": {
+            "type": "string"
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "next_due_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "result": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "buyer_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "seller_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stock_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "item_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quantity": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "unit_price_ryo": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "total_ryo": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "accepted_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cancelled_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "payment_holder_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "damage_records": {
+      "type": "array"
+    },
+    "deaths": {
+      "type": "array"
+    },
+    "knowledge_events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "loss_records": {
+      "type": "array"
+    },
+    "memorials": {
+      "type": "array"
+    },
+    "missing": {
+      "type": "array"
+    },
+    "mission_market_ref": {
+      "type": "string"
+    },
+    "named_items": {
+      "type": "array"
+    },
+    "owner_id": {
+      "type": "string"
+    },
+    "owner_type": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "subject_ref",
+          "authority_ref",
+          "opened_at",
+          "completed_at",
+          "next_due_at",
+          "result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "subject_ref": {
+            "type": "string"
+          },
+          "authority_ref": {
+            "type": "string"
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "next_due_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "result": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "project_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "institution_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stock_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "research_project_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "module_kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "last_advanced_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "required_work_units": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "progress_units": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "work_units_per_active_hour": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "resource_costs": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "funding_holder_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "currency_cost_ryo": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "relationship_edge_count": {
+      "type": "integer"
+    },
+    "relationship_owners": {
+      "type": "array"
+    },
+    "relationship_storage": {
+      "type": "object"
+    },
+    "repair_projects": {
+      "type": "array"
+    },
+    "schema": {
+      "const": "shinobi-domain-registry"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Current canonical schema contract."
+}

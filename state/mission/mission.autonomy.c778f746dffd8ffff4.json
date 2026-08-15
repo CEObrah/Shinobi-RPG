@@ -1,0 +1,43 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.c778f746dffd8ffff4",
+  "issuer_ref": "faction.kumo_military_intelligence",
+  "authority_ref": "canon_c",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.kumo",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-03-19T07:00:00",
+  "authorized_at": "SE-0061-03-19T07:00:00",
+  "starts_at": "SE-0061-03-19T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_c",
+    "canon_darui",
+    "canon_mabui"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.c778f746dffd8ffff4",
+      "kind": "identify",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "repair.rich_autonomy_upgrade.v1"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "repair.rich_autonomy_upgrade.v1",
+  "settlement": {
+    "mission_id": "mission.autonomy.c778f746dffd8ffff4",
+    "outcome": "aborted",
+    "settlement_token": "repair:mission.autonomy.c778f746dffd8ffff4:rich-autonomy-v1",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

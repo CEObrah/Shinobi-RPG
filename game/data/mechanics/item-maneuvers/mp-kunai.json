@@ -1,0 +1,157 @@
+{
+  "schema": "item-maneuvers-shard",
+  "maneuver_packages": {
+    "MP_KUNAI": {
+      "weapon_family": "kunai",
+      "maneuvers": {
+        "draw": {
+          "name": "Draw",
+          "base_startup_s": 0.22,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.08,
+          "geometry": "ready_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "forward_stab": {
+          "name": "Forward stab",
+          "base_startup_s": 0.34,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.28,
+          "geometry": "short_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 1,
+          "impact_modifier": 0,
+          "penetration_modifier": 1,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "reverse_grip_stab": {
+          "name": "Reverse-grip stab",
+          "base_startup_s": 0.3,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.32,
+          "geometry": "short_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 1,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "slash": {
+          "name": "Slash",
+          "base_startup_s": 0.38,
+          "contact_window_s": 0.1,
+          "base_recovery_s": 0.3,
+          "geometry": "short_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "parry": {
+          "name": "Parry",
+          "base_startup_s": 0.16,
+          "contact_window_s": 0.1,
+          "base_recovery_s": 0.24,
+          "geometry": "small_defensive_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 1,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "grapple_assisted_stab": {
+          "name": "Grapple-assisted stab",
+          "base_startup_s": 0.26,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.24,
+          "geometry": "contact_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "established grapple control",
+          "accuracy_modifier": 3,
+          "impact_modifier": 0,
+          "penetration_modifier": 1,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "throw": {
+          "name": "Throw",
+          "base_startup_s": 0.36,
+          "contact_window_s": 0.05,
+          "base_recovery_s": 0.24,
+          "geometry": "projectile_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "projectile range and travel",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

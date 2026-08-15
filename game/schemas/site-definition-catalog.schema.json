@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cold strategic site definition catalog",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "site-definition-catalog"
+    },
+    "authority": {
+      "const": "cold_non_state_content"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name",
+          "owner_ref"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "owner_ref": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "string"
+          },
+          "physical_scale": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "facilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "infrastructure": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "zones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "purpose",
+                "access_class"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string"
+                },
+                "access_class": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "cells": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "rooms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "systems": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "site_notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "description": "Stable physical and descriptive site detail. This catalog is cold content and never replaces current mechanical modules, custody state, inventory, people, or other mutable authorities."
+}

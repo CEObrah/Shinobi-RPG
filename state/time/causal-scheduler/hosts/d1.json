@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "d1",
+  "authority": true,
+  "hosts": {
+    "host.team.team.kiri.hunter.office.auto.a29a55f55d97": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.kiri.hunter.office.auto.a29a55f55d97",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-11T07:00:00",
+          "safe_through": "SE-0061-06-18T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.kiri.hunter.office.auto.a29a55f55d97",
+          "next_due": "SE-0061-06-18T07:00:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/team-kiri-hunter-office-auto-a29a55f55d97.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.84ab18fa186db287e7542798",
+          "due_at": "SE-0061-06-18T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "dedupe_key": "team.periodic_review:team.kiri.hunter.office.auto.a29a55f55d97"
+        }
+      ]
+    }
+  }
+}

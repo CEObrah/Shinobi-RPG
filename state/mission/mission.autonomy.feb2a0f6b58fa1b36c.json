@@ -1,0 +1,41 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.feb2a0f6b58fa1b36c",
+  "issuer_ref": "faction.fire_smuggling_network",
+  "authority_ref": "support.smuggling.reina_kurosawa",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.land_fire",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-04-16T07:00:00",
+  "authorized_at": "SE-0061-04-16T07:00:00",
+  "starts_at": "SE-0061-04-16T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "faction.fire_smuggling_network",
+  "closed_at": "SE-0061-04-23T07:00:00",
+  "briefing": null,
+  "state": "succeeded",
+  "participant_refs": [
+    "support.smuggling.reina_kurosawa"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.feb2a0f6b58fa1b36c",
+      "kind": "sabotage",
+      "required": true,
+      "dependencies": [],
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.a2d1e8de8e70fb6cff6a0946"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": {
+    "mission_id": "mission.autonomy.feb2a0f6b58fa1b36c",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.1fafbf907b3205f1c3cd",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

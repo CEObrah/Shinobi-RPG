@@ -1,0 +1,115 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.zabuza_haku.doctrine",
+  "team_id": "team.zabuza_haku",
+  "name": "Zabuza-Haku Mercenary Cell Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_zabuza": 0,
+    "canon_haku": 0
+  },
+  "effective_from": "SE-0061-06-11T09:00:00",
+  "approved_by": "faction.zabuza_mercenary_cell",
+  "motto": "Confirm the paid objective, shape the engagement, finish only what the contract requires, and preserve an exit.",
+  "command": {
+    "captain": "canon_zabuza",
+    "deputy": "canon_haku",
+    "succession_order": [
+      "canon_haku"
+    ]
+  },
+  "roles": {
+    "canon_zabuza": "field_lead",
+    "canon_haku": "mobile_control_support"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "VERIFY",
+      "primary_members": [
+        "canon_zabuza",
+        "canon_haku"
+      ],
+      "objective": "Confirm the concrete target, terms, routes, opposition, and uncertainty before commitment.",
+      "procedures": [
+        "Act on persisted information, not assumed canon knowledge."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "EXECUTE",
+      "primary_members": [
+        "canon_zabuza",
+        "canon_haku"
+      ],
+      "objective": "Apply complementary roles only to the assigned objective.",
+      "procedures": [
+        "Resource, injury, and exposure costs remain real."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_zabuza",
+        "canon_haku"
+      ],
+      "objective": "Preserve surviving personnel, evidence, and a viable withdrawal path.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Concrete tasking",
+      "rule": "No target or client is valid until persisted by a lawful operation or mission.",
+      "procedures": [
+        "Verify authority, knowledge, and resources before action."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "covert_operation",
+      "directive": "Use only known targets and preserve classification."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Break contact or re-establish information and command before escalating."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_zabuza",
+      "canon_haku"
+    ],
+    "procedures": [
+      "Account for all members and required evidence before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_zabuza"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "paired movement",
+      "target verification",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_zabuza": "field_lead",
+      "canon_haku": "mobile_control_support"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "mercenary_cell doctrine"
+}

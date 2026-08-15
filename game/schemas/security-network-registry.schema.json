@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "sectors",
+    "alarms",
+    "detections"
+  ],
+  "properties": {
+    "schema": {
+      "const": "security-network-registry"
+    },
+    "sectors": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "owner_ref",
+          "place_ref",
+          "route_refs",
+          "stock_ref",
+          "coverage_milli",
+          "detection_milli",
+          "response_milli",
+          "status",
+          "established_at",
+          "last_reviewed_at",
+          "classification",
+          "authorized_owner_refs"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^security\\."
+          },
+          "owner_ref": {
+            "type": "string"
+          },
+          "place_ref": {
+            "type": "string"
+          },
+          "route_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "coverage_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "detection_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "response_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "status": {
+            "enum": [
+              "active",
+              "degraded",
+              "inactive"
+            ]
+          },
+          "established_at": {
+            "type": "string"
+          },
+          "last_reviewed_at": {
+            "type": "string"
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "stock_ref": {
+            "type": "string"
+          },
+          "authorized_owner_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "alarms": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "sector_ref",
+          "subject_ref",
+          "evidence_ref",
+          "status",
+          "opened_at",
+          "resolved_at",
+          "recipient_refs",
+          "classification"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^alarm\\."
+          },
+          "sector_ref": {
+            "type": "string"
+          },
+          "subject_ref": {
+            "type": "string"
+          },
+          "evidence_ref": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "open",
+              "acknowledged",
+              "resolved",
+              "false_alarm"
+            ]
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "resolved_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recipient_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        }
+      }
+    },
+    "detections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "sector_ref",
+          "route_ref",
+          "subject_ref",
+          "crossing_ref",
+          "detected_at",
+          "effective_detection_milli",
+          "roll_milli",
+          "evidence_event_ref",
+          "alarm_ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^detection\\.security\\."
+          },
+          "sector_ref": {
+            "type": "string"
+          },
+          "route_ref": {
+            "type": "string"
+          },
+          "subject_ref": {
+            "type": "string"
+          },
+          "crossing_ref": {
+            "type": "string"
+          },
+          "detected_at": {
+            "type": "string"
+          },
+          "effective_detection_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "roll_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "evidence_event_ref": {
+            "type": "string",
+            "pattern": "^event\\."
+          },
+          "alarm_ref": {
+            "type": "string",
+            "pattern": "^alarm\\."
+          }
+        }
+      }
+    }
+  }
+}

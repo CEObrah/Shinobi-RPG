@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "01",
+  "authority": true,
+  "hosts": {
+    "host.team.team.konoha.fujin": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.konoha.fujin",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-05T21:15:00",
+          "safe_through": "SE-0061-06-12T21:14:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.konoha.fujin",
+          "next_due": "SE-0061-06-12T21:15:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/fujin.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.b19c515b65a8dd8bb1ad1e39",
+          "due_at": "SE-0061-06-12T21:15:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-12.json",
+          "dedupe_key": "team.periodic_review:team.konoha.fujin"
+        }
+      ]
+    }
+  }
+}

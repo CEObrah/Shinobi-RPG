@@ -1,0 +1,208 @@
+{
+  "schema": "file-template",
+  "template_id": "template.canon-history-shard",
+  "target_schema": "canon-history-shard",
+  "source_schema": "game/schemas/canon-history-shard.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/canon/history"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "campaign_authority",
+    "continuity_id",
+    "events",
+    "lane",
+    "schema",
+    "shard_id"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "campaign_authority",
+        "continuity_id",
+        "events",
+        "lane",
+        "schema",
+        "shard_id"
+      ],
+      "canonical_order": [
+        "schema",
+        "shard_id",
+        "continuity_id",
+        "lane",
+        "campaign_authority",
+        "events"
+      ]
+    },
+    "/events/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "anchor_relation",
+        "id",
+        "paraphrase",
+        "place_refs",
+        "predecessor_refs",
+        "source_locators",
+        "subject_refs",
+        "support_kind",
+        "title"
+      ],
+      "canonical_order": [
+        "id",
+        "title",
+        "paraphrase",
+        "support_kind",
+        "anchor_relation",
+        "predecessor_refs",
+        "subject_refs",
+        "place_refs",
+        "source_locators"
+      ]
+    },
+    "/events/*/source_locators/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "chapter",
+        "episode",
+        "locator_kind",
+        "section",
+        "volume",
+        "work_id"
+      ],
+      "canonical_order": [
+        "work_id",
+        "locator_kind",
+        "volume",
+        "chapter",
+        "episode",
+        "section"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/shard_id": [
+      "string"
+    ],
+    "/continuity_id": [
+      "string"
+    ],
+    "/lane": [
+      "string"
+    ],
+    "/campaign_authority": [
+      "boolean"
+    ],
+    "/events": [
+      "array"
+    ],
+    "/events/*": [
+      "object"
+    ],
+    "/events/*/id": [
+      "string"
+    ],
+    "/events/*/title": [
+      "string"
+    ],
+    "/events/*/paraphrase": [
+      "string"
+    ],
+    "/events/*/support_kind": [
+      "string"
+    ],
+    "/events/*/anchor_relation": [
+      "string"
+    ],
+    "/events/*/predecessor_refs": [
+      "array"
+    ],
+    "/events/*/predecessor_refs/*": [
+      "string"
+    ],
+    "/events/*/subject_refs": [
+      "array"
+    ],
+    "/events/*/subject_refs/*": [
+      "string"
+    ],
+    "/events/*/place_refs": [
+      "array"
+    ],
+    "/events/*/place_refs/*": [
+      "string"
+    ],
+    "/events/*/source_locators": [
+      "array"
+    ],
+    "/events/*/source_locators/*": [
+      "object"
+    ],
+    "/events/*/source_locators/*/work_id": [
+      "string"
+    ],
+    "/events/*/source_locators/*/locator_kind": [
+      "string"
+    ],
+    "/events/*/source_locators/*/volume": [
+      "null",
+      "string"
+    ],
+    "/events/*/source_locators/*/chapter": [
+      "null",
+      "string"
+    ],
+    "/events/*/source_locators/*/episode": [
+      "null",
+      "string"
+    ],
+    "/events/*/source_locators/*/section": [
+      "null",
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/events": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/events/*/predecessor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/subject_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/place_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/events/*/source_locators": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This shard contains only source-backed events that occurred before the verified campaign anchor.",
+    "Do not add an event while the continuity manifest anchor is unbound.",
+    "Every event requires at least one approved primary-manga work, volume, and chapter locator; supplemental locators may only add nonconflicting support.",
+    "Paraphrase facts without copied source prose, inferred future outcomes, or model-memory-only assertions.",
+    "Keep each event paraphrase atomic enough that every material clause is supported by its attached locators.",
+    "The shard lane controls retrieval only. It does not grant any character knowledge.",
+    "A public or restricted event must not expose a predecessor ID from a more restricted lane.",
+    "Add every event ID to the manifest event_index and preserve stable semantic IDs."
+  ]
+}

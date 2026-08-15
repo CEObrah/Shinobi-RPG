@@ -1,0 +1,61 @@
+{
+  "schema": "commander_profile_registry",
+  "authority": "Shinobi RPG only",
+  "profiles": {
+    "command_profile.shinobi_tactical_standard": {
+      "scope": "tactical team or several subordinate formations",
+      "qualification": "qualified shinobi team leader",
+      "command_effects": [
+        "order latency",
+        "target prioritization",
+        "team synchronization",
+        "reserve/reaction timing",
+        "withdrawal/extraction control",
+        "morale/cohesion control"
+      ],
+      "not_applied_to": [
+        "soldier physical attributes",
+        "soldier chakra reserves",
+        "soldier weapon-skill averages"
+      ],
+      "leadership": 92,
+      "tactics": 96,
+      "team_coordination": 100,
+      "intelligence": 90,
+      "presence": 82
+    },
+    "command_profile.shinobi_support_standard": {
+      "scope": "shinobi specialist/support formation",
+      "leadership": 58,
+      "team_coordination": 64,
+      "tactics": 54,
+      "strategy": 38,
+      "communications": 60,
+      "intelligence": 68,
+      "presence": 56
+    },
+    "command_profile.shinobi_formation_standard": {
+      "scope": "single operational formation",
+      "qualification": "qualified formation leader",
+      "command_effects": [
+        "local orders",
+        "spacing",
+        "timing",
+        "discipline",
+        "reporting"
+      ],
+      "not_applied_to": [
+        "soldier physical attributes",
+        "soldier chakra reserves",
+        "soldier weapon-skill averages"
+      ],
+      "leadership": 72,
+      "tactics": 72,
+      "team_coordination": 78,
+      "intelligence": 70,
+      "presence": 66
+    }
+  },
+  "cold_slot_rule": "A profile is a simulation capability placeholder, not a free extra person. Named-person materialization must consume an already conserved source-person claim.",
+  "rule": "Cold profiles provide command/control capability without creating free people. Materialize a persistent commander from conserved institutional manpower when the person becomes causally important."
+}

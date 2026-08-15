@@ -1,0 +1,139 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-07-01",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.bba8e17630b3b759bde72c50",
+      "kind": "economy.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 85,
+      "source_host": "host.world.economy",
+      "target_host": "host.world.economy",
+      "payload": {
+        "identity": "world.economy",
+        "owner_ref": "state/world/economies-and-mission-markets.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "economy.periodic_review:world.economy",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.816376d75489a3c5393d6723",
+      "kind": "world_registry.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 90,
+      "source_host": "host.world.institutions.great_villages",
+      "target_host": "host.world.institutions.great_villages",
+      "payload": {
+        "identity": "world.institutions.great_villages",
+        "owner_ref": "state/world/institutions-great-villages.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "world_registry.periodic_review:world.institutions.great_villages",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.906e7c2c55ef9fea274e3bad",
+      "kind": "world_registry.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 90,
+      "source_host": "host.world.institutions.minor_civil",
+      "target_host": "host.world.institutions.minor_civil",
+      "payload": {
+        "identity": "world.institutions.minor_civil",
+        "owner_ref": "state/world/institutions-minor-and-civil.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "world_registry.periodic_review:world.institutions.minor_civil",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.d609ecdf20f42edd806f5f78",
+      "kind": "world_registry.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 90,
+      "source_host": "host.world.institutions.konoha",
+      "target_host": "host.world.institutions.konoha",
+      "payload": {
+        "identity": "world.institutions.konoha",
+        "owner_ref": "state/world/institutions-konoha.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "world_registry.periodic_review:world.institutions.konoha",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.f1b443ccb2c484eb007be7b2",
+      "kind": "house.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 90,
+      "source_host": "host.house.house_tang",
+      "target_host": "host.house.house_tang",
+      "payload": {
+        "identity": "house.tang",
+        "owner_ref": "state/house/tang.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "house.periodic_review:house.tang",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.d2c5c4b6e60fc58443d11f21",
+      "kind": "person_continuity.periodic_review",
+      "due_at": "SE-0061-07-01T07:00:00",
+      "priority": 96,
+      "source_host": "host.person_continuity",
+      "target_host": "host.person_continuity",
+      "payload": {
+        "identity": "person_continuity",
+        "owner_ref": "state/reg/person-continuity.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_month_start"
+        }
+      },
+      "dedupe_key": "person_continuity.periodic_review:person_continuity",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

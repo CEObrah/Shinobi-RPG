@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "rule",
+    "default_primary",
+    "pressure_gated_modules",
+    "scene_type_primary",
+    "pressure_primary_overrides",
+    "modules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "narration-router"
+    },
+    "authority": {
+      "const": false
+    },
+    "rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "default_primary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pressure_gated_modules": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "scene_type_primary": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "pressure_primary_overrides": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "modules": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

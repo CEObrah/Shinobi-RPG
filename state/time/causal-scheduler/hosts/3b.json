@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "3b",
+  "authority": true,
+  "hosts": {
+    "host.team.team.iwa.engineering.command.auto.3d13f5395a68": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.iwa.engineering.command.auto.3d13f5395a68",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-11T07:00:00",
+          "safe_through": "SE-0061-06-18T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.iwa.engineering.command.auto.3d13f5395a68",
+          "next_due": "SE-0061-06-18T07:00:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/team-iwa-engineering-command-auto-3d13f5395a68.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.078c36cbbb9409914c97f1f5",
+          "due_at": "SE-0061-06-18T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "dedupe_key": "team.periodic_review:team.iwa.engineering.command.auto.3d13f5395a68"
+        }
+      ]
+    }
+  }
+}

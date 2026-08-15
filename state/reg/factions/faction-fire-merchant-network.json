@@ -1,0 +1,69 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.fire_merchant_network",
+    "name": "Fire Country Merchant Network",
+    "status": "active",
+    "leadership_ids": [
+      "support.merchant.fumiko_takahara"
+    ],
+    "key_member_ids": [],
+    "goal": "protect trade access, contracts, caravans, and route information",
+    "current_plan": "Consolidate recent route reports and shift contracts away from avoidable disruption.",
+    "resources": [
+      "merchant houses",
+      "caravans",
+      "route reports",
+      "contract capital"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.fire_daimyo_liaison",
+        "relationship_type": "regulation_and_contracting",
+        "stance": "transactional",
+        "intensity": 68
+      },
+      {
+        "target_id": "faction.fire_border_authority",
+        "relationship_type": "route_access",
+        "stance": "cooperative",
+        "intensity": 70
+      },
+      {
+        "target_id": "faction.fire_smuggling_network",
+        "relationship_type": "market_and_route_conflict",
+        "stance": "mixed",
+        "intensity": 58
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Commercial interests can generate missions and political pressure without being a military faction."
+    ],
+    "goals": [
+      "keep profitable routes open",
+      "share enough route intelligence to reduce losses without surrendering commercial leverage"
+    ],
+    "constraints": [
+      "profit margins",
+      "road security",
+      "tolls and weather"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-11T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.c482070286ed70f6"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.79d8f01056808085",
+        "priority.autonomy.81ca6b3c7b920955",
+        "priority.autonomy.11139f732831e702"
+      ],
+      "autonomous_mission_refs": []
+    },
+    "scope": "Major Fire Country trade routes, caravan capital, and merchant information",
+    "leadership_model": "distributed_merchant_houses"
+  }
+}

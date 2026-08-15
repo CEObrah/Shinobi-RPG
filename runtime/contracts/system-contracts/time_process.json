@@ -1,0 +1,52 @@
+{
+  "schema": "system-contract",
+  "system_id": "time_process",
+  "authority": false,
+  "authority_paths": [
+    "state/time/causal-scheduler.json",
+    "state/time/causal-scheduler/hosts/",
+    "state/time/causal-scheduler/event-index/",
+    "state/time/causal-scheduler/events/",
+    "state/meta.json"
+  ],
+  "owner_templates": [
+    "causal-scheduler-index",
+    "causal-scheduler-host-shard",
+    "causal-scheduler-event-day",
+    "causal-scheduler-event-year-index",
+    "meta"
+  ],
+  "read_first": [
+    "causal scheduler temporal root index",
+    "only due-date index/day shards through the requested horizon",
+    "exact host shards referenced by due events",
+    "only the due or causally awakened domain owners"
+  ],
+  "write_order": [
+    "resolve due work from the causal scheduler without broad directory/person scans",
+    "settle awakened owners and supported successors in chronological order",
+    "persist authoritative domain-owner effects before declaring their causal events settled",
+    "advance host resolved_through/safe_through and enqueue exact successor wakes",
+    "advance scheduler and campaign clocks to the exact reached time and end with no overdue causal event"
+  ],
+  "invariants": [
+    "Offscreen does not mean frozen.",
+    "A safe horizon is a causal proof that no earlier outward wake is pending, not evidence of periodic polling.",
+    "Owner-local schedules and causal wake-ups override slower aggregate baselines.",
+    "Material autonomous actions are instantiated and persisted in their domain authority before successor resolution continues.",
+    "Internal causal settlement never becomes a player decision merely because a scheduler boundary was processed.",
+    "A player-facing report, offer, contact, or public consequence may stop event-seeking downtime for narration without closing time passage or implying consent.",
+    "decision_required is reserved for a protected hard player decision and must not coexist with an otherwise open time-passage handoff.",
+    "No second hidden clock.",
+    "Production boundary discovery scales with queued causal work, not total named-person count.",
+    "Routine birthdays are derived from birth dates and do not require global scans or annual per-person events unless an outward material consequence is explicitly scheduled.",
+    "The causal scheduler root plus its deterministic host/event shards form one writable temporal-frontier authority; no monolithic shadow registry exists.",
+    "Scheduler host count and pending-event count are logical-world cardinalities, never validity ceilings; bounded settlement budgets return a resumable frontier instead of rejecting a large world.",
+    "When a soft work budget is reached, settlement stops only between causal timestamps so committing the reached world clock cannot strand overdue work at the same timestamp.",
+    "Advance-time discovery cost follows due event days and referenced hosts, not total future scheduler cardinality; exact host mutation routes by deterministic hash shard."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

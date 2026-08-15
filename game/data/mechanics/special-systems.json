@@ -1,0 +1,101 @@
+{
+  "schema": "special-systems",
+  "eight_gates": {
+    "gates": {
+      "1": {
+        "power_multiplier": 1.1,
+        "speed_multiplier": 1.12,
+        "strain_per_6s": 3
+      },
+      "2": {
+        "power_multiplier": 1.18,
+        "speed_multiplier": 1.2,
+        "strain_per_6s": 5
+      },
+      "3": {
+        "power_multiplier": 1.3,
+        "speed_multiplier": 1.35,
+        "strain_per_6s": 8
+      },
+      "4": {
+        "power_multiplier": 1.45,
+        "speed_multiplier": 1.55,
+        "strain_per_6s": 12
+      },
+      "5": {
+        "power_multiplier": 1.65,
+        "speed_multiplier": 1.8,
+        "strain_per_6s": 18
+      },
+      "6": {
+        "power_multiplier": 1.9,
+        "speed_multiplier": 2.1,
+        "strain_per_6s": 28
+      },
+      "7": {
+        "power_multiplier": 2.25,
+        "speed_multiplier": 2.5,
+        "strain_per_6s": 45
+      },
+      "8": {
+        "power_multiplier": 3.0,
+        "speed_multiplier": 3.2,
+        "strain_per_6s": 90,
+        "terminal_risk": "normally fatal without extraordinary registered intervention"
+      }
+    },
+    "rule": "Gate access requires stored training qualification; active gate strain accrues into the character resources.strain authority during exact combat.",
+    "formulas": {
+      "effective_strength": "base_strength * gate.power_multiplier",
+      "effective_speed": "base_speed * gate.speed_multiplier",
+      "strain_gain": "gate.strain_per_6s * elapsed_seconds/6",
+      "gate_entry_margin": "gate_control_mastery + 0.35*Endurance + 0.25*Toughness + 0.20*Composure - gate_entry_difficulty - resources.strain.current",
+      "post_gate_injury_severity": "max(0,current_strain-safe_strain_capacity) * gate_number/4"
+    },
+    "entry_difficulty": {
+      "1": 35,
+      "2": 45,
+      "3": 60,
+      "4": 75,
+      "5": 90,
+      "6": 110,
+      "7": 135,
+      "8": 170
+    },
+    "entry_rule": "Current gate cannot exceed stored max_gate_qualified. Negative entry margin means the gate does not open; strain/injury already incurred by prior gates remains.",
+    "recovery_rule": "Gate strain uses ordinary strain/injury recovery. Gate 8 terminal effects are not reversible without an explicit registered extraordinary intervention."
+  },
+  "jinchuriki": {
+    "mechanics_ref": "game/data/mechanics/biju.json",
+    "state_registry": "state/reg/jinchuriki.json",
+    "seal_registry": "state/medical/seal-registry.json"
+  },
+  "puppets": {
+    "required_entity_fields": [
+      "puppet_id",
+      "owner_id",
+      "role",
+      "control_channels_required",
+      "available",
+      "deployed"
+    ],
+    "maintenance": {
+      "field_kit_stock_key": "puppet_kits",
+      "repair_damage_per_review": 40,
+      "require_available": true,
+      "require_withdrawn": true,
+      "repair_destroyed_units": false,
+      "rule": "Institutional maintenance may reduce recorded puppet damage only on available, withdrawn assets owned by eligible specialist members. Throughput equals the number of concurrently equipped eligible specialists (bounded by reusable field kits) times assets_per_specialist_per_review; excess eligible work remains for later reviews. Maintenance never creates puppets or restores destroyed aggregate units.",
+      "assets_per_specialist_per_review": 2
+    }
+  },
+  "summons": {
+    "required_entity_fields": [
+      "contract_owner",
+      "combat",
+      "available",
+      "active",
+      "summoning_cost"
+    ]
+  }
+}

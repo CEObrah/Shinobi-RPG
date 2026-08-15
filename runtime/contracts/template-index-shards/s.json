@@ -1,0 +1,111 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "s",
+  "templates": {
+    "scene": {
+      "path": "runtime/contracts/templates/scene.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "seal-state-registry": {
+      "path": "runtime/contracts/templates/seal-state-registry.template.json",
+      "source_schema": "game/schemas/seal-state-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "sealing-mechanics": {
+      "path": "runtime/contracts/templates/sealing-mechanics.template.json",
+      "source_schema": "game/schemas/sealing.schema.json",
+      "scope": "static_data"
+    },
+    "shinobi-career-pipeline": {
+      "path": "runtime/contracts/templates/shinobi-career-pipeline.template.json",
+      "source_schema": "game/schemas/shinobi-career-pipeline.schema.json",
+      "scope": "mutable_state"
+    },
+    "shinobi-domain-registry": {
+      "path": "runtime/contracts/templates/shinobi-domain-registry.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "shinobi-stock": {
+      "path": "runtime/contracts/templates/shinobi-stock.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "shinobi-team-types": {
+      "path": "runtime/contracts/templates/shinobi-team-types.template.json",
+      "source_schema": "game/schemas/shinobi-team-types.schema.json",
+      "scope": "static_data"
+    },
+    "shinobi-world-registry": {
+      "path": "runtime/contracts/templates/shinobi-world-registry.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "shinobi.transaction-invalidations": {
+      "path": "runtime/contracts/templates/shinobi.transaction-invalidations.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "shinobi_character": {
+      "path": "runtime/contracts/templates/shinobi_character.template.json",
+      "source_schema": "game/schemas/shinobi-character.schema.json",
+      "scope": "mutable_state"
+    },
+    "site-definition-catalog": {
+      "path": "runtime/contracts/templates/site-definition-catalog.template.json",
+      "source_schema": "game/schemas/site-definition-catalog.schema.json",
+      "scope": "static_data"
+    },
+    "special-systems": {
+      "path": "runtime/contracts/templates/special-systems.template.json",
+      "source_schema": "game/schemas/special-systems.schema.json",
+      "scope": "static_data"
+    },
+    "stats-mechanics": {
+      "path": "runtime/contracts/templates/stats-mechanics.template.json",
+      "source_schema": "game/schemas/stats-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "stock": {
+      "path": "runtime/contracts/templates/stock.template.json",
+      "source_schema": null,
+      "scope": "mutable_state"
+    },
+    "stock-aliases": {
+      "path": "runtime/contracts/templates/stock-aliases.template.json",
+      "source_schema": "game/schemas/stock-aliases.schema.json",
+      "scope": "static_data"
+    },
+    "stock-owner-paths": {
+      "path": "runtime/contracts/templates/stock-owner-paths.template.json",
+      "source_schema": "game/schemas/stock-owner-paths.schema.json",
+      "scope": "static_data"
+    },
+    "summon-registry": {
+      "path": "runtime/contracts/templates/summon-registry.template.json",
+      "source_schema": "game/schemas/summon-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "support_mechanics": {
+      "path": "runtime/contracts/templates/support_mechanics.template.json",
+      "source_schema": "game/schemas/support-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "system-contract": {
+      "path": "runtime/contracts/templates/system-contract.template.json",
+      "source_schema": "game/schemas/system-contract.schema.json",
+      "scope": "static_data"
+    },
+    "system-contract-index": {
+      "path": "runtime/contracts/templates/system-contract-index.template.json",
+      "source_schema": "game/schemas/system-contract-index.schema.json",
+      "scope": "static_data"
+    },
+    "security-network-registry": {
+      "path": "runtime/contracts/templates/security-network-registry.template.json",
+      "source_schema": "game/schemas/security-network-registry.schema.json",
+      "scope": "mutable_state"
+    }
+  }
+}

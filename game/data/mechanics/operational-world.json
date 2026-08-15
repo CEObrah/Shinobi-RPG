@@ -1,0 +1,854 @@
+{
+  "schema": "operational-world-mechanics",
+  "authority": "Static deterministic rules for research work, evidence-driven mission-market signals, and security-network resource costs.",
+  "research_kinds": {
+    "medical": {
+      "required_active_hours": 120,
+      "risk_milli": 250,
+      "material_costs": {
+        "item_field_medical_kit": 2,
+        "item_basic_antidote": 4
+      },
+      "allowed_candidate_kinds": [
+        "manufacturing_recipe"
+      ]
+    },
+    "biological": {
+      "required_active_hours": 240,
+      "risk_milli": 700,
+      "material_costs": {
+        "item_field_medical_kit": 4,
+        "item_basic_antidote": 8,
+        "item_evidence_kit": 1
+      },
+      "allowed_candidate_kinds": [
+        "technique",
+        "manufacturing_recipe"
+      ]
+    },
+    "poison": {
+      "required_active_hours": 160,
+      "risk_milli": 600,
+      "material_costs": {
+        "item_basic_antidote": 8,
+        "item_field_medical_kit": 1
+      },
+      "allowed_candidate_kinds": [
+        "manufacturing_recipe"
+      ]
+    },
+    "engineering": {
+      "required_active_hours": 180,
+      "risk_milli": 250,
+      "material_costs": {
+        "item_earthwork_toolkit": 1,
+        "item_survey_toolkit": 1
+      },
+      "allowed_candidate_kinds": [
+        "manufacturing_recipe"
+      ]
+    },
+    "sealing": {
+      "required_active_hours": 200,
+      "risk_milli": 350,
+      "material_costs": {
+        "item_sealing_ink": 4,
+        "item_sealing_paper": 20
+      },
+      "allowed_candidate_kinds": [
+        "technique",
+        "manufacturing_recipe"
+      ]
+    },
+    "intelligence_analysis": {
+      "required_active_hours": 80,
+      "risk_milli": 100,
+      "material_costs": {
+        "item_evidence_kit": 1
+      },
+      "allowed_candidate_kinds": []
+    },
+    "technique": {
+      "required_active_hours": 220,
+      "risk_milli": 500,
+      "material_costs": {
+        "item_field_pack_standard": 1
+      },
+      "allowed_candidate_kinds": [
+        "technique"
+      ]
+    }
+  },
+  "security": {
+    "coverage_step_milli": 250,
+    "barrier_anchor_sets_per_step": 1,
+    "detection_step_milli": 250,
+    "sensor_relays_per_step": 1
+  },
+  "mission_market": {
+    "max_signal_delta_milli": 150,
+    "signal_delta_milli": 50
+  },
+  "commerce": {
+    "escrow_required": true,
+    "aggregate_sinks": {
+      "aggregate.trade.fire_capital": {
+        "place_ref": "place.fire.capital",
+        "economy_ref": "economy.land_fire.private"
+      },
+      "aggregate.trade.waves_town": {
+        "place_ref": "place.waves.town",
+        "economy_ref": "economy.land_waves.private"
+      }
+    },
+    "autonomous_shipments": {
+      "caravan_contract": {
+        "source_stock_ref": "stock.market.konoha",
+        "source_owner_ref": "faction.fire_merchant_network",
+        "origin_place_ref": "place.konoha",
+        "item_candidates": [
+          "item_field_ration_1day",
+          "item_field_pack_standard",
+          "item_basic_medicine",
+          "item_medical_dressing"
+        ],
+        "quantity": 25,
+        "route_sink_refs": {
+          "route_fire_capital_konoha": "aggregate.trade.fire_capital",
+          "route_konoha_wave": "aggregate.trade.waves_town"
+        },
+        "contraband": false
+      },
+      "contraband_run": {
+        "source_stock_ref": "stock.fire_smuggling_network.konoha_cache",
+        "source_owner_ref": "faction.fire_smuggling_network",
+        "origin_place_ref": "place.konoha",
+        "item_candidates": [
+          "item_basic_medicine",
+          "item_field_ration_1day",
+          "item_waterproof_document_pouch",
+          "weapon_kunai"
+        ],
+        "quantity": 10,
+        "route_sink_refs": {
+          "route_konoha_wave": "aggregate.trade.waves_town"
+        },
+        "contraband": true,
+        "procurement_stock_ref": "stock.market.konoha",
+        "procurement_owner_ref": "faction.fire_merchant_network"
+      }
+    }
+  },
+  "autonomous_effects": {
+    "bounty_target_verification": {
+      "effect_kind": "legal_case",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": "contractual_bounty_target",
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "missing_nin_pursuit": {
+      "effect_kind": "legal_case",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": "missing_nin",
+      "issue_warrant": true,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "laboratory_experiment": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_oto_network",
+      "research_kind": "technique",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "poison_antidote_readiness": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_suna_shinobi",
+      "research_kind": "poison",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "sector_surveillance": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_ame_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "infrastructure_security": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_ame_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "counterintelligence_case": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "compartmented_surveillance": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "mission_market_review": {
+      "effect_kind": "mission_market",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": "market_konoha_missions",
+      "market_axis": "demand",
+      "market_signal_ref": "investigation",
+      "market_direction": 1
+    },
+    "route_tasking": {
+      "effect_kind": "mission_market",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": "market_konoha_missions",
+      "market_axis": "demand",
+      "market_signal_ref": "escort",
+      "market_direction": 1
+    },
+    "caravan_contract": {
+      "effect_kind": "commerce_shipment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "route_profitability_review": {
+      "effect_kind": "commerce_metric",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "contraband_run": {
+      "effect_kind": "commerce_shipment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "crossing_audit": {
+      "effect_kind": "commerce_inspection",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "counter_smuggling": {
+      "effect_kind": "commerce_inspection",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": "smuggling_investigation",
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "coercive_shipping_control": {
+      "effect_kind": "commerce_metric",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "foreign_force_collection": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_kumo_shinobi",
+      "research_kind": "intelligence_analysis",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "intelligence_corroboration": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_kumo_shinobi",
+      "research_kind": "intelligence_analysis",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "claim_analysis": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": "intelligence_analysis",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "fortification_survey": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_iwa_shinobi",
+      "research_kind": "engineering",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "route_denial_planning": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_iwa_shinobi",
+      "research_kind": "engineering",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "medical_capacity_review": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": "medical",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "casualty_response": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": "medical",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "safehouse_security": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "household_security": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "covert_asset_operation": {
+      "effect_kind": "security",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "petition_review": {
+      "effect_kind": "diplomacy_incident",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "bounty_funding_review": {
+      "effect_kind": "legal_bounty_funding",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "bounty_acceptance_review": {
+      "effect_kind": "legal_bounty_assignment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "custody_interrogation": {
+      "effect_kind": "research",
+      "stock_ref": "stock.force_konoha_shinobi",
+      "research_kind": "intelligence_analysis",
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "puppet_readiness": {
+      "effect_kind": "puppet_readiness",
+      "stock_ref": "stock.force_suna_shinobi",
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "border_coordination": {
+      "effect_kind": "diplomacy_incident",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    },
+    "strategic_target_collection": {
+      "effect_kind": "information_observation",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "requires_known_subject": true
+    },
+    "paired_cell_tasking": {
+      "effect_kind": "mission_tasking",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_objective_kind": "capture",
+      "mission_rank": "S",
+      "requires_known_subject": true,
+      "requires_existing_contract": false,
+      "requires_subject_dead": false
+    },
+    "bounty_target_intelligence": {
+      "effect_kind": "information_observation",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "requires_known_subject": false
+    },
+    "criminal_mercenary_contract": {
+      "effect_kind": "service_contract",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_rank": "A",
+      "service_contract_action": "offer"
+    },
+    "clan_training_review": {
+      "effect_kind": "information_observation",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "requires_known_subject": false
+    },
+    "corpse_secret_recovery": {
+      "effect_kind": "mission_tasking",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_objective_kind": "recover",
+      "mission_rank": "A",
+      "requires_known_subject": true,
+      "requires_existing_contract": false,
+      "requires_subject_dead": true
+    },
+    "classified_capture": {
+      "effect_kind": "mission_tasking",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_objective_kind": "capture",
+      "mission_rank": "A",
+      "requires_known_subject": true,
+      "requires_existing_contract": false,
+      "requires_subject_dead": false
+    },
+    "forbidden_scroll_access_probe": {
+      "effect_kind": "information_observation",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "requires_known_subject": false
+    },
+    "research_subject_acquisition": {
+      "effect_kind": "mission_tasking",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_objective_kind": "capture",
+      "mission_rank": "A",
+      "requires_known_subject": true,
+      "requires_existing_contract": false,
+      "requires_subject_dead": false
+    },
+    "mercenary_contract_search": {
+      "effect_kind": "service_contract",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_rank": "A",
+      "service_contract_action": "accept"
+    },
+    "mercenary_contract_job": {
+      "effect_kind": "mission_tasking",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "mission_objective_kind": "capture",
+      "mission_rank": "A",
+      "requires_known_subject": false,
+      "requires_existing_contract": true,
+      "requires_subject_dead": false
+    },
+    "institution_medical_capacity_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "medical"
+    },
+    "institution_collection_analysis_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "intelligence"
+    },
+    "institution_security_posture_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "security"
+    },
+    "institution_technical_project_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "technical"
+    },
+    "institution_mission_market_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "mission"
+    },
+    "institution_trade_route_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "trade"
+    },
+    "institution_administrative_docket_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "administration"
+    },
+    "institution_training_pipeline_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "training"
+    },
+    "institution_communications_network_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "communications"
+    },
+    "institution_force_readiness_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "military"
+    },
+    "institution_clan_affairs_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "clan"
+    },
+    "institution_duty_review": {
+      "effect_kind": "institutional_assessment",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0,
+      "assessment_kind": "institutional"
+    },
+    "kiri_internal_reform_docket": {
+      "effect_kind": "diplomacy_incident",
+      "stock_ref": null,
+      "research_kind": null,
+      "case_kind": null,
+      "issue_warrant": false,
+      "market_ref": null,
+      "market_axis": null,
+      "market_signal_ref": null,
+      "market_direction": 0
+    }
+  },
+  "bounty": {
+    "rank_to_mission_rank": {
+      "academy_student": "D",
+      "genin": "C",
+      "chunin": "B",
+      "special_jonin": "B",
+      "jonin": "A",
+      "elite_jonin": "A",
+      "kage": "S",
+      "legendary": "S",
+      "missing_nin": "A",
+      "criminal_broker": "B"
+    },
+    "amount_field": "client_fee_typical_ryo",
+    "eligible_hunter_organization_refs": [
+      "faction.kiri_hunter_office"
+    ]
+  },
+  "operation_reputation_signals": {
+    "caravan_contract": "reputation.signal.trade_reliability",
+    "route_profitability_review": "reputation.signal.institutional_service_success",
+    "crossing_audit": "reputation.signal.security_reliability",
+    "counter_smuggling": "reputation.signal.security_reliability",
+    "sector_surveillance": "reputation.signal.security_reliability",
+    "infrastructure_security": "reputation.signal.security_reliability",
+    "counterintelligence_case": "reputation.signal.security_reliability",
+    "compartmented_surveillance": "reputation.signal.security_reliability",
+    "foreign_force_collection": "reputation.signal.technical_achievement",
+    "intelligence_corroboration": "reputation.signal.technical_achievement",
+    "claim_analysis": "reputation.signal.technical_achievement",
+    "fortification_survey": "reputation.signal.technical_achievement",
+    "route_denial_planning": "reputation.signal.technical_achievement",
+    "laboratory_experiment": "reputation.signal.technical_achievement",
+    "poison_antidote_readiness": "reputation.signal.technical_achievement",
+    "medical_capacity_review": "reputation.signal.institutional_service_success",
+    "casualty_response": "reputation.signal.institutional_service_success",
+    "mission_market_review": "reputation.signal.institutional_service_success",
+    "route_tasking": "reputation.signal.institutional_service_success",
+    "petition_review": "reputation.signal.institutional_service_success",
+    "border_coordination": "reputation.signal.institutional_service_success",
+    "puppet_readiness": "reputation.signal.technical_achievement"
+  },
+  "research_validation": {
+    "minimum_successful_tests": 2,
+    "test_interval_days": 7,
+    "success_threshold_base_milli": 350,
+    "risk_weight_milli": 400,
+    "rule": "A successful research result is evidence, not a capability. Deployment candidates must already be registered static techniques or manufacturing recipes, then pass deterministic time-separated prototype tests before approval. Approval never grants mastery or creates finished stock."
+  }
+}

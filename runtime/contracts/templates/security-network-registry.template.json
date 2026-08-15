@@ -1,0 +1,153 @@
+{
+  "schema": "file-template",
+  "template_id": "template.security-network-registry",
+  "target_schema": "security-network-registry",
+  "source_schema": "game/schemas/security-network-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "sectors",
+    "alarms",
+    "detections"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "sectors",
+        "alarms",
+        "detections"
+      ],
+      "canonical_order": [
+        "schema",
+        "sectors",
+        "alarms",
+        "detections"
+      ]
+    },
+    "/sectors": {
+      "mode": "open_map"
+    },
+    "/sectors/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "owner_ref",
+        "place_ref",
+        "route_refs",
+        "authorized_owner_refs",
+        "stock_ref",
+        "coverage_milli",
+        "detection_milli",
+        "response_milli",
+        "status",
+        "established_at",
+        "last_reviewed_at",
+        "classification"
+      ],
+      "canonical_order": [
+        "id",
+        "owner_ref",
+        "place_ref",
+        "route_refs",
+        "authorized_owner_refs",
+        "stock_ref",
+        "coverage_milli",
+        "detection_milli",
+        "response_milli",
+        "status",
+        "established_at",
+        "last_reviewed_at",
+        "classification"
+      ]
+    },
+    "/alarms": {
+      "mode": "open_map"
+    },
+    "/alarms/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "sector_ref",
+        "subject_ref",
+        "evidence_ref",
+        "status",
+        "opened_at",
+        "resolved_at",
+        "recipient_refs",
+        "classification"
+      ],
+      "canonical_order": [
+        "id",
+        "sector_ref",
+        "subject_ref",
+        "evidence_ref",
+        "status",
+        "opened_at",
+        "resolved_at",
+        "recipient_refs",
+        "classification"
+      ]
+    },
+    "/detections": {
+      "mode": "open_map"
+    },
+    "/detections/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "sector_ref",
+        "route_ref",
+        "subject_ref",
+        "crossing_ref",
+        "detected_at",
+        "effective_detection_milli",
+        "roll_milli",
+        "evidence_event_ref",
+        "alarm_ref"
+      ],
+      "canonical_order": [
+        "id",
+        "sector_ref",
+        "route_ref",
+        "subject_ref",
+        "crossing_ref",
+        "detected_at",
+        "effective_detection_milli",
+        "roll_milli",
+        "evidence_event_ref",
+        "alarm_ref"
+      ]
+    }
+  },
+  "type_contracts": {},
+  "array_contracts": {
+    "/sectors/*/route_refs": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 0,
+      "unique": true
+    },
+    "/alarms/*/recipient_refs": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 0,
+      "unique": true
+    },
+    "/sectors/*/authorized_owner_refs": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 0,
+      "unique": true
+    }
+  },
+  "writing_rules": []
+}

@@ -1,0 +1,115 @@
+{
+  "schema": "item-maneuvers-shard",
+  "maneuver_packages": {
+    "MP_SHORT_SWORD": {
+      "weapon_family": "short_sword",
+      "maneuvers": {
+        "draw": {
+          "name": "Draw",
+          "base_startup_s": 0.3,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.12,
+          "geometry": "ready_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "cut": {
+          "name": "Cut",
+          "base_startup_s": 0.52,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.36,
+          "geometry": "medium_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "thrust": {
+          "name": "Thrust",
+          "base_startup_s": 0.48,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.38,
+          "geometry": "line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 1,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "parry": {
+          "name": "Parry",
+          "base_startup_s": 0.18,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.28,
+          "geometry": "defensive_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 1,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "bind": {
+          "name": "Bind",
+          "base_startup_s": 0.22,
+          "contact_window_s": 0.24,
+          "base_recovery_s": 0.3,
+          "geometry": "blade_contact",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "blade contact",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

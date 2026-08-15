@@ -1,0 +1,343 @@
+{
+  "schema": "file-template",
+  "template_id": "template.world-operation",
+  "target_schema": "world-operation",
+  "source_schema": "game/schemas/world-operation.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/operation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "operation_id",
+    "domain",
+    "operation_kind",
+    "owner_ref",
+    "authority_ref",
+    "opened_at",
+    "next_due_at",
+    "closed_at",
+    "status",
+    "archetype_ref",
+    "subject_kind",
+    "subject_ref",
+    "client_ref",
+    "place_refs",
+    "route_refs",
+    "opposition_refs",
+    "resource_refs",
+    "mission_refs",
+    "project_refs",
+    "case_refs",
+    "evidence_refs",
+    "claim_refs",
+    "delivery_refs",
+    "report_recipient_refs",
+    "progress_milli",
+    "success_condition",
+    "failure_condition",
+    "classification",
+    "result_refs",
+    "team_refs",
+    "participant_refs",
+    "blocked_reason"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "operation_id",
+        "domain",
+        "operation_kind",
+        "owner_ref",
+        "authority_ref",
+        "opened_at",
+        "next_due_at",
+        "closed_at",
+        "status",
+        "archetype_ref",
+        "subject_kind",
+        "subject_ref",
+        "client_ref",
+        "place_refs",
+        "route_refs",
+        "opposition_refs",
+        "resource_refs",
+        "mission_refs",
+        "project_refs",
+        "case_refs",
+        "evidence_refs",
+        "claim_refs",
+        "delivery_refs",
+        "report_recipient_refs",
+        "progress_milli",
+        "success_condition",
+        "failure_condition",
+        "classification",
+        "result_refs",
+        "team_refs",
+        "participant_refs",
+        "blocked_reason"
+      ],
+      "canonical_order": [
+        "schema",
+        "operation_id",
+        "domain",
+        "operation_kind",
+        "owner_ref",
+        "authority_ref",
+        "opened_at",
+        "next_due_at",
+        "closed_at",
+        "status",
+        "archetype_ref",
+        "subject_kind",
+        "subject_ref",
+        "client_ref",
+        "place_refs",
+        "route_refs",
+        "opposition_refs",
+        "resource_refs",
+        "mission_refs",
+        "project_refs",
+        "case_refs",
+        "evidence_refs",
+        "claim_refs",
+        "delivery_refs",
+        "report_recipient_refs",
+        "progress_milli",
+        "success_condition",
+        "failure_condition",
+        "classification",
+        "result_refs",
+        "team_refs",
+        "participant_refs",
+        "blocked_reason"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/place_refs": [
+      "array"
+    ],
+    "/place_refs/*": [
+      "string"
+    ],
+    "/route_refs": [
+      "array"
+    ],
+    "/route_refs/*": [
+      "string"
+    ],
+    "/opposition_refs": [
+      "array"
+    ],
+    "/opposition_refs/*": [
+      "string"
+    ],
+    "/resource_refs": [
+      "array"
+    ],
+    "/resource_refs/*": [
+      "string"
+    ],
+    "/mission_refs": [
+      "array"
+    ],
+    "/mission_refs/*": [
+      "string"
+    ],
+    "/project_refs": [
+      "array"
+    ],
+    "/project_refs/*": [
+      "string"
+    ],
+    "/case_refs": [
+      "array"
+    ],
+    "/case_refs/*": [
+      "string"
+    ],
+    "/evidence_refs": [
+      "array"
+    ],
+    "/evidence_refs/*": [
+      "string"
+    ],
+    "/claim_refs": [
+      "array"
+    ],
+    "/claim_refs/*": [
+      "string"
+    ],
+    "/delivery_refs": [
+      "array"
+    ],
+    "/delivery_refs/*": [
+      "string"
+    ],
+    "/report_recipient_refs": [
+      "array"
+    ],
+    "/report_recipient_refs/*": [
+      "string"
+    ],
+    "/result_refs": [
+      "array"
+    ],
+    "/result_refs/*": [
+      "string"
+    ],
+    "/team_refs": [
+      "array"
+    ],
+    "/team_refs/*": [
+      "string"
+    ],
+    "/participant_refs": [
+      "array"
+    ],
+    "/participant_refs/*": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/operation_id": [
+      "string"
+    ],
+    "/domain": [
+      "string"
+    ],
+    "/operation_kind": [
+      "string"
+    ],
+    "/owner_ref": [
+      "string"
+    ],
+    "/authority_ref": [
+      "string"
+    ],
+    "/opened_at": [
+      "string"
+    ],
+    "/status": [
+      "string"
+    ],
+    "/subject_kind": [
+      "string"
+    ],
+    "/success_condition": [
+      "string"
+    ],
+    "/failure_condition": [
+      "string"
+    ],
+    "/classification": [
+      "string"
+    ],
+    "/next_due_at": [
+      "null",
+      "string"
+    ],
+    "/closed_at": [
+      "null",
+      "string"
+    ],
+    "/archetype_ref": [
+      "null",
+      "string"
+    ],
+    "/subject_ref": [
+      "null",
+      "string"
+    ],
+    "/client_ref": [
+      "null",
+      "string"
+    ],
+    "/blocked_reason": [
+      "null",
+      "string"
+    ],
+    "/progress_milli": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/place_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/route_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/opposition_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/resource_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/mission_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/project_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/case_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/claim_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/delivery_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/report_recipient_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/result_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/team_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participant_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": []
+}

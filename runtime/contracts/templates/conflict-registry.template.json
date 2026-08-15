@@ -1,0 +1,710 @@
+{
+  "schema": "file-template",
+  "template_id": "template.conflict-registry",
+  "target_schema": "conflict-registry",
+  "source_schema": "game/schemas/conflict-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/conflict"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "records"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "records"
+      ]
+    },
+    "/records": {
+      "mode": "open_map"
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "side_refs",
+        "objectives",
+        "started_at",
+        "ended_at",
+        "ceasefire_consents",
+        "end_consents",
+        "support_alignments",
+        "fronts"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "side_refs",
+        "objectives",
+        "started_at",
+        "ended_at",
+        "ceasefire_consents",
+        "end_consents",
+        "support_alignments",
+        "fronts"
+      ]
+    },
+    "/records/*/objectives": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "place_refs",
+        "route_refs",
+        "formation_refs",
+        "control_ref",
+        "fortification_milli",
+        "route_state",
+        "occupations",
+        "battlefields"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "place_refs",
+        "route_refs",
+        "formation_refs",
+        "control_ref",
+        "fortification_milli",
+        "route_state",
+        "occupations",
+        "battlefields"
+      ]
+    },
+    "/records/*/fronts/*/route_state": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/route_state/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "status",
+        "controller_ref",
+        "disruption_milli",
+        "evidence_event_ref"
+      ],
+      "canonical_order": [
+        "status",
+        "controller_ref",
+        "disruption_milli",
+        "evidence_event_ref"
+      ]
+    },
+    "/records/*/fronts/*/occupations": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/occupations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "place_ref",
+        "controller_ref",
+        "evidence_event_ref",
+        "since"
+      ],
+      "canonical_order": [
+        "place_ref",
+        "controller_ref",
+        "evidence_event_ref",
+        "since"
+      ]
+    },
+    "/records/*/support_alignments": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "place_ref",
+        "side_refs",
+        "layout_ref",
+        "opened_at",
+        "closed_at",
+        "last_settled_at",
+        "updated_at",
+        "sectors",
+        "sector_edges",
+        "assignments",
+        "reports"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "place_ref",
+        "side_refs",
+        "layout_ref",
+        "opened_at",
+        "closed_at",
+        "last_settled_at",
+        "updated_at",
+        "sectors",
+        "sector_edges",
+        "assignments",
+        "reports"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/sectors": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields/*/sectors/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "status",
+        "formation_refs",
+        "control_ref",
+        "pressure_milli",
+        "reported_levels",
+        "last_changed_at"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "status",
+        "formation_refs",
+        "control_ref",
+        "pressure_milli",
+        "reported_levels",
+        "last_changed_at"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/sectors/*/pressure_milli": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields/*/sectors/*/reported_levels": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields/*/sector_edges/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "a",
+        "b",
+        "distance_units"
+      ],
+      "canonical_order": [
+        "a",
+        "b",
+        "distance_units"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/assignments": {
+      "mode": "open_map"
+    },
+    "/records/*/fronts/*/battlefields/*/assignments/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "formation_ref",
+        "force_ref",
+        "side_ref",
+        "sector_ref",
+        "status",
+        "order",
+        "pending_order",
+        "pending_redeployment",
+        "command_eta_at",
+        "pace",
+        "target_sector_ref",
+        "path_sector_refs",
+        "path_index",
+        "leg_eta_at",
+        "transit_from_sector_ref",
+        "transit_to_sector_ref",
+        "assigned_at",
+        "updated_at"
+      ],
+      "canonical_order": [
+        "formation_ref",
+        "force_ref",
+        "side_ref",
+        "sector_ref",
+        "status",
+        "order",
+        "pending_order",
+        "pending_redeployment",
+        "command_eta_at",
+        "pace",
+        "target_sector_ref",
+        "path_sector_refs",
+        "path_index",
+        "leg_eta_at",
+        "transit_from_sector_ref",
+        "transit_to_sector_ref",
+        "assigned_at",
+        "updated_at"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/reports/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "sector_ref",
+        "target_side_ref",
+        "level",
+        "pressure_milli",
+        "created_at",
+        "deliver_at",
+        "status",
+        "delivered_at",
+        "summary"
+      ],
+      "canonical_order": [
+        "id",
+        "sector_ref",
+        "target_side_ref",
+        "level",
+        "pressure_milli",
+        "created_at",
+        "deliver_at",
+        "status",
+        "delivered_at",
+        "summary"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_redeployment": {
+      "mode": "closed",
+      "allowed_keys": [
+        "target_sector_ref",
+        "pace",
+        "order"
+      ],
+      "canonical_order": [
+        "target_sector_ref",
+        "pace",
+        "order"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/records": [
+      "object"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/id": [
+      "string"
+    ],
+    "/records/*/name": [
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/side_refs": [
+      "array"
+    ],
+    "/records/*/side_refs/*": [
+      "string"
+    ],
+    "/records/*/objectives": [
+      "object"
+    ],
+    "/records/*/started_at": [
+      "string"
+    ],
+    "/records/*/ended_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts": [
+      "object"
+    ],
+    "/records/*/fronts/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/id": [
+      "string"
+    ],
+    "/records/*/fronts/*/name": [
+      "string"
+    ],
+    "/records/*/fronts/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/place_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/route_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/formation_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/control_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/fortification_milli": [
+      "integer"
+    ],
+    "/records/*/fronts/*/route_state": [
+      "object"
+    ],
+    "/records/*/fronts/*/route_state/*": [
+      "object"
+    ],
+    "/records/*/objectives/*": [
+      "array"
+    ],
+    "/records/*/objectives/*/*": [
+      "string"
+    ],
+    "/records/*/ceasefire_consents": [
+      "array"
+    ],
+    "/records/*/ceasefire_consents/*": [
+      "string"
+    ],
+    "/records/*/end_consents": [
+      "array"
+    ],
+    "/records/*/end_consents/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/controller_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/route_state/*/disruption_milli": [
+      "integer"
+    ],
+    "/records/*/fronts/*/route_state/*/evidence_event_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/occupations": [
+      "object"
+    ],
+    "/records/*/fronts/*/occupations/*": [
+      "object"
+    ],
+    "/records/*/support_alignments": [
+      "object"
+    ],
+    "/records/*/support_alignments/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/id": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/name": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/place_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/side_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/layout_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/opened_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/closed_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/last_settled_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/updated_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/sector_edges": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/side_refs/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/id": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/name": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/formation_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/control_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/pressure_milli": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/reported_levels": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/last_changed_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/formation_refs/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/pressure_milli/*": [
+      "integer"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/reported_levels/*": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/sectors/*/reported_levels/*/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sector_edges/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/sector_edges/*/a": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sector_edges/*/b": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/sector_edges/*/distance_units": [
+      "integer"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/formation_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/force_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/side_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/sector_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/order": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pace": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/target_sector_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/path_sector_refs": [
+      "array"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/path_index": [
+      "integer",
+      "null"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/leg_eta_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/transit_from_sector_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/transit_to_sector_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/assigned_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/updated_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/path_sector_refs/*": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*": [
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/id": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/sector_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/target_side_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/level": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/pressure_milli": [
+      "integer"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/created_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/deliver_at": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/status": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/delivered_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/reports/*/summary": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_order": [
+      "null",
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_redeployment": [
+      "null",
+      "object"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_redeployment/target_sector_ref": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_redeployment/pace": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/pending_redeployment/order": [
+      "string"
+    ],
+    "/records/*/fronts/*/battlefields/*/assignments/*/command_eta_at": [
+      "null",
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/records/*/side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/place_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/route_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/formation_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/objectives/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/ceasefire_consents": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/end_consents": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/sectors/*/formation_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/sectors/*/reported_levels/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/sector_edges": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/assignments/*/path_sector_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/records/*/fronts/*/battlefields/*/reports": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new stable IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

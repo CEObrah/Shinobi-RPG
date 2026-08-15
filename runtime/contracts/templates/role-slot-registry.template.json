@@ -1,0 +1,30 @@
+{
+  "schema": "file-template",
+  "template_id": "template.role-slot-registry",
+  "target_schema": "role-slot-registry",
+  "source_schema": "game/schemas/role-slot-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/org/role-slots"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["institution_id", "schema", "slots"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["institution_id", "schema", "slots"], "canonical_order": ["schema", "institution_id", "slots"]},
+    "/slots": {"mode": "open_map"},
+    "/slots/*": {"mode": "closed", "allowed_keys": ["authority_scope", "functional_capability_band", "health_availability", "incumbency_id", "incumbent_age_band", "incumbent_years_in_role", "last_settled_at", "materialized_person_id", "office_id", "office_name", "occupancy", "operational_availability", "retirement_status", "service_development_credit", "succession_status"], "canonical_order": ["office_id", "office_name", "authority_scope", "occupancy", "incumbency_id", "materialized_person_id", "incumbent_age_band", "incumbent_years_in_role", "functional_capability_band", "health_availability", "operational_availability", "service_development_credit", "retirement_status", "succession_status", "last_settled_at"]}
+  },
+  "type_contracts": {
+    "/schema": ["string"], "/institution_id": ["string"], "/slots": ["object"], "/slots/*": ["object"],
+    "/slots/*/office_id": ["string"], "/slots/*/office_name": ["string"], "/slots/*/authority_scope": ["array"], "/slots/*/authority_scope/*": ["string"],
+    "/slots/*/occupancy": ["string"], "/slots/*/incumbency_id": ["string", "null"], "/slots/*/materialized_person_id": ["string", "null"],
+    "/slots/*/incumbent_age_band": ["string", "null"], "/slots/*/incumbent_years_in_role": ["integer", "number", "null"], "/slots/*/functional_capability_band": ["string", "null"],
+    "/slots/*/health_availability": ["string", "null"], "/slots/*/operational_availability": ["string", "null"], "/slots/*/service_development_credit": ["integer", "number", "null"],
+    "/slots/*/retirement_status": ["string", "null"], "/slots/*/succession_status": ["string", "null"], "/slots/*/last_settled_at": ["string"]
+  },
+  "array_contracts": {"/slots/*/authority_scope": {"item_types": ["string"]}},
+  "writing_rules": [
+    "A role slot is institutional continuity state, not a hidden character sheet.",
+    "Unmaterialized slots may not store secret names, personality, biography, relationships, private inventory, exact techniques, exact chakra, or exact combat statistics.",
+    "Materialization preserves the same incumbency_id and may not retroactively optimize already-resolved outcomes.",
+    "Vacancy, retirement, incapacity, succession and development require elapsed-time or causal settlement before use."
+  ]
+}

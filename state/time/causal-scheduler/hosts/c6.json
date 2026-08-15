@@ -1,0 +1,35 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "c6",
+  "authority": true,
+  "hosts": {
+    "host.faction.faction.kumo_military_intelligence": {
+      "host": {
+        "state": {
+          "host_id": "host.faction.faction.kumo_military_intelligence",
+          "kind": "faction",
+          "resolved_through": "SE-0061-06-11T07:00:00",
+          "safe_through": "SE-0061-06-18T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "faction.kumo_military_intelligence",
+          "next_due": "SE-0061-06-18T07:00:00"
+        },
+        "authority_kind": "faction_plan",
+        "owner_ref": "state/reg/factions/faction-kumo-military-intelligence.json",
+        "metadata": {
+          "faction_id": "faction.kumo_military_intelligence",
+          "plan_status": "active",
+          "review_interval_seconds": 604800
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.bf0c8cfa0a813d199b3ce697",
+          "due_at": "SE-0061-06-18T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "dedupe_key": "faction.periodic_review:faction.kumo_military_intelligence"
+        }
+      ]
+    }
+  }
+}

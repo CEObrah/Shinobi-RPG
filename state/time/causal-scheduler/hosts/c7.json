@@ -1,0 +1,33 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "c7",
+  "authority": true,
+  "hosts": {
+    "host.house.house_tang": {
+      "host": {
+        "state": {
+          "host_id": "host.house.house_tang",
+          "kind": "house",
+          "resolved_through": "SE-0061-06-01T07:00:00",
+          "safe_through": "SE-0061-07-01T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "house.tang",
+          "next_due": "SE-0061-07-01T07:00:00"
+        },
+        "authority_kind": "house",
+        "owner_ref": "state/house/tang.json",
+        "metadata": {
+          "identity": "house.tang"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.f1b443ccb2c484eb007be7b2",
+          "due_at": "SE-0061-07-01T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-01.json",
+          "dedupe_key": "house.periodic_review:house.tang"
+        }
+      ]
+    }
+  }
+}

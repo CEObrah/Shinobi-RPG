@@ -1,0 +1,60 @@
+{
+  "schema": "file-template",
+  "template_id": "template.stock-aliases",
+  "target_schema": "stock-aliases",
+  "source_schema": "game/schemas/stock-aliases.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/items"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "aliases"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "aliases"
+      ],
+      "canonical_order": [
+        "schema",
+        "aliases"
+      ]
+    },
+    "/aliases": {
+      "mode": "open_map",
+      "allowed_keys": [],
+      "canonical_order": []
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/aliases": [
+      "object"
+    ],
+    "/aliases/*": [
+      "array"
+    ],
+    "/aliases/*/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/aliases/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Structure only; facts remain in the referenced static data file."
+  ]
+}

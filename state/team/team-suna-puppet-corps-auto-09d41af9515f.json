@@ -1,0 +1,46 @@
+{
+  "schema": "exact-team",
+  "id": "team.suna.puppet.corps.auto.09d41af9515f",
+  "name": "Suna Puppet Corps Field Cell",
+  "status": "active",
+  "team_type": "temporary_task_force",
+  "parent_institution_ref": "faction.suna_puppet_corps",
+  "assignment_authority_ref": "canon_chiyo",
+  "leader_ref": "canon_chiyo",
+  "deputy_ref": "canon_kankuro",
+  "member_refs": [
+    "canon_chiyo",
+    "canon_kankuro",
+    "canon_maki"
+  ],
+  "roles": {
+    "canon_chiyo": "field_lead",
+    "canon_kankuro": "engineering_traps",
+    "canon_maki": "mobile_interdiction"
+  },
+  "classification": "restricted",
+  "activation": {
+    "at": "SE-0061-02-19T07:00:00",
+    "basis": "Roster revalidated at the current campaign anchor against the organization’s persisted specialist eligibility and active-service requirements."
+  },
+  "doctrine_ref": "team.suna.puppet.corps.auto.09d41af9515f.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_chiyo"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 3,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.suna_puppet_corps"
+  }
+}

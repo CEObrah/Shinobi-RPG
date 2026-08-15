@@ -1,0 +1,31 @@
+{
+  "schema": "formation_combat_resolution",
+  "authority": "game/data/mechanics/formation-combat.json",
+  "purpose": "Resolve large homogeneous formations as aggregate statistical combat actors without materializing ordinary soldiers. This preserves large-battle efficiency while keeping the formation as the only persistent mass-combat organization.",
+  "persistent_actor": "formation",
+  "aggregate_state": [
+    "headcount/condition",
+    "troop_type",
+    "standard loadout and actual issue state",
+    "capability distribution ref",
+    "training",
+    "doctrine/familiarity",
+    "cohesion",
+    "morale",
+    "readiness/fatigue",
+    "location/terrain",
+    "commander chain",
+    "orders"
+  ],
+  "capability_distribution": "Use saved mean/spread/min/max distributions and relevant qualification proportions. Never create one character per ordinary soldier. Named actors remain individual and are excluded from aggregate counts where claimed.",
+  "contact_resolution": {
+    "eligible": "derive line/combat-support/service-support behavior from game/data/organization/troop-types.json",
+    "frontage": "actual geometry, terrain, order and available bodies determine how many personnel can meaningfully make contact; total formation size alone gives no attack multiplier",
+    "deterministic_sampling": "Use registered deterministic randomness/receipt keys when distribution tails or individual contact variation matter; otherwise use analytic expected/distribution mechanics. Persist reproducibility data.",
+    "settlement": "Apply casualties, injuries, chakra/resource use, ammunition/tool loss, fatigue and morale/cohesion effects back to the real formation aggregate and named participants."
+  },
+  "support": "Medical, sensor, barrier, communications and logistics effects are separate support capacities. They do not automatically add line frontage. A support formation explicitly committed to fighting uses its actual troop-type rules and capability.",
+  "command": "Apply commander effects through game/data/mechanics/command.json after formation soldier capability is resolved; never add commander physical/skill values to every soldier mean.",
+  "vectorization": "Materially equivalent formations may share one ephemeral calculation for efficiency, but there is no persistent hidden cell/batch. Results are deterministically apportioned back to actual formation IDs and vectorization ends on divergence.",
+  "size_invariance": "Splitting one otherwise identical formation into children with conserved state does not increase total available bodies, equipment, chakra, frontage, morale, experience or damage. It only changes organization and command burden."
+}

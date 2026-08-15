@@ -1,0 +1,35 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "28",
+  "authority": true,
+  "hosts": {
+    "host.faction.faction.mizuki_conspiracy": {
+      "host": {
+        "state": {
+          "host_id": "host.faction.faction.mizuki_conspiracy",
+          "kind": "faction",
+          "resolved_through": "SE-0061-06-11T07:00:00",
+          "safe_through": "SE-0061-06-18T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "faction.mizuki_conspiracy",
+          "next_due": "SE-0061-06-18T07:00:00"
+        },
+        "authority_kind": "faction_plan",
+        "owner_ref": "state/reg/factions/faction-mizuki-conspiracy.json",
+        "metadata": {
+          "faction_id": "faction.mizuki_conspiracy",
+          "plan_status": "active",
+          "review_interval_seconds": 604800
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.bootstrap.faction_mizuki_conspiracy",
+          "due_at": "SE-0061-06-18T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-18.json",
+          "dedupe_key": "faction.periodic_review:faction.mizuki_conspiracy"
+        }
+      ]
+    }
+  }
+}

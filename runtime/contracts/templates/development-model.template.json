@@ -1,0 +1,413 @@
+{
+  "schema": "file-template",
+  "template_id": "template.development-model",
+  "target_schema": "development-model",
+  "source_schema": "game/schemas/development-model.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/development"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "aptitude_scale",
+    "capability_scale",
+    "representation_efficiency",
+    "development_inputs",
+    "capacity_rules",
+    "experience_rules",
+    "promotion_rule",
+    "batching_rule",
+    "elite_resolution_rule",
+    "formula_authority",
+    "development_formula",
+    "point_cost"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "aptitude_scale",
+        "capability_scale",
+        "representation_efficiency",
+        "development_inputs",
+        "capacity_rules",
+        "experience_rules",
+        "promotion_rule",
+        "batching_rule",
+        "elite_resolution_rule",
+        "formula_authority",
+        "development_formula",
+        "point_cost"
+      ],
+      "canonical_order": [
+        "schema",
+        "aptitude_scale",
+        "capability_scale",
+        "representation_efficiency",
+        "development_inputs",
+        "capacity_rules",
+        "experience_rules",
+        "promotion_rule",
+        "batching_rule",
+        "elite_resolution_rule",
+        "formula_authority",
+        "development_formula",
+        "point_cost"
+      ]
+    },
+    "/aptitude_scale": {
+      "mode": "closed",
+      "allowed_keys": [
+        "min",
+        "typical",
+        "gifted",
+        "exceptional",
+        "prodigy",
+        "extraordinary",
+        "reference_extreme",
+        "hard_cap"
+      ],
+      "canonical_order": [
+        "min",
+        "typical",
+        "gifted",
+        "exceptional",
+        "prodigy",
+        "extraordinary",
+        "reference_extreme",
+        "hard_cap"
+      ]
+    },
+    "/batching_rule": {
+      "mode": "closed",
+      "allowed_keys": [
+        "batch_equivalence_required",
+        "causal_split_examples",
+        "split_on_causal_change"
+      ],
+      "canonical_order": [
+        "batch_equivalence_required",
+        "split_on_causal_change",
+        "causal_split_examples"
+      ]
+    },
+    "/capacity_rules": {
+      "mode": "closed",
+      "allowed_keys": [
+        "elite_training_scales_poorly",
+        "equipment_capacity_conserved",
+        "facility_capacity_conserved",
+        "instructor_time_conserved",
+        "mass_basic_training_scales_better_than_elite_training"
+      ],
+      "canonical_order": [
+        "instructor_time_conserved",
+        "facility_capacity_conserved",
+        "equipment_capacity_conserved",
+        "elite_training_scales_poorly",
+        "mass_basic_training_scales_better_than_elite_training"
+      ]
+    },
+    "/elite_resolution_rule": {
+      "mode": "closed",
+      "allowed_keys": [
+        "enabled",
+        "principle"
+      ],
+      "canonical_order": [
+        "enabled",
+        "principle"
+      ]
+    },
+    "/experience_rules": {
+      "mode": "closed",
+      "allowed_keys": [
+        "routine_training_ceiling",
+        "field_experience_required_for_high_tier_progression",
+        "generic_training_cannot_create_legendary_progression",
+        "generic_breakthrough_ceiling",
+        "breakthrough_points_per_consumed_event",
+        "breakthrough_event_consumed_once_per_person",
+        "command_experience_cannot_be_awarded_by_classroom_only",
+        "combat_experience_cannot_be_bulk_created",
+        "breakthrough_evidence_must_be_persisted",
+        "breakthrough_evidence_cannot_be_caller_asserted"
+      ],
+      "canonical_order": [
+        "routine_training_ceiling",
+        "field_experience_required_for_high_tier_progression",
+        "generic_training_cannot_create_legendary_progression",
+        "generic_breakthrough_ceiling",
+        "breakthrough_points_per_consumed_event",
+        "breakthrough_event_consumed_once_per_person",
+        "command_experience_cannot_be_awarded_by_classroom_only",
+        "combat_experience_cannot_be_bulk_created",
+        "breakthrough_evidence_must_be_persisted",
+        "breakthrough_evidence_cannot_be_caller_asserted"
+      ]
+    },
+    "/promotion_rule": {
+      "mode": "closed",
+      "allowed_keys": [
+        "mode",
+        "personnel_conservation_required",
+        "whole_unit_promotion_forbidden"
+      ],
+      "canonical_order": [
+        "mode",
+        "personnel_conservation_required",
+        "whole_unit_promotion_forbidden"
+      ]
+    },
+    "/representation_efficiency": {
+      "mode": "closed",
+      "allowed_keys": [
+        "exact",
+        "person",
+        "house_cohort",
+        "formation"
+      ],
+      "canonical_order": [
+        "exact",
+        "person",
+        "house_cohort",
+        "formation"
+      ]
+    },
+    "/capability_scale": {
+      "mode": "closed",
+      "allowed_keys": [
+        "professional_reference",
+        "advanced_reference",
+        "elite_reference",
+        "legendary_reference",
+        "transcendent_reference",
+        "god_tier_reference",
+        "routine_training_ceiling",
+        "generic_breakthrough_ceiling",
+        "hard_cap"
+      ],
+      "canonical_order": [
+        "professional_reference",
+        "advanced_reference",
+        "elite_reference",
+        "legendary_reference",
+        "transcendent_reference",
+        "god_tier_reference",
+        "routine_training_ceiling",
+        "generic_breakthrough_ceiling",
+        "hard_cap"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/aptitude_scale": [
+      "object"
+    ],
+    "/aptitude_scale/exceptional": [
+      "integer"
+    ],
+    "/aptitude_scale/extraordinary": [
+      "integer"
+    ],
+    "/aptitude_scale/gifted": [
+      "integer"
+    ],
+    "/aptitude_scale/max": [
+      "integer"
+    ],
+    "/aptitude_scale/min": [
+      "integer"
+    ],
+    "/aptitude_scale/prodigy": [
+      "integer"
+    ],
+    "/aptitude_scale/typical": [
+      "integer"
+    ],
+    "/aptitude_scale/ordinary_reference_max": [
+      "integer"
+    ],
+    "/aptitude_scale/hard_cap": [
+      "integer",
+      "null"
+    ],
+    "/batching_rule": [
+      "object"
+    ],
+    "/batching_rule/causal_split_examples": [
+      "array"
+    ],
+    "/batching_rule/causal_split_examples/*": [
+      "string"
+    ],
+    "/batching_rule/split_on_causal_change": [
+      "boolean"
+    ],
+    "/batching_rule/batch_equivalence_required": [
+      "boolean"
+    ],
+    "/capacity_rules": [
+      "object"
+    ],
+    "/capacity_rules/elite_training_scales_poorly": [
+      "boolean"
+    ],
+    "/capacity_rules/equipment_capacity_conserved": [
+      "boolean"
+    ],
+    "/capacity_rules/facility_capacity_conserved": [
+      "boolean"
+    ],
+    "/capacity_rules/instructor_time_conserved": [
+      "boolean"
+    ],
+    "/capacity_rules/mass_basic_training_scales_better_than_elite_training": [
+      "boolean"
+    ],
+    "/development_formula": [
+      "string"
+    ],
+    "/development_inputs": [
+      "array"
+    ],
+    "/development_inputs/*": [
+      "string"
+    ],
+    "/elite_resolution_rule": [
+      "object"
+    ],
+    "/elite_resolution_rule/enabled": [
+      "boolean"
+    ],
+    "/elite_resolution_rule/principle": [
+      "string"
+    ],
+    "/experience_rules": [
+      "object"
+    ],
+    "/experience_rules/combat_experience_cannot_be_bulk_created": [
+      "boolean"
+    ],
+    "/experience_rules/command_experience_cannot_be_awarded_by_classroom_only": [
+      "boolean"
+    ],
+    "/experience_rules/field_experience_required_for_high_tier_progression": [
+      "boolean"
+    ],
+    "/formula_authority": [
+      "string"
+    ],
+    "/point_cost": [
+      "string"
+    ],
+    "/promotion_rule": [
+      "object"
+    ],
+    "/promotion_rule/mode": [
+      "string"
+    ],
+    "/promotion_rule/personnel_conservation_required": [
+      "boolean"
+    ],
+    "/promotion_rule/whole_unit_promotion_forbidden": [
+      "boolean"
+    ],
+    "/representation_efficiency": [
+      "object"
+    ],
+    "/representation_efficiency/exact": [
+      "number"
+    ],
+    "/representation_efficiency/person": [
+      "number"
+    ],
+    "/representation_efficiency/house_cohort": [
+      "number"
+    ],
+    "/representation_efficiency/formation": [
+      "number"
+    ],
+    "/aptitude_scale/reference_extreme": [
+      "integer"
+    ],
+    "/capability_scale": [
+      "object"
+    ],
+    "/capability_scale/professional_reference": [
+      "integer"
+    ],
+    "/capability_scale/advanced_reference": [
+      "integer"
+    ],
+    "/capability_scale/elite_reference": [
+      "integer"
+    ],
+    "/capability_scale/legendary_reference": [
+      "integer"
+    ],
+    "/capability_scale/transcendent_reference": [
+      "integer"
+    ],
+    "/capability_scale/god_tier_reference": [
+      "integer"
+    ],
+    "/capability_scale/routine_training_ceiling": [
+      "integer"
+    ],
+    "/capability_scale/generic_breakthrough_ceiling": [
+      "integer"
+    ],
+    "/capability_scale/hard_cap": [
+      "integer",
+      "null"
+    ],
+    "/experience_rules/routine_training_ceiling": [
+      "integer"
+    ],
+    "/experience_rules/generic_breakthrough_ceiling": [
+      "integer"
+    ],
+    "/experience_rules/breakthrough_points_per_consumed_event": [
+      "integer"
+    ],
+    "/experience_rules/generic_training_cannot_create_legendary_progression": [
+      "boolean"
+    ],
+    "/experience_rules/breakthrough_event_consumed_once_per_person": [
+      "boolean"
+    ],
+    "/experience_rules/breakthrough_evidence_must_be_persisted": [
+      "boolean"
+    ],
+    "/experience_rules/breakthrough_evidence_cannot_be_caller_asserted": [
+      "boolean"
+    ]
+  },
+  "array_contracts": {
+    "/batching_rule/causal_split_examples": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/development_inputs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

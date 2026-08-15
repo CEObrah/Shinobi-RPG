@@ -1,0 +1,115 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.akatsuki.itachi_kisame.doctrine",
+  "team_id": "team.akatsuki.itachi_kisame",
+  "name": "Akatsuki Itachi-Kisame Cell Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_itachi": 0,
+    "canon_kisame": 0
+  },
+  "effective_from": "SE-0061-06-11T09:00:00",
+  "approved_by": "faction.akatsuki",
+  "motto": "Compartment, observe, strike only on verified tasking, and withdraw before exposure becomes strategically wasteful.",
+  "command": {
+    "captain": "canon_itachi",
+    "deputy": "canon_kisame",
+    "succession_order": [
+      "canon_kisame"
+    ]
+  },
+  "roles": {
+    "canon_itachi": "field_lead",
+    "canon_kisame": "assault_finisher"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "VERIFY",
+      "primary_members": [
+        "canon_itachi",
+        "canon_kisame"
+      ],
+      "objective": "Confirm the concrete target, terms, routes, opposition, and uncertainty before commitment.",
+      "procedures": [
+        "Act on persisted information, not assumed canon knowledge."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "EXECUTE",
+      "primary_members": [
+        "canon_itachi",
+        "canon_kisame"
+      ],
+      "objective": "Apply complementary roles only to the assigned objective.",
+      "procedures": [
+        "Resource, injury, and exposure costs remain real."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_itachi",
+        "canon_kisame"
+      ],
+      "objective": "Preserve surviving personnel, evidence, and a viable withdrawal path.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Concrete tasking",
+      "rule": "No target or client is valid until persisted by a lawful operation or mission.",
+      "procedures": [
+        "Verify authority, knowledge, and resources before action."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "covert_operation",
+      "directive": "Use only known targets and preserve classification."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Break contact or re-establish information and command before escalating."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_itachi",
+      "canon_kisame"
+    ],
+    "procedures": [
+      "Account for all members and required evidence before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_itachi"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "paired movement",
+      "target verification",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_itachi": "field_lead",
+      "canon_kisame": "assault_finisher"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "paired_cell doctrine"
+}

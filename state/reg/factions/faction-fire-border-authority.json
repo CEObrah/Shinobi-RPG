@@ -1,0 +1,68 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.fire_border_authority",
+    "name": "Fire Country Border Authorities",
+    "status": "active",
+    "leadership_ids": [
+      "support.border.kazuo_murata"
+    ],
+    "key_member_ids": [],
+    "goal": "manage civilian crossing, local alarms, and liaison with Konoha patrols",
+    "current_plan": "Verify routine movement reports and escalate only corroborated anomalies.",
+    "resources": [
+      "local officials",
+      "watch posts",
+      "civilian reports",
+      "road records"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.fire_daimyo_liaison",
+        "relationship_type": "civil_chain_of_authority",
+        "stance": "cooperative",
+        "intensity": 84
+      },
+      {
+        "target_id": "faction.fire_merchant_network",
+        "relationship_type": "route_access",
+        "stance": "cooperative",
+        "intensity": 70
+      },
+      {
+        "target_id": "faction.fire_smuggling_network",
+        "relationship_type": "enforcement_conflict",
+        "stance": "adversarial",
+        "intensity": 82
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Conventional security and shinobi forces remain separate personnel systems."
+    ],
+    "goals": [
+      "maintain accurate border reporting",
+      "coordinate local defense and civilian movement during real threats"
+    ],
+    "constraints": [
+      "limited combat power",
+      "communication delay",
+      "false alarms"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-11T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.265223b7e949fa76"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.20d4fc73f55a9e2d",
+        "priority.autonomy.7fc6ee20ab87c55e"
+      ],
+      "autonomous_mission_refs": []
+    },
+    "scope": "Fire Country checkpoints, local civil watches, and crossing administration",
+    "leadership_model": "distributed_border_offices"
+  }
+}

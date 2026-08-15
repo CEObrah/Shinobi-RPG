@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Population Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "pools",
+    "transfers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "population-registry"
+    },
+    "id": {
+      "type": "string"
+    },
+    "pools": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "owner_ref",
+          "category",
+          "count",
+          "status",
+          "provenance",
+          "representation",
+          "profile",
+          "last_changed_at"
+        ],
+        "properties": {
+          "owner_ref": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "active",
+              "exhausted",
+              "closed"
+            ]
+          },
+          "provenance": {
+            "type": "string"
+          },
+          "profile": {
+            "$ref": "#/$defs/profile"
+          },
+          "last_changed_at": {
+            "type": "string"
+          },
+          "representation": {
+            "type": "object",
+            "required": [
+              "anonymous_count",
+              "rostered_count",
+              "rostered_person_refs"
+            ],
+            "properties": {
+              "anonymous_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "rostered_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "rostered_person_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "linked_force_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "transfers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "at",
+          "source_pool_id",
+          "destination_ref",
+          "requested_count",
+          "accepted",
+          "rejected",
+          "authority_ref",
+          "authority_basis",
+          "policy_ref",
+          "method",
+          "accepted_profile",
+          "materialized_person_ids",
+          "source_removed",
+          "destination_added"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          },
+          "source_pool_id": {
+            "type": "string"
+          },
+          "destination_ref": {
+            "type": "string"
+          },
+          "requested_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "accepted": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rejected": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "authority_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority_basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policy_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "method": {
+            "type": "string"
+          },
+          "accepted_profile": {
+            "$ref": "#/$defs/profile"
+          },
+          "materialized_person_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "source_removed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "destination_added": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "selection_note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "governance_jurisdiction_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "maxItems": 512
+    },
+    "demographic_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "at",
+          "policy_ref",
+          "compacted_years",
+          "pool_results"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "at": {
+            "type": "string"
+          },
+          "policy_ref": {
+            "type": "string"
+          },
+          "compacted_years": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "pool_results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "pool_id",
+                "before",
+                "births",
+                "deaths",
+                "after",
+                "aged_years"
+              ],
+              "properties": {
+                "pool_id": {
+                  "type": "string"
+                },
+                "before": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "births": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "deaths": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "after": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "aged_years": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "maxItems": 64
+    }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "required": [
+        "numeric_distributions",
+        "category_counts",
+        "tags"
+      ],
+      "properties": {
+        "numeric_distributions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "count",
+              "mean",
+              "sd",
+              "min",
+              "max"
+            ],
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "mean": {
+                "type": "number"
+              },
+              "sd": {
+                "type": "number",
+                "minimum": 0
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "category_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dimension_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

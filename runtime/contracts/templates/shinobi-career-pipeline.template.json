@@ -1,0 +1,61 @@
+{
+  "schema": "file-template",
+  "template_id": "template.shinobi-career-pipeline",
+  "target_schema": "shinobi-career-pipeline",
+  "source_schema": "game/schemas/shinobi-career-pipeline.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/reg"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "version", "last_review_at", "villages", "history", "provenance"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["schema", "version", "last_review_at", "villages", "history", "provenance"], "canonical_order": ["schema", "version", "last_review_at", "villages", "history", "provenance"]},
+    "/villages": {"mode": "open_map", "value_contract": "/villages/*"},
+    "/villages/*": {"mode": "closed", "allowed_keys": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"], "canonical_order": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"]},
+    "/villages/*/rank_counts": {"mode": "closed", "allowed_keys": ["genin", "chunin", "jonin"], "canonical_order": ["genin", "chunin", "jonin"]},
+    "/villages/*/promotion_credit_ppm": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]},
+    "/history/*": {"mode": "closed", "allowed_keys": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after"], "canonical_order": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after"]},
+    "/history/*/promotions": {"mode": "open_map", "value_contract": "/history/*/promotions/*"},
+    "/history/*/promotions/*": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]}
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/version": ["integer"],
+    "/last_review_at": ["string"],
+    "/villages": ["object"],
+    "/villages/*": ["object"],
+    "/villages/*/service_pool_ref": ["string"],
+    "/villages/*/force_ref": ["string"],
+    "/villages/*/rank_counts": ["object"],
+    "/villages/*/rank_counts/genin": ["integer"],
+    "/villages/*/rank_counts/chunin": ["integer"],
+    "/villages/*/rank_counts/jonin": ["integer"],
+    "/villages/*/promotion_credit_ppm": ["object"],
+    "/villages/*/promotion_credit_ppm/genin_to_chunin": ["integer"],
+    "/villages/*/promotion_credit_ppm/chunin_to_jonin": ["integer"],
+    "/history": ["array"],
+    "/history/*": ["object"],
+    "/history/*/kind": ["string"],
+    "/history/*/from": ["string"],
+    "/history/*/at": ["string"],
+    "/history/*/village": ["string"],
+    "/history/*/graduates": ["integer"],
+    "/history/*/transfer_id": ["string"],
+    "/history/*/periods": ["integer"],
+    "/history/*/promotions": ["object"],
+    "/history/*/promotions/*": ["object"],
+    "/history/*/promotions/*/genin_to_chunin": ["integer"],
+    "/history/*/promotions/*/chunin_to_jonin": ["integer"],
+    "/history/*/headcount_before": ["integer"],
+    "/history/*/headcount_after": ["integer"],
+    "/provenance": ["string"]
+  },
+  "array_contracts": {
+    "/history": {"item_types": ["object"], "item_contract": "/history/*"}
+  },
+  "writing_rules": [
+    "This owner tracks unnamed aggregate shinobi cohorts only; exact named shinobi remain outside aggregate promotion authority.",
+    "Promotions move conserved bodies one rank step at a time and preserve fractional promotion credit between monthly reviews.",
+    "Academy intake is deduplicated by graduation transfer identity before entering the aggregate Genin cohort."
+  ]
+}

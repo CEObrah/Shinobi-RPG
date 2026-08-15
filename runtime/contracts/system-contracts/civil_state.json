@@ -1,0 +1,51 @@
+{
+  "schema": "system-contract",
+  "system_id": "civil_state",
+  "authority": false,
+  "authority_paths": [
+    "state/reg/legal-cases.json",
+    "state/reg/diplomacy.json",
+    "state/reg/governance.json",
+    "state/world/routes-and-settlements.json",
+    "state/population/registry.json",
+    "state/inventory/registry.json"
+  ],
+  "owner_templates": [
+    "legal-case-registry",
+    "diplomacy-registry",
+    "governance-registry",
+    "shinobi-world-registry",
+    "population-registry",
+    "inventory-registry"
+  ],
+  "read_first": [
+    "exact legal case before warrant/bounty changes",
+    "exact agreement before consent or termination",
+    "existing occupation/place authority before governance establishment",
+    "source population and treasury before settlement founding"
+  ],
+  "write_order": [
+    "validate representation/authority and evidence",
+    "conserve money/population where applicable",
+    "update the single civil-state owner",
+    "emit semantic event"
+  ],
+  "invariants": [
+    "Military occupation is not sovereignty by itself.",
+    "Treaties require persisted consent from every party before becoming active.",
+    "Bounties cannot pay more currency than was escrowed.",
+    "Settlement founding transfers existing people; it never creates population.",
+    "Recruitment rights are a governance fact separate from population and force ownership.",
+    "Governance tax policy only moves conserved money from real taxable economic activity into the exact jurisdiction treasury; tax policy never mints scheduled population income.",
+    "Active military-access agreements authorize only the exact grantee, governed place set, and optional route set recorded in typed provisions.",
+    "Tribute settlement transfers the typed amount between real funding holders and cannot mint currency.",
+    "Founded settlement civil-economy reviews derive aggregate workforce, activity, consumption, service/food pressure, and attractiveness from conserved resident pools; fiscal settlement moves only currency already present in a real regional private-economy holder.",
+    "Nonaggression, alliance, ceasefire, guarantee, and client-state relations constrain state-level hostile conflict initiation according to their typed scope.",
+    "Alliance, guarantee, and client-state defense duties triggered by an attack become exact timed obligation commitments rather than narrative-only promises.",
+    "Active trade agreements modify real route tax settlement through typed tariff multipliers; border agreements constrain exact strategic crossing routes; client-state patronage grants the patron strategic access to the client jurisdiction."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

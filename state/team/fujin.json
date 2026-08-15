@@ -1,0 +1,87 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.fujin",
+  "name": "Team Fujin",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "institution.konoha.academy",
+  "leader_ref": "pc_wei_tang",
+  "deputy_ref": "char.mei_arakawa",
+  "member_refs": [
+    "pc_wei_tang",
+    "char.kai",
+    "char.riku_hyuga",
+    "char.mei_arakawa"
+  ],
+  "roles": {
+    "pc_wei_tang": "jonin_instructor_and_team_leader",
+    "char.kai": "timing_disruption_and_sword_pressure",
+    "char.riku_hyuga": "ground_control_frontline_reconnaissance_and_objective_defense",
+    "char.mei_arakawa": "sensor_perception_control_and_field_lead"
+  },
+  "classification": "public",
+  "activation": {
+    "at": "SE-0061-02-05T09:00:00",
+    "basis": "Lawful Konoha Academy / village team assignment process."
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "authority_review",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": null
+  },
+  "doctrine_ref": "team.konoha.fujin.doctrine",
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "pc_wei_tang",
+      "char.zhu",
+      "char.linh"
+    ],
+    "facility_refs": [
+      "place.sword_manor"
+    ],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.autonomy.b76d9dca5ecdbed52308d48a",
+        "started_at": "SE-0061-06-05T13:15:00",
+        "ended_at": "SE-0061-06-05T21:15:00",
+        "active_hours": "8",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness"
+        }
+      },
+      {
+        "session_ref": "training.session.6216555a4f34dede7bc9566f6dd93a97",
+        "started_at": "SE-0061-06-11T07:00:00",
+        "ended_at": "SE-0061-06-11T08:00:00",
+        "active_hours": "1",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness"
+        }
+      }
+    ]
+  },
+  "embedded_member_refs": []
+}

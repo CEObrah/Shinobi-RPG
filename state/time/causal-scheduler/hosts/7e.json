@@ -1,0 +1,34 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "7e",
+  "authority": true,
+  "hosts": {
+    "host.canon_pressure.pressure_akatsuki_intelligence": {
+      "host": {
+        "state": {
+          "host_id": "host.canon_pressure.pressure_akatsuki_intelligence",
+          "kind": "canon_pressure",
+          "resolved_through": "SE-0061-06-07T07:00:00",
+          "safe_through": "SE-0061-06-14T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "pressure_akatsuki_intelligence",
+          "next_due": "SE-0061-06-14T07:00:00"
+        },
+        "authority_kind": "canon_pressure",
+        "owner_ref": "state/canon/pressures.json",
+        "metadata": {
+          "pressure_id": "pressure_akatsuki_intelligence",
+          "status": "active_hidden"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.aa1c49c74704c81072a8078e",
+          "due_at": "SE-0061-06-14T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-06-14.json",
+          "dedupe_key": "canon_pressure.periodic_review:pressure_akatsuki_intelligence"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shinobi-career-pipeline.schema.json",
+  "title": "Aggregate shinobi career cohort progression state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "last_review_at", "villages", "history", "provenance"],
+  "properties": {
+    "schema": {"const": "shinobi-career-pipeline"},
+    "version": {"const": 1},
+    "last_review_at": {"type": "string", "minLength": 1},
+    "villages": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"],
+        "properties": {
+          "service_pool_ref": {"type": "string", "minLength": 1},
+          "force_ref": {"type": "string", "minLength": 1},
+          "rank_counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["genin", "chunin", "jonin"],
+            "properties": {
+              "genin": {"type": "integer", "minimum": 0},
+              "chunin": {"type": "integer", "minimum": 0},
+              "jonin": {"type": "integer", "minimum": 0}
+            }
+          },
+          "promotion_credit_ppm": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["genin_to_chunin", "chunin_to_jonin"],
+            "properties": {
+              "genin_to_chunin": {"type": "integer", "minimum": 0, "maximum": 999999},
+              "chunin_to_jonin": {"type": "integer", "minimum": 0, "maximum": 999999}
+            }
+          }
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "maxItems": 240,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "village", "graduates", "transfer_id"],
+            "properties": {
+              "kind": {"const": "academy_genin_intake"},
+              "at": {"type": "string", "minLength": 1},
+              "village": {"type": "string", "minLength": 1},
+              "graduates": {"type": "integer", "minimum": 1},
+              "transfer_id": {"type": "string", "minLength": 1}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "promotions", "headcount_before", "headcount_after"],
+            "properties": {
+              "kind": {"const": "aggregate_rank_progression"},
+              "at": {"type": "string", "minLength": 1},
+              "promotions": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["genin_to_chunin", "chunin_to_jonin"],
+                  "properties": {
+                    "genin_to_chunin": {"type": "integer", "minimum": 0},
+                    "chunin_to_jonin": {"type": "integer", "minimum": 0}
+                  }
+                }
+              },
+              "headcount_before": {"type": "integer", "minimum": 0},
+              "headcount_after": {"type": "integer", "minimum": 0}
+            }
+          }
+        ]
+      }
+    },
+    "provenance": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-06-12",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.03f0afc33ceb86236c76ecd3",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-06-12T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.blackhound",
+      "target_host": "host.team.team.blackhound",
+      "payload": {
+        "identity": "team.blackhound",
+        "owner_ref": "state/team/blackhound.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.blackhound",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.47745ed6cc77f2f3de600b3a",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-06-12T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.guy",
+      "target_host": "host.team.team.konoha.guy",
+      "payload": {
+        "identity": "team.konoha.guy",
+        "owner_ref": "state/team/guy.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.guy",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.b19c515b65a8dd8bb1ad1e39",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-06-12T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.fujin",
+      "target_host": "host.team.team.konoha.fujin",
+      "payload": {
+        "identity": "team.konoha.fujin",
+        "owner_ref": "state/team/fujin.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.fujin",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

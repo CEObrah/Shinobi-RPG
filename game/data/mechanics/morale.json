@@ -1,0 +1,26 @@
+{
+  "schema": "morale-mechanics",
+  "formulas": {
+    "morale_pressure": "casualty_pressure + commander_loss + flank_rear_pressure + isolation + supply_failure + fear_effects - rally - cohesion_support",
+    "effective_morale": "clamp(base_morale - morale_pressure,0,200)"
+  },
+  "thresholds": {
+    "0-24": "rout_or_surrender_unless_trapped",
+    "25-49": "breaking",
+    "50-79": "shaken",
+    "80-119": "steady",
+    "120-159": "confident",
+    "160-200": "unyielding"
+  },
+  "rule": "Morale changes require a registered trigger; narration cannot move morale without state update.",
+  "trigger_formulas": {
+    "casualty_pressure": "100*(new_casualties/max(engaged_headcount,1))*(1-cohesion/250)",
+    "commander_loss": "25 if primary commander incapacitated; 10 if deputy incapacitated; 0 otherwise",
+    "flank_rear_pressure": "15 for confirmed flank penetration; 25 for confirmed rear penetration",
+    "isolation": "20 if cut off from command and withdrawal route; 0 otherwise",
+    "supply_failure": "clamp(supply_shortfall_percent*0.4,0,40)",
+    "cohesion_support": "cohesion/10",
+    "rally": "min(30,0.20*leader_leadership + 0.10*leader_presence) when a legal rally action succeeds"
+  },
+  "transition_rule": "Calculate effective morale after each registered trigger bundle. The threshold state becomes authoritative immediately; recovery requires a legal rally/rest/process event."
+}

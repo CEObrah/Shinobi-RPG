@@ -1,0 +1,67 @@
+{
+  "schema": "system-contract",
+  "system_id": "forces_institutions",
+  "authority": false,
+  "authority_paths": [
+    "state/force/",
+    "state/formation/",
+    "state/org/",
+    "state/house/",
+    "state/clan/",
+    "state/manpower-capability/",
+    "state/person-core/",
+    "state/operation/"
+  ],
+  "owner_templates": [
+    "covenant",
+    "force",
+    "formation-registry",
+    "formation-registry-index",
+    "house",
+    "house_charter",
+    "clan-institution",
+    "manpower-capability",
+    "person-core-registry",
+    "role-slot-registry",
+    "stock",
+    "combat-operation",
+    "command-assignments",
+    "world-operation"
+  ],
+  "read_first": [
+    "source force or institution owner",
+    "only the explicit formation registry when operational formations are causally relevant",
+    "role-slot registry only when an unmaterialized office, vacancy or succession is causal",
+    "for clan activity, load the exact active clan owner plus its cold clan profile; never substitute the static profile for mutable membership, leadership, resources or access"
+  ],
+  "write_order": [
+    "conserve source manpower and availability partitions",
+    "update exact formation state only for operational bodies that are materialized",
+    "update role-slot continuity when vacancy, succession or officeholder materialization changes",
+    "for House Tang, settle rostered individual-lite profiles through the one bounded person-core registry and then recompute House cohort summaries from those people",
+    "for large clan institutions, update the active clan owner once for aggregate cohort membership/training/process changes; never fan routine clan progression out across every represented person",
+    "update genuinely separate authorities such as stock only when causally changed",
+    "rebuild derived routing indexes only when necessary"
+  ],
+  "invariants": [
+    "A force is the single aggregate manpower owner.",
+    "Explicit formation headcount is a subset of deployed force personnel and never exceeds it.",
+    "A force may have deployed personnel that remain abstract until an operation requires explicit formation state.",
+    "A named exact team embedded in a formation is included in formation headcount rather than added to it.",
+    "One semantic mutable fact has one writable owner; sidecars exist only for genuinely separate authority or rebuildable derived data.",
+    "House member_ids contains every persistent House identity, whether exact or roster-core backed.",
+    "House Tang is a small personal institution: each rostered member owns persistent individual-lite capability/development state in the bounded person-core registry; House cohorts are organization/training assignments and derived summaries.",
+    "A House review may settle many embedded member profiles in one registry write and then rebuild cohort summaries; efficiency never makes the cohort the owner of an individual member capability.",
+    "An active clan-institution owns only current campaign clan facts; its cold clan profile is static sourced reference and cannot substitute for current leadership, membership, facilities, resources, politics or technique access.",
+    "Clan training uses the generic training reducer and conserved elapsed time; clan membership, ancestry or reputation never grants free progression, hereditary expression, secret access, technique knowledge or mastery.",
+    "Routine large-clan cohort development is one aggregate capability-host write and must conserve its represented identities/headcount.",
+    "An unmaterialized role slot is institutional continuity state, never a hidden person sheet.",
+    "Materializing an officeholder preserves incumbency and may not grant free capability, knowledge, equipment, relationships, authority or retroactive outcome convenience.",
+    "Large-force operations separate source ownership, command authority, operational attachment and location; an operation never becomes a second manpower owner.",
+    "Living-world world-operation records are causal work owners only; they reference missions, projects, cases, claims, routes and resources but never become duplicate authority for manpower, money, inventory, population, legal status or territorial control."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

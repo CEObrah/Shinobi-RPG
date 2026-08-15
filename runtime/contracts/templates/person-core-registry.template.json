@@ -1,0 +1,508 @@
+{
+  "schema": "file-template",
+  "template_id": "template.person-core-registry",
+  "target_schema": "person-core-registry",
+  "source_schema": "game/schemas/person-core-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/person-core"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "owner_ref",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "owner_ref",
+        "people",
+        "profile_numeric_paths",
+        "profiles"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "owner_ref",
+        "people",
+        "profile_numeric_paths",
+        "profiles"
+      ]
+    },
+    "/people": {
+      "mode": "open_map",
+      "value_contract": "/people/*"
+    },
+    "/people/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "aliases",
+        "pronouns",
+        "birth_date",
+        "birth_date_source",
+        "origin",
+        "life_status",
+        "affiliation_ref",
+        "location_ref",
+        "cohort_ref",
+        "cohort_slot",
+        "role_profile_ref",
+        "duty_tags",
+        "resolved_through",
+        "identity_cues",
+        "component_refs",
+        "provenance"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "aliases",
+        "pronouns",
+        "birth_date",
+        "birth_date_source",
+        "origin",
+        "life_status",
+        "affiliation_ref",
+        "location_ref",
+        "cohort_ref",
+        "cohort_slot",
+        "role_profile_ref",
+        "duty_tags",
+        "resolved_through",
+        "identity_cues",
+        "component_refs",
+        "provenance"
+      ]
+    },
+    "/people/*/identity_cues": {
+      "mode": "closed",
+      "allowed_keys": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ],
+      "canonical_order": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ]
+    },
+    "/people/*/component_refs": {
+      "mode": "open_map",
+      "value_contract": "string"
+    },
+    "/people/*/provenance": {
+      "mode": "closed",
+      "allowed_keys": [
+        "source_kind",
+        "source_ref",
+        "materialized_at",
+        "selection_method"
+      ],
+      "canonical_order": [
+        "source_kind",
+        "source_ref",
+        "materialized_at",
+        "selection_method"
+      ]
+    },
+    "/profiles": {
+      "mode": "open_map",
+      "value_contract": "/profiles/*"
+    },
+    "/profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_ref",
+        "cohort_ref",
+        "anchored_at",
+        "numeric_values",
+        "category_values",
+        "institutional_progression"
+      ],
+      "canonical_order": [
+        "person_ref",
+        "cohort_ref",
+        "anchored_at",
+        "numeric_values",
+        "category_values",
+        "institutional_progression"
+      ]
+    },
+    "/profiles/*/category_values": {
+      "mode": "open_map",
+      "value_contract": "array"
+    },
+    "/profiles/*/institutional_progression": {
+      "mode": "closed",
+      "allowed_keys": [
+        "standing",
+        "technical_tier",
+        "training_package_refs",
+        "method_mastery",
+        "latent_or_locked_techniques",
+        "qualifications",
+        "credential_refs",
+        "promotion_history",
+        "resolved_through",
+        "method_residual_units",
+        "development_residual_units",
+        "package_mastery",
+        "service_history"
+      ],
+      "canonical_order": [
+        "standing",
+        "technical_tier",
+        "training_package_refs",
+        "method_mastery",
+        "latent_or_locked_techniques",
+        "qualifications",
+        "credential_refs",
+        "promotion_history",
+        "resolved_through",
+        "method_residual_units",
+        "development_residual_units",
+        "package_mastery",
+        "service_history"
+      ]
+    },
+    "/profiles/*/institutional_progression/method_mastery": {
+      "mode": "open_map"
+    },
+    "/profiles/*/institutional_progression/method_residual_units": {
+      "mode": "open_map"
+    },
+    "/profiles/*/institutional_progression/development_residual_units": {
+      "mode": "open_map"
+    },
+    "/profiles/*/institutional_progression/package_mastery": {
+      "mode": "open_map"
+    },
+    "/profiles/*/institutional_progression/promotion_history/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "at",
+        "from",
+        "to",
+        "reason"
+      ],
+      "canonical_order": [
+        "at",
+        "from",
+        "to",
+        "reason"
+      ]
+    },
+    "/profiles/*/institutional_progression/service_history/*": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/owner_ref": [
+      "string"
+    ],
+    "/people": [
+      "object"
+    ],
+    "/people/*": [
+      "object"
+    ],
+    "/people/*/id": [
+      "string"
+    ],
+    "/people/*/name": [
+      "string"
+    ],
+    "/people/*/aliases": [
+      "array"
+    ],
+    "/people/*/aliases/*": [
+      "string"
+    ],
+    "/people/*/pronouns": [
+      "string"
+    ],
+    "/people/*/birth_date": [
+      "null",
+      "string"
+    ],
+    "/people/*/birth_date_source": [
+      "null",
+      "string"
+    ],
+    "/people/*/origin": [
+      "string"
+    ],
+    "/people/*/life_status": [
+      "string"
+    ],
+    "/people/*/location_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/cohort_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/cohort_slot": [
+      "integer",
+      "null"
+    ],
+    "/people/*/role_profile_ref": [
+      "null",
+      "string"
+    ],
+    "/people/*/duty_tags": [
+      "array"
+    ],
+    "/people/*/duty_tags/*": [
+      "string"
+    ],
+    "/people/*/resolved_through": [
+      "string"
+    ],
+    "/people/*/identity_cues": [
+      "object"
+    ],
+    "/people/*/identity_cues/appearance": [
+      "string"
+    ],
+    "/people/*/identity_cues/temperament": [
+      "string"
+    ],
+    "/people/*/identity_cues/doctrine_expression": [
+      "string"
+    ],
+    "/people/*/component_refs": [
+      "object"
+    ],
+    "/people/*/component_refs/*": [
+      "string"
+    ],
+    "/people/*/provenance": [
+      "object"
+    ],
+    "/people/*/provenance/source_kind": [
+      "string"
+    ],
+    "/people/*/provenance/source_ref": [
+      "string"
+    ],
+    "/people/*/provenance/materialized_at": [
+      "null",
+      "string"
+    ],
+    "/people/*/provenance/selection_method": [
+      "string"
+    ],
+    "/people/*/affiliation_ref": [
+      "null",
+      "string"
+    ],
+    "/profile_numeric_paths": [
+      "array"
+    ],
+    "/profile_numeric_paths/*": [
+      "string"
+    ],
+    "/profiles": [
+      "object"
+    ],
+    "/profiles/*": [
+      "object"
+    ],
+    "/profiles/*/person_ref": [
+      "string"
+    ],
+    "/profiles/*/cohort_ref": [
+      "null",
+      "string"
+    ],
+    "/profiles/*/anchored_at": [
+      "string"
+    ],
+    "/profiles/*/numeric_values": [
+      "array"
+    ],
+    "/profiles/*/numeric_values/*": [
+      "number"
+    ],
+    "/profiles/*/category_values": [
+      "object"
+    ],
+    "/profiles/*/category_values/*": [
+      "array"
+    ],
+    "/profiles/*/category_values/*/*": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/standing": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/technical_tier": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/training_package_refs": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/training_package_refs/*": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/method_mastery": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/method_mastery/*": [
+      "number"
+    ],
+    "/profiles/*/institutional_progression/latent_or_locked_techniques": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/latent_or_locked_techniques/*": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/qualifications": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/qualifications/*": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/credential_refs": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/credential_refs/*": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/promotion_history": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/promotion_history/*": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/promotion_history/*/at": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/promotion_history/*/from": [
+      "null",
+      "string"
+    ],
+    "/profiles/*/institutional_progression/promotion_history/*/to": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/promotion_history/*/reason": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/resolved_through": [
+      "string"
+    ],
+    "/profiles/*/institutional_progression/method_residual_units": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/method_residual_units/*": [
+      "number"
+    ],
+    "/profiles/*/institutional_progression/development_residual_units": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/development_residual_units/*": [
+      "number"
+    ],
+    "/profiles/*/institutional_progression/package_mastery": [
+      "object"
+    ],
+    "/profiles/*/institutional_progression/package_mastery/*": [
+      "number"
+    ],
+    "/profiles/*/institutional_progression/service_history": [
+      "array"
+    ],
+    "/profiles/*/institutional_progression/service_history/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/people/*/aliases": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/people/*/duty_tags": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profile_numeric_paths": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/numeric_values": {
+      "item_types": [
+        "number"
+      ]
+    },
+    "/profiles/*/category_values/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/institutional_progression/training_package_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/institutional_progression/latent_or_locked_techniques": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/institutional_progression/qualifications": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/institutional_progression/credential_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/institutional_progression/promotion_history": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/profiles/*/institutional_progression/promotion_history/*"
+    },
+    "/profiles/*/institutional_progression/service_history": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/profiles/*/institutional_progression/service_history/*"
+    }
+  },
+  "writing_rules": [
+    "A core is a real persistent person identity, never anonymous aggregate headcount.",
+    "For bounded personal rosters, profiles may hold each person's stable lightweight capability and progression; cohort summaries are derived organization views, never character authority.",
+    "Changing cohort membership, cohort statistics, promotion or exactification must preserve the same person and must never reroll an established individual profile.",
+    "Age is derived from the stable birth anchor at read time rather than periodically persisted in profiles.",
+    "Identity cues constrain characterization but grant no capability, knowledge, relationship, authority, equipment or outcome.",
+    "component_refs remain for genuinely separate individual components; do not duplicate profile authority in another writable owner."
+  ]
+}

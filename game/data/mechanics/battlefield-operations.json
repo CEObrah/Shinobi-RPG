@@ -1,0 +1,223 @@
+{
+  "layouts": {
+    "battlefield.layout.line_three": {
+      "name": "Three-sector line",
+      "sectors": [
+        {
+          "key": "left",
+          "name": "Left Wing"
+        },
+        {
+          "key": "center",
+          "name": "Center"
+        },
+        {
+          "key": "right",
+          "name": "Right Wing"
+        },
+        {
+          "key": "rear",
+          "name": "Rear / Reserve"
+        },
+        {
+          "key": "hq",
+          "name": "Command Post"
+        }
+      ],
+      "edges": [
+        {
+          "a": "left",
+          "b": "center",
+          "distance_units": 3
+        },
+        {
+          "a": "center",
+          "b": "right",
+          "distance_units": 3
+        },
+        {
+          "a": "left",
+          "b": "rear",
+          "distance_units": 3
+        },
+        {
+          "a": "center",
+          "b": "rear",
+          "distance_units": 2
+        },
+        {
+          "a": "right",
+          "b": "rear",
+          "distance_units": 3
+        },
+        {
+          "a": "rear",
+          "b": "hq",
+          "distance_units": 1
+        }
+      ],
+      "frontline_keys": [
+        "left",
+        "center",
+        "right"
+      ],
+      "reserve_key": "rear",
+      "command_key": "hq"
+    },
+    "battlefield.layout.deep_five": {
+      "name": "Five-sector deep field",
+      "sectors": [
+        {
+          "key": "left",
+          "name": "Left Wing"
+        },
+        {
+          "key": "center",
+          "name": "Center"
+        },
+        {
+          "key": "right",
+          "name": "Right Wing"
+        },
+        {
+          "key": "forward_reserve",
+          "name": "Forward Reserve"
+        },
+        {
+          "key": "rear",
+          "name": "Rear Area"
+        },
+        {
+          "key": "hq",
+          "name": "Command Post"
+        }
+      ],
+      "edges": [
+        {
+          "a": "left",
+          "b": "center",
+          "distance_units": 3
+        },
+        {
+          "a": "center",
+          "b": "right",
+          "distance_units": 3
+        },
+        {
+          "a": "left",
+          "b": "forward_reserve",
+          "distance_units": 3
+        },
+        {
+          "a": "center",
+          "b": "forward_reserve",
+          "distance_units": 2
+        },
+        {
+          "a": "right",
+          "b": "forward_reserve",
+          "distance_units": 3
+        },
+        {
+          "a": "forward_reserve",
+          "b": "rear",
+          "distance_units": 2
+        },
+        {
+          "a": "rear",
+          "b": "hq",
+          "distance_units": 1
+        }
+      ],
+      "frontline_keys": [
+        "left",
+        "center",
+        "right"
+      ],
+      "reserve_key": "forward_reserve",
+      "command_key": "hq"
+    }
+  },
+  "orders": {
+    "hold": {
+      "power_milli": 1050,
+      "pressure_milli": 800
+    },
+    "attack": {
+      "power_milli": 1125,
+      "pressure_milli": 1200
+    },
+    "breakthrough": {
+      "power_milli": 1225,
+      "pressure_milli": 1400
+    },
+    "delay": {
+      "power_milli": 925,
+      "pressure_milli": 650
+    },
+    "reserve": {
+      "power_milli": 550,
+      "pressure_milli": 250
+    },
+    "withdraw": {
+      "power_milli": 350,
+      "pressure_milli": 150
+    }
+  },
+  "pressure": {
+    "base_milli_per_hour": 110,
+    "imbalance_weight_milli": 900,
+    "recovery_milli_per_hour": 35,
+    "critical_milli": 720,
+    "collapse_milli": 920
+  },
+  "redeployment": {
+    "seconds_per_distance_unit": {
+      "forced": 180,
+      "standard": 240,
+      "cautious": 330
+    },
+    "size_bands": [
+      {
+        "max_personnel": 24,
+        "time_milli": 700
+      },
+      {
+        "max_personnel": 120,
+        "time_milli": 850
+      },
+      {
+        "max_personnel": 500,
+        "time_milli": 1000
+      },
+      {
+        "max_personnel": 2000,
+        "time_milli": 1200
+      },
+      {
+        "max_personnel": 10000,
+        "time_milli": 1450
+      },
+      {
+        "max_personnel": 1000000000,
+        "time_milli": 1700
+      }
+    ],
+    "movement_reference": 60,
+    "movement_floor_milli": 650,
+    "movement_ceiling_milli": 1450
+  },
+  "information": {
+    "sensor_method_threshold": 60,
+    "sensor_latency_seconds": 180,
+    "messenger_latency_seconds": 600,
+    "direct_observation_latency_seconds": 0
+  },
+  "delegated_initiative": {
+    "enabled": true,
+    "reserve_commit_pressure_milli": 760,
+    "reserve_pace": "standard",
+    "reserve_order": "attack",
+    "max_autonomous_commits_per_boundary": 1
+  }
+}

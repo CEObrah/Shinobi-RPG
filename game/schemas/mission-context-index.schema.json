@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mission-context-index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "authority", "current_by_participant", "briefing_by_participant", "current_mission_count"],
+  "properties": {
+    "schema": {"const": "mission-context-index"},
+    "authority": {"const": false},
+    "current_by_participant": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string", "pattern": "^mission\\."}
+      }
+    },
+    "briefing_by_participant": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string", "pattern": "^mission\\."}
+      }
+    },
+    "current_mission_count": {"type": "integer", "minimum": 0}
+  }
+}

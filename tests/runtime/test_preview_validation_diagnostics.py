@@ -32,11 +32,20 @@ def test_schema_validation_error_code_does_not_leak_path_or_field_detail():
     assert "secret" not in code
 
 
-def test_schema_validation_error_code_classifies_unregistered_schema():
-    error = ValueError("staged JSON uses an unregistered schema: 'secret-schema-name'")
+def test_schema_validation_error_code_exposes_bounded_unregistered_schema_token():
+    error = ValueError("staged JSON uses an unregistered schema: 'mission-offer-runtime'")
     code = _schema_validation_error_code(error)
-    assert code == "preview_schema_validation_failed_unregistered_schema"
-    assert "secret" not in code
+    assert code == (
+        "preview_schema_validation_failed_unregistered_mission_offer_runtime"
+    )
+    assert "state/" not in code
+
+
+def test_schema_validation_error_code_handles_legacy_unregistered_schema_format():
+    error = ValueError("unregistered top-level schema: mission-offer-runtime")
+    assert _schema_validation_error_code(error) == (
+        "preview_schema_validation_failed_unregistered_mission_offer_runtime"
+    )
 
 
 def test_schema_validation_error_code_classifies_missing_top_level_schema():

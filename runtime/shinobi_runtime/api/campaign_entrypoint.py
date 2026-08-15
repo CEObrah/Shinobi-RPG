@@ -9,6 +9,7 @@ from __future__ import annotations
 
 
 def _install_campaign_extensions() -> None:
+    from shinobi_runtime.commands.legacy_scheduler_compat import install_legacy_scheduler_compat
     from shinobi_runtime.commands.academy_career_sync import install_academy_career_sync
     from shinobi_runtime.commands.shinobi_career_progression import install_shinobi_career_progression
     from shinobi_runtime.commands.promotion_exam_scheduler import install_promotion_exam_scheduler
@@ -18,6 +19,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
     from shinobi_runtime.api.preview_validation import install_preview_validation
 
+    install_legacy_scheduler_compat()
     install_academy_career_sync()
     install_shinobi_career_progression()
     install_promotion_exam_scheduler()

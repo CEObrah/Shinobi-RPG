@@ -9,13 +9,14 @@ history divergence.
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Mapping, Optional, Sequence
+from typing import Mapping, Optional, Sequence, Tuple
 from urllib.parse import urlsplit
 
 
@@ -182,18 +183,145 @@ def _is_ancestor(settings: CheckoutSettings, older: str, newer: str) -> bool:
     return completed.returncode == 0
 
 
+def _commit_text(
+    settings: CheckoutSettings,
+    commit: str,
+    path: str,
+) -> Optional[str]:
+    """Return UTF-8 text for one committed path, or None when it is absent/invalid."""
+
+    completed = subprocess.run(
+        [settings.git_binary, "show", f"{commit}:{path}"],
+        cwd=str(settings.campaign_root),
+        env=_askpass_environment(settings),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    if completed.returncode:
+        return None
+    try:
+        return completed.stdout.decode("utf-8", errors="strict")
+    except UnicodeDecodeError:
+        return None
+
+
+def _changed_campaign_authority_paths(
+    settings: CheckoutSettings,
+    local_head: str,
+    remote_head: str,
+) -> Tuple[str, ...]:
+    completed = subprocess.run(
+        [
+            settings.git_binary,
+            "diff",
+            "--name-only",
+            "-z",
+            local_head,
+            remote_head,
+            "--",
+            *_CAMPAIGN_AUTHORITY_PATHS,
+        ],
+        cwd=str(settings.campaign_root),
+        env=_askpass_environment(settings),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    if completed.returncode:
+        raise BootstrapError("Git campaign-authority path comparison failed")
+    try:
+        decoded = completed.stdout.decode("utf-8", errors="strict")
+    except UnicodeDecodeError as exc:
+        raise BootstrapError("campaign-authority path is not valid UTF-8") from exc
+    return tuple(path for path in decoded.split("\x00") if path)
+
+
+def _json_values_equal(left: object, right: object) -> bool:
+    """Compare parsed JSON without making integer/float coercion equivalent."""
+
+    if type(left) is not type(right):
+        return False
+    if isinstance(left, dict):
+        if left.keys() != right.keys():
+            return False
+        return all(_json_values_equal(left[key], right[key]) for key in left)
+    if isinstance(left, list):
+        return len(left) == len(right) and all(
+            _json_values_equal(a, b) for a, b in zip(left, right)
+        )
+    return left == right
+
+
+def _semantic_campaign_authority_matches(
+    settings: CheckoutSettings,
+    local_head: str,
+    remote_head: str,
+) -> bool:
+    """Allow formatting-only state JSON changes during deliberate history replacement."""
+
+    changed_paths = _changed_campaign_authority_paths(
+        settings,
+        local_head,
+        remote_head,
+    )
+    for path in changed_paths:
+        # Current mutable campaign truth is JSON under state/. Legacy root data/
+        # or schemas/ differences remain fail-closed because they are not safe
+        # to reinterpret here.
+        if not path.startswith("state/") or not path.endswith(".json"):
+            return False
+        local_text = _commit_text(settings, local_head, path)
+        remote_text = _commit_text(settings, remote_head, path)
+        if local_text is None or remote_text is None:
+            return False
+        try:
+            local_value = json.loads(local_text)
+            remote_value = json.loads(remote_text)
+        except (TypeError, ValueError, json.JSONDecodeError):
+            return False
+        if not _json_values_equal(local_value, remote_value):
+            return False
+    return True
+
+
+def _campaign_identity_revision(
+    settings: CheckoutSettings,
+    commit: str,
+) -> Optional[Tuple[str, int]]:
+    raw_meta = _commit_text(settings, commit, "state/meta.json")
+    if raw_meta is None:
+        return None
+    try:
+        payload = json.loads(raw_meta)
+    except (TypeError, ValueError, json.JSONDecodeError):
+        return None
+    if not isinstance(payload, dict):
+        return None
+    campaign_id = payload.get("campaign_id")
+    revision = payload.get("revision")
+    if (
+        not isinstance(campaign_id, str)
+        or not campaign_id
+        or isinstance(revision, bool)
+        or not isinstance(revision, int)
+        or revision < 0
+    ):
+        return None
+    return campaign_id, revision
+
+
 def _campaign_authority_matches(
     settings: CheckoutSettings,
     local_head: str,
     remote_head: str,
 ) -> bool:
-    """Return whether both commits contain identical committed campaign truth.
+    """Return whether both commits contain equivalent committed campaign truth.
 
-    This intentionally compares only repository paths that may contain campaign
-    authority. It is used solely for clean-checkout recovery after a repository
-    history rewrite or replacement. Source/docs/plugin differences are allowed
-    because the remote production branch is source authority; any difference in
-    campaign truth still fails closed.
+    Exact Git bytes are preferred. On an unrelated-history replacement only,
+    state JSON may also compare semantically so harmless formatting or file-mode
+    normalization does not strand a valid Railway volume. Any real state value,
+    path-set, legacy data/, or legacy schemas/ difference still fails closed.
     """
 
     completed = subprocess.run(
@@ -215,7 +343,24 @@ def _campaign_authority_matches(
     )
     if completed.returncode not in (0, 1):
         raise BootstrapError("Git campaign-authority comparison failed")
-    return completed.returncode == 0
+    if completed.returncode == 0:
+        return True
+    return _semantic_campaign_authority_matches(settings, local_head, remote_head)
+
+
+def _adopt_remote_history(
+    settings: CheckoutSettings,
+    remote_ref: str,
+    message: str,
+) -> Path:
+    _run(
+        settings,
+        ("reset", "--hard", remote_ref),
+        cwd=settings.campaign_root,
+    )
+    _assert_clean(settings)
+    print(message, file=sys.stderr)
+    return settings.campaign_root
 
 
 def ensure_checkout(settings: CheckoutSettings) -> Path:
@@ -292,22 +437,47 @@ def ensure_checkout(settings: CheckoutSettings) -> Path:
 
     # A repository may be intentionally recreated or its branch history may be
     # replaced while the Railway volume still contains the old lineage. A clean
-    # checkout can safely adopt the remote lineage only when all committed
-    # campaign-authority paths are identical. This preserves fail-closed
-    # behavior for any unpushed gameplay transaction or campaign-state drift.
+    # checkout can adopt the remote lineage when campaign truth is equivalent.
+    # This includes formatting-only JSON normalization, not real value changes.
     if _campaign_authority_matches(settings, local_head, remote_head):
-        _run(
+        return _adopt_remote_history(
             settings,
-            ("reset", "--hard", remote_ref),
-            cwd=settings.campaign_root,
-        )
-        _assert_clean(settings)
-        print(
+            remote_ref,
             "Shinobi bootstrap: adopted remote Git history after verifying "
-            "identical campaign authority",
-            file=sys.stderr,
+            "equivalent campaign authority",
         )
-        return settings.campaign_root
+
+    # A replaced remote can also legitimately contain campaign commits newer
+    # than a stale clean Railway checkout. Revision is the campaign's monotonic
+    # durable ordering invariant, so a strictly newer remote revision for the
+    # same campaign may be adopted. Never use this rule in the opposite
+    # direction: local-newer state may represent an unpushed transaction whose
+    # WAL/receipt recovery still owns exact durability.
+    local_campaign = _campaign_identity_revision(settings, local_head)
+    remote_campaign = _campaign_identity_revision(settings, remote_head)
+    if local_campaign is not None and remote_campaign is not None:
+        local_campaign_id, local_revision = local_campaign
+        remote_campaign_id, remote_revision = remote_campaign
+        if local_campaign_id != remote_campaign_id:
+            raise BootstrapError(
+                "local and remote histories refer to different campaign IDs"
+            )
+        if remote_revision > local_revision:
+            return _adopt_remote_history(
+                settings,
+                remote_ref,
+                "Shinobi bootstrap: adopted replaced remote history with newer "
+                f"campaign revision {remote_revision} (local {local_revision})",
+            )
+        if local_revision > remote_revision:
+            raise BootstrapError(
+                f"local campaign revision {local_revision} is newer than remote "
+                f"revision {remote_revision} after repository history replacement"
+            )
+        raise BootstrapError(
+            f"local and remote campaign authority conflict at revision "
+            f"{local_revision} after repository history replacement"
+        )
 
     raise BootstrapError(
         "local and remote campaign histories diverged with different campaign authority"

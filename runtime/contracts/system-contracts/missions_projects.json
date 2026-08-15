@@ -4,6 +4,7 @@
   "authority": false,
   "authority_paths": [
     "state/reg/missions-contracts-projects.json",
+    "state/reg/mission-assignment-requests.json",
     "state/mission/",
     "state/reg/commitments.json",
     "state/reg/",
@@ -12,6 +13,7 @@
   ],
   "owner_templates": [
     "shinobi-domain-registry",
+    "mission-assignment-request-registry",
     "mission-runtime",
     "commitment-registry",
     "faction-operational-memory",
@@ -20,6 +22,7 @@
   ],
   "read_first": [
     "state/reg/missions-contracts-projects.json",
+    "state/reg/mission-assignment-requests.json when a player-led team has submitted bounded assignment preferences",
     "state/mission/context-index.json for bounded current participant routing; exact historical mission owners remain directly addressed by stable mission ID",
     "one exact state/mission owner when its stable mission ID is known",
     "the assigned exact team plus its bounded operational history when autonomous assignment quality depends on prior outcomes",
@@ -29,6 +32,8 @@
   ],
   "write_order": [
     "resolve the real institutional, contractual or operational action first",
+    "a player mission-assignment request may persist only the requesting team, acceptable rank set and bounded mission-focus preference; it cannot supply mission target, objective, destination, reward, threat, cause or outcome",
+    "an assignment request becomes fulfilled only when the ordinary institutional mission generator independently creates a lawful matching offered mission for that exact team; fulfillment never accepts the offer for the player",
     "for an executable mission, mutate only its exact pre-existing mission-runtime owner through the typed reducer; gameplay may not create an offering from client claims alone",
     "for an autonomous mission outcome, update only bounded faction memory and team operational history derived from the committed mission/report event; these compact owners never replace mission, casualty, person, reputation, relationship, or training authority",
     "for a real institutional facility project, authorize it through institution leadership, consume declared stock once at start, accrue work only through elapsed active time, and mutate the place module only when required work completes",
@@ -42,6 +47,8 @@
     "Institutional priorities and autonomous goals are planning state, not facility projects and not capability changes.",
     "A real institution_project record is authorized executable work with conserved startup resources, deterministic work progress, and a separate place capability effect only on completion.",
     "OOC proposals and wishlists do not become active missions, assignments or projects.",
+    "A persisted mission-assignment request is solicitation state only; it does not create, reserve, accept or guarantee a mission.",
+    "Mission-assignment request fulfillment must point to an independently generated matching mission offer and must leave that mission in its offer state until the player decides.",
     "A project may start only after institution authority, target place, project mechanics and required stock are resolved in their owning systems.",
     "Formation of a team does not automatically create a mission.",
     "Active and blocked commitments cannot be timeless: they carry a next_due_at or reference an exact operation/domain process that owns the next boundary.",

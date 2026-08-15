@@ -25,6 +25,16 @@
       "domain": "strategic_site_resolution",
       "note": "Known place.* ID -> use owner prefix shard state/index/owners/place.json, then load only the exact state/place owner. Ambient ontology never substitutes for strategic mutable state."
     },
+    "environment_current": {
+      "r": [
+        "state/meta.json",
+        "state/world/routes-and-settlements.json",
+        "game/data/content/environment-climates.json",
+        "runtime/contracts/environment.json"
+      ],
+      "domain": "derived_environment",
+      "note": "Current weather/light/ground conditions are a deterministic derived runtime authority keyed by exact campaign time, world seed and exact place country. This route never writes campaign state and never substitutes for mutable hazards, patrols, office hours, staffing, intelligence, chakra effects or technique rules."
+    },
     "population_recruitment": {
       "r": ["state/population/registry.json"],
       "w": ["state/population/registry.json"],

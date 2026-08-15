@@ -36,7 +36,7 @@ def create_app_from_env():
     from shinobi_runtime.api.campaign_manufacturing_discovery import RouteAwareCampaignOperations
     from shinobi_runtime.api.campaign_ooc import RepositoryOocAudit
     from shinobi_runtime.commands import campaign_planner as planner_module
-    from shinobi_runtime.commands.campaign_investigation import CampaignCommandPlanner
+    from shinobi_runtime.commands.campaign_mission_reporting import CampaignCommandPlanner
 
     _install_campaign_extensions()
     ooc_module.RepositoryOocAudit = RepositoryOocAudit

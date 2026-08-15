@@ -17,7 +17,6 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
-    from shinobi_runtime.commands.campaign_repair_training_supervision import install_training_supervision_repair
     from shinobi_runtime.api.preview_validation import install_preview_validation
 
     install_legacy_scheduler_compat()
@@ -28,7 +27,6 @@ def _install_campaign_extensions() -> None:
     install_world_front_progression()
     install_downtime_until_event()
     install_downtime_vitality()
-    install_training_supervision_repair()
     install_preview_validation()
 
 

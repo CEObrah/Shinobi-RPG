@@ -3,7 +3,7 @@
   "template_id": "template.reputation-audience-profile",
   "target_schema": "reputation-audience-profile",
   "source_schema": "game/schemas/reputation-audience-profile.schema.json",
-  "scope": "registered_json_structure",
+  "scope": "mutable_state",
   "current_directories": [],
   "unknown_key_policy": "reject",
   "required_top_level_keys": [
@@ -43,107 +43,43 @@
         "memory_class"
       ]
     },
-    "/standing": {
-      "mode": "open_map"
-    },
-    "/dimensions": {
-      "mode": "open_map"
-    },
+    "/standing": {"mode": "open_map"},
+    "/dimensions": {"mode": "open_map"},
     "/standing/*": {
       "mode": "closed",
-      "allowed_keys": [
-        "score",
-        "evidence_mass",
-        "confidence"
-      ],
-      "canonical_order": [
-        "score",
-        "evidence_mass",
-        "confidence"
-      ]
+      "allowed_keys": ["score", "evidence_mass", "confidence"],
+      "canonical_order": ["score", "evidence_mass", "confidence"]
     },
     "/dimensions/*": {
       "mode": "closed",
-      "allowed_keys": [
-        "score",
-        "evidence_mass",
-        "confidence"
-      ],
-      "canonical_order": [
-        "score",
-        "evidence_mass",
-        "confidence"
-      ]
+      "allowed_keys": ["score", "evidence_mass", "confidence"],
+      "canonical_order": ["score", "evidence_mass", "confidence"]
     }
   },
   "type_contracts": {
-    "": [
-      "object"
-    ],
-    "/schema": [
-      "string"
-    ],
-    "/subject_id": [
-      "string"
-    ],
-    "/audience_id": [
-      "string"
-    ],
-    "/as_of": [
-      "string"
-    ],
-    "/authority": [
-      "boolean"
-    ],
-    "/standing": [
-      "object"
-    ],
-    "/dimensions": [
-      "object"
-    ],
-    "/evidence_count": [
-      "integer"
-    ],
-    "/last_event_refs": [
-      "array"
-    ],
-    "/last_event_refs/*": [
-      "string"
-    ],
-    "/memory_class": [
-      "string"
-    ],
-    "/standing/*/score": [
-      "integer"
-    ],
-    "/standing/*/evidence_mass": [
-      "integer"
-    ],
-    "/standing/*/confidence": [
-      "integer"
-    ],
-    "/standing/*": [
-      "object"
-    ],
-    "/dimensions/*/score": [
-      "integer"
-    ],
-    "/dimensions/*/evidence_mass": [
-      "integer"
-    ],
-    "/dimensions/*/confidence": [
-      "integer"
-    ],
-    "/dimensions/*": [
-      "object"
-    ]
+    "": ["object"],
+    "/schema": ["string"],
+    "/subject_id": ["string"],
+    "/audience_id": ["string"],
+    "/as_of": ["string"],
+    "/authority": ["boolean"],
+    "/standing": ["object"],
+    "/dimensions": ["object"],
+    "/evidence_count": ["integer"],
+    "/last_event_refs": ["array"],
+    "/last_event_refs/*": ["string"],
+    "/memory_class": ["string"],
+    "/standing/*/score": ["integer"],
+    "/standing/*/evidence_mass": ["integer"],
+    "/standing/*/confidence": ["integer"],
+    "/standing/*": ["object"],
+    "/dimensions/*/score": ["integer"],
+    "/dimensions/*/evidence_mass": ["integer"],
+    "/dimensions/*/confidence": ["integer"],
+    "/dimensions/*": ["object"]
   },
   "array_contracts": {
-    "/last_event_refs": {
-      "item_types": [
-        "string"
-      ]
-    }
+    "/last_event_refs": {"item_types": ["string"]}
   },
   "writing_rules": [
     "Load this cold template before creating a file of this type or adding/removing structural fields.",

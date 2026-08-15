@@ -1,0 +1,19 @@
+{
+  "schema": "derived-environment-contract",
+  "version": 1,
+  "authority": {
+    "kind": "deterministic_derived_runtime_authority",
+    "mutable_owner": false,
+    "inputs": ["state/meta.json#campaign_id", "state/meta.json#world_seed", "state/meta.json#time", "state/world/routes-and-settlements.json#payload.places", "game/data/content/environment-climates.json"],
+    "rule": "Same campaign id, world seed, exact place and campaign instant must produce exactly the same environment snapshot. Environment derivation may not write campaign state."
+  },
+  "separation_invariants": [
+    "Static place kind and authored terrain are not transient weather.",
+    "Derived environment may modify only registered travel and TerrainState channels unless another exact rules owner explicitly consumes a channel.",
+    "Derived weather does not own mutable fire, smoke, flooding works, patrols, office hours, staffing, mission intelligence, tracking evidence, scent rules, chakra behavior, or technique effects.",
+    "A weather transition does not by itself create a player wake or scheduler event.",
+    "Player-safe context exposes current-location environment only unless another read lawfully authorizes a different place.",
+    "Narration may not invent additional weather bonuses, penalties, clues, tracks, chakra interactions, or hidden actors."
+  ],
+  "mechanical_channels": ["travel_time_milli", "mobility_milli", "visibility_milli", "hazard_milli", "fire_spread_milli", "seasonal_economy_milli"]
+}

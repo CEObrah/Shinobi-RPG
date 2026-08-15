@@ -1029,6 +1029,66 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.mission_assignment_request_updated.a6ca94d091359ad9a1fd",
+      "kind": "mission_assignment_request_updated",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-25T07:00:00",
+        "started_at": "SE-0061-06-25T07:00:00",
+        "ended_at": "SE-0061-06-25T07:00:00"
+      },
+      "host_refs": [
+        "institution.konoha.mission_assignment",
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [
+        "mission_assignment_request.0252a597b5ce5b19955f3f2e",
+        "team.blackhound"
+      ],
+      "affected_owner_refs": [
+        "state/reg/mission-assignment-requests.json"
+      ],
+      "material_consequence_refs": [
+        "mission_assignment_request.0252a597b5ce5b19955f3f2e"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "canon_hiruzen",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-25T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_player_handoffs.mission_assignment_request_resolution",
+        "transaction_ref": "tx.gameplay.a6ca94d091359ad9a1fd3a88df79c74ff6f318aa6ceae65319395b87f2d77e6c",
+        "receipt_refs": [
+          "receipt.gameplay.a6ca94d091359ad9a1fd3a88df79c74ff6f318aa6ceae65319395b87f2d77e6c"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

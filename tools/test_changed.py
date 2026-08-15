@@ -54,6 +54,13 @@ ROUTES = (
         "tests/runtime/test_release_recruitment_progression.py",
         "tests/runtime/test_release_representation_bridge.py",
     }),
+    (("environment.py", "environment-climates", "runtime/contracts/environment", "campaign_environment.py"), {
+        "tests/runtime/test_environment.py",
+        "tests/runtime/test_real_campaign_planner.py",
+        "tests/runtime/test_combat.py",
+        "tests/runtime/test_api_service.py",
+        "tests/runtime/test_route_discovery.py",
+    }),
     (("development", "training"), {
         "tests/runtime/test_development_breakthrough_policy.py",
         "tests/runtime/test_training_autonomy_policy.py",

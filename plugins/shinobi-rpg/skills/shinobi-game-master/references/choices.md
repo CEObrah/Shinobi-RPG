@@ -110,6 +110,8 @@ Build every option from fresh player-visible runtime context.
 
 Check current authority, knowledge, location, health, equipment, resources, obligations, deadlines, relationships, institutional roles, tactical geometry, travel/timing mechanics, and supported current semantic commands when the option implies persistence.
 
+For any option that sends, calls, reports to, summons, or otherwise contacts someone who is not established as immediately present, prove the communication affordance before presenting it as executable. Use a fresh player-visible/runtime-supported channel, current co-location, registered messenger/process, or a stable site capability whose use is lawful from the current location. Do not silently assume remote communication, instant institutional access, or message delivery. If the in-world contact is plausible but the current interface cannot construct the channel, classify it as implementation-blocked rather than inventing travel or a reply.
+
 Do not leak hidden opposition, secret opportunities, unobserved evidence, unknown techniques, repository-only facts, developer facts, or implementation status through option wording.
 
 Do not promise success. Describe the action or commitment, not the hidden outcome.

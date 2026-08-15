@@ -14,6 +14,7 @@
 10. Information, relationships, family, and assets
 11. Institutions, economy, recruitment, and projects
 12. Strategic war
+13. Current environment
 
 ## Natural language first
 
@@ -127,7 +128,7 @@ The player cannot manufacture an NPC or faction order by naming an issuer. Runti
 
 Treat travel through the current world/location graph and current party basis. A nearby person is not automatically a travel companion. Participation must come from voluntary intent, mission/team authority, escort/custody authority, or another persisted basis.
 
-Respect hard causal interruptions and partial travel completion.
+Respect hard causal interruptions and partial travel completion. When the current runtime exposes an environment travel factor, that factor is already part of the authoritative route duration; never add a second prose weather delay.
 
 ## Training and techniques
 
@@ -165,6 +166,17 @@ Named exact actors may cross into exact combat when individual causality matters
 
 Player-facing strategic intent must still be limited to Wei's lawful authority. NPC/faction strategic intent is runtime-internal autonomy, not a client-selectable impersonation mode.
 
+## Current environment
+
+Fresh `get_play_context` may expose a top-level `environment` object for Wei's exact current place. Treat it as authoritative derived runtime context for that campaign instant: country climate, season, light band, condition, precipitation, wind, temperature band, visibility, ground condition, next transition boundary, and registered mechanical channels.
+
+The environment object is deterministic from authoritative campaign time, world seed, exact place/country, static climate rules, and `runtime/contracts/environment.json`. It is read-only derived authority, not a second mutable save. The same campaign/time/place must reproduce the same conditions.
+
+Current runtime mechanics consume environment only through registered channels. Travel consumes `travel_time_milli`. Combat combines authored place terrain with environment `mobility_milli`, `visibility_milli`, and bounded `hazard_milli`. Preserve authored cover; do not invent weather cover. `fire_spread_milli` and `seasonal_economy_milli` are exposed hooks only until an exact existing rules owner consumes them.
+
+Do not invent scent, tracking, chakra, elemental-technique, patrol, evidence, civilian schedule, office-hours, market, or mission-intelligence effects from weather merely because they sound plausible. Mutable fire, smoke, flood works, staffing, patrols, schedules, intelligence and technique behavior remain with their exact existing owners. A weather/light transition is not automatically a scheduler wake.
+
+Use current environment to make lawful scene consequences visible when relevant, but do not repeat a weather report every paragraph or treat unspecified remote conditions as known.
 
 ## Cold world reference
 

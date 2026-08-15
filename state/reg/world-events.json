@@ -1219,6 +1219,302 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.player_led_team_checkin_ready.d5f5e55d6e02b3f245dd9184",
+      "kind": "player_led_team_checkin_ready",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-26T21:15:00",
+        "occurred_at": "SE-0061-06-26T21:15:00",
+        "started_at": "SE-0061-06-26T21:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00"
+      },
+      "host_refs": [
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "canon_hayama_shirakumo"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/team/blackhound.json"
+      ],
+      "material_consequence_refs": [
+        "player_led_team_checkin:team.blackhound:canon_hayama_shirakumo"
+      ],
+      "visibility": {
+        "classification": "secret",
+        "witness_refs": [
+          "canon_hayama_shirakumo"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_hayama_shirakumo"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-26T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.living_world.player_led_team_checkin",
+        "transaction_ref": "tx.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa",
+        "receipt_refs": [
+          "receipt.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_doctrine_reviewed.895f869c841f8071e8a2e60d",
+      "kind": "team_doctrine_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-26T21:15:00",
+        "occurred_at": "SE-0061-06-26T21:15:00",
+        "started_at": "SE-0061-06-26T21:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.guy"
+      ],
+      "actor_refs": [
+        "canon_guy"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/team/doctrine/team-konoha-guy.json",
+        "state/team/guy.json"
+      ],
+      "material_consequence_refs": [
+        "team.konoha.guy.doctrine"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "canon_guy"
+        ],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_guy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-26T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.team_doctrine_reviewed",
+        "transaction_ref": "tx.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa",
+        "receipt_refs": [
+          "receipt.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.51b1472f64dadc28d11b7bd3",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-26T21:15:00",
+        "occurred_at": "SE-0061-06-26T21:15:00",
+        "started_at": "SE-0061-06-26T21:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.guy"
+      ],
+      "actor_refs": [
+        "canon_guy",
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "place_refs": [
+        "place.konoha.training_ground.3"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/guy.json",
+        "state/char/lee.json",
+        "state/char/neji.json",
+        "state/char/tenten.json",
+        "state/development/banks.json",
+        "state/team/doctrine/team-konoha-guy.json",
+        "state/team/guy.json",
+        "state/team/history/team.konoha.guy.json"
+      ],
+      "material_consequence_refs": [
+        "training:canon_guy:operational_skills.investigation:79->81",
+        "training:canon_lee:operational_skills.tactics:66->69",
+        "training:canon_neji:operational_skills.tactics:51->60",
+        "training:canon_tenten:attributes.awareness:66->70"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "canon_guy",
+          "canon_lee",
+          "canon_neji",
+          "canon_tenten"
+        ],
+        "audience_refs": [
+          "canon_guy",
+          "canon_lee",
+          "canon_neji",
+          "canon_tenten"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_guy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-26T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.team_training_session_resolved",
+        "transaction_ref": "tx.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa",
+        "receipt_refs": [
+          "receipt.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.player_led_team_checkin_ready.041c819ed089cd27edd0cbc2",
+      "kind": "player_led_team_checkin_ready",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-06-26T21:15:00",
+        "occurred_at": "SE-0061-06-26T21:15:00",
+        "started_at": "SE-0061-06-26T21:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00"
+      },
+      "host_refs": [
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [
+        "char.mei_arakawa"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/team/fujin.json"
+      ],
+      "material_consequence_refs": [
+        "player_led_team_checkin:team.konoha.fujin:char.mei_arakawa"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "char.mei_arakawa"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "char.mei_arakawa"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-26T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.living_world.player_led_team_checkin",
+        "transaction_ref": "tx.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa",
+        "receipt_refs": [
+          "receipt.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.6066219953b48e172e46",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-26T21:15:00",
+        "started_at": "SE-0061-06-26T21:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:item_basic_antidote:8",
+        "manufactured:item_engineering_toolkit:2",
+        "manufactured:item_field_medical_kit:2",
+        "manufactured:weapon_katana:2",
+        "procurement:treasury.iron_samurai->economy.contractors:18000ryo",
+        "procurement:treasury.iwa->economy.contractors:30000ryo",
+        "procurement:treasury.konoha->economy.contractors:40000ryo",
+        "procurement:treasury.suna->economy.contractors:20000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-26T21:15:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa",
+        "receipt_refs": [
+          "receipt.gameplay.6066219953b48e172e465801c3629ca0f0e035b13c3990c3dd85471bde01d0aa"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

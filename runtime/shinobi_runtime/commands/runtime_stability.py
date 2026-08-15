@@ -199,7 +199,10 @@ class RuntimeStabilityMixin:
         normalized = tuple(
             _normalize_faction_review_event(event, self.repository) for event in events
         )
-        if normalized != events:
+        if any(
+            before.fingerprint != after.fingerprint
+            for before, after in zip(events, normalized)
+        ):
             scheduler.queue.replace(normalized)
         return scheduler
 

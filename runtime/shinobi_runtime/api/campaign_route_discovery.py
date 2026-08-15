@@ -20,6 +20,7 @@ from shinobi_runtime.sim.events import CampaignTime
 
 
 _MAX_TEAM_MEMBERS = 16
+_MAX_TRAINING_FACILITIES = 16
 
 
 def project_team_training_readiness(
@@ -33,8 +34,10 @@ def project_team_training_readiness(
     """Project bounded readiness from persisted team training history.
 
     Location identities remain private to the runtime. The projection exposes
-    only which team members currently share a location and which authorized
-    instructors are present with each group.
+    only which team members currently share a location, which authorized
+    instructors are present with each group, and whether the full team is at one
+    of its registered training facilities. Target-specific facility capacity and
+    category requirements remain command-preview authority.
     """
 
     members = team.get("member_refs")
@@ -48,6 +51,15 @@ def project_team_training_readiness(
         or any(not isinstance(ref, str) or not ref for ref in members)
         or not isinstance(training, Mapping)
         or not isinstance(schedule, Mapping)
+    ):
+        raise OperationError(503, "object_team_invalid")
+
+    facility_refs = training.get("facility_refs", [])
+    if (
+        not isinstance(facility_refs, list)
+        or len(facility_refs) > _MAX_TRAINING_FACILITIES
+        or len(set(facility_refs)) != len(facility_refs)
+        or any(not isinstance(ref, str) or not ref for ref in facility_refs)
     ):
         raise OperationError(503, "object_team_invalid")
 
@@ -163,10 +175,14 @@ def project_team_training_readiness(
 
     all_colocated = len(location_groups) == 1
     full_team_instructor_present = False
+    full_team_at_registered_facility = False
     if all_colocated:
         only_location = next(iter(location_groups))
         full_team_instructor_present = any(
             location == only_location for location in instructor_locations.values()
+        )
+        full_team_at_registered_facility = (
+            not facility_refs or only_location in facility_refs
         )
 
     latest_summary = None
@@ -196,8 +212,13 @@ def project_team_training_readiness(
         "all_members_recovery_ready_now": all_recovery_ready,
         "all_members_colocated_now": all_colocated,
         "full_team_authorized_instructor_colocated_now": full_team_instructor_present,
+        "full_team_at_registered_facility_now": full_team_at_registered_facility,
+        "target_specific_facility_requirements_require_preview": True,
         "can_start_full_team_session_now": (
-            all_recovery_ready and all_colocated and full_team_instructor_present
+            all_recovery_ready
+            and all_colocated
+            and full_team_instructor_present
+            and full_team_at_registered_facility
         ),
         "colocated_member_groups": colocated_groups,
         "latest_resolved_session": latest_summary,

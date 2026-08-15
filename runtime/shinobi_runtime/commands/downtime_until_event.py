@@ -174,6 +174,13 @@ def _advance_until_event(
     )
 
 
+def _register_planner(planner: type) -> None:
+    """Register the command on one concrete planner without relying on another installer."""
+
+    planner.COMMAND_TYPES = frozenset(COMMAND_SPECS)
+    setattr(planner, "_" + _COMMAND, _advance_until_event)
+
+
 def install_downtime_until_event() -> None:
     global _INSTALLED
     if _INSTALLED:
@@ -188,12 +195,25 @@ def install_downtime_until_event() -> None:
             payload_hints={"target_time": "SE-YYYY-MM-DDTHH:MM:SS"},
             availability="scene_must_allow_time_passage",
         )
-    RepositoryCommandPlanner.COMMAND_TYPES = frozenset(COMMAND_SPECS)
-    setattr(RepositoryCommandPlanner, "_" + _COMMAND, _advance_until_event)
+
+    _register_planner(RepositoryCommandPlanner)
+
+    # Production dispatch is a later campaign subclass, not the generic planner.
+    # Register explicitly on every concrete planner layer that can be imported at
+    # bootstrap so this command never depends on an unrelated installer refreshing
+    # COMMAND_TYPES as a side effect.
     try:
         from shinobi_runtime.commands.campaign_runtime_planner import CampaignCommandPlanner
 
-        CampaignCommandPlanner.COMMAND_TYPES = frozenset(COMMAND_SPECS)
+        _register_planner(CampaignCommandPlanner)
+    except ImportError:
+        pass
+    try:
+        from shinobi_runtime.commands.campaign_mission_assignment import (
+            CampaignCommandPlanner as FinalCampaignCommandPlanner,
+        )
+
+        _register_planner(FinalCampaignCommandPlanner)
     except ImportError:
         pass
     _INSTALLED = True
@@ -203,6 +223,7 @@ __all__ = [
     "install_downtime_until_event",
     "_meaningful",
     "_player_facing_event",
+    "_register_planner",
     "_staged_player_facing_event",
     "_stop_kind",
 ]

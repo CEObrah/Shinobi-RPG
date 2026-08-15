@@ -36,7 +36,7 @@ def _install_api_reads() -> None:
             scene = response.get("scene") if isinstance(response, dict) else None
             if isinstance(scene, dict):
                 pressures = scene.get("observable_pressures")
-                if isinstance(pressures, list):
+                if checkins and isinstance(pressures, list):
                     pressures = [
                         value for value in pressures
                         if not (isinstance(value, str) and value.endswith(_GENERIC_READY_SUFFIX))
@@ -51,7 +51,7 @@ def _install_api_reads() -> None:
                                 pressures.append(message)
                     scene["observable_pressures"] = pressures[:12]
                 narrative = scene.get("narrative")
-                if isinstance(narrative, dict):
+                if checkins and isinstance(narrative, dict):
                     reports = narrative.get("available_reports")
                     if isinstance(reports, list):
                         reports = [

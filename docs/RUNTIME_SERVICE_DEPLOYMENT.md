@@ -55,7 +55,11 @@ Before a new remotely durable gameplay transaction, Git preflight requires the l
 
 ### Deployment freshness verification
 
-Treat a merged source commit and the running Railway process as separate release tiers. After a runtime fix is merged, verify the live MCP reproducer itself before resuming consequential play. If the repository contains the fix but the live MCP still reproduces the old defect, do not patch campaign state or add a second rules workaround merely to cross the boundary. Redeploy or restart the production Railway service from the current production branch, then repeat the same read-only reproducer against fresh play context. Only a changed live result proves the new source is loaded.
+Treat a merged source commit and the running Railway process as separate release tiers. Railway exposes the immutable Git commit used for a GitHub-triggered build through `RAILWAY_GIT_COMMIT_SHA`. The runtime compares that build revision with the persistent campaign checkout on every health request and in the bounded OOC audit.
+
+State-only descendants of the build revision are expected because gameplay commits advance `state/` without rebuilding the service. They remain healthy. If any non-state path changed after the build revision, if the build revision is not an ancestor of the checkout, or if a Railway process lacks valid build identity, `/health` returns HTTP 503 rather than claiming the stale image is healthy. The OOC audit exposes only bounded source/checkout revision identity, freshness status, and the institution-review guard marker; it never exposes credentials or arbitrary repository paths.
+
+After a runtime fix is merged, verify the connected MCP itself with OOC audit before resuming consequential play. A healthy acceptance result includes `deployment_source:summary status=fresh` and `runtime_extensions:institution_review_runtime_guard=true`. If GitHub reports a successful Railway deployment but the connected MCP does not expose those markers, treat service/connector routing as unresolved rather than patching campaign state or weakening validators.
 
 Railway watch paths are gitignore-style patterns. The repository uses a broad include before the `state/**` exclusion so non-state changes remain deployment-triggering while gameplay-only state commits do not cause a deployment loop. If a non-state merge does not create a new deployment, inspect the Railway service's connected source branch and deployment status rather than weakening campaign or validator invariants.
 
@@ -83,10 +87,11 @@ Before production use after a meaningful non-state change:
 
 ```text
 python tools/quick_check.py
+python tools/test_changed.py <changed paths>
 python -m pytest -q -p no:cacheprovider tests/runtime
 ```
 
-Then verify Railway is on the intended branch head, recovery has no unresolved WAL entry, remote Git durability is healthy, and the ChatGPT Skill/app surfaces are synchronized when they changed.
+For time/autonomy changes, the focused gate must include the shipped-campaign monthly-frontier regression. Then verify Railway is on the intended branch head, OOC audit reports a fresh deployed source and the expected production extension marker, recovery has no unresolved WAL entry, remote Git durability is healthy, and the ChatGPT Skill/app surfaces are synchronized when they changed.
 
 ## Skill installation
 

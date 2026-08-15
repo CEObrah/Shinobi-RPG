@@ -675,6 +675,93 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.travel_completed.6ce61a821a75f3bdd9a6",
+      "kind": "travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-06-11T09:24:04",
+        "started_at": "SE-0061-06-11T09:24:04",
+        "ended_at": "SE-0061-06-11T09:24:04"
+      },
+      "host_refs": [
+        "place.konoha.mission_assignment_desk",
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.mission_assignment_desk",
+        "place.sword_manor"
+      ],
+      "causal_refs": [
+        "mission.offer.2132adf0c1e8a6f134"
+      ],
+      "affected_owner_refs": [
+        "state/char/ensui-nara.json",
+        "state/char/hana-inuzuka.json",
+        "state/char/hayama-shirakumo.json",
+        "state/char/hoheto-hyuga.json",
+        "state/char/tekuno-kanden.json",
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:canon_ensui_nara:place.sword_manor",
+        "location:canon_hana_inuzuka:place.sword_manor",
+        "location:canon_hayama_shirakumo:place.sword_manor",
+        "location:canon_hoheto_hyuga:place.sword_manor",
+        "location:canon_tekuno_kanden:place.sword_manor",
+        "location:pc_wei_tang:place.sword_manor"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_local"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-06-11T09:24:04"
+      },
+      "execution": {
+        "reducer_ref": "game/data/mechanics/travel.json",
+        "transaction_ref": "tx.gameplay.6ce61a821a75f3bdd9a6514e7fc46d2c797be5bad7e8b2fc990d26e53822343c",
+        "receipt_refs": [
+          "receipt.gameplay.6ce61a821a75f3bdd9a6514e7fc46d2c797be5bad7e8b2fc990d26e53822343c"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

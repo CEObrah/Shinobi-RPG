@@ -16,22 +16,37 @@
         "security incident",
         "Mizuki plot divergence"
       ],
-      "actors": [],
+      "actors": [
+        "canon_choji",
+        "canon_hinata",
+        "canon_hiruzen",
+        "canon_ino",
+        "canon_kiba",
+        "canon_naruto",
+        "canon_sakura",
+        "canon_sasuke",
+        "canon_shikamaru",
+        "canon_shino"
+      ],
       "resources": [],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
       "opposition": [],
-      "current_step": null,
+      "current_step": "academy_exact_graduation_recorded:event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_konoha_academy_graduation",
         "settled_through": "SE-0061-06-11T09:00:00",
         "due_at": "SE-0061-06-18T09:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
-      "source_refs": [],
-      "evidence_refs": [],
+      "source_refs": [
+        "institution.konoha.academy"
+      ],
+      "evidence_refs": [
+        "event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0"
+      ],
       "visibility": {
         "classification": null,
         "basis_refs": []
@@ -40,7 +55,19 @@
         "player_refs": [],
         "npc_refs": []
       },
-      "chronology": []
+      "chronology": [
+        {
+          "entry_id": "front_history.konoha_academy_graduation.992869b886459152d43a",
+          "at": "SE-0061-03-01T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active",
+          "status_after": "active",
+          "source_refs": [
+            "event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0",
+            "institution.konoha.academy"
+          ]
+        }
+      ]
     },
     "pressure_mizuki_forbidden_scroll": {
       "id": "pressure_mizuki_forbidden_scroll",
@@ -302,5 +329,11 @@
       },
       "chronology": []
     }
+  },
+  "historical_source_reconciliation": {
+    "version": 1,
+    "archive_ref_count": 6,
+    "archived_event_count": 656,
+    "hot_event_count": 11
   }
 }

@@ -14,17 +14,25 @@ later service-training or military review then detects an artificial capability
 partition drift. This module repairs only that exact staged delta proven by the
 same Academy result; unrelated force drift still fails closed.
 
+One monthly ordering edge also lets civil-economy settlement load the population
+registry into a dedicated ``population_write`` before the Academy review loads a
+second copy into autonomous owner writes. The final write then has two competing
+after-images for one authoritative owner. A context-local transaction bridge
+shares the already-loaded population object with later Academy work so the same
+owner is mutated exactly once regardless of due-event ordering.
+
 Production campaign extensions install this wrapper before other
 institution-autonomy wrappers. It keeps the missing transfer suffix context-local,
-reconciles the Academy force capability partition, then reconciles the aggregate
-review event against the reducer's own returned sub-results. It never owns
-Academy population selection, graduation rates, force totals, institutional
-policy, or capability development; those remain in
-``AutonomyCommandsMixin._apply_institution_autonomy_review``.
+shares the monthly population owner, reconciles the Academy force capability
+partition, then reconciles the aggregate review event against the reducer's own
+returned sub-results. It never owns Academy population selection, graduation
+rates, force totals, institutional policy, or capability development; those
+remain in ``AutonomyCommandsMixin._apply_institution_autonomy_review``.
 
 This module should be removed once the base reducer directly binds its Academy
-transfer suffix, updates every conserved force representation during graduation,
-and attributes/suppresses its aggregate institution review event correctly.
+transfer suffix, uses one population owner object across monthly settlement,
+updates every conserved force representation during graduation, and
+attributes/suppresses its aggregate institution review event correctly.
 """
 from __future__ import annotations
 
@@ -36,9 +44,15 @@ from typing import Any, Mapping
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.domains import autonomy as autonomy_module
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
+from shinobi_runtime.commands.domains.time import TimeCommandsMixin
+from shinobi_runtime.commands.paths import POPULATION_REGISTRY_PATH
 
 _INSTALLED = False
 _SUFFIX: ContextVar[str | None] = ContextVar("academy_pipeline_transfer_suffix", default=None)
+_SHARED_POPULATION: ContextVar[dict[str, Any] | None] = ContextVar(
+    "monthly_shared_population_owner",
+    default=None,
+)
 
 
 class _SuffixProxy:
@@ -67,6 +81,67 @@ def academy_pipeline_transfer_suffix(institution_id: str, at: Any) -> str:
 def _append_material_ref(refs: list[str], value: Any) -> None:
     if isinstance(value, str) and value and value not in refs:
         refs.append(value)
+
+
+def _bind_shared_population_owner(record_writes: Any) -> None:
+    """Ensure later Academy work reuses the population object already in flight."""
+    shared = _SHARED_POPULATION.get()
+    if shared is None:
+        return
+    if not isinstance(record_writes, dict):
+        raise CommandRejectedError("population_registry_invalid")
+    existing = record_writes.get(POPULATION_REGISTRY_PATH)
+    if existing is None:
+        record_writes[POPULATION_REGISTRY_PATH] = shared
+        return
+    if existing is not shared:
+        # Two mutable objects for one authoritative owner inside one transaction
+        # are unsafe even when their bytes happen to match at this instant.
+        raise CommandRejectedError("population_owner_transaction_alias_conflict")
+
+
+def _install_population_owner_bridge() -> None:
+    """Share economy-loaded population state with later autonomy in one time plan."""
+    advance = TimeCommandsMixin._advance_time
+    if not getattr(advance, "_academy_population_owner_bridge", False):
+        @wraps(advance)
+        def advance_time(self: Any, *args: Any, **kwargs: Any):
+            token = _SHARED_POPULATION.set(None)
+            try:
+                return advance(self, *args, **kwargs)
+            finally:
+                _SHARED_POPULATION.reset(token)
+
+        advance_time._academy_population_owner_bridge = True  # type: ignore[attr-defined]
+        TimeCommandsMixin._advance_time = advance_time
+
+    civil = TimeCommandsMixin._settle_governed_civil_economies
+    if not getattr(civil, "_academy_population_owner_bridge", False):
+        @wraps(civil)
+        def settle_civil(
+            self: Any,
+            governance: Any,
+            population: Any,
+            holders: Any,
+            finance: Any,
+            *args: Any,
+            **kwargs: Any,
+        ):
+            if not isinstance(population, dict):
+                raise CommandRejectedError("population_registry_invalid")
+            _SHARED_POPULATION.set(population)
+            return civil(
+                self,
+                governance,
+                population,
+                holders,
+                finance,
+                *args,
+                **kwargs,
+            )
+
+        settle_civil._academy_population_owner_bridge = True  # type: ignore[attr-defined]
+        TimeCommandsMixin._settle_governed_civil_economies = settle_civil
 
 
 def _derived_material_refs(result: Mapping[str, Any]) -> list[str]:
@@ -111,16 +186,7 @@ def repair_academy_force_reserve_capability(
     result: Mapping[str, Any],
     record_writes: Any,
 ) -> None:
-    """Reconcile only the reserve-capability delta caused by Academy graduates.
-
-    The base Academy reducer already proves the graduate count, force identity,
-    population transfer, force-total growth, availability growth, and training
-    troop-pool growth in one staged transaction. It currently omits the same
-    graduate count from ``reserve_capability.training_or_instruction``. Preserve
-    the cohort's existing aggregate capability profile while adding those known
-    entrants. If the staged mismatch is anything other than exactly the proven
-    graduate count, fail closed rather than normalizing unrelated drift.
-    """
+    """Reconcile only the reserve-capability delta caused by Academy graduates."""
     pipeline = result.get("population_pipeline")
     if not isinstance(pipeline, Mapping):
         return
@@ -165,7 +231,6 @@ def repair_academy_force_reserve_capability(
         raise CommandRejectedError("force_reserve_capability_invalid")
 
     if row_count == available:
-        # Forward-compatible no-op once the base reducer is corrected.
         return
     if row_count + graduates != available:
         raise CommandRejectedError("force_reserve_capability_drift")
@@ -185,13 +250,7 @@ def repair_institution_review_event(
     result: Mapping[str, Any],
     world_events: Any,
 ) -> Mapping[str, Any]:
-    """Attribute or suppress the aggregate institution review event.
-
-    The base reducer may already have valid operation consequence refs. Preserve
-    those and add only consequences proven by its returned sub-results. If the
-    review was genuinely material-free, remove the aggregate event instead of
-    inventing a fake consequence merely to satisfy validation.
-    """
+    """Attribute or suppress the aggregate institution review event."""
     event_id = result.get("event_id")
     if not isinstance(event_id, str) or not event_id or not isinstance(world_events, dict):
         return result
@@ -223,9 +282,6 @@ def repair_institution_review_event(
         event["material_consequence_refs"] = refs
         return result
 
-    # A review with no material result is scheduler maintenance, not a material
-    # world event. Removing only this just-appended aggregate event preserves any
-    # detailed events emitted by concrete sub-reducers during the same review.
     events.remove(event)
     repaired = dict(result)
     repaired["event_id"] = None
@@ -233,8 +289,9 @@ def repair_institution_review_event(
 
 
 def install_academy_pipeline_transfer_ids() -> None:
-    """Install Academy transfer-id, force-capability, and review-event compatibility."""
+    """Install Academy and monthly-owner compatibility repairs."""
     global _INSTALLED
+    _install_population_owner_bridge()
     if _INSTALLED:
         return
 
@@ -243,9 +300,6 @@ def install_academy_pipeline_transfer_ids() -> None:
         _INSTALLED = True
         return
 
-    # The refactored base reducer resolves the unqualified name ``suffix`` from
-    # its defining module. Keep that compatibility name as a context-local
-    # proxy rather than a mutable string shared across concurrent requests.
     autonomy_module.suffix = _SuffixProxy()
 
     @wraps(original)
@@ -257,6 +311,7 @@ def install_academy_pipeline_transfer_ids() -> None:
         if isinstance(institution_id, str) and institution_id:
             token = _SUFFIX.set(academy_pipeline_transfer_suffix(institution_id, at))
         try:
+            _bind_shared_population_owner(kwargs.get("record_writes"))
             result = original(self, **kwargs)
             if not isinstance(result, Mapping):
                 raise CommandRejectedError("institution_autonomy_review_result_invalid")
@@ -273,6 +328,7 @@ def install_academy_pipeline_transfer_ids() -> None:
     wrapped._academy_pipeline_transfer_ids = True  # type: ignore[attr-defined]
     wrapped._institution_review_event_integrity = True  # type: ignore[attr-defined]
     wrapped._academy_force_reserve_capability = True  # type: ignore[attr-defined]
+    wrapped._academy_population_owner_bridge = True  # type: ignore[attr-defined]
     AutonomyCommandsMixin._apply_institution_autonomy_review = wrapped
     _INSTALLED = True
 

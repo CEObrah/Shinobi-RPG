@@ -1,0 +1,41 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "people",
+  "routes": {
+    "exact_characters": {
+      "i": [
+        "state/index/owners.json"
+      ],
+      "g": [
+        "state/char/*.json"
+      ]
+    },
+    "person_sheets": {
+      "i": [
+        "state/index/owners.json"
+      ],
+      "g": [
+        "state/person/**/*.json",
+        "state/person-core/*.json"
+      ],
+      "note": "Known IDs route directly. A rostered core composes with its declared cohort/host baseline when one exists; identity-only world cores do not invent capability."
+    },
+    "npc_development": {
+      "domain": "character_training",
+      "note": "Load person + current health/training/experience inputs. No free growth."
+    },
+    "character_behavior": {
+      "domain": "character_behavior",
+      "note": "Normal exact-character interaction. If inline behavior is insufficient and interaction is sustained/high-stakes, load exactly one cold behavior profile."
+    },
+    "character_behavior_profile": {
+      "i": [
+        "game/data/people/behavior-profile-index.json"
+      ],
+      "g": [
+        "game/data/people/behavior-profiles/*.json"
+      ],
+      "note": "Cold non-authoritative evidence constraint. Known owner_id -> direct profile from index; never load all profiles."
+    }
+  }
+}

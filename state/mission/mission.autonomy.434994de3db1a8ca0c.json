@@ -1,0 +1,43 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.434994de3db1a8ca0c",
+  "issuer_ref": "faction.konoha_anbu",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-03-05T07:00:00",
+  "authorized_at": "SE-0061-03-05T07:00:00",
+  "starts_at": "SE-0061-03-05T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_aoba",
+    "canon_hayate",
+    "canon_yugao"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.434994de3db1a8ca0c",
+      "kind": "protect",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "repair.rich_autonomy_upgrade.v1"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "repair.rich_autonomy_upgrade.v1",
+  "settlement": {
+    "mission_id": "mission.autonomy.434994de3db1a8ca0c",
+    "outcome": "aborted",
+    "settlement_token": "repair:mission.autonomy.434994de3db1a8ca0c:rich-autonomy-v1",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

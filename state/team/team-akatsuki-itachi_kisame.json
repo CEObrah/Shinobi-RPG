@@ -1,0 +1,44 @@
+{
+  "schema": "exact-team",
+  "id": "team.akatsuki.itachi_kisame",
+  "name": "Akatsuki Itachi-Kisame Cell",
+  "status": "active",
+  "team_type": "paired_cell",
+  "parent_institution_ref": null,
+  "assignment_authority_ref": "canon_itachi",
+  "leader_ref": "canon_itachi",
+  "deputy_ref": "canon_kisame",
+  "member_refs": [
+    "canon_itachi",
+    "canon_kisame"
+  ],
+  "roles": {
+    "canon_itachi": "field_lead",
+    "canon_kisame": "assault_finisher"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-06-11T09:00:00",
+    "basis": "Materialized from existing exact campaign identities and explicit autonomy assignment; no new people were created."
+  },
+  "doctrine_ref": "team.akatsuki.itachi_kisame.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_itachi"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "authority_review",
+    "target_size": 2,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.akatsuki"
+  }
+}

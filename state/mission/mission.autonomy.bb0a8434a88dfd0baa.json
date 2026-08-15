@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.bb0a8434a88dfd0baa",
+  "issuer_ref": "faction.root",
+  "authority_ref": "canon_danzo",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.root",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-25T07:00:00",
+  "authorized_at": "SE-0061-06-25T07:00:00",
+  "starts_at": "SE-0061-06-25T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.d4a40d5e8f720d973b25",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.bb0a8434a88dfd0baa",
+    "objective_kind": "conceal",
+    "subject_kind": "institution",
+    "subject_ref": "institution.konoha.hokage_administration",
+    "subject_label": "institution.konoha.hokage_administration",
+    "report_place_ref": "place.konoha.root.primary_complex",
+    "origin_place_ref": "place.konoha.root.primary_complex",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.konoha_anbu. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.konoha_anbu",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-06-25T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Advance a specific compartmented asset/access objective with persisted evidence, exposure risk, and consequence."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_fu_yamanaka",
+    "canon_sai",
+    "canon_torune_aburame"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.bb0a8434a88dfd0baa",
+      "kind": "conceal",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

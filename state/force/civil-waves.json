@@ -1,0 +1,296 @@
+{
+  "schema": "force",
+  "id": "force.civil.waves",
+  "name": "Waves conventional forces",
+  "total": 12000,
+  "availability": {
+    "deployed": 1440,
+    "ready_24h": 2160,
+    "mobilizable_7d": 3360,
+    "mobilizable_30d": 2640,
+    "training_or_instruction": 960,
+    "medical_or_recovery": 240,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 1200
+  },
+  "military_identity": [
+    "poor small-country security",
+    "limited professional capacity"
+  ],
+  "reconstitution_policy_ref": "reconstitution.conventional",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "civil.waves.standing",
+      "count": 3600,
+      "quality": "regular",
+      "role": "standing",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.waves.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "poor small-country security",
+        "limited professional capacity"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "standing",
+      "capability_ref": "state/manpower-capability/civil-waves-standing.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waves.garrison",
+      "count": 3120,
+      "quality": "regular",
+      "role": "garrison",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.waves.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "poor small-country security",
+        "limited professional capacity"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "garrison",
+      "capability_ref": "state/manpower-capability/civil-waves-garrison.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waves.trained_reserve",
+      "count": 3480,
+      "quality": "militia",
+      "role": "trained_reserve",
+      "loadout": "load.civil.militia",
+      "doctrine": "doc.civil.waves.militia",
+      "training": "train.civil.militia",
+      "specialties": [
+        "poor small-country security",
+        "limited professional capacity"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "trained_reserve",
+      "capability_ref": "state/manpower-capability/civil-waves-trained-reserve.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waves.emergency_levy",
+      "count": 1800,
+      "quality": "raw_levy",
+      "role": "emergency_levy",
+      "loadout": "load.civil.raw_levy",
+      "doctrine": "doc.civil.waves.raw_levy",
+      "training": "train.civil.raw_levy",
+      "specialties": [
+        "poor small-country security",
+        "limited professional capacity"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "emergency_levy",
+      "capability_ref": "state/manpower-capability/civil-waves-emergency-levy.json"
+    }
+  ],
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 2160,
+      "spread": 10
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 3360,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 2640,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 960,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 240,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 46,
+        "endurance": 50,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 36,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 33,
+        "sensory": 46,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 32,
+      "count": 1200,
+      "spread": 12
+    }
+  }
+}

@@ -1,0 +1,520 @@
+{
+  "schema": "formation_resolution_mechanics",
+  "principle": "A large ordinary formation is one aggregate combat actor. The formation is not expanded into one character per soldier. Aggregate statistics are the authoritative mass-resolution representation; named people remain separate bodies.",
+  "resolution_depths": {
+    "organization_only": "For ownership, assignment, splitting, merging, command, location or logistics queries, load the formation owner and only the referenced organizational standards needed. Do not load combat capability unless the question requires it.",
+    "mass_battle_kernel": "For broad large-battle screening, movement/contact, expected exchange, morale pressure and command synchronization, use the formation battle kernel plus live headcount, troop type, loadout/issue state, morale, cohesion, readiness, fatigue/condition, commander chain, terrain and order.",
+    "full_formation_capability": "Load the full formation capability distribution when variance/tails, specialist skill, unusual terrain/equipment interaction, threshold qualification, technique use, medical/engineering detail, named-person action or a close result could materially change the outcome.",
+    "exact_person": "Named actors resolve from their full logical sheets, whether exact-owned or roster-composed. Never replace them with an unrelated formation mean once individually represented."
+  },
+  "kernel_authority": "Battle kernels are derived caches, never independent truth. They preserve the source capability mean and spread vectors and carry a source hash. If the hash is stale, rebuild from the full capability before resolution.",
+  "vectorization": "Several materially equivalent formations may be evaluated together for computation only. Equivalence requires matching troop type, standard/issue state, relevant capability kernel, doctrine familiarity, commander chain quality, order, sector/terrain/exposure, supply, morale/cohesion/readiness/fatigue and specialist state. Settle every result deterministically back to the real formation IDs; any divergence ends batching.",
+  "determinism": "Same authoritative state, same player/NPC orders and same registered deterministic random inputs must produce the same mechanical result. Narrative wording and model variation are never random inputs.",
+  "anti_overcompression": "Never collapse a formation to one scalar power score. Preserve multidimensional capability, headcount, equipment, morale, cohesion, readiness, fatigue, injuries/casualties, experience, doctrine familiarity, terrain, supply and command as separate causal inputs.",
+  "casualty_settlement": "Casualties/injuries/equipment loss reduce the real formation state and remain conserved. Aggregate casualties may be deterministic expected allocations or registered deterministic draws only where the mechanic explicitly requires distribution sampling.",
+  "support": "Service/combat-support capacity is resolved through its own support mechanics and does not become free line frontage.",
+  "authority": "game/data/mechanics/formation-resolution.json",
+  "game_scope": "This repository only.",
+  "capability_vocabulary": {
+    "fundamentals": [
+      "combat",
+      "awareness",
+      "endurance",
+      "chakra_control",
+      "chakra_output",
+      "movement",
+      "tactics",
+      "team_coordination"
+    ],
+    "methods": [
+      "sword",
+      "unarmed",
+      "thrown_tools",
+      "bow",
+      "polearm",
+      "heavy_weapon",
+      "ninjutsu",
+      "genjutsu",
+      "traps",
+      "sensory",
+      "medical",
+      "sealing"
+    ],
+    "separate_state": [
+      "readiness",
+      "cohesion",
+      "morale",
+      "experience",
+      "development_evidence",
+      "doctrine_familiarity",
+      "command_execution",
+      "equipment",
+      "supply",
+      "terrain"
+    ],
+    "rule": "Method proficiency is not a universal additive bonus. Battle projects fundamentals through the method actually used at the current range/role; unavailable or unsuitable methods do not contribute."
+  },
+  "range_bands": {
+    "0": {
+      "name": "engaged_melee",
+      "approx_m": "0-3"
+    },
+    "1": {
+      "name": "short",
+      "approx_m": "3-15"
+    },
+    "2": {
+      "name": "medium",
+      "approx_m": "15-40"
+    },
+    "3": {
+      "name": "long",
+      "approx_m": "40+"
+    }
+  },
+  "method_range_suitability_milli": {
+    "sword": [
+      1000,
+      250,
+      0,
+      0
+    ],
+    "unarmed": [
+      1000,
+      100,
+      0,
+      0
+    ],
+    "thrown_tools": [
+      300,
+      1000,
+      350,
+      0
+    ],
+    "bow": [
+      50,
+      850,
+      1000,
+      700
+    ],
+    "polearm": [
+      1000,
+      200,
+      0,
+      0
+    ],
+    "heavy_weapon": [
+      1000,
+      150,
+      0,
+      0
+    ],
+    "ninjutsu": [
+      650,
+      1000,
+      950,
+      550
+    ],
+    "genjutsu": [
+      500,
+      900,
+      800,
+      400
+    ],
+    "traps": [
+      450,
+      800,
+      750,
+      300
+    ],
+    "sensory": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "medical": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "sealing": [
+      450,
+      800,
+      700,
+      300
+    ]
+  },
+  "role_method_preferences": {
+    "assault": [
+      "sword",
+      "unarmed",
+      "polearm",
+      "heavy_weapon",
+      "ninjutsu",
+      "thrown_tools",
+      "bow"
+    ],
+    "ranged_control": [
+      "bow",
+      "thrown_tools",
+      "ninjutsu",
+      "genjutsu",
+      "traps",
+      "sealing",
+      "sword",
+      "unarmed"
+    ],
+    "recon": [
+      "thrown_tools",
+      "ninjutsu",
+      "genjutsu",
+      "traps",
+      "bow",
+      "unarmed",
+      "sword"
+    ],
+    "support": [
+      "thrown_tools",
+      "ninjutsu",
+      "unarmed",
+      "sword",
+      "bow"
+    ],
+    "medical": [
+      "thrown_tools",
+      "unarmed",
+      "ninjutsu",
+      "sword"
+    ],
+    "logistics": [
+      "thrown_tools",
+      "unarmed",
+      "sword"
+    ],
+    "communications": [
+      "thrown_tools",
+      "ninjutsu",
+      "unarmed",
+      "sword"
+    ],
+    "command": [
+      "sword",
+      "unarmed",
+      "ninjutsu",
+      "thrown_tools",
+      "bow"
+    ]
+  },
+  "frontage_weight_milli": {
+    "assault": 1000,
+    "ranged_control": 900,
+    "recon": 700,
+    "support": 350,
+    "medical": 250,
+    "logistics": 200,
+    "communications": 300,
+    "command": 500
+  },
+  "development_model": {
+    "evidence_first": true,
+    "combat_event": "adds experience/development evidence to surviving component; does not grant arbitrary immediate weapon skill",
+    "consolidation": "formation drill converts bounded relevant evidence into capability with diminishing returns",
+    "replacement_dilution": "incoming reserve capability is personnel-weighted with survivors",
+    "split_merge": "capability sufficient statistics move with their personnel and are never duplicated",
+    "release": "demobilized personnel return their weighted capability to force reserve state"
+  },
+  "elite_overlay_rule": "Exact/named people and exact teams embedded in a formation are discrete conserved bodies. Subtract them from anonymous headcount and resolve them as explicit overlays/zoom candidates; never pull the formation mean toward their stats.",
+  "consumable_rule": "Exact thrown weapons and consumable tools are conserved inventory. Aggregate formations consume conserved force stock for method ammunition plus rations/water; shortages constrain method expression and supply state instead of granting infinite personal copies.",
+  "equipment_projection": {
+    "equipment_dependent_methods": [
+      "sword",
+      "thrown_tools",
+      "bow",
+      "polearm",
+      "heavy_weapon",
+      "traps",
+      "medical",
+      "sealing"
+    ],
+    "readiness_rule": "Equipment readiness scales only equipment-dependent method expression; it never raises body/chakra fundamentals.",
+    "battle_loss_decay_divisor": 5,
+    "minimum_readiness_milli": 250
+  },
+  "command_projection": {
+    "rule": "Command affects timing and control only; it does not rewrite soldier skill, chakra, or weapon proficiency.",
+    "baseline_milli": 850,
+    "score_multiplier_milli": 3,
+    "max_channel_milli": 1200
+  },
+  "doctrine_projection": {
+    "rule": "Doctrine familiarity and situational suitability are separate. Familiarity changes coordination; suitability is derived from the current action and place kind.",
+    "familiarity_baseline_milli": 850,
+    "familiarity_per_point_milli": 2,
+    "minimum_milli": 750,
+    "maximum_milli": 1150,
+    "institution_profiles": {
+      "iron": {
+        "preferred_actions": [
+          "attack",
+          "hold",
+          "secure",
+          "delay"
+        ],
+        "preferred_place_kinds": [
+          "border_pass"
+        ],
+        "fit_bonus_milli": 60,
+        "mismatch_penalty_milli": 30
+      },
+      "konoha": {
+        "preferred_actions": [
+          "attack",
+          "capture",
+          "extract",
+          "secure"
+        ],
+        "preferred_place_kinds": [],
+        "fit_bonus_milli": 35,
+        "mismatch_penalty_milli": 0
+      },
+      "iwa": {
+        "preferred_actions": [
+          "hold",
+          "secure",
+          "delay",
+          "attack"
+        ],
+        "preferred_place_kinds": [
+          "border_pass"
+        ],
+        "fit_bonus_milli": 45,
+        "mismatch_penalty_milli": 20
+      },
+      "kumo": {
+        "preferred_actions": [
+          "attack",
+          "capture"
+        ],
+        "preferred_place_kinds": [],
+        "fit_bonus_milli": 45,
+        "mismatch_penalty_milli": 0
+      },
+      "kiri": {
+        "preferred_actions": [
+          "capture",
+          "attack",
+          "disengage"
+        ],
+        "preferred_place_kinds": [
+          "hidden_village",
+          "village"
+        ],
+        "fit_bonus_milli": 40,
+        "mismatch_penalty_milli": 10
+      },
+      "suna": {
+        "preferred_actions": [
+          "delay",
+          "hold",
+          "secure"
+        ],
+        "preferred_place_kinds": [
+          "ambient_location"
+        ],
+        "fit_bonus_milli": 40,
+        "mismatch_penalty_milli": 10
+      },
+      "ame": {
+        "preferred_actions": [
+          "delay",
+          "capture",
+          "disengage"
+        ],
+        "preferred_place_kinds": [
+          "village",
+          "hidden_village"
+        ],
+        "fit_bonus_milli": 35,
+        "mismatch_penalty_milli": 10
+      },
+      "oto": {
+        "preferred_actions": [
+          "attack",
+          "capture",
+          "disengage"
+        ],
+        "preferred_place_kinds": [],
+        "fit_bonus_milli": 35,
+        "mismatch_penalty_milli": 0
+      },
+      "kusa": {
+        "preferred_actions": [
+          "delay",
+          "disengage",
+          "capture"
+        ],
+        "preferred_place_kinds": [
+          "ambient_location"
+        ],
+        "fit_bonus_milli": 30,
+        "mismatch_penalty_milli": 10
+      },
+      "taki": {
+        "preferred_actions": [
+          "hold",
+          "delay",
+          "disengage"
+        ],
+        "preferred_place_kinds": [
+          "border_pass",
+          "ambient_location"
+        ],
+        "fit_bonus_milli": 35,
+        "mismatch_penalty_milli": 10
+      },
+      "yuga": {
+        "preferred_actions": [
+          "hold",
+          "secure",
+          "delay"
+        ],
+        "preferred_place_kinds": [
+          "village",
+          "capital"
+        ],
+        "fit_bonus_milli": 25,
+        "mismatch_penalty_milli": 10
+      },
+      "civil": {
+        "preferred_actions": [
+          "hold",
+          "secure",
+          "delay"
+        ],
+        "preferred_place_kinds": [
+          "village",
+          "capital"
+        ],
+        "fit_bonus_milli": 20,
+        "mismatch_penalty_milli": 20
+      },
+      "house_tang": {
+        "preferred_actions": [
+          "capture",
+          "secure",
+          "hold"
+        ],
+        "preferred_place_kinds": [
+          "manor",
+          "compound"
+        ],
+        "fit_bonus_milli": 40,
+        "mismatch_penalty_milli": 10
+      }
+    }
+  },
+  "terrain_profiles_by_place_kind": {
+    "default": {
+      "cover_milli": 1000,
+      "mobility_milli": 1000,
+      "visibility_milli": 1000,
+      "hazard_milli": 0
+    },
+    "ambient_location": {
+      "cover_milli": 1000,
+      "mobility_milli": 1000,
+      "visibility_milli": 1000,
+      "hazard_milli": 0
+    },
+    "border_pass": {
+      "cover_milli": 1120,
+      "mobility_milli": 850,
+      "visibility_milli": 920,
+      "hazard_milli": 80
+    },
+    "hidden_village": {
+      "cover_milli": 1100,
+      "mobility_milli": 900,
+      "visibility_milli": 850,
+      "hazard_milli": 20
+    },
+    "village": {
+      "cover_milli": 1080,
+      "mobility_milli": 930,
+      "visibility_milli": 880,
+      "hazard_milli": 15
+    },
+    "capital": {
+      "cover_milli": 1100,
+      "mobility_milli": 880,
+      "visibility_milli": 850,
+      "hazard_milli": 15
+    },
+    "training_ground": {
+      "cover_milli": 1000,
+      "mobility_milli": 1000,
+      "visibility_milli": 1000,
+      "hazard_milli": 0
+    },
+    "compound": {
+      "cover_milli": 1150,
+      "mobility_milli": 820,
+      "visibility_milli": 850,
+      "hazard_milli": 20
+    },
+    "manor": {
+      "cover_milli": 1150,
+      "mobility_milli": 820,
+      "visibility_milli": 850,
+      "hazard_milli": 20
+    }
+  },
+  "aggregate_consumables": {
+    "rule": "Aggregate combat conserves expendable formation stock without simulating individual pockets. The method actually selected by each component creates bounded stock demand; shortages reduce or remove that method rather than granting infinite ammunition.",
+    "action_usage_milli": {
+      "attack": 1000,
+      "capture": 1000,
+      "hold": 350,
+      "secure": 400,
+      "delay": 450,
+      "escape": 150,
+      "extract": 200,
+      "disengage": 150
+    },
+    "method_usage_per_person_per_exchange_milli": {
+      "thrown_tools": {
+        "kunai": 300,
+        "shuriken": 700
+      },
+      "bow": {
+        "arrows": 1500
+      },
+      "traps": {
+        "explosive_tags": 80,
+        "wire_meters": 500
+      },
+      "sealing": {
+        "sealing_paper": 300,
+        "sealing_ink": 50
+      },
+      "medical": {
+        "medical_kits": 20
+      }
+    },
+    "shortage_rule": "For a selected method, the lowest available/demand ratio across its required consumables scales equipment readiness. Zero available stock removes that method for this resolution. The transaction consumes no more than the conserved stock actually present.",
+    "sustainment": {
+      "rations_person_days_per_battle_day_milli": 1000,
+      "water_liters_per_person_day_milli": 2000,
+      "exchange_seconds": 60,
+      "coverage_bands_milli": {
+        "supported": 1000,
+        "strained": 750,
+        "critical": 400,
+        "cut_off": 0
+      },
+      "rule": "Aggregate combat consumes conserved force rations and water for the represented headcount and bounded exchange duration. Shortage contributes to battle supply pressure; it never creates food or water and never rewrites troop skill."
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "file-template",
+  "template_id": "template.person-continuity-registry",
+  "target_schema": "person-continuity-registry",
+  "source_schema": "game/schemas/person-continuity-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/reg"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "owner_id", "owner_type", "authority", "resolved_through", "people"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["schema", "owner_id", "owner_type", "authority", "resolved_through", "people"], "canonical_order": ["schema", "owner_id", "owner_type", "authority", "resolved_through", "people"]},
+    "/people": {"mode": "open_map", "value_contract": "/people/*"},
+    "/people/*": {"mode": "closed", "allowed_keys": ["person_ref", "host_ref", "cohort_ref", "resolved_through", "life_experience_days", "review_count", "career_review_cycles"], "canonical_order": ["person_ref", "host_ref", "cohort_ref", "resolved_through", "life_experience_days", "review_count", "career_review_cycles"]}
+  },
+  "type_contracts": {
+    "": ["object"], "/schema": ["string"], "/owner_id": ["string"], "/owner_type": ["string"], "/authority": ["boolean"], "/resolved_through": ["string"], "/people": ["object"], "/people/*": ["object"],
+    "/people/*/person_ref": ["string"], "/people/*/host_ref": ["null", "string"], "/people/*/cohort_ref": ["null", "string"], "/people/*/resolved_through": ["string"], "/people/*/life_experience_days": ["integer"], "/people/*/review_count": ["integer"], "/people/*/career_review_cycles": ["integer"]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This one bundled owner records routine elapsed-life continuity for persistent people; it is not a per-person scheduler.",
+    "It grants no promotion, relationship, injury, technique, equipment, office, or other material fact by itself.",
+    "Formal life changes remain semantic events owned by their proper domain systems."
+  ]
+}

@@ -1,0 +1,2554 @@
+{
+  "owner_id": "world_routes_and_settlements",
+  "owner_type": "world_registry",
+  "payload": {
+    "routes": [
+      {
+        "id": "route_earth_capital_iwa",
+        "from": "place.earth.capital",
+        "to": "place.iwa",
+        "mode": "mountain_road",
+        "status": "open_guarded",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.capital",
+        "id": "route_fire_capital_konoha",
+        "mode": "road",
+        "status": "open",
+        "to": "place.konoha",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.northwest",
+        "id": "route_fire_grass_earth",
+        "mode": "mountain_and_border_road",
+        "status": "guarded",
+        "to": "place.iwa",
+        "travel_days_band": [
+          8,
+          16
+        ],
+        "reference_travel_days": 12.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.northern.border",
+        "id": "route_fire_iron",
+        "mode": "mountain_road",
+        "status": "guarded",
+        "to": "place.iron.northern.pass",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.northeast",
+        "id": "route_fire_lightning",
+        "mode": "mountain_road",
+        "status": "guarded",
+        "to": "place.kumo",
+        "travel_days_band": [
+          9,
+          18
+        ],
+        "reference_travel_days": 13.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_fire_north_rice",
+        "from": "place.fire.northern.border",
+        "to": "place.rice.capital",
+        "mode": "road_and_country_track",
+        "status": "guarded",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_fire_northeast_yuga",
+        "from": "place.fire.northeast",
+        "to": "place.yuga",
+        "mode": "road_and_hill_pass",
+        "status": "open",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_fire_northwest_kusa",
+        "from": "place.fire.northwest",
+        "to": "place.kusa",
+        "mode": "forest_border_road",
+        "status": "guarded",
+        "travel_days_band": [
+          3,
+          6
+        ],
+        "reference_travel_days": 4.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_fire_northwest_taki",
+        "from": "place.fire.northwest",
+        "to": "place.taki",
+        "mode": "forest_mountain_road",
+        "status": "guarded",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.northern.border",
+        "id": "route_fire_rain",
+        "mode": "road_bridge_network",
+        "status": "restricted",
+        "to": "place.ame",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.fire.western.border",
+        "id": "route_fire_wind",
+        "mode": "desert_road",
+        "status": "open_controlled",
+        "to": "place.suna",
+        "travel_days_band": [
+          6,
+          12
+        ],
+        "reference_travel_days": 9.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.iron.capital",
+        "id": "route_iron_summit_network",
+        "mode": "mountain_road",
+        "status": "open_guarded",
+        "to": "place.iron.northern.pass",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.kiri",
+        "id": "route_kiri_harbor",
+        "mode": "local_road",
+        "status": "controlled",
+        "to": "place.kiri.harbor",
+        "travel_days_band": [
+          0,
+          1
+        ],
+        "reference_travel_days": 0.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_fire_north",
+        "mode": "military_road",
+        "status": "guarded",
+        "to": "place.fire.northern.border",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_fire_northeast",
+        "mode": "military_road",
+        "status": "guarded",
+        "to": "place.fire.northeast",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_fire_northwest",
+        "mode": "military_road",
+        "status": "guarded",
+        "to": "place.fire.northwest",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_fire_temple",
+        "mode": "road",
+        "status": "open",
+        "to": "place.fire.temple",
+        "travel_days_band": [
+          1,
+          3
+        ],
+        "reference_travel_days": 2.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_fire_west",
+        "mode": "military_road",
+        "status": "guarded",
+        "to": "place.fire.western.border",
+        "travel_days_band": [
+          2,
+          4
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_forty_fourth_training",
+        "mode": "local_road",
+        "status": "controlled",
+        "to": "place.konoha.training_ground.44",
+        "travel_days_band": [
+          0,
+          1
+        ],
+        "reference_travel_days": 0.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_kikyo_pass",
+        "mode": "military_road",
+        "status": "guarded",
+        "to": "place.kikyo.pass",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_tanzaku",
+        "mode": "road",
+        "status": "open",
+        "to": "place.tanzaku.quarters",
+        "travel_days_band": [
+          1,
+          3
+        ],
+        "reference_travel_days": 2.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_third_training",
+        "mode": "local_road",
+        "status": "open",
+        "to": "place.konoha.training_ground.3",
+        "travel_days_band": [
+          0,
+          1
+        ],
+        "reference_travel_days": 0.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_valley_end",
+        "mode": "forest_road",
+        "status": "patrolled",
+        "to": "place.valley.end",
+        "travel_days_band": [
+          1,
+          3
+        ],
+        "reference_travel_days": 2.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.konoha",
+        "id": "route_konoha_wave",
+        "mode": "road_and_sea",
+        "status": "open_but_criminally_pressured",
+        "to": "place.waves.town",
+        "travel_days_band": [
+          5,
+          9
+        ],
+        "reference_travel_days": 7.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_kusa_iwa",
+        "from": "place.kusa",
+        "to": "place.iwa",
+        "mode": "forest_mountain_road",
+        "status": "guarded",
+        "travel_days_band": [
+          5,
+          10
+        ],
+        "reference_travel_days": 7.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_lightning_capital_kumo",
+        "from": "place.lightning.capital",
+        "to": "place.kumo",
+        "mode": "mountain_road",
+        "status": "open_guarded",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_rain_capital_ame",
+        "from": "place.rain.capital",
+        "to": "place.ame",
+        "mode": "road_bridge_network",
+        "status": "open_guarded",
+        "travel_days_band": [
+          1,
+          3
+        ],
+        "reference_travel_days": 2.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_rice_capital_oto",
+        "from": "place.rice.capital",
+        "to": "place.oto.network",
+        "mode": "road_and_hidden_access",
+        "status": "restricted",
+        "travel_days_band": [
+          1,
+          3
+        ],
+        "reference_travel_days": 2.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.kiri.harbor",
+        "id": "route_water_archipelago",
+        "mode": "sea",
+        "status": "weather_dependent",
+        "to": "place.water.eastern.islands",
+        "travel_days_band": [
+          1,
+          5
+        ],
+        "reference_travel_days": 3.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_water_capital_kiri",
+        "from": "place.water.capital",
+        "to": "place.kiri",
+        "mode": "sea_and_road",
+        "status": "open_controlled",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "from": "place.waves.town",
+        "id": "route_wave_water_east",
+        "mode": "coastal_sea",
+        "status": "open_controlled",
+        "to": "place.water.eastern.islands",
+        "travel_days_band": [
+          4,
+          8
+        ],
+        "reference_travel_days": 6.0,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      },
+      {
+        "id": "route_wind_capital_suna",
+        "from": "place.wind.capital",
+        "to": "place.suna",
+        "mode": "desert_road",
+        "status": "open_guarded",
+        "travel_days_band": [
+          2,
+          5
+        ],
+        "reference_travel_days": 3.5,
+        "travel_mechanics_ref": "game/data/mechanics/travel.json"
+      }
+    ],
+    "settlement_generation_rule": "ordinary settlements may be founded only through persisted governance and conserved population transfer; hidden-village status requires a lawful governance upgrade and is never invented by narration",
+    "places": [
+      {
+        "id": "place.akatsuki.hidden",
+        "name": "Place Akatsuki Hidden",
+        "country_id": null,
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.akatsuki.mobile",
+        "name": "Place Akatsuki Mobile",
+        "country_id": null,
+        "kind": "mobile_context",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.akatsuki.network",
+        "name": "Place Akatsuki Network",
+        "country_id": null,
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.ame",
+        "name": "Amegakure",
+        "country_id": "land_rain",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_ame",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.ame.central.district",
+        "name": "Place Ame Central District",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.ame.central.towers",
+        "name": "Place Ame Central Towers",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.ame.drainage.network",
+        "name": "Place Ame Drainage Network",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.ame.eastern.bridge",
+        "name": "Place Ame Eastern Bridge",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.ame.hidden.tower",
+        "name": "Place Ame Hidden Tower",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.ame.western.towers",
+        "name": "Place Ame Western Towers",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.ame"
+      },
+      {
+        "id": "place.earth.border.highlands",
+        "name": "Place Earth Border Highlands",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.capital",
+        "name": "Place Earth Capital",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.eastern.border",
+        "name": "Place Earth Eastern Border",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.mountain.routes",
+        "name": "Place Earth Mountain Routes",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.northern.border",
+        "name": "Place Earth Northern Border",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.southern.routes",
+        "name": "Place Earth Southern Routes",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.western.front",
+        "name": "Place Earth Western Front",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.earth.western.frontier",
+        "name": "Place Earth Western Frontier",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.fire.border",
+        "name": "Place Fire Border",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.fire.capital",
+        "name": "Fire Capital",
+        "country_id": "land_fire",
+        "kind": "capital",
+        "status": "extant",
+        "authority_ref": "office_fire_daimyo",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.fire.country",
+        "name": "Place Fire Country",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.fire.country.traveling",
+        "name": "Place Fire Country Traveling",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.fire.daimyo.court",
+        "name": "Fire Daimyo Court",
+        "country_id": "land_fire",
+        "kind": "government_complex",
+        "status": "extant",
+        "authority_ref": "office_fire_daimyo",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.fire.capital"
+      },
+      {
+        "id": "place.fire.eastern.border",
+        "name": "Place Fire Eastern Border",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.fire.naka_river",
+        "name": "Naka River",
+        "country_id": "land_fire",
+        "kind": "natural_feature",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.fire.northeast",
+        "name": "Northeastern Fire Border",
+        "country_id": "land_fire",
+        "kind": "border_region",
+        "status": "extant",
+        "authority_ref": "force.civil.fire",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.fire.northern.border",
+        "name": "Northern Fire Border",
+        "country_id": "land_fire",
+        "kind": "border_region",
+        "status": "extant",
+        "authority_ref": "force.civil.fire",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.fire.northwest",
+        "name": "Northwestern Fire Border",
+        "country_id": "land_fire",
+        "kind": "border_region",
+        "status": "extant",
+        "authority_ref": "force.civil.fire",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.fire.roadside_inn",
+        "name": "Land of Fire Roadside Inn",
+        "country_id": "land_fire",
+        "kind": "inn",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.fire.capital"
+      },
+      {
+        "id": "place.fire.temple",
+        "name": "Fire Temple",
+        "country_id": "land_fire",
+        "kind": "temple",
+        "status": "extant",
+        "authority_ref": "institution.fire.fire_temple",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.fire.western.border",
+        "name": "Western Fire Border",
+        "country_id": "land_fire",
+        "kind": "border_region",
+        "status": "extant",
+        "authority_ref": "force.civil.fire",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.grass.northern.border",
+        "name": "Place Grass Northern Border",
+        "country_id": "land_grass",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.grass.southern.border",
+        "name": "Place Grass Southern Border",
+        "country_id": "land_grass",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.hacho.village",
+        "name": "Hacho Village",
+        "country_id": "land_fire",
+        "kind": "village",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.hot.water.trade.route",
+        "name": "Hot Water Trade Route",
+        "country_id": "land_hot_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.iron.capital",
+        "name": "Land of Iron Capital",
+        "country_id": "land_iron",
+        "kind": "capital",
+        "status": "extant",
+        "authority_ref": "office_iron_shogunate",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "mechanical_modules": {
+          "production": {
+            "armor_lines": 1,
+            "weapon_lines": 2,
+            "quality_milli": 1100
+          }
+        }
+      },
+      {
+        "id": "place.iron.mountain.reserve",
+        "name": "Place Iron Mountain Reserve",
+        "country_id": "land_iron",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.iron.northern.pass",
+        "name": "Northern Iron Pass",
+        "country_id": "land_iron",
+        "kind": "border_pass",
+        "status": "extant",
+        "authority_ref": "faction_iron",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.iron.western.pass",
+        "name": "Place Iron Western Pass",
+        "country_id": "land_iron",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.iwa",
+        "name": "Iwagakure",
+        "country_id": "land_earth",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_iwa",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.iwa.barracks",
+        "name": "Place Iwa Barracks",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.command",
+        "name": "Place Iwa Command",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa",
+        "mechanical_modules": {
+          "production": {
+            "tool_lines": 1,
+            "quality_milli": 1000
+          }
+        }
+      },
+      {
+        "id": "place.iwa.logistics.yard",
+        "name": "Place Iwa Logistics Yard",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.missing.nin.route",
+        "name": "Iwa Missing Nin Route",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.perimeter",
+        "name": "Place Iwa Perimeter",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.training.quarter",
+        "name": "Place Iwa Training Quarter",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.tsuchikage.office",
+        "name": "Place Iwa Tsuchikage Office",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.iwa.tunnel.network",
+        "name": "Place Iwa Tunnel Network",
+        "country_id": "land_earth",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.iwa"
+      },
+      {
+        "id": "place.kannabi.bridge",
+        "name": "Kannabi Bridge",
+        "country_id": "land_grass",
+        "kind": "historical_bridge",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.kikyo.castle",
+        "name": "Kikyo Castle",
+        "country_id": "land_fire",
+        "kind": "historical_fortification",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.kikyo.pass",
+        "name": "Kikyo Pass",
+        "country_id": "land_fire",
+        "kind": "border_pass",
+        "status": "extant",
+        "authority_ref": "force.civil.fire",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.kiri",
+        "name": "Kirigakure",
+        "country_id": "land_water",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_kiri",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.kiri.capital.canals",
+        "name": "Place Kiri Capital Canals",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kiri"
+      },
+      {
+        "id": "place.kiri.government.quarter",
+        "name": "Place Kiri Government Quarter",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kiri"
+      },
+      {
+        "id": "place.kiri.harbor",
+        "name": "Kirigakure Harbor",
+        "country_id": "land_water",
+        "kind": "harbor",
+        "status": "extant",
+        "authority_ref": "faction_kiri",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.kiri.hunter.station",
+        "name": "Place Kiri Hunter Station",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kiri"
+      },
+      {
+        "id": "place.kiri.training.quarter",
+        "name": "Place Kiri Training Quarter",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kiri"
+      },
+      {
+        "id": "place.konoha",
+        "name": "Konohagakure",
+        "country_id": "land_fire",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.konoha.aburame_compound",
+        "name": "Place Konoha Aburame Compound",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.academy",
+        "name": "Konoha Academy",
+        "country_id": "land_fire",
+        "kind": "academy",
+        "status": "extant",
+        "authority_ref": "institution.konoha.academy",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 96,
+            "quality_milli": 1000,
+            "supported_categories": [
+              "martial",
+              "chakra",
+              "team_drill"
+            ]
+          }
+        }
+      },
+      {
+        "id": "place.konoha.academy.annex",
+        "name": "Place Konoha Academy Annex",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.academy.assignment.hall",
+        "name": "Konoha Academy Assignment Hall",
+        "country_id": "land_fire",
+        "kind": "institution_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.academy",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_world_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.akimichi_compound",
+        "name": "Place Konoha Akimichi Compound",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.anbu_headquarters",
+        "name": "Konoha ANBU Operations Facility",
+        "country_id": "land_fire",
+        "kind": "military_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.anbu",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "simulation_detail_on_canon_institution",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 24,
+            "quality_milli": 1100,
+            "supported_categories": [
+              "anbu",
+              "team_drill",
+              "stealth",
+              "combat"
+            ]
+          }
+        }
+      },
+      {
+        "id": "place.konoha.archive.library",
+        "name": "Konoha Archive Library",
+        "country_id": "land_fire",
+        "kind": "archive",
+        "status": "extant",
+        "authority_ref": "institution.konoha.archive_library",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.aviary",
+        "name": "Konoha Aviary",
+        "country_id": "land_fire",
+        "kind": "communications_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.aviary",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.cemetery",
+        "name": "Konoha Cemetery",
+        "country_id": "land_fire",
+        "kind": "cemetery",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.council",
+        "name": "Place Konoha Council",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.dango_shop",
+        "name": "Konoha Dango Shop",
+        "country_id": "land_fire",
+        "kind": "merchant",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.duty.quarters",
+        "name": "Place Konoha Duty Quarters",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.exam.office",
+        "name": "Place Konoha Exam Office",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.gate",
+        "name": "Place Konoha Gate",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.gate.command",
+        "name": "Place Konoha Gate Command",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.hokage_residence",
+        "name": "Hokage Residence",
+        "country_id": "land_fire",
+        "kind": "government_facility",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.hokage_rock",
+        "name": "Hokage Rock",
+        "country_id": "land_fire",
+        "kind": "landmark",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.hokage_tower",
+        "name": "Hokage Tower",
+        "country_id": "land_fire",
+        "kind": "government_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.hokage_administration",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_world_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.hospital",
+        "name": "Konoha Hospital",
+        "country_id": "land_fire",
+        "kind": "hospital",
+        "status": "extant",
+        "authority_ref": "institution.konoha.hospital",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "medical": {
+            "quality_milli": 1120,
+            "specialties": [
+              "stabilization",
+              "surgery",
+              "ocular_surgery"
+            ],
+            "bed_capacity_units": 96,
+            "bed_load_units": 0,
+            "bed_recovery_units_per_hour": 12,
+            "surgical_capacity_units": 10,
+            "surgical_load_units": 0,
+            "surgical_recovery_units_per_hour": 3,
+            "staff_capacity_units": 160,
+            "staff_load_units": 0,
+            "staff_recovery_units_per_hour": 20,
+            "last_capacity_update_at": "SE-0061-06-11T09:00:00",
+            "pharmacy_stock_ref": "stock.force_konoha_shinobi"
+          },
+          "production": {
+            "medical_lines": 1,
+            "quality_milli": 1050
+          }
+        }
+      },
+      {
+        "id": "place.konoha.hyuga_compound",
+        "name": "Hyuga Compound",
+        "country_id": "land_fire",
+        "kind": "clan_compound",
+        "status": "extant",
+        "authority_ref": "org_hyuga",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.ichiraku",
+        "name": "Ramen Ichiraku",
+        "country_id": "land_fire",
+        "kind": "merchant",
+        "status": "extant",
+        "authority_ref": "institution.konoha.ichiraku",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.infiltration",
+        "name": "Place Konoha Infiltration",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.intelligence",
+        "name": "Place Konoha Intelligence",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.intelligence.division",
+        "name": "Konoha Intelligence Division",
+        "country_id": "land_fire",
+        "kind": "military_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.intelligence_division",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.internal.security",
+        "name": "Place Konoha Internal Security",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.interrogation",
+        "name": "Konoha Interrogation Facility",
+        "country_id": "land_fire",
+        "kind": "military_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.interrogation",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.inuzuka_compound",
+        "name": "Place Konoha Inuzuka Compound",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.jonin_standby_station",
+        "name": "Jonin Standby Station",
+        "country_id": "land_fire",
+        "kind": "military_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.jonin_standby",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.logistics.yard",
+        "name": "Place Konoha Logistics Yard",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.market",
+        "name": "Place Konoha Market",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.memorial.stone",
+        "name": "Memorial Stone",
+        "country_id": "land_fire",
+        "kind": "memorial",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.mission_assignment_desk",
+        "name": "Mission Assignment Desk",
+        "country_id": "land_fire",
+        "kind": "government_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.mission_assignment",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.naka_shrine",
+        "name": "Naka Shrine",
+        "country_id": "land_fire",
+        "kind": "historical_religious_site",
+        "status": "extant",
+        "authority_ref": "org_uchiha_remnant",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.konoha.nara_clan_forest",
+        "name": "Nara Clan Forest",
+        "country_id": "land_fire",
+        "kind": "clan_land",
+        "status": "extant",
+        "authority_ref": "org_nara",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.nara_compound",
+        "name": "Place Konoha Nara Compound",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.perimeter",
+        "name": "Place Konoha Perimeter",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.public_bathhouse",
+        "name": "Konoha Public Bathhouse",
+        "country_id": "land_fire",
+        "kind": "bathhouse",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.reconnaissance",
+        "name": "Place Konoha Reconnaissance",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.residential",
+        "name": "Place Konoha Residential",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.root.primary_complex",
+        "name": "Root Primary Complex",
+        "country_id": "land_fire",
+        "kind": "military_facility",
+        "status": "extant",
+        "authority_ref": "institution.konoha.root",
+        "timeline_status": "current",
+        "knowledge_classification": "secret",
+        "provenance": "simulation_detail_on_canon_institution",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 48,
+            "quality_milli": 1080,
+            "supported_categories": [
+              "covert",
+              "team_drill",
+              "combat"
+            ]
+          },
+          "medical": {
+            "quality_milli": 960,
+            "specialties": [
+              "stabilization",
+              "surgery"
+            ],
+            "bed_capacity_units": 16,
+            "bed_load_units": 0,
+            "bed_recovery_units_per_hour": 3,
+            "surgical_capacity_units": 2,
+            "surgical_load_units": 0,
+            "surgical_recovery_units_per_hour": 1,
+            "staff_capacity_units": 28,
+            "staff_load_units": 0,
+            "staff_recovery_units_per_hour": 5,
+            "last_capacity_update_at": "SE-0061-06-11T09:00:00",
+            "pharmacy_stock_ref": "stock.force_konoha_shinobi"
+          },
+          "custody": {
+            "capacity_slots": 60,
+            "security_milli": 960
+          }
+        }
+      },
+      {
+        "id": "place.konoha.tea_house",
+        "name": "Konoha Tea House",
+        "country_id": "land_fire",
+        "kind": "tea_house",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.training_ground.0",
+        "name": "Zeroth Training Ground",
+        "country_id": "land_fire",
+        "kind": "training_ground",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.training_ground.3",
+        "name": "Third Training Ground",
+        "country_id": "land_fire",
+        "kind": "training_ground",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 32,
+            "quality_milli": 1080,
+            "supported_categories": [
+              "martial",
+              "chakra",
+              "team_drill",
+              "technique"
+            ]
+          }
+        }
+      },
+      {
+        "id": "place.konoha.training_ground.44",
+        "name": "Forty-Fourth Training Ground",
+        "country_id": "land_fire",
+        "kind": "training_ground",
+        "status": "extant",
+        "authority_ref": "faction_konoha",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 64,
+            "quality_milli": 1020,
+            "supported_categories": [
+              "survival",
+              "tracking",
+              "team_drill",
+              "combat"
+            ]
+          }
+        }
+      },
+      {
+        "id": "place.konoha.traveler_inn",
+        "name": "Konoha Traveler Inn",
+        "country_id": "land_fire",
+        "kind": "inn",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.uchiha_district",
+        "name": "Uchiha District",
+        "country_id": "land_fire",
+        "kind": "historical_district",
+        "status": "depopulated",
+        "authority_ref": "org_uchiha_remnant",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.yakiniku_q",
+        "name": "Yakiniku Q",
+        "country_id": "land_fire",
+        "kind": "merchant",
+        "status": "extant",
+        "authority_ref": "institution.konoha.yakiniku_q",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.yamanaka_compound",
+        "name": "Place Konoha Yamanaka Compound",
+        "country_id": "land_fire",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.konoha.yamanaka_flowers",
+        "name": "Yamanaka Flowers",
+        "country_id": "land_fire",
+        "kind": "merchant",
+        "status": "extant",
+        "authority_ref": "institution.konoha.yamanaka_flowers",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline",
+        "route_anchor_ref": "place.konoha"
+      },
+      {
+        "id": "place.kumo",
+        "name": "Kumogakure",
+        "country_id": "land_lightning",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_kumo",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.kumo.academy.field",
+        "name": "Place Kumo Academy Field",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.administration",
+        "name": "Place Kumo Administration",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.barracks",
+        "name": "Place Kumo Barracks",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.command",
+        "name": "Place Kumo Command",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.logistics.yard",
+        "name": "Place Kumo Logistics Yard",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.perimeter",
+        "name": "Place Kumo Perimeter",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.raikage.office",
+        "name": "Place Kumo Raikage Office",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.secure.compound",
+        "name": "Place Kumo Secure Compound",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.training.ground",
+        "name": "Place Kumo Training Ground",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kumo.training.valley",
+        "name": "Place Kumo Training Valley",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.kumo"
+      },
+      {
+        "id": "place.kusa",
+        "name": "Kusagakure",
+        "country_id": "land_grass",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_kusa",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.lightning.capital",
+        "name": "Place Lightning Capital",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.highlands",
+        "name": "Place Lightning Highlands",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.northern.pass",
+        "name": "Place Lightning Northern Pass",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.northern.route",
+        "name": "Place Lightning Northern Route",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.relay.route",
+        "name": "Place Lightning Relay Route",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.southern.border",
+        "name": "Place Lightning Southern Border",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.southern.route",
+        "name": "Place Lightning Southern Route",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.lightning.western.ridge",
+        "name": "Place Lightning Western Ridge",
+        "country_id": "land_lightning",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.mountains_graveyard.obito_lab",
+        "name": "Place Mountains Graveyard Obito Lab",
+        "country_id": null,
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.oto.field_barracks",
+        "name": "Place Oto Field Barracks",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.oto.network"
+      },
+      {
+        "id": "place.oto.hidden_laboratory",
+        "name": "Place Oto Hidden Laboratory",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.oto.network",
+        "mechanical_modules": {
+          "laboratory": {
+            "research_capacity_slots": 8,
+            "quality_milli": 1000
+          }
+        }
+      },
+      {
+        "id": "place.oto.medical_chamber",
+        "name": "Place Oto Medical Chamber",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.oto.network"
+      },
+      {
+        "id": "place.oto.network",
+        "name": "Otogakure Network",
+        "country_id": "land_rice",
+        "kind": "distributed_hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_oto",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.rain.capital",
+        "name": "Place Rain Capital",
+        "country_id": "land_rain",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.rice.capital",
+        "name": "Place Rice Capital",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.rice.fields",
+        "name": "Place Rice Fields",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.rice.fields.hidden.route",
+        "name": "Rice Fields Hidden Route",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.rice.hidden.facility",
+        "name": "Place Rice Hidden Facility",
+        "country_id": "land_rice",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.suna",
+        "name": "Sunagakure",
+        "country_id": "land_wind",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_suna",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.suna.command",
+        "name": "Place Suna Command",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna",
+        "mechanical_modules": {
+          "production": {
+            "puppet_lines": 1,
+            "medical_lines": 1,
+            "quality_milli": 1000
+          }
+        }
+      },
+      {
+        "id": "place.suna.council",
+        "name": "Place Suna Council",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna"
+      },
+      {
+        "id": "place.suna.kazekage.office",
+        "name": "Place Suna Kazekage Office",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna"
+      },
+      {
+        "id": "place.suna.residential",
+        "name": "Place Suna Residential",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna"
+      },
+      {
+        "id": "place.suna.retirement.quarters",
+        "name": "Place Suna Retirement Quarters",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna"
+      },
+      {
+        "id": "place.suna.training.quarter",
+        "name": "Place Suna Training Quarter",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.suna"
+      },
+      {
+        "id": "place.sword_manor",
+        "name": "Sword Manor",
+        "country_id": "land_fire",
+        "kind": "household_compound",
+        "status": "extant",
+        "authority_ref": "house.tang",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_world_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "training": {
+            "capacity_slots": 32,
+            "quality_milli": 1080,
+            "supported_categories": [
+              "martial",
+              "team_drill",
+              "technique"
+            ]
+          },
+          "medical": {
+            "quality_milli": 900,
+            "specialties": [
+              "stabilization"
+            ],
+            "bed_capacity_units": 12,
+            "bed_load_units": 0,
+            "bed_recovery_units_per_hour": 2,
+            "surgical_capacity_units": 0,
+            "surgical_load_units": 0,
+            "surgical_recovery_units_per_hour": 0,
+            "staff_capacity_units": 18,
+            "staff_load_units": 0,
+            "staff_recovery_units_per_hour": 3,
+            "last_capacity_update_at": "SE-0061-06-11T09:00:00",
+            "pharmacy_stock_ref": null
+          }
+        }
+      },
+      {
+        "id": "place.sword_manor.dungeon",
+        "name": "Sword Manor Dungeon",
+        "country_id": "land_fire",
+        "kind": "detention_facility",
+        "status": "extant",
+        "authority_ref": "house.tang",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_world_baseline",
+        "route_anchor_ref": "place.konoha",
+        "mechanical_modules": {
+          "custody": {
+            "capacity_slots": 24,
+            "security_milli": 850
+          }
+        }
+      },
+      {
+        "id": "place.taki",
+        "name": "Takigakure",
+        "country_id": "land_waterfalls",
+        "kind": "hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_taki",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.taki.hidden.approach",
+        "name": "Place Taki Hidden Approach",
+        "country_id": "land_waterfalls",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.tanzaku.quarters",
+        "name": "Tanzaku Quarters",
+        "country_id": "land_fire",
+        "kind": "town",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.tenchi.bridge",
+        "name": "Tenchi Bridge",
+        "country_id": "land_grass",
+        "kind": "bridge",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.transit.gambling_route",
+        "name": "Place Transit Gambling Route",
+        "country_id": null,
+        "kind": "mobile_context",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.transit.tsunade_party",
+        "name": "Place Transit Tsunade Party",
+        "country_id": null,
+        "kind": "mobile_context",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.uzumaki.mask.storage.temple",
+        "name": "Uzumaki Clan Mask Storage Temple",
+        "country_id": "land_fire",
+        "kind": "historical_religious_site",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.valley.end",
+        "name": "Valley of the End",
+        "country_id": "land_fire",
+        "kind": "historical_landmark",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.water.capital",
+        "name": "Place Water Capital",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.water.eastern.islands",
+        "name": "Eastern Water Country Islands",
+        "country_id": "land_water",
+        "kind": "island_region",
+        "status": "extant",
+        "authority_ref": "force.civil.water",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "simulation_geography_anchor"
+      },
+      {
+        "id": "place.water.outer.islands",
+        "name": "Place Water Outer Islands",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.water.shipping.lane",
+        "name": "Place Water Shipping Lane",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.water.southern.islands",
+        "name": "Place Water Southern Islands",
+        "country_id": "land_water",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.waves.coast",
+        "name": "Land of Waves Coast",
+        "country_id": "land_waves",
+        "kind": "coastal_region",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.waves.gato_shipping",
+        "name": "Gato Company Shipping Compound",
+        "country_id": "land_waves",
+        "kind": "merchant_criminal_facility",
+        "status": "extant",
+        "authority_ref": "institution.waves.gato_enterprise",
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "simulation_detail_on_canon_institution"
+      },
+      {
+        "id": "place.waves.hidden_region",
+        "name": "Place Waves Hidden Region",
+        "country_id": "land_waves",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "restricted",
+        "provenance": "campaign_location_registration",
+        "route_anchor_ref": "place.waves.town"
+      },
+      {
+        "id": "place.waves.town",
+        "name": "Land of Waves Town",
+        "country_id": "land_waves",
+        "kind": "town",
+        "status": "extant",
+        "authority_ref": "government_wave_local_council",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      },
+      {
+        "id": "place.wind.capital",
+        "name": "Place Wind Capital",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.wind.eastern.dunes",
+        "name": "Place Wind Eastern Dunes",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.wind.major.oasis",
+        "name": "Place Wind Major Oasis",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.wind.northern.route",
+        "name": "Place Wind Northern Route",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.wind.southern.route",
+        "name": "Place Wind Southern Route",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.wind.western.oasis",
+        "name": "Place Wind Western Oasis",
+        "country_id": "land_wind",
+        "kind": "ambient_location",
+        "status": "extant",
+        "authority_ref": null,
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "campaign_location_registration"
+      },
+      {
+        "id": "place.yuga",
+        "name": "Yugakure",
+        "country_id": "land_hot_water",
+        "kind": "former_hidden_village",
+        "status": "extant",
+        "authority_ref": "faction_yuga",
+        "timeline_status": "current",
+        "knowledge_classification": "public",
+        "provenance": "canon_reference_baseline"
+      }
+    ]
+  },
+  "schema": "shinobi-world-registry",
+  "source_domain": "routes_and_settlements"
+}

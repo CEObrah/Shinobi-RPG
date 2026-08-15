@@ -1,0 +1,43 @@
+{
+  "schema": "clone-barrier-mechanics",
+  "clones": {
+    "required_state": [
+      "clone_id",
+      "creator_id",
+      "clone_type",
+      "physicality",
+      "chakra_reserved_or_divided",
+      "control_range_m",
+      "memory_return_rule",
+      "current_integrity",
+      "active"
+    ],
+    "shadow_clone_rules": {
+      "chakra_division": "creator_current_chakra_after_startup_cost / (clone_count + 1)",
+      "memory_return": "on_dispel_or_destruction_to_creator_if_creator_is_conscious_and_registered_technique_allows",
+      "damage_rule": "registered_integrity_or_single_decisive_hit threshold; destroyed clone stops acting immediately"
+    },
+    "illusion_clone_rule": "cannot exert physical force unless technique explicitly defines a physical component"
+  },
+  "barriers": {
+    "required_state": [
+      "barrier_id",
+      "creator_or_owner",
+      "anchors",
+      "geometry",
+      "coverage",
+      "integrity",
+      "maximum_integrity",
+      "maintenance_cost_per_6s",
+      "inside_outside_rule",
+      "breach_threshold",
+      "active"
+    ],
+    "formulas": {
+      "barrier_effective_integrity": "maximum_integrity * clamp(integrity/maximum_integrity,0,1)",
+      "breach_margin": "incoming_barrier_effect - barrier_effective_integrity",
+      "maintenance_cost": "maintenance_cost_per_6s * elapsed_seconds/6"
+    },
+    "rule": "Teleportation, sealing, underground movement, or sensory bypass only bypasses a barrier when the specific barrier profile does not block that route."
+  }
+}

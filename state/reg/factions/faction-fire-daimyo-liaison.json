@@ -1,0 +1,68 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.fire_daimyo_liaison",
+    "name": "Fire Daimyō Liaison Office",
+    "status": "active",
+    "leadership_ids": [
+      "support.daimyo.noboru_shimizu"
+    ],
+    "key_member_ids": [],
+    "goal": "manage civil-military communication, contracts, and political expectations",
+    "current_plan": "Maintain formal reporting channels and review requests that cross civil-military authority.",
+    "resources": [
+      "civil authority channels",
+      "court correspondence",
+      "budget and legal contacts"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_mission_office",
+        "relationship_type": "mission_contract_authority",
+        "stance": "cooperative",
+        "intensity": 82
+      },
+      {
+        "target_id": "faction.fire_border_authority",
+        "relationship_type": "civil_chain_of_authority",
+        "stance": "cooperative",
+        "intensity": 84
+      },
+      {
+        "target_id": "faction.fire_merchant_network",
+        "relationship_type": "regulation_and_commerce",
+        "stance": "transactional",
+        "intensity": 68
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Village authority and daimyo authority remain distinct."
+    ],
+    "goals": [
+      "coordinate civil and village interests",
+      "prevent jurisdiction disputes from becoming security crises"
+    ],
+    "constraints": [
+      "Daimyō prerogatives",
+      "Konoha autonomy",
+      "political optics"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-25T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [],
+      "autonomous_priority_refs": [
+        "priority.autonomy.ed4da8d2be7628c1"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.69d1600624578980",
+        "priority.autonomy.62609660c1b5e170",
+        "priority.autonomy.66d412967facbc1e"
+      ]
+    },
+    "scope": "Fire Country civil authority interface with Konoha and major civilian interests",
+    "leadership_model": "civil_administration"
+  }
+}

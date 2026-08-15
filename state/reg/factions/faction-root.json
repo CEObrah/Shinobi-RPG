@@ -1,0 +1,73 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.root",
+    "name": "Root",
+    "status": "active",
+    "leadership_ids": [
+      "canon_danzo"
+    ],
+    "key_member_ids": [
+      "canon_fu_yamanaka",
+      "canon_torune_aburame"
+    ],
+    "goal": "protect Danzō compartmentalized power and covert objectives",
+    "current_plan": "Maintain compartmentalized cells, secure the primary complex, and watch for threats that justify investigation or defensive changes.",
+    "resources": [
+      "trained Root cells",
+      "secure underground complex",
+      "sealing and communications staff",
+      "compartmented intelligence",
+      "Danzō-controlled biological assets"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_anbu",
+        "relationship_type": "jurisdictional_conflict",
+        "stance": "concealed_adversarial",
+        "intensity": 88
+      },
+      {
+        "target_id": "faction.yamanaka_intelligence",
+        "relationship_type": "personnel_and_intelligence_exploitation",
+        "stance": "contested",
+        "intensity": 68
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Root operates through secrecy, compartmentation, surveillance, coercion, research, and deniable action."
+    ],
+    "goals": [
+      "protect Root secrecy, personnel, records, and strategic assets",
+      "expand Danzō-approved intelligence and influence without exposing the organization"
+    ],
+    "constraints": [
+      "formal village authority rests with the Hokage",
+      "secrecy limits overt force",
+      "compartmentation slows coordination"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-25T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_team_refs": [
+        "team.konoha.root.field_cell"
+      ],
+      "autonomous_priority_refs": [
+        "priority.autonomy.d1ca46baadec57d9"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.6380eda092b39360",
+        "priority.autonomy.c4f6a3ac59ba1d18",
+        "priority.autonomy.b28bc950935cc53b"
+      ],
+      "autonomous_mission_refs": [
+        "mission.autonomy.bb0a8434a88dfd0baa"
+      ],
+      "wake_required_mission_refs": []
+    },
+    "scope": "Konoha covert underground and compartmented external operations",
+    "leadership_model": "centralized_danzo"
+  }
+}

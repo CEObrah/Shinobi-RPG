@@ -1,0 +1,70 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.yamanaka_intelligence",
+    "name": "Yamanaka Intelligence Network",
+    "status": "active",
+    "leadership_ids": [
+      "canon_inoichi"
+    ],
+    "key_member_ids": [
+      "canon_ino",
+      "canon_fu_yamanaka"
+    ],
+    "goal": "support communications, intelligence, interrogation, and mental techniques",
+    "current_plan": "Maintain interrogation and analysis capacity while controlling access to sensitive Yamanaka methods.",
+    "resources": [
+      "Yamanaka specialists",
+      "analysis contacts",
+      "interrogation experience"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_anbu",
+        "relationship_type": "intelligence_support",
+        "stance": "cooperative",
+        "intensity": 82
+      },
+      {
+        "target_id": "faction.root",
+        "relationship_type": "compartmented_personnel_overlap",
+        "stance": "contested",
+        "intensity": 62
+      },
+      {
+        "target_id": "faction.hyuga_clan",
+        "relationship_type": "village_clan_coordination",
+        "stance": "cooperative",
+        "intensity": 52
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Information access follows lawful or covert information paths."
+    ],
+    "goals": [
+      "protect clan mental-technique knowledge",
+      "turn collected information into reliable village intelligence"
+    ],
+    "constraints": [
+      "technique secrecy",
+      "Hokage/village authority",
+      "operator fatigue"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-25T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [],
+      "wake_required_mission_refs": [],
+      "autonomous_priority_refs": [
+        "priority.autonomy.763dbe0282a5ffa5"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.2a34e7b5bf875ead"
+      ]
+    },
+    "scope": "Konoha intelligence, communications, interrogation, and Yamanaka clan channels",
+    "leadership_model": "clan_and_village_network"
+  }
+}

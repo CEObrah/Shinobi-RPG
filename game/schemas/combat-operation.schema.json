@@ -1,0 +1,751 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "combat-operation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "operation_id",
+    "opened_at",
+    "location_id",
+    "scale",
+    "status",
+    "authority_model",
+    "participants",
+    "outcome"
+  ],
+  "properties": {
+    "schema": {
+      "const": "combat-operation"
+    },
+    "operation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "opened_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "location_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scale": {
+      "enum": [
+        "formation",
+        "battle"
+      ]
+    },
+    "status": {
+      "enum": [
+        "resolved",
+        "ongoing",
+        "awaiting_named_zoom"
+      ]
+    },
+    "authority_model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "participant_ref",
+          "force_ref",
+          "population_pool_id",
+          "capability_source_refs",
+          "supply_state",
+          "supply_stock_consumption",
+          "fortification_milli",
+          "supply_channels_milli",
+          "side_ref",
+          "command_authority_ref",
+          "command_authority_basis",
+          "operational_attachment_ref",
+          "source_availability_class",
+          "committed_count",
+          "aggregate_resolved_count",
+          "location_id",
+          "personnel",
+          "named_actor_refs",
+          "formation_ref",
+          "doctrine_ref",
+          "training_ref",
+          "readiness",
+          "morale",
+          "cohesion",
+          "formation_personnel_after",
+          "named_actor_team_refs",
+          "named_actor_accounting",
+          "command_channels",
+          "doctrine_channels",
+          "range_band",
+          "line_of_sight"
+        ],
+        "properties": {
+          "participant_ref": {
+            "type": "string"
+          },
+          "population_pool_id": {
+            "type": "string"
+          },
+          "side_ref": {
+            "type": "string"
+          },
+          "command_authority_ref": {
+            "type": "string"
+          },
+          "operational_attachment_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_availability_class": {
+            "type": "string"
+          },
+          "committed_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "location_id": {
+            "type": "string"
+          },
+          "personnel": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "total",
+              "active",
+              "wounded",
+              "incapacitated",
+              "killed",
+              "captured",
+              "escaped"
+            ],
+            "properties": {
+              "total": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "active": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "wounded": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "incapacitated": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "killed": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "captured": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "escaped": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "named_actor_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "command_authority_basis": {
+            "type": "string"
+          },
+          "formation_ref": {
+            "type": "string"
+          },
+          "doctrine_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "training_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "readiness": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "morale": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "cohesion": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "formation_personnel_after": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "capability_source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "supply_state": {
+            "enum": [
+              "supported",
+              "strained",
+              "critical",
+              "cut_off"
+            ]
+          },
+          "fortification_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "aggregate_resolved_count": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "named_actor_team_refs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          },
+          "named_actor_accounting": {
+            "const": "exact_subset_of_committed_count_not_additional_personnel"
+          },
+          "force_ref": {
+            "type": "string"
+          },
+          "supply_channels_milli": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "readiness",
+              "offense",
+              "control",
+              "mobility",
+              "protection"
+            ],
+            "properties": {
+              "readiness": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "offense": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "control": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "mobility": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "protection": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              }
+            }
+          },
+          "command_channels": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "profile_ref",
+              "control_milli",
+              "initiative_milli"
+            ],
+            "properties": {
+              "profile_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "control_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "initiative_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              }
+            }
+          },
+          "doctrine_channels": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "doctrine_ref",
+              "institution",
+              "role",
+              "familiarity",
+              "familiarity_milli",
+              "suitability_milli",
+              "coordination_milli",
+              "place_kind"
+            ],
+            "properties": {
+              "doctrine_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "institution": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "role": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "familiarity": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 200
+              },
+              "familiarity_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "suitability_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "coordination_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2000
+              },
+              "place_kind": {
+                "type": "string"
+              }
+            }
+          },
+          "range_band": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "line_of_sight": {
+            "type": "boolean"
+          },
+          "supply_stock_consumption": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "aggregate_count",
+              "selected_method_counts",
+              "demand",
+              "consumed",
+              "method_supply_milli",
+              "sustainment_supply_milli",
+              "sustainment_state"
+            ],
+            "properties": {
+              "aggregate_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "selected_method_counts": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "demand": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "consumed": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "method_supply_milli": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "sustainment_supply_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "sustainment_state": {
+                "type": "string",
+                "enum": [
+                  "supported",
+                  "strained",
+                  "critical",
+                  "cut_off"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs",
+        "resolved_elite_actor_refs",
+        "elite_overlay_model",
+        "elite_overlay_results"
+      ],
+      "properties": {
+        "resolution_mode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "victorious_side_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "wake_triggers": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "semantic_event_id": {
+          "type": "string"
+        },
+        "effect_plan_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "pending_named_actor_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "resolved_zoom_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "resolved_elite_actor_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "elite_overlay_model": {
+          "const": "exact_discrete_participants_not_averaged_into_formation_kernel"
+        },
+        "elite_overlay_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "actor_ref",
+              "parent_side_ref",
+              "method",
+              "technique_ref",
+              "weapon_ref",
+              "chakra_cost",
+              "effect_capacity",
+              "team_refs",
+              "player_action_delegated",
+              "dojutsu",
+              "parent_formation_participant_ref",
+              "personnel",
+              "resources_after"
+            ],
+            "properties": {
+              "actor_ref": {
+                "type": "string"
+              },
+              "parent_side_ref": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string"
+              },
+              "technique_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "weapon_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "chakra_cost": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "effect_capacity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "team_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "player_action_delegated": {
+                "type": "boolean"
+              },
+              "parent_formation_participant_ref": {
+                "type": "string"
+              },
+              "personnel": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "total",
+                  "active",
+                  "wounded",
+                  "incapacitated",
+                  "killed",
+                  "captured",
+                  "escaped"
+                ],
+                "properties": {
+                  "total": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "active": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "wounded": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "incapacitated": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "killed": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "captured": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "escaped": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              },
+              "resources_after": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "resource_ref",
+                    "capacity",
+                    "current"
+                  ],
+                  "properties": {
+                    "resource_ref": {
+                      "type": "string"
+                    },
+                    "capacity": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "current": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              },
+              "dojutsu": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "active_eye_refs",
+                  "eye_contributions"
+                ],
+                "properties": {
+                  "active_eye_refs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "uniqueItems": true
+                  },
+                  "eye_contributions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "eye_ref",
+                        "side",
+                        "dojutsu_type",
+                        "hardware_stage",
+                        "integration",
+                        "vision_integrity",
+                        "native_to_current_owner"
+                      ],
+                      "properties": {
+                        "eye_ref": {
+                          "type": "string"
+                        },
+                        "side": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "dojutsu_type": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "hardware_stage": {},
+                        "integration": {
+                          "type": "integer"
+                        },
+                        "vision_integrity": {
+                          "type": "integer"
+                        },
+                        "native_to_current_owner": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        },
+                        "motion_perception_bonus": {
+                          "type": "integer"
+                        },
+                        "predictive_tracking_bonus": {
+                          "type": "integer"
+                        },
+                        "chakra_resolution_bonus": {
+                          "type": "integer"
+                        },
+                        "tenketsu_precision_bonus": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "pair_integration": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "passive_drain_milli_accrued": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "passive_chakra_cost": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "registered_active_chakra_cost": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "adjusted_active_chakra_cost": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "active_transplant_cost_eye_ref": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

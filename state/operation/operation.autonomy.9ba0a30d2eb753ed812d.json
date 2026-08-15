@@ -1,0 +1,61 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.9ba0a30d2eb753ed812d",
+  "domain": "covert_security",
+  "operation_kind": "counterintelligence_case",
+  "owner_ref": "faction.konoha_anbu",
+  "authority_ref": "canon_hiruzen",
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-06-25T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": "team_fujin.counter_infiltration",
+  "subject_kind": "faction",
+  "subject_ref": "faction.fire_smuggling_network",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.border"
+  ],
+  "route_refs": [],
+  "opposition_refs": [
+    "faction.oto_research_cells"
+  ],
+  "resource_refs": [
+    "item_anbu_mask",
+    "item_coded_documents",
+    "item_evidence_kit"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.753f0e0b9cba4f1cd3"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.4684f98a20d14705c4757622",
+    "event.institutional_operation_completed.b1df75449c19b694cc2a4273",
+    "event.institutional_operation_evidence_generated.b64d4f1d8792f306d9261a24"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.753f0e0b9cba4f1cd3.result",
+    "claim.operation.3f1b183e1336d9d15c18"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_hiruzen"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Acquire attributable evidence or clear the selected counterintelligence concern without treating suspicion as proof.",
+  "failure_condition": "The counterintelligence_case objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": [
+    "claim.mission.autonomy.753f0e0b9cba4f1cd3.result",
+    "claim.operation.3f1b183e1336d9d15c18",
+    "event.autonomous_mission_succeeded.4684f98a20d14705c4757622",
+    "event.institutional_operation_completed.b1df75449c19b694cc2a4273",
+    "event.institutional_operation_evidence_generated.b64d4f1d8792f306d9261a24",
+    "security.autonomy.4a4b0e4de3a66f9e70b9"
+  ]
+}

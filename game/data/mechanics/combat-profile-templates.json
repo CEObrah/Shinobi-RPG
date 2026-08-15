@@ -1,0 +1,251 @@
+{
+  "rule": "Templates define defaults; exact statistics, equipment, injuries, information, orders, personality and geometry control actual actions.",
+  "schema": "combat-profile-templates",
+  "templates": {
+    "aburame_tracker_controller": {
+      "ally_protection": [
+        "perimeter",
+        "message relay"
+      ],
+      "capture_behavior": "mark and drain only after contact",
+      "defense_preferences": [
+        "distance",
+        "distributed coverage",
+        "swarm recall"
+      ],
+      "opening_behavior": "seed low-signature insects along trail, exits and blind approaches",
+      "preferred_range": "distributed_mid",
+      "resource_policy": "preserve swarm and avoid waste against hard counters",
+      "target_priorities": [
+        "escape routes",
+        "concealed movement",
+        "chakra-dependent targets"
+      ],
+      "training_focus": [
+        "tracking",
+        "stealth",
+        "team_coordination"
+      ],
+      "withdrawal_threshold": "swarm loss prevents reliable tracking"
+    },
+    "field_commander": {
+      "ally_protection": [
+        "formation integrity"
+      ],
+      "capture_behavior": "mission-order constrained",
+      "defense_preferences": [
+        "formation",
+        "delegation",
+        "cover"
+      ],
+      "opening_behavior": "set formation, information flow, reserve and withdrawal route",
+      "preferred_range": "mid",
+      "resource_policy": "retain reserve for command emergency",
+      "target_priorities": [
+        "command",
+        "breakthrough threats"
+      ],
+      "training_focus": [
+        "leadership",
+        "tactics",
+        "team_coordination"
+      ],
+      "withdrawal_threshold": "command cohesion broken"
+    },
+    "generalist_service": {
+      "ally_protection": [
+        "nearest vulnerable ally"
+      ],
+      "capture_behavior": "orders and personality constrained",
+      "defense_preferences": [
+        "movement",
+        "cover",
+        "team support"
+      ],
+      "opening_behavior": "read mission objective and fill the highest-priority uncovered role",
+      "preferred_range": "adaptive",
+      "resource_policy": "balanced reserve",
+      "target_priorities": [
+        "immediate mission threats"
+      ],
+      "training_focus": [
+        "movement",
+        "tactics",
+        "team_coordination"
+      ],
+      "withdrawal_threshold": "orders or mission threshold"
+    },
+    "genjutsu_controller": {
+      "ally_protection": [
+        "release assistance"
+      ],
+      "capture_behavior": "incapacitate when mission permits",
+      "defense_preferences": [
+        "distance",
+        "misdirection"
+      ],
+      "opening_behavior": "establish perception checks and isolate attention",
+      "preferred_range": "mid",
+      "resource_policy": "avoid maintaining unnecessary illusions",
+      "target_priorities": [
+        "enemy sensors",
+        "commanders"
+      ],
+      "training_focus": [
+        "tactics",
+        "investigation",
+        "team_coordination"
+      ],
+      "withdrawal_threshold": "illusion channel exposed"
+    },
+    "heavy_assault": {
+      "ally_protection": [
+        "draw pressure"
+      ],
+      "capture_behavior": "disable only when ordered",
+      "defense_preferences": [
+        "durability",
+        "cover creation"
+      ],
+      "opening_behavior": "break strongest immediate threat or terrain anchor",
+      "preferred_range": "close_to_mid",
+      "resource_policy": "spend only for decisive effect",
+      "target_priorities": [
+        "heavy hitters",
+        "fortifications"
+      ],
+      "training_focus": [
+        "unarmed",
+        "movement",
+        "tactics"
+      ],
+      "withdrawal_threshold": "sustained capability below mission threshold"
+    },
+    "hyuga_recon_sensor": {
+      "ally_protection": [
+        "sensor coverage",
+        "warning calls"
+      ],
+      "capture_behavior": "disable chakra network when ordered",
+      "defense_preferences": [
+        "rotation of scan sectors",
+        "Gentle Fist interception"
+      ],
+      "opening_behavior": "Byakugan sector scan and geometry report before committing",
+      "preferred_range": "long_to_close",
+      "resource_policy": "periodic scans rather than continuous maximum strain",
+      "target_priorities": [
+        "concealed threats",
+        "chakra anomalies",
+        "flankers"
+      ],
+      "training_focus": [
+        "tracking",
+        "investigation",
+        "unarmed"
+      ],
+      "withdrawal_threshold": "visual command compromised or eyes overstrained"
+    },
+    "intelligence_controller": {
+      "ally_protection": [
+        "communications",
+        "extraction route"
+      ],
+      "capture_behavior": "preserve required targets and evidence",
+      "defense_preferences": [
+        "cover",
+        "substitution",
+        "team screen"
+      ],
+      "opening_behavior": "collect reports, identify hostile technique and command structure, then issue concise mission-level directions",
+      "preferred_range": "mid",
+      "resource_policy": "conservative",
+      "target_priorities": [
+        "enemy command",
+        "hostile sensors",
+        "large-technique casters"
+      ],
+      "training_focus": [
+        "tactics",
+        "investigation",
+        "team_coordination"
+      ],
+      "withdrawal_threshold": "objective unrecoverable or intelligence advantage lost"
+    },
+    "long_range_support": {
+      "ally_protection": [
+        "suppression"
+      ],
+      "capture_behavior": "mobility disabling when feasible",
+      "defense_preferences": [
+        "range",
+        "cover",
+        "reposition"
+      ],
+      "opening_behavior": "secure line of fire and observation",
+      "preferred_range": "long",
+      "resource_policy": "ammunition and chakra reserve",
+      "target_priorities": [
+        "casters",
+        "messengers",
+        "exposed command"
+      ],
+      "training_focus": [
+        "thrown_tools",
+        "tracking",
+        "tactics"
+      ],
+      "withdrawal_threshold": "line of fire lost or flanked"
+    },
+    "medical_extraction": {
+      "ally_protection": [
+        "casualties",
+        "prisoners"
+      ],
+      "capture_behavior": "stabilize, sedate when equipped and lawful, preserve for transport",
+      "defense_preferences": [
+        "cover",
+        "escort screen",
+        "precise ranged support"
+      ],
+      "opening_behavior": "establish casualty and poison plan, then support from protected position",
+      "preferred_range": "protected_mid",
+      "resource_policy": "preserve medical chakra and supplies",
+      "target_priorities": [
+        "threats to wounded",
+        "poison users"
+      ],
+      "training_focus": [
+        "medicine",
+        "team_coordination",
+        "investigation"
+      ],
+      "withdrawal_threshold": "medical capacity exceeded"
+    },
+    "swordsman_interceptor": {
+      "ally_protection": [
+        "rear and flanks"
+      ],
+      "capture_behavior": "standing control and restraint",
+      "defense_preferences": [
+        "parry",
+        "footwork",
+        "body control"
+      ],
+      "opening_behavior": "control line and enter only after geometry is legal",
+      "preferred_range": "close",
+      "resource_policy": "physical first",
+      "target_priorities": [
+        "weapon hands",
+        "seal hands",
+        "flankers"
+      ],
+      "training_focus": [
+        "sword",
+        "movement",
+        "grappling"
+      ],
+      "withdrawal_threshold": "multiple angles cannot be controlled"
+    }
+  }
+}

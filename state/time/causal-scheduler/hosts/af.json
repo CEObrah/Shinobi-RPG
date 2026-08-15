@@ -1,0 +1,35 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "af",
+  "authority": true,
+  "hosts": {
+    "host.faction.faction.ame_security_network": {
+      "host": {
+        "state": {
+          "host_id": "host.faction.faction.ame_security_network",
+          "kind": "faction",
+          "resolved_through": "SE-0061-06-25T07:00:00",
+          "safe_through": "SE-0061-07-02T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "faction.ame_security_network",
+          "next_due": "SE-0061-07-02T07:00:00"
+        },
+        "authority_kind": "faction_plan",
+        "owner_ref": "state/reg/factions/faction-ame-security-network.json",
+        "metadata": {
+          "faction_id": "faction.ame_security_network",
+          "plan_status": "active",
+          "review_interval_seconds": 604800
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.fb17793c32c477d8911f87b0",
+          "due_at": "SE-0061-07-02T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-02.json",
+          "dedupe_key": "faction.periodic_review:faction.ame_security_network"
+        }
+      ]
+    }
+  }
+}

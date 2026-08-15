@@ -1,0 +1,58 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.37d771249df8057c48",
+  "issuer_ref": "faction.hyuga_clan",
+  "authority_ref": "canon_hiashi",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.hyuga_clan",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "authorized_at": "SE-0061-06-18T07:00:00",
+  "starts_at": "SE-0061-06-18T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.3aa9e0c75b35fdb91b8a",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.37d771249df8057c48",
+    "objective_kind": "protect",
+    "subject_kind": "place",
+    "subject_ref": "place.konoha.hyuga_compound",
+    "subject_label": "place.konoha.hyuga_compound",
+    "report_place_ref": "place.konoha.hyuga_compound",
+    "origin_place_ref": "place.konoha.hyuga_compound",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-06-18T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Complete a household-security review and persist any verified access or Byakugan-security incident."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_hanabi",
+    "canon_hiashi",
+    "canon_hinata",
+    "canon_neji",
+    "char.riku_hyuga"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.37d771249df8057c48",
+      "kind": "protect",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

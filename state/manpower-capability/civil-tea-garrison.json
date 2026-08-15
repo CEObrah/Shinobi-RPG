@@ -1,0 +1,68 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.tea.garrison",
+  "pool_id": "civil.tea.garrison",
+  "source_owner": "force.civil.tea",
+  "stats": {
+    "attributes": {
+      "strength": 46,
+      "endurance": 47,
+      "awareness": 42
+    },
+    "skills": {
+      "weapons": 47,
+      "formation": 47,
+      "tactics": 34
+    },
+    "morale": 57,
+    "discipline": 50,
+    "experience": 33,
+    "methods": {
+      "sword": 0,
+      "unarmed": 0,
+      "thrown_tools": 0,
+      "bow": 0,
+      "polearm": 0,
+      "heavy_weapon": 0,
+      "ninjutsu": 10,
+      "genjutsu": 8,
+      "traps": 31,
+      "sensory": 42,
+      "medical": 20,
+      "sealing": 8
+    }
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 169,
+      "sd": 6.6
+    },
+    "weight_kg": {
+      "mean": 61,
+      "sd": 7.6
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 104,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

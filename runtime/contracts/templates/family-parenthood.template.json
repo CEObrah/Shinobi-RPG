@@ -1,0 +1,63 @@
+{
+  "schema": "file-template",
+  "template_id": "template.family-parenthood",
+  "target_schema": "family-parenthood",
+  "source_schema": "game/schemas/family-parenthood.schema.json",
+  "scope": "registered_json_structure",
+  "current_directories": [
+    "state/family/parenthoods"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "parenthood_id",
+    "authority",
+    "parent_refs",
+    "status",
+    "started_at",
+    "expected_at",
+    "source_basis",
+    "child_ref"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "parenthood_id",
+        "authority",
+        "parent_refs",
+        "status",
+        "started_at",
+        "expected_at",
+        "source_basis",
+        "child_ref",
+        "completed_at"
+      ],
+      "canonical_order": [
+        "schema",
+        "parenthood_id",
+        "authority",
+        "parent_refs",
+        "status",
+        "started_at",
+        "expected_at",
+        "source_basis",
+        "child_ref",
+        "completed_at"
+      ]
+    }
+  },
+  "type_contracts": {},
+  "array_contracts": {
+    "/parent_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Parenthood expectation is abstract life-course state only. It records no sexual activity and cannot force player parenthood.",
+    "Birth requires an active record whose expected boundary has arrived."
+  ]
+}

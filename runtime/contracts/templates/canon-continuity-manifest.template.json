@@ -1,0 +1,458 @@
+{
+  "schema": "file-template",
+  "template_id": "template.canon-continuity-manifest",
+  "target_schema": "canon-continuity-manifest",
+  "source_schema": "game/schemas/canon-continuity-manifest.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/canon"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "anchor",
+    "campaign_authority",
+    "continuity_id",
+    "event_index",
+    "history_routes",
+    "runtime_guards",
+    "schema",
+    "source_catalog",
+    "source_policy"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "anchor",
+        "campaign_authority",
+        "continuity_id",
+        "event_index",
+        "history_routes",
+        "runtime_guards",
+        "schema",
+        "source_catalog",
+        "source_policy"
+      ],
+      "canonical_order": [
+        "schema",
+        "continuity_id",
+        "campaign_authority",
+        "anchor",
+        "source_policy",
+        "source_catalog",
+        "history_routes",
+        "event_index",
+        "runtime_guards"
+      ]
+    },
+    "/anchor": {
+      "mode": "closed",
+      "allowed_keys": [
+        "binding_status",
+        "campaign_time",
+        "canon_event_id",
+        "source_locators"
+      ],
+      "canonical_order": [
+        "campaign_time",
+        "binding_status",
+        "canon_event_id",
+        "source_locators"
+      ]
+    },
+    "/anchor/source_locators/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "chapter",
+        "episode",
+        "locator_kind",
+        "section",
+        "volume",
+        "work_id"
+      ],
+      "canonical_order": [
+        "work_id",
+        "locator_kind",
+        "volume",
+        "chapter",
+        "episode",
+        "section"
+      ]
+    },
+    "/source_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "anime_compatible",
+        "forbidden_authorities",
+        "official_supplement",
+        "primary_manga"
+      ],
+      "canonical_order": [
+        "primary_manga",
+        "official_supplement",
+        "anime_compatible",
+        "forbidden_authorities"
+      ]
+    },
+    "/source_policy/primary_manga": {
+      "mode": "closed",
+      "allowed_keys": [
+        "fact_rule",
+        "precedence"
+      ],
+      "canonical_order": [
+        "precedence",
+        "fact_rule"
+      ]
+    },
+    "/source_policy/official_supplement": {
+      "mode": "closed",
+      "allowed_keys": [
+        "fact_rule",
+        "precedence"
+      ],
+      "canonical_order": [
+        "precedence",
+        "fact_rule"
+      ]
+    },
+    "/source_policy/anime_compatible": {
+      "mode": "closed",
+      "allowed_keys": [
+        "fact_rule",
+        "precedence"
+      ],
+      "canonical_order": [
+        "precedence",
+        "fact_rule"
+      ]
+    },
+    "/source_catalog/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "approval_status",
+        "medium",
+        "source_class",
+        "title",
+        "work_id"
+      ],
+      "canonical_order": [
+        "work_id",
+        "title",
+        "medium",
+        "source_class",
+        "approval_status"
+      ]
+    },
+    "/history_routes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "public",
+        "restricted",
+        "secret"
+      ],
+      "canonical_order": [
+        "public",
+        "restricted",
+        "secret"
+      ]
+    },
+    "/history_routes/public": {
+      "mode": "closed",
+      "allowed_keys": [
+        "access_rule",
+        "shards"
+      ],
+      "canonical_order": [
+        "shards",
+        "access_rule"
+      ]
+    },
+    "/history_routes/restricted": {
+      "mode": "closed",
+      "allowed_keys": [
+        "access_rule",
+        "shards"
+      ],
+      "canonical_order": [
+        "shards",
+        "access_rule"
+      ]
+    },
+    "/history_routes/secret": {
+      "mode": "closed",
+      "allowed_keys": [
+        "access_rule",
+        "shards"
+      ],
+      "canonical_order": [
+        "shards",
+        "access_rule"
+      ]
+    },
+    "/event_index": {
+      "mode": "open_map"
+    },
+    "/event_index/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "lane",
+        "path"
+      ],
+      "canonical_order": [
+        "path",
+        "lane"
+      ]
+    },
+    "/runtime_guards": {
+      "mode": "closed",
+      "allowed_keys": [
+        "campaign_state_precedence",
+        "event_seed_requires_primary_locator",
+        "future_outcomes_forbidden",
+        "model_memory_forbidden",
+        "paraphrase_only",
+        "unbound_anchor_forbids_events",
+        "visibility_is_not_character_knowledge"
+      ],
+      "canonical_order": [
+        "campaign_state_precedence",
+        "unbound_anchor_forbids_events",
+        "event_seed_requires_primary_locator",
+        "future_outcomes_forbidden",
+        "model_memory_forbidden",
+        "paraphrase_only",
+        "visibility_is_not_character_knowledge"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/continuity_id": [
+      "string"
+    ],
+    "/campaign_authority": [
+      "boolean"
+    ],
+    "/anchor": [
+      "object"
+    ],
+    "/anchor/campaign_time": [
+      "null",
+      "string"
+    ],
+    "/anchor/binding_status": [
+      "string"
+    ],
+    "/anchor/canon_event_id": [
+      "null",
+      "string"
+    ],
+    "/anchor/source_locators": [
+      "array"
+    ],
+    "/anchor/source_locators/*": [
+      "object"
+    ],
+    "/anchor/source_locators/*/work_id": [
+      "string"
+    ],
+    "/anchor/source_locators/*/locator_kind": [
+      "string"
+    ],
+    "/anchor/source_locators/*/volume": [
+      "null",
+      "string"
+    ],
+    "/anchor/source_locators/*/chapter": [
+      "null",
+      "string"
+    ],
+    "/anchor/source_locators/*/episode": [
+      "null",
+      "string"
+    ],
+    "/anchor/source_locators/*/section": [
+      "null",
+      "string"
+    ],
+    "/source_policy": [
+      "object"
+    ],
+    "/source_policy/primary_manga": [
+      "object"
+    ],
+    "/source_policy/primary_manga/precedence": [
+      "integer"
+    ],
+    "/source_policy/primary_manga/fact_rule": [
+      "string"
+    ],
+    "/source_policy/official_supplement": [
+      "object"
+    ],
+    "/source_policy/official_supplement/precedence": [
+      "integer"
+    ],
+    "/source_policy/official_supplement/fact_rule": [
+      "string"
+    ],
+    "/source_policy/anime_compatible": [
+      "object"
+    ],
+    "/source_policy/anime_compatible/precedence": [
+      "integer"
+    ],
+    "/source_policy/anime_compatible/fact_rule": [
+      "string"
+    ],
+    "/source_policy/forbidden_authorities": [
+      "array"
+    ],
+    "/source_policy/forbidden_authorities/*": [
+      "string"
+    ],
+    "/source_catalog": [
+      "array"
+    ],
+    "/source_catalog/*": [
+      "object"
+    ],
+    "/source_catalog/*/work_id": [
+      "string"
+    ],
+    "/source_catalog/*/title": [
+      "string"
+    ],
+    "/source_catalog/*/medium": [
+      "string"
+    ],
+    "/source_catalog/*/source_class": [
+      "string"
+    ],
+    "/source_catalog/*/approval_status": [
+      "string"
+    ],
+    "/history_routes": [
+      "object"
+    ],
+    "/history_routes/public": [
+      "object"
+    ],
+    "/history_routes/public/shards": [
+      "array"
+    ],
+    "/history_routes/public/shards/*": [
+      "string"
+    ],
+    "/history_routes/public/access_rule": [
+      "string"
+    ],
+    "/history_routes/restricted": [
+      "object"
+    ],
+    "/history_routes/restricted/shards": [
+      "array"
+    ],
+    "/history_routes/restricted/shards/*": [
+      "string"
+    ],
+    "/history_routes/restricted/access_rule": [
+      "string"
+    ],
+    "/history_routes/secret": [
+      "object"
+    ],
+    "/history_routes/secret/shards": [
+      "array"
+    ],
+    "/history_routes/secret/shards/*": [
+      "string"
+    ],
+    "/history_routes/secret/access_rule": [
+      "string"
+    ],
+    "/event_index": [
+      "object"
+    ],
+    "/event_index/*": [
+      "object"
+    ],
+    "/event_index/*/path": [
+      "string"
+    ],
+    "/event_index/*/lane": [
+      "string"
+    ],
+    "/runtime_guards": [
+      "object"
+    ],
+    "/runtime_guards/campaign_state_precedence": [
+      "boolean"
+    ],
+    "/runtime_guards/unbound_anchor_forbids_events": [
+      "boolean"
+    ],
+    "/runtime_guards/event_seed_requires_primary_locator": [
+      "boolean"
+    ],
+    "/runtime_guards/future_outcomes_forbidden": [
+      "boolean"
+    ],
+    "/runtime_guards/model_memory_forbidden": [
+      "boolean"
+    ],
+    "/runtime_guards/paraphrase_only": [
+      "boolean"
+    ],
+    "/runtime_guards/visibility_is_not_character_knowledge": [
+      "boolean"
+    ]
+  },
+  "array_contracts": {
+    "/anchor/source_locators": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/source_policy/forbidden_authorities": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/source_catalog": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/history_routes/public/shards": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history_routes/restricted/shards": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history_routes/secret/shards": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This manifest is static continuity reference and never mutable campaign truth; conflicting saved state records a divergence and wins.",
+    "Do not bind the campaign anchor without an approved primary-manga work, volume, and chapter locator.",
+    "Model memory, wikis, fanon, and unverified summaries cannot approve a source or seed a fact.",
+    "Official supplements and anime-compatible material are explicit nonconflicting additions only; they never outrank primary manga.",
+    "Only paraphrase source-supported facts. Do not store copied prose.",
+    "Visibility controls retrieval, not character knowledge. Restricted and secret facts require saved access or discovery authority before narration as known.",
+    "Source and event catalogs are open content collections with stable semantic IDs; adding records of the registered shape is not a structural revision."
+  ]
+}

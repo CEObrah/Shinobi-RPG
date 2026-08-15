@@ -1,0 +1,1412 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.kusa.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.kusa.shinobi",
+  "formations": [
+    {
+      "id": "formation.kusa.border.1",
+      "name": "Kusa Northern Border Watch, First Tactical Element",
+      "force_ref": "force.kusa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kusa.field",
+      "training_ref": "train.kusa.field",
+      "cohesion": 70,
+      "morale": 72,
+      "readiness": 81,
+      "location_ref": "place.grass.northern.border",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kusa.border.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 64,
+              "awareness": 70,
+              "endurance": 66,
+              "chakra_control": 66,
+              "chakra_output": 65,
+              "movement": 69,
+              "tactics": 61,
+              "team_coordination": 64
+            },
+            "methods": {
+              "sword": 52,
+              "unarmed": 62,
+              "thrown_tools": 60,
+              "bow": 49,
+              "polearm": 49,
+              "heavy_weapon": 48,
+              "ninjutsu": 73,
+              "genjutsu": 61,
+              "traps": 56,
+              "sensory": 70,
+              "medical": 54,
+              "sealing": 56
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.1.recon.infiltrators",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 5,
+          "rank_distribution": {
+            "chunin": 2,
+            "jonin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 64,
+              "traps": 67,
+              "sensory": 77,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 5,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 56,
+              "traps": 59,
+              "sensory": 89,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 35,
+              "unarmed": 45,
+              "thrown_tools": 43,
+              "bow": 32,
+              "polearm": 32,
+              "heavy_weapon": 31,
+              "ninjutsu": 48,
+              "genjutsu": 44,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 96,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 1,
+            "special_jonin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 2,
+            "light_healing_injury": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 15,
+              "unarmed": 25,
+              "thrown_tools": 23,
+              "bow": 12,
+              "polearm": 12,
+              "heavy_weapon": 11,
+              "ninjutsu": 36,
+              "genjutsu": 24,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 75
+    },
+    {
+      "id": "formation.kusa.border.2",
+      "name": "Kusa Southern Border Watch, First Tactical Element",
+      "force_ref": "force.kusa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kusa.field",
+      "training_ref": "train.kusa.field",
+      "cohesion": 66,
+      "morale": 67,
+      "readiness": 82,
+      "location_ref": "place.grass.southern.border",
+      "activity_summary": "southern border readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kusa.border.2.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 64,
+              "awareness": 70,
+              "endurance": 66,
+              "chakra_control": 66,
+              "chakra_output": 65,
+              "movement": 69,
+              "tactics": 61,
+              "team_coordination": 64
+            },
+            "methods": {
+              "sword": 52,
+              "unarmed": 62,
+              "thrown_tools": 60,
+              "bow": 49,
+              "polearm": 49,
+              "heavy_weapon": 48,
+              "ninjutsu": 73,
+              "genjutsu": 61,
+              "traps": 56,
+              "sensory": 70,
+              "medical": 54,
+              "sealing": 56
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.2.recon.infiltrators",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 5,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "genin": 1,
+            "jonin": 1,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 64,
+              "traps": 67,
+              "sensory": 77,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.2.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 6,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 56,
+              "traps": 59,
+              "sensory": 89,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.2.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 35,
+              "unarmed": 45,
+              "thrown_tools": 43,
+              "bow": 32,
+              "polearm": 32,
+              "heavy_weapon": 31,
+              "ninjutsu": 48,
+              "genjutsu": 44,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 96,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.border.2.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 1,
+            "special_jonin": 1,
+            "genin": 2
+          },
+          "condition": {
+            "light_healing_injury": 2,
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 15,
+              "unarmed": 25,
+              "thrown_tools": 23,
+              "bow": 12,
+              "polearm": 12,
+              "heavy_weapon": 11,
+              "ninjutsu": 36,
+              "genjutsu": 24,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 74
+    },
+    {
+      "id": "formation.kusa.intelligence.1",
+      "name": "Kusa Intelligence Service, First Field Element",
+      "force_ref": "force.kusa.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.kusa.field",
+      "training_ref": "train.kusa.field",
+      "cohesion": 70,
+      "morale": 68,
+      "readiness": 82,
+      "location_ref": "place.kusa",
+      "activity_summary": "border intelligence collection readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "genin": 1,
+              "support": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.kusa.intelligence.1.assault",
+          "troop_type": "line_combatants",
+          "role": "assault",
+          "count": 6,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3
+          },
+          "condition": {
+            "healthy": 6
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 64,
+              "awareness": 70,
+              "endurance": 66,
+              "chakra_control": 66,
+              "chakra_output": 65,
+              "movement": 69,
+              "tactics": 61,
+              "team_coordination": 64
+            },
+            "methods": {
+              "sword": 52,
+              "unarmed": 62,
+              "thrown_tools": 60,
+              "bow": 49,
+              "polearm": 49,
+              "heavy_weapon": 48,
+              "ninjutsu": 73,
+              "genjutsu": 61,
+              "traps": 56,
+              "sensory": 70,
+              "medical": 54,
+              "sealing": 56
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.intelligence.1.recon.infiltrators",
+          "troop_type": "infiltrators",
+          "role": "recon",
+          "count": 5,
+          "rank_distribution": {
+            "genin": 3,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 5
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 64,
+              "traps": 67,
+              "sensory": 77,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 8,
+              "traps": 8,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.intelligence.1.recon.scouts",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 7,
+          "rank_distribution": {
+            "special_jonin": 1,
+            "chunin": 1,
+            "genin": 4,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 47,
+              "unarmed": 57,
+              "thrown_tools": 55,
+              "bow": 44,
+              "polearm": 44,
+              "heavy_weapon": 43,
+              "ninjutsu": 68,
+              "genjutsu": 56,
+              "traps": 59,
+              "sensory": 89,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.intelligence.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 35,
+              "unarmed": 45,
+              "thrown_tools": 43,
+              "bow": 32,
+              "polearm": 32,
+              "heavy_weapon": 31,
+              "ninjutsu": 48,
+              "genjutsu": 44,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 96,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.kusa.intelligence.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2
+          },
+          "condition": {
+            "light_healing_injury": 2,
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-kusa-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 59,
+              "awareness": 65,
+              "endurance": 61,
+              "chakra_control": 61,
+              "chakra_output": 60,
+              "movement": 64,
+              "tactics": 56,
+              "team_coordination": 59
+            },
+            "methods": {
+              "sword": 15,
+              "unarmed": 25,
+              "thrown_tools": 23,
+              "bow": 12,
+              "polearm": 12,
+              "heavy_weapon": 11,
+              "ninjutsu": 36,
+              "genjutsu": 24,
+              "traps": 51,
+              "sensory": 65,
+              "medical": 49,
+              "sealing": 51
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 48,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 76
+    }
+  ]
+}

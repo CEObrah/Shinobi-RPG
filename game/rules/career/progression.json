@@ -1,0 +1,24 @@
+{
+  "schema": "shinobi-career-progression-rules",
+  "version": 1,
+  "review_period_days": 30,
+  "rank_order": ["genin", "chunin", "jonin"],
+  "aggregate_promotion_rates_ppm_per_review": {
+    "genin_to_chunin": 1000,
+    "chunin_to_jonin": 300
+  },
+  "initial_rank_distribution_milli": {
+    "genin": 740,
+    "chunin": 220,
+    "jonin": 40
+  },
+  "rules": [
+    "Academy graduates enter the service pool at Genin rank.",
+    "Aggregate promotions conserve bodies inside the same service pool and never create personnel.",
+    "Genin to Chunin throughput is deliberately lower than Academy graduation throughput over the long run.",
+    "Chunin to Jonin throughput is deliberately lower than Genin to Chunin throughput.",
+    "Exact named people are never auto-promoted by aggregate throughput; exact promotion requires career_status_resolution with institutional authority and evidence.",
+    "No rank skipping is permitted.",
+    "Promotion credits carry fractional expected throughput across reviews so rare Jonin promotion remains possible without forcing one every month."
+  ]
+}

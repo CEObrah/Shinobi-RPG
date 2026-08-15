@@ -1,0 +1,78 @@
+{
+  "schema": "file-template",
+  "template_id": "template.information-knowledge-subject-shard",
+  "target_schema": "information-knowledge-subject-shard",
+  "source_schema": "game/schemas/information-knowledge-subject-shard.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg/information"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "bucket",
+    "holder_hash",
+    "holder_ref",
+    "schema",
+    "subjects"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "holder_ref",
+        "holder_hash",
+        "bucket",
+        "subjects"
+      ],
+      "canonical_order": [
+        "schema",
+        "holder_ref",
+        "holder_hash",
+        "bucket",
+        "subjects"
+      ]
+    },
+    "/subjects": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/holder_ref": [
+      "string"
+    ],
+    "/holder_hash": [
+      "string"
+    ],
+    "/bucket": [
+      "string"
+    ],
+    "/subjects": [
+      "object"
+    ],
+    "/subjects/*": [
+      "array"
+    ],
+    "/subjects/*/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/subjects/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Subject shards are bounded query indexes, never independent knowledge authority.",
+    "Exact holder knowledge remains in deterministic claim-membership shards."
+  ]
+}

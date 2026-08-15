@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "membership-route-index.schema.json",
+  "title": "Membership Route Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "authority", "storage_version"],
+  "properties": {
+    "schema": {"const": "membership-route-index"},
+    "authority": {"const": false},
+    "storage_version": {"const": 1}
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "schema": "file-template",
+  "template_id": "template.training-mechanics",
+  "target_schema": "training-mechanics",
+  "source_schema": "game/schemas/training-mechanics.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "representation_efficiency",
+    "formulas",
+    "progression_thresholds",
+    "breakthrough_rules",
+    "autonomous_team_training",
+    "autonomous_scheduling_rule",
+    "promotion",
+    "batch_equivalence"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "representation_efficiency",
+        "formulas",
+        "progression_thresholds",
+        "breakthrough_rules",
+        "autonomous_team_training",
+        "autonomous_scheduling_rule",
+        "promotion",
+        "batch_equivalence"
+      ],
+      "canonical_order": [
+        "schema",
+        "representation_efficiency",
+        "formulas",
+        "progression_thresholds",
+        "breakthrough_rules",
+        "autonomous_team_training",
+        "autonomous_scheduling_rule",
+        "promotion",
+        "batch_equivalence"
+      ]
+    },
+    "/formulas": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity_factor",
+        "development_units",
+        "diminishing_returns",
+        "effective_training_hours",
+        "instructor_access",
+        "learning_rate",
+        "point_cost(v)",
+        "skill_gain"
+      ],
+      "canonical_order": [
+        "instructor_access",
+        "capacity_factor",
+        "effective_training_hours",
+        "learning_rate",
+        "diminishing_returns",
+        "development_units",
+        "skill_gain",
+        "point_cost(v)"
+      ]
+    },
+    "/representation_efficiency": {
+      "mode": "closed",
+      "allowed_keys": [
+        "exact",
+        "person",
+        "formation"
+      ],
+      "canonical_order": [
+        "exact",
+        "person",
+        "formation"
+      ]
+    },
+    "/progression_thresholds": {
+      "mode": "closed",
+      "allowed_keys": [
+        "routine_training_ceiling",
+        "legendary_band_starts",
+        "transcendent_band_starts",
+        "god_tier_starts",
+        "generic_breakthrough_ceiling",
+        "rule"
+      ],
+      "canonical_order": [
+        "routine_training_ceiling",
+        "legendary_band_starts",
+        "transcendent_band_starts",
+        "god_tier_starts",
+        "generic_breakthrough_ceiling",
+        "rule"
+      ]
+    },
+    "/breakthrough_rules": {
+      "mode": "closed",
+      "allowed_keys": [
+        "points_per_resolution",
+        "exact_person_only",
+        "evidence_consumed_once_per_person",
+        "160_to_169",
+        "170_to_179",
+        "180_to_184",
+        "185_plus",
+        "field_capabilities_require_combat",
+        "operational_capabilities_allow_mission_or_combat",
+        "caller_asserted_evidence_forbidden"
+      ],
+      "canonical_order": [
+        "points_per_resolution",
+        "exact_person_only",
+        "evidence_consumed_once_per_person",
+        "160_to_169",
+        "170_to_179",
+        "180_to_184",
+        "185_plus",
+        "field_capabilities_require_combat",
+        "operational_capabilities_allow_mission_or_combat",
+        "caller_asserted_evidence_forbidden"
+      ]
+    },
+    "/autonomous_team_training": {
+      "mode": "open_map",
+      "value_contract": "/autonomous_team_training/*"
+    },
+    "/autonomous_team_training/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "active_hours_per_week",
+        "target_cycle"
+      ],
+      "canonical_order": [
+        "active_hours_per_week",
+        "target_cycle"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/batch_equivalence": [
+      "string"
+    ],
+    "/formulas": [
+      "object"
+    ],
+    "/formulas/capacity_factor": [
+      "string"
+    ],
+    "/formulas/development_units": [
+      "string"
+    ],
+    "/formulas/diminishing_returns": [
+      "string"
+    ],
+    "/formulas/effective_training_hours": [
+      "string"
+    ],
+    "/formulas/instructor_access": [
+      "string"
+    ],
+    "/formulas/learning_rate": [
+      "string"
+    ],
+    "/formulas/point_cost(v)": [
+      "string"
+    ],
+    "/formulas/skill_gain": [
+      "string"
+    ],
+    "/promotion": [
+      "string"
+    ],
+    "/representation_efficiency": [
+      "object"
+    ],
+    "/representation_efficiency/exact": [
+      "number"
+    ],
+    "/representation_efficiency/person": [
+      "number"
+    ],
+    "/representation_efficiency/formation": [
+      "number"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/progression_thresholds": [
+      "object"
+    ],
+    "/progression_thresholds/routine_training_ceiling": [
+      "integer"
+    ],
+    "/progression_thresholds/legendary_band_starts": [
+      "integer"
+    ],
+    "/progression_thresholds/transcendent_band_starts": [
+      "integer"
+    ],
+    "/progression_thresholds/god_tier_starts": [
+      "integer"
+    ],
+    "/progression_thresholds/generic_breakthrough_ceiling": [
+      "integer"
+    ],
+    "/progression_thresholds/rule": [
+      "string"
+    ],
+    "/breakthrough_rules": [
+      "object"
+    ],
+    "/breakthrough_rules/points_per_resolution": [
+      "integer"
+    ],
+    "/breakthrough_rules/exact_person_only": [
+      "boolean"
+    ],
+    "/breakthrough_rules/evidence_consumed_once_per_person": [
+      "boolean"
+    ],
+    "/breakthrough_rules/field_capabilities_require_combat": [
+      "boolean"
+    ],
+    "/breakthrough_rules/operational_capabilities_allow_mission_or_combat": [
+      "boolean"
+    ],
+    "/breakthrough_rules/caller_asserted_evidence_forbidden": [
+      "boolean"
+    ],
+    "/breakthrough_rules/160_to_169": [
+      "string"
+    ],
+    "/breakthrough_rules/170_to_179": [
+      "string"
+    ],
+    "/breakthrough_rules/180_to_184": [
+      "string"
+    ],
+    "/breakthrough_rules/185_plus": [
+      "string"
+    ],
+    "/autonomous_team_training": [
+      "object"
+    ],
+    "/autonomous_team_training/*": [
+      "object"
+    ],
+    "/autonomous_team_training/*/active_hours_per_week": [
+      "integer"
+    ],
+    "/autonomous_team_training/*/target_cycle": [
+      "array"
+    ],
+    "/autonomous_team_training/*/target_cycle/*": [
+      "string"
+    ],
+    "/autonomous_scheduling_rule": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/autonomous_team_training/*/target_cycle": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

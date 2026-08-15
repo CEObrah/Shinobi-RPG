@@ -1,0 +1,26 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "g",
+  "templates": {
+    "genjutsu-mechanics": {
+      "path": "runtime/contracts/templates/genjutsu-mechanics.template.json",
+      "source_schema": "game/schemas/genjutsu.schema.json",
+      "scope": "static_data"
+    },
+    "governance-registry": {
+      "path": "runtime/contracts/templates/governance-registry.template.json",
+      "source_schema": "game/schemas/governance-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "guardian-current-mechanics": {
+      "path": "runtime/contracts/templates/guardian-current-mechanics.template.json",
+      "source_schema": "game/schemas/guardian-current-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "governance-mechanics": {
+      "path": "runtime/contracts/templates/governance-mechanics.template.json",
+      "source_schema": "game/schemas/governance-mechanics.schema.json",
+      "scope": "static_data"
+    }
+  }
+}

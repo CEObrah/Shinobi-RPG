@@ -1,0 +1,1418 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.taki.shinobi",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.taki.shinobi",
+  "formations": [
+    {
+      "id": "formation.taki.ambush.1",
+      "name": "Taki Hidden Approach Guard, First Ambush Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 75,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.taki.hidden.approach",
+      "activity_summary": "hidden approach ambush readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.ambush.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 5,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 64,
+              "thrown_tools": 72,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 75,
+              "genjutsu": 63,
+              "traps": 69,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 10,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 12,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.ambush.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 3,
+            "support": 1,
+            "chunin": 1,
+            "special_jonin": 1,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 70,
+              "thrown_tools": 62,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 81,
+              "genjutsu": 63,
+              "traps": 57,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 6,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.ambush.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 49,
+              "unarmed": 59,
+              "thrown_tools": 57,
+              "bow": 46,
+              "polearm": 46,
+              "heavy_weapon": 45,
+              "ninjutsu": 70,
+              "genjutsu": 58,
+              "traps": 60,
+              "sensory": 91,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.ambush.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 37,
+              "unarmed": 47,
+              "thrown_tools": 45,
+              "bow": 34,
+              "polearm": 34,
+              "heavy_weapon": 33,
+              "ninjutsu": 50,
+              "genjutsu": 46,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 98,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.ambush.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 2
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 17,
+              "unarmed": 27,
+              "thrown_tools": 25,
+              "bow": 14,
+              "polearm": 14,
+              "heavy_weapon": 13,
+              "ninjutsu": 38,
+              "genjutsu": 26,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 80
+    },
+    {
+      "id": "formation.taki.defense.1",
+      "name": "Taki Waterfall Guard, First Defense Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 74,
+      "morale": 74,
+      "readiness": 86,
+      "location_ref": "place.taki.hidden.approach",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.defense.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 3,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 64,
+              "thrown_tools": 72,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 75,
+              "genjutsu": 63,
+              "traps": 69,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 10,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 12,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.defense.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "genin": 5,
+            "special_jonin": 1,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 70,
+              "thrown_tools": 62,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 81,
+              "genjutsu": 63,
+              "traps": 57,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 6,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.defense.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 49,
+              "unarmed": 59,
+              "thrown_tools": 57,
+              "bow": 46,
+              "polearm": 46,
+              "heavy_weapon": 45,
+              "ninjutsu": 70,
+              "genjutsu": 58,
+              "traps": 60,
+              "sensory": 91,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.defense.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "genin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 37,
+              "unarmed": 47,
+              "thrown_tools": 45,
+              "bow": 34,
+              "polearm": 34,
+              "heavy_weapon": 33,
+              "ninjutsu": 50,
+              "genjutsu": 46,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 98,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.defense.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 3,
+            "genin": 1
+          },
+          "condition": {
+            "light_healing_injury": 1,
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 17,
+              "unarmed": 27,
+              "thrown_tools": 25,
+              "bow": 14,
+              "polearm": 14,
+              "heavy_weapon": 13,
+              "ninjutsu": 38,
+              "genjutsu": 26,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 80
+    },
+    {
+      "id": "formation.taki.reserve.1",
+      "name": "Taki Elite Reserve, First Tactical Element",
+      "force_ref": "force.taki.shinobi",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.taki.field",
+      "training_ref": "train.taki.field",
+      "cohesion": 67,
+      "morale": 67,
+      "readiness": 77,
+      "location_ref": "place.taki",
+      "activity_summary": "elite reserve readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "chunin": 1,
+              "genin": 1
+            },
+            "condition": {
+              "healthy": 2
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.taki.reserve.1.assault.ambushers",
+          "troop_type": "ambushers",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 4,
+            "jonin": 1
+          },
+          "condition": {
+            "healthy": 7
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 64,
+              "thrown_tools": 72,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 75,
+              "genjutsu": 63,
+              "traps": 69,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 10,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 12,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.reserve.1.assault.waterfall-guards",
+          "troop_type": "waterfall_guards",
+          "role": "assault",
+          "count": 7,
+          "rank_distribution": {
+            "support": 1,
+            "genin": 4,
+            "special_jonin": 1,
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 6,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-field-ready.json",
+            "fundamentals": {
+              "combat": 66,
+              "awareness": 72,
+              "endurance": 68,
+              "chakra_control": 68,
+              "chakra_output": 67,
+              "movement": 71,
+              "tactics": 62,
+              "team_coordination": 66
+            },
+            "methods": {
+              "sword": 54,
+              "unarmed": 70,
+              "thrown_tools": 62,
+              "bow": 51,
+              "polearm": 51,
+              "heavy_weapon": 50,
+              "ninjutsu": 81,
+              "genjutsu": 63,
+              "traps": 57,
+              "sensory": 72,
+              "medical": 56,
+              "sealing": 58
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 52,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 6,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 6,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.reserve.1.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 4,
+          "rank_distribution": {
+            "chunin": 2,
+            "genin": 1,
+            "special_jonin": 1
+          },
+          "condition": {
+            "healthy": 4
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-intelligence-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 49,
+              "unarmed": 59,
+              "thrown_tools": 57,
+              "bow": 46,
+              "polearm": 46,
+              "heavy_weapon": 45,
+              "ninjutsu": 70,
+              "genjutsu": 58,
+              "traps": 60,
+              "sensory": 91,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.reserve.1.support.medics",
+          "troop_type": "medics",
+          "role": "support",
+          "count": 1,
+          "rank_distribution": {
+            "chunin": 1
+          },
+          "condition": {
+            "healthy": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-medical-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 37,
+              "unarmed": 47,
+              "thrown_tools": 45,
+              "bow": 34,
+              "polearm": 34,
+              "heavy_weapon": 33,
+              "ninjutsu": 50,
+              "genjutsu": 46,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 98,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -12,
+              "unarmed": -12,
+              "thrown_tools": -12,
+              "bow": -12,
+              "polearm": -12,
+              "heavy_weapon": -12,
+              "ninjutsu": -12,
+              "genjutsu": -12,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 22,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.taki.reserve.1.support.logistics",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 4,
+          "rank_distribution": {
+            "genin": 2,
+            "chunin": 2
+          },
+          "condition": {
+            "healthy": 3,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/force-taki-shinobi-logistics-support.json",
+            "fundamentals": {
+              "combat": 61,
+              "awareness": 67,
+              "endurance": 63,
+              "chakra_control": 63,
+              "chakra_output": 62,
+              "movement": 66,
+              "tactics": 57,
+              "team_coordination": 61
+            },
+            "methods": {
+              "sword": 17,
+              "unarmed": 27,
+              "thrown_tools": 25,
+              "bow": 14,
+              "polearm": 14,
+              "heavy_weapon": 13,
+              "ninjutsu": 38,
+              "genjutsu": 26,
+              "traps": 52,
+              "sensory": 67,
+              "medical": 51,
+              "sealing": 53
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "sealing",
+              "sensory",
+              "thrown_tools",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 50,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": -18,
+              "unarmed": -18,
+              "thrown_tools": -18,
+              "bow": -18,
+              "polearm": -18,
+              "heavy_weapon": -18,
+              "ninjutsu": -18,
+              "genjutsu": -18,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 72
+    }
+  ]
+}

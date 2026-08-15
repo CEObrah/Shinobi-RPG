@@ -1,0 +1,52 @@
+{
+  "schema": "file-template",
+  "template_id": "template.runtime-rule-router",
+  "target_schema": "runtime-rule-router",
+  "source_schema": "game/schemas/runtime-rule-router.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "runtime/contracts"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "purpose",
+    "domains"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "purpose",
+        "domains"
+      ],
+      "canonical_order": [
+        "schema",
+        "purpose",
+        "domains"
+      ]
+    },
+    "/domains": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/purpose": ["string"],
+    "/domains": ["object"],
+    "/domains/*": ["array"],
+    "/domains/*/*": ["string"]
+  },
+  "array_contracts": {
+    "/domains/*": {
+      "item_types": ["string"]
+    }
+  },
+  "writing_rules": [
+    "Rule-router domain names are a cold open map because new semantic actions may require new bounded routes.",
+    "Every route value is a nonempty list of exact repository paths; routing does not create gameplay authority.",
+    "Load only the smallest domain needed for the action."
+  ]
+}

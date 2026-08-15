@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Information holder subject-query shard",
+  "type": "object",
+  "required": [
+    "schema",
+    "holder_ref",
+    "holder_hash",
+    "bucket",
+    "subjects"
+  ],
+  "properties": {
+    "schema": {"const": "information-knowledge-subject-shard"},
+    "holder_ref": {"type": "string", "minLength": 1},
+    "holder_hash": {"type": "string", "pattern": "^[0-9a-f]{20}$"},
+    "bucket": {"type": "string", "pattern": "^[0-9a-f]{2}$"},
+    "subjects": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "maxItems": 64,
+        "items": {"type": "string", "pattern": "^claim\\."},
+        "uniqueItems": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

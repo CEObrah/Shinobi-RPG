@@ -1,0 +1,85 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.konoha_mission_office",
+    "name": "Konoha Mission Office",
+    "status": "active",
+    "leadership_ids": [
+      "support.mission.haruto_seki"
+    ],
+    "key_member_ids": [
+      "support.mission.natsumi_okada"
+    ],
+    "goal": "assign lawful missions, verify issuers, schedule teams, and route payment",
+    "current_plan": "Prepare the morning assignment workload and preserve enough capacity for urgent requests without overcommitting teams.",
+    "resources": [
+      "mission ledgers",
+      "issuer records",
+      "team availability",
+      "payment routing"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_anbu",
+        "relationship_type": "classified_assignment_coordination",
+        "stance": "cooperative",
+        "intensity": 68
+      },
+      {
+        "target_id": "faction.fire_daimyo_liaison",
+        "relationship_type": "civil_military_contracting",
+        "stance": "cooperative",
+        "intensity": 82
+      },
+      {
+        "target_id": "faction.fire_merchant_network",
+        "relationship_type": "mission_client_network",
+        "stance": "transactional",
+        "intensity": 58
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Assignment logic may consider capability and availability but may not manufacture opposition after seeing player plans."
+    ],
+    "goals": [
+      "match lawful mission demand to qualified personnel",
+      "keep issuer verification, risk classification, scheduling, and payment records coherent"
+    ],
+    "constraints": [
+      "rank and qualification rules",
+      "team availability",
+      "issuer authority",
+      "time and travel constraints"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-06-25T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_team_refs": [
+        "team.konoha.generated.7509160457",
+        "team.konoha.generated.a2b320a362",
+        "team.konoha.generated.f6a64a78e8"
+      ],
+      "autonomous_mission_refs": [
+        "mission.autonomy.da43aace7877f901af",
+        "mission.autonomy.0c1a0751c8a5b8bd49"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.da43aace7877f901af",
+        "mission.offer.0a7361790026211550",
+        "mission.offer.2132adf0c1e8a6f134"
+      ],
+      "autonomous_priority_refs": [
+        "priority.autonomy.4f929be65fb9ddfc"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.5ba2b0388aadf584",
+        "priority.autonomy.10afab6299718817",
+        "priority.autonomy.21289fa6338c26db"
+      ]
+    },
+    "scope": "Konoha mission administration and Fire Country client routing",
+    "leadership_model": "bureaucratic_office"
+  }
+}

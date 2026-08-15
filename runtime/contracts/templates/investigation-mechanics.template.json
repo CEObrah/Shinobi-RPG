@@ -1,0 +1,144 @@
+{
+  "schema": "file-template",
+  "template_id": "template.investigation-mechanics",
+  "target_schema": "investigation-mechanics",
+  "source_schema": "game/schemas/investigation-mechanics.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "profiles"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "profiles"
+      ],
+      "canonical_order": [
+        "schema",
+        "profiles"
+      ]
+    },
+    "/profiles": {
+      "mode": "open_map"
+    },
+    "/profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "match",
+        "truth_keys",
+        "locate_scene",
+        "examine_scene"
+      ]
+    },
+    "/profiles/*/match": {
+      "mode": "open_map"
+    },
+    "/profiles/*/locate_scene": {
+      "mode": "closed",
+      "allowed_keys": [
+        "minimum_active_hours",
+        "required_work_units",
+        "skill_paths",
+        "observations"
+      ]
+    },
+    "/profiles/*/locate_scene/observations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observation_ref",
+        "stage",
+        "role",
+        "text",
+        "epistemic_kind",
+        "confidence_milli"
+      ]
+    },
+    "/profiles/*/examine_scene": {
+      "mode": "closed",
+      "allowed_keys": [
+        "minimum_active_hours",
+        "roles",
+        "common_observations",
+        "truth_observations"
+      ]
+    },
+    "/profiles/*/examine_scene/roles": {
+      "mode": "open_map"
+    },
+    "/profiles/*/examine_scene/roles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "skill_paths",
+        "required_work_units"
+      ]
+    },
+    "/profiles/*/examine_scene/common_observations": {
+      "mode": "open_map"
+    },
+    "/profiles/*/examine_scene/common_observations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observation_ref",
+        "stage",
+        "role",
+        "text",
+        "epistemic_kind",
+        "confidence_milli"
+      ]
+    },
+    "/profiles/*/examine_scene/truth_observations": {
+      "mode": "open_map"
+    },
+    "/profiles/*/examine_scene/truth_observations/*": {
+      "mode": "open_map"
+    },
+    "/profiles/*/examine_scene/truth_observations/*/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observation_ref",
+        "stage",
+        "role",
+        "text",
+        "epistemic_kind",
+        "confidence_milli"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/profiles/*/truth_keys": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/locate_scene/skill_paths": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/profiles/*/locate_scene/observations": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/profiles/*/examine_scene/roles/*/skill_paths": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Latent truth choices are static mechanics authority; gameplay callers never choose them.",
+    "Only runtime-derived observations become campaign knowledge."
+  ]
+}

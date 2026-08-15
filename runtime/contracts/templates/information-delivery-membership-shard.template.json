@@ -1,0 +1,27 @@
+{
+  "schema": "file-template",
+  "template_id": "template.information-delivery-membership-shard",
+  "target_schema": "information-delivery-membership-shard",
+  "source_schema": "game/schemas/information-delivery-membership-shard.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/reg/information"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["bucket", "delivery_refs", "holder_hash", "holder_ref", "schema"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "holder_ref", "holder_hash", "bucket", "delivery_refs"],
+      "canonical_order": ["schema", "holder_ref", "holder_hash", "bucket", "delivery_refs"]
+    }
+  },
+  "type_contracts": {
+    "": ["object"], "/schema": ["string"], "/holder_ref": ["string"], "/holder_hash": ["string"],
+    "/bucket": ["string"], "/delivery_refs": ["array"], "/delivery_refs/*": ["string"]
+  },
+  "array_contracts": {"/delivery_refs": {"item_types": ["string"]}},
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Delivery participation is routed exactly by holder and deterministic bucket; never scan lifetime deliveries to discover a participant.",
+    "Delivery participation does not itself grant claim knowledge."
+  ]
+}

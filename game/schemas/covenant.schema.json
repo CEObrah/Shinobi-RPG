@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: covenant.",
+  "type": "object",
+  "required": [
+    "betrayal_requires",
+    "betrayal_sentence",
+    "family_rule",
+    "id",
+    "non_family_rule",
+    "not_automatic_betrayal",
+    "schema"
+  ],
+  "properties": {
+    "betrayal_requires": {
+      "type": "array"
+    },
+    "betrayal_sentence": {
+      "type": "string"
+    },
+    "family_rule": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "non_family_rule": {
+      "type": "string"
+    },
+    "not_automatic_betrayal": {
+      "type": "array"
+    },
+    "schema": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "description": "Current canonical schema contract."
+}

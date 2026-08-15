@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "59",
+  "authority": true,
+  "hosts": {
+    "host.team.team.blackhound": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.blackhound",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-26T21:15:00",
+          "safe_through": "SE-0061-07-03T21:14:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.blackhound",
+          "next_due": "SE-0061-07-03T21:15:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/blackhound.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.d497880bdba86cf7262ca3d6",
+          "due_at": "SE-0061-07-03T21:15:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-03.json",
+          "dedupe_key": "team.periodic_review:team.blackhound"
+        }
+      ]
+    }
+  }
+}

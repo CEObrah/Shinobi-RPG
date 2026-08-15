@@ -1,0 +1,297 @@
+{
+  "schema": "world-front-policy",
+  "version": 1,
+  "principle": "future canon is conditional pressure; only committed ordinary-domain events may advance a front",
+  "bootstrap_principle": "A latent front may be seeded only by a material action that the saved source faction was already lawfully allowed to take under its normal autonomy profile. Bootstrap routing never invents a future-canon outcome, hidden fact, resource, participant, or success.",
+  "phase_thresholds": {
+    "developing_evidence": 1,
+    "operational_evidence": 3,
+    "crisis_evidence": 6
+  },
+  "material_action_kinds": [
+    "information_report",
+    "mission_generate",
+    "player_mission_offer",
+    "mission_advance",
+    "formation_expand",
+    "formation_reconstitute",
+    "formation_split",
+    "formation_merge",
+    "institution_priority_review",
+    "team_form"
+  ],
+  "non_material_action_kinds": [
+    "routine_summary"
+  ],
+  "fronts": {
+    "pressure_oto_konoha_infiltration": {
+      "faction_roles": {
+        "faction.oto_research_cells": "source",
+        "faction.konoha_anbu": "opposition"
+      },
+      "bootstrap_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "strategic_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "institutional_operation_completed"
+          ],
+          "host_refs": [
+            "faction.oto_research_cells"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        },
+        {
+          "event_kinds": [
+            "institutional_operation_completed"
+          ],
+          "host_refs": [
+            "faction.konoha_anbu"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "opposition"
+        },
+        {
+          "event_kinds": [
+            "research_advance",
+            "research_start"
+          ],
+          "host_refs": [
+            "faction.oto_research_cells"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_suna_funding": {
+      "faction_roles": {},
+      "bootstrap_action_cycle": [],
+      "strategic_action_cycle": [
+        "mission_generate",
+        "institution_priority_review"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "economy_period_settled"
+          ],
+          "host_refs": [
+            "host.world.economy"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [
+            "funding_gap:treasury.suna:"
+          ],
+          "role": "source"
+        },
+        {
+          "event_kinds": [
+            "mission_market_signal"
+          ],
+          "host_refs": [
+            "faction_suna"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_kiri_transition": {
+      "faction_roles": {
+        "faction_kiri": "source"
+      },
+      "bootstrap_action_cycle": [],
+      "strategic_action_cycle": [],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "governance_set_policy",
+            "diplomacy_record_incident"
+          ],
+          "host_refs": [
+            "faction_kiri"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_great_village_mission_market": {
+      "faction_roles": {
+        "faction.konoha_mission_office": "source"
+      },
+      "bootstrap_action_cycle": [
+        "mission_generate",
+        "information_report"
+      ],
+      "strategic_action_cycle": [
+        "mission_generate",
+        "information_report"
+      ],
+      "player_visibility": "public_or_knowledge",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "mission_market_signal"
+          ],
+          "host_refs": [],
+          "actor_refs": [],
+          "material_ref_prefixes": [
+            "market_"
+          ],
+          "role": "source"
+        },
+        {
+          "event_kinds": [
+            "institutional_operation_completed"
+          ],
+          "host_refs": [
+            "faction.konoha_mission_office"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_konoha_academy_graduation": {
+      "faction_roles": {},
+      "bootstrap_action_cycle": [],
+      "strategic_action_cycle": [],
+      "player_visibility": "public_or_knowledge",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "academy_exact_graduation_recorded"
+          ],
+          "host_refs": [
+            "institution.konoha.academy"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_mizuki_forbidden_scroll": {
+      "faction_roles": {
+        "faction.mizuki_conspiracy": "source"
+      },
+      "bootstrap_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "strategic_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "institutional_operation_completed",
+            "mission_created",
+            "mission_advanced",
+            "information_claim_created"
+          ],
+          "host_refs": [
+            "faction.mizuki_conspiracy"
+          ],
+          "actor_refs": [
+            "canon_mizuki"
+          ],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ],
+      "prerequisite_front_refs": [
+        "pressure_konoha_academy_graduation"
+      ]
+    },
+    "pressure_wave_gato_bridge": {
+      "faction_roles": {},
+      "bootstrap_action_cycle": [],
+      "strategic_action_cycle": [],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "institutional_operation_completed"
+          ],
+          "host_refs": [
+            "faction.gato_company"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        },
+        {
+          "event_kinds": [
+            "commerce_deliver",
+            "commerce_seize",
+            "legal_case_open"
+          ],
+          "host_refs": [
+            "faction.gato_company"
+          ],
+          "actor_refs": [
+            "canon_gato"
+          ],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    },
+    "pressure_akatsuki_intelligence": {
+      "faction_roles": {
+        "faction.akatsuki": "source"
+      },
+      "bootstrap_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "strategic_action_cycle": [
+        "information_report",
+        "mission_generate"
+      ],
+      "player_visibility": "knowledge_only",
+      "canon_forcing": false,
+      "event_sources": [
+        {
+          "event_kinds": [
+            "institutional_operation_completed"
+          ],
+          "host_refs": [
+            "faction.akatsuki"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [],
+          "role": "source"
+        }
+      ]
+    }
+  }
+}

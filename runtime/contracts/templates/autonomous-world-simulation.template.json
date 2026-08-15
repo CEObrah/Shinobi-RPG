@@ -1,0 +1,236 @@
+{
+  "schema": "file-template",
+  "template_id": "template.autonomous-world-simulation",
+  "target_schema": "autonomous-world-simulation",
+  "source_schema": "game/schemas/autonomous-world-simulation.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/runtime"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "action_kinds",
+    "actor_sources",
+    "combat_rule",
+    "efficiency_rule",
+    "family_rule",
+    "information_rule",
+    "interaction_rule",
+    "large_conflict_efficiency_rule",
+    "materialization_rule",
+    "npc_mission_rule",
+    "operation_lifecycle",
+    "player_intent_boundary",
+    "purpose",
+    "reputation_rule",
+    "schema",
+    "selection_rule",
+    "storage_rule",
+    "storage_targets",
+    "successor_rule",
+    "territory_rule"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "action_kinds",
+        "actor_sources",
+        "combat_rule",
+        "efficiency_rule",
+        "family_rule",
+        "information_rule",
+        "interaction_rule",
+        "large_conflict_efficiency_rule",
+        "materialization_rule",
+        "npc_mission_rule",
+        "operation_lifecycle",
+        "player_intent_boundary",
+        "purpose",
+        "reputation_rule",
+        "schema",
+        "selection_rule",
+        "storage_rule",
+        "storage_targets",
+        "successor_rule",
+        "territory_rule"
+      ],
+      "canonical_order": [
+        "schema",
+        "purpose",
+        "player_intent_boundary",
+        "actor_sources",
+        "action_kinds",
+        "selection_rule",
+        "materialization_rule",
+        "npc_mission_rule",
+        "interaction_rule",
+        "combat_rule",
+        "territory_rule",
+        "successor_rule",
+        "information_rule",
+        "efficiency_rule",
+        "storage_rule",
+        "operation_lifecycle",
+        "large_conflict_efficiency_rule",
+        "storage_targets",
+        "reputation_rule",
+        "family_rule"
+      ]
+    },
+    "/storage_targets": {
+      "mode": "closed",
+      "allowed_keys": [
+        "missions",
+        "world_events",
+        "forces_dir",
+        "places_dir",
+        "world_dir",
+        "process_contracts",
+        "mechanics_router",
+        "family",
+        "formations_dir",
+        "causal_scheduler"
+      ],
+      "canonical_order": [
+        "missions",
+        "world_events",
+        "forces_dir",
+        "places_dir",
+        "world_dir",
+        "process_contracts",
+        "mechanics_router",
+        "family",
+        "formations_dir",
+        "causal_scheduler"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/action_kinds": [
+      "array"
+    ],
+    "/action_kinds/*": [
+      "string"
+    ],
+    "/actor_sources": [
+      "array"
+    ],
+    "/actor_sources/*": [
+      "string"
+    ],
+    "/combat_rule": [
+      "string"
+    ],
+    "/efficiency_rule": [
+      "string"
+    ],
+    "/family_rule": [
+      "string"
+    ],
+    "/information_rule": [
+      "string"
+    ],
+    "/interaction_rule": [
+      "string"
+    ],
+    "/large_conflict_efficiency_rule": [
+      "string"
+    ],
+    "/materialization_rule": [
+      "string"
+    ],
+    "/npc_mission_rule": [
+      "string"
+    ],
+    "/operation_lifecycle": [
+      "array"
+    ],
+    "/operation_lifecycle/*": [
+      "string"
+    ],
+    "/player_intent_boundary": [
+      "string"
+    ],
+    "/purpose": [
+      "string"
+    ],
+    "/reputation_rule": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/selection_rule": [
+      "string"
+    ],
+    "/storage_rule": [
+      "string"
+    ],
+    "/storage_targets": [
+      "object"
+    ],
+    "/storage_targets/family": [
+      "string"
+    ],
+    "/storage_targets/forces_dir": [
+      "string"
+    ],
+    "/storage_targets/mechanics_router": [
+      "string"
+    ],
+    "/storage_targets/missions": [
+      "string"
+    ],
+    "/storage_targets/places_dir": [
+      "string"
+    ],
+    "/storage_targets/process_contracts": [
+      "string"
+    ],
+    "/storage_targets/world_dir": [
+      "string"
+    ],
+    "/storage_targets/world_events": [
+      "string"
+    ],
+    "/successor_rule": [
+      "string"
+    ],
+    "/territory_rule": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/storage_targets/formations_dir": [
+      "string"
+    ],
+    "/storage_targets/causal_scheduler": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/action_kinds": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/actor_sources": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operation_lifecycle": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

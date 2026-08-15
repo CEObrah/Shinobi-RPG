@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "profiles"
+  ],
+  "properties": {
+    "schema": {
+      "const": "investigation-mechanics"
+    },
+    "profiles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "match",
+          "truth_keys",
+          "locate_scene",
+          "examine_scene"
+        ],
+        "properties": {
+          "match": {
+            "type": "object"
+          },
+          "truth_keys": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "locate_scene": {
+            "type": "object"
+          },
+          "examine_scene": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Investigation mechanics catalog"
+}

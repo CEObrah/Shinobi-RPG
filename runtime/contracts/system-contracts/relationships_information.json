@@ -1,0 +1,47 @@
+{
+  "schema": "system-contract",
+  "system_id": "relationships_information",
+  "authority": false,
+  "authority_paths": [
+    "state/reg/relationship-edges/",
+    "state/reg/relationship-edge-index.json",
+    "state/reg/information-deliveries.json",
+    "state/reg/information/claims/",
+    "state/reg/information/deliveries/",
+    "state/reg/information/knowledge/"
+  ],
+  "owner_templates": [
+    "shinobi-domain-registry",
+    "relationship-edge-shard",
+    "relationship-edge-index",
+    "information-routing-index",
+    "information-claim-shard",
+    "information-delivery-shard",
+    "information-knowledge-index",
+    "information-knowledge-shard",
+    "information-knowledge-subject-shard",
+    "information-delivery-membership-shard"
+  ],
+  "read_first": [
+    "subject/source relationship edge shard when relationship is causal",
+    "exact information claim shard plus the holder knowledge shard for claim authorization",
+    "exact delivery shard or holder delivery-membership shard when transmission history is causal"
+  ],
+  "write_order": [
+    "establish causal observation/report",
+    "write one exact claim shard and affected holder knowledge shard",
+    "write one exact delivery shard plus sender/recipient delivery-membership routes when knowledge moves",
+    "update the bounded information routing/count projection",
+    "write relationship edge only if the interaction mechanically changes relationship"
+  ],
+  "invariants": [
+    "Affiliation is not automatically a personal relationship.",
+    "World truth is not automatically knowledge.",
+    "Knowledge requires an explicit information path and recipient.",
+    "Relationship feeling, factual knowledge, and public reputation are separate authorities."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

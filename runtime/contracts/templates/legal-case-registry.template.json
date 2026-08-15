@@ -1,0 +1,163 @@
+{
+  "schema": "file-template",
+  "template_id": "template.legal-case-registry",
+  "target_schema": "legal-case-registry",
+  "source_schema": "game/schemas/legal-case-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "cases"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "cases"
+      ],
+      "canonical_order": [
+        "schema",
+        "cases"
+      ]
+    },
+    "/cases": {
+      "mode": "open_map"
+    },
+    "/cases/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "case_kind",
+        "issuer_ref",
+        "subject_ref",
+        "requester_ref",
+        "status",
+        "opened_at",
+        "updated_at",
+        "summary",
+        "visibility",
+        "offense_refs",
+        "evidence_refs",
+        "warrant",
+        "bounty",
+        "custody_ref",
+        "disposition"
+      ],
+      "canonical_order": [
+        "id",
+        "case_kind",
+        "issuer_ref",
+        "subject_ref",
+        "requester_ref",
+        "status",
+        "opened_at",
+        "updated_at",
+        "summary",
+        "visibility",
+        "offense_refs",
+        "evidence_refs",
+        "warrant",
+        "bounty",
+        "custody_ref",
+        "disposition"
+      ]
+    },
+    "/cases/*/warrant": {
+      "mode": "closed",
+      "allowed_keys": [
+        "status",
+        "authority_ref",
+        "issued_at"
+      ],
+      "canonical_order": [
+        "status",
+        "authority_ref",
+        "issued_at"
+      ]
+    },
+    "/cases/*/bounty": {
+      "mode": "closed",
+      "allowed_keys": [
+        "status",
+        "payer_ref",
+        "payer_holder_ref",
+        "escrow_holder_ref",
+        "amount_ryo",
+        "hunter_refs",
+        "posted_at",
+        "verified_evidence_refs",
+        "settled_at"
+      ],
+      "canonical_order": [
+        "status",
+        "payer_ref",
+        "payer_holder_ref",
+        "escrow_holder_ref",
+        "amount_ryo",
+        "hunter_refs",
+        "posted_at",
+        "verified_evidence_refs",
+        "settled_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/cases": [
+      "object"
+    ],
+    "/cases/*": [
+      "object"
+    ],
+    "/cases/*/warrant": [
+      "object"
+    ],
+    "/cases/*/bounty": [
+      "object"
+    ],
+    "/cases/*/offense_refs": [
+      "array"
+    ],
+    "/cases/*/evidence_refs": [
+      "array"
+    ],
+    "/cases/*/bounty/hunter_refs": [
+      "array"
+    ],
+    "/cases/*/bounty/verified_evidence_refs": [
+      "array"
+    ]
+  },
+  "array_contracts": {
+    "/cases/*/offense_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/cases/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/cases/*/bounty/hunter_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/cases/*/bounty/verified_evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Dynamic maps permit stable IDs only; referenced money, people, custody, territory, and force facts remain in their own authorities."
+  ]
+}

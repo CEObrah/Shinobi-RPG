@@ -1,0 +1,495 @@
+{
+  "schema": "living-world-autonomy-policy",
+  "faction_assignments": {
+    "faction.akatsuki": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [
+        "team.akatsuki.itachi_kisame"
+      ],
+      "mission_participant_refs": [
+        "canon_nagato",
+        "canon_konan",
+        "canon_itachi",
+        "canon_kisame"
+      ]
+    },
+    "faction.ame_security_network": {},
+    "faction.bounty_broker_network": {},
+    "faction.fire_border_authority": {},
+    "faction.fire_daimyo_liaison": {},
+    "faction.fire_merchant_network": {},
+    "faction.fire_smuggling_network": {},
+    "faction.gato_company": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_gato"
+      ]
+    },
+    "faction.hyuga_clan": {},
+    "faction.iwa_engineering_command": {},
+    "faction.kiri_hunter_office": {},
+    "faction.konoha_anbu": {},
+    "faction.konoha_hospital": {},
+    "faction.konoha_mission_office": {
+      "player_offer": {
+        "enabled": true,
+        "evaluate_each_review": true,
+        "team_refs": [
+          "team.blackhound"
+        ],
+        "response_deadline_days": 7,
+        "max_pending": 1,
+        "objective_cycle": [
+          "escort",
+          "investigation",
+          "border_reconnaissance",
+          "protection",
+          "case_investigation",
+          "convoy_security",
+          "counter_smuggling",
+          "security_response"
+        ],
+        "briefing_templates": {
+          "escort": {
+            "subject_kind": "person",
+            "subject_ref": "support.daimyo.noboru_shimizu",
+            "subject_label": "Noboru Shimizu — Fire Daimyō civil-military liaison",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.capital",
+            "route_id": "route_fire_capital_konoha",
+            "threat_summary": "Elevated interception risk on civil-military liaison travel; no hostile actor has been identified.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Treat route anomalies as evidence to verify, not proof of a named enemy.",
+              "The principal takes priority over pursuit."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Escort Noboru Shimizu from Konoha to the Fire Capital without capture or incapacitation."
+          },
+          "border_reconnaissance": {
+            "subject_kind": "place",
+            "subject_ref": "place.fire.western.border",
+            "subject_label": "Western Fire Country border reconnaissance sector",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.western.border",
+            "route_id": "route_konoha_fire_west",
+            "threat_summary": "Routine border reconnaissance with no hostile actor established; verify crossings, route condition, and any supported anomaly.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Do not convert absence of records into proof of hostile activity.",
+              "Report observed route, crossing, and security anomalies with provenance before attributing intent."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Reconnoiter the assigned western-border sector and return a sourced observation report to the Mission Office."
+          },
+          "investigate": {
+            "subject_kind": "place",
+            "subject_ref": "place.fire.western.border",
+            "subject_label": "Western-border cargo-transfer discrepancy",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.western.border",
+            "route_id": "route_konoha_fire_west",
+            "threat_summary": "Possible deliberate interference with controlled cargo records on the western Fire Country route; criminal or hostile involvement is unconfirmed.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Determine whether the discrepancy is clerical, criminal, or hostile before attributing intent.",
+              "Preserve records, physical evidence, and available witnesses."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Establish a defensible account of the discrepancy and return the preserved evidence and findings to the Mission Office."
+          },
+          "protect": {
+            "subject_kind": "person",
+            "subject_ref": "support.daimyo.noboru_shimizu",
+            "subject_label": "Noboru Shimizu — Fire Daimyō civil-military liaison",
+            "report_place_ref": "place.konoha.mission_assignment_desk",
+            "origin_place_ref": "place.konoha",
+            "destination_place_ref": "place.fire.capital",
+            "route_id": "route_fire_capital_konoha",
+            "threat_summary": "Credible risk of targeted interception against Fire Country liaison traffic; no hostile actor has been identified.",
+            "threat_source_ref": null,
+            "intelligence_constraints": [
+              "Do not attribute the threat to a faction or individual without evidence.",
+              "Preserve the principal and a viable withdrawal route over unnecessary pursuit."
+            ],
+            "report_delay_hours": 2,
+            "depart_delay_hours": 6,
+            "completion_condition": "Keep Noboru Shimizu alive and free and deliver him to the Fire Capital under Konoha protection."
+          }
+        },
+        "mission_market_ref": "market_konoha_missions",
+        "market_demand_to_objective": {
+          "escort": "escort",
+          "investigation": "investigate",
+          "border_reconnaissance": "observe",
+          "protection": "protect",
+          "case_investigation": "investigate",
+          "convoy_security": "protect",
+          "counter_smuggling": "secure",
+          "security_response": "investigate"
+        },
+        "dynamic_briefing_sources": {
+          "case_investigation": "legal_case",
+          "convoy_security": "lawful_shipment",
+          "counter_smuggling": "contraband_shipment",
+          "security_response": "security_alarm"
+        }
+      },
+      "world_front_player_report": {
+        "enabled": true,
+        "front_refs": [
+          "pressure_great_village_mission_market"
+        ],
+        "recipient_scope": "authenticated_player",
+        "channel": "mission_office_operational_briefing",
+        "channel_confidence_milli": 900,
+        "classification": "restricted"
+      },
+      "team_creation": {
+        "mode": "academy_dynamic",
+        "team_type": "standard_mission_team",
+        "purpose_kind": "standing",
+        "replacement_policy": "maintain_strength",
+        "graduate_candidate_refs": [
+          "canon_naruto",
+          "canon_sasuke",
+          "canon_sakura",
+          "canon_ino",
+          "canon_shikamaru",
+          "canon_choji",
+          "canon_hinata",
+          "canon_kiba",
+          "canon_shino"
+        ],
+        "instructor_candidate_refs": [
+          "canon_kakashi",
+          "canon_asuma",
+          "canon_kurenai",
+          "canon_genma",
+          "canon_hayate",
+          "canon_ebisu"
+        ],
+        "allow_service_pool_instructors": false,
+        "cohort_affinity_groups": [
+          {
+            "student_refs": [
+              "canon_naruto",
+              "canon_sasuke",
+              "canon_sakura"
+            ],
+            "preferred_instructor_refs": [
+              "canon_kakashi"
+            ]
+          },
+          {
+            "student_refs": [
+              "canon_hinata",
+              "canon_kiba",
+              "canon_shino"
+            ],
+            "preferred_instructor_refs": [
+              "canon_kurenai"
+            ]
+          },
+          {
+            "student_refs": [
+              "canon_ino",
+              "canon_shikamaru",
+              "canon_choji"
+            ],
+            "preferred_instructor_refs": [
+              "canon_asuma"
+            ]
+          }
+        ],
+        "team_id_prefix": "team.konoha.generated",
+        "team_name_prefix": "Konoha Mission Team",
+        "parent_institution_ref": "institution.konoha.academy",
+        "assignment_authority_ref": "faction.konoha_mission_office",
+        "classification": "public"
+      }
+    },
+    "faction.kumo_military_intelligence": {},
+    "faction.mizuki_conspiracy": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_mizuki"
+      ]
+    },
+    "faction.oto_research_cells": {},
+    "faction.root": {},
+    "faction.suna_puppet_corps": {},
+    "faction.yamanaka_intelligence": {},
+    "faction.zabuza_mercenary_cell": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [
+        "team.zabuza_haku"
+      ],
+      "mission_participant_refs": [
+        "canon_zabuza",
+        "canon_haku"
+      ]
+    }
+  },
+  "team_profiles": {
+    "default": {
+      "autonomous_training_hours": 3,
+      "player_led_contact_chance_milli": 350
+    },
+    "standard_mission_team": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 450
+    },
+    "special_mission_cell": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 700
+    },
+    "anbu_cell": {
+      "autonomous_training_hours": 4,
+      "player_led_contact_chance_milli": 550
+    },
+    "temporary_task_force": {
+      "autonomous_training_hours": 2,
+      "player_led_contact_chance_milli": 650
+    },
+    "irregular_cell": {
+      "training_focus": [
+        "operational security",
+        "coordinated contact",
+        "escape and extraction"
+      ],
+      "doctrine_identity": "irregular paired-cell doctrine",
+      "motto": "Choose the ground. Control the contact. Leave on your terms.",
+      "autonomous_training_hours": 3,
+      "player_led_contact_chance_milli": 400
+    }
+  },
+  "sovereign_diplomacy": {
+    "honor_threshold_milli": 650,
+    "negotiate_threshold_milli": 500,
+    "active_conflict_penalty_milli": 90,
+    "readiness_weight_milli": 250,
+    "proposal_accept_threshold_milli": 500,
+    "proposal_interval_reviews": 3,
+    "profiles": {
+      "faction_konoha": {
+        "force_path": "state/force/konoha-shinobi.json",
+        "treaty_reliability_milli": 920,
+        "risk_tolerance_milli": 720,
+        "cooperation_milli": 700,
+        "partner_refs": [
+          "faction_suna",
+          "faction_kumo",
+          "faction_iwa",
+          "faction_kiri"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.konoha.hokage_administration"
+        ]
+      },
+      "faction_suna": {
+        "force_path": "state/force/suna-shinobi.json",
+        "treaty_reliability_milli": 840,
+        "risk_tolerance_milli": 610,
+        "cooperation_milli": 650,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_iwa",
+          "faction_kiri",
+          "faction_kumo"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.suna.kazekage_administration"
+        ]
+      },
+      "faction_iwa": {
+        "force_path": "state/force/iwa-shinobi.json",
+        "treaty_reliability_milli": 760,
+        "risk_tolerance_milli": 700,
+        "cooperation_milli": 520,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_suna",
+          "faction_kumo",
+          "faction_kiri"
+        ],
+        "proposal_cycle": [
+          "nonaggression",
+          "trade",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.iwa.tsuchikage_administration"
+        ]
+      },
+      "faction_kumo": {
+        "force_path": "state/force/kumo-shinobi.json",
+        "treaty_reliability_milli": 820,
+        "risk_tolerance_milli": 760,
+        "cooperation_milli": 560,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_suna",
+          "faction_iwa",
+          "faction_kiri"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.kumo.raikage_administration"
+        ]
+      },
+      "faction_kiri": {
+        "force_path": "state/force/kiri-shinobi.json",
+        "treaty_reliability_milli": 650,
+        "risk_tolerance_milli": 620,
+        "cooperation_milli": 430,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_suna",
+          "faction_kumo",
+          "faction_iwa"
+        ],
+        "proposal_cycle": [
+          "nonaggression",
+          "trade",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.kiri.mizukage_administration"
+        ]
+      },
+      "faction_ame": {
+        "force_path": "state/force/ame-shinobi.json",
+        "treaty_reliability_milli": 620,
+        "risk_tolerance_milli": 650,
+        "cooperation_milli": 420,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_iwa",
+          "faction_kusa"
+        ],
+        "proposal_cycle": [
+          "nonaggression",
+          "trade",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.ame.central_authority"
+        ]
+      },
+      "faction_iron": {
+        "force_path": "state/force/iron-samurai.json",
+        "treaty_reliability_milli": 900,
+        "risk_tolerance_milli": 520,
+        "cooperation_milli": 680,
+        "partner_refs": [
+          "faction_konoha",
+          "faction_suna",
+          "faction_iwa",
+          "faction_kumo"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.iron.samurai_command"
+        ]
+      },
+      "faction_oto": {
+        "force_path": "state/force/oto-network.json",
+        "treaty_reliability_milli": 360,
+        "risk_tolerance_milli": 800,
+        "cooperation_milli": 300,
+        "partner_refs": [
+          "faction_kusa",
+          "faction_taki",
+          "faction_ame"
+        ],
+        "proposal_cycle": [
+          "nonaggression",
+          "trade",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.oto.hideout_network"
+        ]
+      },
+      "faction_kusa": {
+        "force_path": "state/force/kusa-shinobi.json",
+        "treaty_reliability_milli": 680,
+        "risk_tolerance_milli": 500,
+        "cooperation_milli": 600,
+        "partner_refs": [
+          "faction_ame",
+          "faction_taki",
+          "faction_konoha"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.kusa.village_administration"
+        ]
+      },
+      "faction_taki": {
+        "force_path": "state/force/taki-shinobi.json",
+        "treaty_reliability_milli": 720,
+        "risk_tolerance_milli": 500,
+        "cooperation_milli": 620,
+        "partner_refs": [
+          "faction_kusa",
+          "faction_ame",
+          "faction_konoha"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression",
+          "alliance"
+        ],
+        "institution_refs": [
+          "institution.taki.village_administration"
+        ]
+      },
+      "faction_yuga": {
+        "force_path": "state/force/yuga-service.json",
+        "treaty_reliability_milli": 740,
+        "risk_tolerance_milli": 420,
+        "cooperation_milli": 640,
+        "partner_refs": [
+          "faction_kumo",
+          "faction_taki"
+        ],
+        "proposal_cycle": [
+          "trade",
+          "nonaggression"
+        ]
+      }
+    }
+  }
+}

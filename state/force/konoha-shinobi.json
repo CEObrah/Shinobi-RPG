@@ -1,0 +1,324 @@
+{
+  "schema": "force",
+  "id": "force.konoha.shinobi",
+  "name": "Force Konoha Shinobi",
+  "total": 12048,
+  "availability": {
+    "deployed": 5500,
+    "ready_24h": 5,
+    "mobilizable_7d": 695,
+    "mobilizable_30d": 2552,
+    "training_or_instruction": 1440,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 1856
+  },
+  "military_identity": [
+    "broad clan specialization",
+    "medical and intelligence depth",
+    "large Jounin and support ecosystem"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.field_ready",
+      "count": 3480,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_konoha_shinobi.field_ready",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.garrison_security",
+      "count": 2552,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_konoha_shinobi.garrison_security",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.intelligence_support",
+      "count": 464,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_konoha_shinobi.intelligence_support",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.medical_support",
+      "count": 464,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_konoha_shinobi.medical_support",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.logistics_support",
+      "count": 464,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_konoha_shinobi.logistics_support",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.training_instruction",
+      "count": 1672,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_konoha_shinobi.training_instruction",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_konoha_shinobi.reserve_recovery",
+      "count": 2552,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_konoha_shinobi.reserve_recovery",
+      "doctrine": "doc.force_konoha_shinobi.field",
+      "training": "train.force_konoha_shinobi.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-konoha-shinobi-reserve-recovery.json"
+    }
+  ],
+  "population_pool_id": "pool.konoha.shinobi_service",
+  "owner_ref": "faction_konoha",
+  "formation_registry_ref": "state/formation/force-konoha-shinobi.json",
+  "mobilization_anchor_ref": "place.konoha",
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 76,
+        "awareness": 80,
+        "endurance": 76,
+        "chakra_control": 80,
+        "chakra_output": 75,
+        "movement": 79,
+        "tactics": 75,
+        "team_coordination": 82
+      },
+      "methods": {
+        "sword": 64,
+        "unarmed": 74,
+        "thrown_tools": 72,
+        "bow": 61,
+        "polearm": 61,
+        "heavy_weapon": 60,
+        "ninjutsu": 85,
+        "genjutsu": 75,
+        "traps": 70,
+        "sensory": 80,
+        "medical": 68,
+        "sealing": 70
+      },
+      "experience": 62,
+      "count": 5,
+      "spread": 10
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 69,
+        "awareness": 73,
+        "endurance": 69,
+        "chakra_control": 73,
+        "chakra_output": 68,
+        "movement": 72,
+        "tactics": 68,
+        "team_coordination": 75
+      },
+      "methods": {
+        "sword": 57,
+        "unarmed": 67,
+        "thrown_tools": 65,
+        "bow": 54,
+        "polearm": 54,
+        "heavy_weapon": 53,
+        "ninjutsu": 78,
+        "genjutsu": 68,
+        "traps": 63,
+        "sensory": 73,
+        "medical": 61,
+        "sealing": 63
+      },
+      "experience": 59,
+      "count": 695,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 61,
+        "awareness": 65,
+        "endurance": 61,
+        "chakra_control": 65,
+        "chakra_output": 60,
+        "movement": 64,
+        "tactics": 60,
+        "team_coordination": 67
+      },
+      "methods": {
+        "sword": 49,
+        "unarmed": 59,
+        "thrown_tools": 57,
+        "bow": 46,
+        "polearm": 46,
+        "heavy_weapon": 45,
+        "ninjutsu": 70,
+        "genjutsu": 60,
+        "traps": 55,
+        "sensory": 65,
+        "medical": 53,
+        "sealing": 55
+      },
+      "experience": 57,
+      "count": 2552,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 64,
+        "awareness": 68,
+        "endurance": 64,
+        "chakra_control": 68,
+        "chakra_output": 63,
+        "movement": 67,
+        "tactics": 63,
+        "team_coordination": 70
+      },
+      "methods": {
+        "sword": 57,
+        "unarmed": 67,
+        "thrown_tools": 65,
+        "bow": 54,
+        "polearm": 54,
+        "heavy_weapon": 53,
+        "ninjutsu": 78,
+        "genjutsu": 68,
+        "traps": 63,
+        "sensory": 73,
+        "medical": 61,
+        "sealing": 63
+      },
+      "experience": 58,
+      "count": 1440,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 61,
+        "awareness": 65,
+        "endurance": 61,
+        "chakra_control": 65,
+        "chakra_output": 60,
+        "movement": 64,
+        "tactics": 60,
+        "team_coordination": 67
+      },
+      "methods": {
+        "sword": 49,
+        "unarmed": 59,
+        "thrown_tools": 57,
+        "bow": 46,
+        "polearm": 46,
+        "heavy_weapon": 45,
+        "ninjutsu": 70,
+        "genjutsu": 60,
+        "traps": 55,
+        "sensory": 65,
+        "medical": 53,
+        "sealing": 55
+      },
+      "experience": 57,
+      "count": 0,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 61,
+        "awareness": 65,
+        "endurance": 61,
+        "chakra_control": 65,
+        "chakra_output": 60,
+        "movement": 64,
+        "tactics": 60,
+        "team_coordination": 67
+      },
+      "methods": {
+        "sword": 49,
+        "unarmed": 59,
+        "thrown_tools": 57,
+        "bow": 46,
+        "polearm": 46,
+        "heavy_weapon": 45,
+        "ninjutsu": 70,
+        "genjutsu": 60,
+        "traps": 55,
+        "sensory": 65,
+        "medical": 53,
+        "sealing": 55
+      },
+      "experience": 57,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 69,
+        "awareness": 73,
+        "endurance": 69,
+        "chakra_control": 73,
+        "chakra_output": 68,
+        "movement": 72,
+        "tactics": 68,
+        "team_coordination": 75
+      },
+      "methods": {
+        "sword": 57,
+        "unarmed": 67,
+        "thrown_tools": 65,
+        "bow": 54,
+        "polearm": 54,
+        "heavy_weapon": 53,
+        "ninjutsu": 78,
+        "genjutsu": 68,
+        "traps": 63,
+        "sensory": 73,
+        "medical": 61,
+        "sealing": 63
+      },
+      "experience": 59,
+      "count": 1856,
+      "spread": 12
+    }
+  }
+}

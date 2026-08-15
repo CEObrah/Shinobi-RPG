@@ -1,0 +1,445 @@
+{
+  "schema": "file-template",
+  "template_id": "template.mission-runtime",
+  "target_schema": "mission-runtime",
+  "source_schema": "game/schemas/mission-runtime.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/mission"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "mission_id",
+    "issuer_ref",
+    "authority_ref",
+    "opened_at",
+    "authorized_at",
+    "starts_at",
+    "deadline_at",
+    "next_due_at",
+    "operation_ref",
+    "closed_at",
+    "briefing",
+    "state",
+    "participant_refs",
+    "objectives",
+    "settlement_terms",
+    "terminal_reason_ref",
+    "settlement"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "mission_id",
+        "issuer_ref",
+        "authority_ref",
+        "opened_at",
+        "authorized_at",
+        "starts_at",
+        "deadline_at",
+        "next_due_at",
+        "operation_ref",
+        "closed_at",
+        "briefing",
+        "state",
+        "participant_refs",
+        "objectives",
+        "settlement_terms",
+        "terminal_reason_ref",
+        "settlement",
+        "mission_rank",
+        "funding_holder_ref",
+        "escrow_holder_ref"
+      ],
+      "canonical_order": [
+        "schema",
+        "mission_id",
+        "issuer_ref",
+        "authority_ref",
+        "mission_rank",
+        "funding_holder_ref",
+        "escrow_holder_ref",
+        "opened_at",
+        "authorized_at",
+        "starts_at",
+        "deadline_at",
+        "next_due_at",
+        "operation_ref",
+        "closed_at",
+        "briefing",
+        "state",
+        "participant_refs",
+        "objectives",
+        "settlement_terms",
+        "terminal_reason_ref",
+        "settlement"
+      ]
+    },
+    "/briefing": {
+      "mode": "closed",
+      "allowed_keys": [
+        "briefing_id",
+        "objective_kind",
+        "subject_kind",
+        "subject_ref",
+        "subject_label",
+        "report_place_ref",
+        "origin_place_ref",
+        "destination_place_ref",
+        "route_id",
+        "threat_summary",
+        "threat_source_ref",
+        "intelligence_constraints",
+        "report_at",
+        "depart_by",
+        "completion_condition"
+      ],
+      "canonical_order": [
+        "briefing_id",
+        "objective_kind",
+        "subject_kind",
+        "subject_ref",
+        "subject_label",
+        "report_place_ref",
+        "origin_place_ref",
+        "destination_place_ref",
+        "route_id",
+        "threat_summary",
+        "threat_source_ref",
+        "intelligence_constraints",
+        "report_at",
+        "depart_by",
+        "completion_condition"
+      ]
+    },
+    "/objectives/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "objective_id",
+        "kind",
+        "required",
+        "dependencies",
+        "status",
+        "progress_milli",
+        "resolution_ref"
+      ],
+      "canonical_order": [
+        "objective_id",
+        "kind",
+        "required",
+        "dependencies",
+        "status",
+        "progress_milli",
+        "resolution_ref"
+      ]
+    },
+    "/settlement_terms/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "term_id",
+        "direction",
+        "account_ref",
+        "asset_ref",
+        "quantity",
+        "applies_on",
+        "objective_id",
+        "objective_status"
+      ],
+      "canonical_order": [
+        "term_id",
+        "direction",
+        "account_ref",
+        "asset_ref",
+        "quantity",
+        "applies_on",
+        "objective_id",
+        "objective_status"
+      ]
+    },
+    "/settlement": {
+      "mode": "closed",
+      "allowed_keys": [
+        "mission_id",
+        "outcome",
+        "settlement_token",
+        "reward_term_ids",
+        "cost_term_ids"
+      ],
+      "canonical_order": [
+        "mission_id",
+        "outcome",
+        "settlement_token",
+        "reward_term_ids",
+        "cost_term_ids"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/mission_id": [
+      "string"
+    ],
+    "/issuer_ref": [
+      "string"
+    ],
+    "/authority_ref": [
+      "string"
+    ],
+    "/opened_at": [
+      "string"
+    ],
+    "/authorized_at": [
+      "string"
+    ],
+    "/starts_at": [
+      "string",
+      "null"
+    ],
+    "/deadline_at": [
+      "string",
+      "null"
+    ],
+    "/next_due_at": [
+      "string",
+      "null"
+    ],
+    "/operation_ref": [
+      "string",
+      "null"
+    ],
+    "/closed_at": [
+      "string",
+      "null"
+    ],
+    "/briefing": [
+      "object",
+      "null"
+    ],
+    "/briefing/briefing_id": [
+      "string"
+    ],
+    "/briefing/objective_kind": [
+      "string"
+    ],
+    "/briefing/subject_kind": [
+      "string"
+    ],
+    "/briefing/subject_ref": [
+      "string",
+      "null"
+    ],
+    "/briefing/subject_label": [
+      "string"
+    ],
+    "/briefing/report_place_ref": [
+      "string"
+    ],
+    "/briefing/origin_place_ref": [
+      "string"
+    ],
+    "/briefing/destination_place_ref": [
+      "string",
+      "null"
+    ],
+    "/briefing/route_id": [
+      "string",
+      "null"
+    ],
+    "/briefing/threat_summary": [
+      "string"
+    ],
+    "/briefing/threat_source_ref": [
+      "string",
+      "null"
+    ],
+    "/briefing/intelligence_constraints": [
+      "array"
+    ],
+    "/briefing/intelligence_constraints/*": [
+      "string"
+    ],
+    "/briefing/report_at": [
+      "string",
+      "null"
+    ],
+    "/briefing/depart_by": [
+      "string",
+      "null"
+    ],
+    "/briefing/completion_condition": [
+      "string"
+    ],
+    "/state": [
+      "string"
+    ],
+    "/participant_refs": [
+      "array"
+    ],
+    "/participant_refs/*": [
+      "string"
+    ],
+    "/objectives": [
+      "array"
+    ],
+    "/objectives/*": [
+      "object"
+    ],
+    "/objectives/*/objective_id": [
+      "string"
+    ],
+    "/objectives/*/kind": [
+      "string"
+    ],
+    "/objectives/*/required": [
+      "boolean"
+    ],
+    "/objectives/*/dependencies": [
+      "array"
+    ],
+    "/objectives/*/dependencies/*": [
+      "string"
+    ],
+    "/objectives/*/status": [
+      "string"
+    ],
+    "/objectives/*/progress_milli": [
+      "integer"
+    ],
+    "/objectives/*/resolution_ref": [
+      "string",
+      "null"
+    ],
+    "/settlement_terms": [
+      "array"
+    ],
+    "/settlement_terms/*": [
+      "object"
+    ],
+    "/settlement_terms/*/term_id": [
+      "string"
+    ],
+    "/settlement_terms/*/direction": [
+      "string"
+    ],
+    "/settlement_terms/*/account_ref": [
+      "string"
+    ],
+    "/settlement_terms/*/asset_ref": [
+      "string"
+    ],
+    "/settlement_terms/*/quantity": [
+      "integer"
+    ],
+    "/settlement_terms/*/applies_on": [
+      "array"
+    ],
+    "/settlement_terms/*/applies_on/*": [
+      "string"
+    ],
+    "/settlement_terms/*/objective_id": [
+      "string",
+      "null"
+    ],
+    "/settlement_terms/*/objective_status": [
+      "string",
+      "null"
+    ],
+    "/terminal_reason_ref": [
+      "string",
+      "null"
+    ],
+    "/settlement": [
+      "object",
+      "null"
+    ],
+    "/settlement/mission_id": [
+      "string"
+    ],
+    "/settlement/outcome": [
+      "string"
+    ],
+    "/settlement/settlement_token": [
+      "string"
+    ],
+    "/settlement/reward_term_ids": [
+      "array"
+    ],
+    "/settlement/reward_term_ids/*": [
+      "string"
+    ],
+    "/settlement/cost_term_ids": [
+      "array"
+    ],
+    "/settlement/cost_term_ids/*": [
+      "string"
+    ],
+    "/mission_rank": [
+      "string"
+    ],
+    "/funding_holder_ref": [
+      "string"
+    ],
+    "/escrow_holder_ref": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/briefing/intelligence_constraints": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participant_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/objectives": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/objectives/*/dependencies": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/settlement_terms": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/settlement_terms/*/applies_on": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/settlement/reward_term_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/settlement/cost_term_ids": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template, the mission-runtime blank skeleton, and the missions_projects system contract before creating or structurally editing a mission owner.",
+    "Gameplay reducers may mutate only an existing mission owner; offering or creation requires separately verified issuer, participant, timing, institutional authority, and an explicit operational briefing for player-facing missions.",
+    "Participant, account, inventory, operation, health, knowledge, command, and institutional facts remain in their own authorities and are referenced rather than duplicated.",
+    "Every nonterminal mission carries next_due_at or operation_ref; terminal settlement terms do not transfer assets unless their owning account authorities change in the same transaction.",
+    "Briefings store only issuing-authority operational facts and explicit uncertainty; hidden opposition remains outside this owner until lawfully known.",
+    "Unknown keys and improvised mission fields are forbidden."
+  ]
+}

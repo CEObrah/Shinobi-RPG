@@ -1,0 +1,49 @@
+{
+  "schema": "file-template",
+  "template_id": "template.membership-route-index",
+  "target_schema": "membership-route-index",
+  "source_schema": "game/schemas/membership-route-index.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "storage_version"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "storage_version"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "storage_version"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/storage_version": [
+      "integer"
+    ]
+  },
+  "writing_rules": [
+    "This root only proves the derived membership routing representation is initialized; exact House/team owners remain authority."
+  ],
+  "array_contracts": {}
+}

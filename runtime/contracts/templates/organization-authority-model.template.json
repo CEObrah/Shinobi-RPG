@@ -1,0 +1,225 @@
+{
+  "schema": "file-template",
+  "template_id": "template.organization-authority-model",
+  "target_schema": "organization-authority-model",
+  "source_schema": "game/schemas/organization-authority-model.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/organization"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "layers",
+    "manpower_invariant",
+    "team_invariant",
+    "formation_invariant",
+    "commander_rule",
+    "support_rule",
+    "large_war_rule"
+  ],
+  "object_contracts": {
+    "/layers": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person",
+        "team",
+        "force",
+        "formation",
+        "cohort",
+        "indexes"
+      ],
+      "canonical_order": [
+        "person",
+        "team",
+        "force",
+        "formation",
+        "cohort",
+        "indexes"
+      ]
+    },
+    "/layers/person": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "/layers/team": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "/layers/force": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "/layers/formation": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "/layers/cohort": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "/layers/indexes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owns",
+        "owns_manpower"
+      ],
+      "canonical_order": [
+        "owns",
+        "owns_manpower"
+      ]
+    },
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "layers",
+        "manpower_invariant",
+        "team_invariant",
+        "formation_invariant",
+        "commander_rule",
+        "support_rule",
+        "large_war_rule"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "layers",
+        "manpower_invariant",
+        "team_invariant",
+        "formation_invariant",
+        "commander_rule",
+        "support_rule",
+        "large_war_rule"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/authority": [
+      "string"
+    ],
+    "/layers": [
+      "object"
+    ],
+    "/layers/person": [
+      "object"
+    ],
+    "/layers/person/owns": [
+      "string"
+    ],
+    "/layers/person/owns_manpower": [
+      "boolean"
+    ],
+    "/layers/team": [
+      "object"
+    ],
+    "/layers/team/owns": [
+      "string"
+    ],
+    "/layers/team/owns_manpower": [
+      "boolean"
+    ],
+    "/layers/force": [
+      "object"
+    ],
+    "/layers/force/owns": [
+      "string"
+    ],
+    "/layers/force/owns_manpower": [
+      "boolean"
+    ],
+    "/layers/formation": [
+      "object"
+    ],
+    "/layers/formation/owns": [
+      "string"
+    ],
+    "/layers/formation/owns_manpower": [
+      "boolean"
+    ],
+    "/layers/cohort": [
+      "object"
+    ],
+    "/layers/cohort/owns": [
+      "string"
+    ],
+    "/layers/cohort/owns_manpower": [
+      "boolean"
+    ],
+    "/layers/indexes": [
+      "object"
+    ],
+    "/layers/indexes/owns": [
+      "string"
+    ],
+    "/layers/indexes/owns_manpower": [
+      "boolean"
+    ],
+    "/manpower_invariant": [
+      "string"
+    ],
+    "/team_invariant": [
+      "string"
+    ],
+    "/formation_invariant": [
+      "string"
+    ],
+    "/commander_rule": [
+      "string"
+    ],
+    "/support_rule": [
+      "string"
+    ],
+    "/large_war_rule": [
+      "string"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This contract defines current organization semantics only. Release history and retired organization layers do not belong here.",
+    "The force owns aggregate manpower; teams and formations reference or represent that manpower without creating additional people."
+  ]
+}

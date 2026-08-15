@@ -1,0 +1,41 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.d217196ee234c99b89",
+  "issuer_ref": "faction.bounty_broker_network",
+  "authority_ref": "support.bounty.goro_kaneda",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.contractors",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-05-07T07:00:00",
+  "authorized_at": "SE-0061-05-07T07:00:00",
+  "starts_at": "SE-0061-05-07T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "support.bounty.goro_kaneda"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.d217196ee234c99b89",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "repair.rich_autonomy_upgrade.v1"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "repair.rich_autonomy_upgrade.v1",
+  "settlement": {
+    "mission_id": "mission.autonomy.d217196ee234c99b89",
+    "outcome": "aborted",
+    "settlement_token": "repair:mission.autonomy.d217196ee234c99b89:rich-autonomy-v1",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.guy",
+  "name": "Team Guy",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "institution.konoha.academy",
+  "leader_ref": "canon_guy",
+  "deputy_ref": null,
+  "member_refs": [
+    "canon_guy",
+    "canon_lee",
+    "canon_neji",
+    "canon_tenten"
+  ],
+  "roles": {
+    "canon_guy": "jonin_instructor_and_team_leader",
+    "canon_lee": "close_combat_specialist",
+    "canon_neji": "reconnaissance_and_precision_combat",
+    "canon_tenten": "weapons_and_ranged_support"
+  },
+  "classification": "public",
+  "activation": {
+    "at": null,
+    "basis": "Pre-existing active Konoha Genin team in the campaign baseline."
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "authority_review",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": null
+  },
+  "doctrine_ref": "team.konoha.guy.doctrine",
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_guy"
+    ],
+    "facility_refs": [],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.autonomy.5005f8bc97fa03f3d7ef5a56",
+        "started_at": "SE-0061-06-26T13:15:00",
+        "ended_at": "SE-0061-06-26T21:15:00",
+        "active_hours": "8",
+        "member_refs": [
+          "canon_guy",
+          "canon_lee",
+          "canon_neji",
+          "canon_tenten"
+        ],
+        "instructor_ref": "canon_guy",
+        "targets": {
+          "canon_guy": "operational_skills.investigation",
+          "canon_lee": "operational_skills.tactics",
+          "canon_neji": "operational_skills.tactics",
+          "canon_tenten": "attributes.awareness"
+        }
+      }
+    ]
+  },
+  "embedded_member_refs": []
+}

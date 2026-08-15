@@ -1,0 +1,575 @@
+{
+  "item_field_pack_standard": {
+    "name": "Standard Shinobi Field Pack",
+    "type": "tool_or_supply",
+    "mass_kg": 1.2,
+    "bulk": 4,
+    "integrity_max": 20,
+    "use_seconds": 1.5,
+    "effect": "Carries up to 10 kg; ready pockets avoid packed delay.",
+    "consumable": false,
+    "capacity": {
+      "kg": 10
+    }
+  },
+  "item_field_pack_waterproof": {
+    "name": "Waterproof Field Pack",
+    "type": "tool_or_supply",
+    "mass_kg": 1.6,
+    "bulk": 5,
+    "integrity_max": 24,
+    "use_seconds": 1.8,
+    "effect": "Carries 10 kg and protects contents from ordinary immersion.",
+    "consumable": false,
+    "capacity": {
+      "kg": 10
+    }
+  },
+  "item_field_pack_desert": {
+    "name": "Desert Field Pack",
+    "type": "tool_or_supply",
+    "mass_kg": 1.5,
+    "bulk": 5,
+    "integrity_max": 22,
+    "use_seconds": 1.7,
+    "effect": "Carries 11 kg with insulated water attachment.",
+    "consumable": false,
+    "capacity": {
+      "kg": 11
+    }
+  },
+  "item_basic_medicine": {
+    "name": "Basic Medicine",
+    "type": "tool_or_supply",
+    "mass_kg": 0.15,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 3,
+    "effect": "Supports valid treatment; never restores HP automatically.",
+    "consumable": true,
+    "skill": "medicine"
+  },
+  "item_field_medical_kit": {
+    "name": "Field Medical Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 2.5,
+    "bulk": 5,
+    "integrity_max": 25,
+    "use_seconds": 2,
+    "effect": "Adds +2 applicable Medicine support.",
+    "consumable": false,
+    "skill": "medicine"
+  },
+  "item_medical_dressing": {
+    "name": "Sterile Medical Dressing",
+    "type": "tool_or_supply",
+    "mass_kg": 0.12,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 4,
+    "effect": "Reduces external bleeding after successful treatment.",
+    "consumable": true,
+    "skill": "medicine"
+  },
+  "item_triage_tags": {
+    "name": "Triage Tag Set",
+    "type": "tool_or_supply",
+    "mass_kg": 0.1,
+    "bulk": 1,
+    "integrity_max": 5,
+    "use_seconds": 0.4,
+    "effect": "Marks casualty priority and treatment state.",
+    "consumable": false
+  },
+  "item_basic_antidote": {
+    "name": "Basic Antidote",
+    "type": "tool_or_supply",
+    "mass_kg": 0.1,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 2,
+    "effect": "Works only against a compatible identified toxin.",
+    "consumable": true,
+    "skill": "medicine"
+  },
+  "item_smoke_bomb": {
+    "name": "Smoke Bomb",
+    "type": "tool_or_supply",
+    "mass_kg": 0.25,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 0.5,
+    "effect": "Creates 4 m radius smoke for 18 seconds in still air.",
+    "consumable": true
+  },
+  "item_explosive_tag": {
+    "name": "Explosive Tag",
+    "type": "tool_or_supply",
+    "mass_kg": 0.03,
+    "bulk": 0.2,
+    "integrity_max": 1,
+    "use_seconds": 0.8,
+    "effect": "Impact 7, penetration 2, radius 2 m after valid trigger.",
+    "consumable": true,
+    "skill": "traps_or_sealing"
+  },
+  "item_utility_wire": {
+    "name": "Utility Wire",
+    "type": "tool_or_supply",
+    "mass_kg": 0.025,
+    "bulk": 0.05,
+    "integrity_max": 8,
+    "use_seconds": 0.6,
+    "effect": "Exact deployed length, anchors, integrity and recovery.",
+    "consumable": false,
+    "capacity": {
+      "unit": "meter"
+    }
+  },
+  "item_standard_restraints": {
+    "name": "Standard Restraints",
+    "type": "tool_or_supply",
+    "mass_kg": 0.65,
+    "bulk": 2,
+    "integrity_max": 30,
+    "use_seconds": 2,
+    "effect": "Binds limbs after successful control.",
+    "consumable": false
+  },
+  "item_chakra_suppression_cuffs": {
+    "name": "Chakra-Suppression Cuffs",
+    "type": "tool_or_supply",
+    "mass_kg": 1.4,
+    "bulk": 3,
+    "integrity_max": 55,
+    "use_seconds": 3,
+    "effect": "Correct fit applies -20 Control and -15 casting stability.",
+    "consumable": false,
+    "skill": "sealing"
+  },
+  "item_anbu_mask": {
+    "name": "ANBU Mask",
+    "type": "tool_or_supply",
+    "mass_kg": 0.4,
+    "bulk": 2,
+    "integrity_max": 25,
+    "use_seconds": 0.6,
+    "effect": "Conceals face and supports service identification.",
+    "consumable": false
+  },
+  "item_evidence_kit": {
+    "name": "Evidence Recovery Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 1.8,
+    "bulk": 4,
+    "integrity_max": 20,
+    "use_seconds": 2,
+    "effect": "Supports collection, sealing and contamination control.",
+    "consumable": false,
+    "skill": "investigation"
+  },
+  "item_water_container_1l": {
+    "name": "One-Liter Water Container",
+    "type": "tool_or_supply",
+    "mass_kg": 1.1,
+    "bulk": 2,
+    "integrity_max": 15,
+    "use_seconds": 1.2,
+    "effect": "Carries one liter.",
+    "consumable": false,
+    "capacity": {
+      "liters": 1
+    }
+  },
+  "item_desert_water_reserve_4l": {
+    "name": "Four-Liter Desert Water Reserve",
+    "type": "tool_or_supply",
+    "mass_kg": 4.4,
+    "bulk": 5,
+    "integrity_max": 20,
+    "use_seconds": 1.5,
+    "effect": "Carries four insulated liters.",
+    "consumable": false,
+    "capacity": {
+      "liters": 4
+    }
+  },
+  "item_desert_cloak": {
+    "name": "Desert Cloak",
+    "type": "tool_or_supply",
+    "mass_kg": 1,
+    "bulk": 3,
+    "integrity_max": 18,
+    "use_seconds": 0.8,
+    "effect": "Reduces heat and blowing-sand exposure.",
+    "consumable": false
+  },
+  "item_sand_goggles": {
+    "name": "Sand Goggles",
+    "type": "tool_or_supply",
+    "mass_kg": 0.25,
+    "bulk": 1,
+    "integrity_max": 16,
+    "use_seconds": 0.5,
+    "effect": "Protects eyes from ordinary sand and dust.",
+    "consumable": false
+  },
+  "item_waterproof_document_pouch": {
+    "name": "Waterproof Document Pouch",
+    "type": "tool_or_supply",
+    "mass_kg": 0.3,
+    "bulk": 1,
+    "integrity_max": 18,
+    "use_seconds": 0.7,
+    "effect": "Protects 0.8 kg of documents.",
+    "consumable": false,
+    "capacity": {
+      "kg": 0.8
+    }
+  },
+  "item_breathing_reed": {
+    "name": "Breathing Reed",
+    "type": "tool_or_supply",
+    "mass_kg": 0.08,
+    "bulk": 1,
+    "integrity_max": 6,
+    "use_seconds": 0.5,
+    "effect": "Allows shallow submerged breathing while opening is above water.",
+    "consumable": false
+  },
+  "item_dust_mask": {
+    "name": "Dust Mask",
+    "type": "tool_or_supply",
+    "mass_kg": 0.12,
+    "bulk": 1,
+    "integrity_max": 8,
+    "use_seconds": 0.4,
+    "effect": "Reduces ordinary dust inhalation.",
+    "consumable": false
+  },
+  "item_earthwork_toolkit": {
+    "name": "Earthwork Toolkit",
+    "type": "tool_or_supply",
+    "mass_kg": 5.5,
+    "bulk": 7,
+    "integrity_max": 45,
+    "use_seconds": 2,
+    "effect": "Supports trenching, bracing, demolition and repair.",
+    "consumable": false,
+    "skill": "engineering"
+  },
+  "item_survey_toolkit": {
+    "name": "Survey Toolkit",
+    "type": "tool_or_supply",
+    "mass_kg": 3,
+    "bulk": 6,
+    "integrity_max": 35,
+    "use_seconds": 2,
+    "effect": "Supports route, bridge and construction surveying.",
+    "consumable": false,
+    "skill": "engineering"
+  },
+  "item_construction_documents": {
+    "name": "Construction Documents",
+    "type": "tool_or_supply",
+    "mass_kg": 0.8,
+    "bulk": 3,
+    "integrity_max": 10,
+    "use_seconds": 1,
+    "effect": "Contains recorded plans and authorities.",
+    "consumable": false
+  },
+  "item_money_pouch": {
+    "name": "Money Pouch",
+    "type": "tool_or_supply",
+    "mass_kg": 0.25,
+    "bulk": 1,
+    "integrity_max": 12,
+    "use_seconds": 0.7,
+    "effect": "Stores exact currency.",
+    "consumable": false,
+    "capacity": {
+      "currency_units": 500
+    }
+  },
+  "item_bodyguard_contract_packet": {
+    "name": "Bodyguard Contract Packet",
+    "type": "tool_or_supply",
+    "mass_kg": 0.3,
+    "bulk": 1,
+    "integrity_max": 8,
+    "use_seconds": 1,
+    "effect": "Records exact authority, duration, payment and duties.",
+    "consumable": false
+  },
+  "item_weapon_maintenance_kit": {
+    "name": "Weapon Maintenance Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 1.1,
+    "bulk": 3,
+    "integrity_max": 30,
+    "use_seconds": 3,
+    "effect": "Supports weapon maintenance.",
+    "consumable": false,
+    "skill": "weapon_maintenance"
+  },
+  "item_armor_maintenance_kit": {
+    "name": "Armor Maintenance Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 2.2,
+    "bulk": 5,
+    "integrity_max": 38,
+    "use_seconds": 4,
+    "effect": "Supports armor repair.",
+    "consumable": false,
+    "skill": "engineering"
+  },
+  "item_map_kit": {
+    "name": "Map Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 0.8,
+    "bulk": 3,
+    "integrity_max": 16,
+    "use_seconds": 1,
+    "effect": "Supports only known current map coverage.",
+    "consumable": false,
+    "skill": "navigation"
+  },
+  "item_sensor_chimes": {
+    "name": "Sensor Chimes",
+    "type": "tool_or_supply",
+    "mass_kg": 0.5,
+    "bulk": 2,
+    "integrity_max": 15,
+    "use_seconds": 2,
+    "effect": "Physical alarms that can be detected or disabled.",
+    "consumable": false,
+    "skill": "traps"
+  },
+  "item_signal_flare": {
+    "name": "Signal Flare",
+    "type": "tool_or_supply",
+    "mass_kg": 0.35,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 1,
+    "effect": "Reveals origin and starts information clocks.",
+    "consumable": true
+  },
+  "item_sensor_relay_set": {
+    "name": "Sensor Relay Set",
+    "type": "tool_or_supply",
+    "mass_kg": 2,
+    "bulk": 5,
+    "integrity_max": 28,
+    "use_seconds": 3,
+    "effect": "Supports valid contact relays.",
+    "consumable": false,
+    "skill": "sensory"
+  },
+  "item_barrier_anchor_set": {
+    "name": "Barrier Anchor Set",
+    "type": "tool_or_supply",
+    "mass_kg": 4,
+    "bulk": 6,
+    "integrity_max": 40,
+    "use_seconds": 5,
+    "effect": "Four physical anchors for barrier geometry.",
+    "consumable": false,
+    "skill": "barrier"
+  },
+  "item_puppet_field_kit": {
+    "name": "Puppet Field Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 5,
+    "bulk": 7,
+    "integrity_max": 40,
+    "use_seconds": 4,
+    "effect": "Supports repair, ammunition, poison safety and wire.",
+    "consumable": false,
+    "skill": "puppet_control"
+  },
+  "item_weapon_scroll_set": {
+    "name": "Weapon Scroll Set",
+    "type": "tool_or_supply",
+    "mass_kg": 0.6,
+    "bulk": 2,
+    "integrity_max": 18,
+    "use_seconds": 2.5,
+    "effect": "Stores exact conserved manifest.",
+    "consumable": false,
+    "skill": "sealing"
+  },
+  "item_official_documents": {
+    "name": "Official Documents",
+    "type": "tool_or_supply",
+    "mass_kg": 0.4,
+    "bulk": 2,
+    "integrity_max": 8,
+    "use_seconds": 0.8,
+    "effect": "Proves only recorded identity and authority.",
+    "consumable": false
+  },
+  "item_access_badge": {
+    "name": "Access Badge",
+    "type": "tool_or_supply",
+    "mass_kg": 0.08,
+    "bulk": 1,
+    "integrity_max": 8,
+    "use_seconds": 0.3,
+    "effect": "Proves recorded access only.",
+    "consumable": false
+  },
+  "item_medical_badge": {
+    "name": "Medical Badge",
+    "type": "tool_or_supply",
+    "mass_kg": 0.08,
+    "bulk": 1,
+    "integrity_max": 8,
+    "use_seconds": 0.3,
+    "effect": "Proves recorded medical role only.",
+    "consumable": false
+  },
+  "item_coded_documents": {
+    "name": "Coded Mission Documents",
+    "type": "tool_or_supply",
+    "mass_kg": 0.25,
+    "bulk": 1,
+    "integrity_max": 8,
+    "use_seconds": 1,
+    "effect": "Contains exact coded orders.",
+    "consumable": false
+  },
+  "item_field_ration_1day": {
+    "name": "One-Day Field Ration",
+    "type": "tool_or_supply",
+    "mass_kg": 0.8,
+    "bulk": 2,
+    "integrity_max": 1,
+    "use_seconds": 4,
+    "effect": "One day of field calories.",
+    "consumable": true
+  },
+  "item_arrow": {
+    "name": "Arrow",
+    "type": "tool_or_supply",
+    "mass_kg": 0.06,
+    "bulk": 0.2,
+    "integrity_max": 8,
+    "use_seconds": 0,
+    "effect": "Bow ammunition.",
+    "consumable": true
+  },
+  "item_quiver_24": {
+    "name": "Quiver",
+    "type": "tool_or_supply",
+    "mass_kg": 0.8,
+    "bulk": 3,
+    "integrity_max": 18,
+    "use_seconds": 0.8,
+    "effect": "Carries 24 arrows.",
+    "consumable": false,
+    "capacity": {
+      "arrows": 24
+    }
+  },
+  "item_sealing_ink": {
+    "name": "Sealing Ink",
+    "type": "tool_or_supply",
+    "mass_kg": 0.25,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 1,
+    "effect": "Formula ink consumed by area.",
+    "consumable": true,
+    "skill": "sealing"
+  },
+  "item_sealing_paper": {
+    "name": "Sealing Paper",
+    "type": "tool_or_supply",
+    "mass_kg": 0.02,
+    "bulk": 0.1,
+    "integrity_max": 1,
+    "use_seconds": 0.5,
+    "effect": "Formula medium.",
+    "consumable": true,
+    "skill": "sealing"
+  },
+  "item_weapon_grip_wrap": {
+    "name": "Weapon Grip Wrap",
+    "type": "tool_or_supply",
+    "mass_kg": 0.08,
+    "bulk": 1,
+    "integrity_max": 1,
+    "use_seconds": 4,
+    "effect": "Replaces damaged grip.",
+    "consumable": true,
+    "skill": "weapon_maintenance"
+  },
+  "item_replacement_armor_plate": {
+    "name": "Replacement Armor Plate",
+    "type": "tool_or_supply",
+    "mass_kg": 1.2,
+    "bulk": 2,
+    "integrity_max": 20,
+    "use_seconds": 6,
+    "effect": "Repairs one compatible armor section.",
+    "consumable": true,
+    "skill": "engineering"
+  },
+  "item_signal_whistle": {
+    "name": "Signal Whistle",
+    "type": "tool_or_supply",
+    "mass_kg": 0.05,
+    "bulk": 1,
+    "integrity_max": 10,
+    "use_seconds": 0.2,
+    "effect": "Standard audible signals.",
+    "consumable": false
+  },
+  "item_academy_training_kit": {
+    "name": "Academy Training Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 1.5,
+    "bulk": 4,
+    "integrity_max": 20,
+    "use_seconds": 1,
+    "effect": "Supports academy drills; no automatic growth.",
+    "consumable": false
+  },
+  "item_civilian_work_kit": {
+    "name": "Civilian Work Kit",
+    "type": "tool_or_supply",
+    "mass_kg": 3,
+    "bulk": 5,
+    "integrity_max": 25,
+    "use_seconds": 2,
+    "effect": "Supports one recorded profession.",
+    "consumable": false
+  },
+  "item_travel_coat": {
+    "name": "Concealing Travel Coat",
+    "type": "tool_or_supply",
+    "mass_kg": 1.2,
+    "bulk": 3,
+    "integrity_max": 18,
+    "use_seconds": 0.8,
+    "effect": "Weather protection and 1 kg concealment.",
+    "consumable": false,
+    "capacity": {
+      "concealed_kg": 1
+    }
+  },
+  "item_compact_field_pouch": {
+    "name": "Compact Field Pouch",
+    "type": "container",
+    "mass_kg": 0.5,
+    "bulk": 2,
+    "capacity_kg": 6,
+    "integrity_max": 25,
+    "rules": [
+      "contents retain their own mass",
+      "ready items must name a pouch position"
+    ]
+  }
+}

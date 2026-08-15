@@ -1,0 +1,154 @@
+{
+  "schema": "file-template",
+  "template_id": "template.commitment-registry",
+  "target_schema": "commitment-registry",
+  "source_schema": "game/schemas/commitment-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "records"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "records"
+      ]
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "kind",
+        "subject_ref",
+        "target_ref",
+        "host_ref",
+        "created_at",
+        "due_at",
+        "status",
+        "summary",
+        "visibility",
+        "authority_basis",
+        "causal_ref",
+        "autonomous_review_count",
+        "resolved_at",
+        "resolution_summary"
+      ],
+      "canonical_order": [
+        "id",
+        "kind",
+        "subject_ref",
+        "target_ref",
+        "host_ref",
+        "created_at",
+        "due_at",
+        "status",
+        "summary",
+        "visibility",
+        "authority_basis",
+        "causal_ref",
+        "autonomous_review_count",
+        "resolved_at",
+        "resolution_summary"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/records": [
+      "array"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/id": [
+      "string"
+    ],
+    "/records/*/kind": [
+      "string"
+    ],
+    "/records/*/subject_ref": [
+      "string"
+    ],
+    "/records/*/target_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/host_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/created_at": [
+      "string"
+    ],
+    "/records/*/due_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/summary": [
+      "string"
+    ],
+    "/records/*/visibility": [
+      "string"
+    ],
+    "/records/*/authority_basis": [
+      "string"
+    ],
+    "/records/*/resolved_at": [
+      "null",
+      "string"
+    ],
+    "/records/*/resolution_summary": [
+      "null",
+      "string"
+    ],
+    "/records/*/causal_ref": [
+      "null",
+      "string"
+    ],
+    "/records/*/autonomous_review_count": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/records": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Commitments record material promises, orders and obligations; narration alone never creates one.",
+    "Externally imposed orders and obligations require a persisted authority basis.",
+    "Due commitments register a causal wake boundary rather than a polling process."
+  ]
+}

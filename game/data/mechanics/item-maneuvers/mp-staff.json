@@ -1,0 +1,136 @@
+{
+  "schema": "item-maneuvers-shard",
+  "maneuver_packages": {
+    "MP_STAFF": {
+      "weapon_family": "staff",
+      "maneuvers": {
+        "short_strike": {
+          "name": "Short strike",
+          "base_startup_s": 0.52,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.38,
+          "geometry": "short_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "full_swing": {
+          "name": "Full swing",
+          "base_startup_s": 0.82,
+          "contact_window_s": 0.18,
+          "base_recovery_s": 0.62,
+          "geometry": "wide_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 2,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "thrust": {
+          "name": "Thrust",
+          "base_startup_s": 0.6,
+          "contact_window_s": 0.1,
+          "base_recovery_s": 0.42,
+          "geometry": "line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "sweep": {
+          "name": "Sweep",
+          "base_startup_s": 0.88,
+          "contact_window_s": 0.2,
+          "base_recovery_s": 0.68,
+          "geometry": "low_wide_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "block": {
+          "name": "Block",
+          "base_startup_s": 0.2,
+          "contact_window_s": 0.18,
+          "base_recovery_s": 0.32,
+          "geometry": "defensive_plane",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 3,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "hook_or_trip": {
+          "name": "Hook or trip",
+          "base_startup_s": 0.64,
+          "contact_window_s": 0.2,
+          "base_recovery_s": 0.5,
+          "geometry": "low_hook",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "target limb or weapon in reach",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

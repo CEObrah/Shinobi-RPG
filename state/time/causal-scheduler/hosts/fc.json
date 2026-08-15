@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "fc",
+  "authority": true,
+  "hosts": {
+    "host.team.team.konoha.guy": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.konoha.guy",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-06-26T21:15:00",
+          "safe_through": "SE-0061-07-03T21:14:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.konoha.guy",
+          "next_due": "SE-0061-07-03T21:15:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/guy.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.f9ca942a40049d8b628f99c4",
+          "due_at": "SE-0061-07-03T21:15:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-03.json",
+          "dedupe_key": "team.periodic_review:team.konoha.guy"
+        }
+      ]
+    }
+  }
+}

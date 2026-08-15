@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.d70ea2fb3162d77bedc76fc6",
+  "subject_id": "canon_yugao",
+  "event_type": "reputation.signal.mission_success",
+  "occurred_at": "SE-0061-06-25T07:00:00",
+  "source_event_ref": "event.mission_result_report_received.e138ef277ddf06d0928d3ebd",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 84,
+      "base_weight": 60
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 76,
+      "base_weight": 42
+    },
+    "prestige": {
+      "score": 70,
+      "base_weight": 32
+    }
+  },
+  "visibility": {
+    "audience_id": "faction.konoha_anbu",
+    "source_classification": "restricted"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.mission_result_report_received.e138ef277ddf06d0928d3ebd"
+  ],
+  "deliveries": {
+    "faction.konoha_anbu": {
+      "profile_ref": "state/reputation/audiences/profile.e0b94f4a2d836eeebd8b71f1.json",
+      "source_event_ref": "event.mission_result_report_received.e138ef277ddf06d0928d3ebd"
+    }
+  },
+  "status": "applied"
+}

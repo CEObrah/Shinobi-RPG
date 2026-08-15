@@ -1,0 +1,44 @@
+{
+  "schema": "system-contract",
+  "system_id": "characters",
+  "authority": false,
+  "authority_paths": [
+    "state/char/",
+    "state/person/",
+    "state/person-core/"
+  ],
+  "owner_templates": [
+    "shinobi_character",
+    "person",
+    "person-core-registry",
+    "person-continuity-registry"
+  ],
+  "read_first": [
+    "exact person owner or one bounded person-core registry",
+    "for a rostered House core, its persistent individual profile from the same person-core registry; load House/cohort context only for organization, training assignment, or derived summaries",
+    "only causal health, relationship, knowledge, career, command, training or dedicated deadline references"
+  ],
+  "write_order": [
+    "validate causal evidence and elapsed time",
+    "write character-owned fields only",
+    "write health/relationship/knowledge/office/command changes to their dedicated owners",
+    "write general autonomous review timing only through the time_process authority; never add a second character scheduler cursor",
+    "rebuild only affected derived indexes"
+  ],
+  "invariants": [
+    "Never invent player intent.",
+    "Unknown is better than filler.",
+    "No skill/rank/behavior growth without causal evidence and time.",
+    "General autonomous scheduling is centralized in the temporal runtime; exact character owners do not persist runtime or schedule_profile mirrors.",
+    "Development, recovery, deployment, mission and other real domain clocks remain separate when their mechanics require them.",
+    "Do not back-project future canon achievements.",
+    "Every named person is a persistent identity. A rostered House core carries its own persistent individual-lite capability/development profile and may not be treated as anonymous headcount.",
+    "Changing a House training cohort, cohort summary, or roster position never rerolls or rewrites an established person profile.",
+    "Identity cues grant no capability, knowledge, relationship, authority, equipment or outcome.",
+    "Exactification adds only causally required components to the same conserved person and preserves the established identity, profile, provenance, and history."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

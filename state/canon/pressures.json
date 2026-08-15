@@ -1,0 +1,437 @@
+{
+  "schema": "canon-pressure-registry",
+  "owner_id": "world_world_pressures",
+  "owner_type": "canon_pressure_registry",
+  "authority": true,
+  "canon_rule": "canon is trajectory, not forced result",
+  "pressures": {
+    "pressure_konoha_academy_graduation": {
+      "id": "pressure_konoha_academy_graduation",
+      "title": "Konoha Academy graduation preparation",
+      "host_ref": "faction_konoha",
+      "status": "active",
+      "goal": null,
+      "stakes": [
+        "ordinary graduation",
+        "security incident",
+        "Mizuki plot divergence"
+      ],
+      "actors": [
+        "canon_choji",
+        "canon_hinata",
+        "canon_hiruzen",
+        "canon_ino",
+        "canon_kiba",
+        "canon_naruto",
+        "canon_sakura",
+        "canon_sasuke",
+        "canon_shikamaru",
+        "canon_shino"
+      ],
+      "resources": [],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": "academy_exact_graduation_recorded:event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0",
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_konoha_academy_graduation",
+        "settled_through": "SE-0061-06-25T09:00:00",
+        "due_at": "SE-0061-07-02T09:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [
+        "institution.konoha.academy"
+      ],
+      "evidence_refs": [
+        "event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0"
+      ],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": [
+        {
+          "entry_id": "front_history.konoha_academy_graduation.992869b886459152d43a",
+          "at": "SE-0061-03-01T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active",
+          "status_after": "active",
+          "source_refs": [
+            "event.academy_exact_graduation_recorded.f820dd347afedebae4b6d9e0",
+            "institution.konoha.academy"
+          ]
+        }
+      ]
+    },
+    "pressure_mizuki_forbidden_scroll": {
+      "id": "pressure_mizuki_forbidden_scroll",
+      "title": "Mizuki forbidden-scroll conspiracy",
+      "host_ref": "canon_mizuki",
+      "status": "latent_active",
+      "goal": null,
+      "stakes": [
+        "attempt proceeds",
+        "detected early",
+        "aborted",
+        "transformed"
+      ],
+      "actors": [],
+      "resources": [],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": null,
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
+        "settled_through": "SE-0061-06-24T18:00:00",
+        "due_at": "SE-0061-07-01T18:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [],
+      "evidence_refs": [],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": []
+    },
+    "pressure_wave_gato_bridge": {
+      "id": "pressure_wave_gato_bridge",
+      "title": "Gato monopoly and Wave bridge conflict",
+      "host_ref": "canon_gato",
+      "status": "active",
+      "goal": null,
+      "stakes": [
+        "bridge suppression",
+        "external shinobi contract",
+        "local resistance"
+      ],
+      "actors": [],
+      "resources": [],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": null,
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_wave_gato_bridge",
+        "settled_through": "SE-0061-06-23T07:00:00",
+        "due_at": "SE-0061-06-30T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [],
+      "evidence_refs": [],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": []
+    },
+    "pressure_oto_konoha_infiltration": {
+      "id": "pressure_oto_konoha_infiltration",
+      "title": "Oto infiltration preparation",
+      "host_ref": "canon_orochimaru",
+      "status": "active_hidden",
+      "goal": null,
+      "stakes": [
+        "continued preparation",
+        "counterintelligence detection",
+        "plan revision"
+      ],
+      "actors": [
+        "canon_orochimaru"
+      ],
+      "resources": [
+        "mission.autonomy.753f0e0b9cba4f1cd3"
+      ],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [
+        "faction.konoha_anbu",
+        "canon_hiruzen",
+        "canon_aoba",
+        "canon_hayate",
+        "canon_yugao"
+      ],
+      "current_step": "mission_generate:event.autonomous_mission_started.3672697ca1ec0a0c66da1170",
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_oto_konoha_infiltration",
+        "settled_through": "SE-0061-06-25T07:00:00",
+        "due_at": "SE-0061-07-02T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [
+        "faction.oto_research_cells",
+        "canon_orochimaru",
+        "canon_hiruzen"
+      ],
+      "evidence_refs": [
+        "event.formation_created.45ce61e684bc0ad7982a669c",
+        "event.formation_created.4c4dbdee481c0b09237f8fd3",
+        "event.autonomous_mission_started.3672697ca1ec0a0c66da1170"
+      ],
+      "visibility": {
+        "classification": "hidden",
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": [
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.0beeb2939667f39fc9fd",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.formation_created.4c4dbdee481c0b09237f8fd3",
+            "faction.konoha_anbu"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.493ae5e9c2b2f20ae9bc",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.formation_created.45ce61e684bc0ad7982a669c",
+            "faction.oto_research_cells"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.690c69e616912dfd717f",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_mission_started.3672697ca1ec0a0c66da1170",
+            "faction.konoha_anbu"
+          ]
+        }
+      ]
+    },
+    "pressure_suna_funding": {
+      "id": "pressure_suna_funding",
+      "title": "Suna mission-income and daimyo funding crisis",
+      "host_ref": "faction_suna",
+      "status": "active",
+      "goal": null,
+      "stakes": [
+        "austerity",
+        "external alliance",
+        "mission competition"
+      ],
+      "actors": [],
+      "resources": [],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": null,
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_suna_funding",
+        "settled_through": "SE-0061-06-21T07:00:00",
+        "due_at": "SE-0061-06-28T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [],
+      "evidence_refs": [],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": []
+    },
+    "pressure_kiri_transition": {
+      "id": "pressure_kiri_transition",
+      "title": "Kiri internal reform and violent institutional remnants",
+      "host_ref": "faction_kiri",
+      "status": "active",
+      "goal": null,
+      "stakes": [
+        "reform gains",
+        "purge backlash",
+        "regional autonomy"
+      ],
+      "actors": [],
+      "resources": [],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": null,
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_kiri_transition",
+        "settled_through": "SE-0061-06-21T07:00:00",
+        "due_at": "SE-0061-06-28T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [],
+      "evidence_refs": [],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": []
+    },
+    "pressure_akatsuki_intelligence": {
+      "id": "pressure_akatsuki_intelligence",
+      "title": "Akatsuki long-horizon intelligence collection",
+      "host_ref": "canon_nagato",
+      "status": "active_hidden",
+      "goal": null,
+      "stakes": [
+        "new intelligence",
+        "recruitment",
+        "target reprioritization"
+      ],
+      "actors": [
+        "canon_itachi",
+        "canon_kisame"
+      ],
+      "resources": [
+        "mission.autonomy.900760abfcade5de96"
+      ],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": "mission_generate:event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5",
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_akatsuki_intelligence",
+        "settled_through": "SE-0061-06-21T07:00:00",
+        "due_at": "SE-0061-06-28T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [
+        "faction.akatsuki",
+        "canon_nagato"
+      ],
+      "evidence_refs": [
+        "event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5"
+      ],
+      "visibility": {
+        "classification": "hidden",
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": [
+        {
+          "entry_id": "front_history.akatsuki_intelligence.b6e8b8cbb33364b83254",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5",
+            "faction.akatsuki"
+          ]
+        }
+      ]
+    },
+    "pressure_great_village_mission_market": {
+      "id": "pressure_great_village_mission_market",
+      "title": "Great-village competition for missions and influence",
+      "host_ref": "world_mission_market",
+      "status": "active",
+      "goal": null,
+      "stakes": [
+        "contract shifts",
+        "diplomatic pressure",
+        "border incidents"
+      ],
+      "actors": [
+        "canon_guy",
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "resources": [
+        "mission.autonomy.da43aace7877f901af"
+      ],
+      "constraints": {
+        "canon_forcing": false,
+        "refs": []
+      },
+      "opposition": [],
+      "current_step": "mission_generate:event.autonomous_mission_started.2599d55df82cba9592189b21",
+      "next_boundary": {
+        "host_ref": "host.canon_pressure.pressure_great_village_mission_market",
+        "settled_through": "SE-0061-06-21T07:00:00",
+        "due_at": "SE-0061-06-28T07:00:00"
+      },
+      "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
+      "source_refs": [
+        "faction.konoha_mission_office",
+        "support.mission.haruto_seki"
+      ],
+      "evidence_refs": [
+        "event.autonomous_mission_started.2599d55df82cba9592189b21"
+      ],
+      "visibility": {
+        "classification": null,
+        "basis_refs": []
+      },
+      "knowledge": {
+        "player_refs": [],
+        "npc_refs": []
+      },
+      "chronology": [
+        {
+          "entry_id": "front_history.great_village_mission_market.ab6e8c6b3cd1faf3b2d7",
+          "at": "SE-0061-06-18T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active",
+          "status_after": "active",
+          "source_refs": [
+            "event.autonomous_mission_started.2599d55df82cba9592189b21",
+            "faction.konoha_mission_office"
+          ]
+        }
+      ]
+    }
+  },
+  "historical_source_reconciliation": {
+    "version": 1,
+    "archive_ref_count": 6,
+    "archived_event_count": 656,
+    "hot_event_count": 11
+  }
+}

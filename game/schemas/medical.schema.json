@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "formulas",
+    "transplant_required_inputs",
+    "rule",
+    "preservation",
+    "ocular_transfer_policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "medical-mechanics"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "transplant_required_inputs": {
+      "type": "array"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "preservation": {
+      "type": "object"
+    },
+    "ocular_transfer_policy": {
+      "type": "object"
+    }
+  }
+}

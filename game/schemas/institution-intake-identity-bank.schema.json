@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sword Manor intake identity bank",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "people"
+  ],
+  "properties": {
+    "schema": {
+      "const": "institution-intake-identity-bank"
+    },
+    "authority": {
+      "type": "boolean"
+    },
+    "people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "pronouns",
+          "age_years",
+          "identity_cues"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pronouns": {
+            "type": "string",
+            "minLength": 1
+          },
+          "age_years": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "identity_cues": {
+            "type": "object",
+            "required": [
+              "appearance",
+              "temperament",
+              "doctrine_expression"
+            ],
+            "properties": {
+              "appearance": {
+                "type": "string"
+              },
+              "temperament": {
+                "type": "string"
+              },
+              "doctrine_expression": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

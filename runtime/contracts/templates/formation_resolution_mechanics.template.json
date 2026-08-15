@@ -1,0 +1,628 @@
+{
+  "schema": "file-template",
+  "template_id": "template.formation_resolution_mechanics",
+  "target_schema": "formation_resolution_mechanics",
+  "source_schema": "game/schemas/formation-resolution-mechanics.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "anti_overcompression",
+    "authority",
+    "casualty_settlement",
+    "determinism",
+    "game_scope",
+    "kernel_authority",
+    "principle",
+    "resolution_depths",
+    "schema",
+    "support",
+    "vectorization"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "anti_overcompression",
+        "authority",
+        "casualty_settlement",
+        "determinism",
+        "game_scope",
+        "kernel_authority",
+        "principle",
+        "resolution_depths",
+        "schema",
+        "support",
+        "vectorization",
+        "capability_vocabulary",
+        "range_bands",
+        "method_range_suitability_milli",
+        "role_method_preferences",
+        "frontage_weight_milli",
+        "development_model",
+        "elite_overlay_rule",
+        "consumable_rule",
+        "aggregate_consumables",
+        "equipment_projection",
+        "command_projection",
+        "doctrine_projection",
+        "terrain_profiles_by_place_kind"
+      ],
+      "canonical_order": [
+        "schema",
+        "principle",
+        "resolution_depths",
+        "kernel_authority",
+        "vectorization",
+        "determinism",
+        "anti_overcompression",
+        "casualty_settlement",
+        "support",
+        "authority",
+        "game_scope",
+        "capability_vocabulary",
+        "range_bands",
+        "method_range_suitability_milli",
+        "role_method_preferences",
+        "frontage_weight_milli",
+        "development_model",
+        "elite_overlay_rule",
+        "consumable_rule",
+        "aggregate_consumables",
+        "equipment_projection",
+        "command_projection",
+        "doctrine_projection",
+        "terrain_profiles_by_place_kind"
+      ]
+    },
+    "/resolution_depths": {
+      "mode": "closed",
+      "allowed_keys": [
+        "exact_person",
+        "full_formation_capability",
+        "mass_battle_kernel",
+        "organization_only"
+      ],
+      "canonical_order": [
+        "organization_only",
+        "mass_battle_kernel",
+        "full_formation_capability",
+        "exact_person"
+      ]
+    },
+    "/capability_vocabulary": {
+      "mode": "closed",
+      "allowed_keys": [
+        "fundamentals",
+        "methods",
+        "separate_state",
+        "rule"
+      ],
+      "canonical_order": [
+        "fundamentals",
+        "methods",
+        "separate_state",
+        "rule"
+      ]
+    },
+    "/range_bands": {
+      "mode": "open_map"
+    },
+    "/range_bands/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "name",
+        "approx_m"
+      ],
+      "canonical_order": [
+        "name",
+        "approx_m"
+      ]
+    },
+    "/method_range_suitability_milli": {
+      "mode": "open_map"
+    },
+    "/role_method_preferences": {
+      "mode": "open_map"
+    },
+    "/frontage_weight_milli": {
+      "mode": "open_map"
+    },
+    "/development_model": {
+      "mode": "closed",
+      "allowed_keys": [
+        "evidence_first",
+        "combat_event",
+        "consolidation",
+        "replacement_dilution",
+        "split_merge",
+        "release"
+      ],
+      "canonical_order": [
+        "evidence_first",
+        "combat_event",
+        "consolidation",
+        "replacement_dilution",
+        "split_merge",
+        "release"
+      ]
+    },
+    "/equipment_projection": {
+      "mode": "closed",
+      "allowed_keys": [
+        "equipment_dependent_methods",
+        "readiness_rule",
+        "battle_loss_decay_divisor",
+        "minimum_readiness_milli"
+      ],
+      "canonical_order": [
+        "equipment_dependent_methods",
+        "readiness_rule",
+        "battle_loss_decay_divisor",
+        "minimum_readiness_milli"
+      ]
+    },
+    "/command_projection": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rule",
+        "baseline_milli",
+        "score_multiplier_milli",
+        "max_channel_milli"
+      ],
+      "canonical_order": [
+        "rule",
+        "baseline_milli",
+        "score_multiplier_milli",
+        "max_channel_milli"
+      ]
+    },
+    "/doctrine_projection": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rule",
+        "familiarity_baseline_milli",
+        "familiarity_per_point_milli",
+        "minimum_milli",
+        "maximum_milli",
+        "institution_profiles"
+      ],
+      "canonical_order": [
+        "rule",
+        "familiarity_baseline_milli",
+        "familiarity_per_point_milli",
+        "minimum_milli",
+        "maximum_milli",
+        "institution_profiles"
+      ]
+    },
+    "/doctrine_projection/institution_profiles": {
+      "mode": "open_map"
+    },
+    "/doctrine_projection/institution_profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "preferred_actions",
+        "preferred_place_kinds",
+        "fit_bonus_milli",
+        "mismatch_penalty_milli"
+      ],
+      "canonical_order": [
+        "preferred_actions",
+        "preferred_place_kinds",
+        "fit_bonus_milli",
+        "mismatch_penalty_milli"
+      ]
+    },
+    "/terrain_profiles_by_place_kind": {
+      "mode": "open_map"
+    },
+    "/terrain_profiles_by_place_kind/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "cover_milli",
+        "mobility_milli",
+        "visibility_milli",
+        "hazard_milli"
+      ],
+      "canonical_order": [
+        "cover_milli",
+        "mobility_milli",
+        "visibility_milli",
+        "hazard_milli"
+      ]
+    },
+    "/aggregate_consumables": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rule",
+        "action_usage_milli",
+        "method_usage_per_person_per_exchange_milli",
+        "shortage_rule",
+        "sustainment"
+      ],
+      "canonical_order": [
+        "rule",
+        "action_usage_milli",
+        "method_usage_per_person_per_exchange_milli",
+        "shortage_rule",
+        "sustainment"
+      ]
+    },
+    "/aggregate_consumables/action_usage_milli": {
+      "mode": "open_map"
+    },
+    "/aggregate_consumables/method_usage_per_person_per_exchange_milli": {
+      "mode": "open_map"
+    },
+    "/aggregate_consumables/method_usage_per_person_per_exchange_milli/*": {
+      "mode": "open_map"
+    },
+    "/aggregate_consumables/sustainment": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rations_person_days_per_battle_day_milli",
+        "water_liters_per_person_day_milli",
+        "exchange_seconds",
+        "coverage_bands_milli",
+        "rule"
+      ],
+      "canonical_order": [
+        "rations_person_days_per_battle_day_milli",
+        "water_liters_per_person_day_milli",
+        "exchange_seconds",
+        "coverage_bands_milli",
+        "rule"
+      ]
+    },
+    "/aggregate_consumables/sustainment/coverage_bands_milli": {
+      "mode": "closed",
+      "allowed_keys": [
+        "supported",
+        "strained",
+        "critical",
+        "cut_off"
+      ],
+      "canonical_order": [
+        "supported",
+        "strained",
+        "critical",
+        "cut_off"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/anti_overcompression": [
+      "string"
+    ],
+    "/authority": [
+      "string"
+    ],
+    "/casualty_settlement": [
+      "string"
+    ],
+    "/determinism": [
+      "string"
+    ],
+    "/game_scope": [
+      "string"
+    ],
+    "/kernel_authority": [
+      "string"
+    ],
+    "/principle": [
+      "string"
+    ],
+    "/resolution_depths": [
+      "object"
+    ],
+    "/resolution_depths/exact_person": [
+      "string"
+    ],
+    "/resolution_depths/full_formation_capability": [
+      "string"
+    ],
+    "/resolution_depths/mass_battle_kernel": [
+      "string"
+    ],
+    "/resolution_depths/organization_only": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/support": [
+      "string"
+    ],
+    "/vectorization": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/capability_vocabulary": [
+      "object"
+    ],
+    "/capability_vocabulary/fundamentals": [
+      "array"
+    ],
+    "/capability_vocabulary/fundamentals/*": [
+      "string"
+    ],
+    "/capability_vocabulary/methods": [
+      "array"
+    ],
+    "/capability_vocabulary/methods/*": [
+      "string"
+    ],
+    "/capability_vocabulary/separate_state": [
+      "array"
+    ],
+    "/capability_vocabulary/separate_state/*": [
+      "string"
+    ],
+    "/capability_vocabulary/rule": [
+      "string"
+    ],
+    "/range_bands": [
+      "object"
+    ],
+    "/range_bands/*": [
+      "object"
+    ],
+    "/range_bands/*/name": [
+      "string"
+    ],
+    "/range_bands/*/approx_m": [
+      "string"
+    ],
+    "/method_range_suitability_milli": [
+      "object"
+    ],
+    "/method_range_suitability_milli/*": [
+      "array"
+    ],
+    "/method_range_suitability_milli/*/*": [
+      "integer"
+    ],
+    "/role_method_preferences": [
+      "object"
+    ],
+    "/role_method_preferences/*": [
+      "array"
+    ],
+    "/role_method_preferences/*/*": [
+      "string"
+    ],
+    "/frontage_weight_milli": [
+      "object"
+    ],
+    "/frontage_weight_milli/*": [
+      "integer"
+    ],
+    "/development_model": [
+      "object"
+    ],
+    "/development_model/evidence_first": [
+      "boolean"
+    ],
+    "/development_model/combat_event": [
+      "string"
+    ],
+    "/development_model/consolidation": [
+      "string"
+    ],
+    "/development_model/replacement_dilution": [
+      "string"
+    ],
+    "/development_model/split_merge": [
+      "string"
+    ],
+    "/development_model/release": [
+      "string"
+    ],
+    "/elite_overlay_rule": [
+      "string"
+    ],
+    "/consumable_rule": [
+      "string"
+    ],
+    "/equipment_projection": [
+      "object"
+    ],
+    "/equipment_projection/equipment_dependent_methods": [
+      "array"
+    ],
+    "/equipment_projection/equipment_dependent_methods/*": [
+      "string"
+    ],
+    "/equipment_projection/readiness_rule": [
+      "string"
+    ],
+    "/equipment_projection/battle_loss_decay_divisor": [
+      "integer"
+    ],
+    "/equipment_projection/minimum_readiness_milli": [
+      "integer"
+    ],
+    "/command_projection": [
+      "object"
+    ],
+    "/command_projection/rule": [
+      "string"
+    ],
+    "/command_projection/baseline_milli": [
+      "integer"
+    ],
+    "/command_projection/score_multiplier_milli": [
+      "integer"
+    ],
+    "/command_projection/max_channel_milli": [
+      "integer"
+    ],
+    "/doctrine_projection": [
+      "object"
+    ],
+    "/doctrine_projection/rule": [
+      "string"
+    ],
+    "/doctrine_projection/familiarity_baseline_milli": [
+      "integer"
+    ],
+    "/doctrine_projection/familiarity_per_point_milli": [
+      "integer"
+    ],
+    "/doctrine_projection/minimum_milli": [
+      "integer"
+    ],
+    "/doctrine_projection/maximum_milli": [
+      "integer"
+    ],
+    "/doctrine_projection/institution_profiles": [
+      "object"
+    ],
+    "/doctrine_projection/institution_profiles/*": [
+      "object"
+    ],
+    "/doctrine_projection/institution_profiles/*/preferred_actions": [
+      "array"
+    ],
+    "/doctrine_projection/institution_profiles/*/preferred_actions/*": [
+      "string"
+    ],
+    "/doctrine_projection/institution_profiles/*/preferred_place_kinds": [
+      "array"
+    ],
+    "/doctrine_projection/institution_profiles/*/preferred_place_kinds/*": [
+      "string"
+    ],
+    "/doctrine_projection/institution_profiles/*/fit_bonus_milli": [
+      "integer"
+    ],
+    "/doctrine_projection/institution_profiles/*/mismatch_penalty_milli": [
+      "integer"
+    ],
+    "/terrain_profiles_by_place_kind": [
+      "object"
+    ],
+    "/terrain_profiles_by_place_kind/*": [
+      "object"
+    ],
+    "/terrain_profiles_by_place_kind/*/cover_milli": [
+      "integer"
+    ],
+    "/terrain_profiles_by_place_kind/*/mobility_milli": [
+      "integer"
+    ],
+    "/terrain_profiles_by_place_kind/*/visibility_milli": [
+      "integer"
+    ],
+    "/terrain_profiles_by_place_kind/*/hazard_milli": [
+      "integer"
+    ],
+    "/aggregate_consumables": [
+      "object"
+    ],
+    "/aggregate_consumables/rule": [
+      "string"
+    ],
+    "/aggregate_consumables/action_usage_milli": [
+      "object"
+    ],
+    "/aggregate_consumables/action_usage_milli/*": [
+      "integer"
+    ],
+    "/aggregate_consumables/method_usage_per_person_per_exchange_milli": [
+      "object"
+    ],
+    "/aggregate_consumables/method_usage_per_person_per_exchange_milli/*": [
+      "object"
+    ],
+    "/aggregate_consumables/method_usage_per_person_per_exchange_milli/*/*": [
+      "integer"
+    ],
+    "/aggregate_consumables/shortage_rule": [
+      "string"
+    ],
+    "/aggregate_consumables/sustainment": [
+      "object"
+    ],
+    "/aggregate_consumables/sustainment/rations_person_days_per_battle_day_milli": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/water_liters_per_person_day_milli": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/exchange_seconds": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/coverage_bands_milli": [
+      "object"
+    ],
+    "/aggregate_consumables/sustainment/coverage_bands_milli/supported": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/coverage_bands_milli/strained": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/coverage_bands_milli/critical": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/coverage_bands_milli/cut_off": [
+      "integer"
+    ],
+    "/aggregate_consumables/sustainment/rule": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/capability_vocabulary/fundamentals": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/capability_vocabulary/methods": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/capability_vocabulary/separate_state": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/method_range_suitability_milli/*": {
+      "item_types": [
+        "integer"
+      ]
+    },
+    "/role_method_preferences/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/equipment_projection/equipment_dependent_methods": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/doctrine_projection/institution_profiles/*/preferred_actions": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/doctrine_projection/institution_profiles/*/preferred_place_kinds": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

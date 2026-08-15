@@ -1,0 +1,33 @@
+{
+  "schema": "owner_index",
+  "id": "index.owners",
+  "revision": 0,
+  "authority": false,
+  "owner_count": 341,
+  "prefix_rule": "Prefix is the substring before the first dot or underscore in owner_id.",
+  "prefix_index": {
+    "canon": "state/index/owners/canon.json",
+    "char": "state/index/owners/char.json",
+    "charter": "state/index/owners/charter.json",
+    "covenant": "state/index/owners/covenant.json",
+    "faction": "state/index/owners/faction.json",
+    "force": "state/index/owners/force.json",
+    "house": "state/index/owners/house.json",
+    "ht": "state/index/owners/ht.json",
+    "institution": "state/index/owners/institution.json",
+    "missions": "state/index/owners/missions.json",
+    "named": "state/index/owners/named.json",
+    "org": "state/index/owners/org.json",
+    "pc": "state/index/owners/pc.json",
+    "person": "state/index/owners/person.json",
+    "place": "state/index/owners/place.json",
+    "registry": "state/index/owners/registry.json",
+    "reputation": "state/index/owners/reputation.json",
+    "roster": "state/index/owners/roster.json",
+    "stock": "state/index/owners/stock.json",
+    "support": "state/index/owners/support.json",
+    "team": "state/index/owners/team.json",
+    "world": "state/index/owners/world.json"
+  },
+  "retrieval_rule": "Known owner_id -> derive prefix -> load only the mapped prefix shard. Enumerate all shards only for maintenance/audit."
+}

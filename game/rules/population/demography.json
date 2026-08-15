@@ -1,0 +1,19 @@
+{
+  "schema": "population-demography-policy",
+  "policy_id": "demography.great_villages.baseline",
+  "authority": "Simulation policy for aggregate civilian continuity. It is not a canon census claim.",
+  "cadence": "calendar_year_start",
+  "applies_to_categories": [
+    "civilian_general",
+    "settlement_resident"
+  ],
+  "annual_births_per_1000": 12,
+  "annual_deaths_per_1000": 8,
+  "birth_dimension_categories": {
+    "age_band": "child",
+    "chakra_potential": "unassessed",
+    "health": "fit"
+  },
+  "method": "deterministic_integer_rate_with_neutral_proportional_deaths",
+  "notes": "Births enter the civilian pool as children with unassessed chakra potential and fit baseline health. Deaths are selected proportionally from aggregate dimensions. Explicit material deaths remain separate causal events and are not double-counted here."
+}

@@ -1,0 +1,197 @@
+{
+  "schema": "file-template",
+  "template_id": "template.investigation-registry",
+  "target_schema": "investigation-registry",
+  "source_schema": "game/schemas/investigation-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "cases"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "cases"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "cases"
+      ]
+    },
+    "/cases": {
+      "mode": "open_map"
+    },
+    "/cases/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "case_ref",
+        "mission_ref",
+        "objective_id",
+        "profile_ref",
+        "place_ref",
+        "truth_key",
+        "status",
+        "created_at",
+        "updated_at",
+        "located_at",
+        "examined_at",
+        "locate_work_units",
+        "role_work_units",
+        "investigator_refs",
+        "assignments",
+        "revealed_observations"
+      ]
+    },
+    "/cases/*/role_work_units": {
+      "mode": "open_map"
+    },
+    "/cases/*/assignments": {
+      "mode": "open_map"
+    },
+    "/cases/*/revealed_observations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observation_ref",
+        "stage",
+        "role",
+        "text",
+        "epistemic_kind",
+        "confidence_milli",
+        "claim_ref",
+        "revealed_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/cases": [
+      "object"
+    ],
+    "/cases/*": [
+      "object"
+    ],
+    "/cases/*/case_ref": [
+      "string"
+    ],
+    "/cases/*/mission_ref": [
+      "string"
+    ],
+    "/cases/*/objective_id": [
+      "string"
+    ],
+    "/cases/*/profile_ref": [
+      "string"
+    ],
+    "/cases/*/place_ref": [
+      "string"
+    ],
+    "/cases/*/truth_key": [
+      "string"
+    ],
+    "/cases/*/status": [
+      "string"
+    ],
+    "/cases/*/created_at": [
+      "string"
+    ],
+    "/cases/*/updated_at": [
+      "string"
+    ],
+    "/cases/*/located_at": [
+      "string"
+    ],
+    "/cases/*/examined_at": [
+      "string"
+    ],
+    "/cases/*/locate_work_units": [
+      "integer"
+    ],
+    "/cases/*/role_work_units": [
+      "object"
+    ],
+    "/cases/*/role_work_units/*": [
+      "integer"
+    ],
+    "/cases/*/investigator_refs": [
+      "array"
+    ],
+    "/cases/*/assignments": [
+      "object"
+    ],
+    "/cases/*/assignments/*": [
+      "string"
+    ],
+    "/cases/*/revealed_observations": [
+      "array"
+    ],
+    "/cases/*/revealed_observations/*": [
+      "object"
+    ],
+    "/cases/*/revealed_observations/*/observation_ref": [
+      "string"
+    ],
+    "/cases/*/revealed_observations/*/stage": [
+      "string",
+      "null"
+    ],
+    "/cases/*/revealed_observations/*/role": [
+      "string",
+      "null"
+    ],
+    "/cases/*/revealed_observations/*/text": [
+      "string"
+    ],
+    "/cases/*/revealed_observations/*/epistemic_kind": [
+      "string"
+    ],
+    "/cases/*/revealed_observations/*/confidence_milli": [
+      "integer"
+    ],
+    "/cases/*/revealed_observations/*/claim_ref": [
+      "string"
+    ],
+    "/cases/*/revealed_observations/*/revealed_at": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/cases/*/investigator_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/cases/*/revealed_observations": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Hidden truth_key is runtime-owned and must never be accepted from a gameplay command.",
+    "Only mechanics-derived observations may enter revealed_observations.",
+    "Investigation work accumulates through time-spanning semantic commands; narration never creates evidence."
+  ]
+}

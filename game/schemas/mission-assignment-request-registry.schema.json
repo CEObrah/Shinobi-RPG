@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mission assignment request registry",
+  "type": "object",
+  "required": ["schema", "owner_id", "owner_type", "requests"],
+  "properties": {
+    "schema": {"const": "mission-assignment-request-registry"},
+    "owner_id": {"const": "registry.mission_assignment_requests"},
+    "owner_type": {"const": "mission_assignment_request_registry"},
+    "requests": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "request_ref",
+          "team_ref",
+          "requester_ref",
+          "assignment_authority_ref",
+          "assignment_office_ref",
+          "acceptable_ranks",
+          "mission_focus",
+          "status",
+          "submitted_at"
+        ],
+        "properties": {
+          "request_ref": {"type": "string", "pattern": "^mission_assignment_request\\.[0-9a-f]{24}$"},
+          "team_ref": {"type": "string", "pattern": "^team\\."},
+          "requester_ref": {"type": "string", "minLength": 1},
+          "assignment_authority_ref": {"type": "string", "minLength": 1},
+          "assignment_office_ref": {"const": "institution.konoha.mission_assignment"},
+          "acceptable_ranks": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "uniqueItems": true,
+            "items": {"enum": ["D", "C", "B", "A", "S"]}
+          },
+          "mission_focus": {"enum": ["general", "combat"]},
+          "submission_mode": {"enum": ["assignment_desk", "registered_message"]},
+          "submitted_from_place_ref": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pending", "fulfilled"]},
+          "submitted_at": {"type": "string", "minLength": 1},
+          "fulfilled_at": {"type": "string", "minLength": 1},
+          "offer_ref": {"type": "string", "pattern": "^mission\\."}
+        },
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {"properties": {"status": {"const": "fulfilled"}}},
+            "then": {"required": ["fulfilled_at", "offer_ref"]}
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

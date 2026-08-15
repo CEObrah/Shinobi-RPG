@@ -1,0 +1,541 @@
+{
+  "schema": "autonomy-policies",
+  "authority": "Game-data policy for bounded autonomous owner reviews. Runtime code is faction-name agnostic; assignments declare the only owners a review may touch.",
+  "profiles": {
+    "autonomy.security": {
+      "reason": "Maintain security, readiness, intelligence, and lawful response capacity.",
+      "classification": "restricted",
+      "action_cycle": [
+        "formation_drill",
+        "information_report",
+        "mission_generate",
+        "formation_expand"
+      ],
+      "mission_objective_cycle": [
+        "observe",
+        "protect",
+        "investigate",
+        "capture"
+      ],
+      "mission_difficulty": 58
+    },
+    "autonomy.intelligence": {
+      "reason": "Refresh intelligence, protect sources, and generate bounded collection tasks.",
+      "classification": "secret",
+      "action_cycle": [
+        "information_report",
+        "mission_generate",
+        "institution_priority_review",
+        "routine_summary"
+      ],
+      "mission_objective_cycle": [
+        "observe",
+        "investigate",
+        "identify",
+        "conceal"
+      ],
+      "mission_difficulty": 64
+    },
+    "autonomy.technical": {
+      "reason": "Maintain specialist readiness, facilities, and deployable technical capability.",
+      "classification": "restricted",
+      "action_cycle": [
+        "formation_drill",
+        "institution_priority_review",
+        "formation_expand",
+        "information_report"
+      ],
+      "mission_objective_cycle": [
+        "investigate",
+        "protect",
+        "recover",
+        "secure"
+      ],
+      "mission_difficulty": 60
+    },
+    "autonomy.medical": {
+      "reason": "Maintain medical capacity, staff readiness, casualty response, and supply continuity.",
+      "classification": "restricted",
+      "action_cycle": [
+        "institution_priority_review",
+        "information_report",
+        "routine_summary",
+        "institution_priority_review"
+      ],
+      "mission_objective_cycle": [
+        "protect",
+        "deliver",
+        "recover",
+        "rescue"
+      ],
+      "mission_difficulty": 56
+    },
+    "autonomy.civil": {
+      "reason": "Maintain civil administration, lawful movement, contracts, and institutional continuity.",
+      "classification": "restricted",
+      "action_cycle": [
+        "institution_priority_review",
+        "information_report",
+        "routine_summary",
+        "mission_generate"
+      ],
+      "mission_objective_cycle": [
+        "deliver",
+        "escort",
+        "protect",
+        "investigate"
+      ],
+      "mission_difficulty": 54
+    },
+    "autonomy.irregular": {
+      "reason": "Advance compartmented irregular objectives while preserving operational security.",
+      "classification": "secret",
+      "action_cycle": [
+        "mission_generate",
+        "information_report",
+        "formation_expand",
+        "institution_priority_review"
+      ],
+      "mission_objective_cycle": [
+        "observe",
+        "conceal",
+        "sabotage",
+        "capture"
+      ],
+      "mission_difficulty": 68
+    },
+    "autonomy.clan": {
+      "reason": "Maintain household security, training, political continuity, and specialist capability.",
+      "classification": "restricted",
+      "action_cycle": [
+        "institution_priority_review",
+        "information_report",
+        "routine_summary",
+        "mission_generate"
+      ],
+      "mission_objective_cycle": [
+        "protect",
+        "investigate",
+        "escort",
+        "secure"
+      ],
+      "mission_difficulty": 56
+    }
+  },
+  "faction_assignments": {
+    "faction.akatsuki": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [
+        "team.akatsuki.itachi_kisame"
+      ],
+      "mission_participant_refs": [
+        "canon_nagato",
+        "canon_konan",
+        "canon_itachi",
+        "canon_kisame"
+      ]
+    },
+    "faction.ame_security_network": {
+      "profile_ref": "autonomy.security",
+      "force_ref": "force.ame.shinobi",
+      "formation_registry_ref": "state/formation/force-ame-shinobi.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_nagato",
+        "canon_konan"
+      ],
+      "formation_size": 250,
+      "allow_formation_expand": true
+    },
+    "faction.bounty_broker_network": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.bounty.goro_kaneda"
+      ]
+    },
+    "faction.fire_border_authority": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.border.kazuo_murata"
+      ]
+    },
+    "faction.fire_daimyo_liaison": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.daimyo.noboru_shimizu"
+      ]
+    },
+    "faction.fire_merchant_network": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.merchant.fumiko_takahara"
+      ]
+    },
+    "faction.fire_smuggling_network": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.smuggling.reina_kurosawa"
+      ]
+    },
+    "faction.gato_company": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_gato"
+      ]
+    },
+    "faction.hyuga_clan": {
+      "profile_ref": "autonomy.clan",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_hiashi",
+        "canon_neji",
+        "canon_hinata",
+        "canon_hanabi",
+        "char.riku_hyuga"
+      ]
+    },
+    "faction.iwa_engineering_command": {
+      "profile_ref": "autonomy.technical",
+      "force_ref": "force.iwa.shinobi",
+      "formation_registry_ref": "state/formation/force-iwa-shinobi.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_kitsuchi",
+        "canon_akatsuchi"
+      ],
+      "formation_size": 750,
+      "allow_formation_expand": false
+    },
+    "faction.kiri_hunter_office": {
+      "profile_ref": "autonomy.security",
+      "force_ref": "force.kiri.shinobi",
+      "formation_registry_ref": "state/formation/force-kiri-shinobi.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "formation_size": 500,
+      "allow_formation_expand": false
+    },
+    "faction.konoha_anbu": {
+      "profile_ref": "autonomy.security",
+      "force_ref": "force.konoha.shinobi",
+      "formation_registry_ref": "state/formation/force-konoha-shinobi.json",
+      "team_refs": [],
+      "team_creation": {
+        "team_id": "team.konoha.anbu.ro",
+        "name": "ANBU Ro Cell",
+        "team_type": "anbu_cell",
+        "candidate_refs": [
+          "canon_yugao",
+          "canon_aoba",
+          "canon_hayate"
+        ],
+        "leader_ref": "canon_yugao",
+        "parent_institution_ref": "institution.konoha.hokage_administration",
+        "assignment_authority_ref": "canon_hiruzen",
+        "classification": "secret"
+      },
+      "mission_participant_refs": [
+        "canon_yugao",
+        "canon_aoba",
+        "canon_hayate"
+      ],
+      "formation_size": 500,
+      "allow_formation_expand": false
+    },
+    "faction.konoha_hospital": {
+      "profile_ref": "autonomy.medical",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "support.hospital.akemi_hoshino",
+        "canon_shizune"
+      ]
+    },
+    "faction.konoha_mission_office": {
+      "profile_ref": "autonomy.civil",
+      "team_refs": [
+        "team.konoha.fujin",
+        "team.konoha.guy"
+      ],
+      "mission_participant_refs": [
+        "support.mission.haruto_seki",
+        "support.mission.natsumi_okada"
+      ]
+    },
+    "faction.kumo_military_intelligence": {
+      "profile_ref": "autonomy.intelligence",
+      "force_ref": "force.kumo.shinobi",
+      "formation_registry_ref": "state/formation/force-kumo-shinobi.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_c",
+        "canon_darui",
+        "canon_mabui"
+      ],
+      "formation_size": 750,
+      "allow_formation_expand": false
+    },
+    "faction.mizuki_conspiracy": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_mizuki"
+      ]
+    },
+    "faction.oto_research_cells": {
+      "profile_ref": "autonomy.irregular",
+      "force_ref": "force.oto.network",
+      "formation_registry_ref": "state/formation/force-oto-network.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_orochimaru",
+        "canon_kabuto"
+      ],
+      "formation_size": 250,
+      "allow_formation_expand": true
+    },
+    "faction.root": {
+      "profile_ref": "autonomy.irregular",
+      "force_ref": "force.konoha.shinobi",
+      "formation_registry_ref": "state/formation/force-konoha-shinobi.json",
+      "team_refs": [],
+      "team_creation": {
+        "team_id": "team.konoha.root.field_cell",
+        "name": "Root Field Cell",
+        "team_type": "anbu_cell",
+        "candidate_refs": [
+          "canon_fu_yamanaka",
+          "canon_torune_aburame",
+          "canon_sai"
+        ],
+        "leader_ref": "canon_fu_yamanaka",
+        "parent_institution_ref": "faction.root",
+        "assignment_authority_ref": "canon_danzo",
+        "classification": "secret"
+      },
+      "mission_participant_refs": [
+        "canon_fu_yamanaka",
+        "canon_torune_aburame",
+        "canon_sai"
+      ],
+      "formation_size": 250,
+      "allow_formation_expand": false
+    },
+    "faction.suna_puppet_corps": {
+      "profile_ref": "autonomy.technical",
+      "force_ref": "force.suna.shinobi",
+      "formation_registry_ref": "state/formation/force-suna-shinobi.json",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_chiyo",
+        "canon_kankuro",
+        "canon_maki"
+      ],
+      "formation_size": 500,
+      "allow_formation_expand": false
+    },
+    "faction.yamanaka_intelligence": {
+      "profile_ref": "autonomy.intelligence",
+      "team_refs": [],
+      "mission_participant_refs": [
+        "canon_inoichi",
+        "canon_ino",
+        "canon_fu_yamanaka"
+      ]
+    },
+    "faction.zabuza_mercenary_cell": {
+      "profile_ref": "autonomy.irregular",
+      "team_refs": [
+        "team.zabuza_haku"
+      ],
+      "mission_participant_refs": [
+        "canon_zabuza",
+        "canon_haku"
+      ]
+    }
+  },
+  "team_profiles": {
+    "default": {
+      "training_focus": [
+        "coordination",
+        "mission fundamentals",
+        "recovery discipline"
+      ],
+      "doctrine_identity": "adaptive exact-team doctrine",
+      "motto": "Observe. Coordinate. Complete the mission. Return together."
+    },
+    "standard_mission_team": {
+      "training_focus": [
+        "team coordination",
+        "reconnaissance",
+        "objective control",
+        "extraction"
+      ],
+      "doctrine_identity": "balanced mission-team doctrine",
+      "motto": "See together. Move together. Finish together."
+    },
+    "special_mission_cell": {
+      "training_focus": [
+        "pursuit",
+        "containment",
+        "capture",
+        "secrecy",
+        "extraction"
+      ],
+      "doctrine_identity": "special operations containment doctrine",
+      "motto": "Find. Fix. Shape. Close. Finish. Extract."
+    },
+    "anbu_cell": {
+      "training_focus": [
+        "covert movement",
+        "counter-surveillance",
+        "capture",
+        "classified reporting",
+        "extraction"
+      ],
+      "doctrine_identity": "covert cell doctrine",
+      "motto": "Observe without exposure. Act without waste. Return with the truth."
+    },
+    "temporary_task_force": {
+      "training_focus": [
+        "rapid integration",
+        "command signals",
+        "objective handoff",
+        "extraction"
+      ],
+      "doctrine_identity": "temporary task-force doctrine",
+      "motto": "Integrate quickly. Act clearly. Separate cleanly."
+    }
+  },
+  "institution_assignments": {
+    "institution.konoha.academy": {
+      "kind": "academy_pipeline",
+      "source_pool_id": "pool.konoha.youth_candidate",
+      "academy_pool_id": "pool.konoha.academy",
+      "service_pool_id": "pool.konoha.shinobi_service",
+      "force_ref": "force.konoha.shinobi",
+      "youth_intake_per_review": 18,
+      "service_graduates_per_review": 12
+    },
+    "institution.iwa.academy": {
+      "kind": "academy_pipeline",
+      "source_pool_id": "pool.iwa.youth_candidate",
+      "academy_pool_id": "pool.iwa.academy",
+      "service_pool_id": "pool.iwa.shinobi_service",
+      "force_ref": "force.iwa.shinobi",
+      "youth_intake_per_review": 15,
+      "service_graduates_per_review": 10
+    },
+    "institution.kiri.academy": {
+      "kind": "academy_pipeline",
+      "source_pool_id": "pool.kiri.youth_candidate",
+      "academy_pool_id": "pool.kiri.academy",
+      "service_pool_id": "pool.kiri.shinobi_service",
+      "force_ref": "force.kiri.shinobi",
+      "youth_intake_per_review": 10,
+      "service_graduates_per_review": 8
+    },
+    "institution.kumo.academy": {
+      "kind": "academy_pipeline",
+      "source_pool_id": "pool.kumo.youth_candidate",
+      "academy_pool_id": "pool.kumo.academy",
+      "service_pool_id": "pool.kumo.shinobi_service",
+      "force_ref": "force.kumo.shinobi",
+      "youth_intake_per_review": 12,
+      "service_graduates_per_review": 9
+    },
+    "institution.suna.academy": {
+      "kind": "academy_pipeline",
+      "source_pool_id": "pool.suna.youth_candidate",
+      "academy_pool_id": "pool.suna.academy",
+      "service_pool_id": "pool.suna.shinobi_service",
+      "force_ref": "force.suna.shinobi",
+      "youth_intake_per_review": 10,
+      "service_graduates_per_review": 8
+    },
+    "institution.ame.central_authority": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.ame.shinobi",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "institution.kusa.village_administration": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.kusa.shinobi",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "institution.taki.village_administration": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.taki.shinobi",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "institution.oto.hideout_network": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.oto.network",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "institution.iron.samurai_command": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.iron.samurai",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "faction_yuga": {
+      "kind": "service_training_pipeline",
+      "force_ref": "force.yuga.service",
+      "completion_fraction_milli": 50,
+      "training_hours_per_review": 24
+    },
+    "faction_konoha": {
+      "kind": "military_command",
+      "force_ref": "force.konoha.shinobi",
+      "formation_registry_ref": "state/formation/force-konoha-shinobi.json",
+      "formation_size": 500,
+      "target_operational_personnel": 3000,
+      "medical_recovery_fraction_milli": 250
+    },
+    "faction_suna": {
+      "kind": "military_command",
+      "force_ref": "force.suna.shinobi",
+      "formation_registry_ref": "state/formation/force-suna-shinobi.json",
+      "formation_size": 500,
+      "target_operational_personnel": 1800,
+      "medical_recovery_fraction_milli": 250
+    },
+    "faction_iwa": {
+      "kind": "military_command",
+      "force_ref": "force.iwa.shinobi",
+      "formation_registry_ref": "state/formation/force-iwa-shinobi.json",
+      "formation_size": 750,
+      "target_operational_personnel": 2800,
+      "medical_recovery_fraction_milli": 250
+    },
+    "faction_kumo": {
+      "kind": "military_command",
+      "force_ref": "force.kumo.shinobi",
+      "formation_registry_ref": "state/formation/force-kumo-shinobi.json",
+      "formation_size": 750,
+      "target_operational_personnel": 2600,
+      "medical_recovery_fraction_milli": 250
+    },
+    "faction_kiri": {
+      "kind": "military_command",
+      "force_ref": "force.kiri.shinobi",
+      "formation_registry_ref": "state/formation/force-kiri-shinobi.json",
+      "formation_size": 500,
+      "target_operational_personnel": 2200,
+      "medical_recovery_fraction_milli": 250
+    }
+  }
+}

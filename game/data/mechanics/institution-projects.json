@@ -1,0 +1,388 @@
+{
+  "authority": true,
+  "purpose": "Deterministic institutional facility projects and workshop manufacturing definitions. Project records own lifecycle progress only; stock owns resources and finished goods, the world place registry owns completed facility capability, and manufacturing schedules consume elapsed institutional labor plus conserved procurement currency before adding finished equipment to stock.",
+  "project_types": {
+    "training_expansion": {
+      "module_kind": "training",
+      "required_work_units": 160,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 4,
+        "item_field_pack_standard": 12
+      },
+      "create_defaults": {
+        "capacity_slots": 0,
+        "quality_milli": 900,
+        "supported_categories": [
+          "martial",
+          "chakra",
+          "team_drill"
+        ]
+      },
+      "effects": {
+        "capacity_slots": 8,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1500
+      },
+      "currency_cost_ryo": 6000000
+    },
+    "medical_expansion": {
+      "module_kind": "medical",
+      "required_work_units": 220,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 6,
+        "item_field_medical_kit": 10
+      },
+      "create_defaults": {
+        "quality_milli": 850,
+        "specialties": [
+          "stabilization",
+          "surgery"
+        ],
+        "bed_capacity_units": 8,
+        "bed_load_units": 0,
+        "bed_recovery_units_per_hour": 2,
+        "surgical_capacity_units": 1,
+        "surgical_load_units": 0,
+        "surgical_recovery_units_per_hour": 1,
+        "staff_capacity_units": 12,
+        "staff_load_units": 0,
+        "staff_recovery_units_per_hour": 3
+      },
+      "effects": {
+        "quality_milli": 30,
+        "bed_capacity_units": 8,
+        "surgical_capacity_units": 1,
+        "staff_capacity_units": 12
+      },
+      "caps": {
+        "quality_milli": 1500
+      },
+      "currency_cost_ryo": 12000000
+    },
+    "custody_expansion": {
+      "module_kind": "custody",
+      "required_work_units": 200,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 6,
+        "item_standard_restraints": 12
+      },
+      "create_defaults": {
+        "capacity_slots": 0,
+        "security_milli": 700
+      },
+      "effects": {
+        "capacity_slots": 6,
+        "security_milli": 5
+      },
+      "caps": {
+        "security_milli": 1000
+      },
+      "currency_cost_ryo": 7000000
+    },
+    "residential_expansion": {
+      "module_kind": "housing",
+      "required_work_units": 140,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {},
+      "create_defaults": {
+        "resident_capacity_slots": 40,
+        "quality_milli": 950
+      },
+      "effects": {
+        "resident_capacity_slots": 32,
+        "quality_milli": 20
+      },
+      "caps": {
+        "quality_milli": 1300
+      },
+      "currency_cost_ryo": 4000000
+    },
+    "workshop_expansion": {
+      "module_kind": "production",
+      "required_work_units": 160,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {},
+      "create_defaults": {
+        "armor_lines": 1,
+        "weapon_lines": 1,
+        "quality_milli": 1000
+      },
+      "effects": {
+        "armor_lines": 1,
+        "weapon_lines": 1,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1400
+      },
+      "currency_cost_ryo": 5000000
+    },
+    "infrastructure_expansion": {
+      "module_kind": "infrastructure",
+      "required_work_units": 120,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {},
+      "create_defaults": {
+        "support_capacity_slots": 64,
+        "quality_milli": 950
+      },
+      "effects": {
+        "support_capacity_slots": 32,
+        "quality_milli": 20
+      },
+      "caps": {
+        "quality_milli": 1300
+      },
+      "currency_cost_ryo": 3000000
+    },
+    "laboratory_expansion": {
+      "module_kind": "laboratory",
+      "required_work_units": 240,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 8,
+        "item_field_medical_kit": 8
+      },
+      "create_defaults": {
+        "research_capacity_slots": 0,
+        "quality_milli": 900
+      },
+      "effects": {
+        "research_capacity_slots": 8,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1500
+      },
+      "currency_cost_ryo": 14000000
+    },
+    "security_expansion": {
+      "module_kind": "security",
+      "required_work_units": 200,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_barrier_anchor_set": 4,
+        "item_sensor_relay_set": 4
+      },
+      "create_defaults": {
+        "coverage_milli": 500,
+        "detection_milli": 500,
+        "response_milli": 500
+      },
+      "effects": {
+        "coverage_milli": 40,
+        "detection_milli": 40,
+        "response_milli": 30
+      },
+      "caps": {
+        "coverage_milli": 1500,
+        "detection_milli": 1500,
+        "response_milli": 1500
+      },
+      "currency_cost_ryo": 10000000
+    },
+    "fortification_expansion": {
+      "module_kind": "fortification",
+      "required_work_units": 260,
+      "work_units_per_active_hour": 3,
+      "resource_costs": {
+        "item_engineering_toolkit": 12
+      },
+      "create_defaults": {
+        "defense_milli": 500,
+        "denial_milli": 400,
+        "repair_capacity_milli": 400
+      },
+      "effects": {
+        "defense_milli": 50,
+        "denial_milli": 40,
+        "repair_capacity_milli": 30
+      },
+      "caps": {
+        "defense_milli": 1500,
+        "denial_milli": 1500,
+        "repair_capacity_milli": 1500
+      },
+      "currency_cost_ryo": 18000000
+    },
+    "logistics_expansion": {
+      "module_kind": "logistics",
+      "required_work_units": 180,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 4,
+        "item_field_pack_standard": 20
+      },
+      "create_defaults": {
+        "depot_capacity_units": 1000,
+        "throughput_milli": 800
+      },
+      "effects": {
+        "depot_capacity_units": 500,
+        "throughput_milli": 40
+      },
+      "caps": {
+        "throughput_milli": 1500
+      },
+      "currency_cost_ryo": 8000000
+    },
+    "puppet_workshop_expansion": {
+      "module_kind": "production",
+      "required_work_units": 180,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 6,
+        "item_puppet_field_kit": 2
+      },
+      "create_defaults": {
+        "puppet_lines": 0,
+        "quality_milli": 950
+      },
+      "effects": {
+        "puppet_lines": 1,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1450
+      },
+      "currency_cost_ryo": 7000000
+    },
+    "pharmacy_expansion": {
+      "module_kind": "production",
+      "required_work_units": 180,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 4,
+        "item_field_medical_kit": 4
+      },
+      "create_defaults": {
+        "medical_lines": 0,
+        "quality_milli": 950
+      },
+      "effects": {
+        "medical_lines": 1,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1450
+      },
+      "currency_cost_ryo": 8000000
+    },
+    "engineering_workshop_expansion": {
+      "module_kind": "production",
+      "required_work_units": 180,
+      "work_units_per_active_hour": 4,
+      "resource_costs": {
+        "item_engineering_toolkit": 6
+      },
+      "create_defaults": {
+        "tool_lines": 0,
+        "quality_milli": 950
+      },
+      "effects": {
+        "tool_lines": 1,
+        "quality_milli": 25
+      },
+      "caps": {
+        "quality_milli": 1450
+      },
+      "currency_cost_ryo": 7000000
+    }
+  },
+  "manufacturing_recipes": {
+    "manufacturing.sword_manor.house_court_armor": {
+      "output_item_ref": "armor_house_court",
+      "output_quantity_per_batch": 1,
+      "required_module_kind": "production",
+      "production_line_field": "armor_lines",
+      "active_hours_per_batch": 24,
+      "procurement_cost_ryo_per_batch": 150000,
+      "authority_scope_ref": "project:workshop_expansion"
+    },
+    "manufacturing.sword_manor.katana": {
+      "output_item_ref": "weapon_katana",
+      "output_quantity_per_batch": 1,
+      "required_module_kind": "production",
+      "production_line_field": "weapon_lines",
+      "active_hours_per_batch": 10,
+      "procurement_cost_ryo_per_batch": 9000,
+      "authority_scope_ref": "project:workshop_expansion"
+    },
+    "manufacturing.suna.puppet_field_kit": {
+      "output_item_ref": "item_puppet_field_kit",
+      "output_quantity_per_batch": 1,
+      "required_module_kind": "production",
+      "production_line_field": "puppet_lines",
+      "active_hours_per_batch": 16,
+      "procurement_cost_ryo_per_batch": 30000,
+      "authority_scope_ref": "project:puppet_workshop_expansion"
+    },
+    "manufacturing.suna.basic_antidote": {
+      "output_item_ref": "item_basic_antidote",
+      "output_quantity_per_batch": 8,
+      "required_module_kind": "production",
+      "production_line_field": "medical_lines",
+      "active_hours_per_batch": 8,
+      "procurement_cost_ryo_per_batch": 20000,
+      "authority_scope_ref": "project:pharmacy_expansion"
+    },
+    "manufacturing.iron.katana": {
+      "output_item_ref": "weapon_katana",
+      "output_quantity_per_batch": 2,
+      "required_module_kind": "production",
+      "production_line_field": "weapon_lines",
+      "active_hours_per_batch": 12,
+      "procurement_cost_ryo_per_batch": 18000,
+      "authority_scope_ref": "project:workshop_expansion"
+    },
+    "manufacturing.iron.samurai_armor": {
+      "output_item_ref": "armor_iron_samurai",
+      "output_quantity_per_batch": 1,
+      "required_module_kind": "production",
+      "production_line_field": "armor_lines",
+      "active_hours_per_batch": 30,
+      "procurement_cost_ryo_per_batch": 180000,
+      "authority_scope_ref": "project:workshop_expansion"
+    },
+    "manufacturing.konoha.field_medical_kit": {
+      "output_item_ref": "item_field_medical_kit",
+      "output_quantity_per_batch": 2,
+      "required_module_kind": "production",
+      "production_line_field": "medical_lines",
+      "active_hours_per_batch": 12,
+      "procurement_cost_ryo_per_batch": 40000,
+      "authority_scope_ref": "project:pharmacy_expansion"
+    },
+    "manufacturing.iwa.engineering_toolkit": {
+      "output_item_ref": "item_engineering_toolkit",
+      "output_quantity_per_batch": 2,
+      "required_module_kind": "production",
+      "production_line_field": "tool_lines",
+      "active_hours_per_batch": 12,
+      "procurement_cost_ryo_per_batch": 30000,
+      "authority_scope_ref": "project:engineering_workshop_expansion"
+    }
+  },
+  "manufacturing_schedule": {
+    "standing_weekly_active_hours": 40,
+    "max_weekly_active_hours": 48,
+    "settlement": "Standing schedules accrue only their registered full-time weekly active hours in proportion to elapsed campaign time. Production lines multiply staffed throughput. Unfunded full-batch labor is not banked as catch-up debt; only the sub-batch remainder persists.",
+    "procurement": "Each completed batch transfers its registered procurement cost from the institution funding holder to the contractor economy before finished goods enter conserved stock."
+  },
+  "rules": {
+    "resource_payment": "All listed stock costs are consumed exactly once when the project starts. Empty stock costs mean a bundled capital contract includes procurement in the registered currency price.",
+    "labor": "Authorized institutional labor is represented by deterministic work units per active hour. A project does not create a separate population body.",
+    "completion": "A facility module changes only when accumulated work reaches the required work units.",
+    "cancellation": "Cancelling stops future work and does not refund already consumed resources.",
+    "concurrency": "At most one active project of the same type may target the same place.",
+    "financial_payment": "Each project type pays its registered ryo cost exactly once at project start from the institution funding account into the contractor economy. Currency is transferred, never destroyed.",
+    "facility_prerequisites": "A project may declare requires_modules only when another existing mechanical module is genuinely required. No decorative prerequisite module is created merely to unlock a project.",
+    "production_boundary": "Production capacity never creates finished equipment by itself. Manufacturing requires a registered recipe, a real production line, elapsed institutional labor, conserved procurement currency, and a stock owner that already tracks the output item.",
+    "scaling": "Cardinality capacity fields and production-line counts are additive results of completed, funded facility projects and have no universal ceiling. Only normalized quality, security, throughput, defense and similar effectiveness scales retain registered caps. Build more physical capacity to obtain more slots or lines."
+  }
+}

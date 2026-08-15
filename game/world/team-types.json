@@ -1,0 +1,12 @@
+{
+  "schema": "shinobi-team-types",
+  "authority": "Exact-team types are game data. All exact teams use the same runtime mechanics; types only declare organizational constraints.",
+  "types": {
+    "academy_team": {"roster": "institution_defined"},
+    "standard_mission_team": {"roster": "institution_defined"},
+    "special_mission_cell": {"named_member_range": [4, 8], "requires_lawful_assignment": true},
+    "anbu_cell": {"roster": "institution_defined", "requires_active_anbu_authority": true},
+    "temporary_task_force": {"named_member_range": [2, 12], "retains_source_obligations": true},
+    "personal_force_team": {"named_member_range": [2, 12], "requires_personal_force_authority": true}
+  }
+}

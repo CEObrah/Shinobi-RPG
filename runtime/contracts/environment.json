@@ -1,0 +1,41 @@
+{
+  "schema": "derived-environment-contract",
+  "version": 2,
+  "authority": {
+    "kind": "deterministic_derived_runtime_authority",
+    "mutable_owner": false,
+    "inputs": [
+      "state/meta.json#campaign_id",
+      "state/meta.json#world_seed",
+      "state/meta.json#time",
+      "state/world/routes-and-settlements.json#payload.places",
+      "game/data/content/environment-climates.json"
+    ],
+    "rule": "Same campaign id, world seed, exact place and campaign instant must produce exactly the same environment snapshot. Environment derivation may not write campaign state."
+  },
+  "separation_invariants": [
+    "Static place kind and authored terrain are not transient weather.",
+    "Derived environment modifies only registered physical travel, terrain, sensing, tracking, elemental-affordance, economy, or security channels consumed by an exact rules owner.",
+    "Derived weather never creates a clue, track, scent identification, detection, technique success, damage, chakra discount, or other campaign fact by itself.",
+    "Chakra sensing remains weather-neutral by default; only a separate exact mechanic may change chakra_sensing_milli.",
+    "Surface water, conductivity, fire spread and smoke/gas drift are affordance channels. A technique or hazard must explicitly consume the relevant channel before it changes an outcome.",
+    "A weather transition does not by itself create a player wake or scheduler event.",
+    "Player-safe context exposes current-location environment only unless another read lawfully authorizes a different place.",
+    "Narration may describe the derived conditions but may not invent unregistered bonuses, penalties, clues, hidden actors, or technique effects."
+  ],
+  "mechanical_channels": [
+    "travel_time_milli",
+    "mobility_milli",
+    "visibility_milli",
+    "hazard_milli",
+    "fire_spread_milli",
+    "seasonal_economy_milli",
+    "sound_masking_milli",
+    "track_evidence_milli",
+    "scent_tracking_milli",
+    "surface_water_milli",
+    "conductivity_milli",
+    "smoke_gas_drift_milli",
+    "chakra_sensing_milli"
+  ]
+}

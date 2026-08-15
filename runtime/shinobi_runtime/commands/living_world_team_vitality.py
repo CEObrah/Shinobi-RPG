@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from shinobi_runtime.commands.living_world_support import *
+from shinobi_runtime.commands.team_checkin_records import snapshot_refs
 
 
 class LivingWorldTeamVitalityMixin:
@@ -109,6 +110,8 @@ class LivingWorldTeamVitalityMixin:
         classification = team.get("classification")
         if classification not in ("public", "restricted", "secret"):
             classification = "restricted"
+        team_name = team.get("name")
+        stable_team_name = team_name if isinstance(team_name, str) and team_name else team_id
         contact_opportunity_ref = f"player_led_team_checkin:{team_id}:{contact_actor}"
         event_id = self._append_internal_event(
             world_events,
@@ -119,20 +122,22 @@ class LivingWorldTeamVitalityMixin:
             host_refs=(team_id,),
             actor_refs=(contact_actor,),
             affected_owner_refs=(),
-            # The durable consequence is the player-facing contact opportunity
-            # recorded by this resolved semantic event. It does not revise the
-            # player-led team's doctrine, training, assignment, or other owner.
-            material_consequence_refs=(contact_opportunity_ref,),
+            # The ready event is the durable authority for the player-facing
+            # opportunity.  Snapshot refs preserve the exact generated agenda
+            # without creating a second writable check-in registry.
+            material_consequence_refs=(
+                contact_opportunity_ref,
+                *snapshot_refs(stable_team_name, topic_cues[:3]),
+            ),
             classification=classification,
             audience_refs=(command.actor_id,),
             source_refs=(contact_actor,),
             reducer_ref="shinobi_runtime.commands.living_world.player_led_team_checkin",
         )
-        team_name = team.get("name")
         return {
             "kind": "player_led_team_checkin",
             "team_id": team_id,
-            "team_name": team_name if isinstance(team_name, str) else team_id,
+            "team_name": stable_team_name,
             "event_id": event_id,
             "contact_actor_ref": contact_actor,
             "topic_cues": topic_cues[:3],

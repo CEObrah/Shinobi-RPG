@@ -4,11 +4,17 @@ from shinobi_runtime.commands import institution_review_runtime_guard as guard_m
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
 
 
-def review_event(event_id: str = "event.institution.review") -> dict:
+def review_event(
+    event_id: str = "event.institution.review",
+    *,
+    refs: list[str] | None = None,
+    kind: str = "institution_autonomy_reviewed",
+) -> dict:
     return {
         "id": event_id,
-        "kind": "institution_autonomy_reviewed",
-        "material_consequence_refs": [],
+        "kind": kind,
+        "status": "resolved",
+        "material_consequence_refs": [] if refs is None else list(refs),
     }
 
 
@@ -40,6 +46,95 @@ def test_final_reconcile_suppresses_material_free_aggregate_review() -> None:
 
     assert repaired["event_id"] is None
     assert world_events["events"] == []
+
+
+def test_serialization_guard_suppresses_only_empty_hot_aggregate_review() -> None:
+    concrete = review_event("event.institution.material", refs=["autonomy.intake.real"])
+    other = review_event(
+        "event.other.empty",
+        kind="autonomous_mission_wake_required",
+    )
+    source = {
+        "schema": "world-event-registry",
+        "archived_event_count": 4,
+        "archive_refs": [],
+        "events": [review_event(), concrete, other],
+    }
+
+    cleaned = guard_module._strip_empty_aggregate_reviews(source)
+
+    assert [event["id"] for event in cleaned["events"]] == [
+        "event.institution.material",
+        "event.other.empty",
+    ]
+    assert cleaned["events"][0]["material_consequence_refs"] == [
+        "autonomy.intake.real"
+    ]
+    assert source["events"][0]["id"] == "event.institution.review"
+    assert cleaned["archived_event_count"] == 4
+
+
+def test_serialization_guard_repairs_pending_archive_counts() -> None:
+    source = {
+        "schema": "world-event-registry",
+        "archived_event_count": 130,
+        "archive_refs": ["state/history/events/segment-000008.json"],
+        "events": [],
+        "__pending_archive_writes__": {
+            "state/history/events/segment-000008.json": {
+                "schema": "world-event-archive",
+                "event_count": 2,
+                "events": [
+                    review_event(),
+                    review_event(
+                        "event.institution.material",
+                        refs=["formation:force.test"],
+                    ),
+                ],
+            }
+        },
+    }
+
+    cleaned = guard_module._strip_empty_aggregate_reviews(source)
+    archive = cleaned["__pending_archive_writes__"][
+        "state/history/events/segment-000008.json"
+    ]
+
+    assert archive["event_count"] == 1
+    assert [event["id"] for event in archive["events"]] == [
+        "event.institution.material"
+    ]
+    assert cleaned["archived_event_count"] == 129
+    assert cleaned["archive_refs"] == [
+        "state/history/events/segment-000008.json"
+    ]
+
+
+def test_serialization_guard_removes_empty_pending_archive_without_touching_other_refs() -> None:
+    source = {
+        "schema": "world-event-registry",
+        "archived_event_count": 1,
+        "archive_refs": [
+            "state/history/events/segment-000007.json",
+            "state/history/events/segment-000008.json",
+        ],
+        "events": [],
+        "__pending_archive_writes__": {
+            "state/history/events/segment-000008.json": {
+                "schema": "world-event-archive",
+                "event_count": 1,
+                "events": [review_event()],
+            }
+        },
+    }
+
+    cleaned = guard_module._strip_empty_aggregate_reviews(source)
+
+    assert cleaned["__pending_archive_writes__"] == {}
+    assert cleaned["archive_refs"] == [
+        "state/history/events/segment-000007.json"
+    ]
+    assert cleaned["archived_event_count"] == 0
 
 
 def test_runtime_guard_strips_known_routing_hint_from_legacy_chain(monkeypatch) -> None:

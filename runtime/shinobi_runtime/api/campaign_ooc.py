@@ -83,7 +83,11 @@ class RepositoryOocAudit(_BaseRepositoryOocAudit):
             report.suggestion("repair_transaction_invalidation_registry_before_gameplay")
             invalidations = ()
 
-        files, truncated = _bounded_files(directory, self.max_runtime_records)
+        files, truncated = _bounded_files(
+            directory,
+            self.max_runtime_records,
+            receipt_only=True,
+        )
         invalid = 0
         future_revision = 0
         invalidated_future = 0

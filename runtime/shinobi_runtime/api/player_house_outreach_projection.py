@@ -26,6 +26,15 @@ def install_player_house_outreach_projection() -> None:
     @wraps(original)
     def wrapped(self: Any, player_id: str) -> Mapping[str, Any]:
         result = dict(original(self, player_id))
+        house_growth = result.get("player_house_growth")
+        if not (
+            isinstance(house_growth, list)
+            and any(
+                isinstance(row, Mapping) and row.get("institution_ref") == "house.tang"
+                for row in house_growth
+            )
+        ):
+            return result
         try:
             rule = self.repository.read_json(_RULE)
             population = self.repository.read_json(_POPULATION)

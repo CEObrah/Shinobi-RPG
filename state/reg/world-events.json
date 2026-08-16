@@ -4112,6 +4112,470 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.kumo.support_service"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.05",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.kumo.support_service"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.kumo.support_service"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.kumo.support_service"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.869bed716dea",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.kiri.support_service"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.03",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.kiri.support_service"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.kiri.support_service"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.kiri.support_service"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.d4c9f13b0c0c",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.suna.support_service"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.07",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.suna.support_service"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.suna.support_service"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.suna.support_service"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.9a73af69a739",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.iwa.civilian_general"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.00",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.iwa.civilian_general"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.iwa.civilian_general"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.iwa.civilian_general"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.7647054f2722",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.kumo.civilian_general"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.04",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.kumo.civilian_general"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.kumo.civilian_general"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.kumo.civilian_general"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.3432ad15061d",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.kiri.civilian_general"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.02",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.kiri.civilian_general"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.kiri.civilian_general"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.kiri.civilian_general"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.b335f8ce24ee",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.suna.civilian_general"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.06",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.suna.civilian_general"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.suna.civilian_general"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.suna.civilian_general"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_overdue.0ccf5623c39400af824b.04e9ab21a991",
+      "kind": "commitment_overdue",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-15T19:30:00",
+        "started_at": "SE-0061-07-15T19:30:00",
+        "ended_at": "SE-0061-07-15T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "pool.iwa.support_service"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.outreach.c37050bfd97d5b90.01",
+        "status:overdue"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "pool.iwa.support_service"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "pool.iwa.support_service"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "pool.iwa.support_service"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-15T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_due_settlement",
+        "transaction_ref": "tx.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846",
+        "receipt_refs": [
+          "receipt.gameplay.0ccf5623c39400af824bb0fb9ab84271c25628edf7e0303f99c2877fd0127846"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

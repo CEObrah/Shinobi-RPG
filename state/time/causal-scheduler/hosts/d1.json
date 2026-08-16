@@ -26,32 +26,6 @@
           "dedupe_key": "team.periodic_review:team.kiri.hunter.office.auto.a29a55f55d97"
         }
       ]
-    },
-    "host.commitment.outreach.c37050bfd97d5b90.03": {
-      "host": {
-        "state": {
-          "host_id": "host.commitment.outreach.c37050bfd97d5b90.03",
-          "kind": "commitment",
-          "resolved_through": "SE-0061-07-01T19:30:00",
-          "safe_through": "SE-0061-07-15T19:29:59",
-          "handler_ref": "causal.scheduler",
-          "rng_namespace": "commitment.outreach.c37050bfd97d5b90.03",
-          "next_due": "SE-0061-07-15T19:30:00"
-        },
-        "authority_kind": "commitment",
-        "owner_ref": "state/reg/commitments.json",
-        "metadata": {
-          "commitment_id": "commitment.outreach.c37050bfd97d5b90.03"
-        }
-      },
-      "event_routes": [
-        {
-          "event_id": "evt.causal.0df56714c21f886f1a117de9",
-          "due_at": "SE-0061-07-15T19:30:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-07-15.json",
-          "dedupe_key": "commitment.due:commitment.outreach.c37050bfd97d5b90.03"
-        }
-      ]
     }
   }
 }

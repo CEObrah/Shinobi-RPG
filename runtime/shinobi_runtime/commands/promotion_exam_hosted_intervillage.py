@@ -7,6 +7,7 @@ from typing import Any
 from shinobi_runtime.commands import promotion_exam_attendance as attendance
 from shinobi_runtime.commands import promotion_exam_integrity as integrity
 from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
+from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
 from shinobi_runtime.commands.promotion_exam_hosted_policy import (
     bind_originals,
     eligible_hosted_registrations,
@@ -39,6 +40,13 @@ def install_promotion_exam_hosted_intervillage() -> None:
     try:
         from shinobi_runtime.commands import campaign_promotion_exam_participation_repair as repair
         repair.eligible_npc_team_registrations = eligible_hosted_registrations
+        COMMAND_SPECS["campaign_promotion_exam_participation_repair"] = CommandSpec(
+            ("cycle_id",),
+            (),
+            "Reconcile omitted non-player team or home-village delegation Chunin Exam participation for an active finals phase only when no finals bout has settled, preserving the original phase chronology.",
+            {"cycle_id": "promotion_exam_cycle.<id>"},
+            availability="ooc_dev_guarded_repair_only",
+        )
     except ImportError:
         pass
     try:

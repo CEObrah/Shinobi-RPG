@@ -2,29 +2,5 @@
   "schema": "causal-scheduler-event-day",
   "day": "SE-0061-07-16",
   "authority": true,
-  "events": [
-    {
-      "event_id": "evt.causal.bb2f81ec9ef3507f04836b6d",
-      "kind": "canon_pressure.periodic_review",
-      "due_at": "SE-0061-07-16T09:00:00",
-      "priority": 80,
-      "source_host": "host.canon_pressure.pressure_konoha_academy_graduation",
-      "target_host": "host.canon_pressure.pressure_konoha_academy_graduation",
-      "payload": {
-        "identity": "pressure_konoha_academy_graduation",
-        "owner_ref": "state/canon/pressures.json",
-        "pressure_id": "pressure_konoha_academy_graduation",
-        "recurrence": {
-          "accrual_mode": "boundary_only",
-          "interval_seconds": 604800,
-          "kind": "fixed_interval"
-        }
-      },
-      "dedupe_key": "canon_pressure.periodic_review:pressure_konoha_academy_graduation",
-      "visibility": "hidden",
-      "requires_player": false,
-      "causation_id": null,
-      "correlation_id": null
-    }
-  ]
+  "events": []
 }

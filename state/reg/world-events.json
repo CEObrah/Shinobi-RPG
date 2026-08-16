@@ -2355,6 +2355,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_growth_request_reviewed.697d2d343b339bd3a09c",
+      "kind": "institution_growth_request_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-01T19:30:00",
+        "started_at": "SE-0061-07-01T19:30:00",
+        "ended_at": "SE-0061-07-01T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "char.zhu",
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "house.tang",
+        "state/reg/commitments.json"
+      ],
+      "material_consequence_refs": [
+        "delegated:recruitment:recruitment.sword_manor_outreach"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "char.zhu",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.zhu",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "char.zhu",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-01T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_growth_request_resolution",
+        "transaction_ref": "tx.gameplay.697d2d343b339bd3a09c4bdf647ed27cf545e70bdca8ebb9c42e566c625bca9f",
+        "receipt_refs": [
+          "receipt.gameplay.697d2d343b339bd3a09c4bdf647ed27cf545e70bdca8ebb9c42e566c625bca9f"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

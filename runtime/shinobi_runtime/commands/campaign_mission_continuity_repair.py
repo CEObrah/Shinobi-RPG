@@ -86,12 +86,11 @@ def _repair(
         raise CommandRejectedError("campaign_mission_continuity_repair_source_invalid") from exc
 
     rows = requests.get("requests") if isinstance(requests, dict) else None
-    if not isinstance(rows, list):
+    if not isinstance(rows, dict):
         raise CommandRejectedError("campaign_mission_continuity_repair_request_invalid")
-    matches = [row for row in rows if isinstance(row, dict) and row.get("request_ref") == _REQUEST_REF]
-    if len(matches) != 1:
+    request = rows.get(_REQUEST_REF)
+    if not isinstance(request, dict) or request.get("request_ref") != _REQUEST_REF:
         raise CommandRejectedError("campaign_mission_continuity_repair_request_invalid")
-    request = matches[0]
     if (
         request.get("team_ref") != _TEAM_REF
         or request.get("requester_ref") != command.actor_id

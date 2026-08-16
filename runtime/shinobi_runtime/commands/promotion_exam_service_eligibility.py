@@ -21,7 +21,6 @@ from shinobi_runtime.commands import promotion_exam_integrity as integrity
 from shinobi_runtime.sim.events import CampaignTime
 
 _INSTALLED = False
-_MAX_ELIGIBILITY_UPDATES = 128
 
 
 def _eligibility_config(profile: Mapping[str, Any]) -> tuple[int, bool]:
@@ -183,8 +182,6 @@ def review_npc_team_eligibility(
                     "path": path,
                 }
             )
-            if len(reviewed) > _MAX_ELIGIBILITY_UPDATES:
-                raise CommandRejectedError("promotion_exam_eligibility_review_limit")
     return reviewed
 
 

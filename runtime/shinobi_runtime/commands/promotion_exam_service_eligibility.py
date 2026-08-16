@@ -2,10 +2,10 @@
 
 Academy graduation intentionally clears promotion eligibility. This extension
 provides the missing later lifecycle: at a promotion-exam registration opening,
-non-player exact Genin on active standard mission teams become eligible only
-after an authored minimum period of persisted source-rank service. The review
-sets the existing career flag; it does not register player-led teams, evaluate
-an exam stage, or promote anyone.
+exact Genin on active standard mission teams become eligible only after an
+authored minimum period of persisted source-rank service. Eligibility is an
+institutional status and may be reviewed for player-led teams, but autonomous
+registration still excludes them so the player's submission choice is preserved.
 """
 from __future__ import annotations
 
@@ -29,12 +29,14 @@ def _eligibility_config(profile: Mapping[str, Any]) -> tuple[int, bool]:
     if not isinstance(config, Mapping):
         raise CommandRejectedError("promotion_exam_rules_invalid")
     days = config.get("minimum_source_rank_service_days")
+    requires_active_team = config.get("requires_active_standard_mission_team")
     requires_ready = config.get("requires_ready_condition")
     if (
         isinstance(days, bool)
         or not isinstance(days, int)
         or days < 0
         or days > 3650
+        or requires_active_team is not True
         or not isinstance(requires_ready, bool)
     ):
         raise CommandRejectedError("promotion_exam_rules_invalid")
@@ -143,7 +145,6 @@ def review_npc_team_eligibility(
             or team.get("assignment_authority_ref") not in authorities
             or not isinstance(leader_ref, str)
             or not leader_ref
-            or leader_ref == player_id
             or not isinstance(members, list)
             or any(not isinstance(ref, str) or not ref for ref in members)
         ):
@@ -178,6 +179,7 @@ def review_npc_team_eligibility(
                     "candidate_ref": member_ref,
                     "team_ref": team_ref,
                     "instructor_ref": leader_ref,
+                    "player_led": leader_ref == player_id,
                     "path": path,
                 }
             )
@@ -191,12 +193,13 @@ def _group_new_registrations(
     *,
     pipeline: Mapping[str, Any],
     cycle_id: str,
+    player_id: str,
 ) -> list[dict[str, Any]]:
     registered = set(scheduler.registered_candidate_refs(pipeline, cycle_id))
     grouped: dict[tuple[str, str], list[str]] = {}
     for row in reviewed:
         candidate_ref = row["candidate_ref"]
-        if candidate_ref in registered:
+        if candidate_ref in registered or row.get("instructor_ref") == player_id:
             continue
         key = (row["team_ref"], row["instructor_ref"])
         grouped.setdefault(key, []).append(candidate_ref)
@@ -265,7 +268,12 @@ def install_promotion_exam_service_eligibility() -> None:
         if not reviewed:
             return base
         pipeline = scheduler._pipeline(self.repository, record_writes)
-        registrations = _group_new_registrations(reviewed, pipeline=pipeline, cycle_id=cycle_id)
+        registrations = _group_new_registrations(
+            reviewed,
+            pipeline=pipeline,
+            cycle_id=cycle_id,
+            player_id=command.actor_id,
+        )
         added = integrity._append_npc_registrations(
             pipeline,
             profile=profile,
@@ -296,7 +304,8 @@ def install_promotion_exam_service_eligibility() -> None:
         enriched["promotion_exam_service_eligibility"] = {
             "cycle_id": cycle_id,
             "eligible_candidate_count": len(reviewed),
-            "registered_candidate_count": len(added),
+            "auto_registered_candidate_count": len(added),
+            "player_led_eligible_candidate_count": sum(1 for row in reviewed if row.get("player_led") is True),
             "event_id": event_id,
         }
         return enriched

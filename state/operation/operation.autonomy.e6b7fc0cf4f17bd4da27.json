@@ -6,9 +6,9 @@
   "owner_ref": "faction.konoha_mission_office",
   "authority_ref": "support.mission.haruto_seki",
   "opened_at": "SE-0061-06-25T07:00:00",
-  "next_due_at": "SE-0061-07-02T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "route",
   "subject_ref": "route_konoha_fire_west",
@@ -29,15 +29,25 @@
   ],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.145d71a2f3840c163d2cdbf6",
+    "event.institutional_operation_evidence_generated.e0d607f0d3771f2a59a48385"
+  ],
+  "claim_refs": [
+    "claim.operation.820a07a69b798e616bef"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "support.mission.haruto_seki"
   ],
-  "progress_milli": 100,
+  "progress_milli": 1000,
   "success_condition": "Issue a concrete route mission only after subject, route, client, known risk, authority, and funding are committed.",
   "failure_condition": "The route_tasking objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.820a07a69b798e616bef",
+    "event.institutional_operation_completed.145d71a2f3840c163d2cdbf6",
+    "event.institutional_operation_evidence_generated.e0d607f0d3771f2a59a48385",
+    "market_konoha_missions:demand:escort:600"
+  ]
 }

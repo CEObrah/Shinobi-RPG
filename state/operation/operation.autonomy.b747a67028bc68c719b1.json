@@ -6,9 +6,9 @@
   "owner_ref": "faction.konoha_hospital",
   "authority_ref": "support.hospital.akemi_hoshino",
   "opened_at": "SE-0061-06-25T07:00:00",
-  "next_due_at": "SE-0061-07-02T07:00:00",
+  "next_due_at": "SE-0061-07-09T07:00:00",
   "closed_at": null,
-  "status": "pending",
+  "status": "active",
   "archetype_ref": null,
   "subject_kind": "place",
   "subject_ref": "place.konoha",
@@ -23,7 +23,10 @@
     "item_triage_tags"
   ],
   "team_refs": [],
-  "participant_refs": [],
+  "participant_refs": [
+    "support.hospital.akemi_hoshino",
+    "canon_shizune"
+  ],
   "blocked_reason": null,
   "mission_refs": [],
   "project_refs": [],
@@ -34,7 +37,7 @@
   "report_recipient_refs": [
     "support.hospital.akemi_hoshino"
   ],
-  "progress_milli": 0,
+  "progress_milli": 270,
   "success_condition": "Triage and route casualties through actual treatment capacity without creating free recovery.",
   "failure_condition": "The casualty_response objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",

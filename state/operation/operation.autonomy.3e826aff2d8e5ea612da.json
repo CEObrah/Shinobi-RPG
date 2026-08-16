@@ -6,9 +6,9 @@
   "owner_ref": "faction.root",
   "authority_ref": "canon_danzo",
   "opened_at": "SE-0061-06-18T07:00:00",
-  "next_due_at": "SE-0061-07-02T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "person",
   "subject_ref": "canon_kabuto",
@@ -28,15 +28,25 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.d0482672610529c031277cf7",
+    "event.institutional_operation_evidence_generated.2f62f905f2c71949ba434365"
+  ],
+  "claim_refs": [
+    "claim.operation.6e9a29ac58df6fabcd0c"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_danzo"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Produce a compartmented sourced surveillance claim and deliver it only through authorized Root channels.",
   "failure_condition": "The compartmented_surveillance objective becomes impossible, compromised, or materially incomplete.",
   "classification": "secret",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.6e9a29ac58df6fabcd0c",
+    "event.institutional_operation_completed.d0482672610529c031277cf7",
+    "event.institutional_operation_evidence_generated.2f62f905f2c71949ba434365",
+    "security.autonomy.df22e009ed01d74c6c98"
+  ]
 }

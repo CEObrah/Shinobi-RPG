@@ -1,0 +1,46 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.8d1a9d5af9902fb9eb02",
+  "domain": "border_control",
+  "operation_kind": "crossing_audit",
+  "owner_ref": "faction.fire_border_authority",
+  "authority_ref": "support.border.kazuo_murata",
+  "opened_at": "SE-0061-07-02T07:00:00",
+  "next_due_at": "SE-0061-07-09T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_north_rice",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.northern.border"
+  ],
+  "route_refs": [],
+  "opposition_refs": [
+    "faction.fire_smuggling_network"
+  ],
+  "resource_refs": [
+    "item_evidence_kit",
+    "item_official_documents"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.76b91293e2aaff3037"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.border.kazuo_murata"
+  ],
+  "progress_milli": 100,
+  "success_condition": "Reconcile crossing records, inspections, and any seized evidence for the selected route.",
+  "failure_condition": "The crossing_audit objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

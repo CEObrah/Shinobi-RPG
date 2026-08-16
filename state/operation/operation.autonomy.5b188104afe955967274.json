@@ -6,9 +6,9 @@
   "owner_ref": "faction.bounty_broker_network",
   "authority_ref": "support.bounty.goro_kaneda",
   "opened_at": "SE-0061-06-18T07:00:00",
-  "next_due_at": "SE-0061-07-02T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "person",
   "subject_ref": "canon_deidara",
@@ -27,16 +27,28 @@
   "blocked_reason": null,
   "mission_refs": [],
   "project_refs": [],
-  "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "case_refs": [
+    "case.autonomy.5a40f523893853726f53"
+  ],
+  "evidence_refs": [
+    "event.institutional_operation_completed.6f9b1f2042e045d4fa88e5d2",
+    "event.institutional_operation_evidence_generated.e3ef28fc35b98f9630884791"
+  ],
+  "claim_refs": [
+    "claim.operation.67065af74bf59c244fdd"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "support.bounty.goro_kaneda"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Verify target identity and a lawful or contractual bounty basis before circulation.",
   "failure_condition": "Identity, authority, or payment source cannot be verified.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "case.autonomy.5a40f523893853726f53",
+    "claim.operation.67065af74bf59c244fdd",
+    "event.institutional_operation_completed.6f9b1f2042e045d4fa88e5d2",
+    "event.institutional_operation_evidence_generated.e3ef28fc35b98f9630884791"
+  ]
 }

@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.ac4ebbd8082146efd27deb7f",
+  "subject_id": "canon_fu_yamanaka",
+  "event_type": "reputation.signal.mission_success",
+  "occurred_at": "SE-0061-07-02T07:00:00",
+  "source_event_ref": "event.mission_result_report_received.b7d6e9bb8b9c7be6703bf608",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 84,
+      "base_weight": 60
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 76,
+      "base_weight": 42
+    },
+    "prestige": {
+      "score": 70,
+      "base_weight": 32
+    }
+  },
+  "visibility": {
+    "audience_id": "faction.root",
+    "source_classification": "secret"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.mission_result_report_received.b7d6e9bb8b9c7be6703bf608"
+  ],
+  "deliveries": {
+    "faction.root": {
+      "profile_ref": "state/reputation/audiences/profile.d1494d8399f535d94d091372.json",
+      "source_event_ref": "event.mission_result_report_received.b7d6e9bb8b9c7be6703bf608"
+    }
+  },
+  "status": "applied"
+}

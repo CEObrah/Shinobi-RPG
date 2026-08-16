@@ -1,0 +1,54 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.2ee0159eacd2f27e82",
+  "issuer_ref": "faction.gato_company",
+  "authority_ref": "canon_gato",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.land_waves.private",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-02T07:00:00",
+  "authorized_at": "SE-0061-07-02T07:00:00",
+  "starts_at": "SE-0061-07-02T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.cf5a72d46768a67e7c55",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.2ee0159eacd2f27e82",
+    "objective_kind": "protect",
+    "subject_kind": "place",
+    "subject_ref": "place.waves.gato_shipping",
+    "subject_label": "place.waves.gato_shipping",
+    "report_place_ref": "place.waves.town",
+    "origin_place_ref": "place.waves.town",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.fire_merchant_network. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.fire_merchant_network",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-02T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Maintain or lose a specific shipping-control asset through real force, money, contracts, and local consequences."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_gato"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.2ee0159eacd2f27e82",
+      "kind": "protect",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

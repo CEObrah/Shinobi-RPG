@@ -22,6 +22,11 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.promotion_exam_pacing import install_promotion_exam_pacing
     from shinobi_runtime.commands.promotion_exam_evaluation import install_promotion_exam_evaluation
     from shinobi_runtime.commands.promotion_exam_finals import install_promotion_exam_finals
+    from shinobi_runtime.commands.promotion_exam_integrity import install_promotion_exam_integrity
+    from shinobi_runtime.commands.promotion_exam_pairing import install_promotion_exam_pairing
+    from shinobi_runtime.commands.promotion_exam_service_eligibility import install_promotion_exam_service_eligibility
+    from shinobi_runtime.commands.promotion_exam_attendance import install_promotion_exam_attendance
+    from shinobi_runtime.commands.career_history_retention import install_career_history_retention
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -32,6 +37,15 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
     from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
     from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
+    from shinobi_runtime.commands.campaign_promotion_exam_eligibility_repair import (
+        install_campaign_promotion_exam_eligibility_repair,
+    )
+    from shinobi_runtime.commands.campaign_promotion_exam_participation_repair import (
+        install_campaign_promotion_exam_participation_repair,
+    )
+    from shinobi_runtime.commands.campaign_promotion_exam_attendance_repair import (
+        install_campaign_promotion_exam_attendance_repair,
+    )
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
     from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
@@ -49,12 +63,16 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_promotion_exam_schedule_projection import (
         install_player_promotion_exam_schedule_projection,
     )
+    from shinobi_runtime.api.player_promotion_exam_participation_projection import (
+        install_player_promotion_exam_participation_projection,
+    )
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
     from shinobi_runtime.api.player_command_mission_projection import install_player_command_mission_projection
     from shinobi_runtime.api.player_global_team_training_projection import install_player_global_team_training_projection
     from shinobi_runtime.api.player_house_outreach_projection import install_player_house_outreach_projection
     from shinobi_runtime.api.player_house_status_projection import install_player_house_status_projection
     from shinobi_runtime.api.player_family_projection import install_player_family_projection
+    from shinobi_runtime.api.player_training_model_projection import install_player_training_model_projection
 
     # Install semantic-event multiplicity before any campaign extension can emit
     # composed time-settlement events. Mission boundary integrity must also be
@@ -88,11 +106,21 @@ def _install_campaign_extensions() -> None:
     install_campaign_mission_continuity_repair()
     install_campaign_mission_boundary_repair()
     install_campaign_family_continuity_repair()
+    install_campaign_promotion_exam_eligibility_repair()
+    install_campaign_promotion_exam_participation_repair()
+    install_campaign_promotion_exam_attendance_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
     install_joint_player_team_training()
     install_global_team_training_load()
     install_autonomous_training_error_guard()
+    install_promotion_exam_integrity()
+    install_promotion_exam_pairing()
+    install_promotion_exam_service_eligibility()
+    install_promotion_exam_attendance()
+    # Central owner-level retention must be installed only after every legacy
+    # career/exam producer has imported its old finite cursor constant.
+    install_career_history_retention()
     # Diagnostic-only guard for unexpected TypeError/ValueError failures anywhere
     # inside the composed time settlement path. It preserves all normal domain
     # rejection codes and exposes only a bounded runtime module token.
@@ -101,6 +129,8 @@ def _install_campaign_extensions() -> None:
     install_player_house_outreach_projection()
     install_player_house_status_projection()
     install_player_family_projection()
+    install_player_promotion_exam_participation_projection()
+    install_player_training_model_projection()
     install_preview_validation()
     install_institution_review_runtime_guard()
     install_production_population_owner_bridge()

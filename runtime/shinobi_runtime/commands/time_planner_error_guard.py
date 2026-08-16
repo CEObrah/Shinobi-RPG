@@ -1,10 +1,10 @@
-"""Sanitize unexpected time-settlement planner TypeError/ValueError failures."""
+"""Sanitize unexpected time and event-seeking planner TypeError/ValueError failures."""
 from __future__ import annotations
 
 import re
 import traceback
 from functools import wraps
-from typing import Any
+from typing import Any, Callable
 
 from shinobi_runtime.api.contracts import CommandRejectedError
 
@@ -33,6 +33,25 @@ def _runtime_error_stage(exc: BaseException) -> str:
     return selected
 
 
+def _guard(method: Callable[..., Any], *, prefix: str, marker: str):
+    if getattr(method, marker, False):
+        return method
+
+    @wraps(method)
+    def wrapped(self: Any, *args: Any, **kwargs: Any):
+        try:
+            return method(self, *args, **kwargs)
+        except CommandRejectedError:
+            raise
+        except (TypeError, ValueError) as exc:
+            stage = _runtime_error_stage(exc)
+            kind = "type_error" if isinstance(exc, TypeError) else "value_error"
+            raise CommandRejectedError(f"{prefix}__{stage}__{kind}") from exc
+
+    setattr(wrapped, marker, True)
+    return wrapped
+
+
 def install_time_planner_error_guard() -> None:
     global _INSTALLED
     if _INSTALLED:
@@ -40,26 +59,18 @@ def install_time_planner_error_guard() -> None:
     from shinobi_runtime.commands import campaign_environment as module
 
     planner = module.CampaignCommandPlanner
-    original = planner._advance_time
-    if getattr(original, "_time_planner_error_guard", False):
-        _INSTALLED = True
-        return
-
-    @wraps(original)
-    def wrapped(self: Any, *args: Any, **kwargs: Any):
-        try:
-            return original(self, *args, **kwargs)
-        except CommandRejectedError:
-            raise
-        except (TypeError, ValueError) as exc:
-            stage = _runtime_error_stage(exc)
-            kind = "type_error" if isinstance(exc, TypeError) else "value_error"
-            raise CommandRejectedError(
-                f"advance_time_internal__{stage}__{kind}"
-            ) from exc
-
-    wrapped._time_planner_error_guard = True  # type: ignore[attr-defined]
-    planner._advance_time = wrapped
+    planner._advance_time = _guard(
+        planner._advance_time,
+        prefix="advance_time_internal",
+        marker="_time_planner_error_guard",
+    )
+    event_method = getattr(planner, "_advance_until_event", None)
+    if callable(event_method):
+        planner._advance_until_event = _guard(
+            event_method,
+            prefix="advance_until_event_internal",
+            marker="_event_seeking_error_guard",
+        )
     _INSTALLED = True
 
 

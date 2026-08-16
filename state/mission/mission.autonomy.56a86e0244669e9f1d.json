@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.56a86e0244669e9f1d",
+  "issuer_ref": "faction.konoha_anbu",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-09T07:00:00",
+  "authorized_at": "SE-0061-07-09T07:00:00",
+  "starts_at": "SE-0061-07-09T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.b7045a32d55c5795940e",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.56a86e0244669e9f1d",
+    "objective_kind": "capture",
+    "subject_kind": "person",
+    "subject_ref": "canon_kabuto",
+    "subject_label": "canon_kabuto",
+    "report_place_ref": "place.fire.northwest",
+    "origin_place_ref": "place.fire.northwest",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.oto_research_cells. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.oto_research_cells",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-09T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Capture the authorized subject or return a classified evidence-backed failure report."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_aoba",
+    "canon_hayate",
+    "canon_yugao"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.56a86e0244669e9f1d",
+      "kind": "capture",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

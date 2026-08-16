@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.bf147a75966dd388caf9",
-  "closed_at": null,
+  "closed_at": "SE-0061-07-09T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.8235604450c61882af",
     "objective_kind": "observe",
@@ -33,7 +33,7 @@
     "depart_by": null,
     "completion_condition": "Produce a compartmented sourced surveillance claim and deliver it only through authorized Root channels."
   },
-  "state": "active",
+  "state": "succeeded",
   "participant_refs": [
     "canon_fu_yamanaka",
     "canon_sai",
@@ -45,12 +45,18 @@
       "kind": "observe",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.97c5cfd5f023f583b1440ef9"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.8235604450c61882af",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.ea8f049840f1d9b95f76",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

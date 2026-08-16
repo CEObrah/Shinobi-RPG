@@ -1,0 +1,42 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.b68e3b8d17d6b320dd28",
+  "domain": "puppet_poison",
+  "operation_kind": "poison_antidote_readiness",
+  "owner_ref": "faction.suna_puppet_corps",
+  "authority_ref": "canon_chiyo",
+  "opened_at": "SE-0061-07-09T07:00:00",
+  "next_due_at": "SE-0061-07-16T07:00:00",
+  "closed_at": null,
+  "status": "pending",
+  "archetype_ref": null,
+  "subject_kind": "asset",
+  "subject_ref": "item_basic_antidote",
+  "client_ref": null,
+  "place_refs": [
+    "place.suna.command"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_basic_antidote",
+    "item_field_medical_kit"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_chiyo"
+  ],
+  "progress_milli": 0,
+  "success_condition": "Record poison/antidote readiness against conserved stock and specialist capacity.",
+  "failure_condition": "The poison_antidote_readiness objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

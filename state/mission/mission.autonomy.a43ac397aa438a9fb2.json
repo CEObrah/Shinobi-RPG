@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.f71d77026136f81dae61",
-  "closed_at": null,
+  "closed_at": "SE-0061-07-09T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.a43ac397aa438a9fb2",
     "objective_kind": "conceal",
@@ -33,7 +33,7 @@
     "depart_by": null,
     "completion_condition": "Preserve the selected covert logistics node or record its compromise."
   },
-  "state": "active",
+  "state": "succeeded",
   "participant_refs": [
     "support.smuggling.reina_kurosawa"
   ],
@@ -43,12 +43,18 @@
       "kind": "conceal",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.e3bd6128574375a595b98434"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.a43ac397aa438a9fb2",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.223b891cf48f6a218247",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

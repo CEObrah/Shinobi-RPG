@@ -10,6 +10,7 @@ from __future__ import annotations
 
 def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.semantic_event_integrity import install_semantic_event_integrity
+    from shinobi_runtime.commands.mission_boundary_integrity import install_mission_boundary_integrity
     from shinobi_runtime.commands.legacy_scheduler_compat import install_legacy_scheduler_compat
     from shinobi_runtime.commands.academy_pipeline_transfer_ids import install_academy_pipeline_transfer_ids
     from shinobi_runtime.commands.academy_career_sync import install_academy_career_sync
@@ -29,6 +30,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.player_mission_continuity import install_player_mission_continuity
     from shinobi_runtime.commands.player_mission_delegation import install_player_mission_delegation
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
+    from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
     from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
@@ -48,14 +50,17 @@ def _install_campaign_extensions() -> None:
         install_player_promotion_exam_schedule_projection,
     )
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
+    from shinobi_runtime.api.player_command_mission_projection import install_player_command_mission_projection
     from shinobi_runtime.api.player_global_team_training_projection import install_player_global_team_training_projection
     from shinobi_runtime.api.player_house_outreach_projection import install_player_house_outreach_projection
     from shinobi_runtime.api.player_house_status_projection import install_player_house_status_projection
     from shinobi_runtime.api.player_family_projection import install_player_family_projection
 
     # Install semantic-event multiplicity before any campaign extension can emit
-    # composed time-settlement events.
+    # composed time-settlement events. Mission boundary integrity must also be
+    # active before any lifecycle command resynchronizes a mission host.
     install_semantic_event_integrity()
+    install_mission_boundary_integrity()
     install_legacy_scheduler_compat()
     install_academy_pipeline_transfer_ids()
     install_academy_career_sync()
@@ -72,6 +77,7 @@ def _install_campaign_extensions() -> None:
     install_player_promotion_exam_projection()
     install_player_promotion_exam_schedule_projection()
     install_mission_assignment_request_projection()
+    install_player_command_mission_projection()
     install_downtime_until_event()
     install_team_checkin_handoffs()
     install_downtime_vitality()
@@ -80,6 +86,7 @@ def _install_campaign_extensions() -> None:
     install_player_mission_continuity()
     install_player_mission_delegation()
     install_campaign_mission_continuity_repair()
+    install_campaign_mission_boundary_repair()
     install_campaign_family_continuity_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()

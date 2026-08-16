@@ -24,6 +24,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.story_vitality import install_story_vitality
     from shinobi_runtime.commands.scene_resume_projection import install_scene_resume_projection
     from shinobi_runtime.commands.player_mission_continuity import install_player_mission_continuity
+    from shinobi_runtime.commands.player_mission_delegation import install_player_mission_delegation
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
@@ -68,6 +69,7 @@ def _install_campaign_extensions() -> None:
     install_story_vitality()
     install_scene_resume_projection()
     install_player_mission_continuity()
+    install_player_mission_delegation()
     install_campaign_mission_continuity_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()

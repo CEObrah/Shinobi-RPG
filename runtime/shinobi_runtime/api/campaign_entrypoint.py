@@ -58,6 +58,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.house_recruitment_outreach import install_house_recruitment_outreach
     from shinobi_runtime.commands.external_house_intake_origin import install_external_house_intake_origin
     from shinobi_runtime.api.preview_validation import install_preview_validation
+    from shinobi_runtime.api.preview_error_diagnostics import install_preview_error_diagnostics
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
     from shinobi_runtime.api.player_team_checkin_projection import install_player_team_checkin_projection
@@ -136,6 +137,7 @@ def _install_campaign_extensions() -> None:
     install_player_promotion_exam_participation_projection()
     install_player_training_model_projection()
     install_preview_validation()
+    install_preview_error_diagnostics()
     install_institution_review_runtime_guard()
     install_production_population_owner_bridge()
 

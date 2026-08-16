@@ -98,6 +98,7 @@ ROUTES = (
         "tests/runtime/test_api_service.py",
         "tests/runtime/test_mcp_plugin.py",
         "tests/runtime/test_route_discovery.py",
+        "tests/runtime/test_preview_error_diagnostics.py",
     }),
     (("bootstrap", "remote.py", "railway.toml", "deployment_freshness"), {
         "tests/runtime/test_bootstrap.py",

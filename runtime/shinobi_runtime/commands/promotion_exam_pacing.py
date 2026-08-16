@@ -81,11 +81,11 @@ def _phase_offsets(profile: Mapping[str, Any]) -> tuple[tuple[str, int], ...]:
             or isinstance(value, bool)
             or not isinstance(value, int)
             or value < 0
-            or value <= prior
-            and index > 0
-            or index == 0
-            and value != 0
         ):
+            raise CommandRejectedError("promotion_exam_rules_invalid")
+        if index == 0 and value != 0:
+            raise CommandRejectedError("promotion_exam_rules_invalid")
+        if index > 0 and value <= prior:
             raise CommandRejectedError("promotion_exam_rules_invalid")
         rows.append((phase, value))
         prior = value

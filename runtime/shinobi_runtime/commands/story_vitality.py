@@ -53,7 +53,7 @@ def _house_training_progressed(result: Mapping[str, Any]) -> bool:
                     gained = outcome.get("points_gained")
                     if isinstance(gained, int) and not isinstance(gained, bool) and gained > 0:
                         return True
-        technique = row.get("technique_result")
+        technique = row.get("technique")
         if isinstance(technique, Mapping):
             gained = technique.get("points_gained")
             if isinstance(gained, int) and not isinstance(gained, bool) and gained > 0:

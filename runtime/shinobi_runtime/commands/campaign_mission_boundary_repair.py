@@ -35,13 +35,14 @@ def _faction_autonomy_guard(
     mission_id: str,
 ) -> tuple[str, str]:
     try:
-        path, digest, view = self._resolve_covered_owner_view(
+        path, digest, _view = self._resolve_covered_owner_view(
             faction_ref,
             cache=_OwnerResolutionCache(),
         )
-    except CommandRejectedError as exc:
+        record = self.repository.read_json(path)
+    except (CommandRejectedError, FileNotFoundError, ValueError) as exc:
         raise CommandRejectedError("mission_boundary_repair_faction_invalid") from exc
-    faction = view.get("faction") if isinstance(view, Mapping) else None
+    faction = record.get("faction") if isinstance(record, Mapping) else None
     plan_state = faction.get("plan_state") if isinstance(faction, Mapping) else None
     autonomous = plan_state.get("autonomous_mission_refs") if isinstance(plan_state, Mapping) else None
     wake = plan_state.get("wake_required_mission_refs") if isinstance(plan_state, Mapping) else None

@@ -121,6 +121,15 @@ def _advance_until_event(
         for event in scheduler.queue.snapshot()
         if event.due_at >= current_time
     ]
+    # Promotion-exam phases are subordinate campaign-time boundaries derived
+    # from a persisted cycle opening, not Academy's unrelated monthly review.
+    # Include their next boundary in event seeking so downtime cannot silently
+    # jump across a public examination phase change.
+    from shinobi_runtime.commands.promotion_exam_pacing import next_promotion_exam_boundary
+
+    exam_boundary = next_promotion_exam_boundary(self.repository, current_time)
+    if exam_boundary is not None:
+        due_times.append(exam_boundary)
     if due_times:
         boundary = min(due_times)
         if boundary <= current_time:

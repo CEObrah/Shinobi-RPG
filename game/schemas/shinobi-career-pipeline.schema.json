@@ -43,7 +43,7 @@
     },
     "history": {
       "type": "array",
-      "maxItems": 240,
+      "maxItems": 512,
       "items": {
         "oneOf": [
           {
@@ -79,6 +79,56 @@
               },
               "headcount_before": {"type": "integer", "minimum": 0},
               "headcount_after": {"type": "integer", "minimum": 0}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "subject_ref", "village", "source_rank", "target_rank", "action"],
+            "properties": {
+              "kind": {"const": "exact_rank_accounting"},
+              "at": {"type": "string", "minLength": 1},
+              "subject_ref": {"type": "string", "minLength": 1},
+              "village": {"type": "string", "minLength": 1},
+              "source_rank": {"enum": ["genin", "chunin", "jonin"]},
+              "target_rank": {"enum": ["genin", "chunin", "jonin"]},
+              "action": {"enum": ["promote", "demote"]}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "canon_status"],
+            "properties": {
+              "kind": {"const": "promotion_exam_cycle_opened"},
+              "at": {"type": "string", "minLength": 1},
+              "cycle_id": {"type": "string", "minLength": 1},
+              "profile_ref": {"type": "string", "minLength": 1},
+              "eligible_exact_refs": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1},
+                "uniqueItems": true
+              },
+              "player_team_eligible_refs": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1},
+                "uniqueItems": true
+              },
+              "canon_status": {"const": "campaign_institutional_not_future_canon"}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "cycle_id", "profile_ref", "phase", "canon_status", "authority_ref"],
+            "properties": {
+              "kind": {"const": "promotion_exam_cycle_phase"},
+              "at": {"type": "string", "minLength": 1},
+              "cycle_id": {"type": "string", "minLength": 1},
+              "profile_ref": {"type": "string", "minLength": 1},
+              "phase": {"type": "string", "minLength": 1},
+              "canon_status": {"const": "campaign_institutional_not_future_canon"},
+              "authority_ref": {"type": "string", "minLength": 1}
             }
           }
         ]

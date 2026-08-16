@@ -89,6 +89,7 @@ def _promotion_exam_handoffs(
                 or any(not isinstance(ref, str) or not ref for ref in members)
             ):
                 continue
+            member_set = set(members)
 
             eligible_refs: list[str] = []
             for member_ref in members:
@@ -112,14 +113,15 @@ def _promotion_exam_handoffs(
             stages = profile.get("evaluation_stages")
             if isinstance(stages, Mapping) and phase in stages:
                 try:
-                    stage_candidate_refs = list(
-                        promotion_exam_stage_candidate_refs(
-                            pipeline,
-                            profile,
-                            cycle_id,
-                            phase,
-                        )
-                    )[:_MAX_CANDIDATES]
+                    cycle_stage_refs = promotion_exam_stage_candidate_refs(
+                        pipeline,
+                        profile,
+                        cycle_id,
+                        phase,
+                    )
+                    stage_candidate_refs = [
+                        ref for ref in cycle_stage_refs if ref in member_set
+                    ][:_MAX_CANDIDATES]
                     rows = promotion_exam_evaluation_rows(
                         pipeline,
                         cycle_id,
@@ -131,6 +133,7 @@ def _promotion_exam_handoffs(
                     row.get("candidate_ref"): row
                     for row in rows
                     if isinstance(row.get("candidate_ref"), str)
+                    and row.get("candidate_ref") in member_set
                 }
                 evaluated_refs = [
                     ref for ref in stage_candidate_refs if ref in row_by_candidate

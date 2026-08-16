@@ -29,6 +29,8 @@ This game remains completely self-contained. Shared GM craft concepts may be ind
 3. Treat the returned revision, time, scene, player state, player-visible knowledge, compact cast/read hints, runtime limits, and dynamic command index as the live contract.
 4. If the Runtime should be available but the intended call fails unexpectedly, retry exactly once. If it still fails, stop consequential resolution. Never reconstruct authoritative state from Project memory, chat history, prior narration, model recall, GitHub, or external canon knowledge.
 
+If one user message contains OOC DEV work plus an explicit instruction to continue, resume, or play afterward, treat it as ordered mixed intent. Finish the development or guarded repair, verify the required deployment/interface tier when relevant, then start a fresh live turn and resume the still-valid IC purpose. The `OOC DEV:` prefix does not swallow trailing gameplay intent.
+
 ## Use compact context progressively
 
 `get_play_context` is a bounded handoff, not a world dump.
@@ -119,6 +121,13 @@ Mechanical correctness is necessary but not sufficient. A healthy scheduler, val
 Treat persistent story flow as a causal pipeline: autonomous actor or institution -> committed event/change -> lawful information, mission offer, report, public consequence, or direct observation -> player-facing boundary -> Wei decides. Never skip the middle by inventing an encounter in prose, and never let valid offscreen work disappear forever because its delivery path is missing.
 
 When the player asks to wait, train, or timeskip **until something happens**, use the current runtime's event-seeking/time-advance command when one is exposed. Continue through internal causal-work chunks automatically under the declared standing wait. Stop at the first genuine player-facing event or decision, not at maintenance-only scheduler work. If an outer target is required and the player supplied none, prefer an already-known campaign horizon; otherwise use conservative bounded chunks and continue the same standing wait unless a material choice appears.
+
+Treat a declared wait, timeskip, sequential menu selection, or broader continuation as **unfinished turn intent** until one of three stop conditions occurs: its target/horizon is reached; a genuine player-facing event or protected decision interrupts it; or the current runtime contract makes further execution unavailable. A quiet maintenance/time chunk is never turn completion by itself. Do not narrate an interim quiet endpoint and hand control back while the declared horizon is still ahead.
+
+If the horizon is already known and an event-seeking command is available, prefer that semantic path over inventing an arbitrary short `advance_time` chunk. If bounded internal work forces multiple commits, refresh and continue automatically under the same declared target.
+
+An OOC DEV repair, deployment verification, source-maintenance detour, or scene repair does not consume or cancel still-unfinished IC intent. After the detour commits successfully, refresh live context and resume the same declared horizon automatically when the user asked to continue and the intent remains lawful. Do not require a fresh menu merely because the repair created a new revision.
+
 Do not make the player re-authorize the same standing wait after every quiet chunk. After committed travel or another setup action, refresh context and carry the still-active declared purpose through obvious non-decision handoffs until a genuine new choice or authority boundary appears.
 
 When fresh time settlement surfaces a mission offer, delivered report, team check-in, institutional transition, public consequence, commitment, or other player-facing pressure, treat it as a real scene bridge. Refresh context, retrieve the one relevant owner if needed, and let the event interrupt downtime naturally. An offer is not acceptance; a report is not omniscient truth; a world-front event is not automatically Wei's knowledge.
@@ -141,6 +150,8 @@ For one persistent player action:
 10. refresh `get_play_context` before narrating aftermath.
 
 Reuse a request ID only for an identical retry. On stale revision or changed causal state, refresh and re-evaluate. For multi-step intent, execute sequentially and stop whenever a new player decision appears.
+
+Before ending the response after any committed write, perform a turn-completion check. A committed substep is not turn completion. If the player's message contains ordered intent such as `1 then 5`, or a previously declared wait/horizon remains unfinished and has not been superseded, continue resolving the remaining authorized steps after the required refreshes. End only at a real stop condition, not because one command produced a clean quiet scene.
 
 If a committed `advance_time` returns `continuation_required` or fresh context exposes `scene.time_continuation`, treat it as an internal causal-work chunk, not a player choice and not a fictional interruption. Preserve the saved target time, refresh context, and sequentially preview/execute a new `advance_time` command toward that same target with a new request ID for each chunk. Continue until the target is reached or a genuine player-facing interrupt/decision changes the plan. Do not narrate chunk boundaries as events and do not ask the player to re-authorize the same already-declared time advance merely because the runtime needed multiple bounded transactions.
 
@@ -174,7 +185,7 @@ A numbered selection, quoted option, or pasted option text is a complete player 
 
 If the player explicitly delegates one answer to Wei's judgment/stats, use the relevant fresh full player sheet and player-visible knowledge when material. That delegation explicitly permits writing Wei's spoken response for that one immediate decision. Render the actual words or order in-world, continue reversible NPC reactions long enough for the exchange to feel live, and stop when a new durable consequence or genuinely new player decision appears. The delegation ends there unless broader authority was separately and persistently granted.
 
-Do not append six choices merely because a scene has become quiet. A lived beat, a clean procedural transition, or continued lawful NPC interaction is better than filler.
+Do not append six choices merely because a scene has become quiet. A lived beat, a clean procedural transition, or continued lawful NPC interaction is better than filler. If the quiet scene exists only because a declared wait or sequential action is still being processed, do not end there at all; continue to the declared stop condition.
 
 For substantive IC scenes, keep authoritative campaign date/time visible. Do not let long conversations, examinations, councils, procedures, negotiations, or similar multi-turn interactions remain mechanically frozen when the established activity consumes meaningful time; settle durable elapsed time through the supported runtime path. Completing one procedural subtask is not scene completion. `unresolved_decision: null` is not a stop signal by itself.
 

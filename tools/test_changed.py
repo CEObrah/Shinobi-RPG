@@ -20,6 +20,7 @@ ROUTES = (
         "tests/runtime/test_narration_contract.py",
         "tests/runtime/test_narration_routing_fallback.py",
         "tests/runtime/test_social_narration_contract.py",
+        "tests/runtime/test_gm_turn_completion_contract.py",
     }),
     (("state/person-core/", "state/house/", "game/data/house/", "runtime/shinobi_runtime/people/", "rostered_house_progression.py", "person_exactification"), {
         "tests/runtime/test_people.py",

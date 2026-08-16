@@ -19,6 +19,27 @@ _COMMAND = "campaign_promotion_exam_eligibility_repair"
 _INSTALLED = False
 
 
+def _registration_opened_at(pipeline: Mapping[str, Any], cycle_id: str) -> CampaignTime:
+    history = pipeline.get("history")
+    if not isinstance(history, list):
+        raise CommandRejectedError("shinobi_career_pipeline_invalid")
+    rows = [
+        row
+        for row in history
+        if isinstance(row, Mapping)
+        and row.get("kind") == "promotion_exam_cycle_phase"
+        and row.get("cycle_id") == cycle_id
+        and row.get("phase") == "registration"
+        and isinstance(row.get("at"), str)
+    ]
+    if len(rows) != 1:
+        raise CommandRejectedError("promotion_exam_cycle_state_invalid")
+    try:
+        return CampaignTime.parse(str(rows[0]["at"]))
+    except (TypeError, ValueError) as exc:
+        raise CommandRejectedError("promotion_exam_cycle_state_invalid") from exc
+
+
 def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime) -> _BuiltPlan:
     _exact_payload(command.payload, ("cycle_id",), command.command_type)
     cycle_id = _stable_id(command.payload.get("cycle_id"), "promotion_exam_eligibility_repair_cycle_invalid", prefix="promotion_exam_cycle.")
@@ -33,12 +54,13 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
     if finals.promotion_exam_bout_rows(pipeline, cycle_id):
         raise CommandRejectedError("promotion_exam_eligibility_repair_bout_evidence_exists")
     profile = scheduler._profile_for_cycle(profiles, cycle)
+    eligibility_basis_at = _registration_opened_at(pipeline, cycle_id)
 
     staged_records: dict[str, dict[str, Any]] = {}
     reviewed = review_npc_team_eligibility(
         self,
         profile=profile,
-        at=current_time,
+        at=eligibility_basis_at,
         player_id=player_id,
         record_writes=staged_records,
     )
@@ -56,7 +78,7 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
         causal_refs=(cycle_id,),
         affected_owner_refs=tuple(sorted(staged_records)),
         material_consequence_refs=tuple(
-            f"promotion_eligible:{row['candidate_ref']}:false->true" for row in reviewed
+            f"promotion_eligible:{row['candidate_ref']}:false->true:basis:{eligibility_basis_at}" for row in reviewed
         ),
         classification="restricted",
         audience_refs=(player_id,),
@@ -88,6 +110,7 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
             "command_type": command.command_type,
             "cycle_id": cycle_id,
             "status": "repaired",
+            "eligibility_basis_at": str(eligibility_basis_at),
             "eligible_candidate_refs": [row["candidate_ref"] for row in reviewed],
             "eligible_team_refs": sorted({row["team_ref"] for row in reviewed}),
             "semantic_event_id": event_id,
@@ -108,7 +131,7 @@ def install_campaign_promotion_exam_eligibility_repair() -> None:
         CommandSpec(
             ("cycle_id",),
             (),
-            "Repair stale non-player exact-Genin promotion eligibility from authored source-rank service time before any finals bout has settled.",
+            "Repair stale exact-Genin promotion eligibility only when the authored service threshold was already satisfied at this cycle's registration opening and no finals bout has settled.",
             {"cycle_id": "promotion_exam_cycle.<id>"},
             availability="ooc_dev_guarded_repair_only",
         ),

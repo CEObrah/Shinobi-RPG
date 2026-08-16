@@ -57,6 +57,11 @@ class FakeRepository:
                             "promotion_review",
                             "closed",
                         ],
+                        "evaluation_stages": {
+                            "qualification": {"threshold": 78, "components": [{"path": "attributes.intelligence", "weight": 1}]},
+                            "field_evaluation": {"threshold": 82, "components": [{"path": "attributes.awareness", "weight": 1}]},
+                            "finals": {"threshold": 86, "components": [{"path": "attributes.composure", "weight": 1}]},
+                        },
                     }
                 },
             },
@@ -100,19 +105,13 @@ def person(owner_id, *, eligible):
         "village_or_affiliation": "Konohagakure",
         "official_rank_or_status": "Genin",
         "career_state": {"promotion_eligible": eligible},
+        "attributes": {"intelligence": 90, "awareness": 90, "composure": 90},
     }
 
 
 def test_fresh_exam_handoff_projects_eligible_registered_and_unregistered(monkeypatch):
-    monkeypatch.setattr(
-        module,
-        "team_refs_for_member",
-        lambda repository, player_id: ("team.konoha.fujin",),
-    )
-    rows = module._promotion_exam_handoffs(
-        FakeOperations(),
-        player_id="pc_wei_tang",
-    )
+    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
+    rows = module._promotion_exam_handoffs(FakeOperations(), player_id="pc_wei_tang")
     assert rows == [
         {
             "cycle_id": CYCLE_ID,
@@ -124,19 +123,49 @@ def test_fresh_exam_handoff_projects_eligible_registered_and_unregistered(monkey
             "eligible_candidate_refs": ["char.kai", "char.mei_arakawa"],
             "registered_candidate_refs": ["char.kai"],
             "unregistered_candidate_refs": ["char.mei_arakawa"],
+            "evaluation_open": False,
+            "stage_candidate_refs": [],
+            "evaluated_candidate_refs": [],
+            "unevaluated_candidate_refs": [],
+            "evaluation_results": [],
         }
+    ]
+
+
+def test_field_evaluation_projects_unresolved_and_durable_results(monkeypatch):
+    operations = FakeOperations()
+    history = operations.repository.records["state/reg/shinobi-career-pipeline.json"]["history"]
+    history[0]["phase"] = "field_evaluation"
+    history[1]["candidate_refs"] = ["char.kai", "char.mei_arakawa"]
+    history.append(
+        {
+            "kind": "promotion_exam_evaluation",
+            "at": "SE-0061-07-13T07:00:00",
+            "cycle_id": CYCLE_ID,
+            "profile_ref": PROFILE_ID,
+            "phase": "field_evaluation",
+            "team_ref": "team.konoha.fujin",
+            "evaluator_ref": "canon_hiruzen",
+            "candidate_ref": "char.kai",
+            "score": 91,
+            "threshold": 82,
+            "outcome": "pass",
+            "canon_status": "campaign_institutional_not_future_canon",
+        }
+    )
+    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
+    row = module._promotion_exam_handoffs(operations, player_id="pc_wei_tang")[0]
+    assert row["evaluation_open"] is True
+    assert row["stage_candidate_refs"] == ["char.kai", "char.mei_arakawa"]
+    assert row["evaluated_candidate_refs"] == ["char.kai"]
+    assert row["unevaluated_candidate_refs"] == ["char.mei_arakawa"]
+    assert row["evaluation_results"] == [
+        {"candidate_ref": "char.kai", "score": 91, "threshold": 82, "outcome": "pass"}
     ]
 
 
 def test_non_leader_team_is_not_projected(monkeypatch):
     operations = FakeOperations()
     operations.owners["team.konoha.fujin"]["leader_ref"] = "char.other"
-    monkeypatch.setattr(
-        module,
-        "team_refs_for_member",
-        lambda repository, player_id: ("team.konoha.fujin",),
-    )
-    assert module._promotion_exam_handoffs(
-        operations,
-        player_id="pc_wei_tang",
-    ) == []
+    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
+    assert module._promotion_exam_handoffs(operations, player_id="pc_wei_tang") == []

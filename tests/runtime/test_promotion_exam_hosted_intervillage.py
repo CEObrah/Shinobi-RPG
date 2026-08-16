@@ -3,7 +3,9 @@ from __future__ import annotations
 import pytest
 
 from shinobi_runtime.api.contracts import CommandRejectedError
+from shinobi_runtime.commands import promotion_exam_hosted_lifecycle as lifecycle
 from shinobi_runtime.commands import promotion_exam_hosted_policy as hosted
+from shinobi_runtime.sim.events import CampaignTime
 
 
 PROFILE = {
@@ -169,3 +171,69 @@ def test_cross_country_finalist_move_is_repair_only(monkeypatch):
     )
     assert rows[0]["candidate_ref"] == "canon_gaara"
     assert next(iter(writes.values()))["current_location_id"] == "place.konoha.academy.assignment.hall"
+
+
+def test_repair_travel_preserves_route_duration_for_qualification_elimination():
+    arrival, eliminated, returned = lifecycle._repair_travel_times(
+        registration_at=CampaignTime.parse("SE-0061-07-01T07:00:00"),
+        qualification_at=CampaignTime.parse("SE-0061-07-11T07:00:00"),
+        field_at=CampaignTime.parse("SE-0061-07-13T07:00:00"),
+        current_time=CampaignTime.parse("SE-0061-07-22T07:29:58"),
+        route_days=8.0,
+        finalist=False,
+        qualification_outcome="fail",
+        field_outcome=None,
+    )
+
+    assert str(arrival) == "SE-0061-07-09T07:00:00"
+    assert str(eliminated) == "SE-0061-07-11T07:00:00"
+    assert str(returned) == "SE-0061-07-19T07:00:00"
+
+
+def test_repair_travel_preserves_route_duration_for_field_elimination_and_finalists():
+    registration = CampaignTime.parse("SE-0061-07-01T07:00:00")
+    qualification = CampaignTime.parse("SE-0061-07-11T07:00:00")
+    field = CampaignTime.parse("SE-0061-07-13T07:00:00")
+    current = CampaignTime.parse("SE-0061-07-22T07:29:58")
+
+    arrival, eliminated, returned = lifecycle._repair_travel_times(
+        registration_at=registration,
+        qualification_at=qualification,
+        field_at=field,
+        current_time=current,
+        route_days=8.0,
+        finalist=False,
+        qualification_outcome="pass",
+        field_outcome="fail",
+    )
+    assert str(arrival) == "SE-0061-07-09T07:00:00"
+    assert str(eliminated) == "SE-0061-07-13T07:00:00"
+    assert str(returned) == "SE-0061-07-21T07:00:00"
+
+    finalist_arrival, finalist_elimination, finalist_return = lifecycle._repair_travel_times(
+        registration_at=registration,
+        qualification_at=qualification,
+        field_at=field,
+        current_time=current,
+        route_days=8.0,
+        finalist=True,
+        qualification_outcome="pass",
+        field_outcome="pass",
+    )
+    assert str(finalist_arrival) == "SE-0061-07-09T07:00:00"
+    assert finalist_elimination is None
+    assert finalist_return is None
+
+
+def test_repair_travel_rejects_route_that_cannot_reach_qualification():
+    with pytest.raises(CommandRejectedError, match="promotion_exam_delegation_cannot_arrive_by_stage"):
+        lifecycle._repair_travel_times(
+            registration_at=CampaignTime.parse("SE-0061-07-01T07:00:00"),
+            qualification_at=CampaignTime.parse("SE-0061-07-11T07:00:00"),
+            field_at=CampaignTime.parse("SE-0061-07-13T07:00:00"),
+            current_time=CampaignTime.parse("SE-0061-07-22T07:29:58"),
+            route_days=11.0,
+            finalist=False,
+            qualification_outcome="fail",
+            field_outcome=None,
+        )

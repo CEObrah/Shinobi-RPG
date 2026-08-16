@@ -1,8 +1,8 @@
 """Compact semantic-command discovery for the public MCP handoff.
 
 The runtime may keep rich command descriptors internally for validation and
-preview construction.  Live ChatGPT context receives only command names grouped
-by player intent plus material availability overrides.  The selected command's
+preview construction. Live ChatGPT context receives only command names grouped
+by player intent plus material availability overrides. The selected command's
 full descriptor is retrieved separately through get_command_contract.
 """
 from __future__ import annotations
@@ -20,7 +20,7 @@ _DOMAIN_PREFIXES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("combat", ("combat_", "battlefield_", "formation_combat", "conflict_", "special_combat_state_")),
     ("population", ("population_", "recruitment_", "person_materialization", "person_exactification")),
     ("medical", ("medical_", "recovery_")),
-    ("social", ("relationship_", "reputation_", "family_", "career_", "office_", "institution_affiliation")),
+    ("social", ("relationship_", "reputation_", "family_", "career_", "office_", "institution_affiliation", "promotion_exam_")),
     ("economy", ("asset_", "purchase_", "service_", "inventory_", "commerce_", "manufacturing_")),
     ("information", ("information_", "investigation_", "security_network_")),
     ("institutions", ("institution_", "governance_", "legal_", "commitment_", "custody_")),

@@ -1,12 +1,14 @@
 """Deterministic semantic-event multiplicity and replay integrity.
 
 A single semantic command may lawfully emit more than one event of the same
-kind while settling several internal causal boundaries.  The legacy event ID
+kind while settling several internal causal boundaries. The legacy event ID
 used only ``command digest + kind`` and therefore rejected the second distinct
-same-kind event with ``semantic_event_id_conflict``.  This extension preserves
+same-kind event with ``semantic_event_id_conflict``. This extension preserves
 the legacy ID for the first event, makes exact replays idempotent, and adds a
 deterministic payload-derived suffix only when a command emits another distinct
-event of the same kind.
+event of the same kind. Pending archive writes are part of the same staged
+registry and are searched before assigning an ID, so archive rolling cannot
+reintroduce a duplicate base ID within one transaction.
 """
 from __future__ import annotations
 
@@ -38,6 +40,30 @@ def _event_suffix(event: Mapping[str, Any]) -> str:
         ensure_ascii=False,
     ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()[:12]
+
+
+def _staged_event_by_id(
+    self: Any,
+    registry: Mapping[str, Any],
+    event_id: str,
+) -> Optional[Mapping[str, Any]]:
+    events = registry.get("events")
+    if isinstance(events, list):
+        for event in events:
+            if isinstance(event, Mapping) and event.get("id") == event_id:
+                return event
+
+    pending = registry.get("__pending_archive_writes__")
+    if isinstance(pending, Mapping):
+        for archive in pending.values():
+            archived = archive.get("events") if isinstance(archive, Mapping) else None
+            if not isinstance(archived, list):
+                continue
+            for event in archived:
+                if isinstance(event, Mapping) and event.get("id") == event_id:
+                    return event
+
+    return self._world_event_by_id(event_id, registry=registry)
 
 
 def _append_semantic_event(
@@ -106,13 +132,13 @@ def _append_semantic_event(
         "superseded_by_ref": None,
     }
 
-    existing = self._world_event_by_id(base_id, registry=registry)
+    existing = _staged_event_by_id(self, registry, base_id)
     if existing is not None:
         if _event_without_id(existing) == _event_without_id(event):
             return base_id
         event_id = f"{base_id}.{_event_suffix(event)}"
         event["id"] = event_id
-        existing = self._world_event_by_id(event_id, registry=registry)
+        existing = _staged_event_by_id(self, registry, event_id)
         if existing is not None:
             if _event_without_id(existing) == _event_without_id(event):
                 return event_id

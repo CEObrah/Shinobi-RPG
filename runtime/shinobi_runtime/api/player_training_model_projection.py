@@ -20,7 +20,6 @@ def _training_model_guidance(operations: Any) -> Mapping[str, Any]:
         not isinstance(registry, Mapping)
         or registry.get("schema") != "training-model-registry"
         or not isinstance(models, Mapping)
-        or len(models) > 32
     ):
         raise OperationError(503, "training_model_discovery_invalid")
     projected: dict[str, dict[str, Any]] = {}
@@ -46,6 +45,7 @@ def _training_model_guidance(operations: Any) -> Mapping[str, Any]:
         "model_ref": {
             "allowed_values": list(projected),
             "models": projected,
+            "model_count": len(projected),
             "rule": "Use one listed model_ref exactly; do not invent model IDs.",
         },
         "self_directed": {

@@ -5,18 +5,19 @@ from shinobi_runtime.sim.events import CampaignTime
 
 class _Planner:
     def _world_event_by_id(self, event_id, *, registry=None):
-        return None
+        raise AssertionError("new semantic-event generation must not scan cold history")
 
     def _roll_world_events(self, registry, *, at):
         del at
         events = registry["events"]
         if not events:
             return
+        path = "state/history/events/test-roll.json"
+        refs = registry.setdefault("archive_refs", [])
+        if path not in refs:
+            refs.append(path)
         pending = registry.setdefault("__pending_archive_writes__", {})
-        archive = pending.setdefault(
-            "state/history/events/test-roll.json",
-            {"events": []},
-        )
+        archive = pending.setdefault(path, {"events": []})
         archive["events"].extend(events)
         events.clear()
 
@@ -85,5 +86,7 @@ def test_same_command_same_kind_distinct_events_get_stable_unique_ids_after_arch
     assert first != second
     assert second.startswith(first + ".")
 
-    archived = registry["__pending_archive_writes__"]["state/history/events/test-roll.json"]["events"]
+    path = "state/history/events/test-roll.json"
+    assert registry["archive_refs"] == [path]
+    archived = registry["__pending_archive_writes__"][path]["events"]
     assert [row["id"] for row in archived] == [first, second]

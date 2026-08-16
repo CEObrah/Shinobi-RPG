@@ -13,6 +13,10 @@
       "source_rank": "Genin",
       "target_rank": "Chunin",
       "registration_authority": "active_team_leader",
+      "registration_team_authority_refs": [
+        "institution.konoha.academy",
+        "faction.konoha_mission_office"
+      ],
       "cycle_start_months": [1, 7],
       "phases": [
         "registration",
@@ -58,6 +62,7 @@
         "venue_ref": "place.konoha.academy.assignment.hall",
         "bracket_public": true,
         "bracket_order": "cycle_seeded_stable",
+        "same_team_bouts": "forbidden",
         "range_band": 1,
         "max_exchange_ticks": 5,
         "lethal_force": false,
@@ -79,9 +84,12 @@
         "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
         "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening. Qualification and field evaluation additionally remain blocked until every current stage entrant has durable evaluation evidence. Finals remain blocked until the configured tournament bracket has durably settled.",
         "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
+        "Eligible non-player standard mission teams under a configured host registration authority submit their own qualified members through institution autonomy; the player still decides whether to submit a player-led team.",
+        "Legacy living-state labels active and alive are equivalent for promotion-exam eligibility and attendance checks; neither label implies an outcome.",
         "Qualification and field evaluation use the configured deterministic weighted capability score from persisted exact candidate state. Model sampling and ad hoc GM scoring are forbidden.",
         "If a prior evaluable stage has durable results, only candidates who passed it enter the next evaluable stage. If an already-committed legacy cycle crossed a prior stage before this evaluator existed and therefore has no prior-stage evidence at all, registered candidates remain entrants rather than receiving fabricated retroactive results.",
         "Finals are a public single-elimination bracket over candidates who passed field evaluation. Pairing is deterministic from the cycle and candidate identities; the caller cannot choose pairings, NPC tactics, or winners.",
+        "Finals never pair two candidates registered from the same exact team. Cross-team opponents are paired deterministically whenever available; if only same-team contenders remain, they are co-finalists and the tournament portion completes without an intra-team bout.",
         "Each finals bout is settled through the shared deterministic combat kernel as nonlethal examination combat. A referee-stoppage policy converts combat effects into bout evidence rather than directly applying lasting injury from this exam-specific kernel. If the kernel produces no sole victorious side, persisted Chunin-relevant judgment dimensions break the tie deterministically.",
         "A finals victory establishes only tournament evidence. Winning the bracket never guarantees Chunin promotion, and losing a bout never by itself forbids promotion. Promotion review remains a separate institutional judgment over the candidate's demonstrated readiness and command qualities.",
         "An evaluation row establishes only Academy stage evidence and pass/fail for that stage. It never establishes injury, promotion, rank accounting, or a future-canon outcome.",

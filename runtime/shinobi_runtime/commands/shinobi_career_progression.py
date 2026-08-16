@@ -9,6 +9,7 @@ career reducer.
 from __future__ import annotations
 
 import copy
+import json
 from functools import wraps
 from typing import Any, Dict, Mapping, Optional
 
@@ -252,11 +253,29 @@ def _install_academy_intake_annotation() -> None:
 
 
 class _BaseOverlayView:
-    """Hide the extension-only career write from the base-plan validator."""
+    """Present the exact base career after-image to the base-plan validator.
 
-    def __init__(self, overlay: Any, changed_paths: tuple[str, ...]) -> None:
+    The aggregate career layer may lawfully refine the same career owner that
+    base autonomous work already changed at the monthly boundary. The base
+    validator must therefore see the base plan's own pre-extension image, while
+    the outer validator separately proves the final composed career image.
+    """
+
+    def __init__(
+        self,
+        overlay: Any,
+        changed_paths: tuple[str, ...],
+        *,
+        base_json: Optional[Mapping[str, Any]] = None,
+    ) -> None:
         self._overlay = overlay
         self.changed_paths = changed_paths
+        self._base_json = copy.deepcopy(dict(base_json or {}))
+
+    def read_json(self, path: str) -> Any:
+        if path in self._base_json:
+            return copy.deepcopy(self._base_json[path])
+        return self._overlay.read_json(path)
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._overlay, name)
@@ -287,13 +306,27 @@ def _install_time_career_progression() -> None:
         if not reviews and not intake_actions:
             return base
 
+        raw_base_career = base.writes.get(_CAREER_PATH)
         try:
-            loaded = self.repository.read_json(_CAREER_PATH)
+            if raw_base_career is None:
+                loaded = self.repository.read_json(_CAREER_PATH)
+            elif isinstance(raw_base_career, (bytes, bytearray)):
+                loaded = json.loads(bytes(raw_base_career).decode("utf-8"))
+            else:
+                raise ValueError("invalid staged career image")
             rules = self.repository.read_json(_CAREER_RULES_PATH)
-        except (FileNotFoundError, ValueError) as exc:
+        except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
             raise CommandRejectedError("shinobi_career_pipeline_invalid") from exc
         if not isinstance(loaded, dict) or not isinstance(rules, Mapping):
             raise CommandRejectedError("shinobi_career_pipeline_invalid")
+
+        # When the base time reducer already changed the career owner, compose
+        # from that exact staged after-image. Reloading committed state here
+        # would discard the base reducer's lawful change and create two competing
+        # after-images for one transaction owner.
+        base_career_image = (
+            copy.deepcopy(loaded) if raw_base_career is not None else None
+        )
         career = copy.deepcopy(loaded)
         _career_villages(career)
         _validate_rules(rules)
@@ -362,10 +395,18 @@ def _install_time_career_progression() -> None:
         writes = dict(base.writes)
         writes[_CAREER_PATH] = _json_bytes(career)
         base_paths = tuple(sorted(base.writes))
+        base_json = (
+            {_CAREER_PATH: base_career_image}
+            if base_career_image is not None
+            else {}
+        )
         expected = copy.deepcopy(career)
 
         def validate(overlay: Any, manifest: Any) -> None:
-            base.validator(_BaseOverlayView(overlay, base_paths), manifest)
+            base.validator(
+                _BaseOverlayView(overlay, base_paths, base_json=base_json),
+                manifest,
+            )
             staged = overlay.read_json(_CAREER_PATH)
             if staged != expected:
                 raise ValueError("shinobi career after-image differs from plan")

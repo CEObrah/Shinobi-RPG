@@ -53,8 +53,11 @@ def _install_campaign_extensions() -> None:
     install_downtime_vitality()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
-    install_global_team_training_load()
+    # Joint participation is installed first; the global-load installer then
+    # scopes the final autonomous-training surface so staged sessions created by
+    # either base team training or the joint block are visible to one another.
     install_joint_player_team_training()
+    install_global_team_training_load()
     install_player_global_team_training_projection()
     install_player_house_outreach_projection()
     install_preview_validation()

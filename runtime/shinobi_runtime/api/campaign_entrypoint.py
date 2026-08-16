@@ -25,6 +25,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
     from shinobi_runtime.commands.global_team_training_load import install_global_team_training_load
     from shinobi_runtime.commands.joint_player_team_training import install_joint_player_team_training
+    from shinobi_runtime.commands.autonomous_training_error_guard import install_autonomous_training_error_guard
     from shinobi_runtime.commands.house_recruitment_outreach import install_house_recruitment_outreach
     from shinobi_runtime.commands.external_house_intake_origin import install_external_house_intake_origin
     from shinobi_runtime.api.preview_validation import install_preview_validation
@@ -53,23 +54,22 @@ def _install_campaign_extensions() -> None:
     install_downtime_vitality()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
-    # Joint participation is installed first; the global-load installer then
-    # scopes the final autonomous-training surface so staged sessions created by
-    # either base team training or the joint block are visible to one another.
     install_joint_player_team_training()
     install_global_team_training_load()
+    # This guard is diagnostic-only and must wrap the final composed autonomous
+    # training surface so unexpected TypeError/ValueError failures are reduced to
+    # a bounded source-stage token rather than a generic preview input error.
+    install_autonomous_training_error_guard()
     install_player_global_team_training_projection()
     install_player_house_outreach_projection()
     install_preview_validation()
-    # Install final guards after every campaign wrapper has resolved its concrete
-    # production method surface.
+    # Install final transaction guards after every campaign wrapper has resolved
+    # its concrete production method surface.
     install_institution_review_runtime_guard()
     install_production_population_owner_bridge()
 
 
 def create_app_from_env():
-    # Patch concrete campaign implementations before loading api.app. Generic
-    # base classes remain reusable for isolated unit tests.
     from shinobi_runtime.api import ooc as ooc_module
     from shinobi_runtime.api import route_discovery as route_discovery_module
     from shinobi_runtime.api.campaign_environment import RouteAwareCampaignOperations

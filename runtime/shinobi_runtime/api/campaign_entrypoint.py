@@ -26,6 +26,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.player_mission_continuity import install_player_mission_continuity
     from shinobi_runtime.commands.player_mission_delegation import install_player_mission_delegation
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
+    from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
     from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
@@ -71,6 +72,7 @@ def _install_campaign_extensions() -> None:
     install_player_mission_continuity()
     install_player_mission_delegation()
     install_campaign_mission_continuity_repair()
+    install_campaign_family_continuity_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
     install_joint_player_team_training()

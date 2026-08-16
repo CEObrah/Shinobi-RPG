@@ -84,13 +84,15 @@
       "actors": [
         "canon_mizuki"
       ],
-      "resources": [],
+      "resources": [
+        "mission.autonomy.b5c4a09d68a2906058"
+      ],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
       "opposition": [],
-      "current_step": "information_report:event.autonomous_information_report.b8ca5d678fc4658cc083f271",
+      "current_step": "mission_generate:event.autonomous_mission_started.281b27e95ad6a4de3114a481",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
         "settled_through": "SE-0061-07-15T18:00:00",
@@ -103,7 +105,8 @@
       ],
       "evidence_refs": [
         "event.autonomous_information_report.3551b72e34c8d29b53e7f213",
-        "event.autonomous_information_report.b8ca5d678fc4658cc083f271"
+        "event.autonomous_information_report.b8ca5d678fc4658cc083f271",
+        "event.autonomous_mission_started.281b27e95ad6a4de3114a481"
       ],
       "visibility": {
         "classification": null,
@@ -133,6 +136,17 @@
           "status_after": "latent_active",
           "source_refs": [
             "event.autonomous_information_report.b8ca5d678fc4658cc083f271",
+            "faction.mizuki_conspiracy"
+          ]
+        },
+        {
+          "entry_id": "front_history.mizuki_forbidden_scroll.5247bb89ed46249e441e",
+          "at": "SE-0061-07-16T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "latent_active",
+          "status_after": "latent_active",
+          "source_refs": [
+            "event.autonomous_mission_started.281b27e95ad6a4de3114a481",
             "faction.mizuki_conspiracy"
           ]
         }
@@ -206,11 +220,11 @@
         "canon_hayate",
         "canon_yugao"
       ],
-      "current_step": "mission_generate:event.autonomous_mission_started.2299607b20821c39bd3efe01",
+      "current_step": "information_report:event.autonomous_information_report.a5c1291c70a7d671f4fca339",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_oto_konoha_infiltration",
-        "settled_through": "SE-0061-07-09T07:00:00",
-        "due_at": "SE-0061-07-16T07:00:00"
+        "settled_through": "SE-0061-07-16T07:00:00",
+        "due_at": "SE-0061-07-23T07:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
       "source_refs": [
@@ -224,7 +238,10 @@
         "event.autonomous_mission_started.3672697ca1ec0a0c66da1170",
         "event.autonomous_mission_started.9dc25407c7fa38a6ba516cd9",
         "event.formation_created.59516bc25e59af8e241b5ae8",
-        "event.autonomous_mission_started.2299607b20821c39bd3efe01"
+        "event.autonomous_mission_started.2299607b20821c39bd3efe01",
+        "event.autonomous_information_report.7f8bf815129115dadb86af54",
+        "event.formation_created.104a63faa4739ebc50253c36",
+        "event.autonomous_information_report.a5c1291c70a7d671f4fca339"
       ],
       "visibility": {
         "classification": "hidden",
@@ -298,6 +315,39 @@
           "status_after": "active_hidden",
           "source_refs": [
             "event.autonomous_mission_started.2299607b20821c39bd3efe01",
+            "faction.konoha_anbu"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.015d4b0acde0b4bc40da",
+          "at": "SE-0061-07-16T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_information_report.a5c1291c70a7d671f4fca339",
+            "faction.konoha_anbu"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.2b6b50ea778d25402500",
+          "at": "SE-0061-07-16T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_information_report.7f8bf815129115dadb86af54",
+            "faction.oto_research_cells"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.ce6e827b803c96a89b5d",
+          "at": "SE-0061-07-16T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.formation_created.104a63faa4739ebc50253c36",
             "faction.konoha_anbu"
           ]
         }
@@ -403,7 +453,7 @@
         "refs": []
       },
       "opposition": [],
-      "current_step": "mission_generate:event.autonomous_mission_started.e7ed4c8ca90a9efcafa2c49b",
+      "current_step": "information_report:event.autonomous_information_report.4707dde08a93cc5654e11f3c",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_akatsuki_intelligence",
         "settled_through": "SE-0061-07-12T07:00:00",
@@ -416,7 +466,8 @@
       ],
       "evidence_refs": [
         "event.autonomous_mission_started.3b9a0e7bfc4341ba37e9b9d5",
-        "event.autonomous_mission_started.e7ed4c8ca90a9efcafa2c49b"
+        "event.autonomous_mission_started.e7ed4c8ca90a9efcafa2c49b",
+        "event.autonomous_information_report.4707dde08a93cc5654e11f3c"
       ],
       "visibility": {
         "classification": "hidden",
@@ -446,6 +497,17 @@
           "status_after": "active_hidden",
           "source_refs": [
             "event.autonomous_mission_started.e7ed4c8ca90a9efcafa2c49b",
+            "faction.akatsuki"
+          ]
+        },
+        {
+          "entry_id": "front_history.akatsuki_intelligence.99919c8a91007755dce0",
+          "at": "SE-0061-07-16T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.autonomous_information_report.4707dde08a93cc5654e11f3c",
             "faction.akatsuki"
           ]
         }

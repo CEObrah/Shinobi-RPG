@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.faction.faction.suna_puppet_corps",
           "kind": "faction",
-          "resolved_through": "SE-0061-07-09T07:00:00",
-          "safe_through": "SE-0061-07-16T06:59:59",
+          "resolved_through": "SE-0061-07-16T07:00:00",
+          "safe_through": "SE-0061-07-23T06:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "faction.suna_puppet_corps",
-          "next_due": "SE-0061-07-16T07:00:00"
+          "next_due": "SE-0061-07-23T07:00:00"
         },
         "authority_kind": "faction_plan",
         "owner_ref": "state/reg/factions/faction-suna-puppet-corps.json",
@@ -24,9 +24,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.759f147e618e52c756badce3",
-          "due_at": "SE-0061-07-16T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-07-16.json",
+          "event_id": "evt.causal.7ebc3943df09cc75aa065b70",
+          "due_at": "SE-0061-07-23T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-23.json",
           "dedupe_key": "faction.periodic_review:faction.suna_puppet_corps"
         }
       ]

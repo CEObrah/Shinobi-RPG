@@ -1,0 +1,45 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.717e7694be6d73fc1a4d",
+  "domain": "hunter_nin",
+  "operation_kind": "bounty_acceptance_review",
+  "owner_ref": "faction.kiri_hunter_office",
+  "authority_ref": "canon_ao",
+  "opened_at": "SE-0061-07-16T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-16T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "information",
+  "subject_ref": "claim.autonomy.cfb5d0f8837814432d",
+  "client_ref": null,
+  "place_refs": [],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [
+    "claim.autonomy.cfb5d0f8837814432d"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.af258eaa8f0fa20d9edaf03b"
+  ],
+  "report_recipient_refs": [
+    "canon_ao",
+    "faction.bounty_broker_network"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Accept one funded bounty only through an active eligible Kiri hunter team; acceptance grants no target location or success.",
+  "failure_condition": "No funded bounty or available eligible hunter team exists.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.autonomy.cfb5d0f8837814432d",
+    "delivery.autonomy.af258eaa8f0fa20d9edaf03b"
+  ]
+}

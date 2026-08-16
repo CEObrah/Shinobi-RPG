@@ -6,9 +6,9 @@
   "owner_ref": "faction.kumo_military_intelligence",
   "authority_ref": "canon_c",
   "opened_at": "SE-0061-07-02T07:00:00",
-  "next_due_at": "SE-0061-07-16T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-16T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "force",
   "subject_ref": "force.suna.shinobi",
@@ -28,18 +28,33 @@
   "participant_refs": [],
   "blocked_reason": null,
   "mission_refs": [],
-  "project_refs": [],
+  "project_refs": [
+    "research.autonomy.ebdb32fd279e4d797e9e"
+  ],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
-  "delivery_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.32a9a5658888100d2676daa9",
+    "event.institutional_operation_evidence_generated.2100ac2f1d462b72cf2899b3"
+  ],
+  "claim_refs": [
+    "claim.operation.956aef2351387dd35da9"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.bb21ed09e69cbe9a7e153ed7"
+  ],
   "report_recipient_refs": [
     "canon_c",
     "canon_ay"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Produce a bounded sourced claim about the selected foreign force rather than a generic self-report.",
   "failure_condition": "The foreign_force_collection objective becomes impossible, compromised, or materially incomplete.",
   "classification": "secret",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.956aef2351387dd35da9",
+    "delivery.autonomy.bb21ed09e69cbe9a7e153ed7",
+    "event.institutional_operation_completed.32a9a5658888100d2676daa9",
+    "event.institutional_operation_evidence_generated.2100ac2f1d462b72cf2899b3",
+    "research.autonomy.ebdb32fd279e4d797e9e"
+  ]
 }

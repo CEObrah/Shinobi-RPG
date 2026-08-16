@@ -984,6 +984,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.e2a8270272ecdf8ad25a",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-20T07:23:18",
+        "started_at": "SE-0061-07-20T07:23:18",
+        "ended_at": "SE-0061-07-20T07:23:18"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:weapon_katana:2",
+        "procurement:treasury.iron_samurai->economy.contractors:18000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-20T07:23:18"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.e2a8270272ecdf8ad25a03f397cb07367e093b47220e3ef2891f9a4d81006322",
+        "receipt_refs": [
+          "receipt.gameplay.e2a8270272ecdf8ad25a03f397cb07367e093b47220e3ef2891f9a4d81006322"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

@@ -18,7 +18,7 @@ from shinobi_runtime.tx.manifest import TransactionManifest
 
 _MISSION_INDEX = "state/mission/context-index.json"
 _INSTALLED = False
-_PASSIVE = frozenset(("advance_time", "advance_until_event", "report_handoff_resolution", "team_checkin_handoff_resolution", "scene_projection_repair"))
+_PASSIVE = frozenset(("advance_time", "advance_until_event", "report_handoff_resolution", "team_checkin_handoff_resolution", "scene_projection_repair", "campaign_mission_continuity_repair"))
 
 
 def _scene_id(scene: Mapping[str, Any]) -> str:

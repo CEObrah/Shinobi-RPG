@@ -2017,6 +2017,66 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_candidates_registered.6bff4b9ef670c8d907d3",
+      "kind": "promotion_exam_candidates_registered",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-01T07:00:00",
+        "started_at": "SE-0061-07-01T07:00:00",
+        "ended_at": "SE-0061-07-01T07:00:00"
+      },
+      "host_refs": [
+        "institution.konoha.academy",
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "promotion_exam_registration:promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07:char.kai",
+        "promotion_exam_registration:promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07:char.mei_arakawa",
+        "promotion_exam_registration:promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07:char.riku_hyuga"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "institution.konoha.academy",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-01T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_scheduler.promotion_exam_registration_resolution",
+        "transaction_ref": "tx.gameplay.6bff4b9ef670c8d907d3181d48cfc960c28615b90a410995b52ea988b7642552",
+        "receipt_refs": [
+          "receipt.gameplay.6bff4b9ef670c8d907d3181d48cfc960c28615b90a410995b52ea988b7642552"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

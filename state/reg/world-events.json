@@ -1546,6 +1546,115 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_cycle_phase_changed.53f7ac9933cd7864c1f9dfe5",
+      "kind": "promotion_exam_cycle_phase_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-07-22T07:00:00",
+        "occurred_at": "SE-0061-07-22T07:00:00",
+        "started_at": "SE-0061-07-22T07:00:00",
+        "ended_at": "SE-0061-07-22T07:00:00"
+      },
+      "host_refs": [
+        "institution.konoha.academy"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "phase:finals",
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_hiruzen",
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-22T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_pacing",
+        "transaction_ref": "tx.gameplay.427f2455e615bf4e62e73babfb47ed76a1d5b81a8e0cfa1bb55b1e7cee92d330",
+        "receipt_refs": [
+          "receipt.gameplay.427f2455e615bf4e62e73babfb47ed76a1d5b81a8e0cfa1bb55b1e7cee92d330"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.427f2455e615bf4e62e7",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-22T07:00:00",
+        "started_at": "SE-0061-07-22T07:00:00",
+        "ended_at": "SE-0061-07-22T07:00:00"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:item_basic_antidote:8",
+        "procurement:treasury.suna->economy.contractors:20000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-22T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.427f2455e615bf4e62e73babfb47ed76a1d5b81a8e0cfa1bb55b1e7cee92d330",
+        "receipt_refs": [
+          "receipt.gameplay.427f2455e615bf4e62e73babfb47ed76a1d5b81a8e0cfa1bb55b1e7cee92d330"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

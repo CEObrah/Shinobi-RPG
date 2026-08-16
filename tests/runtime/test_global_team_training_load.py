@@ -28,6 +28,7 @@ class FakeRepository:
                 "owners": {
                     "team.alpha": "state/team/alpha.json",
                     "team.beta": "state/team/beta.json",
+                    "team.unrelated": "state/team/unrelated.json",
                 }
             },
             "state/team/alpha.json": team(
@@ -42,6 +43,11 @@ class FakeRepository:
                 ],
             ),
             "state/team/beta.json": team("team.beta", []),
+            "state/team/unrelated.json": team(
+                "team.unrelated",
+                [{"legacy": "malformed old training row"}],
+                members=["char.someone_else", "char.other"],
+            ),
         }
 
     def read_json(self, path):
@@ -60,15 +66,16 @@ def session(session_ref, started_at, ended_at, active_hours):
     }
 
 
-def team(team_ref, recent_sessions):
+def team(team_ref, recent_sessions, *, members=None):
     return {
         "schema": "exact-team",
         "id": team_ref,
+        "member_refs": list(members or ["pc_wei_tang", "char.other"]),
         "training": {"recent_sessions": recent_sessions},
     }
 
 
-def test_load_aggregates_session_from_another_exact_team():
+def test_load_aggregates_session_from_another_exact_team_and_ignores_unrelated_legacy_rows():
     load = member_team_training_load(
         FakeRepository(),
         "pc_wei_tang",
@@ -78,6 +85,19 @@ def test_load_aggregates_session_from_another_exact_team():
     assert str(load["last_session_ended_at"]) == "SE-0061-07-01T09:00:00"
     assert str(load["recovery_ready_at"]) == "SE-0061-07-01T17:00:00"
     assert load["recovery_ready_now"] is False
+
+
+def test_malformed_history_on_actual_member_team_still_fails_closed():
+    repository = FakeRepository()
+    repository.records["state/team/beta.json"]["training"]["recent_sessions"] = [
+        {"legacy": "malformed member-team row"}
+    ]
+    with pytest.raises(CommandRejectedError, match="team_training_history_invalid"):
+        member_team_training_load(
+            repository,
+            "pc_wei_tang",
+            as_of=CampaignTime.parse("SE-0061-07-01T10:00:00"),
+        )
 
 
 def test_second_team_cannot_bypass_personal_recovery():

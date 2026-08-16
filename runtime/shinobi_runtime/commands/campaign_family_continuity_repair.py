@@ -22,6 +22,12 @@ _PARENTAGE_IDS = {
     _PLAYER: "family.parentage.continuity.wei_tang",
     _BROTHER: "family.parentage.continuity.kai_tang",
 }
+_EXACT_PERSON_PATHS = {
+    _PLAYER: "state/player.json",
+    "char.zhu": "state/char/zhu.json",
+    "char.linh": "state/char/linh.json",
+    _BROTHER: "state/char/kai.json",
+}
 _INSTALLED = False
 
 
@@ -45,6 +51,27 @@ def _parentage_record(child_ref: str) -> dict[str, Any]:
     }
 
 
+def _validate_exact_people(repository: Any) -> None:
+    """Validate only the four fixed continuity owners without routing inference.
+
+    This is a one-shot campaign repair with fixed provenance-backed identities.
+    It must not depend on a generic covered-owner route that can legitimately
+    omit campaign-root or campaign-specific exact-character owners.
+    """
+    for owner_id, path in _EXACT_PERSON_PATHS.items():
+        try:
+            person = repository.read_json(path)
+        except (FileNotFoundError, ValueError) as exc:
+            raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved") from exc
+        if (
+            not isinstance(person, Mapping)
+            or person.get("schema") != "shinobi_character"
+            or person.get("owner_id") != owner_id
+            or person.get("life_status") != "alive"
+        ):
+            raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved")
+
+
 def _repair(
     self: Any,
     command: CommandEnvelope,
@@ -57,25 +84,10 @@ def _repair(
     if command.actor_id != meta.get("player_id") or command.actor_id != _PLAYER:
         raise CommandRejectedError("campaign_family_continuity_repair_actor_invalid")
 
-    # The player owner is a campaign root rather than an ordinary covered-owner
-    # route. Resolve it directly, while non-player family members still use the
-    # normal exact-person authority resolver.
-    try:
-        player = self.repository.read_json("state/player.json")
-    except (FileNotFoundError, ValueError) as exc:
-        raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved") from exc
-    if (
-        not isinstance(player, Mapping)
-        or player.get("schema") != "shinobi_character"
-        or player.get("owner_id") != _PLAYER
-    ):
-        raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved")
-
     # This repair is provenance-backed by the player's explicit OOC continuity
-    # assertion. It may fill only the known Tang immediate-family omission and
-    # must fail closed if later state has already established competing truth.
-    for person_ref in (*_PARENTS, _BROTHER):
-        self._require_person_ref(person_ref, code="campaign_family_continuity_repair_person_unresolved")
+    # assertion. Resolve only its fixed known identities from their exact owners;
+    # no generic owner discovery or mutable aliasing is permitted here.
+    _validate_exact_people(self.repository)
 
     family, kinship = self._family_indexes()
     parentage_bucket = family.get("parentage")
@@ -208,4 +220,4 @@ def install_campaign_family_continuity_repair() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_campaign_family_continuity_repair", "_parentage_record"]
+__all__ = ["install_campaign_family_continuity_repair", "_parentage_record", "_validate_exact_people"]

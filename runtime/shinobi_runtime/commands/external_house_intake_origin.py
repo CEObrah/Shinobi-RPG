@@ -4,6 +4,8 @@ The existing domestic Sword Manor policy remains unchanged. A separate static
 outreach policy inherits its standards but can draw only voluntary civilian and
 support-service applicants from explicitly listed foreign village population
 owners. Accepted people become House Tang personnel, never Konoha shinobi.
+Foreign intake is unavailable until the matching persisted outreach response
+window has matured.
 """
 from __future__ import annotations
 
@@ -14,6 +16,8 @@ from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
+from shinobi_runtime.commands.house_recruitment_outreach import _outreach_commitments
+from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest
 
@@ -98,6 +102,42 @@ class _OverlayAdapter:
         return getattr(self._overlay, name)
 
 
+def _require_mature_outreach(
+    repository: Any,
+    *,
+    actor_ref: str,
+    institution_ref: str,
+    policy_ref: str,
+    source_pool_id: str,
+    current_time: CampaignTime,
+) -> Mapping[str, Any]:
+    matches = _outreach_commitments(
+        repository,
+        institution_ref=institution_ref,
+        policy_ref=policy_ref,
+        source_pool_id=source_pool_id,
+    )
+    mature: list[Mapping[str, Any]] = []
+    for row in matches:
+        try:
+            due_at = CampaignTime.parse(row.get("due_at"))
+        except (TypeError, ValueError) as exc:
+            raise CommandRejectedError("institution_recruitment_outreach_state_invalid") from exc
+        if due_at <= current_time:
+            mature.append(row)
+    if not mature:
+        raise CommandRejectedError("institution_recruitment_outreach_response_window_not_mature")
+    if len(mature) > 1:
+        raise CommandRejectedError("institution_recruitment_outreach_state_ambiguous")
+    row = mature[0]
+    if row.get("subject_ref") != actor_ref:
+        # A delegated requester may execute only the campaign they personally
+        # initiated. Zhu retains authority to initiate his own campaign instead
+        # of silently inheriting Wei's player commitment.
+        raise CommandRejectedError("institution_recruitment_outreach_actor_mismatch")
+    return row
+
+
 def install_external_house_intake_origin() -> None:
     global _INSTALLED
     if _INSTALLED:
@@ -111,18 +151,29 @@ def install_external_house_intake_origin() -> None:
         return
 
     @wraps(original)
-    def wrapped(self: Any, command: Any, meta: Mapping[str, Any], current_time: Any) -> _BuiltPlan:
+    def wrapped(self: Any, command: Any, meta: Mapping[str, Any], current_time: CampaignTime) -> _BuiltPlan:
         policy_ref = command.payload.get("policy_ref")
+        source_pool_id = command.payload.get("source_pool_id")
+        institution_ref = command.payload.get("institution_ref")
         planning_self = self
         repository = self.repository
+        outreach_commitment = None
         if policy_ref == _OUTREACH_REF:
+            if not isinstance(source_pool_id, str) or not isinstance(institution_ref, str):
+                raise CommandRejectedError("institution_recruitment_outreach_state_invalid")
+            outreach_commitment = _require_mature_outreach(
+                self.repository,
+                actor_ref=command.actor_id,
+                institution_ref=institution_ref,
+                policy_ref=policy_ref,
+                source_pool_id=source_pool_id,
+                current_time=current_time,
+            )
             planning_self = copy.copy(self)
             repository = _OutreachRepository(self.repository)
             planning_self.repository = repository
         plan = original(planning_self, command, meta, current_time)
 
-        source_pool_id = command.payload.get("source_pool_id")
-        institution_ref = command.payload.get("institution_ref")
         if not all(
             isinstance(value, str) and value
             for value in (source_pool_id, policy_ref, institution_ref)
@@ -191,6 +242,7 @@ def install_external_house_intake_origin() -> None:
         result["destination_service_status"] = _PRIVATE_STATUS
         if policy_ref == _OUTREACH_REF:
             result["outreach_modes"] = list(policy.get("outreach_modes", ()))
+            result["outreach_commitment_id"] = outreach_commitment.get("id") if isinstance(outreach_commitment, Mapping) else None
         base_validator = plan.validator
 
         def validate(overlay: StagedOverlay, manifest: TransactionManifest) -> None:

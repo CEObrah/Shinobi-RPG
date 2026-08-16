@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.canon_pressure.pressure_konoha_academy_graduation",
           "kind": "canon_pressure",
-          "resolved_through": "SE-0061-06-25T09:00:00",
-          "safe_through": "SE-0061-07-02T08:59:59",
+          "resolved_through": "SE-0061-07-02T09:00:00",
+          "safe_through": "SE-0061-07-09T08:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "pressure_konoha_academy_graduation",
-          "next_due": "SE-0061-07-02T09:00:00"
+          "next_due": "SE-0061-07-09T09:00:00"
         },
         "authority_kind": "canon_pressure",
         "owner_ref": "state/canon/pressures.json",
@@ -23,9 +23,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.664ded442820b954786d32d7",
-          "due_at": "SE-0061-07-02T09:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-07-02.json",
+          "event_id": "evt.causal.926d32fa239096dcb48f1374",
+          "due_at": "SE-0061-07-09T09:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-09.json",
           "dedupe_key": "canon_pressure.periodic_review:pressure_konoha_academy_graduation"
         }
       ]

@@ -12,6 +12,7 @@
       "service_village": "konoha",
       "source_rank": "Genin",
       "target_rank": "Chunin",
+      "registration_authority": "active_team_leader",
       "cycle_start_months": [
         1,
         7
@@ -28,6 +29,8 @@
         "The Konoha world-registry institution scheduler is the only temporal authority for phase reviews; this file does not create a second clock.",
         "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
         "Each later scheduled Academy review advances at most one phase.",
+        "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
+        "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
         "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",
         "Exact promotion still requires persisted promotion eligibility and may advance only one rank.",
         "Every exact rank change synchronizes conserved aggregate village rank counts."

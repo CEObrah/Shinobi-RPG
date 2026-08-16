@@ -2960,6 +2960,81 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.travel_completed.a2a40c6fcb492c8aaa00",
+      "kind": "travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-11T07:23:18",
+        "started_at": "SE-0061-07-11T07:23:18",
+        "ended_at": "SE-0061-07-11T07:23:18"
+      },
+      "host_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/char/mei-arakawa.json",
+        "state/char/riku-hyuga.json",
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:char.kai:place.konoha.academy.assignment.hall",
+        "location:char.mei_arakawa:place.konoha.academy.assignment.hall",
+        "location:char.riku_hyuga:place.konoha.academy.assignment.hall",
+        "location:pc_wei_tang:place.konoha.academy.assignment.hall"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_local"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-11T07:23:18"
+      },
+      "execution": {
+        "reducer_ref": "game/data/mechanics/travel.json",
+        "transaction_ref": "tx.gameplay.a2a40c6fcb492c8aaa00a5956eed223db92dce7e29e140a08afb53db63f4c77f",
+        "receipt_refs": [
+          "receipt.gameplay.a2a40c6fcb492c8aaa00a5956eed223db92dce7e29e140a08afb53db63f4c77f"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

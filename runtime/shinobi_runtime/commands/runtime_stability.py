@@ -301,6 +301,14 @@ class RuntimeStabilityMixin:
         return event_id
 
     def _append_semantic_event(self, registry: dict[str, Any], *args: Any, **kwargs: Any) -> str:
+        affected = tuple(
+            item for item in kwargs.get("affected_owner_refs", ())
+            if isinstance(item, str) and item
+        )
+        if not affected:
+            affected = self._derive_event_owner_refs(kwargs)
+            if affected:
+                kwargs["affected_owner_refs"] = affected
         event_id = super()._append_semantic_event(registry, *args, **kwargs)
         _validate_new_terminal_event(_event_by_id(registry, event_id))
         return event_id

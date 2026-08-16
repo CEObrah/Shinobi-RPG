@@ -4634,6 +4634,66 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.9782a2bd6304723cfc22",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-16T07:00:00",
+        "started_at": "SE-0061-07-16T07:00:00",
+        "ended_at": "SE-0061-07-16T07:00:00"
+      },
+      "host_refs": [
+        "faction.konoha_mission_office",
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "mission.offer.32d9265b329ed0e7a9"
+      ],
+      "affected_owner_refs": [
+        "state/scene.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "mission_autonomy_route_preserved:mission.offer.32d9265b329ed0e7a9",
+        "stale_player_mission_boundary_removed:mission.offer.32d9265b329ed0e7a9"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "faction.konoha_mission_office",
+          "mission.offer.32d9265b329ed0e7a9",
+          "team.blackhound"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-16T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_mission_boundary_repair",
+        "transaction_ref": "tx.gameplay.9782a2bd6304723cfc228225aad9c907aa34f5e5bfe8f22952eebf47d28c9c57",
+        "receipt_refs": [
+          "receipt.gameplay.9782a2bd6304723cfc228225aad9c907aa34f5e5bfe8f22952eebf47d28c9c57"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

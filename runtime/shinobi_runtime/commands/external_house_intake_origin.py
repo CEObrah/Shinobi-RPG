@@ -1,4 +1,10 @@
-"""Source-aware House Tang intake origins for voluntary external applicants."""
+"""Lawful external Sword Manor intake plus source-aware House origins.
+
+The existing domestic Sword Manor policy remains unchanged. A separate static
+outreach policy inherits its standards but can draw only voluntary civilian and
+support-service applicants from explicitly listed foreign village population
+owners. Accepted people become House Tang personnel, never Konoha shinobi.
+"""
 from __future__ import annotations
 
 import copy
@@ -13,6 +19,8 @@ from shinobi_runtime.tx.manifest import TransactionManifest
 
 _POPULATION = "state/population/registry.json"
 _RULES = "game/rules/recruitment/policies.json"
+_OUTREACH_RULE = "game/rules/recruitment/sword-manor-outreach.json"
+_OUTREACH_REF = "recruitment.sword_manor_outreach"
 _PRIVATE_STATUS = "house_tang_private_personnel_not_konoha_shinobi"
 _ORIGIN_BY_OWNER = {
     "faction_konoha": "Konoha / Land of Fire",
@@ -22,6 +30,54 @@ _ORIGIN_BY_OWNER = {
     "faction_suna": "Sunagakure / Land of Wind",
 }
 _INSTALLED = False
+
+
+class _OutreachRepository:
+    """Read-only policy overlay used only while planning the outreach intake."""
+
+    def __init__(self, base: Any):
+        self._base = base
+
+    def read_json(self, path: str):
+        value = self._base.read_json(path)
+        if path != _RULES:
+            return value
+        rules = copy.deepcopy(value)
+        policies = rules.get("policies") if isinstance(rules, dict) else None
+        if not isinstance(policies, dict):
+            raise CommandRejectedError("institution_intake_policy_invalid")
+        try:
+            outreach = self._base.read_json(_OUTREACH_RULE)
+        except (FileNotFoundError, ValueError) as exc:
+            raise CommandRejectedError("institution_intake_policy_invalid") from exc
+        if (
+            not isinstance(outreach, Mapping)
+            or outreach.get("schema") != "sword-manor-external-recruitment-policy"
+            or outreach.get("version") != 1
+            or outreach.get("policy_ref") != _OUTREACH_REF
+        ):
+            raise CommandRejectedError("institution_intake_policy_invalid")
+        base_ref = outreach.get("base_policy_ref")
+        base_policy = policies.get(base_ref) if isinstance(base_ref, str) else None
+        if not isinstance(base_policy, Mapping):
+            raise CommandRejectedError("institution_intake_policy_invalid")
+        merged = copy.deepcopy(dict(base_policy))
+        for key in (
+            "eligible_source_owner_refs",
+            "eligible_source_categories",
+            "selection_mode",
+            "outreach_modes",
+            "destination_service_status",
+            "source_sovereignty_rule",
+            "basis",
+        ):
+            if key in outreach:
+                merged[key] = copy.deepcopy(outreach[key])
+        policies[_OUTREACH_REF] = merged
+        return rules
+
+    def __getattr__(self, name: str):
+        return getattr(self._base, name)
 
 
 class _OverlayAdapter:
@@ -56,18 +112,28 @@ def install_external_house_intake_origin() -> None:
 
     @wraps(original)
     def wrapped(self: Any, command: Any, meta: Mapping[str, Any], current_time: Any) -> _BuiltPlan:
-        plan = original(self, command, meta, current_time)
-        source_pool_id = command.payload.get("source_pool_id")
         policy_ref = command.payload.get("policy_ref")
+        planning_self = self
+        repository = self.repository
+        if policy_ref == _OUTREACH_REF:
+            planning_self = copy.copy(self)
+            repository = _OutreachRepository(self.repository)
+            planning_self.repository = repository
+        plan = original(planning_self, command, meta, current_time)
+
+        source_pool_id = command.payload.get("source_pool_id")
         institution_ref = command.payload.get("institution_ref")
-        if not all(isinstance(value, str) and value for value in (source_pool_id, policy_ref, institution_ref)):
+        if not all(
+            isinstance(value, str) and value
+            for value in (source_pool_id, policy_ref, institution_ref)
+        ):
             return plan
         try:
-            population = self.repository.read_json(_POPULATION)
+            population = repository.read_json(_POPULATION)
             pools = population.get("pools") if isinstance(population, Mapping) else None
             source = pools.get(source_pool_id) if isinstance(pools, Mapping) else None
             owner_ref = source.get("owner_ref") if isinstance(source, Mapping) else None
-            rules = self.repository.read_json(_RULES)
+            rules = repository.read_json(_RULES)
             policies = rules.get("policies") if isinstance(rules, Mapping) else None
             policy = policies.get(policy_ref) if isinstance(policies, Mapping) else None
         except (FileNotFoundError, ValueError) as exc:
@@ -76,7 +142,7 @@ def install_external_house_intake_origin() -> None:
         core_path = policy.get("person_core_registry_path") if isinstance(policy, Mapping) else None
         if not isinstance(origin, str) or not isinstance(core_path, str):
             raise CommandRejectedError("institution_intake_source_origin_invalid")
-        house_path, _house = self._growth_house(institution_ref)
+        house_path, _house = planning_self._growth_house(institution_ref)
         if core_path not in plan.writes or house_path not in plan.writes:
             raise CommandRejectedError("institution_intake_source_origin_invalid")
 
@@ -106,7 +172,11 @@ def install_external_house_intake_origin() -> None:
         if not isinstance(counts, dict) or isinstance(accepted, bool) or not isinstance(accepted, int):
             raise CommandRejectedError("institution_intake_source_origin_invalid")
         for key in tuple(counts):
-            if isinstance(key, str) and (key.startswith("origin:") or key.startswith("source_owner:")):
+            if isinstance(key, str) and (
+                key.startswith("origin:")
+                or key.startswith("source_owner:")
+                or key.startswith("service_status:")
+            ):
                 counts.pop(key, None)
         counts[f"origin:{origin}"] = accepted
         counts[f"source_owner:{owner_ref}"] = accepted
@@ -119,6 +189,8 @@ def install_external_house_intake_origin() -> None:
         result["source_owner_ref"] = owner_ref
         result["source_origin"] = origin
         result["destination_service_status"] = _PRIVATE_STATUS
+        if policy_ref == _OUTREACH_REF:
+            result["outreach_modes"] = list(policy.get("outreach_modes", ()))
         base_validator = plan.validator
 
         def validate(overlay: StagedOverlay, manifest: TransactionManifest) -> None:

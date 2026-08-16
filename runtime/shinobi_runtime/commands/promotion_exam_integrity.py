@@ -10,6 +10,10 @@ extension closes three integration gaps without creating a second rules engine:
 * finals never pair two candidates registered from the same team. If only one
   team remains, those candidates are co-finalists and the tournament portion is
   complete without fabricating an intra-team duel.
+
+Registration/evaluation cardinality is determined by lawful exact state, not by
+an arbitrary engine ceiling. If this subsystem later needs bounded work, it must
+use resumable causal chunks rather than invalidating a large exam.
 """
 from __future__ import annotations
 
@@ -30,8 +34,6 @@ from shinobi_runtime.sim.events import CampaignTime
 
 _INSTALLED = False
 _CAREER = "state/reg/shinobi-career-pipeline.json"
-_MAX_NPC_REGISTRATIONS = 128
-_MAX_NPC_EVALUATIONS = 128
 
 
 def _living(person: Mapping[str, Any]) -> bool:
@@ -237,8 +239,6 @@ def eligible_npc_team_registrations(
     active_teams = registry.get("active_teams") if isinstance(registry, Mapping) else None
     if not isinstance(active_teams, list) or any(not isinstance(ref, str) for ref in active_teams):
         raise CommandRejectedError("promotion_exam_team_registry_invalid")
-    if len(active_teams) > 2048:
-        raise CommandRejectedError("promotion_exam_team_registry_invalid")
     registered = set(scheduler.registered_candidate_refs(pipeline, cycle_id))
     institution_ref = profile.get("institution_ref")
     allowed_authorities = _registration_authority_refs(profile)
@@ -286,8 +286,6 @@ def eligible_npc_team_registrations(
             }
         )
         registered.update(candidates)
-        if sum(len(row["candidate_refs"]) for row in result) > _MAX_NPC_REGISTRATIONS:
-            raise CommandRejectedError("promotion_exam_npc_registration_limit")
     return result
 
 
@@ -384,8 +382,6 @@ def _append_npc_evaluations(
                 "outcome": outcome,
             }
         )
-        if len(results) > _MAX_NPC_EVALUATIONS:
-            raise CommandRejectedError("promotion_exam_npc_evaluation_limit")
     if not results:
         return []
     history = pipeline.get("history")

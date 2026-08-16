@@ -58,9 +58,22 @@ class FakeRepository:
                             "closed",
                         ],
                         "evaluation_stages": {
-                            "qualification": {"threshold": 78, "components": [{"path": "attributes.intelligence", "weight": 1}]},
-                            "field_evaluation": {"threshold": 82, "components": [{"path": "attributes.awareness", "weight": 1}]},
-                            "finals": {"threshold": 86, "components": [{"path": "attributes.composure", "weight": 1}]},
+                            "qualification": {
+                                "threshold": 78,
+                                "components": [
+                                    {"path": "attributes.intelligence", "weight": 1}
+                                ],
+                            },
+                            "field_evaluation": {
+                                "threshold": 82,
+                                "components": [
+                                    {"path": "attributes.awareness", "weight": 1}
+                                ],
+                            },
+                        },
+                        "finals_format": {
+                            "model": "single_elimination",
+                            "venue_ref": "place.konoha.academy.assignment.hall",
                         },
                     }
                 },
@@ -109,8 +122,29 @@ def person(owner_id, *, eligible):
     }
 
 
+def evaluation(candidate_ref, outcome="pass"):
+    return {
+        "kind": "promotion_exam_evaluation",
+        "at": "SE-0061-07-13T07:00:00",
+        "cycle_id": CYCLE_ID,
+        "profile_ref": PROFILE_ID,
+        "phase": "field_evaluation",
+        "team_ref": "team.konoha.fujin",
+        "evaluator_ref": "canon_hiruzen",
+        "candidate_ref": candidate_ref,
+        "score": 91 if outcome == "pass" else 70,
+        "threshold": 82,
+        "outcome": outcome,
+        "canon_status": "campaign_institutional_not_future_canon",
+    }
+
+
 def test_fresh_exam_handoff_projects_eligible_registered_and_unregistered(monkeypatch):
-    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
+    monkeypatch.setattr(
+        module,
+        "team_refs_for_member",
+        lambda repository, player_id: ("team.konoha.fujin",),
+    )
     rows = module._promotion_exam_handoffs(FakeOperations(), player_id="pc_wei_tang")
     assert rows == [
         {
@@ -128,6 +162,13 @@ def test_fresh_exam_handoff_projects_eligible_registered_and_unregistered(monkey
             "evaluated_candidate_refs": [],
             "unevaluated_candidate_refs": [],
             "evaluation_results": [],
+            "finals_open": False,
+            "finals_venue_ref": None,
+            "finals_candidate_refs": [],
+            "finals_open_bouts": [],
+            "finals_settled_bouts": [],
+            "finals_complete": False,
+            "finals_champion_ref": None,
         }
     ]
 
@@ -137,23 +178,12 @@ def test_field_evaluation_projects_unresolved_and_durable_results(monkeypatch):
     history = operations.repository.records["state/reg/shinobi-career-pipeline.json"]["history"]
     history[0]["phase"] = "field_evaluation"
     history[1]["candidate_refs"] = ["char.kai", "char.mei_arakawa"]
-    history.append(
-        {
-            "kind": "promotion_exam_evaluation",
-            "at": "SE-0061-07-13T07:00:00",
-            "cycle_id": CYCLE_ID,
-            "profile_ref": PROFILE_ID,
-            "phase": "field_evaluation",
-            "team_ref": "team.konoha.fujin",
-            "evaluator_ref": "canon_hiruzen",
-            "candidate_ref": "char.kai",
-            "score": 91,
-            "threshold": 82,
-            "outcome": "pass",
-            "canon_status": "campaign_institutional_not_future_canon",
-        }
+    history.append(evaluation("char.kai"))
+    monkeypatch.setattr(
+        module,
+        "team_refs_for_member",
+        lambda repository, player_id: ("team.konoha.fujin",),
     )
-    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
     row = module._promotion_exam_handoffs(operations, player_id="pc_wei_tang")[0]
     assert row["evaluation_open"] is True
     assert row["stage_candidate_refs"] == ["char.kai", "char.mei_arakawa"]
@@ -162,10 +192,44 @@ def test_field_evaluation_projects_unresolved_and_durable_results(monkeypatch):
     assert row["evaluation_results"] == [
         {"candidate_ref": "char.kai", "score": 91, "threshold": 82, "outcome": "pass"}
     ]
+    assert row["finals_open"] is False
+
+
+def test_finals_projects_public_open_bout(monkeypatch):
+    operations = FakeOperations()
+    history = operations.repository.records["state/reg/shinobi-career-pipeline.json"]["history"]
+    history[0]["phase"] = "finals"
+    history[1]["candidate_refs"] = ["char.kai", "char.mei_arakawa"]
+    history.extend([evaluation("char.kai"), evaluation("char.mei_arakawa")])
+    monkeypatch.setattr(
+        module,
+        "team_refs_for_member",
+        lambda repository, player_id: ("team.konoha.fujin",),
+    )
+
+    row = module._promotion_exam_handoffs(operations, player_id="pc_wei_tang")[0]
+
+    assert row["phase"] == "finals"
+    assert row["evaluation_open"] is False
+    assert row["finals_open"] is True
+    assert row["finals_venue_ref"] == "place.konoha.academy.assignment.hall"
+    assert set(row["finals_candidate_refs"]) == {"char.kai", "char.mei_arakawa"}
+    assert len(row["finals_open_bouts"]) == 1
+    assert set(row["finals_open_bouts"][0]["candidate_refs"]) == {
+        "char.kai",
+        "char.mei_arakawa",
+    }
+    assert row["finals_settled_bouts"] == []
+    assert row["finals_complete"] is False
+    assert row["finals_champion_ref"] is None
 
 
 def test_non_leader_team_is_not_projected(monkeypatch):
     operations = FakeOperations()
     operations.owners["team.konoha.fujin"]["leader_ref"] = "char.other"
-    monkeypatch.setattr(module, "team_refs_for_member", lambda repository, player_id: ("team.konoha.fujin",))
+    monkeypatch.setattr(
+        module,
+        "team_refs_for_member",
+        lambda repository, player_id: ("team.konoha.fujin",),
+    )
     assert module._promotion_exam_handoffs(operations, player_id="pc_wei_tang") == []

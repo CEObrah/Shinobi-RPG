@@ -54,7 +54,7 @@ class LivingWorldHistoryMixin:
         else:
             raw = self.repository.read_optional_bytes(path)
             if raw is None:
-                history = {"schema":"team-operational-history","team_id":team_id,"as_of":str(at),"missions_total":0,"missions_succeeded":0,"missions_failed":0,"training_sessions":0,"casualty_events":0,"replacement_events":0,"former_member_refs":[],"notable_event_refs":[],"last_mission_ref":None,"last_result_at":None}
+                history = {"schema":"team-operational-history","team_id":team_id,"as_of":str(at),"missions_total":0,"missions_succeeded":0,"missions_failed":0,"training_sessions":0,"casualty_events":0,"replacement_events":0,"former_member_refs":[],"notable_event_refs":[],"recent_mission_refs":[],"last_mission_ref":None,"last_result_at":None}
                 record_writes[path] = history
             else:
                 try:
@@ -64,7 +64,11 @@ class LivingWorldHistoryMixin:
                 if not isinstance(loaded, dict) or loaded.get("team_id") != team_id:
                     raise CommandRejectedError("team_operational_history_invalid")
                 history = copy.deepcopy(loaded)
+                history.setdefault("recent_mission_refs", [])
                 record_writes[path] = history
+        recent = history.get("recent_mission_refs")
+        if not isinstance(recent, list) or len(recent) > 16 or len(recent) != len(set(recent)) or any(not isinstance(ref, str) or not ref.startswith("mission.") for ref in recent):
+            raise CommandRejectedError("team_operational_history_invalid")
         history["as_of"] = str(at)
         return history
 

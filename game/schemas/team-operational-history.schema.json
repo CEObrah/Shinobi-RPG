@@ -1,7 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["schema","team_id","as_of","missions_total","missions_succeeded","missions_failed","training_sessions","casualty_events","replacement_events","former_member_refs","notable_event_refs","last_mission_ref","last_result_at"],
+  "required": [
+    "schema",
+    "team_id",
+    "as_of",
+    "missions_total",
+    "missions_succeeded",
+    "missions_failed",
+    "training_sessions",
+    "casualty_events",
+    "replacement_events",
+    "former_member_refs",
+    "notable_event_refs",
+    "last_mission_ref",
+    "last_result_at"
+  ],
   "properties": {
     "schema": {"const": "team-operational-history"},
     "team_id": {"type": "string", "minLength": 1},
@@ -14,8 +28,9 @@
     "replacement_events": {"type": "integer", "minimum": 0},
     "former_member_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
     "notable_event_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
-    "last_mission_ref": {"type": ["string","null"]},
-    "last_result_at": {"type": ["string","null"]}
+    "recent_mission_refs": {"type": "array", "maxItems": 16, "uniqueItems": true, "items": {"type": "string", "pattern": "^mission\\.", "minLength": 9, "maxLength": 128}},
+    "last_mission_ref": {"type": ["string", "null"]},
+    "last_result_at": {"type": ["string", "null"]}
   },
   "additionalProperties": false
 }

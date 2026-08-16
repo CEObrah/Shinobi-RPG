@@ -14,10 +14,10 @@ from shinobi_runtime.store.overlay import StagedOverlay
 
 
 # A single causal time command can legitimately settle many independent scheduled
-# hosts that share one timestamp.  Keep the transaction bounded, but size the
-# path ceiling for a world-review wave rather than a small hand-authored action.
-# Total encoded bytes remain independently capped below.
-MAX_PLAN_WRITE_PATHS = 256
+# hosts that share one timestamp. Keep the transaction bounded, but size the
+# path ceiling for a full world-review wave rather than a small hand-authored
+# action. Total encoded bytes remain independently capped below.
+MAX_PLAN_WRITE_PATHS = 1024
 MAX_PLAN_WRITE_BYTES = 4 * 1024 * 1024
 
 
@@ -178,4 +178,3 @@ def basic_ooc_audit(
         diagnostics=("command_planner_not_configured",),
         suggestions=("connect_a_reviewed_command_planner_before_gameplay",),
     )
-

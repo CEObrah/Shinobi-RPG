@@ -151,6 +151,25 @@
               },
               "canon_status": {"const": "campaign_institutional_not_future_canon"}
             }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "cycle_id", "profile_ref", "phase", "team_ref", "evaluator_ref", "candidate_ref", "score", "threshold", "outcome", "canon_status"],
+            "properties": {
+              "kind": {"const": "promotion_exam_evaluation"},
+              "at": {"type": "string", "minLength": 1},
+              "cycle_id": {"type": "string", "minLength": 1},
+              "profile_ref": {"type": "string", "minLength": 1},
+              "phase": {"enum": ["qualification", "field_evaluation", "finals"]},
+              "team_ref": {"type": "string", "minLength": 1},
+              "evaluator_ref": {"type": "string", "minLength": 1},
+              "candidate_ref": {"type": "string", "minLength": 1},
+              "score": {"type": "integer", "minimum": 0},
+              "threshold": {"type": "integer", "minimum": 0},
+              "outcome": {"enum": ["pass", "fail"]},
+              "canon_status": {"const": "campaign_institutional_not_future_canon"}
+            }
           }
         ]
       }

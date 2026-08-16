@@ -25,7 +25,7 @@ class FakeRepository:
         self.records = {
             "game/rules/recruitment/policies.json": base_rules,
             "game/rules/recruitment/sword-manor-outreach.json": outreach,
-            "state/reg/missions-contracts-projects.json": {
+            "state/reg/commitments.json": {
                 "records": [
                     {
                         "id": "commitment.outreach.test.00",

@@ -13,7 +13,7 @@ from shinobi_runtime.sim.events import CampaignTime
 class FakeRepository:
     def __init__(self):
         self.records = {
-            "game/data/mechanics/training.json": {
+            "game/rules/training/models.json": {
                 "models": {
                     "training.team": {
                         "schedule_limits": {

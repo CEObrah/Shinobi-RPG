@@ -19,6 +19,7 @@ from shinobi_runtime.commands.core import _campaign_datetime
 from shinobi_runtime.sim.events import CampaignTime
 
 _TEAM_INDEX = "state/index/owners/team.json"
+_TRAINING_MODELS = "game/rules/training/models.json"
 _STAGED_TEAM_WRITES: ContextVar[Mapping[str, Mapping[str, Any]] | None] = ContextVar(
     "global_team_training_staged_writes", default=None
 )
@@ -27,7 +28,7 @@ _INSTALLED = False
 
 def _schedule_limits(repository: Any) -> tuple[int, Decimal, int]:
     try:
-        registry = repository.read_json("game/data/mechanics/training.json")
+        registry = repository.read_json(_TRAINING_MODELS)
     except (FileNotFoundError, ValueError) as exc:
         raise CommandRejectedError("training_model_registry_invalid") from exc
     models = registry.get("models") if isinstance(registry, Mapping) else None

@@ -3,10 +3,8 @@
 The base living-world trainer deliberately excludes the authenticated player.
 This mixin preserves that safe default and permits participation only when a
 persisted campaign policy names the player, the exact team, and a bounded target
-cycle. It also permits routine non-player team assembly at a registered base
-when that movement is already covered by a standing team order. Training
-instructor policy is independent from player participation so a team may exclude
-the player from autonomous hours while still replacing weak routine instructors.
+cycle. It also permits routine non-player team assembly at a registered base,
+registered instructor replacement, and a team-specific balanced curriculum.
 """
 from __future__ import annotations
 
@@ -68,6 +66,29 @@ class StandingTrainingParticipationMixin:
         _registered_training_instructors(policy, ())
         return policy
 
+    def _autonomous_team_training_profile(self, team: Mapping[str, Any]) -> Mapping[str, Any]:
+        base = dict(super()._autonomous_team_training_profile(team))
+        policy = self._team_participation_policy(team)
+        if policy is None:
+            return base
+        hours = policy.get("active_hours_per_week")
+        cycle = policy.get("team_target_cycle")
+        if hours is None and cycle is None:
+            return base
+        if (
+            isinstance(hours, bool)
+            or not isinstance(hours, int)
+            or not 0 < hours <= 48
+            or not isinstance(cycle, list)
+            or not cycle
+            or len(set(cycle)) != len(cycle)
+            or any(not isinstance(target, str) or not target for target in cycle)
+        ):
+            raise CommandRejectedError("team_training_participation_policy_invalid")
+        base["active_hours_per_week"] = hours
+        base["target_cycle"] = list(cycle)
+        return base
+
     def _training_candidates(
         self,
         *,
@@ -93,6 +114,42 @@ class StandingTrainingParticipationMixin:
                     continue
                 ordered.append(target)
             return tuple(ordered)
+
+        if policy is not None and policy.get("target_strategy") == "weakness_strength_balanced":
+            assessment = policy.get("assessment_paths")
+            if (
+                not isinstance(assessment, list)
+                or len(assessment) < 4
+                or len(set(assessment)) != len(assessment)
+                or any(not isinstance(value, str) or not value for value in assessment)
+            ):
+                raise CommandRejectedError("team_training_participation_policy_invalid")
+            assessed: list[tuple[int, str]] = []
+            for target in assessment:
+                try:
+                    _container, _leaf, value = self._training_target(dict(person), target)
+                except CommandRejectedError:
+                    continue
+                assessed.append((int(value), target))
+            if not assessed:
+                raise CommandRejectedError("no_eligible_training_targets")
+            # Weaknesses enter first, but the full assessed set remains in the
+            # deterministic rotation. Role specialties and the team's explicit
+            # cycle are appended without duplication, so development stays broad
+            # without erasing what each shinobi is actually for.
+            assessed.sort(key=lambda row: (row[0], row[1]))
+            ordered = [target for _value, target in assessed]
+            preferred = self._autonomous_training_target(team, person_ref, person)
+            for target in (*policy_cycle, preferred, "operational_skills.team_coordination", "martial_skills.movement"):
+                if target in ordered:
+                    continue
+                try:
+                    self._training_target(dict(person), target)
+                except CommandRejectedError:
+                    continue
+                ordered.append(target)
+            return tuple(ordered)
+
         return super()._training_candidates(
             team=team,
             person_ref=person_ref,

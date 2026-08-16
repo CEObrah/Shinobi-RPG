@@ -2450,6 +2450,84 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.mission_state_changed.6a70fc2e59ad10edb990",
+      "kind": "mission_state_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-09T07:00:00",
+        "started_at": "SE-0061-07-09T07:00:00",
+        "ended_at": "SE-0061-07-09T07:00:00"
+      },
+      "host_refs": [
+        "canon_hiruzen",
+        "faction.konoha_mission_office"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "mission.offer.32d9265b329ed0e7a9",
+        "team.blackhound"
+      ],
+      "affected_owner_refs": [
+        "state/autonomy/faction-memory/faction.konoha_mission_office.json",
+        "state/inventory/registry.json",
+        "state/mission/mission.offer.32d9265b329ed0e7a9.json",
+        "state/reg/commitments.json",
+        "state/reg/factions/faction-konoha-mission-office.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.mission_report_back.22625a52c87d564c9407",
+        "mission:mission.offer.32d9265b329ed0e7a9:state:active",
+        "mission_delegated:mission.offer.32d9265b329ed0e7a9:pc_wei_tang->canon_hayama_shirakumo",
+        "mission_participants:mission.offer.32d9265b329ed0e7a9:canon_ensui_nara,canon_hana_inuzuka,canon_hayama_shirakumo,canon_hoheto_hyuga,canon_tekuno_kanden",
+        "mission_reward_refund:currency.ryo:70000:escrow.mission.offer.32d9265b329ed0e7a9->treasury.konoha"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-09T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.missions",
+        "transaction_ref": "tx.gameplay.6a70fc2e59ad10edb990c0339eaa154459df70c6835aa37b82f359dda9196b97",
+        "receipt_refs": [
+          "receipt.gameplay.6a70fc2e59ad10edb990c0339eaa154459df70c6835aa37b82f359dda9196b97"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

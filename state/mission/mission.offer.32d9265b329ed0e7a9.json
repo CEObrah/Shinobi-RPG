@@ -8,7 +8,7 @@
   "escrow_holder_ref": "escrow.mission.offer.32d9265b329ed0e7a9",
   "opened_at": "SE-0061-07-09T07:00:00",
   "authorized_at": "SE-0061-07-09T07:00:00",
-  "starts_at": null,
+  "starts_at": "SE-0061-07-09T07:00:00",
   "deadline_at": "SE-0061-07-16T07:00:00",
   "next_due_at": null,
   "operation_ref": "team.blackhound",
@@ -33,14 +33,13 @@
     "depart_by": "SE-0061-07-09T13:00:00",
     "completion_condition": "Reconnoiter the assigned western-border sector and return a sourced observation report to the Mission Office."
   },
-  "state": "offered",
+  "state": "active",
   "participant_refs": [
     "canon_ensui_nara",
     "canon_hana_inuzuka",
     "canon_hayama_shirakumo",
     "canon_hoheto_hyuga",
-    "canon_tekuno_kanden",
-    "pc_wei_tang"
+    "canon_tekuno_kanden"
   ],
   "objectives": [
     {
@@ -106,18 +105,6 @@
       "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.tekuno.kanden",
       "direction": "reward",
       "account_ref": "canon_tekuno_kanden",
-      "asset_ref": "currency.ryo",
-      "quantity": 70000,
-      "applies_on": [
-        "succeeded"
-      ],
-      "objective_id": null,
-      "objective_status": null
-    },
-    {
-      "term_id": "term.offer.32d9265b329ed0e7a9.reward.pc.wei.tang",
-      "direction": "reward",
-      "account_ref": "pc_wei_tang",
       "asset_ref": "currency.ryo",
       "quantity": 70000,
       "applies_on": [

@@ -41,6 +41,12 @@ ROUTES = (
         "tests/runtime/test_team_playability_interface.py",
         "tests/runtime/test_team_training_readiness_projection.py",
     }),
+    (("promotion_exam", "promotion-exams.json"), {
+        "tests/runtime/test_promotion_exam_scheduler.py",
+        "tests/runtime/test_promotion_exam_evaluation.py",
+        "tests/runtime/test_promotion_exam_finals.py",
+        "tests/runtime/test_promotion_exam_integrity.py",
+    }),
     (("mission",), {
         "tests/runtime/test_missions.py",
         "tests/runtime/test_mission_briefing.py",
@@ -66,6 +72,7 @@ ROUTES = (
         "tests/runtime/test_development_breakthrough_policy.py",
         "tests/runtime/test_training_autonomy_policy.py",
         "tests/runtime/test_training_progression_ceiling.py",
+        "tests/runtime/test_training_model_discovery.py",
     }),
     (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard", "semantic_event"), {
         "tests/runtime/test_advance_until_event.py",

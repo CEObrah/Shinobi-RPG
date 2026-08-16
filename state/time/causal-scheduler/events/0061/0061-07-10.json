@@ -1,0 +1,73 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-07-10",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.357028004cd16ff459e0eec6",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-07-10T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.fujin",
+      "target_host": "host.team.team.konoha.fujin",
+      "payload": {
+        "identity": "team.konoha.fujin",
+        "owner_ref": "state/team/fujin.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.fujin",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.5bd1be62ea4a6312dc11f86f",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-07-10T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.guy",
+      "target_host": "host.team.team.konoha.guy",
+      "payload": {
+        "identity": "team.konoha.guy",
+        "owner_ref": "state/team/guy.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.guy",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.cf5ecaf6cdc49c5026d4c851",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-07-10T21:15:00",
+      "priority": 75,
+      "source_host": "host.team.team.blackhound",
+      "target_host": "host.team.team.blackhound",
+      "payload": {
+        "identity": "team.blackhound",
+        "owner_ref": "state/team/blackhound.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.blackhound",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

@@ -71,6 +71,7 @@ def install_player_house_outreach_projection() -> None:
                 )
         policies = list(result.get("recruitment_policies") or [])
         policy_ref = rule.get("policy_ref")
+        appended = False
         if not any(
             isinstance(row, Mapping) and row.get("policy_ref") == policy_ref
             for row in policies
@@ -94,10 +95,12 @@ def install_player_house_outreach_projection() -> None:
                     "source_sovereignty_rule": rule.get("source_sovereignty_rule"),
                 }
             )
+            appended = True
         result["recruitment_policies"] = policies
-        result["recruitment_policy_count"] = max(
-            int(result.get("recruitment_policy_count", 0)), len(policies)
-        )
+        old_count = result.get("recruitment_policy_count", 0)
+        if isinstance(old_count, bool) or not isinstance(old_count, int) or old_count < 0:
+            raise OperationError(503, "growth_discovery_invalid")
+        result["recruitment_policy_count"] = old_count + (1 if appended else 0)
         return result
 
     wrapped._house_outreach_projection = True  # type: ignore[attr-defined]

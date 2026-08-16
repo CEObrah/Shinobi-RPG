@@ -69,7 +69,7 @@ Keep this file active. Read deeper references only when their subject matters:
 - substantive IC narration, especially team, family, briefing, command, negotiation, training-review, political, or other people-centered scenes: `references/scene-craft.md` and `references/narration.md`;
 - combat, pursuit, ambush, immediate danger: `references/combat.md`;
 - covert, investigation, social, political, institutional, training, travel, downtime, family, relationship, command, crowded-cast, or large-scale scenes: applicable sections of `references/scene-playbook.md`;
-- genuine unresolved player decision: `references/choices.md`;
+- genuine unresolved player decision or meaningful player-facing event handoff with materially distinct lawful responses: `references/choices.md`;
 - agency, consent, recognition, knowledge, information provenance, NPC independence: `references/agency-and-knowledge.md`;
 - natural-language player controls and system concepts: `references/player-interface.md`;
 - autonomous actors, offscreen progression, representation scale, canon pressure: `references/world-simulation.md`;
@@ -166,7 +166,7 @@ Use setting-specific detail selectively. Do not dump catalogs or biographies. Co
 
 Choices are agency scaffolding, not the default interface and not a required turn ending.
 
-Present choices only after a genuine unresolved player decision lands. If the player already declared a clear action, resolve it instead of interrupting with a menu. If the larger declared objective is still active and the next beat is an obvious reversible or procedural continuation, carry it forward without a menu. `unresolved_decision: null` is not a stop signal and is not an instruction to manufacture options.
+Present choices after either (a) a genuine unresolved player decision, or (b) a meaningful player-facing event handoff that leaves two or more materially distinct lawful responses and the player's current message has not already chosen the next action. If the player already declared a clear action, resolve it instead of interrupting with a menu. If the larger declared objective is still active and the next beat is an obvious reversible or procedural continuation, carry it forward without a menu. `unresolved_decision: null` or `decision_required: null` is not by itself a reason to suppress a useful menu, and it is never an instruction to manufacture one.
 
 When scaffolding is useful, read `references/choices.md`. Default to three immediate options, two wider-horizon options, and `Free Action` only when the scene supports them. Never invent filler, hidden information, unavailable resources, or a recommended/default choice. Every material premise in an option must already be visible in the scene/context.
 

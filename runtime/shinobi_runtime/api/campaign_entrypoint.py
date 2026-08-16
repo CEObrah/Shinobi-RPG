@@ -23,12 +23,18 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
     from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
+    from shinobi_runtime.commands.global_team_training_load import install_global_team_training_load
+    from shinobi_runtime.commands.joint_player_team_training import install_joint_player_team_training
+    from shinobi_runtime.commands.house_recruitment_outreach import install_house_recruitment_outreach
+    from shinobi_runtime.commands.external_house_intake_origin import install_external_house_intake_origin
     from shinobi_runtime.api.preview_validation import install_preview_validation
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
     from shinobi_runtime.api.player_team_checkin_projection import install_player_team_checkin_projection
     from shinobi_runtime.api.player_promotion_exam_projection import install_player_promotion_exam_projection
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
+    from shinobi_runtime.api.player_global_team_training_projection import install_player_global_team_training_projection
+    from shinobi_runtime.api.player_house_outreach_projection import install_player_house_outreach_projection
 
     install_legacy_scheduler_compat()
     install_academy_pipeline_transfer_ids()
@@ -45,6 +51,15 @@ def _install_campaign_extensions() -> None:
     install_downtime_until_event()
     install_team_checkin_handoffs()
     install_downtime_vitality()
+    install_house_recruitment_outreach()
+    install_external_house_intake_origin()
+    # Joint participation is installed first; the global-load installer then
+    # scopes the final autonomous-training surface so staged sessions created by
+    # either base team training or the joint block are visible to one another.
+    install_joint_player_team_training()
+    install_global_team_training_load()
+    install_player_global_team_training_projection()
+    install_player_house_outreach_projection()
     install_preview_validation()
     # Install final guards after every campaign wrapper has resolved its concrete
     # production method surface.

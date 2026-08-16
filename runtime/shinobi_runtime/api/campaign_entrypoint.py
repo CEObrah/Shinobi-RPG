@@ -25,6 +25,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.promotion_exam_integrity import install_promotion_exam_integrity
     from shinobi_runtime.commands.promotion_exam_service_eligibility import install_promotion_exam_service_eligibility
     from shinobi_runtime.commands.promotion_exam_attendance import install_promotion_exam_attendance
+    from shinobi_runtime.commands.career_history_retention import install_career_history_retention
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -115,6 +116,9 @@ def _install_campaign_extensions() -> None:
     install_promotion_exam_integrity()
     install_promotion_exam_service_eligibility()
     install_promotion_exam_attendance()
+    # Central owner-level retention must be installed only after every legacy
+    # career/exam producer has imported its old finite cursor constant.
+    install_career_history_retention()
     # Diagnostic-only guard for unexpected TypeError/ValueError failures anywhere
     # inside the composed time settlement path. It preserves all normal domain
     # rejection codes and exposes only a bounded runtime module token.

@@ -2,10 +2,13 @@
 
 Exact-team training.recent_sessions remain the sole session authority. This
 module aggregates those ledgers by person so multiple team memberships cannot
-reset recovery or weekly-hour limits.
+reset recovery or weekly-hour limits. During one autonomous time transaction,
+staged team after-images are included so two reviews in the same transaction
+cannot double-book the same person.
 """
 from __future__ import annotations
 
+from contextvars import ContextVar
 from datetime import timedelta
 from decimal import Decimal
 from functools import wraps
@@ -16,6 +19,9 @@ from shinobi_runtime.commands.core import _campaign_datetime
 from shinobi_runtime.sim.events import CampaignTime
 
 _TEAM_INDEX = "state/index/owners/team.json"
+_STAGED_TEAM_WRITES: ContextVar[Mapping[str, Mapping[str, Any]] | None] = ContextVar(
+    "global_team_training_staged_writes", default=None
+)
 _INSTALLED = False
 
 
@@ -49,7 +55,11 @@ def _schedule_limits(repository: Any) -> tuple[int, Decimal, int]:
     return cycle_days, weekly_limit, recovery_hours
 
 
-def _team_records(repository: Any) -> tuple[Mapping[str, Any], ...]:
+def _team_records(
+    repository: Any,
+    *,
+    record_writes: Mapping[str, Mapping[str, Any]] | None = None,
+) -> tuple[Mapping[str, Any], ...]:
     try:
         index = repository.read_json(_TEAM_INDEX)
     except (FileNotFoundError, ValueError) as exc:
@@ -64,19 +74,28 @@ def _team_records(repository: Any) -> tuple[Mapping[str, Any], ...]:
             continue
         if not isinstance(path, str) or path in seen:
             continue
-        try:
-            record = repository.read_json(path)
-        except (FileNotFoundError, ValueError):
-            continue
+        staged = record_writes.get(path) if isinstance(record_writes, Mapping) else None
+        if isinstance(staged, Mapping):
+            record = staged
+        else:
+            try:
+                record = repository.read_json(path)
+            except (FileNotFoundError, ValueError):
+                continue
         if isinstance(record, Mapping) and record.get("schema") == "exact-team":
             records.append(record)
             seen.add(path)
     return tuple(records)
 
 
-def member_team_training_sessions(repository: Any, member_ref: str) -> tuple[Mapping[str, Any], ...]:
+def member_team_training_sessions(
+    repository: Any,
+    member_ref: str,
+    *,
+    record_writes: Mapping[str, Mapping[str, Any]] | None = None,
+) -> tuple[Mapping[str, Any], ...]:
     by_session: dict[str, Mapping[str, Any]] = {}
-    for team in _team_records(repository):
+    for team in _team_records(repository, record_writes=record_writes):
         training = team.get("training")
         recent = training.get("recent_sessions") if isinstance(training, Mapping) else None
         if recent is None:
@@ -99,13 +118,21 @@ def member_team_training_sessions(repository: Any, member_ref: str) -> tuple[Map
     return tuple(by_session[key] for key in sorted(by_session))
 
 
-def member_team_training_load(repository: Any, member_ref: str, *, as_of: CampaignTime) -> Mapping[str, Any]:
+def member_team_training_load(
+    repository: Any,
+    member_ref: str,
+    *,
+    as_of: CampaignTime,
+    record_writes: Mapping[str, Mapping[str, Any]] | None = None,
+) -> Mapping[str, Any]:
     cycle_days, weekly_limit, recovery_hours = _schedule_limits(repository)
     as_of_dt = _campaign_datetime(as_of)
     weekly_cutoff = as_of_dt - timedelta(days=cycle_days)
     used = Decimal("0")
     last_end: CampaignTime | None = None
-    for row in member_team_training_sessions(repository, member_ref):
+    for row in member_team_training_sessions(
+        repository, member_ref, record_writes=record_writes
+    ):
         try:
             ended_at = CampaignTime.parse(row.get("ended_at"))
             ended_dt = _campaign_datetime(ended_at)
@@ -114,9 +141,6 @@ def member_team_training_load(repository: Any, member_ref: str, *, as_of: Campai
             raise CommandRejectedError("team_training_history_invalid") from exc
         if not active_hours.is_finite() or active_hours <= 0:
             raise CommandRejectedError("team_training_history_invalid")
-        # Historical settlement may ask for load at a prior boundary while the
-        # current repository already contains later sessions. Later evidence is
-        # simply outside that window, not malformed history.
         if ended_dt > as_of_dt:
             continue
         if ended_dt > weekly_cutoff:
@@ -143,12 +167,18 @@ def assert_global_team_training_load(
     started_at: CampaignTime,
     ended_at: CampaignTime,
     active_hours: Decimal,
+    record_writes: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> None:
     if not active_hours.is_finite() or active_hours <= 0:
         raise CommandRejectedError("training_active_hours_invalid")
     started_dt = _campaign_datetime(started_at)
     for member_ref in member_refs:
-        load = member_team_training_load(repository, member_ref, as_of=ended_at)
+        load = member_team_training_load(
+            repository,
+            member_ref,
+            as_of=ended_at,
+            record_writes=record_writes,
+        )
         if load["weekly_hours_used"] + active_hours > load["weekly_limit"]:
             raise CommandRejectedError("team_training_weekly_limit_exceeded")
         previous = load["last_session_ended_at"]
@@ -165,44 +195,64 @@ def install_global_team_training_load() -> None:
     from shinobi_runtime.commands import campaign_environment as module
 
     planner = module.CampaignCommandPlanner
-    original = planner._record_team_training_session
-    if getattr(original, "_global_team_training_load", False):
-        _INSTALLED = True
-        return
+    original_record = planner._record_team_training_session
+    if not getattr(original_record, "_global_team_training_load", False):
+        @wraps(original_record)
+        def record_wrapped(
+            self: Any,
+            team: MutableMapping[str, Any],
+            *,
+            session_ref: str,
+            member_targets: Mapping[str, str],
+            instructor_ref: str,
+            started_at: CampaignTime,
+            ended_at: CampaignTime,
+            active_hours: Decimal,
+        ) -> None:
+            assert_global_team_training_load(
+                self.repository,
+                tuple(sorted(member_targets)),
+                started_at=started_at,
+                ended_at=ended_at,
+                active_hours=active_hours,
+                record_writes=_STAGED_TEAM_WRITES.get(),
+            )
+            original_record(
+                self,
+                team,
+                session_ref=session_ref,
+                member_targets=member_targets,
+                instructor_ref=instructor_ref,
+                started_at=started_at,
+                ended_at=ended_at,
+                active_hours=active_hours,
+            )
 
-    @wraps(original)
-    def wrapped(
-        self: Any,
-        team: MutableMapping[str, Any],
-        *,
-        session_ref: str,
-        member_targets: Mapping[str, str],
-        instructor_ref: str,
-        started_at: CampaignTime,
-        ended_at: CampaignTime,
-        active_hours: Decimal,
-    ) -> None:
-        assert_global_team_training_load(
-            self.repository,
-            tuple(sorted(member_targets)),
-            started_at=started_at,
-            ended_at=ended_at,
-            active_hours=active_hours,
-        )
-        original(
-            self,
-            team,
-            session_ref=session_ref,
-            member_targets=member_targets,
-            instructor_ref=instructor_ref,
-            started_at=started_at,
-            ended_at=ended_at,
-            active_hours=active_hours,
-        )
+        record_wrapped._global_team_training_load = True  # type: ignore[attr-defined]
+        planner._record_team_training_session = record_wrapped
 
-    wrapped._global_team_training_load = True  # type: ignore[attr-defined]
-    planner._record_team_training_session = wrapped
+    original_autonomy = planner._apply_autonomous_team_training
+    if not getattr(original_autonomy, "_global_team_training_stage_scope", False):
+        @wraps(original_autonomy)
+        def autonomy_wrapped(self: Any, *args: Any, **kwargs: Any):
+            record_writes = kwargs.get("record_writes")
+            token = _STAGED_TEAM_WRITES.set(
+                record_writes if isinstance(record_writes, Mapping) else None
+            )
+            try:
+                return original_autonomy(self, *args, **kwargs)
+            finally:
+                _STAGED_TEAM_WRITES.reset(token)
+
+        autonomy_wrapped._global_team_training_stage_scope = True  # type: ignore[attr-defined]
+        planner._apply_autonomous_team_training = autonomy_wrapped
+
     _INSTALLED = True
 
 
-__all__ = ["assert_global_team_training_load", "install_global_team_training_load", "member_team_training_load", "member_team_training_sessions"]
+__all__ = [
+    "assert_global_team_training_load",
+    "install_global_team_training_load",
+    "member_team_training_load",
+    "member_team_training_sessions",
+]

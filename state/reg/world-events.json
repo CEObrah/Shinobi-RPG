@@ -1884,6 +1884,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.73d16816d0ba5fd064ea",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-22T07:29:58",
+        "started_at": "SE-0061-07-22T07:29:58",
+        "ended_at": "SE-0061-07-22T07:29:58"
+      },
+      "host_refs": [
+        "institution.konoha.academy",
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.academy.assignment.hall"
+      ],
+      "causal_refs": [
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "affected_owner_refs": [
+        "state/char/shikamaru.json"
+      ],
+      "material_consequence_refs": [
+        "promotion_exam_attendance_reconciled:canon_shikamaru:place.konoha.academy.assignment.hall"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-22T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_promotion_exam_attendance_repair",
+        "transaction_ref": "tx.gameplay.73d16816d0ba5fd064ea8ef415fa9036cfd42dcde5d9db912713c17c09a303a1",
+        "receipt_refs": [
+          "receipt.gameplay.73d16816d0ba5fd064ea8ef415fa9036cfd42dcde5d9db912713c17c09a303a1"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

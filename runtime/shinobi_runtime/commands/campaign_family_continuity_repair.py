@@ -57,10 +57,24 @@ def _repair(
     if command.actor_id != meta.get("player_id") or command.actor_id != _PLAYER:
         raise CommandRejectedError("campaign_family_continuity_repair_actor_invalid")
 
+    # The player owner is a campaign root rather than an ordinary covered-owner
+    # route. Resolve it directly, while non-player family members still use the
+    # normal exact-person authority resolver.
+    try:
+        player = self.repository.read_json("state/player.json")
+    except (FileNotFoundError, ValueError) as exc:
+        raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved") from exc
+    if (
+        not isinstance(player, Mapping)
+        or player.get("schema") != "shinobi_character"
+        or player.get("owner_id") != _PLAYER
+    ):
+        raise CommandRejectedError("campaign_family_continuity_repair_person_unresolved")
+
     # This repair is provenance-backed by the player's explicit OOC continuity
     # assertion. It may fill only the known Tang immediate-family omission and
     # must fail closed if later state has already established competing truth.
-    for person_ref in (*_PARENTS, *_CHILDREN):
+    for person_ref in (*_PARENTS, _BROTHER):
         self._require_person_ref(person_ref, code="campaign_family_continuity_repair_person_unresolved")
 
     family, kinship = self._family_indexes()

@@ -43,7 +43,6 @@
     },
     "history": {
       "type": "array",
-      "maxItems": 512,
       "items": {
         "oneOf": [
           {
@@ -135,7 +134,13 @@
               "team_ref": {"type": "string", "minLength": 1},
               "instructor_ref": {"type": "string", "minLength": 1},
               "candidate_refs": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
-              "canon_status": {"const": "campaign_institutional_not_future_canon"}
+              "canon_status": {"const": "campaign_institutional_not_future_canon"},
+              "registration_mode": {
+                "enum": [
+                  "institution_autonomous_team_submission",
+                  "ooc_dev_current_cycle_reconciliation"
+                ]
+              }
             }
           },
           {
@@ -154,7 +159,13 @@
               "score": {"type": "integer", "minimum": 0},
               "threshold": {"type": "integer", "minimum": 0},
               "outcome": {"enum": ["pass", "fail"]},
-              "canon_status": {"const": "campaign_institutional_not_future_canon"}
+              "canon_status": {"const": "campaign_institutional_not_future_canon"},
+              "evaluation_mode": {
+                "enum": [
+                  "institution_autonomous_exact_candidate",
+                  "ooc_dev_current_cycle_reconciliation"
+                ]
+              }
             }
           },
           {

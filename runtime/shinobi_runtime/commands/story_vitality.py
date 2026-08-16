@@ -1,9 +1,9 @@
 """Player-facing salience for consequential downtime results.
 
 The causal reducers remain the only authority for what actually happens. This
-module only widens the set of already-committed consequences that count as a
-story handoff so long-running downtime does not silently skip House promotions
-or a matured Sword Manor recruitment response window.
+module widens the set of already-committed consequences that count as a story
+handoff so long-running downtime does not silently skip House promotions,
+recruitment response windows, or requested delegated-team mission reports.
 """
 from __future__ import annotations
 
@@ -39,6 +39,20 @@ def _outreach_review_rows(result: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     ]
 
 
+def _delegated_mission_reports(result: Mapping[str, Any]) -> list[Mapping[str, Any]]:
+    actions = result.get("autonomous_actions")
+    if not isinstance(actions, list):
+        return []
+    reports: list[Mapping[str, Any]] = []
+    for action in actions:
+        if not isinstance(action, Mapping):
+            continue
+        report = action.get("delegated_mission_report")
+        if isinstance(report, Mapping):
+            reports.append(report)
+    return reports
+
+
 def _house_training_progressed(result: Mapping[str, Any]) -> bool:
     raw = result.get("house_rostered_individual_progression")
     if not isinstance(raw, list):
@@ -51,18 +65,30 @@ def _house_training_progressed(result: Mapping[str, Any]) -> bool:
             for outcome in outcomes.values():
                 if isinstance(outcome, Mapping):
                     gained = outcome.get("points_gained")
-                    if isinstance(gained, int) and not isinstance(gained, bool) and gained > 0:
+                    if (
+                        isinstance(gained, int)
+                        and not isinstance(gained, bool)
+                        and gained > 0
+                    ):
                         return True
         technique = row.get("technique")
         if isinstance(technique, Mapping):
             gained = technique.get("points_gained")
-            if isinstance(gained, int) and not isinstance(gained, bool) and gained > 0:
+            if (
+                isinstance(gained, int)
+                and not isinstance(gained, bool)
+                and gained > 0
+            ):
                 return True
     return False
 
 
 def _result_has_story_event(result: Mapping[str, Any]) -> bool:
-    return bool(_house_promotion_rows(result) or _outreach_review_rows(result))
+    return bool(
+        _house_promotion_rows(result)
+        or _outreach_review_rows(result)
+        or _delegated_mission_reports(result)
+    )
 
 
 def install_story_vitality() -> None:
@@ -97,7 +123,10 @@ def install_story_vitality() -> None:
                     member = row.get("member_ref")
                     source = row.get("from")
                     target = row.get("to")
-                    if all(isinstance(value, str) and value for value in (member, source, target)):
+                    if all(
+                        isinstance(value, str) and value
+                        for value in (member, source, target)
+                    ):
                         details.append(f"{member}: {source} -> {target}")
                 report = "House Tang promotion review completed."
                 if details:
@@ -114,11 +143,34 @@ def install_story_vitality() -> None:
                 if pressure not in pressures:
                     pressures.append(pressure)
                 report = (
-                    "House Tang recruitment outreach has reached its scheduled response review. "
-                    "No applicant is accepted until the authorized intake review is resolved."
+                    "House Tang recruitment outreach has reached its scheduled response "
+                    "review. No applicant is accepted until the authorized intake review "
+                    "is resolved."
                 )
                 if report not in reports:
                     reports.append(report)
+
+            for delegated in _delegated_mission_reports(result):
+                mission_id = delegated.get("mission_id")
+                leader_ref = delegated.get("delegate_leader_ref")
+                outcome = delegated.get("outcome")
+                routine = delegated.get("routine_consequences")
+                casualty_count = (
+                    routine.get("casualty_count")
+                    if isinstance(routine, Mapping)
+                    else None
+                )
+                pressure = "A delegated team mission has returned its requested report to Wei."
+                if pressure not in pressures:
+                    pressures.append(pressure)
+                detail = (
+                    f"Delegated mission report from {leader_ref}: {mission_id} concluded "
+                    f"with outcome {outcome}."
+                )
+                if isinstance(casualty_count, int) and not isinstance(casualty_count, bool):
+                    detail += f" Recorded casualty events: {casualty_count}."
+                if detail not in reports:
+                    reports.append(detail)
 
             if _house_training_progressed(result):
                 summary = (
@@ -147,6 +199,7 @@ def install_story_vitality() -> None:
 
 __all__ = [
     "install_story_vitality",
+    "_delegated_mission_reports",
     "_house_promotion_rows",
     "_outreach_review_rows",
     "_result_has_story_event",

@@ -96,6 +96,11 @@ def member_team_training_sessions(
 ) -> tuple[Mapping[str, Any], ...]:
     by_session: dict[str, Mapping[str, Any]] = {}
     for team in _team_records(repository, record_writes=record_writes):
+        roster = team.get("member_refs")
+        if not isinstance(roster, list) or member_ref not in roster:
+            continue
+        if any(not isinstance(ref, str) or not ref for ref in roster):
+            raise CommandRejectedError("team_training_history_invalid")
         training = team.get("training")
         recent = training.get("recent_sessions") if isinstance(training, Mapping) else None
         if recent is None:

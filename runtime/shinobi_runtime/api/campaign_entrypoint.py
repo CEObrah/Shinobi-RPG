@@ -17,9 +17,11 @@ def _install_campaign_extensions() -> None:
         install_promotion_exam_projection,
         install_promotion_exam_scheduler,
     )
+    from shinobi_runtime.commands.promotion_exam_pacing import install_promotion_exam_pacing
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
+    from shinobi_runtime.commands.story_vitality import install_story_vitality
     from shinobi_runtime.commands.scene_resume_projection import install_scene_resume_projection
     from shinobi_runtime.commands.player_mission_continuity import install_player_mission_continuity
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
@@ -37,25 +39,33 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
     from shinobi_runtime.api.player_team_checkin_projection import install_player_team_checkin_projection
     from shinobi_runtime.api.player_promotion_exam_projection import install_player_promotion_exam_projection
+    from shinobi_runtime.api.player_promotion_exam_schedule_projection import (
+        install_player_promotion_exam_schedule_projection,
+    )
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
     from shinobi_runtime.api.player_global_team_training_projection import install_player_global_team_training_projection
     from shinobi_runtime.api.player_house_outreach_projection import install_player_house_outreach_projection
+    from shinobi_runtime.api.player_house_status_projection import install_player_house_status_projection
+    from shinobi_runtime.api.player_family_projection import install_player_family_projection
 
     install_legacy_scheduler_compat()
     install_academy_pipeline_transfer_ids()
     install_academy_career_sync()
     install_shinobi_career_progression()
     install_promotion_exam_scheduler()
+    install_promotion_exam_pacing()
     install_promotion_exam_projection()
     install_world_front_progression()
     install_player_report_projection()
     install_player_report_lifecycle()
     install_player_team_checkin_projection()
     install_player_promotion_exam_projection()
+    install_player_promotion_exam_schedule_projection()
     install_mission_assignment_request_projection()
     install_downtime_until_event()
     install_team_checkin_handoffs()
     install_downtime_vitality()
+    install_story_vitality()
     install_scene_resume_projection()
     install_player_mission_continuity()
     install_campaign_mission_continuity_repair()
@@ -70,6 +80,8 @@ def _install_campaign_extensions() -> None:
     install_time_planner_error_guard()
     install_player_global_team_training_projection()
     install_player_house_outreach_projection()
+    install_player_house_status_projection()
+    install_player_family_projection()
     install_preview_validation()
     install_institution_review_runtime_guard()
     install_production_population_owner_bridge()

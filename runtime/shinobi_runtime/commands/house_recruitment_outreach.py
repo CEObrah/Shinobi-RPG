@@ -219,7 +219,11 @@ def _plan_outreach(
                 payload={"commitment_id": commitment_id},
                 priority=30,
                 visibility="player_known",
-                requires_player=True,
+                # The ordinary commitment reducer settles this boundary to an
+                # overdue/review-ready record and removes its host. Event-seeking
+                # may surface the resulting semantic event without leaving a
+                # requires-player scheduler item parked beneath the intake action.
+                requires_player=False,
             )
         )
 

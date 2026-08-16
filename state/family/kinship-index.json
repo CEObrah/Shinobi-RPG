@@ -288,6 +288,62 @@
       "spouses": [],
       "succession_claims": [],
       "wards": []
+    },
+    "pc_wei_tang": {
+      "spouses": [],
+      "former_spouses": [],
+      "parents": [
+        "char.linh",
+        "char.zhu"
+      ],
+      "children": [],
+      "guardians": [],
+      "wards": [],
+      "households": [],
+      "succession_claims": [],
+      "kinships": []
+    },
+    "char.zhu": {
+      "spouses": [],
+      "former_spouses": [],
+      "parents": [],
+      "children": [
+        "char.kai",
+        "pc_wei_tang"
+      ],
+      "guardians": [],
+      "wards": [],
+      "households": [],
+      "succession_claims": [],
+      "kinships": []
+    },
+    "char.linh": {
+      "spouses": [],
+      "former_spouses": [],
+      "parents": [],
+      "children": [
+        "char.kai",
+        "pc_wei_tang"
+      ],
+      "guardians": [],
+      "wards": [],
+      "households": [],
+      "succession_claims": [],
+      "kinships": []
+    },
+    "char.kai": {
+      "spouses": [],
+      "former_spouses": [],
+      "parents": [
+        "char.linh",
+        "char.zhu"
+      ],
+      "children": [],
+      "guardians": [],
+      "wards": [],
+      "households": [],
+      "succession_claims": [],
+      "kinships": []
     }
   },
   "rule": "Derived routing only; rebuild from union/parentage/household authority. Never treat this index as legal or relationship truth.",

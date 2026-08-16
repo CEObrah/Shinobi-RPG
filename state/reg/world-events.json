@@ -2899,6 +2899,67 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.b5b9d6fac096890cd8a4",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-11T07:00:00",
+        "started_at": "SE-0061-07-11T07:00:00",
+        "ended_at": "SE-0061-07-11T07:00:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/family/index.json",
+        "state/family/kinship-index.json",
+        "state/family/parentage/family.parentage.continuity.kai_tang.json",
+        "state/family/parentage/family.parentage.continuity.wei_tang.json"
+      ],
+      "material_consequence_refs": [
+        "family_parentage_restored:char.kai:char.zhu,char.linh",
+        "family_parentage_restored:pc_wei_tang:char.zhu,char.linh",
+        "family_sibling_inferred:pc_wei_tang:char.kai"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "char.kai",
+          "char.linh",
+          "char.zhu",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-11T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_family_continuity_repair",
+        "transaction_ref": "tx.gameplay.b5b9d6fac096890cd8a41ae5523789922155907c56f5e916bae78b305aa5ce68",
+        "receipt_refs": [
+          "receipt.gameplay.b5b9d6fac096890cd8a41ae5523789922155907c56f5e916bae78b305aa5ce68"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

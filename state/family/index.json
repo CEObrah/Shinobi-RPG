@@ -6,7 +6,7 @@
     "events": 0,
     "households": 0,
     "kinships": 6,
-    "parentage": 9,
+    "parentage": 11,
     "parenthoods": 0,
     "proposals": 0,
     "successions": 0,
@@ -32,7 +32,9 @@
     "family.parentage.bootstrap.84673e85121cf1701e": "state/family/parentage/family.parentage.bootstrap.84673e85121cf1701e.json",
     "family.parentage.bootstrap.dd9f5493d9b543299c": "state/family/parentage/family.parentage.bootstrap.dd9f5493d9b543299c.json",
     "family.parentage.bootstrap.de9ab1e51b99e92164": "state/family/parentage/family.parentage.bootstrap.de9ab1e51b99e92164.json",
-    "family.parentage.bootstrap.faa502da17e2d65de9": "state/family/parentage/family.parentage.bootstrap.faa502da17e2d65de9.json"
+    "family.parentage.bootstrap.faa502da17e2d65de9": "state/family/parentage/family.parentage.bootstrap.faa502da17e2d65de9.json",
+    "family.parentage.continuity.wei_tang": "state/family/parentage/family.parentage.continuity.wei_tang.json",
+    "family.parentage.continuity.kai_tang": "state/family/parentage/family.parentage.continuity.kai_tang.json"
   },
   "parenthoods": {},
   "path_templates": {
@@ -333,6 +335,60 @@
       "proposals": [],
       "successions": [],
       "unions": []
+    },
+    "pc_wei_tang": {
+      "courtships": [],
+      "proposals": [],
+      "unions": [],
+      "households": [],
+      "kinships": [],
+      "parenthoods": [],
+      "parentage": [
+        "family.parentage.continuity.wei_tang"
+      ],
+      "successions": [],
+      "events": []
+    },
+    "char.zhu": {
+      "courtships": [],
+      "proposals": [],
+      "unions": [],
+      "households": [],
+      "kinships": [],
+      "parenthoods": [],
+      "parentage": [
+        "family.parentage.continuity.kai_tang",
+        "family.parentage.continuity.wei_tang"
+      ],
+      "successions": [],
+      "events": []
+    },
+    "char.linh": {
+      "courtships": [],
+      "proposals": [],
+      "unions": [],
+      "households": [],
+      "kinships": [],
+      "parenthoods": [],
+      "parentage": [
+        "family.parentage.continuity.kai_tang",
+        "family.parentage.continuity.wei_tang"
+      ],
+      "successions": [],
+      "events": []
+    },
+    "char.kai": {
+      "courtships": [],
+      "proposals": [],
+      "unions": [],
+      "households": [],
+      "kinships": [],
+      "parenthoods": [],
+      "parentage": [
+        "family.parentage.continuity.kai_tang"
+      ],
+      "successions": [],
+      "events": []
     }
   },
   "proposals": {},

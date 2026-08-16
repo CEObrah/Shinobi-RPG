@@ -7,9 +7,10 @@ from functools import wraps
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.core import _BuiltPlan, _OwnerResolutionCache, _campaign_datetime, _json_bytes
+from shinobi_runtime.commands.core import _BuiltPlan, _OwnerResolutionCache, _json_bytes
 from shinobi_runtime.commands.domains.time import TimeCommandsMixin
 from shinobi_runtime.commands import promotion_exam_attendance as attendance
+from shinobi_runtime.commands import promotion_exam_evaluation as evaluation
 from shinobi_runtime.commands import promotion_exam_integrity as integrity
 from shinobi_runtime.commands import promotion_exam_pacing as pacing
 from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
@@ -120,7 +121,6 @@ def _install_hosted_arrivals() -> None:
                 registration_at = CampaignTime.parse(registration_raw)
             except (TypeError, ValueError) as exc:
                 raise CommandRejectedError("promotion_exam_cycle_state_invalid") from exc
-            elapsed_days = (_campaign_datetime(reached) - _campaign_datetime(registration_at)).total_seconds() / 86400.0
             for candidate_ref, delegation in _foreign_registered(pipeline, profile, cycle_id).items():
                 try:
                     path, _digest, view = self._resolve_covered_owner_view(candidate_ref, cache=cache)
@@ -140,11 +140,12 @@ def _install_hosted_arrivals() -> None:
                 route_days = minimum_route_days(self.repository, current_location, host_place)
                 if route_days is None:
                     raise CommandRejectedError("promotion_exam_delegation_host_route_unavailable")
-                if route_days > elapsed_days:
+                arrival_at = registration_at.add_seconds(int(route_days * 24 * 60 * 60))
+                if arrival_at > reached:
                     raise CommandRejectedError("promotion_exam_delegation_cannot_arrive_by_stage")
                 append_location(
                     subject,
-                    at=reached,
+                    at=arrival_at,
                     location_ref=host_place,
                     reason=f"scheduled hosted Chunin Examination delegation arrival from {delegation['service_village']}",
                 )
@@ -155,6 +156,7 @@ def _install_hosted_arrivals() -> None:
                         "from_location_ref": current_location,
                         "to_location_ref": host_place,
                         "minimum_route_days": route_days,
+                        "completed_at": str(arrival_at),
                     }
                 )
         if not arrivals:
@@ -170,7 +172,7 @@ def _install_hosted_arrivals() -> None:
             actor_refs=tuple(row["candidate_ref"] for row in arrivals),
             affected_owner_refs=tuple(sorted(staged)),
             material_consequence_refs=tuple(
-                f"hosted_exam_arrival:{row['candidate_ref']}:{row['to_location_ref']}" for row in arrivals
+                f"hosted_exam_arrival:{row['candidate_ref']}:{row['to_location_ref']}:{row['completed_at']}" for row in arrivals
             ),
             classification="public",
             audience_refs=(command.actor_id,),
@@ -232,19 +234,30 @@ def _install_repair_travel() -> None:
         config = hosted_config(profile)
         if config is None:
             return base
-        schedule = pacing.promotion_exam_schedule_for_cycle(self.repository, cycle_id=cycle_id)
+        registration_raw = evidence.get("registration")
         qualification_raw = evidence.get("qualification")
-        finals_raw = schedule.get("finals")
-        if not isinstance(qualification_raw, str) or not isinstance(finals_raw, str):
+        field_raw = evidence.get("field_evaluation")
+        if not isinstance(registration_raw, str) or not isinstance(qualification_raw, str) or not isinstance(field_raw, str):
             raise CommandRejectedError("promotion_exam_cycle_state_invalid")
         try:
+            registration_at = CampaignTime.parse(registration_raw)
             qualification_at = CampaignTime.parse(qualification_raw)
-            finals_at = CampaignTime.parse(finals_raw)
+            field_at = CampaignTime.parse(field_raw)
         except (TypeError, ValueError) as exc:
             raise CommandRejectedError("promotion_exam_cycle_state_invalid") from exc
         team_by_candidate, _instructors = integrity._registration_team_map(pipeline, cycle_id)
         delegation_map = delegation_by_team(profile)
         finalist_set = {ref for ref in finalists if isinstance(ref, str)}
+        qualification_rows = {
+            str(row["candidate_ref"]): row
+            for row in evaluation.promotion_exam_evaluation_rows(pipeline, cycle_id, phase="qualification")
+            if isinstance(row.get("candidate_ref"), str)
+        }
+        field_rows = {
+            str(row["candidate_ref"]): row
+            for row in evaluation.promotion_exam_evaluation_rows(pipeline, cycle_id, phase="field_evaluation")
+            if isinstance(row.get("candidate_ref"), str)
+        }
         host_place = str(config["host_arrival_place_ref"])
         cache = _OwnerResolutionCache()
         staged: dict[str, dict[str, Any]] = {}
@@ -266,20 +279,37 @@ def _install_repair_travel() -> None:
             route_days = minimum_route_days(self.repository, home, host_place)
             if route_days is None:
                 raise CommandRejectedError("promotion_exam_delegation_host_route_unavailable")
+            travel_seconds = int(route_days * 24 * 60 * 60)
+            arrival_at = registration_at.add_seconds(travel_seconds)
+            if arrival_at > qualification_at:
+                raise CommandRejectedError("promotion_exam_delegation_cannot_arrive_by_stage")
             append_location(
                 subject,
-                at=qualification_at,
+                at=arrival_at,
                 location_ref=host_place,
                 reason=f"reconciled hosted Chunin Examination delegation arrival from {delegation['service_village']}",
             )
             remains = candidate_ref in finalist_set
+            eliminated_at: CampaignTime | None = None
+            return_at: CampaignTime | None = None
             if not remains:
-                append_location(
-                    subject,
-                    at=finals_at,
-                    location_ref=home,
-                    reason="reconciled return home after elimination from hosted Chunin Examination",
-                )
+                qualification = qualification_rows.get(candidate_ref)
+                field = field_rows.get(candidate_ref)
+                if isinstance(qualification, Mapping) and qualification.get("outcome") == "fail":
+                    eliminated_at = qualification_at
+                elif isinstance(field, Mapping) and field.get("outcome") == "fail":
+                    eliminated_at = field_at
+                else:
+                    raise CommandRejectedError("promotion_exam_repair_travel_elimination_unresolved")
+                candidate_return_at = eliminated_at.add_seconds(travel_seconds)
+                if candidate_return_at <= current_time:
+                    return_at = candidate_return_at
+                    append_location(
+                        subject,
+                        at=return_at,
+                        location_ref=home,
+                        reason="reconciled route-duration return home after elimination from hosted Chunin Examination",
+                    )
             staged[path] = subject
             movements.append(
                 {
@@ -287,6 +317,9 @@ def _install_repair_travel() -> None:
                     "home_location_ref": home,
                     "host_location_ref": host_place,
                     "minimum_route_days": route_days,
+                    "arrival_completed_at": str(arrival_at),
+                    "eliminated_at": str(eliminated_at) if eliminated_at is not None else None,
+                    "return_completed_at": str(return_at) if return_at is not None else None,
                     "remains_at_host_for_finals": remains,
                 }
             )
@@ -303,7 +336,7 @@ def _install_repair_travel() -> None:
             actor_refs=tuple(row["candidate_ref"] for row in movements),
             affected_owner_refs=tuple(sorted(staged)),
             material_consequence_refs=tuple(
-                f"hosted_exam_travel_reconciled:{row['candidate_ref']}:{row['host_location_ref']}" for row in movements
+                f"hosted_exam_travel_reconciled:{row['candidate_ref']}:{row['host_location_ref']}:{row['arrival_completed_at']}" for row in movements
             ),
             classification="restricted",
             audience_refs=(command.actor_id,),

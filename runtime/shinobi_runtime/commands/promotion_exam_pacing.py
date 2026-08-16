@@ -16,8 +16,10 @@ from typing import Any, Mapping, Optional
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.domains.time import TimeCommandsMixin
+from shinobi_runtime.commands import promotion_exam_scheduler as scheduler_module
 from shinobi_runtime.commands.promotion_exam_scheduler import (
     active_promotion_exam_cycles,
+    next_cycle_phase as _legacy_next_cycle_phase,
     promotion_exam_profiles,
 )
 from shinobi_runtime.sim.events import CampaignTime
@@ -94,6 +96,18 @@ def _phase_offsets(profile: Mapping[str, Any]) -> tuple[tuple[str, int], ...]:
     return tuple(rows)
 
 
+def _academy_cycle_opening_only(
+    profile: Mapping[str, Any],
+    pipeline: Mapping[str, Any],
+    at: CampaignTime,
+) -> Optional[tuple[str, str]]:
+    """Let Academy review open a cycle, never advance an already-open cycle."""
+
+    if active_promotion_exam_cycles(pipeline, (profile,)):
+        return None
+    return _legacy_next_cycle_phase(profile, pipeline, at)
+
+
 def _cycle_anchor(
     pipeline: Mapping[str, Any],
     *,
@@ -137,8 +151,11 @@ def _next_phase_due(
     index = phase_names.index(current_phase)
     if index + 1 >= len(schedule):
         return None
-    first_phase = phase_names[0]
-    anchor = _cycle_anchor(pipeline, cycle_id=cycle_id, first_phase=first_phase)
+    anchor = _cycle_anchor(
+        pipeline,
+        cycle_id=cycle_id,
+        first_phase=phase_names[0],
+    )
     next_phase, offset_days = schedule[index + 1]
     return next_phase, anchor.add_seconds(offset_days * 24 * 60 * 60)
 
@@ -173,7 +190,11 @@ def next_promotion_exam_boundary(
     pipeline = _pipeline_after(repository, {})
     profiles = promotion_exam_profiles(repository)
     active = active_promotion_exam_cycles(pipeline, profiles)
-    by_id = {row.get("id"): row for row in profiles if isinstance(row.get("id"), str)}
+    by_id = {
+        row.get("id"): row
+        for row in profiles
+        if isinstance(row.get("id"), str)
+    }
     due_points: list[CampaignTime] = []
     for cycle in active:
         profile = by_id.get(cycle.get("profile_ref"))
@@ -183,8 +204,18 @@ def next_promotion_exam_boundary(
         if next_due is None:
             continue
         _phase, due = next_due
-        due_points.append(due if due > current_time else current_time.add_seconds(1))
+        due_points.append(
+            due if due > current_time else current_time.add_seconds(1)
+        )
     return min(due_points) if due_points else None
+
+
+def _install_academy_opening_only() -> None:
+    current = scheduler_module.next_cycle_phase
+    if getattr(current, "_promotion_exam_opening_only", False):
+        return
+    _academy_cycle_opening_only._promotion_exam_opening_only = True  # type: ignore[attr-defined]
+    scheduler_module.next_cycle_phase = _academy_cycle_opening_only
 
 
 def _install_time_progression() -> None:
@@ -200,7 +231,11 @@ def _install_time_progression() -> None:
         current_time: CampaignTime,
     ) -> _BuiltPlan:
         base = original(self, command, meta, current_time)
-        reached_raw = base.result.get("world_time") if isinstance(base.result, Mapping) else None
+        reached_raw = (
+            base.result.get("world_time")
+            if isinstance(base.result, Mapping)
+            else None
+        )
         if not isinstance(reached_raw, str):
             return base
         try:
@@ -211,15 +246,20 @@ def _install_time_progression() -> None:
         pipeline = _pipeline_after(self.repository, base.writes)
         profiles = promotion_exam_profiles(self.repository)
         profile_by_id = {
-            row.get("id"): row for row in profiles if isinstance(row.get("id"), str)
+            row.get("id"): row
+            for row in profiles
+            if isinstance(row.get("id"), str)
         }
-        actions = list(base.result.get("autonomous_actions", [])) if isinstance(base.result.get("autonomous_actions"), list) else []
+        raw_actions = base.result.get("autonomous_actions")
+        actions = list(raw_actions) if isinstance(raw_actions, list) else []
         world_events: Optional[dict[str, Any]] = None
         changed = False
 
         while True:
             active = active_promotion_exam_cycles(pipeline, profiles)
-            due_candidates: list[tuple[CampaignTime, Mapping[str, Any], Mapping[str, Any], str]] = []
+            due_candidates: list[
+                tuple[CampaignTime, Mapping[str, Any], Mapping[str, Any], str]
+            ] = []
             for cycle in active:
                 profile = profile_by_id.get(cycle.get("profile_ref"))
                 if not isinstance(profile, Mapping):
@@ -234,7 +274,11 @@ def _install_time_progression() -> None:
                 break
             due, cycle, profile, next_phase = min(
                 due_candidates,
-                key=lambda row: (row[0], str(row[1].get("cycle_id")), row[3]),
+                key=lambda row: (
+                    row[0],
+                    str(row[1].get("cycle_id")),
+                    row[3],
+                ),
             )
             cycle_id = cycle.get("cycle_id")
             profile_ref = profile.get("id")
@@ -242,7 +286,12 @@ def _install_time_progression() -> None:
             authority_ref = profile.get("authority_ref")
             if not all(
                 isinstance(value, str) and value
-                for value in (cycle_id, profile_ref, institution_ref, authority_ref)
+                for value in (
+                    cycle_id,
+                    profile_ref,
+                    institution_ref,
+                    authority_ref,
+                )
             ):
                 raise CommandRejectedError("promotion_exam_cycle_state_invalid")
 
@@ -271,7 +320,10 @@ def _install_time_progression() -> None:
                 at=due,
                 host_refs=(institution_ref,),
                 affected_owner_refs=(_CAREER,),
-                material_consequence_refs=(cycle_id, f"phase:{next_phase}"),
+                material_consequence_refs=(
+                    cycle_id,
+                    f"phase:{next_phase}",
+                ),
                 classification="public",
                 audience_refs=(command.actor_id,),
                 source_refs=(institution_ref, authority_ref),
@@ -310,9 +362,13 @@ def _install_time_progression() -> None:
             if original_validator is not None:
                 original_validator(_BaseOverlay(overlay, base_writes), manifest)
             if overlay.changed_paths != expected_paths:
-                raise ValueError("promotion exam pacing changed write set after planning")
+                raise ValueError(
+                    "promotion exam pacing changed write set after planning"
+                )
             if overlay.read_json(_CAREER) != expected_pipeline:
-                raise ValueError("promotion exam pacing after-image differs from plan")
+                raise ValueError(
+                    "promotion exam pacing after-image differs from plan"
+                )
 
         result = dict(base.result)
         result["autonomous_actions"] = actions
@@ -339,6 +395,7 @@ def install_promotion_exam_pacing() -> None:
     global _INSTALLED
     if _INSTALLED:
         return
+    _install_academy_opening_only()
     _install_time_progression()
     _INSTALLED = True
 

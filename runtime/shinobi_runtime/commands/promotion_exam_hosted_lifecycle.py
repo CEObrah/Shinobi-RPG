@@ -108,6 +108,12 @@ def _repair_travel_times(
     return arrival_at, eliminated_at, return_at
 
 
+def _route_days_result_value(route_days: float) -> str:
+    """Return a stable decimal token for strict canonical command results."""
+
+    return format(route_days, ".15g")
+
+
 def _install_hosted_arrivals() -> None:
     original = TimeCommandsMixin._advance_time
     if getattr(original, "_promotion_exam_hosted_arrivals", False):
@@ -183,7 +189,7 @@ def _install_hosted_arrivals() -> None:
                         "candidate_ref": candidate_ref,
                         "from_location_ref": current_location,
                         "to_location_ref": host_place,
-                        "minimum_route_days": route_days,
+                        "minimum_route_days": _route_days_result_value(route_days),
                         "completed_at": str(arrival_at),
                     }
                 )
@@ -339,7 +345,7 @@ def _install_repair_travel() -> None:
                     "candidate_ref": candidate_ref,
                     "home_location_ref": home,
                     "host_location_ref": host_place,
-                    "minimum_route_days": route_days,
+                    "minimum_route_days": _route_days_result_value(route_days),
                     "arrival_completed_at": str(arrival_at),
                     "eliminated_at": str(eliminated_at) if eliminated_at is not None else None,
                     "return_completed_at": str(return_at) if return_at is not None else None,
@@ -404,5 +410,6 @@ def install_promotion_exam_hosted_lifecycle() -> None:
 
 __all__ = [
     "_repair_travel_times",
+    "_route_days_result_value",
     "install_promotion_exam_hosted_lifecycle",
 ]

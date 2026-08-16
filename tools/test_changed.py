@@ -41,7 +41,7 @@ ROUTES = (
         "tests/runtime/test_team_playability_interface.py",
         "tests/runtime/test_team_training_readiness_projection.py",
     }),
-    (("promotion_exam", "promotion-exams.json", "career_history_retention", "shinobi-career-pipeline"), {
+    (("promotion_exam", "promotion-exams.json", "career_history_retention", "shinobi-career-pipeline", "shinobi_career_service_authority"), {
         "tests/runtime/test_promotion_exam_scheduler.py",
         "tests/runtime/test_promotion_exam_evaluation.py",
         "tests/runtime/test_promotion_exam_finals.py",
@@ -52,6 +52,9 @@ ROUTES = (
         "tests/runtime/test_promotion_exam_attendance.py",
         "tests/runtime/test_promotion_exam_participation_repair.py",
         "tests/runtime/test_promotion_exam_schema_integration.py",
+        "tests/runtime/test_promotion_exam_hosted_intervillage.py",
+        "tests/runtime/test_promotion_exam_public_results.py",
+        "tests/runtime/test_shinobi_career_service_authority.py",
         "tests/runtime/test_career_history_retention.py",
     }),
     (("mission",), {

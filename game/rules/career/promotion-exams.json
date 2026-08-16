@@ -17,6 +17,34 @@
         "institution.konoha.academy",
         "faction.konoha_mission_office"
       ],
+      "hosted_exam": {
+        "host_village": "konoha",
+        "host_arrival_place_ref": "place.konoha",
+        "participating_villages": [
+          "konoha",
+          "suna"
+        ],
+        "home_village_selection_rule": "Each participating village owns its delegation selection. The host owns examination logistics and evaluation, not foreign promotion authority.",
+        "travel_policy": "Foreign delegations may register only when a lawful route can reach the host by qualification using the published minimum route-day bounds. Registered foreign candidates are settled into the host before on-site stages.",
+        "foreign_delegations": [
+          {
+            "delegation_ref": "promotion_exam_delegation.suna.baki",
+            "service_village": "suna",
+            "selection_authority_ref": "faction_suna",
+            "instructor_ref": "canon_baki",
+            "candidate_pool_refs": [
+              "canon_gaara",
+              "canon_kankuro",
+              "canon_temari"
+            ]
+          }
+        ]
+      },
+      "result_visibility": {
+        "qualification": "public_after_settlement",
+        "field_evaluation": "public_after_settlement",
+        "finals": "public"
+      },
       "eligibility_review": {
         "minimum_source_rank_service_days": 60,
         "requires_active_standard_mission_team": true,
@@ -85,24 +113,29 @@
         }
       },
       "rules": [
-        "The Konoha world-registry institution scheduler opens a configured cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
-        "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
+        "The Konoha world-registry institution scheduler opens a configured hosted cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
+        "A hosted cycle may open only when the scheduled host Academy review occurs in a configured start month.",
+        "The host village administers the examination calendar, venues, examiners, security, public results, and tournament evidence. It does not acquire authority to promote foreign shinobi; foreign promotion remains a separate home-village career decision.",
+        "Participating villages are authored per hosted profile. Home institutions select their own lawful delegation candidates; being named in a configured candidate pool creates only a possible delegation source and never guarantees registration, success, finals advancement, or promotion.",
+        "A foreign delegation candidate must still be living, ready when required, promotion-eligible, at the configured source rank, affiliated with the delegation's home village, and able to reach the host through a lawful route by qualification.",
         "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening. Qualification and field evaluation additionally remain blocked until every current stage entrant has durable evaluation evidence. Finals remain blocked until the configured tournament bracket has durably settled.",
         "Academy graduation clears promotion eligibility. A later institutional eligibility review may restore that existing flag only after the authored minimum source-rank service period while the shinobi is living, ready when required, and rostered on an active standard mission team. Eligibility is not registration and does not imply advancement.",
-        "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
+        "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and an affiliation allowed by the hosted profile.",
         "Eligible non-player standard mission teams under a configured host registration authority submit their own qualified members through institution autonomy; the player still decides whether to submit a player-led team.",
+        "Configured foreign home-village delegations submit only currently lawful members of their authored candidate pools through home-village autonomy. The host cannot manufacture foreign candidates or change foreign eligibility to fill an exam.",
         "Legacy living-state labels active and alive are equivalent for promotion-exam eligibility and attendance checks; neither label implies an outcome.",
         "Qualification and field evaluation use the configured deterministic weighted capability score from persisted exact candidate state. Model sampling and ad hoc GM scoring are forbidden.",
+        "Public stage results become player-visible after settlement when result_visibility marks that stage public, including candidate identity, delegation/team, village, score, threshold, and pass/fail outcome.",
         "If a prior evaluable stage has durable results, only candidates who passed it enter the next evaluable stage. If an already-committed legacy cycle crossed a prior stage before this evaluator existed and therefore has no prior-stage evidence at all, registered candidates remain entrants rather than receiving fabricated retroactive results.",
         "Finals are a public single-elimination bracket over candidates who passed field evaluation. Pairing is deterministic from the cycle and candidate identities; the caller cannot choose pairings, NPC tactics, or winners.",
-        "Finals never pair two candidates registered from the same exact team. Cross-team opponents are paired deterministically whenever available; if only same-team contenders remain, they are co-finalists and the tournament portion completes without an intra-team bout.",
-        "Non-player exact finalists whose saved location shares the finals venue route anchor attend through scheduled local institutional movement before a bout. Attendance changes location only; it never determines a bout or promotion outcome.",
+        "Finals never pair two candidates registered from the same exact team or hosted delegation. Cross-team opponents are paired deterministically whenever available; if only same-team contenders remain, they are co-finalists and the tournament portion completes without an intra-team bout.",
+        "Registered foreign delegation members settle lawful travel to the host before on-site stages. Non-player finalists already at the host attend the finals venue through scheduled local institutional movement; guarded current-cycle repair may reconstruct omitted foreign travel only with route evidence.",
         "Each finals bout is settled through the shared deterministic combat kernel as nonlethal examination combat. A referee-stoppage policy converts combat effects into bout evidence rather than directly applying lasting injury from this exam-specific kernel. If the kernel produces no sole victorious side, persisted Chunin-relevant judgment dimensions break the tie deterministically.",
         "A finals victory establishes only tournament evidence. Winning the bracket never guarantees Chunin promotion, and losing a bout never by itself forbids promotion. Promotion review remains a separate institutional judgment over the candidate's demonstrated readiness and command qualities.",
         "An evaluation row establishes only Academy stage evidence and pass/fail for that stage. It never establishes injury, promotion, rank accounting, or a future-canon outcome.",
         "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
         "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",
-        "Exact promotion still requires persisted promotion eligibility and a separately authorized promotion decision, and may advance only one rank.",
+        "Exact promotion still requires persisted promotion eligibility and a separately authorized home-village promotion decision, and may advance only one rank.",
         "Every exact rank change synchronizes conserved aggregate village rank counts."
       ]
     }

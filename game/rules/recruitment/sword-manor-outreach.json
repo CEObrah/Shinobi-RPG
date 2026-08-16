@@ -1,24 +1,27 @@
 {
-  "schema": "sword-manor-external-recruitment-policy",
-  "version": 1,
-  "policy_ref": "recruitment.sword_manor_outreach",
-  "base_policy_ref": "recruitment.sword_manor_disciple",
-  "eligible_source_owner_refs": [
-    "faction_iwa",
-    "faction_kiri",
-    "faction_kumo",
-    "faction_suna"
-  ],
-  "eligible_source_categories": [
-    "civilian_general",
-    "support_service"
-  ],
-  "selection_mode": "sword_manor_letters_and_open_tryout",
-  "outreach_modes": [
-    "letters",
-    "open_tryouts"
-  ],
-  "destination_service_status": "house_tang_private_personnel_not_konoha_shinobi",
-  "source_sovereignty_rule": "Only voluntary civilian or support-service applicants may enter this House intake path. Active village shinobi, Academy cohorts, military formations, and other governed service personnel remain outside its authority unless separately and lawfully released by their own sovereign authority.",
-  "basis": "House Tang may advertise Sword Manor training and service opportunities beyond the Land of Fire. Applicants who voluntarily travel and pass the Manor tryout enter House Tang under its covenant and private household command structure; this policy does not create Konoha shinobi status or transfer another village's active service personnel."
+  "schema": "recruitment-policy-registry",
+  "authority": "Static extension of the authoritative recruitment policy registry for House Tang external outreach. The base Sword Manor intake policy supplies shared acceptance, identity, capacity, oath, stock, and cooldown safeguards.",
+  "policies": {
+    "recruitment.sword_manor_outreach": {
+      "base_policy_ref": "recruitment.sword_manor_disciple",
+      "eligible_source_owner_refs": [
+        "faction_iwa",
+        "faction_kiri",
+        "faction_kumo",
+        "faction_suna"
+      ],
+      "eligible_source_categories": [
+        "civilian_general",
+        "support_service"
+      ],
+      "selection_mode": "sword_manor_letters_and_open_tryout",
+      "outreach_modes": [
+        "letters",
+        "open_tryouts"
+      ],
+      "destination_service_status": "house_tang_private_personnel_not_konoha_shinobi",
+      "source_sovereignty_rule": "Only voluntary civilian or support-service applicants may enter this House intake path. Active village shinobi, Academy cohorts, military formations, and other governed service personnel remain outside its authority unless separately and lawfully released by their own sovereign authority.",
+      "basis": "House Tang may advertise Sword Manor training and service opportunities beyond the Land of Fire. Applicants who voluntarily travel and pass the Manor tryout enter House Tang under its covenant and private household command structure; this policy does not create Konoha shinobi status or transfer another village's active service personnel."
+    }
+  }
 }

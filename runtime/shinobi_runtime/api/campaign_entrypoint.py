@@ -53,6 +53,9 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_promotion_exam_schedule_projection import (
         install_player_promotion_exam_schedule_projection,
     )
+    from shinobi_runtime.api.player_promotion_exam_participation_projection import (
+        install_player_promotion_exam_participation_projection,
+    )
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
     from shinobi_runtime.api.player_command_mission_projection import install_player_command_mission_projection
     from shinobi_runtime.api.player_global_team_training_projection import install_player_global_team_training_projection
@@ -108,6 +111,7 @@ def _install_campaign_extensions() -> None:
     install_player_house_outreach_projection()
     install_player_house_status_projection()
     install_player_family_projection()
+    install_player_promotion_exam_participation_projection()
     install_player_training_model_projection()
     install_preview_validation()
     install_institution_review_runtime_guard()

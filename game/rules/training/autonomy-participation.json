@@ -1,19 +1,12 @@
 {
   "schema": "team-training-participation-policies",
-  "version": 3,
+  "version": 4,
   "policies": {
     "team.konoha.fujin": {
       "enabled": true,
       "participant_ref": "pc_wei_tang",
-      "participates_in_autonomous_training": true,
-      "target_cycle": [
-        "operational_skills.tactics",
-        "operational_skills.team_coordination",
-        "operational_skills.leadership",
-        "martial_skills.movement",
-        "martial_skills.sword",
-        "domain_proficiencies.wind"
-      ],
+      "participates_in_autonomous_training": false,
+      "target_cycle": [],
       "assembly_location_ref": "place.sword_manor",
       "assemble_nonplayer_members": true,
       "instructor_strategy": "replace_team_instructors",
@@ -30,26 +23,39 @@
       "team_target_cycle": [
         "operational_skills.team_coordination",
         "martial_skills.movement",
+        "attributes.awareness",
+        "chakra_dimensions.control",
+        "martial_skills.stealth",
+        "operational_skills.survival",
         "operational_skills.investigation",
         "operational_skills.tactics",
-        "attributes.awareness",
-        "martial_skills.stealth"
-      ],
-      "assessment_paths": [
-        "attributes.awareness",
         "attributes.coordination",
         "attributes.endurance",
+        "martial_skills.unarmed",
+        "domain_proficiencies.wind"
+      ],
+      "assessment_paths": [
+        "attributes.agility",
+        "attributes.awareness",
+        "attributes.composure",
+        "attributes.coordination",
+        "attributes.endurance",
+        "chakra_dimensions.casting_stability",
         "chakra_dimensions.control",
         "chakra_dimensions.efficiency",
+        "chakra_dimensions.multitasking",
         "martial_skills.movement",
         "martial_skills.stealth",
+        "martial_skills.sword",
+        "martial_skills.unarmed",
+        "operational_skills.infiltration",
         "operational_skills.investigation",
         "operational_skills.survival",
         "operational_skills.tactics",
         "operational_skills.team_coordination",
         "operational_skills.tracking"
       ],
-      "basis": "Team Fujin uses Sword Manor as its standing intensive-development base: five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day. Zhu and Linh own routine instruction. Instruction remediates weak mission fundamentals while rotating back through role strengths and team coordination. Lawful missions, injury, travel, medical restrictions and higher orders preempt the schedule; missed hours are not stacked."
+      "basis": "Team Fujin uses Sword Manor as its standing intensive-development base: five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day. Zhu and Linh own routine instruction. The curriculum deliberately rotates physical fundamentals, chakra control, stealth, fieldcraft, investigation, tactics, coordination and each shinobi's technical strengths rather than farming one favored statistic. Lawful missions, injury, travel, medical restrictions and higher orders preempt the schedule; missed hours are not stacked. Wei's personal credit is settled once through the joint Fujin and Black Hound command block when he is home."
     },
     "team.blackhound": {
       "enabled": true,
@@ -71,22 +77,32 @@
       "target_strategy": "weakness_strength_balanced",
       "team_target_cycle": [
         "operational_skills.team_coordination",
+        "attributes.awareness",
+        "martial_skills.movement",
+        "martial_skills.stealth",
+        "martial_skills.unarmed",
+        "martial_skills.sword",
+        "chakra_dimensions.control",
+        "chakra_dimensions.efficiency",
         "operational_skills.infiltration",
         "operational_skills.tracking",
         "operational_skills.investigation",
         "operational_skills.tactics",
         "operational_skills.survival",
-        "operational_skills.traps",
-        "martial_skills.stealth"
+        "operational_skills.traps"
       ],
       "assessment_paths": [
+        "attributes.agility",
         "attributes.awareness",
+        "attributes.composure",
         "attributes.coordination",
         "attributes.endurance",
         "attributes.strength",
         "attributes.toughness",
+        "chakra_dimensions.casting_stability",
         "chakra_dimensions.control",
         "chakra_dimensions.efficiency",
+        "chakra_dimensions.multitasking",
         "martial_skills.movement",
         "martial_skills.stealth",
         "martial_skills.unarmed",
@@ -99,7 +115,28 @@
         "operational_skills.tracking",
         "operational_skills.traps"
       ],
-      "basis": "Black Hound uses Sword Manor for the same intensive thirty-four-active-hour weekly cycle as Fujin. Zhu and Linh replace Hayama as routine training instructors; Hayama remains operational deputy and field commander. The autonomous curriculum diagnoses weak individual combat fundamentals and rotates those against each shinobi's role/signature strengths and Black Hound tactical skills, so members become stronger solo combatants without losing team specialization. Wei is excluded from Black Hound autonomous hours to prevent double-counting his personal standing training. Lawful missions, assignments, injury, travel, recovery and medical restrictions preempt training; missed hours are not stacked."
+      "joint_player_training_credit_owner": true,
+      "joint_player_training_team_refs": [
+        "team.konoha.fujin",
+        "team.blackhound"
+      ],
+      "player_joint_active_hours_per_week": 34,
+      "player_joint_target_cycle": [
+        "operational_skills.leadership",
+        "operational_skills.team_coordination",
+        "operational_skills.tactics",
+        "attributes.awareness",
+        "attributes.composure",
+        "chakra_dimensions.multitasking",
+        "chakra_dimensions.control",
+        "martial_skills.movement",
+        "martial_skills.sword",
+        "domain_proficiencies.wind",
+        "martial_skills.stealth",
+        "operational_skills.investigation",
+        "operational_skills.survival"
+      ],
+      "basis": "Black Hound uses Sword Manor for the same intensive thirty-four-active-hour weekly cycle as Fujin. Zhu and Linh replace Hayama as routine training instructors; Hayama remains operational deputy and field commander. The autonomous curriculum rotates broad combat, physical, chakra, stealth, fieldcraft and operational competencies while preserving role specialties. When Wei is home and available, his thirty-four active hours are one joint Fujin and Black Hound command-training block, credited once globally and rotated through leadership, coordination, tactics, awareness, composure, chakra multitasking, movement, swordwork, Wind Release, stealth, investigation and survival. When Wei is away, Zhu or Linh continues both teams' routine training without inventing personal credit for him."
     }
   }
 }

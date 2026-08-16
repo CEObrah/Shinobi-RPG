@@ -27,6 +27,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.promotion_exam_service_eligibility import install_promotion_exam_service_eligibility
     from shinobi_runtime.commands.promotion_exam_attendance import install_promotion_exam_attendance
     from shinobi_runtime.commands.promotion_exam_hosted_intervillage import install_promotion_exam_hosted_intervillage
+    from shinobi_runtime.commands.shinobi_career_service_authority import install_shinobi_career_service_authority
     from shinobi_runtime.commands.career_history_retention import install_career_history_retention
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
@@ -120,6 +121,7 @@ def _install_campaign_extensions() -> None:
     install_promotion_exam_service_eligibility()
     install_promotion_exam_attendance()
     install_promotion_exam_hosted_intervillage()
+    install_shinobi_career_service_authority()
     # Central owner-level retention must be installed only after every legacy
     # career/exam producer has imported its old finite cursor constant.
     install_career_history_retention()

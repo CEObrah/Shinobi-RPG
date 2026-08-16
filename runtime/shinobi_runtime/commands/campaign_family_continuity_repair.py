@@ -25,6 +25,26 @@ _PARENTAGE_IDS = {
 _INSTALLED = False
 
 
+def _parentage_record(child_ref: str) -> dict[str, Any]:
+    parentage_id = _PARENTAGE_IDS[child_ref]
+    return {
+        "schema": "family-parentage",
+        "parentage_id": parentage_id,
+        "child_id": child_ref,
+        "authority": True,
+        "parent_links": [
+            {"parent_id": parent_ref, "kind": "biological"}
+            for parent_ref in _PARENTS
+        ],
+        "guardian_links": [],
+        "provenance_note": (
+            "Player-directed continuity repair on 2026-08-16: Zhu Tang and "
+            "Linh Tang are the parents of Wei Tang and Kai Tang; Wei and Kai "
+            "are brothers."
+        ),
+    }
+
+
 def _repair(
     self: Any,
     command: CommandEnvelope,
@@ -66,22 +86,7 @@ def _repair(
         path = f"state/family/parentage/{parentage_id}.json"
         if parentage_id in parentage_bucket or self.repository.read_optional_bytes(path) is not None:
             raise CommandRejectedError("campaign_family_continuity_repair_parentage_conflict")
-        record = {
-            "schema": "family-parentage",
-            "parentage_id": parentage_id,
-            "child_id": child_ref,
-            "authority": True,
-            "parent_links": [
-                {"parent_id": parent_ref, "kind": "biological"}
-                for parent_ref in _PARENTS
-            ],
-            "guardian_links": [],
-            "provenance_note": (
-                "Player-directed continuity repair on 2026-08-16: Zhu Tang and "
-                "Linh Tang are the parents of Wei Tang and Kai Tang; Wei and Kai "
-                "are brothers."
-            ),
-        }
+        record = _parentage_record(child_ref)
         parentage_bucket[parentage_id] = path
         self._append_unique(self._family_person_entry(family, child_ref)["parentage"], parentage_id)
         child_links = self._kinship_person_entry(kinship, child_ref)
@@ -144,15 +149,8 @@ def _repair(
         for child_ref in _CHILDREN:
             parentage_id = _PARENTAGE_IDS[child_ref]
             row = overlay.read_json(f"state/family/parentage/{parentage_id}.json")
-            if row.get("child_id") != child_ref:
+            if row != _parentage_record(child_ref):
                 raise ValueError("campaign family continuity repair parentage mismatch")
-            parent_ids = sorted(
-                link.get("parent_id")
-                for link in row.get("parent_links", [])
-                if isinstance(link, Mapping)
-            )
-            if parent_ids != sorted(_PARENTS):
-                raise ValueError("campaign family continuity repair parents mismatch")
         staged_events = overlay.read_json(WORLD_EVENT_REGISTRY_PATH).get("events", [])
         if not any(isinstance(item, Mapping) and item.get("id") == event_id for item in staged_events):
             raise ValueError("campaign family continuity repair semantic event missing")
@@ -196,4 +194,4 @@ def install_campaign_family_continuity_repair() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_campaign_family_continuity_repair"]
+__all__ = ["install_campaign_family_continuity_repair", "_parentage_record"]

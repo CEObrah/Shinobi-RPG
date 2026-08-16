@@ -80,6 +80,34 @@ def _foreign_registered(
     return result
 
 
+def _repair_travel_times(
+    *,
+    registration_at: CampaignTime,
+    qualification_at: CampaignTime,
+    field_at: CampaignTime,
+    current_time: CampaignTime,
+    route_days: float,
+    finalist: bool,
+    qualification_outcome: object,
+    field_outcome: object,
+) -> tuple[CampaignTime, CampaignTime | None, CampaignTime | None]:
+    travel_seconds = int(route_days * 24 * 60 * 60)
+    arrival_at = registration_at.add_seconds(travel_seconds)
+    if arrival_at > qualification_at:
+        raise CommandRejectedError("promotion_exam_delegation_cannot_arrive_by_stage")
+    if finalist:
+        return arrival_at, None, None
+    if qualification_outcome == "fail":
+        eliminated_at = qualification_at
+    elif field_outcome == "fail":
+        eliminated_at = field_at
+    else:
+        raise CommandRejectedError("promotion_exam_repair_travel_elimination_unresolved")
+    return_due = eliminated_at.add_seconds(travel_seconds)
+    return_at = return_due if return_due <= current_time else None
+    return arrival_at, eliminated_at, return_at
+
+
 def _install_hosted_arrivals() -> None:
     original = TimeCommandsMixin._advance_time
     if getattr(original, "_promotion_exam_hosted_arrivals", False):
@@ -279,37 +307,32 @@ def _install_repair_travel() -> None:
             route_days = minimum_route_days(self.repository, home, host_place)
             if route_days is None:
                 raise CommandRejectedError("promotion_exam_delegation_host_route_unavailable")
-            travel_seconds = int(route_days * 24 * 60 * 60)
-            arrival_at = registration_at.add_seconds(travel_seconds)
-            if arrival_at > qualification_at:
-                raise CommandRejectedError("promotion_exam_delegation_cannot_arrive_by_stage")
+            qualification = qualification_rows.get(candidate_ref)
+            field = field_rows.get(candidate_ref)
+            remains = candidate_ref in finalist_set
+            arrival_at, eliminated_at, return_at = _repair_travel_times(
+                registration_at=registration_at,
+                qualification_at=qualification_at,
+                field_at=field_at,
+                current_time=current_time,
+                route_days=route_days,
+                finalist=remains,
+                qualification_outcome=qualification.get("outcome") if isinstance(qualification, Mapping) else None,
+                field_outcome=field.get("outcome") if isinstance(field, Mapping) else None,
+            )
             append_location(
                 subject,
                 at=arrival_at,
                 location_ref=host_place,
                 reason=f"reconciled hosted Chunin Examination delegation arrival from {delegation['service_village']}",
             )
-            remains = candidate_ref in finalist_set
-            eliminated_at: CampaignTime | None = None
-            return_at: CampaignTime | None = None
-            if not remains:
-                qualification = qualification_rows.get(candidate_ref)
-                field = field_rows.get(candidate_ref)
-                if isinstance(qualification, Mapping) and qualification.get("outcome") == "fail":
-                    eliminated_at = qualification_at
-                elif isinstance(field, Mapping) and field.get("outcome") == "fail":
-                    eliminated_at = field_at
-                else:
-                    raise CommandRejectedError("promotion_exam_repair_travel_elimination_unresolved")
-                candidate_return_at = eliminated_at.add_seconds(travel_seconds)
-                if candidate_return_at <= current_time:
-                    return_at = candidate_return_at
-                    append_location(
-                        subject,
-                        at=return_at,
-                        location_ref=home,
-                        reason="reconciled route-duration return home after elimination from hosted Chunin Examination",
-                    )
+            if return_at is not None:
+                append_location(
+                    subject,
+                    at=return_at,
+                    location_ref=home,
+                    reason="reconciled route-duration return home after elimination from hosted Chunin Examination",
+                )
             staged[path] = subject
             movements.append(
                 {
@@ -379,4 +402,7 @@ def install_promotion_exam_hosted_lifecycle() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_promotion_exam_hosted_lifecycle"]
+__all__ = [
+    "_repair_travel_times",
+    "install_promotion_exam_hosted_lifecycle",
+]

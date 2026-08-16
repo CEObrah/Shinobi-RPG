@@ -23,6 +23,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.promotion_exam_evaluation import install_promotion_exam_evaluation
     from shinobi_runtime.commands.promotion_exam_finals import install_promotion_exam_finals
     from shinobi_runtime.commands.promotion_exam_integrity import install_promotion_exam_integrity
+    from shinobi_runtime.commands.promotion_exam_pairing import install_promotion_exam_pairing
     from shinobi_runtime.commands.promotion_exam_service_eligibility import install_promotion_exam_service_eligibility
     from shinobi_runtime.commands.promotion_exam_attendance import install_promotion_exam_attendance
     from shinobi_runtime.commands.career_history_retention import install_career_history_retention
@@ -114,6 +115,7 @@ def _install_campaign_extensions() -> None:
     install_global_team_training_load()
     install_autonomous_training_error_guard()
     install_promotion_exam_integrity()
+    install_promotion_exam_pairing()
     install_promotion_exam_service_eligibility()
     install_promotion_exam_attendance()
     # Central owner-level retention must be installed only after every legacy

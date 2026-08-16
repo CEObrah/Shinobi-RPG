@@ -1,6 +1,6 @@
 {
   "schema": "promotion-exam-rules",
-  "version": 2,
+  "version": 3,
   "profiles": {
     "promotion_exam.konoha.chunin": {
       "id": "promotion_exam.konoha.chunin",
@@ -13,10 +13,7 @@
       "source_rank": "Genin",
       "target_rank": "Chunin",
       "registration_authority": "active_team_leader",
-      "cycle_start_months": [
-        1,
-        7
-      ],
+      "cycle_start_months": [1, 7],
       "phases": [
         "registration",
         "qualification",
@@ -54,27 +51,39 @@
             {"path": "attributes.composure", "weight": 1},
             {"path": "operational_skills.survival", "weight": 1}
           ]
-        },
-        "finals": {
-          "threshold": 86,
+        }
+      },
+      "finals_format": {
+        "model": "single_elimination",
+        "venue_ref": "place.konoha.academy.assignment.hall",
+        "bracket_public": true,
+        "bracket_order": "cycle_seeded_stable",
+        "range_band": 1,
+        "max_exchange_ticks": 5,
+        "lethal_force": false,
+        "referee_stoppage": true,
+        "persistent_injury_from_bout_kernel": false,
+        "judge_tiebreak": {
           "components": [
-            {"path": "attributes.coordination", "weight": 2},
             {"path": "attributes.composure", "weight": 2},
             {"path": "attributes.awareness", "weight": 2},
-            {"path": "chakra_dimensions.control", "weight": 1},
-            {"path": "martial_skills.movement", "weight": 2},
             {"path": "operational_skills.tactics", "weight": 2},
-            {"path": "operational_skills.team_coordination", "weight": 1}
+            {"path": "operational_skills.team_coordination", "weight": 1},
+            {"path": "chakra_dimensions.control", "weight": 1},
+            {"path": "attributes.coordination", "weight": 1}
           ]
         }
       },
       "rules": [
         "The Konoha world-registry institution scheduler opens a configured cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
         "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
-        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening; an evaluable phase additionally remains blocked until every current stage entrant has durable evaluation evidence.",
+        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening. Qualification and field evaluation additionally remain blocked until every current stage entrant has durable evaluation evidence. Finals remain blocked until the configured tournament bracket has durably settled.",
         "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
-        "Qualification, field evaluation, and finals use the configured deterministic weighted capability score from persisted exact candidate state. Model sampling and ad hoc GM scoring are forbidden.",
+        "Qualification and field evaluation use the configured deterministic weighted capability score from persisted exact candidate state. Model sampling and ad hoc GM scoring are forbidden.",
         "If a prior evaluable stage has durable results, only candidates who passed it enter the next evaluable stage. If an already-committed legacy cycle crossed a prior stage before this evaluator existed and therefore has no prior-stage evidence at all, registered candidates remain entrants rather than receiving fabricated retroactive results.",
+        "Finals are a public single-elimination bracket over candidates who passed field evaluation. Pairing is deterministic from the cycle and candidate identities; the caller cannot choose pairings, NPC tactics, or winners.",
+        "Each finals bout is settled through the shared deterministic combat kernel as nonlethal examination combat. A referee-stoppage policy converts combat effects into bout evidence rather than directly applying lasting injury from this exam-specific kernel. If the kernel produces no sole victorious side, persisted Chunin-relevant judgment dimensions break the tie deterministically.",
+        "A finals victory establishes only tournament evidence. Winning the bracket never guarantees Chunin promotion, and losing a bout never by itself forbids promotion. Promotion review remains a separate institutional judgment over the candidate's demonstrated readiness and command qualities.",
         "An evaluation row establishes only Academy stage evidence and pass/fail for that stage. It never establishes injury, promotion, rank accounting, or a future-canon outcome.",
         "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
         "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",

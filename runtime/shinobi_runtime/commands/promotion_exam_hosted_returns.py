@@ -11,7 +11,12 @@ from shinobi_runtime.commands.core import _BuiltPlan, _OwnerResolutionCache, _js
 from shinobi_runtime.commands.domains.time import TimeCommandsMixin
 from shinobi_runtime.commands import promotion_exam_attendance as attendance
 from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
-from shinobi_runtime.commands.promotion_exam_hosted_lifecycle import _BaseOverlay, _foreign_registered, _pipeline_after
+from shinobi_runtime.commands.promotion_exam_hosted_lifecycle import (
+    _BaseOverlay,
+    _foreign_registered,
+    _pipeline_after,
+    _route_days_result_value,
+)
 from shinobi_runtime.commands.promotion_exam_hosted_policy import append_location, candidate_home_location, hosted_config, minimum_route_days
 from shinobi_runtime.sim.events import CampaignTime
 
@@ -115,7 +120,7 @@ def install_promotion_exam_hosted_returns() -> None:
                         "candidate_ref": candidate_ref,
                         "from_location_ref": current,
                         "to_location_ref": home,
-                        "minimum_route_days": route_days,
+                        "minimum_route_days": _route_days_result_value(route_days),
                         "completed_at": str(return_due),
                     }
                 )

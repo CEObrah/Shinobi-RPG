@@ -152,6 +152,7 @@ def _duplicate_player_offer(
     at: Any,
     command: Any,
     scheduler: Any,
+    world_events: Dict[str, Any],
     record_writes: Dict[str, Dict[str, Any]],
     faction_record: Dict[str, Any],
 ) -> Optional[Mapping[str, Any]]:

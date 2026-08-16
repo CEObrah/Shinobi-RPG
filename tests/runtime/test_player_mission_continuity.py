@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+
+from shinobi_runtime.commands import player_mission_continuity as continuity
 from shinobi_runtime.commands.player_mission_continuity import mission_assignment_signature
 
 
@@ -42,3 +45,16 @@ def test_non_transit_objectives_remain_distinct() -> None:
     assert mission_assignment_signature("investigate", investigation) != mission_assignment_signature(
         "escort", investigation
     )
+
+
+def test_duplicate_offer_hook_accepts_full_offer_call_shape() -> None:
+    assert continuity._duplicate_player_offer(
+        object(),
+        decision=SimpleNamespace(payload={}),
+        at=object(),
+        command=SimpleNamespace(mode="gameplay"),
+        scheduler=object(),
+        world_events={},
+        record_writes={},
+        faction_record={},
+    ) is None

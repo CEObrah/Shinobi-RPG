@@ -91,6 +91,30 @@ def test_second_team_cannot_bypass_personal_recovery():
         )
 
 
+def test_staged_other_team_session_blocks_same_transaction_overlap():
+    repository = FakeRepository()
+    staged_beta = team(
+        "team.beta",
+        [
+            session(
+                "training.session.beta.staged",
+                "SE-0061-07-01T10:00:00",
+                "SE-0061-07-01T12:00:00",
+                2,
+            )
+        ],
+    )
+    with pytest.raises(CommandRejectedError, match="team_training_recovery_required"):
+        assert_global_team_training_load(
+            repository,
+            ("pc_wei_tang",),
+            started_at=CampaignTime.parse("SE-0061-07-01T14:00:00"),
+            ended_at=CampaignTime.parse("SE-0061-07-01T16:00:00"),
+            active_hours=Decimal("2"),
+            record_writes={"state/team/beta.json": staged_beta},
+        )
+
+
 def test_weekly_hours_sum_across_multiple_exact_teams():
     repository = FakeRepository()
     repository.records["state/team/beta.json"]["training"]["recent_sessions"] = [

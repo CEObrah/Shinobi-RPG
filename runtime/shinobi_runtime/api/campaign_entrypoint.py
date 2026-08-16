@@ -23,6 +23,8 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.promotion_exam_evaluation import install_promotion_exam_evaluation
     from shinobi_runtime.commands.promotion_exam_finals import install_promotion_exam_finals
     from shinobi_runtime.commands.promotion_exam_integrity import install_promotion_exam_integrity
+    from shinobi_runtime.commands.promotion_exam_service_eligibility import install_promotion_exam_service_eligibility
+    from shinobi_runtime.commands.promotion_exam_attendance import install_promotion_exam_attendance
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -33,8 +35,14 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
     from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
     from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
+    from shinobi_runtime.commands.campaign_promotion_exam_eligibility_repair import (
+        install_campaign_promotion_exam_eligibility_repair,
+    )
     from shinobi_runtime.commands.campaign_promotion_exam_participation_repair import (
         install_campaign_promotion_exam_participation_repair,
+    )
+    from shinobi_runtime.commands.campaign_promotion_exam_attendance_repair import (
+        install_campaign_promotion_exam_attendance_repair,
     )
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
@@ -96,13 +104,17 @@ def _install_campaign_extensions() -> None:
     install_campaign_mission_continuity_repair()
     install_campaign_mission_boundary_repair()
     install_campaign_family_continuity_repair()
+    install_campaign_promotion_exam_eligibility_repair()
     install_campaign_promotion_exam_participation_repair()
+    install_campaign_promotion_exam_attendance_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
     install_joint_player_team_training()
     install_global_team_training_load()
     install_autonomous_training_error_guard()
     install_promotion_exam_integrity()
+    install_promotion_exam_service_eligibility()
+    install_promotion_exam_attendance()
     # Diagnostic-only guard for unexpected TypeError/ValueError failures anywhere
     # inside the composed time settlement path. It preserves all normal domain
     # rejection codes and exposes only a bounded runtime module token.

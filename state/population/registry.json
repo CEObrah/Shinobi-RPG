@@ -5,13 +5,13 @@
     "pool.iwa.academy": {
       "owner_ref": "faction_iwa",
       "category": "academy",
-      "count": 980,
+      "count": 985,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 980,
+            "count": 985,
             "mean": 11.5,
             "sd": 2.3,
             "min": 6,
@@ -19,27 +19,28 @@
           }
         },
         "category_counts": {
-          "academy": 980
+          "academy": 985
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 369,
+            "adolescent": 370,
             "adult": 0,
-            "child": 611,
+            "child": 615,
             "elder": 0
           },
+          "background": {
+            "shinobi_academy": 970,
+            "unclassified_youth": 15
+          },
           "chakra_potential": {
-            "high": 188,
-            "low": 105,
-            "standard": 687,
+            "high": 187,
+            "low": 112,
+            "standard": 686,
             "unassessed": 0
           },
           "health": {
-            "fit": 962,
-            "limited": 18
-          },
-          "background": {
-            "shinobi_academy": 980
+            "fit": 966,
+            "limited": 19
           }
         },
         "tags": [
@@ -48,9 +49,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 980,
+        "anonymous_count": 985,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -118,13 +119,13 @@
     "pool.iwa.shinobi_service": {
       "owner_ref": "faction_iwa",
       "category": "shinobi_service",
-      "count": 10540,
+      "count": 10550,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5; military_total_anchor=force_iwa_shinobi:10500",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 10540,
+            "count": 10550,
             "mean": 27.0,
             "sd": 10.5,
             "min": 12,
@@ -132,27 +133,29 @@
           }
         },
         "category_counts": {
-          "shinobi_service": 10540
+          "shinobi_service": 10550
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1591,
+            "adolescent": 1595,
             "adult": 8610,
-            "child": 129,
+            "child": 135,
             "elder": 210
           },
+          "background": {
+            "shinobi_academy": 10,
+            "shinobi_service": 10540,
+            "unclassified_youth": 0
+          },
           "chakra_potential": {
-            "high": 2108,
-            "low": 109,
-            "standard": 8323,
+            "high": 2110,
+            "low": 110,
+            "standard": 8330,
             "unassessed": 0
           },
           "health": {
-            "fit": 9700,
+            "fit": 9710,
             "limited": 840
-          },
-          "background": {
-            "shinobi_service": 10540
           }
         },
         "tags": [
@@ -161,9 +164,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 10533,
+        "anonymous_count": 10543,
         "rostered_count": 7,
         "rostered_person_refs": [
           "canon_akatsuchi",
@@ -237,13 +240,13 @@
     "pool.iwa.youth_candidate": {
       "owner_ref": "faction_iwa",
       "category": "youth_candidate",
-      "count": 5700,
+      "count": 5685,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=iwa; population_rating=4/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 5700,
+            "count": 5685,
             "mean": 10.5,
             "sd": 2.7,
             "min": 6,
@@ -251,27 +254,27 @@
           }
         },
         "category_counts": {
-          "youth_candidate": 5700
+          "youth_candidate": 5685
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1823,
+            "adolescent": 1818,
             "adult": 0,
-            "child": 3877,
+            "child": 3867,
             "elder": 0
           },
+          "background": {
+            "unclassified_youth": 5685
+          },
           "chakra_potential": {
-            "high": 457,
-            "low": 2848,
-            "standard": 2395,
+            "high": 456,
+            "low": 2840,
+            "standard": 2389,
             "unassessed": 0
           },
           "health": {
-            "fit": 5474,
-            "limited": 226
-          },
-          "background": {
-            "unclassified_youth": 5700
+            "fit": 5460,
+            "limited": 225
           }
         },
         "tags": [
@@ -280,9 +283,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 5700,
+        "anonymous_count": 5685,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -290,13 +293,13 @@
     "pool.kiri.academy": {
       "owner_ref": "faction_kiri",
       "category": "academy",
-      "count": 488,
+      "count": 490,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 488,
+            "count": 490,
             "mean": 11.5,
             "sd": 2.3,
             "min": 6,
@@ -304,27 +307,28 @@
           }
         },
         "category_counts": {
-          "academy": 488
+          "academy": 490
         },
         "dimension_counts": {
           "age_band": {
             "adolescent": 182,
             "adult": 0,
-            "child": 306,
+            "child": 308,
             "elder": 0
           },
+          "background": {
+            "shinobi_academy": 480,
+            "unclassified_youth": 10
+          },
           "chakra_potential": {
-            "high": 95,
-            "low": 54,
-            "standard": 339,
+            "high": 94,
+            "low": 58,
+            "standard": 338,
             "unassessed": 0
           },
           "health": {
-            "fit": 481,
+            "fit": 483,
             "limited": 7
-          },
-          "background": {
-            "shinobi_academy": 488
           }
         },
         "tags": [
@@ -333,9 +337,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 488,
+        "anonymous_count": 490,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -403,13 +407,13 @@
     "pool.kiri.shinobi_service": {
       "owner_ref": "faction_kiri",
       "category": "shinobi_service",
-      "count": 8532,
+      "count": 8540,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5; military_total_anchor=force_kiri_shinobi:8500",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 8532,
+            "count": 8540,
             "mean": 27.0,
             "sd": 10.5,
             "min": 12,
@@ -417,27 +421,29 @@
           }
         },
         "category_counts": {
-          "shinobi_service": 8532
+          "shinobi_service": 8540
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1287,
+            "adolescent": 1290,
             "adult": 6971,
-            "child": 104,
+            "child": 109,
             "elder": 170
           },
+          "background": {
+            "shinobi_academy": 8,
+            "shinobi_service": 8532,
+            "unclassified_youth": 0
+          },
           "chakra_potential": {
-            "high": 1705,
-            "low": 88,
-            "standard": 6739,
+            "high": 1707,
+            "low": 89,
+            "standard": 6744,
             "unassessed": 0
           },
           "health": {
-            "fit": 7852,
+            "fit": 7860,
             "limited": 680
-          },
-          "background": {
-            "shinobi_service": 8532
           }
         },
         "tags": [
@@ -446,9 +452,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 8527,
+        "anonymous_count": 8535,
         "rostered_count": 5,
         "rostered_person_refs": [
           "canon_ao",
@@ -520,13 +526,13 @@
     "pool.kiri.youth_candidate": {
       "owner_ref": "faction_kiri",
       "category": "youth_candidate",
-      "count": 2840,
+      "count": 2830,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kiri; population_rating=2/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 2840,
+            "count": 2830,
             "mean": 10.5,
             "sd": 2.7,
             "min": 6,
@@ -534,27 +540,27 @@
           }
         },
         "category_counts": {
-          "youth_candidate": 2840
+          "youth_candidate": 2830
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 910,
+            "adolescent": 907,
             "adult": 0,
-            "child": 1930,
+            "child": 1923,
             "elder": 0
           },
+          "background": {
+            "unclassified_youth": 2830
+          },
           "chakra_potential": {
-            "high": 226,
-            "low": 1420,
-            "standard": 1194,
+            "high": 225,
+            "low": 1415,
+            "standard": 1190,
             "unassessed": 0
           },
           "health": {
-            "fit": 2725,
+            "fit": 2715,
             "limited": 115
-          },
-          "background": {
-            "unclassified_youth": 2840
           }
         },
         "tags": [
@@ -563,9 +569,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 2840,
+        "anonymous_count": 2830,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -573,13 +579,13 @@
     "pool.konoha.academy": {
       "owner_ref": "faction_konoha",
       "category": "academy",
-      "count": 1224,
+      "count": 1230,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 1224,
+            "count": 1230,
             "mean": 11.5,
             "sd": 2.3,
             "min": 6,
@@ -587,27 +593,28 @@
           }
         },
         "category_counts": {
-          "academy": 1224
+          "academy": 1230
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 460,
+            "adolescent": 461,
             "adult": 0,
-            "child": 764,
+            "child": 769,
             "elder": 0
           },
+          "background": {
+            "shinobi_academy": 1212,
+            "unclassified_youth": 18
+          },
           "chakra_potential": {
-            "high": 236,
-            "low": 128,
-            "standard": 860,
+            "high": 235,
+            "low": 136,
+            "standard": 859,
             "unassessed": 0
           },
           "health": {
-            "fit": 1202,
-            "limited": 22
-          },
-          "background": {
-            "shinobi_academy": 1224
+            "fit": 1207,
+            "limited": 23
           }
         },
         "tags": [
@@ -616,9 +623,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 1222,
+        "anonymous_count": 1228,
         "rostered_count": 2,
         "rostered_person_refs": [
           "canon_hanabi",
@@ -721,13 +728,13 @@
     "pool.konoha.shinobi_service": {
       "owner_ref": "faction_konoha",
       "category": "shinobi_service",
-      "count": 12048,
+      "count": 12060,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5; military_total_anchor=force_konoha_shinobi:12000",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 12048,
+            "count": 12060,
             "mean": 27.0,
             "sd": 10.5,
             "min": 12,
@@ -735,27 +742,29 @@
           }
         },
         "category_counts": {
-          "shinobi_service": 12048
+          "shinobi_service": 12060
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1820,
+            "adolescent": 1825,
             "adult": 9840,
-            "child": 148,
+            "child": 155,
             "elder": 240
           },
+          "background": {
+            "shinobi_academy": 12,
+            "shinobi_service": 12048,
+            "unclassified_youth": 0
+          },
           "chakra_potential": {
-            "high": 2408,
-            "low": 124,
-            "standard": 9516,
+            "high": 2410,
+            "low": 125,
+            "standard": 9525,
             "unassessed": 0
           },
           "health": {
-            "fit": 11088,
+            "fit": 11100,
             "limited": 960
-          },
-          "background": {
-            "shinobi_service": 12048
           }
         },
         "tags": [
@@ -764,9 +773,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 11984,
+        "anonymous_count": 11996,
         "rostered_count": 64,
         "rostered_person_refs": [
           "canon_anko",
@@ -897,13 +906,13 @@
     "pool.konoha.youth_candidate": {
       "owner_ref": "faction_konoha",
       "category": "youth_candidate",
-      "count": 7128,
+      "count": 7110,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=konoha; population_rating=5/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 7128,
+            "count": 7110,
             "mean": 10.5,
             "sd": 2.7,
             "min": 6,
@@ -911,27 +920,27 @@
           }
         },
         "category_counts": {
-          "youth_candidate": 7128
+          "youth_candidate": 7110
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 2280,
+            "adolescent": 2274,
             "adult": 0,
-            "child": 4848,
+            "child": 4836,
             "elder": 0
           },
+          "background": {
+            "unclassified_youth": 7110
+          },
           "chakra_potential": {
-            "high": 572,
-            "low": 3564,
-            "standard": 2992,
+            "high": 571,
+            "low": 3555,
+            "standard": 2984,
             "unassessed": 0
           },
           "health": {
-            "fit": 6844,
-            "limited": 284
-          },
-          "background": {
-            "unclassified_youth": 7128
+            "fit": 6827,
+            "limited": 283
           }
         },
         "tags": [
@@ -940,9 +949,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 7128,
+        "anonymous_count": 7110,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -950,13 +959,13 @@
     "pool.kumo.academy": {
       "owner_ref": "faction_kumo",
       "category": "academy",
-      "count": 732,
+      "count": 735,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 732,
+            "count": 735,
             "mean": 11.5,
             "sd": 2.3,
             "min": 6,
@@ -964,27 +973,28 @@
           }
         },
         "category_counts": {
-          "academy": 732
+          "academy": 735
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 278,
+            "adolescent": 279,
             "adult": 0,
-            "child": 454,
+            "child": 456,
             "elder": 0
           },
+          "background": {
+            "shinobi_academy": 723,
+            "unclassified_youth": 12
+          },
           "chakra_potential": {
-            "high": 140,
-            "low": 78,
-            "standard": 514,
+            "high": 139,
+            "low": 83,
+            "standard": 513,
             "unassessed": 0
           },
           "health": {
-            "fit": 721,
+            "fit": 724,
             "limited": 11
-          },
-          "background": {
-            "shinobi_academy": 732
           }
         },
         "tags": [
@@ -993,9 +1003,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 732,
+        "anonymous_count": 735,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -1063,13 +1073,13 @@
     "pool.kumo.shinobi_service": {
       "owner_ref": "faction_kumo",
       "category": "shinobi_service",
-      "count": 10036,
+      "count": 10045,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5; military_total_anchor=force_kumo_shinobi:10000",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 10036,
+            "count": 10045,
             "mean": 27.0,
             "sd": 10.5,
             "min": 12,
@@ -1077,27 +1087,29 @@
           }
         },
         "category_counts": {
-          "shinobi_service": 10036
+          "shinobi_service": 10045
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1512,
+            "adolescent": 1515,
             "adult": 8200,
-            "child": 125,
+            "child": 131,
             "elder": 199
           },
+          "background": {
+            "shinobi_academy": 9,
+            "shinobi_service": 10036,
+            "unclassified_youth": 0
+          },
           "chakra_potential": {
-            "high": 2008,
-            "low": 105,
-            "standard": 7923,
+            "high": 2010,
+            "low": 106,
+            "standard": 7929,
             "unassessed": 0
           },
           "health": {
-            "fit": 9236,
+            "fit": 9245,
             "limited": 800
-          },
-          "background": {
-            "shinobi_service": 10036
           }
         },
         "tags": [
@@ -1106,9 +1118,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 10026,
+        "anonymous_count": 10035,
         "rostered_count": 10,
         "rostered_person_refs": [
           "canon_atsui",
@@ -1185,13 +1197,13 @@
     "pool.kumo.youth_candidate": {
       "owner_ref": "faction_kumo",
       "category": "youth_candidate",
-      "count": 4272,
+      "count": 4260,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=kumo; population_rating=3/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 4272,
+            "count": 4260,
             "mean": 10.5,
             "sd": 2.7,
             "min": 6,
@@ -1199,27 +1211,27 @@
           }
         },
         "category_counts": {
-          "youth_candidate": 4272
+          "youth_candidate": 4260
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1366,
+            "adolescent": 1362,
             "adult": 0,
-            "child": 2906,
+            "child": 2898,
             "elder": 0
           },
+          "background": {
+            "unclassified_youth": 4260
+          },
           "chakra_potential": {
-            "high": 342,
-            "low": 2136,
-            "standard": 1794,
+            "high": 341,
+            "low": 2130,
+            "standard": 1789,
             "unassessed": 0
           },
           "health": {
-            "fit": 4099,
+            "fit": 4087,
             "limited": 173
-          },
-          "background": {
-            "unclassified_youth": 4272
           }
         },
         "tags": [
@@ -1228,9 +1240,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 4272,
+        "anonymous_count": 4260,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -1238,13 +1250,13 @@
     "pool.suna.academy": {
       "owner_ref": "faction_suna",
       "category": "academy",
-      "count": 488,
+      "count": 490,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 488,
+            "count": 490,
             "mean": 11.5,
             "sd": 2.3,
             "min": 6,
@@ -1252,27 +1264,28 @@
           }
         },
         "category_counts": {
-          "academy": 488
+          "academy": 490
         },
         "dimension_counts": {
           "age_band": {
             "adolescent": 182,
             "adult": 0,
-            "child": 306,
+            "child": 308,
             "elder": 0
           },
+          "background": {
+            "shinobi_academy": 480,
+            "unclassified_youth": 10
+          },
           "chakra_potential": {
-            "high": 95,
-            "low": 54,
-            "standard": 339,
+            "high": 94,
+            "low": 58,
+            "standard": 338,
             "unassessed": 0
           },
           "health": {
-            "fit": 481,
+            "fit": 483,
             "limited": 7
-          },
-          "background": {
-            "shinobi_academy": 488
           }
         },
         "tags": [
@@ -1281,9 +1294,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 488,
+        "anonymous_count": 490,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -1351,13 +1364,13 @@
     "pool.suna.shinobi_service": {
       "owner_ref": "faction_suna",
       "category": "shinobi_service",
-      "count": 7032,
+      "count": 7040,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5; military_total_anchor=force_suna_shinobi:7000",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 7032,
+            "count": 7040,
             "mean": 27.0,
             "sd": 10.5,
             "min": 12,
@@ -1365,27 +1378,29 @@
           }
         },
         "category_counts": {
-          "shinobi_service": 7032
+          "shinobi_service": 7040
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 1062,
+            "adolescent": 1065,
             "adult": 5740,
-            "child": 91,
+            "child": 96,
             "elder": 139
           },
+          "background": {
+            "shinobi_academy": 8,
+            "shinobi_service": 7032,
+            "unclassified_youth": 0
+          },
           "chakra_potential": {
-            "high": 1405,
-            "low": 75,
-            "standard": 5552,
+            "high": 1407,
+            "low": 76,
+            "standard": 5557,
             "unassessed": 0
           },
           "health": {
-            "fit": 6471,
+            "fit": 6479,
             "limited": 561
-          },
-          "background": {
-            "shinobi_service": 7032
           }
         },
         "tags": [
@@ -1394,9 +1409,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 7023,
+        "anonymous_count": 7031,
         "rostered_count": 9,
         "rostered_person_refs": [
           "canon_baki",
@@ -1472,13 +1487,13 @@
     "pool.suna.youth_candidate": {
       "owner_ref": "faction_suna",
       "category": "youth_candidate",
-      "count": 2840,
+      "count": 2830,
       "status": "active",
       "provenance": "simulation_estimate:not_canon_census; Konoha calibrated to 80000 for this campaign; other Great Village totals scale linearly from Second Fanbook population ratings Konoha=5,Iwa=4,Kumo=3,Suna=2,Kiri=2; village=suna; population_rating=2/5",
       "profile": {
         "numeric_distributions": {
           "age_years": {
-            "count": 2840,
+            "count": 2830,
             "mean": 10.5,
             "sd": 2.7,
             "min": 6,
@@ -1486,27 +1501,27 @@
           }
         },
         "category_counts": {
-          "youth_candidate": 2840
+          "youth_candidate": 2830
         },
         "dimension_counts": {
           "age_band": {
-            "adolescent": 910,
+            "adolescent": 907,
             "adult": 0,
-            "child": 1930,
+            "child": 1923,
             "elder": 0
           },
+          "background": {
+            "unclassified_youth": 2830
+          },
           "chakra_potential": {
-            "high": 226,
-            "low": 1420,
-            "standard": 1194,
+            "high": 225,
+            "low": 1415,
+            "standard": 1190,
             "unassessed": 0
           },
           "health": {
-            "fit": 2725,
+            "fit": 2715,
             "limited": 115
-          },
-          "background": {
-            "unclassified_youth": 2840
           }
         },
         "tags": [
@@ -1515,9 +1530,9 @@
           "not_canon_census"
         ]
       },
-      "last_changed_at": "SE-0061-06-01T07:00:00",
+      "last_changed_at": "SE-0061-07-01T07:00:00",
       "representation": {
-        "anonymous_count": 2840,
+        "anonymous_count": 2830,
         "rostered_count": 0,
         "rostered_person_refs": []
       }
@@ -3517,6 +3532,481 @@
       "materialized_person_ids": [],
       "source_removed": 8,
       "destination_added": 8,
+      "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
+    },
+    {
+      "id": "autonomy.intake.7d75c776f1dcf3b46970",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.iwa.youth_candidate",
+      "destination_ref": "pool.iwa.academy",
+      "requested_count": 15,
+      "accepted": 15,
+      "rejected": 0,
+      "authority_ref": "institution.iwa.academy",
+      "authority_basis": "autonomous_academy_intake",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "academy": 15
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 5,
+            "adult": 0,
+            "child": 10,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 1,
+            "low": 8,
+            "standard": 6,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 14,
+            "limited": 1
+          },
+          "background": {
+            "unclassified_youth": 15
+          }
+        },
+        "tags": [
+          "academy_intake"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 15,
+      "destination_added": 15,
+      "selection_note": "Bounded institutional intake from an already-existing youth population; no person was created."
+    },
+    {
+      "id": "autonomy.graduation.7d75c776f1dcf3b46970",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.iwa.academy",
+      "destination_ref": "pool.iwa.shinobi_service",
+      "requested_count": 10,
+      "accepted": 10,
+      "rejected": 0,
+      "authority_ref": "institution.iwa.academy",
+      "authority_basis": "autonomous_academy_graduation",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "shinobi_service": 10
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 4,
+            "adult": 0,
+            "child": 6,
+            "elder": 0
+          },
+          "background": {
+            "shinobi_academy": 10,
+            "unclassified_youth": 0
+          },
+          "chakra_potential": {
+            "high": 2,
+            "low": 1,
+            "standard": 7,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 10,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "academy_graduation"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 10,
+      "destination_added": 10,
+      "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
+    },
+    {
+      "id": "autonomy.intake.ee6337299b33c317abb4",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.kiri.youth_candidate",
+      "destination_ref": "pool.kiri.academy",
+      "requested_count": 10,
+      "accepted": 10,
+      "rejected": 0,
+      "authority_ref": "institution.kiri.academy",
+      "authority_basis": "autonomous_academy_intake",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "academy": 10
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3,
+            "adult": 0,
+            "child": 7,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 1,
+            "low": 5,
+            "standard": 4,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 10,
+            "limited": 0
+          },
+          "background": {
+            "unclassified_youth": 10
+          }
+        },
+        "tags": [
+          "academy_intake"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 10,
+      "destination_added": 10,
+      "selection_note": "Bounded institutional intake from an already-existing youth population; no person was created."
+    },
+    {
+      "id": "autonomy.graduation.ee6337299b33c317abb4",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.kiri.academy",
+      "destination_ref": "pool.kiri.shinobi_service",
+      "requested_count": 8,
+      "accepted": 8,
+      "rejected": 0,
+      "authority_ref": "institution.kiri.academy",
+      "authority_basis": "autonomous_academy_graduation",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "shinobi_service": 8
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3,
+            "adult": 0,
+            "child": 5,
+            "elder": 0
+          },
+          "background": {
+            "shinobi_academy": 8,
+            "unclassified_youth": 0
+          },
+          "chakra_potential": {
+            "high": 2,
+            "low": 1,
+            "standard": 5,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 8,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "academy_graduation"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 8,
+      "destination_added": 8,
+      "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
+    },
+    {
+      "id": "autonomy.intake.7c1c9228b28bdd45e2c6",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.kumo.youth_candidate",
+      "destination_ref": "pool.kumo.academy",
+      "requested_count": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "authority_ref": "institution.kumo.academy",
+      "authority_basis": "autonomous_academy_intake",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "academy": 12
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 4,
+            "adult": 0,
+            "child": 8,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 1,
+            "low": 6,
+            "standard": 5,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 12,
+            "limited": 0
+          },
+          "background": {
+            "unclassified_youth": 12
+          }
+        },
+        "tags": [
+          "academy_intake"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 12,
+      "destination_added": 12,
+      "selection_note": "Bounded institutional intake from an already-existing youth population; no person was created."
+    },
+    {
+      "id": "autonomy.graduation.7c1c9228b28bdd45e2c6",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.kumo.academy",
+      "destination_ref": "pool.kumo.shinobi_service",
+      "requested_count": 9,
+      "accepted": 9,
+      "rejected": 0,
+      "authority_ref": "institution.kumo.academy",
+      "authority_basis": "autonomous_academy_graduation",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "shinobi_service": 9
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3,
+            "adult": 0,
+            "child": 6,
+            "elder": 0
+          },
+          "background": {
+            "shinobi_academy": 9,
+            "unclassified_youth": 0
+          },
+          "chakra_potential": {
+            "high": 2,
+            "low": 1,
+            "standard": 6,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 9,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "academy_graduation"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 9,
+      "destination_added": 9,
+      "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
+    },
+    {
+      "id": "autonomy.intake.befbc1c54d1f75e8fca3",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.suna.youth_candidate",
+      "destination_ref": "pool.suna.academy",
+      "requested_count": 10,
+      "accepted": 10,
+      "rejected": 0,
+      "authority_ref": "institution.suna.academy",
+      "authority_basis": "autonomous_academy_intake",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "academy": 10
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3,
+            "adult": 0,
+            "child": 7,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 1,
+            "low": 5,
+            "standard": 4,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 10,
+            "limited": 0
+          },
+          "background": {
+            "unclassified_youth": 10
+          }
+        },
+        "tags": [
+          "academy_intake"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 10,
+      "destination_added": 10,
+      "selection_note": "Bounded institutional intake from an already-existing youth population; no person was created."
+    },
+    {
+      "id": "autonomy.graduation.befbc1c54d1f75e8fca3",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.suna.academy",
+      "destination_ref": "pool.suna.shinobi_service",
+      "requested_count": 8,
+      "accepted": 8,
+      "rejected": 0,
+      "authority_ref": "institution.suna.academy",
+      "authority_basis": "autonomous_academy_graduation",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "shinobi_service": 8
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 3,
+            "adult": 0,
+            "child": 5,
+            "elder": 0
+          },
+          "background": {
+            "shinobi_academy": 8,
+            "unclassified_youth": 0
+          },
+          "chakra_potential": {
+            "high": 2,
+            "low": 1,
+            "standard": 5,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 8,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "academy_graduation"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 8,
+      "destination_added": 8,
+      "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
+    },
+    {
+      "id": "autonomy.intake.7544f36dd3721efe6fe5",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.konoha.youth_candidate",
+      "destination_ref": "pool.konoha.academy",
+      "requested_count": 18,
+      "accepted": 18,
+      "rejected": 0,
+      "authority_ref": "institution.konoha.academy",
+      "authority_basis": "autonomous_academy_intake",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "academy": 18
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 6,
+            "adult": 0,
+            "child": 12,
+            "elder": 0
+          },
+          "chakra_potential": {
+            "high": 1,
+            "low": 9,
+            "standard": 8,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 17,
+            "limited": 1
+          },
+          "background": {
+            "unclassified_youth": 18
+          }
+        },
+        "tags": [
+          "academy_intake"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 18,
+      "destination_added": 18,
+      "selection_note": "Bounded institutional intake from an already-existing youth population; no person was created."
+    },
+    {
+      "id": "autonomy.graduation.7544f36dd3721efe6fe5",
+      "at": "SE-0061-07-01T07:00:00",
+      "source_pool_id": "pool.konoha.academy",
+      "destination_ref": "pool.konoha.shinobi_service",
+      "requested_count": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "authority_ref": "institution.konoha.academy",
+      "authority_basis": "autonomous_academy_graduation",
+      "policy_ref": "autonomy.academy_pipeline",
+      "method": "neutral_proportional",
+      "accepted_profile": {
+        "numeric_distributions": {},
+        "category_counts": {
+          "shinobi_service": 12
+        },
+        "dimension_counts": {
+          "age_band": {
+            "adolescent": 5,
+            "adult": 0,
+            "child": 7,
+            "elder": 0
+          },
+          "background": {
+            "shinobi_academy": 12,
+            "unclassified_youth": 0
+          },
+          "chakra_potential": {
+            "high": 2,
+            "low": 1,
+            "standard": 9,
+            "unassessed": 0
+          },
+          "health": {
+            "fit": 12,
+            "limited": 0
+          }
+        },
+        "tags": [
+          "academy_graduation"
+        ]
+      },
+      "materialized_person_ids": [],
+      "source_removed": 12,
+      "destination_added": 12,
       "selection_note": "Graduates moved from Academy population into living shinobi service; service force headcount is updated in the same atomic transaction."
     }
   ],

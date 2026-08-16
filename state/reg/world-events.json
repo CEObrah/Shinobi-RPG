@@ -1730,6 +1730,79 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.77566abe426551016b46",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-22T07:29:58",
+        "started_at": "SE-0061-07-22T07:29:58",
+        "ended_at": "SE-0061-07-22T07:29:58"
+      },
+      "host_refs": [
+        "institution.konoha.academy",
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "affected_owner_refs": [
+        "state/char/choji.json",
+        "state/char/hinata.json",
+        "state/char/ino.json",
+        "state/char/kiba.json",
+        "state/char/naruto.json",
+        "state/char/sakura.json",
+        "state/char/sasuke.json",
+        "state/char/shikamaru.json",
+        "state/char/shino.json"
+      ],
+      "material_consequence_refs": [
+        "promotion_eligible:canon_choji:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_hinata:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_ino:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_kiba:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_naruto:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_sakura:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_sasuke:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_shikamaru:false->true:basis:SE-0061-07-01T07:00:00",
+        "promotion_eligible:canon_shino:false->true:basis:SE-0061-07-01T07:00:00"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_hiruzen",
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-22T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_promotion_exam_eligibility_repair",
+        "transaction_ref": "tx.gameplay.77566abe426551016b461ecc575a7d84c12c80b6cf19bfbdd90878d979ecb9cf",
+        "receipt_refs": [
+          "receipt.gameplay.77566abe426551016b461ecc575a7d84c12c80b6cf19bfbdd90878d979ecb9cf"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

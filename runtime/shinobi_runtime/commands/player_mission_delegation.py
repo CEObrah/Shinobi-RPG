@@ -2,12 +2,13 @@
 
 The exact team owner remains unchanged. The command narrows only this mission's
 participant set, conserves the player's relinquished escrowed reward, moves the
-mission from player-wake handling into existing faction autonomy, and records a
-bounded report-back route in faction operational memory.
+mission from player-wake handling into existing faction autonomy, and persists
+report-back as a lawful team order in the existing commitment registry.
 """
 from __future__ import annotations
 
 import copy
+import hashlib
 from functools import wraps
 from typing import Any, Dict, Mapping
 
@@ -22,13 +23,15 @@ from shinobi_runtime.commands.core import (
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.living_world_consequences import LivingWorldConsequencesMixin
 from shinobi_runtime.commands.mission_owner import MissionOwner
-from shinobi_runtime.commands.paths import INVENTORY_REGISTRY_PATH
+from shinobi_runtime.commands.paths import (
+    COMMITMENT_REGISTRY_PATH,
+    INVENTORY_REGISTRY_PATH,
+)
 from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
 from shinobi_runtime.reducers.missions import MissionTransitionError, transition_mission
 from shinobi_runtime.sim.events import CampaignTime
 
 _COMMAND = "mission_delegation_resolution"
-_MAX_REPORT_ROUTES = 32
 _INSTALLED = False
 
 
@@ -46,6 +49,13 @@ class _MissionStateEventView:
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._command, name)
+
+
+def _report_commitment_id(mission_id: str, recipient_ref: str) -> str:
+    digest = hashlib.sha256(
+        f"{mission_id}\x00{recipient_ref}\x00report-back".encode("utf-8")
+    ).hexdigest()[:20]
+    return f"commitment.mission_report_back.{digest}"
 
 
 def _faction_owner_for_write(self: Any, faction_ref: str) -> tuple[str, Dict[str, Any]]:
@@ -129,6 +139,55 @@ def _refund_player_reward(
     if escrow["currency.ryo"] == 0:
         holders.pop(owner.escrow_holder_ref, None)
     return inventory, tuple(kept), refund
+
+
+def _report_order_registry(
+    self: Any,
+    *,
+    mission_id: str,
+    player_ref: str,
+    delegate_ref: str,
+    team_ref: str,
+    at: CampaignTime,
+) -> tuple[dict[str, Any], str]:
+    try:
+        registry = copy.deepcopy(self.repository.read_json(COMMITMENT_REGISTRY_PATH))
+    except (FileNotFoundError, ValueError) as exc:
+        raise CommandRejectedError("commitment_registry_invalid") from exc
+    records = registry.get("records") if isinstance(registry, dict) else None
+    if not isinstance(records, list):
+        raise CommandRejectedError("commitment_registry_invalid")
+    commitment_id = _report_commitment_id(mission_id, player_ref)
+    if any(
+        isinstance(row, Mapping) and row.get("id") == commitment_id
+        for row in records
+    ):
+        raise CommandRejectedError("mission_delegation_report_order_conflict")
+    decision = self._domain_authority(cache=_OwnerResolutionCache()).team_command(
+        commander_ref=player_ref,
+        subject_refs=(delegate_ref,),
+        team_ref=team_ref,
+    )
+    if not decision.allowed:
+        raise CommandRejectedError("mission_delegation_report_order_not_authorized")
+    records.append(
+        {
+            "id": commitment_id,
+            "kind": "order",
+            "subject_ref": player_ref,
+            "target_ref": delegate_ref,
+            "host_ref": team_ref,
+            "created_at": str(at),
+            "due_at": None,
+            "status": "active",
+            "summary": (
+                f"Report the completed result of {mission_id} back to {player_ref}."
+            ),
+            "visibility": "restricted",
+            "authority_basis": decision.basis,
+        }
+    )
+    return registry, commitment_id
 
 
 def _plan_mission_delegation(
@@ -237,27 +296,20 @@ def _plan_mission_delegation(
     if not isinstance(active_team_refs, dict):
         raise CommandRejectedError("faction_operational_memory_invalid")
     active_team_refs[mission_id] = team_ref
-    routes = memory.setdefault("delegated_player_mission_reports", [])
-    if (
-        not isinstance(routes, list)
-        or len(routes) >= _MAX_REPORT_ROUTES
-        or any(not isinstance(row, Mapping) for row in routes)
-        or any(row.get("mission_id") == mission_id for row in routes)
-    ):
-        raise CommandRejectedError("mission_delegation_report_route_invalid")
-    routes.append(
-        {
-            "mission_id": mission_id,
-            "recipient_ref": command.actor_id,
-            "delegate_leader_ref": delegate_ref,
-            "participant_refs": list(delegated),
-            "ordered_at": str(current_time),
-        }
-    )
     memory_path = self._faction_memory_path(owner.issuer_ref)
+
+    commitment_registry, commitment_id = _report_order_registry(
+        self,
+        mission_id=mission_id,
+        player_ref=command.actor_id,
+        delegate_ref=delegate_ref,
+        team_ref=team_ref,
+        at=current_time,
+    )
 
     extra_writes = {
         INVENTORY_REGISTRY_PATH: _json_bytes(inventory),
+        COMMITMENT_REGISTRY_PATH: _json_bytes(commitment_registry),
         faction_path: _json_bytes(faction_record),
         memory_path: _json_bytes(memory),
     }
@@ -268,7 +320,7 @@ def _plan_mission_delegation(
             f"mission_reward_refund:currency.ryo:{refund}:"
             f"{owner.escrow_holder_ref}->{owner.funding_holder_ref}"
         ),
-        f"mission_report_back:{mission_id}:{command.actor_id}",
+        commitment_id,
     )
     return self._mission_built_plan(
         command=_MissionStateEventView(command),
@@ -290,6 +342,7 @@ def _plan_mission_delegation(
             "delegate_leader_ref": delegate_ref,
             "participant_refs": list(delegated),
             "report_back_to_ref": command.actor_id,
+            "report_order_ref": commitment_id,
             "relinquished_reward_ryo": refund,
             "autonomy_route": "faction_operational_mission",
         },
@@ -319,61 +372,73 @@ def _delegated_report_after_result(original: Any):
             or not isinstance(record_writes, dict)
         ):
             return result
-        memory = self._faction_memory(
-            faction_id,
-            at=at,
-            record_writes=record_writes,
-        )
-        routes = memory.get("delegated_player_mission_reports", [])
-        if not isinstance(routes, list):
-            raise CommandRejectedError("mission_delegation_report_route_invalid")
-        route = next(
-            (
-                row
-                for row in routes
-                if isinstance(row, Mapping) and row.get("mission_id") == mission_id
-            ),
-            None,
-        )
-        if not isinstance(route, Mapping):
-            return result
-        recipient_ref = route.get("recipient_ref")
-        delegate_ref = route.get("delegate_leader_ref")
-        participants = route.get("participant_refs")
-        if (
-            not isinstance(recipient_ref, str)
-            or not isinstance(delegate_ref, str)
-            or not isinstance(participants, list)
-            or any(not isinstance(ref, str) for ref in participants)
-        ):
-            raise CommandRejectedError("mission_delegation_report_route_invalid")
-        routes[:] = [
+
+        commitment_id = _report_commitment_id(mission_id, command.actor_id)
+        registry = record_writes.get(COMMITMENT_REGISTRY_PATH)
+        if registry is None:
+            try:
+                registry = copy.deepcopy(
+                    self.repository.read_json(COMMITMENT_REGISTRY_PATH)
+                )
+            except (FileNotFoundError, ValueError) as exc:
+                raise CommandRejectedError("commitment_registry_invalid") from exc
+        records = registry.get("records") if isinstance(registry, dict) else None
+        if not isinstance(records, list):
+            raise CommandRejectedError("commitment_registry_invalid")
+        matches = [
             row
-            for row in routes
-            if not (
-                isinstance(row, Mapping) and row.get("mission_id") == mission_id
-            )
+            for row in records
+            if isinstance(row, dict) and row.get("id") == commitment_id
         ]
+        if not matches:
+            return result
+        if len(matches) != 1:
+            raise CommandRejectedError("mission_delegation_report_order_invalid")
+        order = matches[0]
+        if (
+            order.get("kind") != "order"
+            or order.get("subject_ref") != command.actor_id
+            or order.get("status") not in ("active", "overdue")
+            or not isinstance(order.get("target_ref"), str)
+            or not isinstance(order.get("host_ref"), str)
+        ):
+            raise CommandRejectedError("mission_delegation_report_order_invalid")
+        delegate_ref = order["target_ref"]
+        team_ref = order["host_ref"]
+        order["status"] = "completed"
+        order["resolved_at"] = str(at)
+        order["resolution_summary"] = (
+            f"Reported the completed result of {mission_id} to {command.actor_id}."
+        )
+        record_writes[COMMITMENT_REGISTRY_PATH] = registry
+
+        routine = result.get("routine_consequences")
+        members = routine.get("members") if isinstance(routine, Mapping) else None
+        participants = sorted(members) if isinstance(members, Mapping) else []
         report_event_id = self._append_internal_event(
             world_events,
             command=command,
-            identity=f"{mission_id}:{recipient_ref}:{at}:delegated-report",
+            identity=f"{mission_id}:{command.actor_id}:{at}:delegated-report",
             kind="delegated_mission_report_received",
             at=at,
             host_refs=tuple(
                 ref
-                for ref in (mission_id, result.get("team_ref"), faction_id)
+                for ref in (mission_id, team_ref, faction_id)
                 if isinstance(ref, str)
             ),
-            actor_refs=tuple(participants),
-            affected_owner_refs=(self._faction_memory_path(faction_id),),
+            actor_refs=(delegate_ref,),
+            affected_owner_refs=(
+                COMMITMENT_REGISTRY_PATH,
+                self._faction_memory_path(faction_id),
+            ),
             material_consequence_refs=(
                 mission_id,
+                commitment_id,
                 f"mission_outcome:{result.get('outcome')}",
-                f"report_to:{recipient_ref}",
+                f"report_to:{command.actor_id}",
             ),
             classification="restricted",
-            audience_refs=(recipient_ref,),
+            audience_refs=(command.actor_id,),
             source_refs=tuple(
                 ref
                 for ref in (result.get("report_event_id"), result.get("event_id"))
@@ -384,13 +449,14 @@ def _delegated_report_after_result(original: Any):
         enriched = dict(result)
         enriched["delegated_mission_report"] = {
             "mission_id": mission_id,
-            "recipient_ref": recipient_ref,
+            "recipient_ref": command.actor_id,
             "delegate_leader_ref": delegate_ref,
-            "participant_refs": list(participants),
+            "participant_refs": participants,
             "outcome": result.get("outcome"),
             "reported_at": str(at),
             "report_event_id": report_event_id,
-            "routine_consequences": result.get("routine_consequences"),
+            "report_order_ref": commitment_id,
+            "routine_consequences": routine,
             "logistics": result.get("logistics"),
         }
         return enriched
@@ -414,7 +480,7 @@ def install_player_mission_delegation() -> None:
                 "Accept one offered player-led exact-team mission for the current "
                 "non-player detachment under the team's registered deputy, conserve "
                 "the player's relinquished reward, route the mission into existing "
-                "faction autonomy, and report the result back to the player."
+                "faction autonomy, and persist a lawful report-back order."
             ),
             {
                 "mission_id": "mission.<id>",
@@ -435,4 +501,4 @@ def install_player_mission_delegation() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_player_mission_delegation"]
+__all__ = ["install_player_mission_delegation", "_report_commitment_id"]

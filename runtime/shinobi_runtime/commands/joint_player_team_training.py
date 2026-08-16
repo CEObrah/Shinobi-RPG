@@ -4,6 +4,8 @@ Routine autonomous team reviews continue to train non-player members under Zhu o
 Linh. When Wei is home and available, one bounded joint session represents his
 shared command work across both teams and grants one personal development target,
 so the same hours are never credited twice merely because he belongs to two teams.
+Compacted historical reviews never backfill player attendance that current state
+cannot prove; only the latest bounded weekly block may receive player credit.
 """
 from __future__ import annotations
 
@@ -180,7 +182,10 @@ def install_joint_player_team_training() -> None:
             if record.get("current_location_id") != assembly_ref:
                 return {**dict(base), "player_joint_training_skipped": "joint_roster_not_colocated"}
 
-        active_hours = Decimal(int(config["player_joint_active_hours_per_week"])) * Decimal(max(1, compacted))
+        # Current location/readiness proves only the latest review interval. A
+        # compacted scheduler batch must never manufacture Wei's attendance in
+        # earlier weeks that were not individually observed.
+        active_hours = Decimal(int(config["player_joint_active_hours_per_week"]))
         started_at = at.add_seconds(-int(active_hours * Decimal(3600)))
         try:
             assert_global_team_training_load(
@@ -296,7 +301,6 @@ def install_joint_player_team_training() -> None:
         record_writes[DEVELOPMENT_BANK_PATH] = banks
 
         affected: set[str] = {owner_ref, player_path, DEVELOPMENT_BANK_PATH}
-        familiarity_gain = 0
         _cycle_days, _weekly, _recovery, _recent, familiarity_rate = self._team_training_schedule_limits()
         familiarity_gain = int(active_hours * familiarity_rate)
         for _ref, path, joined_team in joint_teams:
@@ -345,6 +349,8 @@ def install_joint_player_team_training() -> None:
                 "event_id": event_id,
                 "team_refs": list(joint_refs),
                 "active_hours": format(active_hours.normalize(), "f"),
+                "compacted_reviews_seen": max(1, compacted),
+                "historical_player_weeks_backfilled": False,
                 "instructor_ref": instructor_ref,
                 "target": target,
                 "starting_value": starting_value,

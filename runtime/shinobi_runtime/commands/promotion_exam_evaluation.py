@@ -1,9 +1,11 @@
-"""Deterministic exact-candidate settlement for promotion-exam stages.
+"""Deterministic exact-candidate settlement for scored promotion-exam stages.
 
 The career pipeline remains the durable examination-administration owner. This
-module settles Academy stage evidence from persisted exact candidate capability,
-records the result, and gates later scheduled phases until the current evaluated
-stage is complete. It never applies injury, promotion, or rank accounting.
+module settles Academy qualification and field-evaluation evidence from
+persisted exact candidate capability, records the result, and gates later
+scheduled phases until the current evaluated stage is complete. Finals are
+settled separately as public tournament bouts. This module never applies
+injury, promotion, or rank accounting.
 """
 from __future__ import annotations
 
@@ -37,7 +39,7 @@ from shinobi_runtime.commands.promotion_exam_scheduler import (
 )
 
 _INSTALLED = False
-_EVALUABLE_PHASES = frozenset(("qualification", "field_evaluation", "finals"))
+_EVALUABLE_PHASES = frozenset(("qualification", "field_evaluation"))
 
 
 def promotion_exam_evaluation_rows(
@@ -367,7 +369,7 @@ def _install_command() -> None:
         CommandSpec(
             ("cycle_id", "team_ref", "candidate_refs"),
             (),
-            "Settle deterministic Academy evaluation evidence for registered exact candidates in the active qualification, field-evaluation, or finals stage; never promote or injure them.",
+            "Settle deterministic Academy evaluation evidence for registered exact candidates in the active qualification or field-evaluation stage; never promote or injure them.",
             {
                 "cycle_id": "promotion_exam_cycle.<id>",
                 "team_ref": "team.<id>",

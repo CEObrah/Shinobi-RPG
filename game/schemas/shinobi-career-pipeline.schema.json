@@ -104,16 +104,8 @@
               "at": {"type": "string", "minLength": 1},
               "cycle_id": {"type": "string", "minLength": 1},
               "profile_ref": {"type": "string", "minLength": 1},
-              "eligible_exact_refs": {
-                "type": "array",
-                "items": {"type": "string", "minLength": 1},
-                "uniqueItems": true
-              },
-              "player_team_eligible_refs": {
-                "type": "array",
-                "items": {"type": "string", "minLength": 1},
-                "uniqueItems": true
-              },
+              "eligible_exact_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+              "player_team_eligible_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
               "canon_status": {"const": "campaign_institutional_not_future_canon"}
             }
           },
@@ -142,13 +134,7 @@
               "profile_ref": {"type": "string", "minLength": 1},
               "team_ref": {"type": "string", "minLength": 1},
               "instructor_ref": {"type": "string", "minLength": 1},
-              "candidate_refs": {
-                "type": "array",
-                "minItems": 1,
-                "maxItems": 16,
-                "items": {"type": "string", "minLength": 1},
-                "uniqueItems": true
-              },
+              "candidate_refs": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
               "canon_status": {"const": "campaign_institutional_not_future_canon"}
             }
           },
@@ -161,13 +147,40 @@
               "at": {"type": "string", "minLength": 1},
               "cycle_id": {"type": "string", "minLength": 1},
               "profile_ref": {"type": "string", "minLength": 1},
-              "phase": {"enum": ["qualification", "field_evaluation", "finals"]},
+              "phase": {"enum": ["qualification", "field_evaluation"]},
               "team_ref": {"type": "string", "minLength": 1},
               "evaluator_ref": {"type": "string", "minLength": 1},
               "candidate_ref": {"type": "string", "minLength": 1},
               "score": {"type": "integer", "minimum": 0},
               "threshold": {"type": "integer", "minimum": 0},
               "outcome": {"enum": ["pass", "fail"]},
+              "canon_status": {"const": "campaign_institutional_not_future_canon"}
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "at", "cycle_id", "profile_ref", "phase", "bout_ref", "round_index", "match_index", "candidate_refs", "winner_ref", "loser_ref", "resolution_method", "resolution_mode", "victorious_side_refs", "judge_scores", "styles", "combat_record", "duration_seconds", "examiner_ref", "canon_status"],
+            "properties": {
+              "kind": {"const": "promotion_exam_bout"},
+              "at": {"type": "string", "minLength": 1},
+              "cycle_id": {"type": "string", "minLength": 1},
+              "profile_ref": {"type": "string", "minLength": 1},
+              "phase": {"const": "finals"},
+              "bout_ref": {"type": "string", "minLength": 1},
+              "round_index": {"type": "integer", "minimum": 1},
+              "match_index": {"type": "integer", "minimum": 0},
+              "candidate_refs": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+              "winner_ref": {"type": "string", "minLength": 1},
+              "loser_ref": {"type": "string", "minLength": 1},
+              "resolution_method": {"enum": ["combat_stoppage", "judges_decision"]},
+              "resolution_mode": {"type": "string", "minLength": 1},
+              "victorious_side_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+              "judge_scores": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0, "maximum": 200}},
+              "styles": {"type": "object", "additionalProperties": {"type": "object"}},
+              "combat_record": {"type": "object"},
+              "duration_seconds": {"type": "integer", "minimum": 1},
+              "examiner_ref": {"type": "string", "minLength": 1},
               "canon_status": {"const": "campaign_institutional_not_future_canon"}
             }
           }

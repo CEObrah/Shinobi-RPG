@@ -9,6 +9,7 @@ from __future__ import annotations
 
 
 def _install_campaign_extensions() -> None:
+    from shinobi_runtime.commands.semantic_event_integrity import install_semantic_event_integrity
     from shinobi_runtime.commands.legacy_scheduler_compat import install_legacy_scheduler_compat
     from shinobi_runtime.commands.academy_pipeline_transfer_ids import install_academy_pipeline_transfer_ids
     from shinobi_runtime.commands.academy_career_sync import install_academy_career_sync
@@ -19,6 +20,7 @@ def _install_campaign_extensions() -> None:
     )
     from shinobi_runtime.commands.promotion_exam_pacing import install_promotion_exam_pacing
     from shinobi_runtime.commands.promotion_exam_evaluation import install_promotion_exam_evaluation
+    from shinobi_runtime.commands.promotion_exam_finals import install_promotion_exam_finals
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -51,6 +53,9 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_house_status_projection import install_player_house_status_projection
     from shinobi_runtime.api.player_family_projection import install_player_family_projection
 
+    # Install semantic-event multiplicity before any campaign extension can emit
+    # composed time-settlement events.
+    install_semantic_event_integrity()
     install_legacy_scheduler_compat()
     install_academy_pipeline_transfer_ids()
     install_academy_career_sync()
@@ -58,6 +63,7 @@ def _install_campaign_extensions() -> None:
     install_promotion_exam_scheduler()
     install_promotion_exam_pacing()
     install_promotion_exam_evaluation()
+    install_promotion_exam_finals()
     install_promotion_exam_projection()
     install_world_front_progression()
     install_player_report_projection()

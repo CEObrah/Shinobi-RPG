@@ -1,9 +1,9 @@
 """Player-safe rehydration for active promotion examination cycles.
 
 The career pipeline remains the sole mutable exam-administration owner. This
-module only projects active cycle state and exact player-led-team registration
-and evaluation actionability into fresh play context so transaction-time exam
-results cannot vanish on the next read.
+module projects active cycle state, player-led-team registration/evaluation,
+and the public finals bracket into fresh play context so exam progression is a
+lived causal handoff rather than a hidden score transition.
 """
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ from shinobi_runtime.commands.promotion_exam_evaluation import (
     promotion_exam_evaluation_rows,
     promotion_exam_stage_candidate_refs,
 )
+from shinobi_runtime.commands.promotion_exam_finals import promotion_exam_finals_state
 from shinobi_runtime.commands.promotion_exam_scheduler import (
     _person_matches_profile,
     active_promotion_exam_cycles,
@@ -29,10 +30,13 @@ from shinobi_runtime.membership_routes import team_refs_for_member
 _INSTALLED = False
 _MAX_HANDOFFS = 8
 _MAX_CANDIDATES = 16
+_MAX_BOUTS = 16
 _REGISTRATION_PRESSURE = "Konoha has an active Chunin Examination registration window for eligible members of your team."
 _REGISTRATION_REPORT = "The Academy is accepting Chunin Examination registrations from your eligible team members."
 _EVALUATION_PRESSURE = "Your registered Chunin Examination candidates have an unresolved Academy evaluation stage."
 _EVALUATION_REPORT = "The Academy is ready to evaluate your registered Chunin Examination candidates for the active stage."
+_FINALS_PRESSURE = "The Chunin Examination finals bracket has an unresolved public bout."
+_FINALS_REPORT = "The Academy finals bracket is active; the next examination bout is ready to be contested."
 
 
 def _promotion_exam_handoffs(
@@ -114,18 +118,13 @@ def _promotion_exam_handoffs(
             if isinstance(stages, Mapping) and phase in stages:
                 try:
                     cycle_stage_refs = promotion_exam_stage_candidate_refs(
-                        pipeline,
-                        profile,
-                        cycle_id,
-                        phase,
+                        pipeline, profile, cycle_id, phase
                     )
                     stage_candidate_refs = [
                         ref for ref in cycle_stage_refs if ref in member_set
                     ][:_MAX_CANDIDATES]
                     rows = promotion_exam_evaluation_rows(
-                        pipeline,
-                        cycle_id,
-                        phase=phase,
+                        pipeline, cycle_id, phase=phase
                     )
                 except CommandRejectedError as exc:
                     raise OperationError(503, "promotion_exam_context_invalid") from exc
@@ -152,6 +151,47 @@ def _promotion_exam_handoffs(
                 ]
                 evaluation_open = bool(unevaluated_refs)
 
+            finals_open = False
+            finals_venue_ref = None
+            finals_candidate_refs: list[str] = []
+            finals_open_bouts: list[dict[str, Any]] = []
+            finals_settled_bouts: list[dict[str, Any]] = []
+            finals_complete = False
+            finals_champion_ref = None
+            if phase == "finals" and isinstance(profile.get("finals_format"), Mapping):
+                try:
+                    finals = promotion_exam_finals_state(pipeline, profile, cycle_id)
+                except CommandRejectedError as exc:
+                    raise OperationError(503, "promotion_exam_context_invalid") from exc
+                finals_venue_ref = profile["finals_format"].get("venue_ref")
+                finals_candidate_refs = list(finals.get("candidate_refs", ()))[:_MAX_CANDIDATES]
+                finals_open_bouts = [
+                    {
+                        "bout_ref": row.get("bout_ref"),
+                        "round_index": row.get("round_index"),
+                        "match_index": row.get("match_index"),
+                        "candidate_refs": list(row.get("candidate_refs", ())),
+                    }
+                    for row in finals.get("open_bouts", ())
+                    if isinstance(row, Mapping)
+                ][:_MAX_BOUTS]
+                finals_settled_bouts = [
+                    {
+                        "bout_ref": row.get("bout_ref"),
+                        "round_index": row.get("round_index"),
+                        "match_index": row.get("match_index"),
+                        "candidate_refs": list(row.get("candidate_refs", ())),
+                        "winner_ref": row.get("winner_ref"),
+                        "loser_ref": row.get("loser_ref"),
+                        "resolution_method": row.get("resolution_method"),
+                    }
+                    for row in finals.get("settled_bouts", ())
+                    if isinstance(row, Mapping)
+                ][-_MAX_BOUTS:]
+                finals_complete = bool(finals.get("complete"))
+                finals_champion_ref = finals.get("champion_ref")
+                finals_open = bool(finals_open_bouts)
+
             handoffs.append(
                 {
                     "cycle_id": cycle_id,
@@ -168,6 +208,13 @@ def _promotion_exam_handoffs(
                     "evaluated_candidate_refs": evaluated_refs,
                     "unevaluated_candidate_refs": unevaluated_refs,
                     "evaluation_results": evaluation_results,
+                    "finals_open": finals_open,
+                    "finals_venue_ref": finals_venue_ref,
+                    "finals_candidate_refs": finals_candidate_refs,
+                    "finals_open_bouts": finals_open_bouts,
+                    "finals_settled_bouts": finals_settled_bouts,
+                    "finals_complete": finals_complete,
+                    "finals_champion_ref": finals_champion_ref,
                 }
             )
             if len(handoffs) >= _MAX_HANDOFFS:
@@ -192,40 +239,52 @@ def _install_api_projection() -> None:
         if isinstance(scene, dict):
             scene["promotion_exam_handoffs"] = handoffs
             actionable_registration = [
-                row
-                for row in handoffs
+                row for row in handoffs
                 if row.get("registration_open") is True
                 and bool(row.get("unregistered_candidate_refs"))
             ]
             actionable_evaluation = [
                 row for row in handoffs if row.get("evaluation_open") is True
             ]
+            actionable_finals = [
+                row for row in handoffs if row.get("finals_open") is True
+            ]
             pressures = scene.get("observable_pressures")
             if isinstance(pressures, list):
                 pressures = [
-                    value
-                    for value in pressures
-                    if value not in (_REGISTRATION_PRESSURE, _EVALUATION_PRESSURE)
+                    value for value in pressures
+                    if value not in (
+                        _REGISTRATION_PRESSURE,
+                        _EVALUATION_PRESSURE,
+                        _FINALS_PRESSURE,
+                    )
                 ]
-                if actionable_registration and _REGISTRATION_PRESSURE not in pressures:
+                if actionable_registration:
                     pressures.append(_REGISTRATION_PRESSURE)
-                if actionable_evaluation and _EVALUATION_PRESSURE not in pressures:
+                if actionable_evaluation:
                     pressures.append(_EVALUATION_PRESSURE)
-                scene["observable_pressures"] = pressures[:12]
+                if actionable_finals:
+                    pressures.append(_FINALS_PRESSURE)
+                scene["observable_pressures"] = list(dict.fromkeys(pressures))[:12]
             narrative = scene.get("narrative")
             if isinstance(narrative, dict):
                 reports = narrative.get("available_reports")
                 if isinstance(reports, list):
                     reports = [
-                        value
-                        for value in reports
-                        if value not in (_REGISTRATION_REPORT, _EVALUATION_REPORT)
+                        value for value in reports
+                        if value not in (
+                            _REGISTRATION_REPORT,
+                            _EVALUATION_REPORT,
+                            _FINALS_REPORT,
+                        )
                     ]
-                    if actionable_registration and _REGISTRATION_REPORT not in reports:
+                    if actionable_registration:
                         reports.append(_REGISTRATION_REPORT)
-                    if actionable_evaluation and _EVALUATION_REPORT not in reports:
+                    if actionable_evaluation:
                         reports.append(_EVALUATION_REPORT)
-                    narrative["available_reports"] = reports[-6:]
+                    if actionable_finals:
+                        reports.append(_FINALS_REPORT)
+                    narrative["available_reports"] = list(dict.fromkeys(reports))[-6:]
         validate_bounded_json(response, label="play context", allow_float=True)
         return response
 

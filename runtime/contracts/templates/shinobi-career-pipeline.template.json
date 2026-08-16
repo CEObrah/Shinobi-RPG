@@ -13,7 +13,7 @@
     "/villages/*": {"mode": "closed", "allowed_keys": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"], "canonical_order": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"]},
     "/villages/*/rank_counts": {"mode": "closed", "allowed_keys": ["genin", "chunin", "jonin"], "canonical_order": ["genin", "chunin", "jonin"]},
     "/villages/*/promotion_credit_ppm": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]},
-    "/history/*": {"mode": "closed", "allowed_keys": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after"], "canonical_order": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after"]},
+    "/history/*": {"mode": "closed", "allowed_keys": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref"], "canonical_order": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref"]},
     "/history/*/promotions": {"mode": "open_map", "value_contract": "/history/*/promotions/*"},
     "/history/*/promotions/*": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]}
   },
@@ -48,14 +48,29 @@
     "/history/*/promotions/*/chunin_to_jonin": ["integer"],
     "/history/*/headcount_before": ["integer"],
     "/history/*/headcount_after": ["integer"],
+    "/history/*/subject_ref": ["string"],
+    "/history/*/source_rank": ["string"],
+    "/history/*/target_rank": ["string"],
+    "/history/*/action": ["string"],
+    "/history/*/cycle_id": ["string"],
+    "/history/*/profile_ref": ["string"],
+    "/history/*/eligible_exact_refs": ["array"],
+    "/history/*/player_team_eligible_refs": ["array"],
+    "/history/*/phase": ["string"],
+    "/history/*/canon_status": ["string"],
+    "/history/*/authority_ref": ["string"],
     "/provenance": ["string"]
   },
   "array_contracts": {
-    "/history": {"item_types": ["object"], "item_contract": "/history/*"}
+    "/history": {"item_types": ["object"], "item_contract": "/history/*"},
+    "/history/*/eligible_exact_refs": {"item_types": ["string"]},
+    "/history/*/player_team_eligible_refs": {"item_types": ["string"]}
   },
   "writing_rules": [
-    "This owner tracks unnamed aggregate shinobi cohorts only; exact named shinobi remain outside aggregate promotion authority.",
+    "This owner tracks unnamed aggregate shinobi cohorts plus bounded career-administration history; exact named shinobi remain outside aggregate promotion authority.",
     "Promotions move conserved bodies one rank step at a time and preserve fractional promotion credit between monthly reviews.",
-    "Academy intake is deduplicated by graduation transfer identity before entering the aggregate Genin cohort."
+    "Academy intake is deduplicated by graduation transfer identity before entering the aggregate Genin cohort.",
+    "Promotion-exam cycle rows record institutional phase state only; they never establish a named candidate result or promotion.",
+    "Exact rank accounting rows mirror a separately authorized exact-person career transition and must conserve the aggregate village rank total."
   ]
 }

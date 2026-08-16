@@ -18,6 +18,7 @@ def _install_campaign_extensions() -> None:
         install_promotion_exam_scheduler,
     )
     from shinobi_runtime.commands.promotion_exam_pacing import install_promotion_exam_pacing
+    from shinobi_runtime.commands.promotion_exam_evaluation import install_promotion_exam_evaluation
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -56,6 +57,7 @@ def _install_campaign_extensions() -> None:
     install_shinobi_career_progression()
     install_promotion_exam_scheduler()
     install_promotion_exam_pacing()
+    install_promotion_exam_evaluation()
     install_promotion_exam_projection()
     install_world_front_progression()
     install_player_report_projection()

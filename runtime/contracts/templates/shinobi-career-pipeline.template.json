@@ -13,7 +13,7 @@
     "/villages/*": {"mode": "closed", "allowed_keys": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"], "canonical_order": ["service_pool_ref", "force_ref", "rank_counts", "promotion_credit_ppm"]},
     "/villages/*/rank_counts": {"mode": "closed", "allowed_keys": ["genin", "chunin", "jonin"], "canonical_order": ["genin", "chunin", "jonin"]},
     "/villages/*/promotion_credit_ppm": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]},
-    "/history/*": {"mode": "closed", "allowed_keys": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref", "team_ref", "instructor_ref", "candidate_refs"], "canonical_order": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref", "team_ref", "instructor_ref", "candidate_refs"]},
+    "/history/*": {"mode": "closed", "allowed_keys": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref", "team_ref", "instructor_ref", "candidate_refs", "evaluator_ref", "candidate_ref", "score", "threshold", "outcome"], "canonical_order": ["kind", "from", "at", "village", "graduates", "transfer_id", "periods", "promotions", "headcount_before", "headcount_after", "subject_ref", "source_rank", "target_rank", "action", "cycle_id", "profile_ref", "eligible_exact_refs", "player_team_eligible_refs", "phase", "canon_status", "authority_ref", "team_ref", "instructor_ref", "candidate_refs", "evaluator_ref", "candidate_ref", "score", "threshold", "outcome"]},
     "/history/*/promotions": {"mode": "open_map", "value_contract": "/history/*/promotions/*"},
     "/history/*/promotions/*": {"mode": "closed", "allowed_keys": ["genin_to_chunin", "chunin_to_jonin"], "canonical_order": ["genin_to_chunin", "chunin_to_jonin"]}
   },
@@ -62,6 +62,11 @@
     "/history/*/team_ref": ["string"],
     "/history/*/instructor_ref": ["string"],
     "/history/*/candidate_refs": ["array"],
+    "/history/*/evaluator_ref": ["string"],
+    "/history/*/candidate_ref": ["string"],
+    "/history/*/score": ["integer"],
+    "/history/*/threshold": ["integer"],
+    "/history/*/outcome": ["string"],
     "/provenance": ["string"]
   },
   "array_contracts": {
@@ -76,6 +81,7 @@
     "Academy intake is deduplicated by graduation transfer identity before entering the aggregate Genin cohort.",
     "Promotion-exam cycle rows record institutional phase state only; they never establish a named candidate result or promotion.",
     "Promotion-exam registration rows record an authorized exact candidate entry into an active cycle only; they do not establish an exam result, injury, or rank change.",
+    "Promotion-exam evaluation rows may establish deterministic Academy stage evidence and pass/fail only; they never establish injury, promotion, or rank accounting.",
     "Exact rank accounting rows mirror a separately authorized exact-person career transition and must conserve the aggregate village rank total."
   ]
 }

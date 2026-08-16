@@ -33,14 +33,52 @@
         "promotion_review": 22,
         "closed": 23
       },
+      "evaluation_stages": {
+        "qualification": {
+          "threshold": 78,
+          "components": [
+            {"path": "attributes.intelligence", "weight": 2},
+            {"path": "attributes.composure", "weight": 1},
+            {"path": "operational_skills.investigation", "weight": 2},
+            {"path": "operational_skills.tactics", "weight": 2},
+            {"path": "operational_skills.team_coordination", "weight": 1}
+          ]
+        },
+        "field_evaluation": {
+          "threshold": 82,
+          "components": [
+            {"path": "martial_skills.movement", "weight": 2},
+            {"path": "operational_skills.tactics", "weight": 2},
+            {"path": "operational_skills.team_coordination", "weight": 3},
+            {"path": "attributes.awareness", "weight": 2},
+            {"path": "attributes.composure", "weight": 1},
+            {"path": "operational_skills.survival", "weight": 1}
+          ]
+        },
+        "finals": {
+          "threshold": 86,
+          "components": [
+            {"path": "attributes.coordination", "weight": 2},
+            {"path": "attributes.composure", "weight": 2},
+            {"path": "attributes.awareness", "weight": 2},
+            {"path": "chakra_dimensions.control", "weight": 1},
+            {"path": "martial_skills.movement", "weight": 2},
+            {"path": "operational_skills.tactics", "weight": 2},
+            {"path": "operational_skills.team_coordination", "weight": 1}
+          ]
+        }
+      },
       "rules": [
         "The Konoha world-registry institution scheduler opens a configured cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
         "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
-        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening; direct time skips settle every crossed phase in order.",
+        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening; an evaluable phase additionally remains blocked until every current stage entrant has durable evaluation evidence.",
         "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
+        "Qualification, field evaluation, and finals use the configured deterministic weighted capability score from persisted exact candidate state. Model sampling and ad hoc GM scoring are forbidden.",
+        "If a prior evaluable stage has durable results, only candidates who passed it enter the next evaluable stage. If an already-committed legacy cycle crossed a prior stage before this evaluator existed and therefore has no prior-stage evidence at all, registered candidates remain entrants rather than receiving fabricated retroactive results.",
+        "An evaluation row establishes only Academy stage evidence and pass/fail for that stage. It never establishes injury, promotion, rank accounting, or a future-canon outcome.",
         "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
         "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",
-        "Exact promotion still requires persisted promotion eligibility and may advance only one rank.",
+        "Exact promotion still requires persisted promotion eligibility and a separately authorized promotion decision, and may advance only one rank.",
         "Every exact rank change synchronizes conserved aggregate village rank counts."
       ]
     }

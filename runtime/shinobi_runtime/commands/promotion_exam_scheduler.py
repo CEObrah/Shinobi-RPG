@@ -262,6 +262,20 @@ def _person_matches_profile(person: Mapping[str, Any], profile: Mapping[str, Any
     return isinstance(career, Mapping) and career.get("promotion_eligible") is True
 
 
+def _candidate_refs(value: object, *, actor_id: str) -> tuple[str, ...]:
+    if (
+        not isinstance(value, Sequence)
+        or isinstance(value, (str, bytes, bytearray))
+        or not 1 <= len(value) <= 16
+        or any(not isinstance(ref, str) or not ref for ref in value)
+    ):
+        raise CommandRejectedError("promotion_exam_candidate_refs_invalid")
+    candidates = tuple(sorted(set(value)))
+    if len(candidates) != len(value) or actor_id in candidates:
+        raise CommandRejectedError("promotion_exam_candidate_refs_invalid")
+    return candidates
+
+
 def _profile_for_cycle(
     profiles: Sequence[Mapping[str, Any]],
     phase_row: Mapping[str, Any],
@@ -290,16 +304,10 @@ def _plan_promotion_exam_registration_resolution(
         "promotion_exam_team_ref_invalid",
         prefix="team.",
     )
-    raw_candidates = command.payload.get("candidate_refs")
-    if (
-        not isinstance(raw_candidates, list)
-        or not 1 <= len(raw_candidates) <= 16
-        or any(not isinstance(ref, str) or not ref for ref in raw_candidates)
-    ):
-        raise CommandRejectedError("promotion_exam_candidate_refs_invalid")
-    candidates = tuple(sorted(set(raw_candidates)))
-    if len(candidates) != len(raw_candidates) or command.actor_id in candidates:
-        raise CommandRejectedError("promotion_exam_candidate_refs_invalid")
+    candidates = _candidate_refs(
+        command.payload.get("candidate_refs"),
+        actor_id=command.actor_id,
+    )
 
     pipeline = _load_pipeline(self.repository)
     profiles = promotion_exam_profiles(self.repository)

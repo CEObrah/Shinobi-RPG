@@ -14,6 +14,7 @@ from shinobi_runtime.commands.promotion_exam_hosted_policy import (
     stage_hosted_finalists,
 )
 from shinobi_runtime.commands.promotion_exam_hosted_lifecycle import install_promotion_exam_hosted_lifecycle
+from shinobi_runtime.commands.promotion_exam_hosted_returns import install_promotion_exam_hosted_returns
 
 _INSTALLED = False
 
@@ -52,6 +53,7 @@ def install_promotion_exam_hosted_intervillage() -> None:
     except ImportError:
         pass
     install_promotion_exam_hosted_lifecycle()
+    install_promotion_exam_hosted_returns()
     _INSTALLED = True
 
 

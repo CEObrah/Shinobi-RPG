@@ -121,12 +121,17 @@ def _disable_legacy_inline_caps() -> None:
     # them to infinity prevents deletion before the final owner-level retention
     # pass below. The retained current truth has no finite active-cycle ceiling.
     infinity = float("inf")
+    from shinobi_runtime.commands import promotion_exam_cycle as legacy_cycle
     from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
     from shinobi_runtime.commands import promotion_exam_evaluation as evaluation
     from shinobi_runtime.commands import promotion_exam_finals as finals
     from shinobi_runtime.commands import promotion_exam_pacing as pacing
     from shinobi_runtime.commands import shinobi_career_progression as career
 
+    # promotion_exam_scheduler reuses legacy_cycle._install_career_guard, so the
+    # old module's _MAX_HISTORY remains live for exact rank accounting even
+    # though its obsolete exam-cycle scheduler is not installed.
+    legacy_cycle._MAX_HISTORY = infinity
     scheduler._CURSOR = infinity
     evaluation._CURSOR = infinity
     finals._CURSOR = infinity

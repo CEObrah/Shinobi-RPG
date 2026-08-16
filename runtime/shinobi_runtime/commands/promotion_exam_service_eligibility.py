@@ -14,7 +14,7 @@ from functools import wraps
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.core import _OwnerResolutionCache
+from shinobi_runtime.commands.core import _OwnerResolutionCache, _campaign_datetime
 from shinobi_runtime.commands.domains.autonomy import AutonomyCommandsMixin
 from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
 from shinobi_runtime.commands import promotion_exam_integrity as integrity
@@ -57,11 +57,11 @@ def _latest_source_rank_at(person: Mapping[str, Any], profile: Mapping[str, Any]
         if not isinstance(raw_at, str):
             continue
         try:
-            at = CampaignTime.parse(raw_at)
+            ranked_at = CampaignTime.parse(raw_at)
         except (TypeError, ValueError):
             continue
-        if found is None or at > found:
-            found = at
+        if found is None or ranked_at > found:
+            found = ranked_at
     return found
 
 
@@ -96,8 +96,8 @@ def service_eligibility_due(
     ranked_at = _latest_source_rank_at(person, profile)
     if ranked_at is None or ranked_at > at:
         return False
-    elapsed = at.to_ordinal_seconds() - ranked_at.to_ordinal_seconds()
-    return elapsed >= minimum_days * 24 * 60 * 60
+    elapsed_seconds = int((_campaign_datetime(at) - _campaign_datetime(ranked_at)).total_seconds())
+    return elapsed_seconds >= minimum_days * 24 * 60 * 60
 
 
 def _registration_authorities(profile: Mapping[str, Any]) -> set[str]:
@@ -148,7 +148,6 @@ def review_npc_team_eligibility(
             or any(not isinstance(ref, str) or not ref for ref in members)
         ):
             continue
-        candidates: list[str] = []
         for member_ref in members:
             if member_ref == leader_ref:
                 continue
@@ -174,7 +173,6 @@ def review_npc_team_eligibility(
                 if len(status_history) > 128:
                     del status_history[:-128]
             record_writes[path] = subject
-            candidates.append(member_ref)
             reviewed.append(
                 {
                     "candidate_ref": member_ref,

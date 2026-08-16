@@ -1,4 +1,6 @@
+from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.promotion_exam_scheduler import (
+    _candidate_refs,
     active_promotion_exam_cycles,
     next_cycle_phase,
     registered_candidate_refs,
@@ -96,6 +98,31 @@ def test_registered_candidate_refs_accumulates_authorized_registration_rows():
         },
     )
     assert registered_candidate_refs(record, cycle_id) == (
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga",
+    )
+
+
+def test_candidate_refs_accept_command_envelope_frozen_json_sequence():
+    command = CommandEnvelope(
+        campaign_id="test-campaign",
+        request_id="req-1",
+        actor_id="pc_wei_tang",
+        command_type="promotion_exam_registration_resolution",
+        expected_revision=1,
+        submitted_at="2026-08-16T00:00:00Z",
+        payload={
+            "candidate_refs": [
+                "char.riku_hyuga",
+                "char.kai",
+                "char.mei_arakawa",
+            ]
+        },
+    )
+    frozen = command.payload["candidate_refs"]
+    assert isinstance(frozen, tuple)
+    assert _candidate_refs(frozen, actor_id=command.actor_id) == (
         "char.kai",
         "char.mei_arakawa",
         "char.riku_hyuga",

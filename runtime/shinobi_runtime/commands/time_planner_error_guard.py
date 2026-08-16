@@ -11,22 +11,25 @@ from shinobi_runtime.api.contracts import CommandRejectedError
 _INSTALLED = False
 
 
+def _stage_from_filename(filename: str) -> str | None:
+    normalized = filename.replace("\\", "/")
+    marker = "/shinobi_runtime/"
+    if marker not in normalized:
+        return None
+    relative = normalized.split(marker, 1)[1]
+    parts = relative.split("/")
+    leaf = parts[-1].removesuffix(".py")
+    parent = parts[-2] if len(parts) >= 2 else "runtime"
+    token = leaf if parent in {"commands", "api", "sim", "store", "tx"} else f"{parent}_{leaf}"
+    return re.sub(r"[^a-z0-9_]+", "_", token.lower()).strip("_") or "unknown"
+
+
 def _runtime_error_stage(exc: BaseException) -> str:
     selected = "unknown"
     for frame in traceback.extract_tb(exc.__traceback__):
-        filename = frame.filename.replace("\\", "/")
-        marker = "/shinobi_runtime/"
-        if marker not in filename:
-            continue
-        relative = filename.split(marker, 1)[1]
-        parts = relative.split("/")
-        leaf = parts[-1].removesuffix(".py")
-        parent = parts[-2] if len(parts) >= 2 else "runtime"
-        if parent in {"commands", "api", "sim", "store", "tx"}:
-            token = leaf
-        else:
-            token = f"{parent}_{leaf}"
-        selected = re.sub(r"[^a-z0-9_]+", "_", token.lower()).strip("_") or "unknown"
+        stage = _stage_from_filename(frame.filename)
+        if stage is not None:
+            selected = stage
     return selected
 
 
@@ -60,4 +63,8 @@ def install_time_planner_error_guard() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_time_planner_error_guard", "_runtime_error_stage"]
+__all__ = [
+    "install_time_planner_error_guard",
+    "_runtime_error_stage",
+    "_stage_from_filename",
+]

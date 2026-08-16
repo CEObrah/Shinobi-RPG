@@ -13,8 +13,10 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.academy_pipeline_transfer_ids import install_academy_pipeline_transfer_ids
     from shinobi_runtime.commands.academy_career_sync import install_academy_career_sync
     from shinobi_runtime.commands.shinobi_career_progression import install_shinobi_career_progression
-    from shinobi_runtime.commands.promotion_exam_scheduler import install_promotion_exam_scheduler
-    from shinobi_runtime.commands.promotion_exam_cycle import install_promotion_exam_projection
+    from shinobi_runtime.commands.promotion_exam_scheduler import (
+        install_promotion_exam_projection,
+        install_promotion_exam_scheduler,
+    )
     from shinobi_runtime.commands.world_front_progression import install_world_front_progression
     from shinobi_runtime.commands.downtime_until_event import install_downtime_until_event
     from shinobi_runtime.commands.downtime_vitality import install_downtime_vitality
@@ -25,6 +27,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_report_projection import install_player_report_projection
     from shinobi_runtime.api.player_report_lifecycle import install_player_report_lifecycle
     from shinobi_runtime.api.player_team_checkin_projection import install_player_team_checkin_projection
+    from shinobi_runtime.api.player_promotion_exam_projection import install_player_promotion_exam_projection
     from shinobi_runtime.api.mission_assignment_request_projection import install_mission_assignment_request_projection
 
     install_legacy_scheduler_compat()
@@ -37,6 +40,7 @@ def _install_campaign_extensions() -> None:
     install_player_report_projection()
     install_player_report_lifecycle()
     install_player_team_checkin_projection()
+    install_player_promotion_exam_projection()
     install_mission_assignment_request_projection()
     install_downtime_until_event()
     install_team_checkin_handoffs()

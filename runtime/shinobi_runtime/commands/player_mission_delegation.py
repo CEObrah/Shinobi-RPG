@@ -9,10 +9,16 @@ from __future__ import annotations
 
 import copy
 from functools import wraps
-from typing import Any, Dict, Mapping, Optional
+from typing import Any, Dict, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.core import _OwnerResolutionCache, _BuiltPlan, _exact_payload, _json_bytes, _stable_id
+from shinobi_runtime.commands.core import (
+    _BuiltPlan,
+    _OwnerResolutionCache,
+    _exact_payload,
+    _json_bytes,
+    _stable_id,
+)
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.living_world_consequences import LivingWorldConsequencesMixin
 from shinobi_runtime.commands.mission_owner import MissionOwner
@@ -24,6 +30,22 @@ from shinobi_runtime.sim.events import CampaignTime
 _COMMAND = "mission_delegation_resolution"
 _MAX_REPORT_ROUTES = 32
 _INSTALLED = False
+
+
+class _MissionStateEventView:
+    """Reuse the mission lifecycle event channel without changing command identity."""
+
+    command_type = "mission_transition"
+
+    def __init__(self, command: CommandEnvelope) -> None:
+        self._command = command
+
+    @property
+    def digest(self) -> str:
+        return self._command.digest
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._command, name)
 
 
 def _faction_owner_for_write(self: Any, faction_ref: str) -> tuple[str, Dict[str, Any]]:
@@ -198,7 +220,9 @@ def _plan_mission_delegation(
         raise CommandRejectedError("mission_delegation_issuer_invalid")
     if mission_id not in wake_refs:
         raise CommandRejectedError("mission_delegation_wake_route_missing")
-    plan_state["wake_required_mission_refs"] = [ref for ref in wake_refs if ref != mission_id]
+    plan_state["wake_required_mission_refs"] = [
+        ref for ref in wake_refs if ref != mission_id
+    ]
     if mission_id not in autonomous_refs:
         autonomous_refs.append(mission_id)
         autonomous_refs.sort()
@@ -240,19 +264,23 @@ def _plan_mission_delegation(
     consequence_refs = (
         f"mission_delegated:{mission_id}:{command.actor_id}->{delegate_ref}",
         f"mission_participants:{mission_id}:{','.join(sorted(delegated))}",
-        f"mission_reward_refund:currency.ryo:{refund}:{owner.escrow_holder_ref}->{owner.funding_holder_ref}",
+        (
+            f"mission_reward_refund:currency.ryo:{refund}:"
+            f"{owner.escrow_holder_ref}->{owner.funding_holder_ref}"
+        ),
         f"mission_report_back:{mission_id}:{command.actor_id}",
     )
     return self._mission_built_plan(
-        command=command,
+        command=_MissionStateEventView(command),
         meta=meta,
         current_time=current_time,
         path=path,
         owner=delegated_owner,
         code="mission_delegation_resolution_ready",
         summary=(
-            f"Mission {mission_id} is accepted for the delegated {team_ref} detachment under "
-            f"{delegate_ref}; {command.actor_id} remains outside the mission participant set."
+            f"Mission {mission_id} is accepted for the delegated {team_ref} detachment "
+            f"under {delegate_ref}; {command.actor_id} remains outside the mission "
+            "participant set."
         ),
         result={
             "command_type": command.command_type,
@@ -322,7 +350,9 @@ def _delegated_report_after_result(original: Any):
         routes[:] = [
             row
             for row in routes
-            if not (isinstance(row, Mapping) and row.get("mission_id") == mission_id)
+            if not (
+                isinstance(row, Mapping) and row.get("mission_id") == mission_id
+            )
         ]
         report_event_id = self._append_internal_event(
             world_events,
@@ -380,7 +410,12 @@ def install_player_mission_delegation() -> None:
         CommandSpec(
             ("mission_id", "delegate_leader_ref"),
             (),
-            "Accept one offered player-led exact-team mission for the current non-player detachment under the team's registered deputy, conserve the player's relinquished reward, route the mission into existing faction autonomy, and report the result back to the player.",
+            (
+                "Accept one offered player-led exact-team mission for the current "
+                "non-player detachment under the team's registered deputy, conserve "
+                "the player's relinquished reward, route the mission into existing "
+                "faction autonomy, and report the result back to the player."
+            ),
             {
                 "mission_id": "mission.<id>",
                 "delegate_leader_ref": "current exact-team deputy person ref",
@@ -393,7 +428,9 @@ def install_player_mission_delegation() -> None:
 
     original = LivingWorldConsequencesMixin._after_autonomous_mission_result
     if not getattr(original, "_player_mission_delegation_report", False):
-        LivingWorldConsequencesMixin._after_autonomous_mission_result = _delegated_report_after_result(original)
+        LivingWorldConsequencesMixin._after_autonomous_mission_result = (
+            _delegated_report_after_result(original)
+        )
 
     _INSTALLED = True
 

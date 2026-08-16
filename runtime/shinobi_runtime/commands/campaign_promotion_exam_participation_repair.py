@@ -1,3 +1,12 @@
+"""Guarded reconciliation for omitted non-player Chunin Exam participation.
+
+The repair is intentionally narrow: it is available only during an already-open
+finals phase before any bout evidence exists. Reconstructed registration and
+stage-evaluation rows use the cycle's original scheduled phase timestamps rather
+than the repair transaction time, so the durable career pipeline keeps lawful
+chronology while the separate repair semantic event records when reconciliation
+was actually applied.
+"""
 from __future__ import annotations
 
 import copy
@@ -8,6 +17,7 @@ from shinobi_runtime.commands.core import _BuiltPlan, _exact_payload, _json_byte
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
 from shinobi_runtime.commands import promotion_exam_finals as finals
+from shinobi_runtime.commands import promotion_exam_pacing as pacing
 from shinobi_runtime.commands import promotion_exam_scheduler as scheduler
 from shinobi_runtime.commands.promotion_exam_integrity import (
     _append_npc_evaluations,
@@ -22,6 +32,34 @@ from shinobi_runtime.tx.manifest import TransactionManifest
 _COMMAND = "campaign_promotion_exam_participation_repair"
 _CAREER = "state/reg/shinobi-career-pipeline.json"
 _INSTALLED = False
+_REQUIRED_REPAIR_PHASES = (
+    "registration",
+    "qualification",
+    "field_evaluation",
+    "finals",
+)
+
+
+def _repair_phase_times(
+    schedule: Mapping[str, str],
+    *,
+    current_time: CampaignTime,
+) -> Mapping[str, CampaignTime]:
+    parsed: dict[str, CampaignTime] = {}
+    for phase in _REQUIRED_REPAIR_PHASES:
+        raw = schedule.get(phase)
+        if not isinstance(raw, str):
+            raise CommandRejectedError("promotion_exam_cycle_state_invalid")
+        try:
+            parsed[phase] = CampaignTime.parse(raw)
+        except (TypeError, ValueError) as exc:
+            raise CommandRejectedError("promotion_exam_cycle_state_invalid") from exc
+    ordered = [parsed[phase] for phase in _REQUIRED_REPAIR_PHASES]
+    if ordered != sorted(ordered) or len(set(ordered)) != len(ordered):
+        raise CommandRejectedError("promotion_exam_cycle_state_invalid")
+    if parsed["finals"] > current_time:
+        raise CommandRejectedError("promotion_exam_repair_before_finals")
+    return parsed
 
 
 def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime) -> _BuiltPlan:
@@ -40,6 +78,12 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
     if finals.promotion_exam_bout_rows(pipeline, cycle_id):
         raise CommandRejectedError("promotion_exam_repair_bout_evidence_exists")
 
+    schedule = pacing.promotion_exam_schedule_for_cycle(
+        self.repository,
+        cycle_id=cycle_id,
+    )
+    repair_times = _repair_phase_times(schedule, current_time=current_time)
+
     before_pipeline = copy.deepcopy(pipeline)
     registrations = eligible_npc_team_registrations(
         self,
@@ -52,7 +96,7 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
         pipeline,
         profile=profile,
         cycle_id=cycle_id,
-        at=current_time,
+        at=repair_times["registration"],
         registrations=registrations,
         repair=True,
     )
@@ -65,20 +109,24 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
             profile=profile,
             cycle_id=cycle_id,
             phase="qualification",
-            at=current_time,
+            at=repair_times["qualification"],
             player_id=player_id,
             only_candidates=added_set,
             repair=True,
         )
         stage_results["qualification"] = qualification
-        qualification_passers = {row["candidate_ref"] for row in qualification if row.get("outcome") == "pass"}
+        qualification_passers = {
+            row["candidate_ref"]
+            for row in qualification
+            if row.get("outcome") == "pass"
+        }
         stage_results["field_evaluation"] = _append_npc_evaluations(
             self,
             pipeline=pipeline,
             profile=profile,
             cycle_id=cycle_id,
             phase="field_evaluation",
-            at=current_time,
+            at=repair_times["field_evaluation"],
             player_id=player_id,
             only_candidates=qualification_passers,
             repair=True,
@@ -99,9 +147,12 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
         causal_refs=(cycle_id,),
         affected_owner_refs=(_CAREER,),
         material_consequence_refs=tuple(
-            [f"promotion_exam_registration_reconciled:{ref}" for ref in added_candidates]
+            [
+                f"promotion_exam_registration_reconciled:{ref}:basis:{repair_times['registration']}"
+                for ref in added_candidates
+            ]
             + [
-                f"promotion_exam_evaluation_reconciled:{phase}:{row['candidate_ref']}:{row['outcome']}"
+                f"promotion_exam_evaluation_reconciled:{phase}:{row['candidate_ref']}:{row['outcome']}:basis:{repair_times[phase]}"
                 for phase, rows in stage_results.items()
                 for row in rows
             ]
@@ -138,6 +189,10 @@ def _repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], curren
             "registered_team_refs": [row["team_ref"] for row in registrations],
             "registered_candidate_refs": added_candidates,
             "evaluation_results": stage_results,
+            "reconciled_evidence_times": {
+                phase: str(repair_times[phase])
+                for phase in ("registration", "qualification", "field_evaluation")
+            },
             "finals_candidate_refs": list(refreshed.get("candidate_refs", ())),
             "finals_open_bouts": list(refreshed.get("open_bouts", ())),
             "finals_complete": bool(refreshed.get("complete")),
@@ -161,7 +216,7 @@ def install_campaign_promotion_exam_participation_repair() -> None:
         CommandSpec(
             ("cycle_id",),
             (),
-            "Reconcile omitted non-player exact-team Chunin Exam participation for an active finals phase only when no finals bout has settled.",
+            "Reconcile omitted non-player exact-team Chunin Exam participation for an active finals phase only when no finals bout has settled, preserving the original phase chronology.",
             {"cycle_id": "promotion_exam_cycle.<id>"},
             availability="ooc_dev_guarded_repair_only",
         ),
@@ -172,4 +227,7 @@ def install_campaign_promotion_exam_participation_repair() -> None:
     _INSTALLED = True
 
 
-__all__ = ["install_campaign_promotion_exam_participation_repair"]
+__all__ = [
+    "_repair_phase_times",
+    "install_campaign_promotion_exam_participation_repair",
+]

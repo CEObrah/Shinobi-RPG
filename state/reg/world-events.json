@@ -6812,6 +6812,61 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.player_led_team_checkin_handled.c06ef526dba1f266e21e",
+      "kind": "player_led_team_checkin_handled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-08T18:00:00",
+        "started_at": "SE-0061-07-08T18:00:00",
+        "ended_at": "SE-0061-07-08T18:00:00"
+      },
+      "host_refs": [
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "event.player_led_team_checkin_ready.6b7dd2616ccec5db6670f39d"
+      ],
+      "affected_owner_refs": [
+        "state/team/fujin.json"
+      ],
+      "material_consequence_refs": [
+        "team_checkin_handling:acknowledge:team_checkin.6b7dd2616ccec5db6670f39d"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-08T18:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.team_checkin_handoffs.team_checkin_handoff_resolution",
+        "transaction_ref": "tx.gameplay.c06ef526dba1f266e21e60c9bf54cae47c760d81c1d7508ae96f4a7a2b9c8d40",
+        "receipt_refs": [
+          "receipt.gameplay.c06ef526dba1f266e21e60c9bf54cae47c760d81c1d7508ae96f4a7a2b9c8d40"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

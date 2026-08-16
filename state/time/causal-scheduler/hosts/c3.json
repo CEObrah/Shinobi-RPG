@@ -1,0 +1,33 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "c3",
+  "authority": true,
+  "hosts": {
+    "host.commitment.outreach.c37050bfd97d5b90.05": {
+      "host": {
+        "state": {
+          "host_id": "host.commitment.outreach.c37050bfd97d5b90.05",
+          "kind": "commitment",
+          "resolved_through": "SE-0061-07-01T19:30:00",
+          "safe_through": "SE-0061-07-15T19:29:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "commitment.outreach.c37050bfd97d5b90.05",
+          "next_due": "SE-0061-07-15T19:30:00"
+        },
+        "authority_kind": "commitment",
+        "owner_ref": "state/reg/commitments.json",
+        "metadata": {
+          "commitment_id": "commitment.outreach.c37050bfd97d5b90.05"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.08f2ba49fe5df8ad4b22c751",
+          "due_at": "SE-0061-07-15T19:30:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-15.json",
+          "dedupe_key": "commitment.due:commitment.outreach.c37050bfd97d5b90.05"
+        }
+      ]
+    }
+  }
+}

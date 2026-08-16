@@ -2413,6 +2413,70 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_recruitment_outreach_started.c37050bfd97d5b90474d",
+      "kind": "institution_recruitment_outreach_started",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-01T19:30:00",
+        "started_at": "SE-0061-07-01T19:30:00",
+        "ended_at": "SE-0061-07-01T19:30:00"
+      },
+      "host_refs": [
+        "house.tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "outreach_mode:letters",
+        "outreach_mode:open_tryouts",
+        "source_pool:pool.iwa.civilian_general",
+        "source_pool:pool.iwa.support_service",
+        "source_pool:pool.kiri.civilian_general",
+        "source_pool:pool.kiri.support_service",
+        "source_pool:pool.kumo.civilian_general",
+        "source_pool:pool.kumo.support_service",
+        "source_pool:pool.suna.civilian_general",
+        "source_pool:pool.suna.support_service"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "house.tang",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-01T19:30:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.house_recruitment_outreach",
+        "transaction_ref": "tx.gameplay.c37050bfd97d5b90474dc46dfa51abb7f0c29595ee4fe9cd45b4eb862bc8b9c0",
+        "receipt_refs": [
+          "receipt.gameplay.c37050bfd97d5b90474dc46dfa51abb7f0c29595ee4fe9cd45b4eb862bc8b9c0"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

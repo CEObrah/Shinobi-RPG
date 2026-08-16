@@ -7,7 +7,10 @@ from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.api.operations import OperationError
-from shinobi_runtime.commands.promotion_exam_evaluation import promotion_exam_evaluation_rows
+from shinobi_runtime.commands.promotion_exam_evaluation import (
+    promotion_exam_evaluation_rows,
+    promotion_exam_stage_candidate_refs,
+)
 from shinobi_runtime.commands.promotion_exam_integrity import team_safe_finals_state
 from shinobi_runtime.commands.promotion_exam_scheduler import promotion_exam_profiles
 
@@ -53,6 +56,46 @@ def _public_identity(operations: Any, candidate_ref: str) -> tuple[str | None, s
     )
 
 
+def _latest_cycle_phase(pipeline: Mapping[str, Any], cycle_id: str) -> str | None:
+    history = pipeline.get("history")
+    if not isinstance(history, list):
+        raise OperationError(503, "promotion_exam_context_invalid")
+    phase = None
+    for row in history:
+        if (
+            isinstance(row, Mapping)
+            and row.get("kind") == "promotion_exam_cycle_phase"
+            and row.get("cycle_id") == cycle_id
+            and isinstance(row.get("phase"), str)
+        ):
+            phase = str(row["phase"])
+    return phase
+
+
+def _stage_is_settled(
+    pipeline: Mapping[str, Any],
+    profile: Mapping[str, Any],
+    cycle_id: str,
+    phase: str,
+    rows: list[Mapping[str, Any]],
+) -> bool:
+    phases = profile.get("phases")
+    latest = _latest_cycle_phase(pipeline, cycle_id)
+    if isinstance(phases, list) and phase in phases and latest in phases:
+        if phases.index(latest) > phases.index(phase):
+            return True
+    try:
+        expected = set(promotion_exam_stage_candidate_refs(pipeline, profile, cycle_id, phase))
+    except CommandRejectedError as exc:
+        raise OperationError(503, "promotion_exam_context_invalid") from exc
+    evaluated = {
+        str(row["candidate_ref"])
+        for row in rows
+        if isinstance(row.get("candidate_ref"), str)
+    }
+    return bool(expected) and expected.issubset(evaluated)
+
+
 def _public_stage_results(
     operations: Any,
     pipeline: Mapping[str, Any],
@@ -61,8 +104,15 @@ def _public_stage_results(
 ) -> Mapping[str, Any]:
     visibility = profile.get("result_visibility")
     if not isinstance(visibility, Mapping):
-        return {"stages": {}, "result_count": 0, "results_truncated": False}
+        return {
+            "stages": {},
+            "stage_summaries": {},
+            "result_count": 0,
+            "results_truncated": False,
+            "projection_limit": _MAX_PUBLIC_RESULTS,
+        }
     stages: dict[str, list[dict[str, Any]]] = {}
+    summaries: dict[str, dict[str, int]] = {}
     total = 0
     emitted = 0
     truncated = False
@@ -70,14 +120,23 @@ def _public_stage_results(
         if visibility.get(phase) != "public_after_settlement":
             continue
         try:
-            rows = promotion_exam_evaluation_rows(pipeline, cycle_id, phase=phase)
+            rows = list(promotion_exam_evaluation_rows(pipeline, cycle_id, phase=phase))
         except CommandRejectedError as exc:
             raise OperationError(503, "promotion_exam_context_invalid") from exc
+        if not _stage_is_settled(pipeline, profile, cycle_id, phase, rows):
+            continue
         ordered = sorted(
             (row for row in rows if isinstance(row.get("candidate_ref"), str)),
             key=lambda row: str(row["candidate_ref"]),
         )
         total += len(ordered)
+        pass_count = sum(1 for row in ordered if row.get("outcome") == "pass")
+        fail_count = sum(1 for row in ordered if row.get("outcome") == "fail")
+        summaries[phase] = {
+            "candidate_count": len(ordered),
+            "pass_count": pass_count,
+            "fail_count": fail_count,
+        }
         projected: list[dict[str, Any]] = []
         for row in ordered:
             if emitted >= _MAX_PUBLIC_RESULTS:
@@ -102,6 +161,7 @@ def _public_stage_results(
         truncated = True
     return {
         "stages": stages,
+        "stage_summaries": summaries,
         "result_count": total,
         "results_truncated": truncated,
         "projection_limit": _MAX_PUBLIC_RESULTS,
@@ -150,6 +210,7 @@ def install_player_promotion_exam_participation_projection() -> None:
                 handoff["exam_participating_villages"] = list(villages) if isinstance(villages, list) else []
             public = _public_stage_results(operations, pipeline, profile, cycle_id)
             handoff["public_stage_results"] = public["stages"]
+            handoff["public_stage_result_summaries"] = public["stage_summaries"]
             handoff["public_stage_result_count"] = public["result_count"]
             handoff["public_stage_results_truncated"] = public["results_truncated"]
             handoff["public_stage_results_projection_limit"] = public["projection_limit"]

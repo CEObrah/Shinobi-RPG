@@ -12,7 +12,7 @@
   "deadline_at": "SE-0061-07-09T07:00:00",
   "next_due_at": null,
   "operation_ref": "team.blackhound",
-  "closed_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
   "briefing": {
     "briefing_id": "briefing.offer.b42cba36bd4b0f447a",
     "objective_kind": "escort",
@@ -33,7 +33,7 @@
     "depart_by": "SE-0061-07-02T13:00:00",
     "completion_condition": "Escort Noboru Shimizu from Konoha to the Fire Capital without capture or incapacitation."
   },
-  "state": "offered",
+  "state": "expired",
   "participant_refs": [
     "canon_ensui_nara",
     "canon_hana_inuzuka",
@@ -127,6 +127,12 @@
       "objective_status": null
     }
   ],
-  "terminal_reason_ref": null,
-  "settlement": null
+  "terminal_reason_ref": "repair.duplicate_player_offer_invalidated",
+  "settlement": {
+    "mission_id": "mission.offer.b42cba36bd4b0f447a",
+    "outcome": "expired",
+    "settlement_token": "repair.blackhound_player_mission_continuity.2026-08-16",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

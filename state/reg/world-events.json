@@ -5781,6 +5781,74 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.054e077e1d7ad31dbd09",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-02T07:00:00",
+        "started_at": "SE-0061-07-02T07:00:00",
+        "ended_at": "SE-0061-07-02T07:00:00"
+      },
+      "host_refs": [
+        "faction.konoha_mission_office",
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "mission.offer.0a7361790026211550",
+        "mission.offer.2132adf0c1e8a6f134",
+        "mission.offer.b42cba36bd4b0f447a"
+      ],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/mission/mission.offer.b42cba36bd4b0f447a.json",
+        "state/reg/mission-assignment-requests.json",
+        "state/scene.json",
+        "state/team/history/team.blackhound.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "assignment_request_reopened:mission_assignment_request.0252a597b5ce5b19955f3f2e",
+        "duplicate_offer_invalidated:mission.offer.b42cba36bd4b0f447a",
+        "mission_escrow_refund:currency.ryo:420000:escrow.mission.offer.b42cba36bd4b0f447a->treasury.konoha",
+        "team_history_backfilled:team.blackhound:2_succeeded"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "mission.offer.0a7361790026211550",
+          "mission.offer.2132adf0c1e8a6f134",
+          "mission.offer.b42cba36bd4b0f447a"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-02T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_mission_continuity_repair",
+        "transaction_ref": "tx.gameplay.054e077e1d7ad31dbd09c2cdecede4ee0b57282f9bfba467ed59ff688970331e",
+        "receipt_refs": [
+          "receipt.gameplay.054e077e1d7ad31dbd09c2cdecede4ee0b57282f9bfba467ed59ff688970331e"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

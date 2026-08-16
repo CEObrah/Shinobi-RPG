@@ -15,6 +15,7 @@ from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.api.operations import CampaignOperations, OperationError
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.promotion_exam_scheduler import (
+    _person_matches_profile,
     active_promotion_exam_cycles,
     promotion_exam_profiles,
     registered_candidate_refs,
@@ -26,31 +27,6 @@ _MAX_HANDOFFS = 8
 _MAX_CANDIDATES = 16
 _REGISTRATION_PRESSURE = "Konoha has an active Chunin Examination registration window for eligible members of your team."
 _REGISTRATION_REPORT = "The Academy is accepting Chunin Examination registrations from your eligible team members."
-
-
-def _rank_key(value: object) -> str | None:
-    if not isinstance(value, str):
-        return None
-    value = value.strip().lower().replace("ū", "u").replace("ō", "o")
-    return value if value in {"genin", "chunin", "jonin"} else None
-
-
-def _eligible(person: Mapping[str, Any], profile: Mapping[str, Any]) -> bool:
-    if person.get("schema") != "shinobi_character" or person.get("life_status") != "alive":
-        return False
-    source_rank = _rank_key(profile.get("source_rank"))
-    if source_rank is None or _rank_key(person.get("official_rank_or_status")) != source_rank:
-        return False
-    service_village = profile.get("service_village")
-    affiliation = person.get("village_or_affiliation")
-    if (
-        not isinstance(service_village, str)
-        or not isinstance(affiliation, str)
-        or service_village.lower() not in affiliation.lower()
-    ):
-        return False
-    career = person.get("career_state")
-    return isinstance(career, Mapping) and career.get("promotion_eligible") is True
 
 
 def _promotion_exam_handoffs(
@@ -87,7 +63,10 @@ def _promotion_exam_handoffs(
         institution_ref = profile.get("institution_ref")
         if not isinstance(institution_ref, str):
             raise OperationError(503, "promotion_exam_context_invalid")
-        registered = set(registered_candidate_refs(pipeline, cycle_id))
+        try:
+            registered = set(registered_candidate_refs(pipeline, cycle_id))
+        except CommandRejectedError as exc:
+            raise OperationError(503, "promotion_exam_context_invalid") from exc
 
         for team_ref in team_refs:
             try:
@@ -113,7 +92,7 @@ def _promotion_exam_handoffs(
                     _person_path, person = operations._owner_record(member_ref)
                 except OperationError:
                     continue
-                if _eligible(person, profile):
+                if isinstance(person, Mapping) and _person_matches_profile(person, profile):
                     eligible_refs.append(member_ref)
             eligible_refs = sorted(set(eligible_refs))[:_MAX_CANDIDATES]
             registered_refs = [ref for ref in eligible_refs if ref in registered]

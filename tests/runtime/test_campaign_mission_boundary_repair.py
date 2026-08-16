@@ -155,6 +155,7 @@ class Command:
 
 def test_guarded_repair_only_clears_stale_scene_and_scheduler(monkeypatch):
     monkeypatch.setattr(module, "MissionOwner", FakeMissionOwner)
+    monkeypatch.setattr(module, "_exact_payload", lambda payload, keys, command_type: None)
     planner = Planner()
     meta = {
         "player_id": "pc_wei_tang",

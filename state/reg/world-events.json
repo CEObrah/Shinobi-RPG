@@ -3035,6 +3035,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.information_report_handled.7bfdb9278877e2c06c07",
+      "kind": "information_report_handled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-11T07:23:18",
+        "started_at": "SE-0061-07-11T07:23:18",
+        "ended_at": "SE-0061-07-11T07:23:18"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.academy.assignment.hall"
+      ],
+      "causal_refs": [
+        "claim.world_front.746b831e989a5526d78a155a",
+        "delivery.world_front.5d27b62a38d56c84f307cd30"
+      ],
+      "affected_owner_refs": [
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "report_handling:acknowledge:delivery.world_front.5d27b62a38d56c84f307cd30"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [
+          "claim.world_front.746b831e989a5526d78a155a"
+        ],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-11T07:23:18"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_player_handoffs.report_handoff_resolution",
+        "transaction_ref": "tx.gameplay.7bfdb9278877e2c06c075012b8796d30399f2faa8a7188175a535313ac139f93",
+        "receipt_refs": [
+          "receipt.gameplay.7bfdb9278877e2c06c075012b8796d30399f2faa8a7188175a535313ac139f93"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

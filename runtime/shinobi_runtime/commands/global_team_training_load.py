@@ -112,8 +112,13 @@ def member_team_training_load(repository: Any, member_ref: str, *, as_of: Campai
             active_hours = Decimal(str(row.get("active_hours")))
         except Exception as exc:
             raise CommandRejectedError("team_training_history_invalid") from exc
-        if not active_hours.is_finite() or active_hours <= 0 or ended_dt > as_of_dt:
+        if not active_hours.is_finite() or active_hours <= 0:
             raise CommandRejectedError("team_training_history_invalid")
+        # Historical settlement may ask for load at a prior boundary while the
+        # current repository already contains later sessions. Later evidence is
+        # simply outside that window, not malformed history.
+        if ended_dt > as_of_dt:
+            continue
         if ended_dt > weekly_cutoff:
             used += active_hours
         if last_end is None or ended_dt > _campaign_datetime(last_end):

@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import copy
+
 from shinobi_runtime.commands.shinobi_career_progression import (
+    _BaseOverlayView,
+    _CAREER_PATH,
     _add_academy_graduates,
     _monthly_boundaries,
     _settle_one_month,
@@ -33,6 +37,14 @@ def _rules():
             "chunin_to_jonin": 300,
         },
     }
+
+
+class _Overlay:
+    def __init__(self, records):
+        self.records = records
+
+    def read_json(self, path):
+        return copy.deepcopy(self.records[path])
 
 
 def test_monthly_boundaries_use_calendar_months_not_thirty_day_intervals():
@@ -93,3 +105,23 @@ def test_jonin_rate_is_strictly_lower_than_chunin_rate_over_same_snapshot():
     promoted = result["promotions"]["konoha"]
     assert promoted["genin_to_chunin"] == 10
     assert promoted["chunin_to_jonin"] == 3
+
+
+def test_base_overlay_view_preserves_base_career_image_during_composed_validation():
+    base = _pipeline(genin=100, chunin=10, jonin=1)
+    final = copy.deepcopy(base)
+    final["villages"]["konoha"]["rank_counts"]["genin"] += 5
+    overlay = _Overlay({_CAREER_PATH: final})
+    view = _BaseOverlayView(
+        overlay,
+        (_CAREER_PATH,),
+        base_json={_CAREER_PATH: base},
+    )
+
+    assert view.changed_paths == (_CAREER_PATH,)
+    assert view.read_json(_CAREER_PATH) == base
+    assert overlay.read_json(_CAREER_PATH) == final
+
+    returned = view.read_json(_CAREER_PATH)
+    returned["villages"]["konoha"]["rank_counts"]["genin"] = -1
+    assert view.read_json(_CAREER_PATH) == base

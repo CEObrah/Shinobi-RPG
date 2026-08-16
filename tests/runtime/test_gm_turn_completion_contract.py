@@ -37,6 +37,6 @@ def test_choice_menu_is_not_a_substitute_for_unfinished_continuation() -> None:
     )
 
     assert "Do not interrupt declared intent" in choices
-    assert "Do not make the player re-authorize" in choices
+    assert "Do not offer `keep waiting`" in choices
     assert "standing wait/declared continuation" in contract["handoff_rule"]
     assert "quiet maintenance/time chunk" in contract["standing_continuation_rule"]

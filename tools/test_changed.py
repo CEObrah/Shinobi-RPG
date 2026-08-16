@@ -41,7 +41,7 @@ ROUTES = (
         "tests/runtime/test_team_playability_interface.py",
         "tests/runtime/test_team_training_readiness_projection.py",
     }),
-    (("promotion_exam", "promotion-exams.json", "career_history_retention"), {
+    (("promotion_exam", "promotion-exams.json", "career_history_retention", "shinobi-career-pipeline"), {
         "tests/runtime/test_promotion_exam_scheduler.py",
         "tests/runtime/test_promotion_exam_evaluation.py",
         "tests/runtime/test_promotion_exam_finals.py",

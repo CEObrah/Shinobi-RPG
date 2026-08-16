@@ -17,7 +17,6 @@ from shinobi_runtime.sim.events import CampaignTime
 
 _INSTALLED = False
 _CAREER = "state/reg/shinobi-career-pipeline.json"
-_MAX_ATTENDEES = 64
 
 
 def _place_anchor(repository: Any, location_ref: str) -> str:
@@ -27,7 +26,7 @@ def _place_anchor(repository: Any, location_ref: str) -> str:
         raise CommandRejectedError("promotion_exam_attendance_route_invalid") from exc
     payload = world.get("payload") if isinstance(world, Mapping) else None
     places = payload.get("places") if isinstance(payload, Mapping) else None
-    if not isinstance(places, list) or len(places) > 4096:
+    if not isinstance(places, list):
         raise CommandRejectedError("promotion_exam_attendance_route_invalid")
     matches = [row for row in places if isinstance(row, Mapping) and row.get("id") == location_ref]
     if len(matches) != 1:
@@ -119,8 +118,6 @@ def stage_npc_finalists(
                 "path": path,
             }
         )
-        if len(staged) > _MAX_ATTENDEES:
-            raise CommandRejectedError("promotion_exam_attendance_limit")
     return staged
 
 

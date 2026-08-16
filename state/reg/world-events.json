@@ -3558,6 +3558,81 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.travel_completed.f105e5bf0e84504826b2",
+      "kind": "travel_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-13T07:23:18",
+        "started_at": "SE-0061-07-13T07:23:18",
+        "ended_at": "SE-0061-07-13T07:23:18"
+      },
+      "host_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.konoha.academy.assignment.hall",
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/char/mei-arakawa.json",
+        "state/char/riku-hyuga.json",
+        "state/player.json",
+        "state/scene.json"
+      ],
+      "material_consequence_refs": [
+        "location:char.kai:place.sword_manor",
+        "location:char.mei_arakawa:place.sword_manor",
+        "location:char.riku_hyuga:place.sword_manor",
+        "location:pc_wei_tang:place.sword_manor"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": [
+          "route_local"
+        ]
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-13T07:23:18"
+      },
+      "execution": {
+        "reducer_ref": "game/data/mechanics/travel.json",
+        "transaction_ref": "tx.gameplay.f105e5bf0e84504826b29ced0ec99e32896764b607aa1bbbac1fad0697d03e13",
+        "receipt_refs": [
+          "receipt.gameplay.f105e5bf0e84504826b29ced0ec99e32896764b607aa1bbbac1fad0697d03e13"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

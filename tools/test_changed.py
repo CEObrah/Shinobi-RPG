@@ -67,13 +67,15 @@ ROUTES = (
         "tests/runtime/test_training_autonomy_policy.py",
         "tests/runtime/test_training_progression_ceiling.py",
     }),
-    (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard"), {
+    (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard", "semantic_event"), {
         "tests/runtime/test_advance_until_event.py",
         "tests/runtime/test_world_front_progression.py",
         "tests/runtime/test_long_horizon_stability.py",
         "tests/runtime/test_production_monthly_frontier.py",
         "tests/runtime/test_institution_review_runtime_guard.py",
         "tests/runtime/test_academy_pipeline_transfer_ids.py",
+        "tests/runtime/test_semantic_event_integrity.py",
+        "tests/runtime/test_world_event_staged_archives.py",
     }),
     (("api/", "mcp", "route_discovery"), {
         "tests/runtime/test_api_service.py",

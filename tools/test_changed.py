@@ -47,6 +47,8 @@ ROUTES = (
         "tests/runtime/test_promotion_exam_finals.py",
         "tests/runtime/test_promotion_exam_integrity.py",
         "tests/runtime/test_promotion_exam_participation_projection.py",
+        "tests/runtime/test_promotion_exam_service_eligibility.py",
+        "tests/runtime/test_promotion_exam_attendance.py",
     }),
     (("mission",), {
         "tests/runtime/test_missions.py",

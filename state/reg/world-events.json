@@ -2848,6 +2848,57 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_cycle_phase_changed.7b8c9485e82193cfdf4253e1",
+      "kind": "promotion_exam_cycle_phase_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-07-11T07:00:00",
+        "occurred_at": "SE-0061-07-11T07:00:00",
+        "started_at": "SE-0061-07-11T07:00:00",
+        "ended_at": "SE-0061-07-11T07:00:00"
+      },
+      "host_refs": [
+        "institution.konoha.academy"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "phase:qualification",
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_hiruzen",
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-11T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_pacing",
+        "transaction_ref": "tx.gameplay.2c968c469f5c48c5da6e26d860e70afb3810d53fa2a0e1b06c00f4bba2720710",
+        "receipt_refs": [
+          "receipt.gameplay.2c968c469f5c48c5da6e26d860e70afb3810d53fa2a0e1b06c00f4bba2720710"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

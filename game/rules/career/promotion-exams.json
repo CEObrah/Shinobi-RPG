@@ -25,10 +25,18 @@
         "promotion_review",
         "closed"
       ],
+      "phase_offsets_days": {
+        "registration": 0,
+        "qualification": 10,
+        "field_evaluation": 12,
+        "finals": 21,
+        "promotion_review": 22,
+        "closed": 23
+      },
       "rules": [
-        "The Konoha world-registry institution scheduler is the only temporal authority for phase reviews; this file does not create a second clock.",
+        "The Konoha world-registry institution scheduler opens a configured cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
         "A cycle may open only when the scheduled Academy review occurs in a configured start month.",
-        "Each later scheduled Academy review advances at most one phase.",
+        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening; direct time skips settle every crossed phase in order.",
         "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and the configured village affiliation.",
         "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
         "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",

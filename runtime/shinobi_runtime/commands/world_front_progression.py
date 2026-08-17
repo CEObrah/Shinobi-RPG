@@ -264,6 +264,28 @@ def _install_time_postprocessor() -> None:
     module.CampaignCommandPlanner._advance_time = wrapped
 
 
+def _player_visible_front_handoff(result: Mapping[str, Any]) -> tuple[list[str], list[str], list[str]]:
+    """Project only concrete front information that has actually reached Wei.
+
+    A world-front phase transition is internal causal bookkeeping, even when the
+    evidence event that advanced it was public. The phase name itself is not a
+    player observation and must never become vague IC pressure. Front information
+    enters the player handoff only through an actual player-addressed delivery.
+    """
+    reports: list[str] = []
+    actions = result.get("autonomous_actions")
+    if isinstance(actions, list):
+        for action in actions:
+            if not isinstance(action, Mapping):
+                continue
+            deliveries = action.get("player_report_deliveries")
+            if isinstance(deliveries, list) and any(isinstance(row, Mapping) for row in deliveries):
+                message = "A sourced operational report addressed to Wei is ready for review."
+                if message not in reports:
+                    reports.append(message)
+    return [], reports[:6], []
+
+
 def install_world_front_projection() -> None:
     global _PROJECTION_INSTALLED
     if _PROJECTION_INSTALLED:
@@ -277,26 +299,16 @@ def install_world_front_projection() -> None:
     @wraps(original)
     def wrapped(result: Mapping[str, Any]) -> tuple[list[str], list[str], list[str]]:
         pressures, reports, approaching = original(result)
-        updates = result.get("world_front_updates")
-        if isinstance(updates, list):
-            for update in updates:
-                if not isinstance(update, Mapping):
-                    continue
-                phase = update.get("phase_after")
-                if phase in ("developing", "operational", "crisis") and "A known world pressure has materially changed." not in pressures:
-                    pressures.append("A known world pressure has materially changed.")
-                if phase == "crisis" and "A known strategic pressure has reached crisis-level consequences." not in approaching:
-                    approaching.append("A known strategic pressure has reached crisis-level consequences.")
-        actions = result.get("autonomous_actions")
-        if isinstance(actions, list):
-            for action in actions:
-                if not isinstance(action, Mapping):
-                    continue
-                deliveries = action.get("player_report_deliveries")
-                if isinstance(deliveries, list) and any(isinstance(row, Mapping) for row in deliveries):
-                    message = "An authorized operational report about a developing world concern has reached you."
-                    if message not in reports:
-                        reports.append(message)
+        extra_pressures, extra_reports, extra_approaching = _player_visible_front_handoff(result)
+        for message in extra_pressures:
+            if message not in pressures:
+                pressures.append(message)
+        for message in extra_reports:
+            if message not in reports:
+                reports.append(message)
+        for message in extra_approaching:
+            if message not in approaching:
+                approaching.append(message)
         return pressures[:12], reports[:6], approaching[:8]
 
     wrapped._world_front_projection = True

@@ -252,7 +252,7 @@ def settle_service_development(
         except (TypeError, ValueError) as exc:
             raise CommandRejectedError("named_service_training_resolution_invalid") from exc
         container[leaf] = outcome.ending_value
-        credits[target] = float(outcome.residual_units)
+        credits[target] = format(outcome.residual_units, "f")
         total += hours
         outcomes.append({
             "target": target,

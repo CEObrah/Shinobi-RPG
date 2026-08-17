@@ -55,10 +55,13 @@ def route_world_front_decision(decision: AutonomousDecision, *, at: Any, rules: 
 
     A latent front may only be seeded by its configured source actor, and only
     when the faction was already going to take a material action allowed by its
-    ordinary autonomy profile. Once a front has committed evidence, source and
-    opposition actors may continue to route ordinary material actions through
-    its strategic cycle. A routine summary may be upgraded only to an action
-    already present in the same faction profile.
+    ordinary autonomy profile. Developing and operational fronts use their
+    strategic action cycle. A crisis front may opt into a stronger configured
+    crisis cycle, but that cycle is still intersected with the source faction's
+    ordinary lawful action profile and the global material-action allowlist.
+    Canon pressure therefore raises urgency without inventing a new capability
+    or predetermining an outcome. A routine summary may be upgraded only to an
+    action already present in the same faction profile.
     """
     payload = decision.payload if isinstance(decision.payload, Mapping) else {}
     faction_id = payload.get("faction_id")
@@ -87,6 +90,10 @@ def route_world_front_decision(decision: AutonomousDecision, *, at: Any, rules: 
             if role != "source":
                 continue
             allowed = _front_actions(config, key="bootstrap_action_cycle", profile=profile, rules=rules)
+        elif phase == "crisis":
+            allowed = _front_actions(config, key="crisis_action_cycle", profile=profile, rules=rules)
+            if not allowed:
+                allowed = _front_actions(config, key="strategic_action_cycle", profile=profile, rules=rules)
         else:
             allowed = _front_actions(config, key="strategic_action_cycle", profile=profile, rules=rules)
         if not allowed:

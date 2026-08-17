@@ -5102,6 +5102,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_cancelled.2c07534aef1241fb4da7",
+      "kind": "commitment_cancelled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "team.blackhound"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.blackhound.permanent_training.0061-07-30"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_transition",
+        "transaction_ref": "tx.gameplay.2c07534aef1241fb4da774f668bcbafb326fb8df0db67e3f3c2d157960424d11",
+        "receipt_refs": [
+          "receipt.gameplay.2c07534aef1241fb4da774f668bcbafb326fb8df0db67e3f3c2d157960424d11"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

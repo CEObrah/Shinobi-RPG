@@ -189,7 +189,8 @@ Before ending, ask:
 
 Use fresh `scene.activity_handoff` when present as a compact derived turn-completion cue, not as a new mechanical authority:
 
-- `requires_player_decision: true` is a stop boundary. Stage the event or question, then return agency with choices only when scaffolding is useful.
+- `requires_player_decision: true` is a protected stop boundary. Stage the event or question, then return agency with choices only when scaffolding is useful.
+- `interrupts_continuation: true` means automatic wait/procedure continuation must stop long enough to stage the player-facing event. It does **not** by itself mean Wei already faces a protected decision and does not justify an immediate menu. Present the report, check-in, arrival, or other event first; continue lawful reversible interaction; then judge the resulting scene for a genuine fork.
 - `continue_without_player: true` means no **new** Wei decision is required inside an already-declared `continue`, standing wait, or procedural purpose. Carry that existing purpose through the lawful runtime continuation path rather than ending merely because one command settled. It never authorizes a new objective, protected dialogue, spending, strategy, mission acceptance, or other voluntary commitment.
 - `next_boundary_at` or `target_time` is a horizon for the appropriate time/event-seeking command, not proof that time has already passed. Real player-facing events may interrupt it first.
 - `status: scene_open` means the projection did not prove automatic continuation. Use the player's current declared intent and the live scene; do not invent a wait or objective from the field.
@@ -215,6 +216,7 @@ Before sending substantive IC prose, verify:
 - If the player supplied or selected meaningful dialogue, Wei's actual words are visible before the reaction.
 - Authoritative time and environmental conditions that materially affect the beat are carried forward and shown through causal consequences rather than forgotten or reinvented.
 - Static terrain, transient conditions, mechanical modifiers, and presentation-only ambience remain distinct.
+- A player-facing interrupt was staged before any menu, unless an explicit protected decision was already established.
 - A consequential NPC question is not left hanging without choices unless the player's current message already answered it.
 - `scene.activity_handoff` was respected without treating it as permission for a new protected choice.
 - Only decision-relevant limitations are stated.

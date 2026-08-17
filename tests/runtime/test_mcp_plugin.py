@@ -44,6 +44,13 @@ class FakeOperations:
             "context_policy": {},
         }
 
+    def command_contract(self, command_type):
+        return {
+            "command_type": command_type,
+            "availability": "available",
+            "input_guidance": {},
+        }
+
     def person_sheet(self, person_id):
         return {"person_id": person_id, "sheet": {"core": {"person_id": person_id}}}
 
@@ -201,6 +208,7 @@ def test_mcp_tools_are_bounded_annotated_and_preview_exact_execution():
         tools = await server.list_tools()
         assert [tool.name for tool in tools] == [
             "get_play_context",
+            "get_command_contract",
             "get_person_sheet",
             "inspect_game_object",
             "preview_command",
@@ -227,6 +235,11 @@ def test_mcp_tools_are_bounded_annotated_and_preview_exact_execution():
 
         context = await server.call_tool("get_play_context", {})
         assert context.structured_content["result"]["campaign"]["revision"] == 18
+        contract = await server.call_tool(
+            "get_command_contract",
+            {"command_type": "advance_time"},
+        )
+        assert contract.structured_content["result"]["command_type"] == "advance_time"
         preview = await server.call_tool(
             "preview_command",
             {
@@ -348,7 +361,7 @@ def test_mcp_mount_exposes_protected_resource_and_accepts_initialize():
         )
         assert listed.status_code == 200
         wire_tools = listed.json()["result"]["tools"]
-        assert len(wire_tools) == 6
+        assert len(wire_tools) == 7
         for tool in wire_tools:
             expected_scopes = (
                 ["shinobi:read", "shinobi:write"]

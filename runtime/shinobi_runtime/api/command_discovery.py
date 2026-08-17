@@ -34,6 +34,7 @@ _DOMAIN_PREFIXES: tuple[tuple[str, tuple[str, ...]], ...] = (
 
 _EXAM_RESULTS_PREFIX = "exam-results:"
 _MAX_CONTEXT_PERSON_SUGGESTIONS = 32
+_MAX_CONTEXT_TEAM_SUGGESTIONS = 32
 _CORE_SCENE_FIELDS = (
     "scene_id",
     "world_time",
@@ -65,11 +66,23 @@ def command_domain(command_type: str) -> str:
 
 def compact_commands(command_surface: Mapping[str, Any]) -> dict[str, Any]:
     supported = [str(x) for x in command_surface.get("supported_command_types", []) if isinstance(x, str)]
+    supported_set = set(supported)
     grouped: dict[str, list[str]] = {}
-    for command_type in sorted(set(supported)):
+    for command_type in sorted(supported_set):
         grouped.setdefault(command_domain(command_type), []).append(command_type)
 
     overrides: dict[str, str] = {}
+    existing_overrides = command_surface.get("availability_overrides")
+    if isinstance(existing_overrides, Mapping):
+        overrides.update(
+            {
+                str(command_type): availability
+                for command_type, availability in existing_overrides.items()
+                if isinstance(command_type, str)
+                and command_type in supported_set
+                and isinstance(availability, str)
+            }
+        )
     records = command_surface.get("command_types")
     if isinstance(records, Mapping):
         for command_type in supported:
@@ -84,9 +97,9 @@ def compact_commands(command_surface: Mapping[str, Any]) -> dict[str, Any]:
                 overrides[command_type] = availability
 
     result: dict[str, Any] = {
-        "supported_command_types": sorted(set(supported)),
+        "supported_command_types": sorted(supported_set),
         "intent_domains": grouped,
-        "availability_overrides": overrides,
+        "availability_overrides": dict(sorted(overrides.items())),
         "contract_lookup": "Call get_command_contract for the one selected command before preview.",
     }
     for key in (
@@ -191,7 +204,7 @@ def _compact_person_reads(result: dict[str, Any], compacted_fields: list[str]) -
     result["person_reads"] = updated
 
 
-def _compact_object_reads(result: dict[str, Any]) -> None:
+def _compact_object_reads(result: dict[str, Any], compacted_fields: list[str]) -> None:
     object_reads = result.get("object_reads")
     if not isinstance(object_reads, Mapping):
         return
@@ -202,6 +215,12 @@ def _compact_object_reads(result: dict[str, Any]) -> None:
     use = updated.get("use")
     if isinstance(use, str) and "promotion exam results page" not in use:
         updated["use"] = use + ", or one promotion exam results page from an advertised exam-results ref"
+
+    team_refs = updated.get("suggested_exact_team_refs")
+    if isinstance(team_refs, list) and len(team_refs) > _MAX_CONTEXT_TEAM_SUGGESTIONS:
+        updated["suggested_exact_team_refs"] = team_refs[:_MAX_CONTEXT_TEAM_SUGGESTIONS]
+        updated["exact_team_refs_truncated"] = True
+        compacted_fields.append("object_reads.suggested_exact_team_refs")
     result["object_reads"] = updated
 
 
@@ -242,21 +261,33 @@ def compact_play_context(context: Mapping[str, Any]) -> dict[str, Any]:
     A final deterministic scene degradation is a last-resort transport safety
     valve: it preserves core/actionable handoff fields and explicitly reports
     every omitted scene field instead of failing the entire live turn.
+
+    The operation is idempotent: production operations compact once at their
+    public boundary and transports may defensively apply it again without
+    dropping availability overrides, routing hints, or prior compaction markers.
     """
 
     result = copy.deepcopy(dict(context))
-    compacted_fields: list[str] = []
+    policy = result.get("context_policy")
+    compacted_fields = [
+        field
+        for field in (
+            policy.get("compacted_fields", []) if isinstance(policy, Mapping) else []
+        )
+        if isinstance(field, str)
+    ]
     commands = result.get("commands")
     if isinstance(commands, Mapping):
         result["commands"] = compact_commands(commands)
-        compacted_fields.append("commands.command_types")
+        if "command_types" in commands:
+            compacted_fields.append("commands.command_types")
 
     scene = result.get("scene")
     if isinstance(scene, dict):
         _compact_promotion_exam_handoffs(scene, compacted_fields)
     _compact_narration(result, compacted_fields)
     _compact_person_reads(result, compacted_fields)
-    _compact_object_reads(result)
+    _compact_object_reads(result, compacted_fields)
 
     policy = result.get("context_policy")
     updated_policy = dict(policy) if isinstance(policy, Mapping) else {}

@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from typing import Any
 
 from shinobi_runtime.api.campaign_manufacturing_discovery import RouteAwareCampaignOperations as _Base
+from shinobi_runtime.api.command_discovery import compact_play_context
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.environment import environment_snapshot
 
@@ -23,6 +24,18 @@ class RouteAwareCampaignOperations(_Base):
                 "rule": "Travel duration already consumes authoritative derived route weather; never add a second weather delay."
             }
         return result
+
+    def play_context(self) -> Mapping[str, Any]:
+        """Expose one compact wire-safe handoff from every production transport.
+
+        The rich projection remains an internal assembly detail. Keeping the
+        compaction boundary here means REST, MCP reads, and MCP preview helpers
+        cannot accidentally consume different-sized versions of current play
+        context. ``compact_play_context`` is intentionally idempotent because
+        MCP may defensively apply the same wire compaction again.
+        """
+
+        return compact_play_context(super().play_context())
 
     def _project_play_context(
         self,

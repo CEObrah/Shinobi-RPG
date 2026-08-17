@@ -44,6 +44,7 @@ ROUTES = (
         "tests/runtime/test_team_lifecycle_intelligence.py",
         "tests/runtime/test_team_playability_interface.py",
         "tests/runtime/test_team_training_readiness_projection.py",
+        "tests/runtime/test_player_led_team_vitality_topics.py",
     }),
     (("promotion_exam", "promotion-exams.json", "career_history_retention", "shinobi-career-pipeline", "shinobi_career_service_authority"), {
         "tests/runtime/test_promotion_exam_scheduler.py",
@@ -86,6 +87,7 @@ ROUTES = (
         "tests/runtime/test_api_service.py",
         "tests/runtime/test_route_discovery.py",
         "tests/runtime/test_play_context_wire_contract.py",
+        "tests/runtime/test_player_activity_handoff_projection.py",
     }),
     (("development", "training"), {
         "tests/runtime/test_development_breakthrough_policy.py",
@@ -109,6 +111,7 @@ ROUTES = (
         "tests/runtime/test_command_discovery.py",
         "tests/runtime/test_mcp_plugin.py",
         "tests/runtime/test_play_context_wire_contract.py",
+        "tests/runtime/test_player_activity_handoff_projection.py",
         "tests/runtime/test_route_discovery.py",
         "tests/runtime/test_preview_error_diagnostics.py",
     }),

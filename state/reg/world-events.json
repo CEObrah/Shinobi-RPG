@@ -2236,6 +2236,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_promise.7e3021276dd150f77214",
+      "kind": "commitment_promise",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-30T07:00:00",
+        "started_at": "SE-0061-07-30T07:00:00",
+        "ended_at": "SE-0061-07-30T07:00:00"
+      },
+      "host_refs": [
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "pc_wei_tang",
+        "team.blackhound"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.blackhound.permanent_training.0061-07-30"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "team.blackhound"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-30T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_resolution",
+        "transaction_ref": "tx.gameplay.7e3021276dd150f772149673c850c6c49473ea09b8e4a6dccc478a560a0595a1",
+        "receipt_refs": [
+          "receipt.gameplay.7e3021276dd150f772149673c850c6c49473ea09b8e4a6dccc478a560a0595a1"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

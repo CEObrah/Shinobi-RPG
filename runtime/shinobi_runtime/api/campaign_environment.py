@@ -7,6 +7,7 @@ from typing import Any
 from shinobi_runtime.api.campaign_manufacturing_discovery import RouteAwareCampaignOperations as _Base
 from shinobi_runtime.api.command_discovery import compact_play_context
 from shinobi_runtime.api.operations import OperationError
+from shinobi_runtime.api.player_activity_handoff_projection import derive_activity_handoff
 from shinobi_runtime.environment import environment_snapshot
 from shinobi_runtime.tx.errors import DirtyRepositoryError, LockUnavailableError
 
@@ -79,14 +80,22 @@ class RouteAwareCampaignOperations(_Base):
     def play_context(self) -> Mapping[str, Any]:
         """Expose one compact wire-safe handoff from every production transport.
 
-        The rich projection remains an internal assembly detail. Keeping the
-        compaction boundary here means REST, MCP reads, and MCP preview helpers
-        cannot accidentally consume different-sized versions of current play
-        context. ``compact_play_context`` is intentionally idempotent because
-        MCP may defensively apply the same wire compaction again.
+        The rich projection remains an internal assembly detail. Before wire
+        compaction, derive one compact activity/turn-completion cue strictly from
+        the already-authoritative player-visible scene and domain handoffs. The
+        activity cue is projection only; it never becomes a second save or
+        authorizes a protected player decision.
         """
 
-        return compact_play_context(super().play_context())
+        context = dict(super().play_context())
+        scene = context.get("scene")
+        if isinstance(scene, Mapping):
+            updated_scene = dict(scene)
+            updated_scene["activity_handoff"] = derive_activity_handoff(updated_scene)
+            context["scene"] = updated_scene
+        # compact_play_context performs the one defensive deep copy for the wire
+        # result; avoid copying the entire rich long-campaign projection twice.
+        return compact_play_context(context)
 
     def _project_play_context(
         self,

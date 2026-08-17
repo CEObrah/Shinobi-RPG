@@ -24,14 +24,25 @@ def test_api_context_changes_route_to_budget_compaction_regressions() -> None:
     assert "tests/runtime/test_api_models.py" in selected
     assert "tests/runtime/test_command_discovery.py" in selected
     assert "tests/runtime/test_play_context_wire_contract.py" in selected
+    assert "tests/runtime/test_player_activity_handoff_projection.py" in selected
     assert "tests/runtime/test_mcp_plugin.py" in selected
 
 
-def test_campaign_environment_changes_route_to_wire_contract_regression() -> None:
+def test_campaign_environment_changes_route_to_wire_and_activity_handoff_regressions() -> None:
     selected = _selected("runtime/shinobi_runtime/api/campaign_environment.py")
 
     assert "tests/runtime/test_play_context_wire_contract.py" in selected
+    assert "tests/runtime/test_player_activity_handoff_projection.py" in selected
     assert "tests/runtime/test_environment.py" in selected
+
+
+def test_player_led_team_vitality_changes_route_to_leadership_agenda_regression() -> None:
+    selected = _selected(
+        "runtime/shinobi_runtime/commands/living_world_team_vitality.py"
+    )
+
+    assert "tests/runtime/test_player_led_team_vitality_topics.py" in selected
+    assert "tests/runtime/test_team_intelligence.py" in selected
 
 
 def test_promotion_exam_result_read_changes_route_to_paged_result_regression() -> None:

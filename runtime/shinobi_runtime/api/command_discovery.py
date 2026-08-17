@@ -51,6 +51,7 @@ _CORE_SCENE_FIELDS = (
     "narrative",
     "scene_cast",
     "scene_vitality",
+    "activity_handoff",
     "time_continuation",
     "promotion_exam_handoffs",
     "team_checkin_handoffs",

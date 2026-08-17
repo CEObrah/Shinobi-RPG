@@ -101,6 +101,13 @@
         "runtime/shinobi_runtime/api/command_discovery.py"
       ],
       "note": "Fresh play context carries a compact intent/command index; retrieve one exact descriptor through get_command_contract only after selecting intent."
+    },
+    "activity_handoff": {
+      "r": [
+        "runtime/shinobi_runtime/api/player_activity_handoff_projection.py",
+        "runtime/shinobi_runtime/api/campaign_environment.py"
+      ],
+      "note": "Derived player-safe turn-completion cue over current scene/domain projections. It is never writable campaign truth and never authorizes a protected Wei decision."
     }
   },
   "route_index": {

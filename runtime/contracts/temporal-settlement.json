@@ -4,10 +4,11 @@
   "closure_target": "exact reached world time or earlier hard player interrupt",
   "player_boundary_semantics": {
     "internal_boundary": "Scheduler, training, recovery, mission, movement, economy, institution, faction, team, formation, population, or other causal work that changes persistent truth but creates no new player-facing situation. Event-seeking callers continue automatically; this boundary never sets decision_required and never closes time passage by itself.",
-    "soft_player_facing_event": "A committed report, mission offer, teammate contact, public consequence, institutional transition, observable pressure, or other player-visible development that merits narration but does not itself require a protected Wei choice. Event-seeking callers stop so ChatGPT can render the scene; decision_required remains null and time passage remains allowed unless a separate hard decision exists.",
+    "soft_player_facing_event": "A committed report, mission offer, teammate contact, public consequence, institutional transition, observable pressure, or other player-visible development that merits narration but does not itself require a protected Wei choice. Event-seeking callers stop so ChatGPT can render the scene; decision_required remains null and time passage remains allowed unless a separate hard decision exists. The event-seeking result should expose only a bounded event cue (kind plus already-player-safe stable refs) so the exact relevant owner can be rehydrated without world scanning.",
     "hard_player_decision": "A protected player choice that cannot be lawfully supplied by standing orders, delegation, or deterministic mechanics. Time stops at the exact boundary, time_passage_allowed becomes false, and decision_required identifies the unresolved choice."
   },
   "event_seeking_rule": "Event-seeking downtime is a caller policy over the same temporal settlement path: process one bounded causal boundary, continue automatically across internal-only results, stop softly on the first committed player-facing event, and stop hard on the first protected player decision. It never invents an event to satisfy the request.",
+  "procedure_time_rule": "A substantive already-established conversation, briefing, examination stage, review, consultation, negotiation, or council may settle durable elapsed time through procedure_time_resolution. The caller supplies the exact fresh scene_id and one closed authored procedure kind, never arbitrary seconds. Static procedure-time policy derives the horizon; event-seeking temporal settlement remains the sole clock authority and may stop earlier at a soft player-facing event or hard protected decision. Procedure-time settlement never creates or decides the procedure's domain outcome.",
   "selection_order": "globally earliest unresolved process boundary, owner-local deadline, or causal trigger first; deterministic tie order by stable process/owner id unless a registered dependency overrides it",
   "scheduled_loop": [
     "collect all active processes with next_due <= target plus every covered owner whose saved local next_due/deadline <= target plus every causal wake-up created inside the interval",
@@ -88,7 +89,9 @@
     "newly_activated_processes_catch_up_to_target": true,
     "internal_boundary_never_sets_decision_required": true,
     "soft_player_event_does_not_close_time_passage": true,
-    "decision_required_means_hard_player_decision_only": true
+    "decision_required_means_hard_player_decision_only": true,
+    "procedure_duration_is_authored_not_caller_supplied": true,
+    "procedure_time_uses_event_seeking_scheduler": true
   },
   "efficiency_policy": {
     "baseline": "Distant inactive owners may use coarse monthly/weekly aggregate fallbacks. Saved owner-local deadlines, active plan milestones, mission/deployment clocks, information delivery, combat, assignment, movement, injury, resource thresholds, or player contact wake the affected owner immediately. Compression may reduce review work only when the equivalent semantic result is proven; it may never replace an owner review with aggregate timestamp advancement.",

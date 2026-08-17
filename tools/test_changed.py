@@ -95,8 +95,9 @@ ROUTES = (
         "tests/runtime/test_training_progression_ceiling.py",
         "tests/runtime/test_training_model_discovery.py",
     }),
-    (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard", "semantic_event"), {
+    (("time", "scheduler", "world_front", "advance_until_event", "institution_review_runtime_guard", "semantic_event", "procedure-time"), {
         "tests/runtime/test_advance_until_event.py",
+        "tests/runtime/test_procedure_time_resolution.py",
         "tests/runtime/test_world_front_progression.py",
         "tests/runtime/test_long_horizon_stability.py",
         "tests/runtime/test_production_monthly_frontier.py",

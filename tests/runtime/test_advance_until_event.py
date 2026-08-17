@@ -3,6 +3,7 @@ import json
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.downtime_until_event import (
     _meaningful,
+    _player_facing_event_cue,
     _staged_player_facing_event,
     _stop_kind,
     install_downtime_until_event,
@@ -50,15 +51,51 @@ def test_hard_interrupt_is_always_a_stop():
     assert _meaningful(result) is True
 
 
-def test_delivered_report_is_a_soft_player_facing_stop():
+def test_delivered_report_is_a_soft_player_facing_stop_with_exact_cue():
     result = {
         "interrupted": False,
         "autonomous_actions": [
-            {"kind": "information_report", "player_report_deliveries": [{"delivery_id": "delivery.test"}]}
+            {
+                "kind": "information_report",
+                "player_report_deliveries": [
+                    {
+                        "delivery_id": "delivery.test",
+                        "report_ref": "report.test",
+                    }
+                ],
+            }
         ],
     }
     assert _stop_kind(result) == "player_facing_event"
     assert _meaningful(result) is True
+    assert _player_facing_event_cue(result) == {
+        "kind": "player_report_delivery",
+        "source_refs": ["delivery.test", "report.test"],
+    }
+
+
+def test_team_checkin_cue_preserves_contact_and_team_without_bulk_payload():
+    result = {
+        "interrupted": False,
+        "team_reviews": [
+            {
+                "kind": "player_led_team_checkin",
+                "event_id": "event.player_led_team_checkin_ready.test",
+                "team_ref": "team.konoha.fujin",
+                "contact_actor_ref": "char.mei_arakawa",
+                "topic_cues": ["one", "two", "three"],
+                "large_internal_detail": {"not": "copied"},
+            }
+        ],
+    }
+    assert _player_facing_event_cue(result) == {
+        "kind": "player_led_team_checkin",
+        "source_refs": [
+            "event.player_led_team_checkin_ready.test",
+            "team.konoha.fujin",
+        ],
+        "contact_actor_ref": "char.mei_arakawa",
+    }
 
 
 def test_fresh_scene_report_is_an_extensible_soft_stop_signal():

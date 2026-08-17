@@ -1,0 +1,51 @@
+{
+  "schema": "file-template",
+  "template_id": "template.environment-action-rules",
+  "target_schema": "environment-action-rules",
+  "source_schema": "game/schemas/environment-action-rules.schema.json",
+  "scope": "static_data",
+  "current_directories": ["game/data/mechanics"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "version", "policy", "interval_sample_count", "actions", "invariants"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "version", "policy", "interval_sample_count", "actions", "invariants"]
+    },
+    "/actions": {"mode": "open_map"},
+    "/actions/*": {
+      "mode": "closed",
+      "allowed_keys": ["minimum_factor_milli", "maximum_factor_milli", "channels"]
+    },
+    "/actions/*/channels": {"mode": "open_map"},
+    "/actions/*/channels/*": {
+      "mode": "closed",
+      "allowed_keys": ["weight", "polarity"]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/version": ["integer"],
+    "/policy": ["string"],
+    "/interval_sample_count": ["integer"],
+    "/actions": ["object"],
+    "/actions/*": ["object"],
+    "/actions/*/minimum_factor_milli": ["integer"],
+    "/actions/*/maximum_factor_milli": ["integer"],
+    "/actions/*/channels": ["object"],
+    "/actions/*/channels/*": ["object"],
+    "/actions/*/channels/*/weight": ["integer"],
+    "/actions/*/channels/*/polarity": ["string"],
+    "/invariants": ["array"],
+    "/invariants/*": ["string"]
+  },
+  "array_contracts": {
+    "/invariants": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "Static causal mapping only; never persist current weather here.",
+    "Unlisted actions are neutral rather than receiving inferred modifiers.",
+    "Environment may modify work efficiency only where an explicit action/channel mapping exists."
+  ]
+}

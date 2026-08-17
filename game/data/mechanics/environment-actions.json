@@ -1,0 +1,33 @@
+{
+  "schema": "environment-action-rules",
+  "version": 1,
+  "policy": "Only explicitly listed action stages consume derived environment channels. The environment remains read-only and deterministic. Unlisted actions are neutral rather than receiving plausible-but-unauthored weather modifiers.",
+  "interval_sample_count": 5,
+  "actions": {
+    "investigation.locate_scene": {
+      "minimum_factor_milli": 700,
+      "maximum_factor_milli": 1200,
+      "channels": {
+        "visibility_milli": {"weight": 300, "polarity": "direct"},
+        "track_evidence_milli": {"weight": 500, "polarity": "direct"},
+        "scent_tracking_milli": {"weight": 200, "polarity": "direct"}
+      }
+    },
+    "investigation.examine_scene.perimeter": {
+      "minimum_factor_milli": 700,
+      "maximum_factor_milli": 1200,
+      "channels": {
+        "visibility_milli": {"weight": 250, "polarity": "direct"},
+        "track_evidence_milli": {"weight": 500, "polarity": "direct"},
+        "scent_tracking_milli": {"weight": 250, "polarity": "direct"}
+      }
+    }
+  },
+  "invariants": [
+    "A channel affects an action only when this file explicitly maps it.",
+    "A missing action mapping is mechanically neutral at factor 1000.",
+    "The interval profile samples deterministic derived environment across the elapsed action span; no mutable weather state is written.",
+    "Environment changes work efficiency only. It never creates a clue, witness statement, mission result, hidden fact, injury, or protected decision.",
+    "Travel and combat keep their existing environment consumers and must not receive a second copy of these modifiers."
+  ]
+}

@@ -68,6 +68,13 @@ def _qualification_cycle(pipeline: Mapping[str, Any]) -> tuple[str, list[Mapping
     history = pipeline.get("history")
     if not isinstance(history, list):
         raise CommandRejectedError("named_training_exam_repair_pipeline_invalid")
+    if any(
+        isinstance(row, Mapping)
+        and row.get("kind") == "promotion_exam_recalibration"
+        and row.get("recalibration_ref") == _REPAIR_ID
+        for row in history
+    ):
+        raise CommandRejectedError("named_training_exam_repair_source_not_exact")
     rows = [
         row for row in history
         if isinstance(row, Mapping)
@@ -85,7 +92,7 @@ def _qualification_cycle(pipeline: Mapping[str, Any]) -> tuple[str, list[Mapping
         or sum(row.get("outcome") == "pass" for row in rows) != _EXPECTED_OLD_PASSES
         or sum(row.get("outcome") == "fail" for row in rows) != _EXPECTED_OLD_FAILS
         or any(row.get("threshold") != _EXPECTED_THRESHOLD for row in rows)
-        or any(row.get("repair_id") == _REPAIR_ID for row in rows)
+        or any(row.get("recalibration_ref") == _REPAIR_ID for row in rows)
     ):
         raise CommandRejectedError("named_training_exam_repair_source_not_exact")
     return cycle_id, rows
@@ -246,10 +253,7 @@ def _repair(
             "scoring_model": details["scoring_model"],
             "scoring_version": details["scoring_version"],
             "lane_scores": details["lane_scores"],
-            "repair_id": _REPAIR_ID,
-            "repaired_at": str(current_time),
-            "superseded_score": row.get("score"),
-            "superseded_outcome": row.get("outcome"),
+            "recalibration_ref": _REPAIR_ID,
         })
         history[index] = new_row
         replaced += 1
@@ -260,19 +264,17 @@ def _repair(
     new_fails = sorted(ref for ref, row in new_results.items() if row["outcome"] == "fail")
     total_hours_text = format(total_hours, "f")
     history.append({
-        "kind": "promotion_exam_evaluation_repair",
+        "kind": "promotion_exam_recalibration",
         "at": str(current_time),
-        "effective_at": str(_EXAM_AT),
         "cycle_id": cycle_id,
+        "profile_ref": str(profile_ref),
         "phase": "qualification",
-        "repair_id": _REPAIR_ID,
-        "reason": "missed named-shinobi service development before qualification",
-        "old_pass_count": _EXPECTED_OLD_PASSES,
-        "old_fail_count": _EXPECTED_OLD_FAILS,
-        "new_pass_count": len(new_passes),
-        "new_fail_count": len(new_fails),
-        "historical_people_caught_up": changed_people,
-        "historical_active_hours": total_hours_text,
+        "authority_ref": "source_repair",
+        "candidate_refs": sorted(registered),
+        "action": "Recomputed already-settled qualification evidence from the repaired named-shinobi historical development view at the original qualification boundary; previous qualification results are superseded by this deterministic campaign migration.",
+        "evaluation_mode": "deterministic_campaign_migration",
+        "recalibration_ref": _REPAIR_ID,
+        "canon_status": "campaign_institutional_not_future_canon",
     })
 
     writes[DEVELOPMENT_BANK_PATH] = _json_bytes(banks)

@@ -1,0 +1,52 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.f0ad39fdddee01659bd1",
+  "domain": "interrogation_intelligence",
+  "operation_kind": "custody_interrogation",
+  "owner_ref": "faction.yamanaka_intelligence",
+  "authority_ref": "canon_inoichi",
+  "opened_at": "SE-0061-07-30T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-30T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "information",
+  "subject_ref": "claim.operation.5112be986995c146d706",
+  "client_ref": null,
+  "place_refs": [
+    "place.konoha.intelligence.division"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_coded_documents",
+    "item_evidence_kit"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_evidence_generated.044f5376adc5dcfa8cf7db8d"
+  ],
+  "claim_refs": [
+    "claim.operation.5112be986995c146d706"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.066831cb3ae58e501995c2f4"
+  ],
+  "report_recipient_refs": [
+    "canon_inoichi",
+    "canon_hiruzen"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Transform lawfully held evidence or custody access into a sourced claim, preserving uncertainty and provenance.",
+  "failure_condition": "The custody_interrogation objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": [
+    "claim.operation.5112be986995c146d706",
+    "delivery.autonomy.066831cb3ae58e501995c2f4"
+  ]
+}

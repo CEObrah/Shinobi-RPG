@@ -6,9 +6,9 @@
   "owner_ref": "faction.bounty_broker_network",
   "authority_ref": "support.bounty.goro_kaneda",
   "opened_at": "SE-0061-07-09T07:00:00",
-  "next_due_at": "SE-0061-07-30T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-30T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "person",
   "subject_ref": "canon_zabuza",
@@ -27,16 +27,28 @@
   "blocked_reason": null,
   "mission_refs": [],
   "project_refs": [],
-  "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "case_refs": [
+    "case.autonomy.e70ad1a81ae3b3e3059d"
+  ],
+  "evidence_refs": [
+    "event.institutional_operation_completed.bf8e689002a332a56f8371f0",
+    "event.institutional_operation_evidence_generated.b661b354b26f94aadfce7225"
+  ],
+  "claim_refs": [
+    "claim.operation.9bca28820816ee6a719a"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "support.bounty.goro_kaneda"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Verify target identity and a lawful or contractual bounty basis before circulation.",
   "failure_condition": "Identity, authority, or payment source cannot be verified.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "case.autonomy.e70ad1a81ae3b3e3059d",
+    "claim.operation.9bca28820816ee6a719a",
+    "event.institutional_operation_completed.bf8e689002a332a56f8371f0",
+    "event.institutional_operation_evidence_generated.b661b354b26f94aadfce7225"
+  ]
 }

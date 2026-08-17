@@ -1,0 +1,55 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.f4ac06cf9c568aa8a9",
+  "issuer_ref": "faction.zabuza_mercenary_cell",
+  "authority_ref": "canon_zabuza",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.zabuza_mercenary_cell",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-30T07:00:00",
+  "authorized_at": "SE-0061-07-30T07:00:00",
+  "starts_at": "SE-0061-07-30T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.23bacc2c01a2fdc2d471",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.f4ac06cf9c568aa8a9",
+    "objective_kind": "negotiate",
+    "subject_kind": "faction",
+    "subject_ref": "faction.fire_merchant_network",
+    "subject_label": "faction.fire_merchant_network",
+    "report_place_ref": "place.waves.gato_shipping",
+    "origin_place_ref": "place.waves.gato_shipping",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-30T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Acquire or reject a concrete paid contract with an identified client, objective, payment basis, and risk."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_haku",
+    "canon_zabuza"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.f4ac06cf9c568aa8a9",
+      "kind": "negotiate",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.8b46695f61c85847d237",
-  "closed_at": null,
+  "closed_at": "SE-0061-07-30T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.a6aa33cdee52a64fae",
     "objective_kind": "investigate",
@@ -33,7 +33,7 @@
     "depart_by": null,
     "completion_condition": "Acquire a bounded sourced lead useful to a hunter without inventing the target current location."
   },
-  "state": "active",
+  "state": "succeeded",
   "participant_refs": [
     "support.bounty.goro_kaneda"
   ],
@@ -43,12 +43,18 @@
       "kind": "investigate",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.7a7272f4aa2315de26837ee9"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.a6aa33cdee52a64fae",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.7b41c760200d4b880ae0",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

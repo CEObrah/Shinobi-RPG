@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.e7aa2c01e8556229e2",
+  "issuer_ref": "faction.kumo_military_intelligence",
+  "authority_ref": "canon_c",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.kumo",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-30T07:00:00",
+  "authorized_at": "SE-0061-07-30T07:00:00",
+  "starts_at": "SE-0061-07-30T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.57ebce98dfcd7c62c148",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.e7aa2c01e8556229e2",
+    "objective_kind": "investigate",
+    "subject_kind": "information",
+    "subject_ref": "claim.autonomy.6ac65968fec658db56",
+    "subject_label": "claim.autonomy.6ac65968fec658db56",
+    "report_place_ref": "place.kumo.secure.compound",
+    "origin_place_ref": "place.kumo.secure.compound",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-30T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Corroborate or downgrade one held intelligence claim and deliver the assessment to command."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_c",
+    "canon_darui",
+    "canon_mabui"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.e7aa2c01e8556229e2",
+      "kind": "investigate",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

@@ -12,11 +12,17 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 SAFE_ID_PATTERN = r"^[A-Za-z0-9][A-Za-z0-9._:-]*$"
 PERSON_ID_PATTERN = r"^[a-z0-9][a-z0-9._:-]*$"
 MAX_JSON_NODES = 2048
+# ``play context`` is the trusted internal assembly envelope. Campaign-specific
+# projections are composed before the public transport view is compacted, so
+# using the wire limit during assembly can make optional detail brick every
+# live turn before compaction has a chance to run.
+MAX_PLAY_CONTEXT_ASSEMBLY_JSON_NODES = 32768
 MAX_PLAY_CONTEXT_JSON_NODES = 4096
 MAX_JSON_DEPTH = 12
 MAX_JSON_STRING = 8192
 MAX_CONTAINER_ITEMS = 256
 MAX_JSON_UTF8_BYTES = 256 * 1024
+MAX_PLAY_CONTEXT_ASSEMBLY_UTF8_BYTES = 1024 * 1024
 
 
 def validate_bounded_json(
@@ -25,11 +31,15 @@ def validate_bounded_json(
     label: str = "payload",
     allow_float: bool = False,
 ) -> Any:
-    node_limit = (
-        MAX_PLAY_CONTEXT_JSON_NODES
-        if label == "play context"
-        else MAX_JSON_NODES
-    )
+    if label == "play context":
+        node_limit = MAX_PLAY_CONTEXT_ASSEMBLY_JSON_NODES
+        byte_limit = MAX_PLAY_CONTEXT_ASSEMBLY_UTF8_BYTES
+    elif label == "compact play context":
+        node_limit = MAX_PLAY_CONTEXT_JSON_NODES
+        byte_limit = MAX_JSON_UTF8_BYTES
+    else:
+        node_limit = MAX_JSON_NODES
+        byte_limit = MAX_JSON_UTF8_BYTES
     stack = [(value, 0)]
     nodes = 0
     while stack:
@@ -83,9 +93,9 @@ def validate_bounded_json(
         RecursionError,
     ) as exc:
         raise ValueError(f"{label} is not valid UTF-8 JSON") from exc
-    if len(serialized) > MAX_JSON_UTF8_BYTES:
+    if len(serialized) > byte_limit:
         raise ValueError(
-            f"{label} exceeds {MAX_JSON_UTF8_BYTES} serialized UTF-8 bytes"
+            f"{label} exceeds {byte_limit} serialized UTF-8 bytes"
         )
     return value
 
@@ -157,6 +167,7 @@ class GameObjectResponse(StrictModel):
         "family_record", "reputation_summary", "project_summary", "contract_summary",
         "commitment_summary", "asset_summary", "relationship_summary", "inventory_summary",
         "public_item_price", "public_service_price", "authorized_finance_summary",
+        "promotion_exam_results_page",
     ]
     object: Dict[str, Any]
 

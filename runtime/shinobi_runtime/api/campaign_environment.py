@@ -8,6 +8,7 @@ from shinobi_runtime.api.campaign_manufacturing_discovery import RouteAwareCampa
 from shinobi_runtime.api.command_discovery import compact_play_context
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.environment import environment_snapshot
+from shinobi_runtime.tx.errors import DirtyRepositoryError, LockUnavailableError
 
 
 class RouteAwareCampaignOperations(_Base):
@@ -24,6 +25,56 @@ class RouteAwareCampaignOperations(_Base):
                 "rule": "Travel duration already consumes authoritative derived route weather; never add a second weather delay."
             }
         return result
+
+    def command_identity(self) -> Mapping[str, Any]:
+        """Read only the authoritative metadata needed to construct a command.
+
+        MCP preview should not build a scene, cast, institution projection, or
+        command catalog merely to learn the campaign ID, revision, and player
+        actor. This keeps preview independent of long-campaign context growth
+        while preserving the same pristine-check and writer-lock guarantees as
+        other public reads.
+        """
+
+        try:
+            with self._locked():
+                self.coordinator.git.assert_pristine()
+                before = self._read_fingerprint()
+                meta = self.repository.read_json(self.coordinator.meta_path)
+                if not isinstance(meta, Mapping):
+                    raise OperationError(503, "campaign_command_identity_invalid")
+                campaign_id = meta.get("campaign_id")
+                revision = meta.get("revision")
+                world_time = meta.get("time")
+                player_id = meta.get("player_id")
+                if (
+                    not isinstance(campaign_id, str)
+                    or not campaign_id
+                    or isinstance(revision, bool)
+                    or not isinstance(revision, int)
+                    or revision < 0
+                    or not isinstance(world_time, str)
+                    or not world_time
+                    or not isinstance(player_id, str)
+                    or not player_id
+                    or player_id not in self.allowed_actor_ids
+                ):
+                    raise OperationError(503, "campaign_command_identity_invalid")
+                self._require_read_only(before, "command_identity_mutated_campaign")
+                return {
+                    "campaign_id": campaign_id,
+                    "revision": revision,
+                    "world_time": world_time,
+                    "player_id": player_id,
+                }
+        except OperationError:
+            raise
+        except LockUnavailableError as exc:
+            raise OperationError(503, "campaign_writer_busy") from exc
+        except DirtyRepositoryError as exc:
+            raise OperationError(503, "campaign_repository_dirty") from exc
+        except (FileNotFoundError, TypeError, ValueError) as exc:
+            raise OperationError(503, "campaign_command_identity_invalid") from exc
 
     def play_context(self) -> Mapping[str, Any]:
         """Expose one compact wire-safe handoff from every production transport.

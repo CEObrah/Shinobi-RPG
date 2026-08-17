@@ -1,0 +1,43 @@
+from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = importlib.util.spec_from_file_location(
+    "shinobi_test_changed",
+    ROOT / "tools" / "test_changed.py",
+)
+assert SPEC is not None and SPEC.loader is not None
+MODULE = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(MODULE)
+
+
+def _selected(path: str) -> set[str]:
+    return set(MODULE.select([path]))
+
+
+def test_api_context_changes_route_to_budget_compaction_regressions() -> None:
+    selected = _selected("runtime/shinobi_runtime/api/command_discovery.py")
+
+    assert "tests/runtime/test_api_models.py" in selected
+    assert "tests/runtime/test_command_discovery.py" in selected
+    assert "tests/runtime/test_play_context_wire_contract.py" in selected
+    assert "tests/runtime/test_mcp_plugin.py" in selected
+
+
+def test_campaign_environment_changes_route_to_wire_contract_regression() -> None:
+    selected = _selected("runtime/shinobi_runtime/api/campaign_environment.py")
+
+    assert "tests/runtime/test_play_context_wire_contract.py" in selected
+    assert "tests/runtime/test_environment.py" in selected
+
+
+def test_promotion_exam_result_read_changes_route_to_paged_result_regression() -> None:
+    selected = _selected(
+        "runtime/shinobi_runtime/api/player_promotion_exam_results_read.py"
+    )
+
+    assert "tests/runtime/test_promotion_exam_results_read.py" in selected
+    assert "tests/runtime/test_promotion_exam_public_results.py" in selected

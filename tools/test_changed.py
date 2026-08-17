@@ -59,6 +59,7 @@ ROUTES = (
         "tests/runtime/test_promotion_exam_hosted_intervillage.py",
         "tests/runtime/test_promotion_exam_hosted_canonical_results.py",
         "tests/runtime/test_promotion_exam_public_results.py",
+        "tests/runtime/test_promotion_exam_results_read.py",
         "tests/runtime/test_shinobi_career_service_authority.py",
         "tests/runtime/test_career_history_retention.py",
     }),
@@ -84,6 +85,7 @@ ROUTES = (
         "tests/runtime/test_combat.py",
         "tests/runtime/test_api_service.py",
         "tests/runtime/test_route_discovery.py",
+        "tests/runtime/test_play_context_wire_contract.py",
     }),
     (("development", "training"), {
         "tests/runtime/test_development_breakthrough_policy.py",
@@ -103,7 +105,10 @@ ROUTES = (
     }),
     (("api/", "mcp", "route_discovery"), {
         "tests/runtime/test_api_service.py",
+        "tests/runtime/test_api_models.py",
+        "tests/runtime/test_command_discovery.py",
         "tests/runtime/test_mcp_plugin.py",
+        "tests/runtime/test_play_context_wire_contract.py",
         "tests/runtime/test_route_discovery.py",
         "tests/runtime/test_preview_error_diagnostics.py",
     }),

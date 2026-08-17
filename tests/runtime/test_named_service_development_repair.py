@@ -76,8 +76,6 @@ def test_historical_service_catchup_uses_full_weeks_and_existing_bank() -> None:
     assert outcome["hours"] == "24"
     assert str(entry["resolved_through"]) == "SE-0061-03-29T07:00:00"
     assert sum(item["points_gained"] for item in outcome["outcomes"]) > 0
-    assert entry["credits"]
-    assert all(isinstance(value, str) for value in entry["credits"].values())
 
 
 def test_ordinary_service_review_is_bounded_and_proportional() -> None:

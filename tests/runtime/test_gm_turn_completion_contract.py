@@ -40,3 +40,15 @@ def test_choice_menu_is_not_a_substitute_for_unfinished_continuation() -> None:
     assert "Do not offer `keep waiting`" in choices
     assert "standing wait/declared continuation" in contract["handoff_rule"]
     assert "quiet maintenance/time chunk" in contract["standing_continuation_rule"]
+
+
+def test_scene_craft_stages_group_results_and_uses_activity_handoff() -> None:
+    craft = (SKILL_ROOT / "references/scene-craft.md").read_text(encoding="utf-8")
+
+    assert "Resolved group outcomes are scenes, not scoreboards" in craft
+    assert "Do not make Wei the conversational routing hub" in craft
+    assert "Leadership scenes should expose what subordinates can own" in craft
+    assert "scene.activity_handoff" in craft
+    assert "`continue_without_player: true`" in craft
+    assert "Numbers belong after the lived beat" in craft
+    assert "materially different in posture, commitment, timing, delegation, risk, or resource use" in craft

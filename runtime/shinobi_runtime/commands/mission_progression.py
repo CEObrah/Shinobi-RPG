@@ -59,16 +59,14 @@ def _progress_rules(repository: Any) -> Mapping[str, Any]:
     return record
 
 
-def _event_sources(repository: Any) -> list[Mapping[str, Any]]:
-    """Read semantic-history shards only for evidence-reuse protection."""
-
+def _history_sources(repository: Any) -> list[tuple[str, Mapping[str, Any]]]:
     try:
         registry = repository.read_json(WORLD_EVENT_REGISTRY_PATH)
     except (FileNotFoundError, ValueError) as exc:
         raise CommandRejectedError("world_event_registry_invalid") from exc
     if not isinstance(registry, Mapping):
         raise CommandRejectedError("world_event_registry_invalid")
-    sources: list[Mapping[str, Any]] = [registry]
+    sources: list[tuple[str, Mapping[str, Any]]] = [(WORLD_EVENT_REGISTRY_PATH, registry)]
     archive_refs = registry.get("archive_refs")
     if isinstance(archive_refs, list):
         for path in archive_refs:
@@ -80,7 +78,7 @@ def _event_sources(repository: Any) -> list[Mapping[str, Any]]:
                 raise CommandRejectedError("world_event_registry_invalid") from exc
             if not isinstance(archive, Mapping):
                 raise CommandRejectedError("world_event_registry_invalid")
-            sources.append(archive)
+            sources.append((path, archive))
     return sources
 
 
@@ -89,7 +87,7 @@ def _evidence_usage_token(mission_id: str, objective_id: str, evidence_event_id:
 
 
 def _evidence_already_used(repository: Any, token: str) -> bool:
-    for source in _event_sources(repository):
+    for _path, source in _history_sources(repository):
         events = source.get("events")
         if not isinstance(events, list):
             continue
@@ -98,6 +96,24 @@ def _evidence_already_used(repository: Any, token: str) -> bool:
             if isinstance(material, list) and token in material:
                 return True
     return False
+
+
+def _evidence_guard(repository: Any, evidence_event_id: str) -> dict[str, str]:
+    """Guard the exact hot or archived semantic-history shard containing evidence."""
+
+    matches: list[str] = []
+    for path, source in _history_sources(repository):
+        events = source.get("events")
+        if not isinstance(events, list):
+            continue
+        if any(isinstance(row, Mapping) and row.get("id") == evidence_event_id for row in events):
+            matches.append(path)
+    if len(matches) != 1:
+        raise CommandRejectedError("mission_objective_evidence_unavailable")
+    digest = repository.digest(matches[0])
+    if not isinstance(digest, str) or not digest:
+        raise CommandRejectedError("mission_objective_evidence_uncommitted")
+    return {matches[0]: digest}
 
 
 def _team_doctrine_modifier(
@@ -407,7 +423,7 @@ def _mission_objective_progress_resolution(
         if not callable(builder):
             raise CommandRejectedError("mission_progress_owner_invalid")
 
-    guarded = {WORLD_EVENT_REGISTRY_PATH: evidence_digest, **doctrine_digests}
+    guarded = {**_evidence_guard(self.repository, evidence_event_id), **doctrine_digests}
     builder = getattr(self, "_mission_progress_built_plan", None)
     if not callable(builder):
         builder = _mission_progress_built_plan.__get__(self, type(self))
@@ -529,6 +545,7 @@ def install_mission_progression() -> None:
 __all__ = [
     "install_mission_progression",
     "_evidence_already_used",
+    "_evidence_guard",
     "_mission_objective_progress_resolution",
     "_mission_progress_built_plan",
     "_normalize_routine_mission_handoff",

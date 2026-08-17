@@ -30,6 +30,32 @@
           "dedupe_key": "faction.periodic_review:faction.konoha_anbu"
         }
       ]
+    },
+    "host.commitment.team_fujin.exam_priority.0061-07-22": {
+      "host": {
+        "state": {
+          "host_id": "host.commitment.team_fujin.exam_priority.0061-07-22",
+          "kind": "commitment",
+          "resolved_through": "SE-0061-07-22T07:29:58",
+          "safe_through": "SE-0061-08-05T07:29:57",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "commitment.team_fujin.exam_priority.0061-07-22",
+          "next_due": "SE-0061-08-05T07:29:58"
+        },
+        "authority_kind": "commitment",
+        "owner_ref": "state/reg/commitments.json",
+        "metadata": {
+          "commitment_id": "commitment.team_fujin.exam_priority.0061-07-22"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.e6859a07bd9940f818de5046",
+          "due_at": "SE-0061-08-05T07:29:58",
+          "path": "state/time/causal-scheduler/events/0061/0061-08-05.json",
+          "dedupe_key": "commitment.due:commitment.team_fujin.exam_priority.0061-07-22"
+        }
+      ]
     }
   }
 }

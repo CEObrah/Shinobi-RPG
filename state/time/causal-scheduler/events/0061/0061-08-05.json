@@ -1,0 +1,23 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-08-05",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.e6859a07bd9940f818de5046",
+      "kind": "commitment.due",
+      "due_at": "SE-0061-08-05T07:29:58",
+      "priority": 30,
+      "source_host": "host.commitment.team_fujin.exam_priority.0061-07-22",
+      "target_host": "host.commitment.team_fujin.exam_priority.0061-07-22",
+      "payload": {
+        "commitment_id": "commitment.team_fujin.exam_priority.0061-07-22"
+      },
+      "dedupe_key": "commitment.due:commitment.team_fujin.exam_priority.0061-07-22",
+      "visibility": "player_known",
+      "requires_player": true,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

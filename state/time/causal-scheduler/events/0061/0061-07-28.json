@@ -2,29 +2,5 @@
   "schema": "causal-scheduler-event-day",
   "day": "SE-0061-07-28",
   "authority": true,
-  "events": [
-    {
-      "event_id": "evt.causal.677dcd1f9f2ea643c3e278e6",
-      "kind": "canon_pressure.periodic_review",
-      "due_at": "SE-0061-07-28T07:00:00",
-      "priority": 80,
-      "source_host": "host.canon_pressure.pressure_wave_gato_bridge",
-      "target_host": "host.canon_pressure.pressure_wave_gato_bridge",
-      "payload": {
-        "identity": "pressure_wave_gato_bridge",
-        "owner_ref": "state/canon/pressures.json",
-        "pressure_id": "pressure_wave_gato_bridge",
-        "recurrence": {
-          "accrual_mode": "boundary_only",
-          "interval_seconds": 604800,
-          "kind": "fixed_interval"
-        }
-      },
-      "dedupe_key": "canon_pressure.periodic_review:pressure_wave_gato_bridge",
-      "visibility": "hidden",
-      "requires_player": false,
-      "causation_id": null,
-      "correlation_id": null
-    }
-  ]
+  "events": []
 }

@@ -28,8 +28,11 @@ from shinobi_runtime.api.mcp import (
 class FakeOperations:
     def __init__(self) -> None:
         self.executed = []
+        self.play_context_calls = 0
+        self.command_identity_calls = 0
 
     def play_context(self):
+        self.play_context_calls += 1
         return {
             "campaign": {
                 "campaign_id": "shinobi-test",
@@ -42,6 +45,15 @@ class FakeOperations:
             "player": {},
             "commands": {},
             "context_policy": {},
+        }
+
+    def command_identity(self):
+        self.command_identity_calls += 1
+        return {
+            "campaign_id": "shinobi-test",
+            "revision": 18,
+            "world_time": "SE-0061-02-06T21:15:00",
+            "player_id": "pc_wei_tang",
         }
 
     def command_contract(self, command_type):
@@ -235,6 +247,7 @@ def test_mcp_tools_are_bounded_annotated_and_preview_exact_execution():
 
         context = await server.call_tool("get_play_context", {})
         assert context.structured_content["result"]["campaign"]["revision"] == 18
+        assert operations.play_context_calls == 1
         contract = await server.call_tool(
             "get_command_contract",
             {"command_type": "advance_time"},
@@ -249,6 +262,8 @@ def test_mcp_tools_are_bounded_annotated_and_preview_exact_execution():
                 "payload": {"target_time": "SE-0061-02-06T21:16:00"},
             },
         )
+        assert operations.command_identity_calls == 1
+        assert operations.play_context_calls == 1
         command = preview.structured_content["command"]
         attestation = preview.structured_content["preview_attestation"]
         assert preview.structured_content["preview"]["status"] == "ready"

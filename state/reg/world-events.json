@@ -5500,6 +5500,60 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_promise.8e35cdef87a95bb08c53",
+      "kind": "commitment_promise",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.sword_manor.permanent_training.0061-08-05.v2"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_resolution",
+        "transaction_ref": "tx.gameplay.8e35cdef87a95bb08c53f703533a6b70a60d8774c7f902e6f02ffa621a9a0eac",
+        "receipt_refs": [
+          "receipt.gameplay.8e35cdef87a95bb08c53f703533a6b70a60d8774c7f902e6f02ffa621a9a0eac"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

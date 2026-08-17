@@ -9,6 +9,7 @@ recomputes qualification from reconstructed pre-session candidate views.
 from __future__ import annotations
 
 import copy
+from decimal import Decimal
 from typing import Any, Dict, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
@@ -139,7 +140,7 @@ def _repair(
     pre_exam_views: Dict[str, Dict[str, Any]] = {}
     catchup_rows = []
     changed_people = 0
-    total_hours = 0.0
+    total_hours = Decimal(0)
 
     for owner_ref, path in sorted(_owner_paths(self.repository).items()):
         try:
@@ -205,7 +206,7 @@ def _repair(
         if outcome["outcomes"]:
             writes[path] = _json_bytes(current_person)
             changed_people += 1
-            total_hours += float(outcome["hours"])
+            total_hours += Decimal(str(outcome["hours"]))
             catchup_rows.append({
                 "owner_ref": owner_ref,
                 "from": str(start),
@@ -257,6 +258,7 @@ def _repair(
 
     new_passes = sorted(ref for ref, row in new_results.items() if row["outcome"] == "pass")
     new_fails = sorted(ref for ref, row in new_results.items() if row["outcome"] == "fail")
+    total_hours_text = format(total_hours, "f")
     history.append({
         "kind": "promotion_exam_evaluation_repair",
         "at": str(current_time),
@@ -270,7 +272,7 @@ def _repair(
         "new_pass_count": len(new_passes),
         "new_fail_count": len(new_fails),
         "historical_people_caught_up": changed_people,
-        "historical_active_hours": total_hours,
+        "historical_active_hours": total_hours_text,
     })
 
     writes[DEVELOPMENT_BANK_PATH] = _json_bytes(banks)
@@ -336,7 +338,7 @@ def _repair(
             "world_time": str(current_time),
             "effective_exam_time": str(_EXAM_AT),
             "historical_people_caught_up": changed_people,
-            "historical_active_hours": total_hours,
+            "historical_active_hours": total_hours_text,
             "old_pass_count": _EXPECTED_OLD_PASSES,
             "old_fail_count": _EXPECTED_OLD_FAILS,
             "new_pass_count": len(new_passes),

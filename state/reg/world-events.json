@@ -5677,6 +5677,62 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.training_resolved.2f1565e78e2656462c58",
+      "kind": "training_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-23T15:59:56",
+        "started_at": "SE-0061-07-23T15:59:56",
+        "ended_at": "SE-0061-07-23T15:59:56"
+      },
+      "host_refs": [
+        "pc_wei_tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/development/banks.json",
+        "state/player.json"
+      ],
+      "material_consequence_refs": [
+        "training:pc_wei_tang:martial_skills.sword:160->160"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-23T15:59:56"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.training.settle_training",
+        "transaction_ref": "tx.gameplay.2f1565e78e2656462c581eb1aa9fbb8d1e3cc522449435a4f70a95b315414d93",
+        "receipt_refs": [
+          "receipt.gameplay.2f1565e78e2656462c581eb1aa9fbb8d1e3cc522449435a4f70a95b315414d93"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

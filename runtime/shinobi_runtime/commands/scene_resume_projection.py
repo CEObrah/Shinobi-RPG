@@ -10,6 +10,11 @@ from typing import Any, Mapping
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.envelope import CommandEnvelope
+from shinobi_runtime.commands.mission_context_index import (
+    participant_current_refs,
+    validate_mission_context_index,
+)
+from shinobi_runtime.commands.paths import COMMITMENT_REGISTRY_PATH
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
 from shinobi_runtime.sim.events import CampaignTime
@@ -19,6 +24,13 @@ from shinobi_runtime.tx.manifest import TransactionManifest
 _MISSION_INDEX = "state/mission/context-index.json"
 _INSTALLED = False
 _PASSIVE = frozenset(("advance_time", "advance_until_event", "report_handoff_resolution", "team_checkin_handoff_resolution", "scene_projection_repair", "campaign_mission_continuity_repair"))
+_TERMINAL_COMMITMENT_STATUSES = frozenset(("honored", "broken", "cancelled", "expired", "completed"))
+_STALE_WORLD_FRONT_PRESSURES = frozenset((
+    "A known world pressure has materially changed.",
+))
+_STALE_WORLD_FRONT_APPROACHING = frozenset((
+    "A known strategic pressure has reached crisis-level consequences.",
+))
 
 
 def _scene_id(scene: Mapping[str, Any]) -> str:
@@ -89,6 +101,83 @@ def normalize_scene_resume_plan(plan: _BuiltPlan, scene_path: str, *, command_ty
     return _BuiltPlan(plan.code, plan.affected_refs, writes, plan.result, validate)
 
 
+def _current_mission_refs(index: Mapping[str, Any], actor_id: str) -> list[str]:
+    """Return the actor's current missions from the non-authoritative routing index.
+
+    A valid index may omit a participant entirely when that participant has no
+    current mission. That is the normal empty-set representation, not corruption.
+    """
+    try:
+        validate_mission_context_index(index)
+        return list(participant_current_refs(index, actor_id))
+    except (TypeError, ValueError) as exc:
+        raise CommandRejectedError("mission_context_index_invalid") from exc
+
+
+def _commitment_status_by_ref(repository: Any) -> dict[str, str]:
+    try:
+        registry = repository.read_json(COMMITMENT_REGISTRY_PATH)
+    except (FileNotFoundError, ValueError) as exc:
+        raise CommandRejectedError("scene_projection_repair_source_invalid") from exc
+    records = registry.get("records") if isinstance(registry, Mapping) else None
+    if registry.get("schema") != "commitment-registry" or not isinstance(records, list):
+        raise CommandRejectedError("scene_projection_repair_source_invalid")
+    statuses: dict[str, str] = {}
+    for row in records:
+        if not isinstance(row, Mapping):
+            raise CommandRejectedError("scene_projection_repair_source_invalid")
+        ref = row.get("id")
+        status = row.get("status")
+        if not isinstance(ref, str) or not ref.startswith("commitment.") or not isinstance(status, str):
+            raise CommandRejectedError("scene_projection_repair_source_invalid")
+        statuses[ref] = status
+    return statuses
+
+
+def _repair_terminal_commitment_projection(scene: dict[str, Any], statuses: Mapping[str, str]) -> bool:
+    """Clear only scene cache fields disproven by terminal commitment truth."""
+    changed = False
+    terminal = {
+        ref for ref, status in statuses.items()
+        if status in _TERMINAL_COMMITMENT_STATUSES
+    }
+
+    decision = scene.get("decision_required")
+    if isinstance(decision, str) and any(ref in decision for ref in terminal):
+        scene["decision_required"] = None
+        changed = True
+        if scene.get("active_combat") is False and scene.get("time_passage_allowed") is not True:
+            scene["time_passage_allowed"] = True
+            changed = True
+
+    pressures = scene.get("observable_pressures")
+    if isinstance(pressures, list):
+        filtered = [value for value in pressures if value not in _STALE_WORLD_FRONT_PRESSURES]
+        if filtered != pressures:
+            scene["observable_pressures"] = filtered
+            changed = True
+
+    narrative = scene.get("narrative")
+    if not isinstance(narrative, dict):
+        raise CommandRejectedError("campaign_scene_invalid")
+    promises = narrative.get("promises_and_threats")
+    if isinstance(promises, list):
+        filtered_promises = [value for value in promises if value not in terminal]
+        if filtered_promises != promises:
+            narrative["promises_and_threats"] = filtered_promises
+            changed = True
+    approaching = narrative.get("approaching_consequences")
+    if isinstance(approaching, list):
+        filtered_approaching = [value for value in approaching if value not in _STALE_WORLD_FRONT_APPROACHING]
+        if filtered_approaching != approaching:
+            if filtered_approaching:
+                narrative["approaching_consequences"] = filtered_approaching
+            else:
+                narrative.pop("approaching_consequences", None)
+            changed = True
+    return changed
+
+
 def _plan_repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime) -> _BuiltPlan:
     if command.payload:
         raise CommandRejectedError("scene_projection_repair_payload_fields_invalid")
@@ -103,13 +192,14 @@ def _plan_repair(self: Any, command: CommandEnvelope, meta: Mapping[str, Any], c
     loaded = scene.get("loaded_owner_ids") if isinstance(scene, dict) else None
     if scene.get("schema") != "scene" or scene.get("world_time") != str(current_time) or not isinstance(narrative, dict) or not isinstance(loaded, list):
         raise CommandRejectedError("campaign_scene_invalid")
-    routes = index.get("current_by_participant") if isinstance(index, Mapping) else None
-    missions = routes.get(command.actor_id) if isinstance(routes, Mapping) else None
-    if not isinstance(missions, list) or any(not isinstance(ref, str) or not ref.startswith("mission.") for ref in missions):
-        raise CommandRejectedError("mission_context_index_invalid")
+
+    missions = _current_mission_refs(index, command.actor_id)
     base_loaded = [ref for ref in loaded if isinstance(ref, str) and not ref.startswith("mission.")]
     scene["loaded_owner_ids"] = base_loaded + [ref for ref in missions if ref not in base_loaded]
+    statuses = _commitment_status_by_ref(self.repository)
+    _repair_terminal_commitment_projection(scene, statuses)
     narrative.pop("last_major_choice", None)
+
     writes = {
         self.meta_path: _json_bytes(self._meta_after(meta, command, world_time=current_time)),
         self.scene_path: _json_bytes(scene),

@@ -1,0 +1,49 @@
+{
+  "schema": "mission-progress-rules",
+  "version": 1,
+  "policy": "Partial mission progress is derived only from one persisted admissible world-event evidence record. The caller never chooses a progress percentage. Team doctrine may improve how efficiently real evidence advances an objective, but can never manufacture evidence, guarantee terminal success, or replace the objective's terminal evidence gate.",
+  "base_progress_milli_by_event_kind": {
+    "travel_completed": 350,
+    "protected_travel_completed": 400,
+    "information_claim_created": 220,
+    "information_delivered": 280,
+    "combat_resolved": 300,
+    "aggregate_combat_resolved": 300,
+    "asset_transferred": 350,
+    "relationship_changed": 220,
+    "commitment_promise": 280
+  },
+  "objective_mode": {
+    "observe": "reconnaissance",
+    "identify": "reconnaissance",
+    "investigate": "reconnaissance",
+    "conceal": "reconnaissance",
+    "capture": "capture",
+    "restrain": "capture",
+    "intercept": "capture",
+    "protect": "protection",
+    "preserve": "protection",
+    "escort": "protection",
+    "secure": "protection",
+    "defeat": "direct_combat",
+    "destroy": "direct_combat",
+    "hold": "direct_combat",
+    "prevent": "direct_combat"
+  },
+  "doctrine": {
+    "familiarity_bonus_floor": 50,
+    "familiarity_bonus_per_point_milli": 4,
+    "matching_mission_mode_bonus_milli": 100,
+    "complete_role_coverage_bonus_milli": 50,
+    "maximum_total_multiplier_milli": 1300
+  },
+  "maximum_nonterminal_progress_milli": 900,
+  "invariants": [
+    "One evidence event can advance one mission objective through this command at most once.",
+    "Evidence admissibility and mission causality are validated by the existing mission evidence gate.",
+    "Partial progress is nondecreasing and never reaches terminal success through this command.",
+    "Mission doctrine is an efficiency modifier over real evidence, not a source of success or hidden information.",
+    "No random complication, opposition, clue, casualty, or objective result is created by progress resolution.",
+    "Terminal succeeded/failed objective states remain owned by mission_objective_update with admissible terminal evidence."
+  ]
+}

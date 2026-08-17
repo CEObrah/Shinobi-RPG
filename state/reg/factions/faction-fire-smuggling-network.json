@@ -1,0 +1,71 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.fire_smuggling_network",
+    "name": "Fire Country Smuggling Network",
+    "status": "active",
+    "leadership_ids": [
+      "support.smuggling.reina_kurosawa"
+    ],
+    "key_member_ids": [],
+    "goal": "move illicit cargo and information around official controls",
+    "current_plan": "Rotate manifests and low-visibility routes while abandoning any route whose exposure cost exceeds its value.",
+    "resources": [
+      "forgers",
+      "drivers",
+      "safe contacts",
+      "covert routes"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.fire_border_authority",
+        "relationship_type": "enforcement_conflict",
+        "stance": "adversarial",
+        "intensity": 82
+      },
+      {
+        "target_id": "faction.bounty_broker_network",
+        "relationship_type": "information_and_transport_exchange",
+        "stance": "transactional",
+        "intensity": 55
+      },
+      {
+        "target_id": "faction.fire_merchant_network",
+        "relationship_type": "gray_market_overlap",
+        "stance": "mixed",
+        "intensity": 58
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Network survives through contacts, secrecy, routes, and bribery rather than a bespoke criminal mechanic."
+    ],
+    "goals": [
+      "keep covert routes profitable",
+      "avoid concentration that lets authorities dismantle the network at once"
+    ],
+    "constraints": [
+      "patrol pressure",
+      "betrayal risk",
+      "payment reliability"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-16T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.05b1fdfa212feb37"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.112c24f8d2a641cb",
+        "priority.autonomy.8fd683229233379d",
+        "priority.autonomy.d8f899bb1331f078",
+        "priority.autonomy.773f64c310bd04e0",
+        "priority.autonomy.979ae60096dd9cd3"
+      ],
+      "autonomous_mission_refs": []
+    },
+    "scope": "Unofficial Fire Country routes, forged documentation, illicit transport, and safe contacts",
+    "leadership_model": "distributed_cells"
+  }
+}

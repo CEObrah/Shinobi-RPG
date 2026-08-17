@@ -1,0 +1,296 @@
+{
+  "schema": "force",
+  "id": "force.civil.waterfalls",
+  "name": "Waterfalls conventional forces",
+  "total": 20000,
+  "availability": {
+    "deployed": 2400,
+    "ready_24h": 3600,
+    "mobilizable_7d": 5600,
+    "mobilizable_30d": 4400,
+    "training_or_instruction": 1600,
+    "medical_or_recovery": 400,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 2000
+  },
+  "military_identity": [
+    "defensive geography",
+    "homeland defense"
+  ],
+  "reconstitution_policy_ref": "reconstitution.conventional",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "civil.waterfalls.standing",
+      "count": 6000,
+      "quality": "regular",
+      "role": "standing",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.waterfalls.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "defensive geography",
+        "homeland defense"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "standing",
+      "capability_ref": "state/manpower-capability/civil-waterfalls-standing.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waterfalls.garrison",
+      "count": 5200,
+      "quality": "regular",
+      "role": "garrison",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.waterfalls.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "defensive geography",
+        "homeland defense"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "garrison",
+      "capability_ref": "state/manpower-capability/civil-waterfalls-garrison.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waterfalls.trained_reserve",
+      "count": 5800,
+      "quality": "militia",
+      "role": "trained_reserve",
+      "loadout": "load.civil.militia",
+      "doctrine": "doc.civil.waterfalls.militia",
+      "training": "train.civil.militia",
+      "specialties": [
+        "defensive geography",
+        "homeland defense"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "trained_reserve",
+      "capability_ref": "state/manpower-capability/civil-waterfalls-trained-reserve.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.waterfalls.emergency_levy",
+      "count": 3000,
+      "quality": "raw_levy",
+      "role": "emergency_levy",
+      "loadout": "load.civil.raw_levy",
+      "doctrine": "doc.civil.waterfalls.raw_levy",
+      "training": "train.civil.raw_levy",
+      "specialties": [
+        "defensive geography",
+        "homeland defense"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "emergency_levy",
+      "capability_ref": "state/manpower-capability/civil-waterfalls-emergency-levy.json"
+    }
+  ],
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 3600,
+      "spread": 10
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 5600,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 4400,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 1600,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 400,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 50,
+        "endurance": 57,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 50,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 36,
+      "count": 2000,
+      "spread": 12
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "formulas",
+    "states",
+    "rule",
+    "margin_bands"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sealing-mechanics"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "states": {
+      "type": "array"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "margin_bands": {
+      "type": "object"
+    }
+  }
+}

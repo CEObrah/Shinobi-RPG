@@ -1,0 +1,54 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.b5c4a09d68a2906058",
+  "issuer_ref": "faction.mizuki_conspiracy",
+  "authority_ref": "canon_mizuki",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.mizuki_conspiracy",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-16T07:00:00",
+  "authorized_at": "SE-0061-07-16T07:00:00",
+  "starts_at": "SE-0061-07-16T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.2bd7522605ba4723b179",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.b5c4a09d68a2906058",
+    "objective_kind": "investigate",
+    "subject_kind": "place",
+    "subject_ref": "place.konoha.archive.library",
+    "subject_label": "place.konoha.archive.library",
+    "report_place_ref": "place.konoha.archive.library",
+    "origin_place_ref": "place.konoha.archive.library",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.konoha_anbu. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.konoha_anbu",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-16T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Produce a sourced assessment of access, security, and opportunity without assuming theft, access, or success."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_mizuki"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.b5c4a09d68a2906058",
+      "kind": "investigate",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

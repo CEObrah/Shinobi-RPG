@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_index",
+    "eye_index",
+    "stockpiles"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ocular-registry-index"
+    },
+    "owner_index": {
+      "type": "object"
+    },
+    "eye_index": {
+      "type": "object"
+    },
+    "stockpiles": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

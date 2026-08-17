@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "markets"
+  ],
+  "properties": {
+    "schema": {
+      "const": "mission-market-runtime"
+    },
+    "markets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "market_ref",
+          "demand_scores",
+          "competition_scores",
+          "evidence_refs",
+          "last_updated_at"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "market_ref": {
+            "type": "string"
+          },
+          "demand_scores": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            }
+          },
+          "competition_scores": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "last_updated_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

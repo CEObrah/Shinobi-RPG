@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Causal scheduler host shard",
+  "type": "object",
+  "required": [
+    "schema",
+    "bucket",
+    "authority",
+    "hosts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "causal-scheduler-host-shard"
+    },
+    "bucket": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{2}$"
+    },
+    "authority": {
+      "const": true
+    },
+    "hosts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "host",
+          "event_routes"
+        ],
+        "properties": {
+          "host": {
+            "type": "object",
+            "required": [
+              "state",
+              "authority_kind",
+              "owner_ref",
+              "metadata"
+            ],
+            "properties": {
+              "state": {
+                "type": "object",
+                "required": [
+                  "host_id",
+                  "kind",
+                  "resolved_through",
+                  "safe_through",
+                  "handler_ref",
+                  "rng_namespace",
+                  "next_due"
+                ],
+                "properties": {
+                  "host_id": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "resolved_through": {
+                    "type": "string"
+                  },
+                  "safe_through": {
+                    "type": "string"
+                  },
+                  "handler_ref": {
+                    "type": "string"
+                  },
+                  "rng_namespace": {
+                    "type": "string"
+                  },
+                  "next_due": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              },
+              "authority_kind": {
+                "type": "string"
+              },
+              "owner_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "metadata": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          "event_routes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "event_id",
+                "due_at",
+                "path",
+                "dedupe_key"
+              ],
+              "properties": {
+                "event_id": {
+                  "type": "string"
+                },
+                "due_at": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "dedupe_key": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

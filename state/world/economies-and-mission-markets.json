@@ -1,0 +1,650 @@
+{
+  "owner_id": "world_economies_and_mission_markets",
+  "owner_type": "world_registry",
+  "payload": {
+    "economies_and_mission_markets": {
+      "last_settled_at": "SE-0061-07-01T07:00:00",
+      "markets": [
+        {
+          "competition": [
+            "faction_suna",
+            "faction_kusa"
+          ],
+          "demand": [
+            "escort",
+            "investigation",
+            "bandit_suppression",
+            "border_reconnaissance",
+            "protection",
+            "capture"
+          ],
+          "id": "market_konoha_missions",
+          "owner_id": "faction_konoha",
+          "status": "active"
+        },
+        {
+          "competition": [
+            "faction_konoha"
+          ],
+          "demand": [
+            "desert_escort",
+            "oasis_security",
+            "trade_route_protection",
+            "poison_investigation"
+          ],
+          "id": "market_suna_missions",
+          "owner_id": "faction_suna",
+          "status": "funding_pressure"
+        },
+        {
+          "competition": [
+            "missing_nin",
+            "private_security"
+          ],
+          "demand": [
+            "shipping_security",
+            "piracy_suppression",
+            "island_reconnaissance",
+            "smuggling"
+          ],
+          "id": "market_maritime_missions",
+          "owner_id": "faction_kiri",
+          "status": "fragmented"
+        }
+      ],
+      "section": "economy_and_mission_market",
+      "treasury_rule": "country, village, institution, force, and personal money remain separate",
+      "finance": {
+        "last_settled_at": "SE-0061-07-01T07:00:00",
+        "next_due_at": "SE-0061-08-01T07:00:00",
+        "currency_ref": "currency.ryo",
+        "funding_exact": {
+          "canon_hiruzen": "treasury.konoha",
+          "canon_mei": "treasury.kiri",
+          "canon_onoki": "treasury.iwa",
+          "canon_raikage_a": "treasury.kumo",
+          "canon_rasa": "treasury.suna",
+          "faction.akatsuki": "treasury.akatsuki",
+          "faction.bounty_broker_network": "economy.contractors",
+          "faction.fire_merchant_network": "economy.land_fire.private",
+          "faction.fire_smuggling_network": "economy.land_fire.private",
+          "faction.gato_company": "economy.land_waves.private",
+          "faction.zabuza_mercenary_cell": "treasury.zabuza_mercenary_cell",
+          "faction_ame": "treasury.ame",
+          "faction_iron": "treasury.iron_samurai",
+          "faction_iwa": "treasury.iwa",
+          "faction_kiri": "treasury.kiri",
+          "faction_konoha": "treasury.konoha",
+          "faction_kumo": "treasury.kumo",
+          "faction_kusa": "treasury.kusa",
+          "faction_oto": "treasury.oto",
+          "faction_suna": "treasury.suna",
+          "faction_taki": "treasury.taki",
+          "faction_yuga": "treasury.yuga",
+          "house.tang": "house.tang",
+          "institution.tanzaku.merchant_quarter": "economy.land_fire.private",
+          "institution.waves.gato_enterprise": "economy.land_waves.private",
+          "support.merchant.fumiko_takahara": "economy.land_fire.private"
+        },
+        "funding_prefixes": {
+          "institution.konoha.": "treasury.konoha",
+          "faction.konoha_": "treasury.konoha",
+          "force.konoha.": "treasury.konoha",
+          "institution.suna.": "treasury.suna",
+          "faction.suna_": "treasury.suna",
+          "force.suna.": "treasury.suna",
+          "institution.kiri.": "treasury.kiri",
+          "faction.kiri_": "treasury.kiri",
+          "force.kiri.": "treasury.kiri",
+          "institution.kumo.": "treasury.kumo",
+          "faction.kumo_": "treasury.kumo",
+          "force.kumo.": "treasury.kumo",
+          "institution.iwa.": "treasury.iwa",
+          "faction.iwa_": "treasury.iwa",
+          "force.iwa.": "treasury.iwa",
+          "institution.ame.": "treasury.ame",
+          "faction.ame_": "treasury.ame",
+          "force.ame.": "treasury.ame",
+          "institution.kusa.": "treasury.kusa",
+          "faction.kusa_": "treasury.kusa",
+          "force.kusa.": "treasury.kusa",
+          "institution.oto.": "treasury.oto",
+          "faction.oto_": "treasury.oto",
+          "force.oto.": "treasury.oto",
+          "institution.taki.": "treasury.taki",
+          "faction.taki_": "treasury.taki",
+          "force.taki.": "treasury.taki",
+          "institution.yuga.": "treasury.yuga",
+          "faction.yuga_": "treasury.yuga",
+          "force.yuga.": "treasury.yuga",
+          "institution.iron.": "treasury.iron_samurai",
+          "force.iron.": "treasury.iron_samurai",
+          "institution.fire.": "treasury.land_fire",
+          "faction.fire_": "treasury.land_fire"
+        },
+        "accounts": {
+          "economy.land_fire.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.fire"
+          },
+          "economy.land_wind.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.wind"
+          },
+          "economy.land_water.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.water"
+          },
+          "economy.land_lightning.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.lightning"
+          },
+          "economy.land_earth.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.earth"
+          },
+          "economy.land_rain.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.rain"
+          },
+          "economy.land_grass.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.grass"
+          },
+          "economy.land_rice.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.rice"
+          },
+          "economy.land_waterfall.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.waterfall"
+          },
+          "economy.land_hot_water.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.hot_water"
+          },
+          "economy.land_iron.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.iron"
+          },
+          "economy.land_waves.private": {
+            "kind": "private_economy",
+            "scope_ref": "country.waves"
+          },
+          "economy.contractors": {
+            "kind": "contractor_economy",
+            "scope_ref": "world.contractors"
+          },
+          "treasury.land_fire": {
+            "kind": "country_treasury",
+            "scope_ref": "country.fire",
+            "monthly_outflow_reference_ryo": 7400000000
+          },
+          "treasury.land_wind": {
+            "kind": "country_treasury",
+            "scope_ref": "country.wind",
+            "monthly_outflow_reference_ryo": 4120000000
+          },
+          "treasury.land_water": {
+            "kind": "country_treasury",
+            "scope_ref": "country.water",
+            "monthly_outflow_reference_ryo": 5150000000
+          },
+          "treasury.land_lightning": {
+            "kind": "country_treasury",
+            "scope_ref": "country.lightning",
+            "monthly_outflow_reference_ryo": 6050000000
+          },
+          "treasury.land_earth": {
+            "kind": "country_treasury",
+            "scope_ref": "country.earth",
+            "monthly_outflow_reference_ryo": 5600000000
+          },
+          "treasury.land_rain": {
+            "kind": "country_treasury",
+            "scope_ref": "country.rain",
+            "monthly_outflow_reference_ryo": 1080000000
+          },
+          "treasury.land_grass": {
+            "kind": "country_treasury",
+            "scope_ref": "country.grass",
+            "monthly_outflow_reference_ryo": 810000000
+          },
+          "treasury.land_rice": {
+            "kind": "country_treasury",
+            "scope_ref": "country.rice",
+            "monthly_outflow_reference_ryo": 740000000
+          },
+          "treasury.land_waterfall": {
+            "kind": "country_treasury",
+            "scope_ref": "country.waterfall",
+            "monthly_outflow_reference_ryo": 650000000
+          },
+          "treasury.land_hot_water": {
+            "kind": "country_treasury",
+            "scope_ref": "country.hot_water",
+            "monthly_outflow_reference_ryo": 595000000
+          },
+          "treasury.land_iron": {
+            "kind": "country_treasury",
+            "scope_ref": "country.iron",
+            "monthly_outflow_reference_ryo": 2300000000
+          },
+          "treasury.land_waves": {
+            "kind": "country_treasury",
+            "scope_ref": "country.waves",
+            "monthly_outflow_reference_ryo": 320000000
+          },
+          "treasury.konoha": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_konoha",
+            "monthly_outflow_reference_ryo": 1050180000
+          },
+          "treasury.suna": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_suna",
+            "monthly_outflow_reference_ryo": 520000000
+          },
+          "treasury.kiri": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_kiri",
+            "monthly_outflow_reference_ryo": 780000000
+          },
+          "treasury.kumo": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_kumo",
+            "monthly_outflow_reference_ryo": 950000000
+          },
+          "treasury.iwa": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_iwa",
+            "monthly_outflow_reference_ryo": 950000000
+          },
+          "treasury.ame": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_ame",
+            "monthly_outflow_reference_ryo": 160000000
+          },
+          "treasury.kusa": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_kusa",
+            "monthly_outflow_reference_ryo": 120000000
+          },
+          "treasury.oto": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_oto",
+            "monthly_outflow_reference_ryo": 100000000
+          },
+          "treasury.taki": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_taki",
+            "monthly_outflow_reference_ryo": 100000000
+          },
+          "treasury.yuga": {
+            "kind": "village_treasury",
+            "scope_ref": "faction_yuga",
+            "monthly_outflow_reference_ryo": 40000000
+          },
+          "treasury.iron_samurai": {
+            "kind": "military_treasury",
+            "scope_ref": "faction_iron",
+            "monthly_outflow_reference_ryo": 400000000
+          },
+          "house.tang": {
+            "kind": "house_treasury",
+            "scope_ref": "house.tang",
+            "monthly_outflow_reference_ryo": 2900000
+          },
+          "pc_wei_tang": {
+            "kind": "personal_account",
+            "scope_ref": "pc_wei_tang"
+          }
+        },
+        "recurring_flows": [
+          {
+            "id": "earth.country.background_budget",
+            "source_ref": "economy.land_earth.private",
+            "destination_ref": "treasury.land_earth",
+            "amount_ryo": 1000000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "fire.country.background_budget",
+            "source_ref": "economy.land_fire.private",
+            "destination_ref": "treasury.land_fire",
+            "amount_ryo": 1300000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "grass.country.background_budget",
+            "source_ref": "economy.land_grass.private",
+            "destination_ref": "treasury.land_grass",
+            "amount_ryo": 150000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "hot_water.country.background_budget",
+            "source_ref": "economy.land_hot_water.private",
+            "destination_ref": "treasury.land_hot_water",
+            "amount_ryo": 70000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "iron.country.background_budget",
+            "source_ref": "economy.land_iron.private",
+            "destination_ref": "treasury.land_iron",
+            "amount_ryo": 500000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "lightning.country.background_budget",
+            "source_ref": "economy.land_lightning.private",
+            "destination_ref": "treasury.land_lightning",
+            "amount_ryo": 1100000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "rain.country.background_budget",
+            "source_ref": "economy.land_rain.private",
+            "destination_ref": "treasury.land_rain",
+            "amount_ryo": 200000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "rice.country.background_budget",
+            "source_ref": "economy.land_rice.private",
+            "destination_ref": "treasury.land_rice",
+            "amount_ryo": 100000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "water.country.background_budget",
+            "source_ref": "economy.land_water.private",
+            "destination_ref": "treasury.land_water",
+            "amount_ryo": 800000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "waterfall.country.background_budget",
+            "source_ref": "economy.land_waterfall.private",
+            "destination_ref": "treasury.land_waterfall",
+            "amount_ryo": 100000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "waves.country.background_budget",
+            "source_ref": "economy.land_waves.private",
+            "destination_ref": "treasury.land_waves",
+            "amount_ryo": 80000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "wind.country.background_budget",
+            "source_ref": "economy.land_wind.private",
+            "destination_ref": "treasury.land_wind",
+            "amount_ryo": 600000000,
+            "kind": "background_budget_net",
+            "priority": 15
+          },
+          {
+            "id": "earth.village_subsidy",
+            "source_ref": "treasury.land_earth",
+            "destination_ref": "treasury.iwa",
+            "amount_ryo": 600000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "fire.village_subsidy",
+            "source_ref": "treasury.land_fire",
+            "destination_ref": "treasury.konoha",
+            "amount_ryo": 700000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "grass.village_subsidy",
+            "source_ref": "treasury.land_grass",
+            "destination_ref": "treasury.kusa",
+            "amount_ryo": 60000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "hot_water.village_subsidy",
+            "source_ref": "treasury.land_hot_water",
+            "destination_ref": "treasury.yuga",
+            "amount_ryo": 15000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "iron.samurai_subsidy",
+            "source_ref": "treasury.land_iron",
+            "destination_ref": "treasury.iron_samurai",
+            "amount_ryo": 300000000,
+            "kind": "military_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "lightning.village_subsidy",
+            "source_ref": "treasury.land_lightning",
+            "destination_ref": "treasury.kumo",
+            "amount_ryo": 650000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "rain.village_subsidy",
+            "source_ref": "treasury.land_rain",
+            "destination_ref": "treasury.ame",
+            "amount_ryo": 80000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "rice.village_subsidy",
+            "source_ref": "treasury.land_rice",
+            "destination_ref": "treasury.oto",
+            "amount_ryo": 40000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "water.village_subsidy",
+            "source_ref": "treasury.land_water",
+            "destination_ref": "treasury.kiri",
+            "amount_ryo": 450000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "waterfall.village_subsidy",
+            "source_ref": "treasury.land_waterfall",
+            "destination_ref": "treasury.taki",
+            "amount_ryo": 50000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "wind.village_subsidy",
+            "source_ref": "treasury.land_wind",
+            "destination_ref": "treasury.suna",
+            "amount_ryo": 220000000,
+            "kind": "village_subsidy",
+            "priority": 25
+          },
+          {
+            "id": "ame.village.background_budget",
+            "source_ref": "treasury.ame",
+            "destination_ref": "economy.land_rain.private",
+            "amount_ryo": 40000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "iron.samurai.background_budget",
+            "source_ref": "treasury.iron_samurai",
+            "destination_ref": "economy.land_iron.private",
+            "amount_ryo": 250000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "iwa.village.background_budget",
+            "source_ref": "treasury.iwa",
+            "destination_ref": "economy.land_earth.private",
+            "amount_ryo": 530000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "kiri.village.background_budget",
+            "source_ref": "treasury.kiri",
+            "destination_ref": "economy.land_water.private",
+            "amount_ryo": 430000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "konoha.village.background_budget",
+            "source_ref": "treasury.konoha",
+            "destination_ref": "economy.land_fire.private",
+            "amount_ryo": 550000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "kumo.village.background_budget",
+            "source_ref": "treasury.kumo",
+            "destination_ref": "economy.land_lightning.private",
+            "amount_ryo": 500000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "kusa.village.background_budget",
+            "source_ref": "treasury.kusa",
+            "destination_ref": "economy.land_grass.private",
+            "amount_ryo": 40000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "oto.village.background_budget",
+            "source_ref": "treasury.oto",
+            "destination_ref": "economy.land_rice.private",
+            "amount_ryo": 50000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "suna.village.background_budget",
+            "source_ref": "treasury.suna",
+            "destination_ref": "economy.land_wind.private",
+            "amount_ryo": 250000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "taki.village.background_budget",
+            "source_ref": "treasury.taki",
+            "destination_ref": "economy.land_waterfall.private",
+            "amount_ryo": 40000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "yuga.village.background_budget",
+            "source_ref": "treasury.yuga",
+            "destination_ref": "economy.land_hot_water.private",
+            "amount_ryo": 20000000,
+            "kind": "background_budget_net",
+            "priority": 35
+          },
+          {
+            "id": "house.tang.konoha_service_contract",
+            "source_ref": "treasury.konoha",
+            "destination_ref": "house.tang",
+            "amount_ryo": 1800000,
+            "kind": "village_service_contract",
+            "priority": 50
+          },
+          {
+            "id": "konoha.wei_tang_salary",
+            "source_ref": "treasury.konoha",
+            "destination_ref": "pc_wei_tang",
+            "amount_ryo": 180000,
+            "kind": "salary",
+            "priority": 55
+          },
+          {
+            "id": "house.tang.background_budget",
+            "source_ref": "house.tang",
+            "destination_ref": "economy.land_fire.private",
+            "amount_ryo": 1500000,
+            "kind": "background_budget_net",
+            "priority": 60
+          }
+        ],
+        "arrears_ryo": {},
+        "last_period": {
+          "settled_at": "SE-0061-07-01T07:00:00",
+          "expected_ryo": 11868480000,
+          "paid_ryo": 11868480000,
+          "unpaid_current_ryo": 0,
+          "arrears_before_ryo": 0,
+          "arrears_after_ryo": 0,
+          "flow_count": 37,
+          "partial_flow_count": 0
+        },
+        "capital_assets": {
+          "place.sword_manor": {
+            "replacement_value_ryo": 480000000,
+            "owner_ref": "house.tang",
+            "monthly_upkeep_ryo": 2900000
+          },
+          "place.konoha": {
+            "replacement_value_ryo": 30000000000,
+            "owner_ref": "faction_konoha",
+            "monthly_upkeep_ryo": 1050000000
+          },
+          "place.suna": {
+            "replacement_value_ryo": 18000000000,
+            "owner_ref": "faction_suna",
+            "monthly_upkeep_ryo": 520000000
+          },
+          "place.kiri": {
+            "replacement_value_ryo": 22000000000,
+            "owner_ref": "faction_kiri",
+            "monthly_upkeep_ryo": 780000000
+          },
+          "place.kumo": {
+            "replacement_value_ryo": 25000000000,
+            "owner_ref": "faction_kumo",
+            "monthly_upkeep_ryo": 950000000
+          },
+          "place.iwa": {
+            "replacement_value_ryo": 24000000000,
+            "owner_ref": "faction_iwa",
+            "monthly_upkeep_ryo": 950000000
+          }
+        },
+        "rule": "Macro settlement tracks only net background budgets plus strategically meaningful transfers. Ordinary taxes, payroll, shop revenue, meals, rent, and civilian commerce are not individual ledgers. Background budget rows settle against aggregate country economy holders; village subsidies, named service contracts, and exact player salary remain explicit transfers. Shortfalls record arrears without blocking world time."
+      }
+    }
+  },
+  "schema": "shinobi-world-registry",
+  "source_domain": "economies_and_mission_markets"
+}

@@ -1,0 +1,82 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.hyuga_clan",
+    "name": "Hyuga Clan",
+    "status": "active",
+    "leadership_ids": [
+      "canon_hiashi"
+    ],
+    "key_member_ids": [
+      "canon_neji",
+      "canon_hinata",
+      "canon_hanabi",
+      "char.riku_hyuga"
+    ],
+    "goal": "protect clan interests, training, family obligations, and Byakugan security",
+    "current_plan": "Continue compound training and household administration while evaluating unconventional development by results rather than assumption.",
+    "resources": [
+      "Hyuga households",
+      "Byakugan specialists",
+      "compound facilities",
+      "clan political influence"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.konoha_mission_office",
+        "relationship_type": "village_service_obligations",
+        "stance": "cooperative",
+        "intensity": 66
+      },
+      {
+        "target_id": "faction.root",
+        "relationship_type": "bloodline_security_concern",
+        "stance": "distrustful",
+        "intensity": 74
+      },
+      {
+        "target_id": "faction.yamanaka_intelligence",
+        "relationship_type": "village_clan_coordination",
+        "stance": "cooperative",
+        "intensity": 52
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Riku belongs to a secondary Hyuga household and remains mechanically independent through Faultline Style."
+    ],
+    "goals": [
+      "preserve clan security and political standing",
+      "train Byakugan users and maintain clan traditions"
+    ],
+    "constraints": [
+      "internal hierarchy",
+      "village law",
+      "family obligations"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-16T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.af0f3050335d3341"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.d135e753d6b1d3e3",
+        "priority.autonomy.7074d8ae9ceaa2e9",
+        "priority.autonomy.d7e7662b70402ff7",
+        "priority.autonomy.07f9068f75ca921b",
+        "priority.autonomy.bdc3af00a93fddbc",
+        "priority.autonomy.08c0af9b78bbcff7"
+      ],
+      "autonomous_mission_refs": [
+        "mission.autonomy.37d771249df8057c48"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.37d771249df8057c48"
+      ]
+    },
+    "scope": "Hyuga compound, clan households, village duties, and Byakugan security",
+    "leadership_model": "clan_head_household"
+  }
+}

@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contracts",
+    "shipments",
+    "crossings",
+    "route_metrics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "commerce-registry"
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "client_ref",
+          "carrier_ref",
+          "source_holder_ref",
+          "destination_holder_ref",
+          "item_ref",
+          "quantity",
+          "unit_price_ryo",
+          "total_ryo",
+          "escrow_holder_ref",
+          "route_ref",
+          "contraband",
+          "opened_at",
+          "accepted_at",
+          "funded_at",
+          "dispatched_at",
+          "completed_at",
+          "shipment_ref",
+          "classification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^trade\\.contract\\."
+          },
+          "status": {
+            "enum": [
+              "offered",
+              "accepted",
+              "funded",
+              "in_transit",
+              "delivered",
+              "seized",
+              "cancelled"
+            ]
+          },
+          "client_ref": {
+            "type": "string"
+          },
+          "carrier_ref": {
+            "type": "string"
+          },
+          "source_holder_ref": {
+            "type": "string"
+          },
+          "destination_holder_ref": {
+            "type": "string"
+          },
+          "item_ref": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "unit_price_ryo": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "total_ryo": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "escrow_holder_ref": {
+            "type": "string"
+          },
+          "route_ref": {
+            "type": "string"
+          },
+          "contraband": {
+            "type": "boolean"
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "accepted_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "funded_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dispatched_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "completed_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "shipment_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "tax_settlements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "jurisdiction_ref",
+                "treasury_holder_ref",
+                "tax_milli",
+                "amount_ryo"
+              ],
+              "properties": {
+                "jurisdiction_ref": {
+                  "type": "string",
+                  "pattern": "^jurisdiction\\."
+                },
+                "treasury_holder_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tax_milli": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "amount_ryo": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "treaty_tariff_multiplier_milli": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "treaty_agreement_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^agreement\\."
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "shipments": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "contract_ref",
+          "cargo_holder_ref",
+          "item_ref",
+          "quantity",
+          "route_ref",
+          "origin_holder_ref",
+          "destination_holder_ref",
+          "custodian_ref",
+          "status",
+          "dispatched_at",
+          "delivered_at",
+          "seized_at",
+          "classification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^shipment\\."
+          },
+          "contract_ref": {
+            "type": "string"
+          },
+          "cargo_holder_ref": {
+            "type": "string"
+          },
+          "item_ref": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "route_ref": {
+            "type": "string"
+          },
+          "origin_holder_ref": {
+            "type": "string"
+          },
+          "destination_holder_ref": {
+            "type": "string"
+          },
+          "custodian_ref": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "in_transit",
+              "delivered",
+              "seized"
+            ]
+          },
+          "dispatched_at": {
+            "type": "string"
+          },
+          "delivered_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "seized_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        }
+      }
+    },
+    "crossings": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "shipment_ref",
+          "route_ref",
+          "authority_ref",
+          "inspected_at",
+          "result",
+          "evidence_event_ref",
+          "classification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^crossing\\."
+          },
+          "shipment_ref": {
+            "type": "string"
+          },
+          "route_ref": {
+            "type": "string"
+          },
+          "authority_ref": {
+            "type": "string"
+          },
+          "inspected_at": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "cleared",
+              "contraband_detected",
+              "seized"
+            ]
+          },
+          "evidence_event_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        }
+      }
+    },
+    "route_metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "route_ref",
+          "shipment_count",
+          "delivered_count",
+          "seizure_count",
+          "cargo_units",
+          "gross_ryo",
+          "last_activity_at"
+        ],
+        "properties": {
+          "route_ref": {
+            "type": "string"
+          },
+          "shipment_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "delivered_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "seizure_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "cargo_units": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "gross_ryo": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "last_activity_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

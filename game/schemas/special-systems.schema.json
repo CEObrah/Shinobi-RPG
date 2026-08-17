@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "eight_gates",
+    "jinchuriki",
+    "puppets",
+    "summons"
+  ],
+  "properties": {
+    "schema": {
+      "const": "special-systems"
+    },
+    "eight_gates": {
+      "type": "object"
+    },
+    "jinchuriki": {
+      "type": "object"
+    },
+    "puppets": {
+      "type": "object",
+      "properties": {
+        "maintenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "field_kit_stock_key",
+            "repair_damage_per_review",
+            "assets_per_specialist_per_review",
+            "require_available",
+            "require_withdrawn",
+            "repair_destroyed_units",
+            "rule"
+          ],
+          "properties": {
+            "field_kit_stock_key": {
+              "type": "string",
+              "minLength": 1
+            },
+            "repair_damage_per_review": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "require_available": {
+              "type": "boolean"
+            },
+            "require_withdrawn": {
+              "type": "boolean"
+            },
+            "repair_destroyed_units": {
+              "type": "boolean"
+            },
+            "rule": {
+              "type": "string",
+              "minLength": 1
+            },
+            "assets_per_specialist_per_review": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      },
+      "required": [
+        "maintenance"
+      ]
+    },
+    "summons": {
+      "type": "object"
+    }
+  }
+}

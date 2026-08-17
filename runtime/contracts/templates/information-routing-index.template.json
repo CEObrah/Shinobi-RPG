@@ -1,0 +1,98 @@
+{
+  "schema": "file-template",
+  "template_id": "template.information-routing-index",
+  "target_schema": "information-routing-index",
+  "source_schema": "game/schemas/information-routing-index.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "claim_count",
+    "delivery_count",
+    "knowledge_holder_count",
+    "owner_id",
+    "owner_type",
+    "recent_claim_refs",
+    "recent_delivery_refs",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "claim_count",
+        "delivery_count",
+        "knowledge_holder_count",
+        "recent_claim_refs",
+        "recent_delivery_refs"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "claim_count",
+        "delivery_count",
+        "knowledge_holder_count",
+        "recent_claim_refs",
+        "recent_delivery_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/claim_count": [
+      "integer"
+    ],
+    "/delivery_count": [
+      "integer"
+    ],
+    "/knowledge_holder_count": [
+      "integer"
+    ],
+    "/recent_claim_refs": [
+      "array"
+    ],
+    "/recent_claim_refs/*": [
+      "string"
+    ],
+    "/recent_delivery_refs": [
+      "array"
+    ],
+    "/recent_delivery_refs/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/recent_claim_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/recent_delivery_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Exact information authority is sharded deterministically; the root routing index is never claim/delivery/knowledge truth.",
+    "World truth is not knowledge."
+  ]
+}

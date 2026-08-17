@@ -1,0 +1,487 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World event archive segment",
+  "description": "Append-once bounded semantic event history segment. Material outcomes remain authoritative in referenced domain owners.",
+  "type": "object",
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "segment_index",
+    "created_at",
+    "event_count",
+    "events"
+  ],
+  "properties": {
+    "schema": {
+      "const": "world-event-archive"
+    },
+    "owner_id": {
+      "type": "string",
+      "pattern": "^history\\.events\\.[0-9]{6}$"
+    },
+    "owner_type": {
+      "const": "world_event_archive"
+    },
+    "segment_index": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "event_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 128
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "timing",
+          "host_refs",
+          "actor_refs",
+          "place_refs",
+          "causal_refs",
+          "affected_owner_refs",
+          "material_consequence_refs",
+          "visibility",
+          "provenance",
+          "execution",
+          "supersedes_ref",
+          "superseded_by_ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^event\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "kind": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]*$"
+          },
+          "status": {
+            "enum": [
+              "scheduled",
+              "active",
+              "resolved",
+              "failed",
+              "cancelled",
+              "superseded"
+            ]
+          },
+          "timing": {
+            "type": "object",
+            "required": [
+              "scheduled_for",
+              "occurred_at",
+              "started_at",
+              "ended_at"
+            ],
+            "properties": {
+              "scheduled_for": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              },
+              "occurred_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              },
+              "started_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              },
+              "ended_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              }
+            },
+            "additionalProperties": false
+          },
+          "host_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "actor_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "place_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "causal_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "affected_owner_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "material_consequence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "visibility": {
+            "type": "object",
+            "required": [
+              "classification",
+              "witness_refs",
+              "audience_refs",
+              "knowledge_refs",
+              "route_refs"
+            ],
+            "properties": {
+              "classification": {
+                "enum": [
+                  "public",
+                  "restricted",
+                  "secret"
+                ]
+              },
+              "witness_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "audience_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "knowledge_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "route_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "source_kind",
+              "source_refs",
+              "archetype_ref",
+              "recorded_at"
+            ],
+            "properties": {
+              "source_kind": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9._-]*$"
+              },
+              "source_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "archetype_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "recorded_at": {
+                "type": "string",
+                "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+              }
+            },
+            "additionalProperties": false
+          },
+          "execution": {
+            "type": "object",
+            "required": [
+              "reducer_ref"
+            ],
+            "properties": {
+              "reducer_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "transaction_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "receipt_refs": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "baseline_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": [
+                  "transaction_ref",
+                  "receipt_refs"
+                ],
+                "not": {
+                  "required": [
+                    "baseline_ref"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "baseline_ref"
+                ],
+                "not": {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "transaction_ref"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "receipt_refs"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "supersedes_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "superseded_by_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "display_summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 280,
+            "description": "Non-authoritative human-readable rendering only; reducers may not derive outcomes from this text."
+          }
+        },
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "scheduled"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "timing": {
+                  "properties": {
+                    "scheduled_for": {
+                      "type": "string"
+                    },
+                    "occurred_at": {
+                      "const": null
+                    },
+                    "started_at": {
+                      "const": null
+                    },
+                    "ended_at": {
+                      "const": null
+                    }
+                  }
+                },
+                "affected_owner_refs": {
+                  "maxItems": 0
+                },
+                "material_consequence_refs": {
+                  "maxItems": 0
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "active"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "timing": {
+                  "properties": {
+                    "occurred_at": {
+                      "const": null
+                    },
+                    "started_at": {
+                      "type": "string"
+                    },
+                    "ended_at": {
+                      "const": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "resolved",
+                    "failed",
+                    "cancelled",
+                    "superseded"
+                  ]
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "material_consequence_refs": {
+                  "minItems": 1
+                }
+              },
+              "anyOf": [
+                {
+                  "properties": {
+                    "timing": {
+                      "properties": {
+                        "occurred_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "timing": {
+                      "properties": {
+                        "ended_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "superseded"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "superseded_by_ref": {
+                  "type": "string"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "superseded_by_ref": {
+                  "const": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 128,
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Information holder delivery-membership shard",
+  "type": "object",
+  "required": ["schema", "holder_ref", "holder_hash", "bucket", "delivery_refs"],
+  "properties": {
+    "schema": {"const": "information-delivery-membership-shard"},
+    "holder_ref": {"type": "string", "minLength": 1},
+    "holder_hash": {"type": "string", "pattern": "^[0-9a-f]{20}$"},
+    "bucket": {"type": "string", "pattern": "^[0-9a-f]{2}$"},
+    "delivery_refs": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^delivery\\."},
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

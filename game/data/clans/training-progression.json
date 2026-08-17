@@ -1,0 +1,157 @@
+{
+  "schema": "clan-training-progression.v3",
+  "authority": "Institutional instruction access and standing progression. Access permits instruction only; it never grants technique mastery, hereditary eligibility, office, or village career rank.",
+  "principles": {
+    "instruction_access_is_not_mastery": true,
+    "village_career_rank_is_separate": true,
+    "standing_and_technical_tier_are_separate": true,
+    "rostered_people_are_persistent_individuals": true,
+    "training_sections_are_organizational_not_character_representations": true,
+    "promotion_does_not_force_exact_materialization": true
+  },
+  "institutions": {
+    "house.tang": {
+      "kind": "formal_rank_ladder",
+      "rank_requirements_ref": "game/data/house/ranks.json",
+      "standing_order": [
+        "junior_disciple",
+        "senior_disciple",
+        "assistant_instructor",
+        "senior_instructor",
+        "sword_master"
+      ],
+      "technical_tier_order": [
+        "junior",
+        "senior",
+        "master"
+      ],
+      "standing_to_technical_tier": {
+        "junior_disciple": "junior",
+        "senior_disciple": "senior",
+        "assistant_instructor": "senior",
+        "senior_instructor": "senior",
+        "sword_master": "master"
+      },
+      "technical_tiers": {
+        "junior": {
+          "package_ref": "PKG_HT_JUNIOR"
+        },
+        "senior": {
+          "package_ref": "PKG_HT_SENIOR"
+        },
+        "master": {
+          "package_ref": "PKG_HT_SWORD_MASTER"
+        }
+      },
+      "institutional_curriculum_source": {
+        "enabled": true,
+        "source_ref": "house.tang",
+        "requires_current_tier_access": true,
+        "requires_technique_prerequisites": true,
+        "does_not_grant_mastery": true
+      },
+      "promotion": {
+        "automatic_from_capability": false,
+        "review_mode": "house_operating_review",
+        "direct_next_standing_only": true,
+        "require_all_numeric_minimums": true,
+        "require_all_credentials": true,
+        "review_authority_refs": [
+          "char.zhu"
+        ],
+        "delegated_review_refs": [
+          "char.linh"
+        ],
+        "authority_may_commit_standard_promotion_when_requirements_are_complete": true,
+        "rostered_promotion_requires_identity_preservation": true,
+        "rostered_promotion_preserves_lightweight_representation": true,
+        "exact_materialization_is_separate_causal_decision": true,
+        "appointment_standings": [
+          "assistant_instructor",
+          "senior_instructor"
+        ],
+        "appointment_standings_do_not_change_technical_tier": true,
+        "sword_master_requires_explicit_master_board_recognition": true
+      },
+      "standing_sections": {
+        "junior_disciple": "cohort.house_tang.junior_disciple_second",
+        "senior_disciple": "cohort.house_tang.senior_disciple_company",
+        "assistant_instructor": "cohort.house_tang.instructor_cadre",
+        "senior_instructor": "cohort.house_tang.instructor_cadre",
+        "sword_master": "cohort.house_tang.sword_master_cadre"
+      },
+      "training_section_policy": {
+        "organizational_only": true,
+        "persistent_people_are_not_cohort_membership_statistics": true,
+        "junior_target_size": 8,
+        "new_admissions_assign_to_normal_junior_sections": true,
+        "intake_batch_is_not_a_persistent_character_group": true
+      }
+    },
+    "clan.nara": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_NARA_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true
+      }
+    },
+    "clan.yamanaka": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_YAMANAKA_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true
+      }
+    },
+    "clan.akimichi": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_AKIMICHI_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true
+      }
+    },
+    "clan.aburame": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_ABURAME_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true
+      }
+    },
+    "clan.inuzuka": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_INUZUKA_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true
+      }
+    },
+    "clan.hyuga": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_HYUGA_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true,
+        "additional_family_restrictions_may_apply": true
+      }
+    },
+    "clan.uchiha": {
+      "kind": "instruction_access_ladder",
+      "membership_package_ref": "PKG_UCHIHA_CLAN_CORE",
+      "access_progression": {
+        "mode": "package_order_mastery_gated",
+        "formal_promotion": false,
+        "village_rank_does_not_auto_advance_access": true,
+        "separate_hereditary_prerequisites_apply": true
+      }
+    }
+  }
+}

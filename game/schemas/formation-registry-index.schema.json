@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formation-registry-index.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "authority",
+    "registries",
+    "formation_routes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "formation-registry-index"
+    },
+    "authority": {
+      "const": false
+    },
+    "registries": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "formation_routes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "force_ref",
+          "registry_path"
+        ],
+        "properties": {
+          "force_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "registry_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema", "game", "signals", "rule"],
+  "properties": {
+    "schema": {"const": "reputation-event-signals"},
+    "game": {"type": "string"},
+    "signals": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["allowed_event_kinds", "standing", "dimensions", "audience_relevance", "memory_class"],
+        "properties": {
+          "allowed_event_kinds": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+          "standing": {"$ref": "#/$defs/signalMap"},
+          "dimensions": {"$ref": "#/$defs/signalMap"},
+          "audience_relevance": {"type": "integer", "minimum": 0, "maximum": 100},
+          "memory_class": {"enum": ["ephemeral", "normal", "durable", "historical"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "rule": {"type": "string"}
+  },
+  "$defs": {
+    "signalMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["score", "base_weight"],
+        "properties": {
+          "score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "base_weight": {"type": "integer", "minimum": 0, "maximum": 100}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

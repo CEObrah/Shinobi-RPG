@@ -1,0 +1,197 @@
+{
+  "armor_none": {
+    "name": "No Armor",
+    "type": "armor",
+    "mass_kg": 0,
+    "bulk": 0,
+    "protection": 0,
+    "defense": 0,
+    "speed_penalty": 0,
+    "coverage": "none",
+    "integrity_max": 0
+  },
+  "armor_basic_clothing": {
+    "name": "Basic Clothing",
+    "type": "armor",
+    "mass_kg": 1,
+    "bulk": 2,
+    "protection": 0,
+    "defense": 0,
+    "speed_penalty": 0,
+    "coverage": "clothing_only",
+    "integrity_max": 15
+  },
+  "armor_light_shinobi": {
+    "name": "Light Shinobi Armor",
+    "type": "armor",
+    "mass_kg": 4.5,
+    "bulk": 4,
+    "protection": 2,
+    "defense": 1,
+    "speed_penalty": 0,
+    "coverage": "partial",
+    "integrity_max": 60
+  },
+  "armor_light_concealed": {
+    "name": "Concealed Light Armor",
+    "type": "armor",
+    "mass_kg": 3.5,
+    "bulk": 3,
+    "protection": 2,
+    "defense": 0,
+    "speed_penalty": 0,
+    "coverage": "torso_under_clothing",
+    "integrity_max": 55,
+    "concealment": 2
+  },
+  "armor_medium_reinforced": {
+    "name": "Medium Reinforced Armor",
+    "type": "armor",
+    "mass_kg": 10,
+    "bulk": 7,
+    "protection": 4,
+    "defense": 0,
+    "speed_penalty": 1,
+    "coverage": "broad",
+    "integrity_max": 100
+  },
+  "armor_heavy": {
+    "name": "Heavy Armor",
+    "type": "armor",
+    "mass_kg": 18,
+    "bulk": 10,
+    "protection": 6,
+    "defense": 0,
+    "speed_penalty": 2,
+    "coverage": "full_articulated_gaps",
+    "integrity_max": 140
+  },
+  "armor_konoha_flak": {
+    "name": "Konoha Flak Armor",
+    "type": "armor",
+    "mass_kg": 7.5,
+    "bulk": 6,
+    "protection": 4,
+    "defense": 2,
+    "speed_penalty": 1,
+    "coverage": "torso_shoulders_partial_neck",
+    "integrity_max": 100
+  },
+  "armor_anbu_light": {
+    "name": "ANBU Light Armor",
+    "type": "armor",
+    "mass_kg": 5.5,
+    "bulk": 5,
+    "protection": 3,
+    "defense": 3,
+    "speed_penalty": 0,
+    "coverage": "torso_forearms_shins",
+    "integrity_max": 85
+  },
+  "armor_suna_desert": {
+    "name": "Suna Desert Armor",
+    "type": "armor",
+    "mass_kg": 5,
+    "bulk": 5,
+    "protection": 3,
+    "defense": 2,
+    "speed_penalty": 0,
+    "coverage": "torso_forearms_face_wrap",
+    "integrity_max": 80
+  },
+  "armor_kiri_maritime": {
+    "name": "Kiri Maritime Armor",
+    "type": "armor",
+    "mass_kg": 6,
+    "bulk": 5,
+    "protection": 3,
+    "defense": 2,
+    "speed_penalty": 1,
+    "coverage": "torso_shoulders",
+    "integrity_max": 90
+  },
+  "armor_kumo_assault": {
+    "name": "Kumo Assault Armor",
+    "type": "armor",
+    "mass_kg": 8.5,
+    "bulk": 6,
+    "protection": 4,
+    "defense": 2,
+    "speed_penalty": 1,
+    "coverage": "torso_forearms_shins",
+    "integrity_max": 105
+  },
+  "armor_iwa_heavy": {
+    "name": "Iwa Heavy Armor",
+    "type": "armor",
+    "mass_kg": 17,
+    "bulk": 9,
+    "protection": 6,
+    "defense": 1,
+    "speed_penalty": 3,
+    "coverage": "torso_shoulders_forearms_shins",
+    "integrity_max": 135
+  },
+  "armor_iron_samurai": {
+    "name": "Iron Samurai Armor",
+    "type": "armor",
+    "mass_kg": 22,
+    "bulk": 10,
+    "protection": 7,
+    "defense": 1,
+    "speed_penalty": 3,
+    "coverage": "full_articulated",
+    "integrity_max": 150
+  },
+  "armor_kiri_hunter": {
+    "name": "Kiri Hunter-Nin Armor",
+    "type": "armor",
+    "mass_kg": 5.8,
+    "bulk": 5,
+    "protection": 3,
+    "defense": 3,
+    "speed_penalty": 0,
+    "coverage": "torso_forearms_shins_mask",
+    "integrity_max": 88
+  },
+  "armor_medical_field": {
+    "name": "Medical Field Protection",
+    "type": "armor",
+    "mass_kg": 4,
+    "bulk": 4,
+    "protection": 2,
+    "defense": 1,
+    "speed_penalty": 0,
+    "coverage": "torso_forearms_apron",
+    "integrity_max": 65
+  },
+  "armor_house_court": {
+    "name": "House Tang Court Armor",
+    "type": "armor",
+    "mass_kg": 18,
+    "bulk": 10,
+    "protection": 6,
+    "defense": 0,
+    "speed_penalty": 0,
+    "coverage": "full_articulated_sealed",
+    "integrity_max": 140,
+    "vision_penalty": 0,
+    "hearing_penalty": 0,
+    "hand_seal_penalty": 0,
+    "stealth_penalty": 0,
+    "worn_encumbrance_penalty": 0,
+    "helmet": {
+      "coverage": "full_head_face_neck",
+      "visor": "transparent_armored_full_width",
+      "peripheral_vision_penalty": 0,
+      "anti_fog": true,
+      "glare_suppression": true,
+      "replaceable_outer_layer": true
+    },
+    "notes": [
+      "uses Heavy Armor protection, mass, bulk, and integrity",
+      "bespoke fitting and chakra-assisted articulation remove worn combat penalties",
+      "does not enhance Guardian Current"
+    ]
+  }
+}

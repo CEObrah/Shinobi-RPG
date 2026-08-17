@@ -1,0 +1,788 @@
+{
+  "schema": "file-template",
+  "template_id": "template.shinobi-career-pipeline",
+  "target_schema": "shinobi-career-pipeline",
+  "source_schema": "game/schemas/shinobi-career-pipeline.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "version",
+    "last_review_at",
+    "villages",
+    "history",
+    "provenance"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "version",
+        "last_review_at",
+        "villages",
+        "history",
+        "provenance"
+      ],
+      "canonical_order": [
+        "schema",
+        "version",
+        "last_review_at",
+        "villages",
+        "history",
+        "provenance"
+      ]
+    },
+    "/villages": {
+      "mode": "open_map",
+      "value_contract": "/villages/*"
+    },
+    "/villages/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "service_pool_ref",
+        "force_ref",
+        "rank_counts",
+        "promotion_credit_ppm"
+      ],
+      "canonical_order": [
+        "service_pool_ref",
+        "force_ref",
+        "rank_counts",
+        "promotion_credit_ppm"
+      ]
+    },
+    "/villages/*/rank_counts": {
+      "mode": "closed",
+      "allowed_keys": [
+        "genin",
+        "chunin",
+        "jonin"
+      ],
+      "canonical_order": [
+        "genin",
+        "chunin",
+        "jonin"
+      ]
+    },
+    "/villages/*/promotion_credit_ppm": {
+      "mode": "closed",
+      "allowed_keys": [
+        "genin_to_chunin",
+        "chunin_to_jonin"
+      ],
+      "canonical_order": [
+        "genin_to_chunin",
+        "chunin_to_jonin"
+      ]
+    },
+    "/history/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "from",
+        "at",
+        "village",
+        "graduates",
+        "transfer_id",
+        "periods",
+        "promotions",
+        "headcount_before",
+        "headcount_after",
+        "subject_ref",
+        "source_rank",
+        "target_rank",
+        "action",
+        "cycle_id",
+        "profile_ref",
+        "eligible_exact_refs",
+        "player_team_eligible_refs",
+        "phase",
+        "canon_status",
+        "authority_ref",
+        "team_ref",
+        "instructor_ref",
+        "candidate_refs",
+        "registration_mode",
+        "evaluator_ref",
+        "candidate_ref",
+        "score",
+        "threshold",
+        "outcome",
+        "evaluation_mode",
+        "bout_ref",
+        "round_index",
+        "match_index",
+        "winner_ref",
+        "loser_ref",
+        "resolution_method",
+        "resolution_mode",
+        "victorious_side_refs",
+        "judge_scores",
+        "styles",
+        "combat_record",
+        "duration_seconds",
+        "examiner_ref"
+      ],
+      "canonical_order": [
+        "kind",
+        "from",
+        "at",
+        "village",
+        "graduates",
+        "transfer_id",
+        "periods",
+        "promotions",
+        "headcount_before",
+        "headcount_after",
+        "subject_ref",
+        "source_rank",
+        "target_rank",
+        "action",
+        "cycle_id",
+        "profile_ref",
+        "eligible_exact_refs",
+        "player_team_eligible_refs",
+        "phase",
+        "canon_status",
+        "authority_ref",
+        "team_ref",
+        "instructor_ref",
+        "candidate_refs",
+        "registration_mode",
+        "evaluator_ref",
+        "candidate_ref",
+        "score",
+        "threshold",
+        "outcome",
+        "evaluation_mode",
+        "bout_ref",
+        "round_index",
+        "match_index",
+        "winner_ref",
+        "loser_ref",
+        "resolution_method",
+        "resolution_mode",
+        "victorious_side_refs",
+        "judge_scores",
+        "styles",
+        "combat_record",
+        "duration_seconds",
+        "examiner_ref"
+      ]
+    },
+    "/history/*/promotions": {
+      "mode": "open_map",
+      "value_contract": "/history/*/promotions/*"
+    },
+    "/history/*/promotions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "genin_to_chunin",
+        "chunin_to_jonin"
+      ],
+      "canonical_order": [
+        "genin_to_chunin",
+        "chunin_to_jonin"
+      ]
+    },
+    "/history/*/judge_scores": {
+      "mode": "open_map"
+    },
+    "/history/*/styles": {
+      "mode": "open_map",
+      "value_contract": "/history/*/styles/*"
+    },
+    "/history/*/combat_record": {
+      "mode": "closed",
+      "allowed_keys": [
+        "combat_ref",
+        "transaction_ref",
+        "scale",
+        "resolution_mode",
+        "wake_triggers",
+        "exchange_effects",
+        "participant_effects",
+        "objective_effects",
+        "victorious_side_refs",
+        "status",
+        "successor_boundaries",
+        "rng_receipts"
+      ],
+      "canonical_order": [
+        "combat_ref",
+        "transaction_ref",
+        "scale",
+        "resolution_mode",
+        "wake_triggers",
+        "exchange_effects",
+        "participant_effects",
+        "objective_effects",
+        "victorious_side_refs",
+        "status",
+        "successor_boundaries",
+        "rng_receipts"
+      ]
+    },
+    "/history/*/combat_record/wake_triggers/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "reason",
+        "participant_ref",
+        "engagement_ref"
+      ],
+      "canonical_order": [
+        "reason",
+        "participant_ref",
+        "engagement_ref"
+      ]
+    },
+    "/history/*/combat_record/exchange_effects/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "engagement_ref",
+        "actor_ref",
+        "target_ref",
+        "action",
+        "outcome",
+        "perception_margin",
+        "control_margin",
+        "force_margin",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "engagement_ref",
+        "actor_ref",
+        "target_ref",
+        "action",
+        "outcome",
+        "perception_margin",
+        "control_margin",
+        "force_margin",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "participant_ref",
+        "authoritative_owner_ref",
+        "before_personnel",
+        "after_personnel",
+        "before_resources",
+        "after_resources",
+        "before_readiness",
+        "after_readiness",
+        "before_morale",
+        "after_morale",
+        "before_cohesion",
+        "after_cohesion",
+        "before_position",
+        "after_position",
+        "requires_partition"
+      ],
+      "canonical_order": [
+        "participant_ref",
+        "authoritative_owner_ref",
+        "before_personnel",
+        "after_personnel",
+        "before_resources",
+        "after_resources",
+        "before_readiness",
+        "after_readiness",
+        "before_morale",
+        "after_morale",
+        "before_cohesion",
+        "after_cohesion",
+        "before_position",
+        "after_position",
+        "requires_partition"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/before_personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/after_personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/before_resources/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/after_resources/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/before_position": {
+      "mode": "closed",
+      "allowed_keys": [
+        "zone_ref",
+        "elevation",
+        "cover_milli"
+      ],
+      "canonical_order": [
+        "zone_ref",
+        "elevation",
+        "cover_milli"
+      ]
+    },
+    "/history/*/combat_record/participant_effects/*/after_position": {
+      "mode": "closed",
+      "allowed_keys": [
+        "zone_ref",
+        "elevation",
+        "cover_milli"
+      ],
+      "canonical_order": [
+        "zone_ref",
+        "elevation",
+        "cover_milli"
+      ]
+    },
+    "/history/*/combat_record/objective_effects/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "objective_ref",
+        "side_ref",
+        "before_progress",
+        "after_progress",
+        "achieved"
+      ],
+      "canonical_order": [
+        "objective_ref",
+        "side_ref",
+        "before_progress",
+        "after_progress",
+        "achieved"
+      ]
+    },
+    "/history/*/combat_record/successor_boundaries/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "at_tick",
+        "participant_refs",
+        "authoritative_owner_refs",
+        "reason_code"
+      ],
+      "canonical_order": [
+        "kind",
+        "at_tick",
+        "participant_refs",
+        "authoritative_owner_refs",
+        "reason_code"
+      ]
+    },
+    "/history/*/combat_record/rng_receipts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "algorithm",
+        "world_seed_hash",
+        "transaction_id",
+        "stream",
+        "draw_index",
+        "value_u64"
+      ],
+      "canonical_order": [
+        "algorithm",
+        "world_seed_hash",
+        "transaction_id",
+        "stream",
+        "draw_index",
+        "value_u64"
+      ]
+    },
+    "/history/*/styles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "martial_focus",
+        "domain_focus",
+        "featured_method_ref"
+      ],
+      "canonical_order": [
+        "martial_focus",
+        "domain_focus",
+        "featured_method_ref"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/version": [
+      "integer"
+    ],
+    "/last_review_at": [
+      "string"
+    ],
+    "/villages": [
+      "object"
+    ],
+    "/villages/*": [
+      "object"
+    ],
+    "/villages/*/service_pool_ref": [
+      "string"
+    ],
+    "/villages/*/force_ref": [
+      "string"
+    ],
+    "/villages/*/rank_counts": [
+      "object"
+    ],
+    "/villages/*/rank_counts/genin": [
+      "integer"
+    ],
+    "/villages/*/rank_counts/chunin": [
+      "integer"
+    ],
+    "/villages/*/rank_counts/jonin": [
+      "integer"
+    ],
+    "/villages/*/promotion_credit_ppm": [
+      "object"
+    ],
+    "/villages/*/promotion_credit_ppm/genin_to_chunin": [
+      "integer"
+    ],
+    "/villages/*/promotion_credit_ppm/chunin_to_jonin": [
+      "integer"
+    ],
+    "/history": [
+      "array"
+    ],
+    "/history/*": [
+      "object"
+    ],
+    "/history/*/kind": [
+      "string"
+    ],
+    "/history/*/from": [
+      "string"
+    ],
+    "/history/*/at": [
+      "string"
+    ],
+    "/history/*/village": [
+      "string"
+    ],
+    "/history/*/graduates": [
+      "integer"
+    ],
+    "/history/*/transfer_id": [
+      "string"
+    ],
+    "/history/*/periods": [
+      "integer"
+    ],
+    "/history/*/promotions": [
+      "object"
+    ],
+    "/history/*/promotions/*": [
+      "object"
+    ],
+    "/history/*/promotions/*/genin_to_chunin": [
+      "integer"
+    ],
+    "/history/*/promotions/*/chunin_to_jonin": [
+      "integer"
+    ],
+    "/history/*/headcount_before": [
+      "integer"
+    ],
+    "/history/*/headcount_after": [
+      "integer"
+    ],
+    "/history/*/subject_ref": [
+      "string"
+    ],
+    "/history/*/source_rank": [
+      "string"
+    ],
+    "/history/*/target_rank": [
+      "string"
+    ],
+    "/history/*/action": [
+      "string"
+    ],
+    "/history/*/cycle_id": [
+      "string"
+    ],
+    "/history/*/profile_ref": [
+      "string"
+    ],
+    "/history/*/eligible_exact_refs": [
+      "array"
+    ],
+    "/history/*/player_team_eligible_refs": [
+      "array"
+    ],
+    "/history/*/phase": [
+      "string"
+    ],
+    "/history/*/canon_status": [
+      "string"
+    ],
+    "/history/*/authority_ref": [
+      "string"
+    ],
+    "/history/*/team_ref": [
+      "string"
+    ],
+    "/history/*/instructor_ref": [
+      "string"
+    ],
+    "/history/*/candidate_refs": [
+      "array"
+    ],
+    "/history/*/registration_mode": [
+      "string"
+    ],
+    "/history/*/evaluator_ref": [
+      "string"
+    ],
+    "/history/*/candidate_ref": [
+      "string"
+    ],
+    "/history/*/score": [
+      "integer"
+    ],
+    "/history/*/threshold": [
+      "integer"
+    ],
+    "/history/*/outcome": [
+      "string"
+    ],
+    "/history/*/evaluation_mode": [
+      "string"
+    ],
+    "/history/*/bout_ref": [
+      "string"
+    ],
+    "/history/*/round_index": [
+      "integer"
+    ],
+    "/history/*/match_index": [
+      "integer"
+    ],
+    "/history/*/winner_ref": [
+      "string"
+    ],
+    "/history/*/loser_ref": [
+      "string"
+    ],
+    "/history/*/resolution_method": [
+      "string"
+    ],
+    "/history/*/resolution_mode": [
+      "string"
+    ],
+    "/history/*/victorious_side_refs": [
+      "array"
+    ],
+    "/history/*/judge_scores": [
+      "object"
+    ],
+    "/history/*/styles": [
+      "object"
+    ],
+    "/history/*/combat_record": [
+      "object"
+    ],
+    "/history/*/duration_seconds": [
+      "integer"
+    ],
+    "/history/*/examiner_ref": [
+      "string"
+    ],
+    "/provenance": [
+      "string"
+    ],
+    "/history/*/styles/*": [
+      "object"
+    ],
+    "/history/*/styles/*/martial_focus": [
+      "string",
+      "null"
+    ],
+    "/history/*/styles/*/domain_focus": [
+      "string",
+      "null"
+    ],
+    "/history/*/styles/*/featured_method_ref": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/history": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*"
+    },
+    "/history/*/eligible_exact_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/player_team_eligible_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/candidate_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/victorious_side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/combat_record/wake_triggers": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/wake_triggers/*"
+    },
+    "/history/*/combat_record/exchange_effects": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/exchange_effects/*"
+    },
+    "/history/*/combat_record/participant_effects": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/participant_effects/*"
+    },
+    "/history/*/combat_record/objective_effects": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/objective_effects/*"
+    },
+    "/history/*/combat_record/victorious_side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/combat_record/successor_boundaries": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/successor_boundaries/*"
+    },
+    "/history/*/combat_record/rng_receipts": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/rng_receipts/*"
+    },
+    "/history/*/combat_record/participant_effects/*/before_resources": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/participant_effects/*/before_resources/*"
+    },
+    "/history/*/combat_record/participant_effects/*/after_resources": {
+      "item_types": [
+        "object"
+      ],
+      "item_contract": "/history/*/combat_record/participant_effects/*/after_resources/*"
+    },
+    "/history/*/combat_record/successor_boundaries/*/participant_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/history/*/combat_record/successor_boundaries/*/authoritative_owner_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This owner tracks unnamed aggregate shinobi cohorts plus current career-administration truth; exact named shinobi remain outside aggregate promotion authority.",
+    "Promotions move conserved bodies one rank step at a time and preserve fractional promotion credit between monthly reviews.",
+    "Academy intake is deduplicated by graduation transfer identity before entering the aggregate Genin cohort.",
+    "Promotion-exam cycle rows record institutional phase state only; they never establish a named candidate result or promotion.",
+    "Promotion-exam registration rows record an authorized exact candidate entry into an active cycle only; registration_mode records whether the row came from ordinary institution autonomy or a guarded OOC DEV reconciliation and never changes the row's authority.",
+    "Promotion-exam evaluation rows establish deterministic qualification or field-evaluation evidence only; evaluation_mode records ordinary institution autonomy versus guarded reconciliation and never supplies the outcome itself.",
+    "Every row belonging to every still-active promotion-exam cycle must remain in this authoritative owner regardless of current cycle cardinality. Only non-active hot administrative history may be compacted, with durable historical provenance retained through semantic world-event archives.",
+    "Promotion-exam bout rows preserve the public finals bracket, autonomous combat-kernel evidence, and winner/loser for tournament progression. A bout row never itself promotes a candidate and its exam-specific referee kernel does not directly create lasting injury.",
+    "Exact rank accounting rows mirror a separately authorized exact-person career transition and must conserve the aggregate village rank total."
+  ]
+}

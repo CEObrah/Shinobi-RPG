@@ -1,0 +1,60 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.kiri_hunter_office",
+    "name": "Kiri Hunter-Nin Office",
+    "status": "active",
+    "leadership_ids": [
+      "canon_ao"
+    ],
+    "key_member_ids": [
+      "canon_chojuro"
+    ],
+    "goal": "track missing-nin, recover secrets, and protect Kiri security",
+    "current_plan": "Maintain hunter readiness and prioritize only targets with verified strategic sensitivity.",
+    "resources": [
+      "hunter-nin",
+      "tracking intelligence",
+      "maritime access"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.bounty_broker_network",
+        "relationship_type": "missing_nin_information_market",
+        "stance": "competitive_transactional",
+        "intensity": 48
+      },
+      {
+        "target_id": "faction.oto_research_cells",
+        "relationship_type": "security_and_secret_recovery",
+        "stance": "hostile",
+        "intensity": 67
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Uses existing Kiri force, sensory, pursuit, and assassination mechanics."
+    ],
+    "goals": [
+      "recover sensitive missing-nin and secrets",
+      "prevent defectors from exposing Kiri capabilities"
+    ],
+    "constraints": [
+      "distance",
+      "target uncertainty",
+      "village command priorities"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-16T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_team_refs": [
+        "team.kiri.hunter.office.auto.a29a55f55d97"
+      ],
+      "autonomous_mission_refs": [],
+      "wake_required_mission_refs": []
+    },
+    "scope": "Kirigakure missing-nin recovery, secret protection, and hunter operations",
+    "leadership_model": "village_security_office"
+  }
+}

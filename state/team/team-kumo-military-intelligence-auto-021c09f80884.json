@@ -1,0 +1,62 @@
+{
+  "schema": "exact-team",
+  "id": "team.kumo.military.intelligence.auto.021c09f80884",
+  "name": "Kumo Military Intelligence Field Cell",
+  "status": "active",
+  "team_type": "temporary_task_force",
+  "parent_institution_ref": "faction.kumo_military_intelligence",
+  "assignment_authority_ref": "canon_c",
+  "leader_ref": "canon_c",
+  "deputy_ref": "canon_darui",
+  "member_refs": [
+    "canon_c",
+    "canon_darui",
+    "canon_mabui"
+  ],
+  "roles": {
+    "canon_c": "field_lead",
+    "canon_darui": "mobile_interdiction",
+    "canon_mabui": "reconnaissance_sensor"
+  },
+  "classification": "secret",
+  "activation": {
+    "at": "SE-0061-02-12T07:00:00",
+    "basis": "Roster revalidated at the current campaign anchor against the organization’s persisted specialist eligibility and active-service requirements."
+  },
+  "doctrine_ref": "team.kumo.military.intelligence.auto.021c09f80884.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_c"
+    ],
+    "facility_refs": [],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.autonomy.5360e0fab0c0a6b76264eb65",
+        "started_at": "SE-0061-07-16T01:00:00",
+        "ended_at": "SE-0061-07-16T07:00:00",
+        "active_hours": "6",
+        "member_refs": [
+          "canon_c",
+          "canon_darui"
+        ],
+        "instructor_ref": "canon_c",
+        "targets": {
+          "canon_c": "operational_skills.team_coordination",
+          "canon_darui": "martial_skills.movement"
+        }
+      }
+    ]
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 3,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.kumo_military_intelligence"
+  }
+}

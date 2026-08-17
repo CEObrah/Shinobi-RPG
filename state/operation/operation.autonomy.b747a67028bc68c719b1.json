@@ -1,0 +1,57 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.b747a67028bc68c719b1",
+  "domain": "medical_network",
+  "operation_kind": "casualty_response",
+  "owner_ref": "faction.konoha_hospital",
+  "authority_ref": "support.hospital.akemi_hoshino",
+  "opened_at": "SE-0061-06-25T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-09T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "place",
+  "subject_ref": "place.konoha",
+  "client_ref": null,
+  "place_refs": [
+    "place.konoha.hospital"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_field_medical_kit",
+    "item_triage_tags"
+  ],
+  "team_refs": [],
+  "participant_refs": [
+    "support.hospital.akemi_hoshino",
+    "canon_shizune"
+  ],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [
+    "research.autonomy.789c25cc07ef71995d85"
+  ],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.f89a75988e3ef8607b9ff932",
+    "event.institutional_operation_evidence_generated.7a5a8289b8557ec5cd7bb1b8"
+  ],
+  "claim_refs": [
+    "claim.operation.3b3d764a122000d9180a"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.hospital.akemi_hoshino"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Triage and route casualties through actual treatment capacity without creating free recovery.",
+  "failure_condition": "The casualty_response objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.operation.3b3d764a122000d9180a",
+    "event.institutional_operation_completed.f89a75988e3ef8607b9ff932",
+    "event.institutional_operation_evidence_generated.7a5a8289b8557ec5cd7bb1b8",
+    "research.autonomy.789c25cc07ef71995d85"
+  ]
+}

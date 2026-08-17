@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "person-continuity-registry.schema.json",
+  "title": "Bundled persistent-person continuity state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "owner_id", "owner_type", "authority", "resolved_through", "people"],
+  "properties": {
+    "schema": {"const": "person-continuity-registry"},
+    "owner_id": {"const": "registry.person_continuity"},
+    "owner_type": {"const": "person_continuity_registry"},
+    "authority": {"const": true},
+    "resolved_through": {"type": "string"},
+    "people": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["person_ref", "host_ref", "cohort_ref", "resolved_through", "life_experience_days", "review_count", "career_review_cycles"],
+        "properties": {
+          "person_ref": {"type": "string", "minLength": 1},
+          "host_ref": {"type": ["string", "null"]},
+          "cohort_ref": {"type": ["string", "null"]},
+          "resolved_through": {"type": "string"},
+          "life_experience_days": {"type": "integer", "minimum": 0},
+          "review_count": {"type": "integer", "minimum": 0},
+          "career_review_cycles": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

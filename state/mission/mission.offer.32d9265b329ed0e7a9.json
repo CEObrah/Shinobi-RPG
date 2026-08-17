@@ -1,0 +1,119 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.offer.32d9265b329ed0e7a9",
+  "issuer_ref": "faction.konoha_mission_office",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": "escrow.mission.offer.32d9265b329ed0e7a9",
+  "opened_at": "SE-0061-07-09T07:00:00",
+  "authorized_at": "SE-0061-07-09T07:00:00",
+  "starts_at": "SE-0061-07-09T07:00:00",
+  "deadline_at": "SE-0061-07-16T07:00:00",
+  "next_due_at": null,
+  "operation_ref": "team.blackhound",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.offer.32d9265b329ed0e7a9",
+    "objective_kind": "observe",
+    "subject_kind": "place",
+    "subject_ref": "place.fire.western.border",
+    "subject_label": "Western Fire Country border reconnaissance sector",
+    "report_place_ref": "place.konoha.mission_assignment_desk",
+    "origin_place_ref": "place.konoha",
+    "destination_place_ref": "place.fire.western.border",
+    "route_id": "route_konoha_fire_west",
+    "threat_summary": "Routine border reconnaissance with no hostile actor established; verify crossings, route condition, and any supported anomaly.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "Do not convert absence of records into proof of hostile activity.",
+      "Report observed route, crossing, and security anomalies with provenance before attributing intent."
+    ],
+    "report_at": "SE-0061-07-09T09:00:00",
+    "depart_by": "SE-0061-07-09T13:00:00",
+    "completion_condition": "Reconnoiter the assigned western-border sector and return a sourced observation report to the Mission Office."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_ensui_nara",
+    "canon_hana_inuzuka",
+    "canon_hayama_shirakumo",
+    "canon_hoheto_hyuga",
+    "canon_tekuno_kanden"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.32d9265b329ed0e7a9",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "pending",
+      "progress_milli": 0,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [
+    {
+      "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.ensui.nara",
+      "direction": "reward",
+      "account_ref": "canon_ensui_nara",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.hana.inuzuka",
+      "direction": "reward",
+      "account_ref": "canon_hana_inuzuka",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.hayama.shirakumo",
+      "direction": "reward",
+      "account_ref": "canon_hayama_shirakumo",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.hoheto.hyuga",
+      "direction": "reward",
+      "account_ref": "canon_hoheto_hyuga",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    },
+    {
+      "term_id": "term.offer.32d9265b329ed0e7a9.reward.canon.tekuno.kanden",
+      "direction": "reward",
+      "account_ref": "canon_tekuno_kanden",
+      "asset_ref": "currency.ryo",
+      "quantity": 70000,
+      "applies_on": [
+        "succeeded"
+      ],
+      "objective_id": null,
+      "objective_status": null
+    }
+  ],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

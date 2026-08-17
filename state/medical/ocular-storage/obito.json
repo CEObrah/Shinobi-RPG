@@ -1,0 +1,32 @@
+{
+  "schema": "ocular-stockpile-batch",
+  "inventory_id": "ocular.inventory.obito_lab",
+  "location_id": "place.mountains_graveyard.obito_lab",
+  "unique_asset_count": 77,
+  "available_ordinal_ranges": [
+    [
+      1,
+      77
+    ]
+  ],
+  "id_template": "eye.obito_store.{ordinal:03d}",
+  "original_owner_template": "unknown_uchiha_store_{ordinal:03d}",
+  "prototype": {
+    "side": "stored_unknown",
+    "current_owner_id": "canon_tobi",
+    "current_location": "place.mountains_graveyard.obito_lab:preservation_wall",
+    "dojutsu_type": "sharingan",
+    "hardware_stage": "3_tomoe",
+    "mangekyo_identity": null,
+    "native_to_current_owner": false,
+    "condition": "preserved_functional",
+    "vision_integrity": 200,
+    "integration": 0,
+    "activation_state": "unimplanted",
+    "preservation_state": "fluid_preservation",
+    "unique_ability_refs": []
+  },
+  "allocation_rule": "When an exact eye is selected or transferred, choose the explicitly referenced ordinal; if none is specified, use the lowest available ordinal. Remove that ordinal from available ranges and materialize its exact eye record before transfer. Never regenerate a removed ordinal.",
+  "materialization_rule": "Virtual ordinals are conserved unique biological objects. Expansion is deterministic from prototype + ordinal and creates no new inventory.",
+  "regeneration_forbidden": true
+}

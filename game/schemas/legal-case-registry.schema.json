@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "legal-case-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "cases"
+  ],
+  "properties": {
+    "schema": {
+      "const": "legal-case-registry"
+    },
+    "cases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "case_kind",
+          "issuer_ref",
+          "subject_ref",
+          "requester_ref",
+          "status",
+          "opened_at",
+          "updated_at",
+          "summary",
+          "visibility",
+          "offense_refs",
+          "evidence_refs",
+          "warrant",
+          "bounty",
+          "custody_ref",
+          "disposition"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^case\\."
+          },
+          "case_kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "issuer_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subject_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "open",
+              "warranted",
+              "bounty_posted",
+              "resolved",
+              "dismissed"
+            ]
+          },
+          "opened_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "updated_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "offense_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "warrant": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "authority_ref",
+              "issued_at"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "none",
+                  "active",
+                  "served",
+                  "withdrawn"
+                ]
+              },
+              "authority_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "issued_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "bounty": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "payer_ref",
+              "payer_holder_ref",
+              "escrow_holder_ref",
+              "amount_ryo",
+              "hunter_refs",
+              "posted_at",
+              "verified_evidence_refs",
+              "settled_at"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "none",
+                  "posted",
+                  "claimed",
+                  "paid",
+                  "cancelled"
+                ]
+              },
+              "payer_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "escrow_holder_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "amount_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "hunter_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "posted_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified_evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "settled_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "payer_holder_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "custody_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "disposition": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1000
+          },
+          "requester_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

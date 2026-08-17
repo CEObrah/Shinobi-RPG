@@ -1,0 +1,33 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "21",
+  "authority": true,
+  "hosts": {
+    "host.world.institutions.great_villages": {
+      "host": {
+        "state": {
+          "host_id": "host.world.institutions.great_villages",
+          "kind": "world_registry",
+          "resolved_through": "SE-0061-07-01T07:00:00",
+          "safe_through": "SE-0061-08-01T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "world.institutions.great_villages",
+          "next_due": "SE-0061-08-01T07:00:00"
+        },
+        "authority_kind": "world_registry",
+        "owner_ref": "state/world/institutions-great-villages.json",
+        "metadata": {
+          "identity": "world.institutions.great_villages"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.b54af9ce70beeab40573ec00",
+          "due_at": "SE-0061-08-01T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-08-01.json",
+          "dedupe_key": "world_registry.periodic_review:world.institutions.great_villages"
+        }
+      ]
+    }
+  }
+}

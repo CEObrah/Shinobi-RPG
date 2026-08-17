@@ -1,0 +1,196 @@
+{
+  "schema": "path-template",
+  "template_id": "path.house-training-policies",
+  "glob": "game/data/house/training-policies.json",
+  "unknown_key_policy": "reject",
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "format_version",
+        "policies"
+      ],
+      "canonical_order": [
+        "format_version",
+        "policies"
+      ]
+    },
+    "/policies": {
+      "mode": "open_map"
+    },
+    "/policies/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "cycle_anchor",
+        "training_window_start_seconds",
+        "daily_active_hours",
+        "curricula"
+      ],
+      "canonical_order": [
+        "id",
+        "cycle_anchor",
+        "training_window_start_seconds",
+        "daily_active_hours",
+        "curricula"
+      ]
+    },
+    "/policies/*/curricula": {
+      "mode": "open_map"
+    },
+    "/policies/*/curricula/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "factors_milli",
+        "targets",
+        "technique_practice_milli",
+        "technique_practice_integrated"
+      ],
+      "canonical_order": [
+        "factors_milli",
+        "targets",
+        "technique_practice_milli",
+        "technique_practice_integrated"
+      ]
+    },
+    "/policies/*/curricula/*/factors_milli": {
+      "mode": "closed",
+      "allowed_keys": [
+        "attendance_milli",
+        "instructor_quality_milli",
+        "facility_quality_milli",
+        "equipment_milli",
+        "health_milli",
+        "recovery_milli",
+        "relevance_milli",
+        "difficulty_fit_milli",
+        "experience_milli"
+      ],
+      "canonical_order": [
+        "attendance_milli",
+        "instructor_quality_milli",
+        "facility_quality_milli",
+        "equipment_milli",
+        "health_milli",
+        "recovery_milli",
+        "relevance_milli",
+        "difficulty_fit_milli",
+        "experience_milli"
+      ]
+    },
+    "/policies/*/curricula/*/targets/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "target",
+        "aptitude",
+        "weight_milli"
+      ],
+      "canonical_order": [
+        "target",
+        "aptitude",
+        "weight_milli"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/format_version": [
+      "integer"
+    ],
+    "/policies": [
+      "object"
+    ],
+    "/policies/*": [
+      "object"
+    ],
+    "/policies/*/id": [
+      "string"
+    ],
+    "/policies/*/cycle_anchor": [
+      "string"
+    ],
+    "/policies/*/training_window_start_seconds": [
+      "integer"
+    ],
+    "/policies/*/daily_active_hours": [
+      "array"
+    ],
+    "/policies/*/daily_active_hours/*": [
+      "integer"
+    ],
+    "/policies/*/curricula": [
+      "object"
+    ],
+    "/policies/*/curricula/*": [
+      "object"
+    ],
+    "/policies/*/curricula/*/factors_milli": [
+      "object"
+    ],
+    "/policies/*/curricula/*/factors_milli/attendance_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/instructor_quality_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/facility_quality_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/equipment_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/health_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/recovery_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/relevance_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/difficulty_fit_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/factors_milli/experience_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/targets": [
+      "array"
+    ],
+    "/policies/*/curricula/*/targets/*": [
+      "object"
+    ],
+    "/policies/*/curricula/*/targets/*/target": [
+      "string"
+    ],
+    "/policies/*/curricula/*/targets/*/aptitude": [
+      "string"
+    ],
+    "/policies/*/curricula/*/targets/*/weight_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/technique_practice_milli": [
+      "integer"
+    ],
+    "/policies/*/curricula/*/technique_practice_integrated": [
+      "boolean"
+    ]
+  },
+  "array_contracts": {
+    "/policies/*/daily_active_hours": {
+      "item_types": [
+        "integer"
+      ]
+    },
+    "/policies/*/curricula/*/targets": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "House training schedules are data, not prose parsers or Python owner-name branches.",
+    "Target weights for each curriculum must sum to 1000.",
+    "A resolved_through cursor advances only after every eligible training window in that interval is settled or explicitly resolves to zero eligible hours.",
+    "Rostered House members own persistent individual capability and progression; cohort profiles are derived training-section summaries only."
+  ]
+}

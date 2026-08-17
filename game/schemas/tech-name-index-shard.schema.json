@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "initial",
+    "names"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tech-name-index-shard"
+    },
+    "initial": {
+      "type": "string"
+    },
+    "names": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

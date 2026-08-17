@@ -1,0 +1,206 @@
+{
+  "schema": "site-definition-catalog",
+  "authority": "cold_non_state_content",
+  "rule": "These records describe stable physical/site topology and authored world detail. They are not mutable mechanical authority. Current access, custody, training, medical, security, inventory, damage, alert, and other consequential state belongs to the registered runtime owners that reducers actually consume.",
+  "records": {
+    "place.konoha.root.primary_complex": {
+      "name": "Root Primary Complex",
+      "owner_ref": "faction.root",
+      "visibility": "hidden_until_information_path",
+      "zones": [
+        {
+          "id": "root.zone.outer_approach",
+          "purpose": "concealed approach and patrol screen",
+          "access_class": "outer"
+        },
+        {
+          "id": "root.zone.entry_checkpoint",
+          "purpose": "identity challenge, seal verification, and controlled entry",
+          "access_class": "restricted"
+        },
+        {
+          "id": "root.zone.operations_relay",
+          "purpose": "internal messages, mission routing, and compartment transfer",
+          "access_class": "restricted"
+        },
+        {
+          "id": "root.zone.training",
+          "purpose": "operative conditioning and controlled drills",
+          "access_class": "restricted"
+        },
+        {
+          "id": "root.zone.detention",
+          "purpose": "secure holding and interrogation support",
+          "access_class": "deep_restricted"
+        },
+        {
+          "id": "root.zone.medical",
+          "purpose": "trauma care and controlled biological procedures",
+          "access_class": "deep_restricted"
+        },
+        {
+          "id": "root.zone.biological_storage",
+          "purpose": "preserved biological assets and controlled custody",
+          "access_class": "highest_restriction"
+        },
+        {
+          "id": "root.zone.archives",
+          "purpose": "compartmented records and original documents",
+          "access_class": "highest_restriction"
+        },
+        {
+          "id": "root.zone.command",
+          "purpose": "Danzo command and highest-level briefings",
+          "access_class": "highest_restriction"
+        },
+        {
+          "id": "root.zone.service_escape",
+          "purpose": "maintenance route and emergency egress",
+          "access_class": "deep_restricted"
+        }
+      ],
+      "connections": [
+        [
+          "root.zone.outer_approach",
+          "root.zone.entry_checkpoint"
+        ],
+        [
+          "root.zone.entry_checkpoint",
+          "root.zone.operations_relay"
+        ],
+        [
+          "root.zone.operations_relay",
+          "root.zone.training"
+        ],
+        [
+          "root.zone.operations_relay",
+          "root.zone.detention"
+        ],
+        [
+          "root.zone.operations_relay",
+          "root.zone.medical"
+        ],
+        [
+          "root.zone.medical",
+          "root.zone.biological_storage"
+        ],
+        [
+          "root.zone.operations_relay",
+          "root.zone.archives"
+        ],
+        [
+          "root.zone.archives",
+          "root.zone.command"
+        ],
+        [
+          "root.zone.medical",
+          "root.zone.service_escape"
+        ],
+        [
+          "root.zone.command",
+          "root.zone.service_escape"
+        ]
+      ],
+      "site_notes": [
+        "Approach routes are concealed and screened by Root patrols.",
+        "Entry uses identity challenge and seal verification.",
+        "Archives, biological storage, detention, and command areas are compartmented.",
+        "The medical area connects to biological storage and an emergency/service egress.",
+        "Numerical security, medical, training, and custody capability is owned only by the current world mechanical modules and custody state, not by this cold definition."
+      ]
+    },
+    "place.sword_manor": {
+      "name": "Sword Manor",
+      "owner_ref": "house.tang",
+      "physical_scale": {
+        "chartered_land_m2": 60000,
+        "developed_m2": 16000,
+        "built_floor_m2": 5000,
+        "long_term_capacity_after_projects": 300
+      },
+      "facilities": [
+        "family_residence",
+        "main_dojo",
+        "secondary_dojo",
+        "real_blade_court",
+        "grappling_hall",
+        "conditioning_hall",
+        "formation_field",
+        "water_surface_pool",
+        "vertical_training_tower",
+        "obstacle_pursuit_course",
+        "training_woods",
+        "modular_street_block",
+        "room_entry_structure",
+        "evacuation_course",
+        "barrier_test_zone",
+        "command_map_room",
+        "first_sword_office",
+        "alarm_control",
+        "sensor_watch",
+        "secure_communications",
+        "armory",
+        "equipment_issue",
+        "weapon_workshop",
+        "armor_workshop",
+        "uniform_room",
+        "consumables_vault",
+        "provisions",
+        "infirmary",
+        "surgery",
+        "recovery_ward",
+        "isolation",
+        "decontamination",
+        "pharmacy",
+        "archive",
+        "evidence_vault",
+        "dungeon",
+        "water_cistern",
+        "fire_cistern"
+      ],
+      "infrastructure": [
+        "water_mains",
+        "drainage",
+        "sanitation",
+        "barrier_anchor_grid",
+        "internal_roads",
+        "utility_corridors",
+        "fire_water_system",
+        "expansion_foundations",
+        "emergency_routes"
+      ],
+      "site_notes": [
+        "Facility names describe stable site layout and scene affordances; they do not create separate mutable inventories, schedules, staff ledgers, or capacity systems.",
+        "Current training and medical capability is owned by the world mechanical modules; current alarm state remains mutable place state."
+      ]
+    },
+    "place.sword_manor.dungeon": {
+      "name": "Sword Manor Dungeon",
+      "owner_ref": "house.tang",
+      "cells": {
+        "standard": 6,
+        "chakra_resistant": 2,
+        "medical_observation": 1
+      },
+      "rooms": [
+        "interview",
+        "interrogation",
+        "guard_station",
+        "evidence_intake",
+        "restraint_seal_cabinet"
+      ],
+      "systems": [
+        "ventilation",
+        "sanitation",
+        "fire_suppression",
+        "barrier_anchors",
+        "controlled_infirmary_route",
+        "emergency_exit"
+      ],
+      "site_notes": [
+        "The listed cells describe the dedicated room mix, not the mechanical prisoner-capacity total. Current custody capacity and security are owned by the world custody/security modules.",
+        "Prisoner identity, counts, transfers, release, exchange, and escape state are owned by the custody registry, not this site definition."
+      ]
+    }
+  }
+}

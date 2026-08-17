@@ -1,0 +1,533 @@
+{
+  "schema": "shinobi-career-pipeline",
+  "version": 1,
+  "last_review_at": "SE-0061-07-22T07:29:58",
+  "villages": {
+    "konoha": {
+      "service_pool_ref": "pool.konoha.shinobi_service",
+      "force_ref": "force.konoha.shinobi",
+      "rank_counts": {
+        "genin": 8883,
+        "chunin": 2691,
+        "jonin": 486
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 501000,
+        "chunin_to_jonin": 500
+      }
+    },
+    "iwa": {
+      "service_pool_ref": "pool.iwa.shinobi_service",
+      "force_ref": "force.iwa.shinobi",
+      "rank_counts": {
+        "genin": 7771,
+        "chunin": 2354,
+        "jonin": 425
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 929000,
+        "chunin_to_jonin": 499800
+      }
+    },
+    "kiri": {
+      "service_pool_ref": "pool.kiri.shinobi_service",
+      "force_ref": "force.kiri.shinobi",
+      "rank_counts": {
+        "genin": 6291,
+        "chunin": 1906,
+        "jonin": 343
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 517000,
+        "chunin_to_jonin": 832600
+      }
+    },
+    "kumo": {
+      "service_pool_ref": "pool.kumo.shinobi_service",
+      "force_ref": "force.kumo.shinobi",
+      "rank_counts": {
+        "genin": 7399,
+        "chunin": 2242,
+        "jonin": 404
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 72000,
+        "chunin_to_jonin": 332400
+      }
+    },
+    "suna": {
+      "service_pool_ref": "pool.suna.shinobi_service",
+      "force_ref": "force.suna.shinobi",
+      "rank_counts": {
+        "genin": 5187,
+        "chunin": 1570,
+        "jonin": 283
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 978000,
+        "chunin_to_jonin": 334900
+      }
+    },
+    "ame": {
+      "service_pool_ref": "pool.ame.shinobi_service",
+      "force_ref": "force.ame.shinobi",
+      "rank_counts": {
+        "genin": 2590,
+        "chunin": 770,
+        "jonin": 140
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 0,
+        "chunin_to_jonin": 0
+      }
+    },
+    "kusa": {
+      "service_pool_ref": "pool.kusa.shinobi_service",
+      "force_ref": "force.kusa.shinobi",
+      "rank_counts": {
+        "genin": 1332,
+        "chunin": 396,
+        "jonin": 72
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 0,
+        "chunin_to_jonin": 0
+      }
+    },
+    "taki": {
+      "service_pool_ref": "pool.taki.shinobi_service",
+      "force_ref": "force.taki.shinobi",
+      "rank_counts": {
+        "genin": 1184,
+        "chunin": 352,
+        "jonin": 64
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 0,
+        "chunin_to_jonin": 0
+      }
+    },
+    "oto": {
+      "service_pool_ref": "pool.oto.shinobi_service",
+      "force_ref": "force.oto.network",
+      "rank_counts": {
+        "genin": 1110,
+        "chunin": 330,
+        "jonin": 60
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 0,
+        "chunin_to_jonin": 0
+      }
+    },
+    "yuga": {
+      "service_pool_ref": "pool.yuga.shinobi_service",
+      "force_ref": "force.yuga.service",
+      "rank_counts": {
+        "genin": 444,
+        "chunin": 132,
+        "jonin": 24
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 0,
+        "chunin_to_jonin": 0
+      }
+    }
+  },
+  "history": [
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-03-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-04-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-05-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 1
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-06-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "iwa",
+      "graduates": 10,
+      "transfer_id": "autonomy.graduation.7d75c776f1dcf3b46970"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "kiri",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.ee6337299b33c317abb4"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "kumo",
+      "graduates": 9,
+      "transfer_id": "autonomy.graduation.7c1c9228b28bdd45e2c6"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "suna",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.befbc1c54d1f75e8fca3"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "konoha",
+      "graduates": 12,
+      "transfer_id": "autonomy.graduation.7544f36dd3721efe6fe5"
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-07-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 1
+        }
+      },
+      "headcount_before": 48235,
+      "headcount_after": 48235
+    },
+    {
+      "kind": "promotion_exam_cycle_phase",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "registration",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "authority_ref": "canon_hiruzen"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.fujin",
+      "instructor_ref": "pc_wei_tang",
+      "candidate_refs": [
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.7509160457",
+      "instructor_ref": "canon_kakashi",
+      "candidate_refs": [
+        "canon_naruto",
+        "canon_sakura",
+        "canon_sasuke"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.a2b320a362",
+      "instructor_ref": "canon_kurenai",
+      "candidate_refs": [
+        "canon_hinata",
+        "canon_kiba",
+        "canon_shino"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.f6a64a78e8",
+      "instructor_ref": "canon_asuma",
+      "candidate_refs": [
+        "canon_choji",
+        "canon_ino",
+        "canon_shikamaru"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.guy",
+      "instructor_ref": "canon_guy",
+      "candidate_refs": [
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.suna.common",
+      "instructor_ref": "faction_suna",
+      "candidate_refs": [
+        "canon_gaara",
+        "canon_kankuro",
+        "canon_temari"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.iwa.common",
+      "instructor_ref": "faction_iwa",
+      "candidate_refs": [
+        "canon_kurotsuchi",
+        "char.exam_iwa_dcedf59e5a96",
+        "char.exam_iwa_ffc1fd1c70e2"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kumo.common",
+      "instructor_ref": "faction_kumo",
+      "candidate_refs": [
+        "canon_karui",
+        "canon_omoi",
+        "char.exam_kumo_ca8b5b56581a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kiri.common",
+      "instructor_ref": "faction_kiri",
+      "candidate_refs": [
+        "char.exam_kiri_68ec021a1b8d",
+        "char.exam_kiri_9e5359732335",
+        "char.exam_kiri_a510aa50142a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.ame.common",
+      "instructor_ref": "faction_ame",
+      "candidate_refs": [
+        "char.exam_ame_5c6ecc20e645",
+        "char.exam_ame_8c98d0ca3b7f",
+        "char.exam_ame_d14773260c03"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kusa.common",
+      "instructor_ref": "faction_kusa",
+      "candidate_refs": [
+        "char.exam_kusa_10356c960c5d",
+        "char.exam_kusa_74ed3730489c",
+        "char.exam_kusa_83fbc73acdf4"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.taki.common",
+      "instructor_ref": "faction_taki",
+      "candidate_refs": [
+        "canon_fu_takigakure",
+        "char.exam_taki_23abc17d55e4",
+        "char.exam_taki_d313752a1e1a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.oto.common",
+      "instructor_ref": "faction_oto",
+      "candidate_refs": [
+        "canon_dosu",
+        "canon_kin",
+        "canon_zaku"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.yuga.common",
+      "instructor_ref": "faction_yuga",
+      "candidate_refs": [
+        "char.exam_yuga_4314964a0166",
+        "char.exam_yuga_7c4714fe5e7c",
+        "char.exam_yuga_9a87c8608b04"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    }
+  ],
+  "provenance": "simulation_estimate rank distribution initialized from current conserved service totals; review cursor starts at the existing person-continuity baseline so the first settlement catches up missed lower-throughput career reviews; rebaseline expands the same conserved Academy/career model to Ame, Kusa, Taki, Oto, and Yuga using their pre-existing force headcounts"
+}

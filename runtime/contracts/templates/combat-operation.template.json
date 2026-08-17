@@ -1,0 +1,909 @@
+{
+  "schema": "file-template",
+  "template_id": "template.combat-operation",
+  "target_schema": "combat-operation",
+  "source_schema": "game/schemas/combat-operation.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/operation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "operation_id",
+    "opened_at",
+    "location_id",
+    "scale",
+    "status",
+    "authority_model",
+    "participants",
+    "outcome"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "operation_id",
+        "opened_at",
+        "location_id",
+        "scale",
+        "status",
+        "authority_model",
+        "participants",
+        "outcome"
+      ],
+      "canonical_order": [
+        "schema",
+        "operation_id",
+        "opened_at",
+        "location_id",
+        "scale",
+        "status",
+        "authority_model",
+        "participants",
+        "outcome"
+      ]
+    },
+    "/participants/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "participant_ref",
+        "force_ref",
+        "population_pool_id",
+        "capability_source_refs",
+        "supply_state",
+        "supply_stock_consumption",
+        "fortification_milli",
+        "side_ref",
+        "command_authority_ref",
+        "operational_attachment_ref",
+        "source_availability_class",
+        "committed_count",
+        "location_id",
+        "personnel",
+        "named_actor_refs",
+        "command_authority_basis",
+        "formation_ref",
+        "doctrine_ref",
+        "training_ref",
+        "readiness",
+        "morale",
+        "cohesion",
+        "formation_personnel_after",
+        "aggregate_resolved_count",
+        "named_actor_team_refs",
+        "named_actor_accounting",
+        "supply_channels_milli",
+        "command_channels",
+        "doctrine_channels",
+        "range_band",
+        "line_of_sight"
+      ],
+      "canonical_order": [
+        "participant_ref",
+        "force_ref",
+        "population_pool_id",
+        "capability_source_refs",
+        "supply_state",
+        "supply_stock_consumption",
+        "fortification_milli",
+        "supply_channels_milli",
+        "command_channels",
+        "doctrine_channels",
+        "range_band",
+        "line_of_sight",
+        "side_ref",
+        "command_authority_ref",
+        "command_authority_basis",
+        "operational_attachment_ref",
+        "source_availability_class",
+        "committed_count",
+        "location_id",
+        "formation_ref",
+        "doctrine_ref",
+        "training_ref",
+        "readiness",
+        "morale",
+        "cohesion",
+        "formation_personnel_after",
+        "personnel",
+        "named_actor_refs",
+        "aggregate_resolved_count",
+        "named_actor_team_refs",
+        "named_actor_accounting"
+      ]
+    },
+    "/participants/*/personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/outcome": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs",
+        "resolved_elite_actor_refs",
+        "elite_overlay_model",
+        "elite_overlay_results"
+      ],
+      "canonical_order": [
+        "resolution_mode",
+        "status",
+        "victorious_side_refs",
+        "wake_triggers",
+        "semantic_event_id",
+        "effect_plan_sha256",
+        "pending_named_actor_refs",
+        "resolved_zoom_refs",
+        "resolved_elite_actor_refs",
+        "elite_overlay_model",
+        "elite_overlay_results"
+      ]
+    },
+    "/outcome/wake_triggers/*": {
+      "mode": "open_map"
+    },
+    "/participants/*/named_actor_team_refs": {
+      "mode": "open_map"
+    },
+    "/participants/*/supply_channels_milli": {
+      "mode": "closed",
+      "allowed_keys": [
+        "readiness",
+        "offense",
+        "control",
+        "mobility",
+        "protection"
+      ],
+      "canonical_order": [
+        "readiness",
+        "offense",
+        "control",
+        "mobility",
+        "protection"
+      ]
+    },
+    "/participants/*/command_channels": {
+      "mode": "closed",
+      "allowed_keys": [
+        "profile_ref",
+        "control_milli",
+        "initiative_milli"
+      ],
+      "canonical_order": [
+        "profile_ref",
+        "control_milli",
+        "initiative_milli"
+      ]
+    },
+    "/participants/*/doctrine_channels": {
+      "mode": "closed",
+      "allowed_keys": [
+        "doctrine_ref",
+        "institution",
+        "role",
+        "familiarity",
+        "familiarity_milli",
+        "suitability_milli",
+        "coordination_milli",
+        "place_kind"
+      ],
+      "canonical_order": [
+        "doctrine_ref",
+        "institution",
+        "role",
+        "familiarity",
+        "familiarity_milli",
+        "suitability_milli",
+        "coordination_milli",
+        "place_kind"
+      ]
+    },
+    "/outcome/elite_overlay_results/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "actor_ref",
+        "parent_side_ref",
+        "method",
+        "technique_ref",
+        "weapon_ref",
+        "chakra_cost",
+        "effect_capacity",
+        "team_refs",
+        "player_action_delegated",
+        "dojutsu",
+        "parent_formation_participant_ref",
+        "personnel",
+        "resources_after"
+      ],
+      "canonical_order": [
+        "actor_ref",
+        "parent_side_ref",
+        "dojutsu",
+        "parent_formation_participant_ref",
+        "method",
+        "technique_ref",
+        "weapon_ref",
+        "chakra_cost",
+        "effect_capacity",
+        "team_refs",
+        "player_action_delegated",
+        "personnel",
+        "resources_after"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/personnel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ],
+      "canonical_order": [
+        "total",
+        "active",
+        "wounded",
+        "incapacitated",
+        "killed",
+        "captured",
+        "escaped"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/resources_after/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ],
+      "canonical_order": [
+        "resource_ref",
+        "capacity",
+        "current"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/dojutsu": {
+      "mode": "closed",
+      "allowed_keys": [
+        "active_eye_refs",
+        "eye_contributions",
+        "pair_integration",
+        "passive_drain_milli_accrued",
+        "passive_chakra_cost",
+        "registered_active_chakra_cost",
+        "adjusted_active_chakra_cost",
+        "active_transplant_cost_eye_ref"
+      ],
+      "canonical_order": [
+        "active_eye_refs",
+        "eye_contributions",
+        "pair_integration",
+        "passive_drain_milli_accrued",
+        "passive_chakra_cost",
+        "registered_active_chakra_cost",
+        "adjusted_active_chakra_cost",
+        "active_transplant_cost_eye_ref"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "eye_ref",
+        "side",
+        "dojutsu_type",
+        "hardware_stage",
+        "integration",
+        "vision_integrity",
+        "native_to_current_owner",
+        "motion_perception_bonus",
+        "predictive_tracking_bonus",
+        "chakra_resolution_bonus",
+        "tenketsu_precision_bonus"
+      ],
+      "canonical_order": [
+        "eye_ref",
+        "side",
+        "dojutsu_type",
+        "hardware_stage",
+        "integration",
+        "vision_integrity",
+        "native_to_current_owner",
+        "motion_perception_bonus",
+        "predictive_tracking_bonus",
+        "chakra_resolution_bonus",
+        "tenketsu_precision_bonus"
+      ]
+    },
+    "/participants/*/supply_stock_consumption": {
+      "mode": "closed",
+      "nullable": true,
+      "allowed_keys": [
+        "aggregate_count",
+        "selected_method_counts",
+        "demand",
+        "consumed",
+        "method_supply_milli",
+        "sustainment_supply_milli",
+        "sustainment_state"
+      ],
+      "canonical_order": [
+        "aggregate_count",
+        "selected_method_counts",
+        "demand",
+        "consumed",
+        "method_supply_milli",
+        "sustainment_supply_milli",
+        "sustainment_state"
+      ]
+    },
+    "/participants/*/supply_stock_consumption/selected_method_counts": {
+      "mode": "open_map"
+    },
+    "/participants/*/supply_stock_consumption/demand": {
+      "mode": "open_map"
+    },
+    "/participants/*/supply_stock_consumption/consumed": {
+      "mode": "open_map"
+    },
+    "/participants/*/supply_stock_consumption/method_supply_milli": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/operation_id": [
+      "null",
+      "string"
+    ],
+    "/opened_at": [
+      "null",
+      "string"
+    ],
+    "/location_id": [
+      "null",
+      "string"
+    ],
+    "/scale": [
+      "string"
+    ],
+    "/status": [
+      "string"
+    ],
+    "/authority_model": [
+      "string"
+    ],
+    "/participants": [
+      "array"
+    ],
+    "/participants/*": [
+      "object"
+    ],
+    "/participants/*/participant_ref": [
+      "string"
+    ],
+    "/participants/*/population_pool_id": [
+      "string"
+    ],
+    "/participants/*/side_ref": [
+      "string"
+    ],
+    "/participants/*/command_authority_ref": [
+      "string"
+    ],
+    "/participants/*/operational_attachment_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/source_availability_class": [
+      "string"
+    ],
+    "/participants/*/committed_count": [
+      "integer"
+    ],
+    "/participants/*/location_id": [
+      "string"
+    ],
+    "/participants/*/personnel": [
+      "object"
+    ],
+    "/participants/*/named_actor_refs": [
+      "array"
+    ],
+    "/participants/*/named_actor_refs/*": [
+      "string"
+    ],
+    "/participants/*/personnel/total": [
+      "integer"
+    ],
+    "/participants/*/personnel/active": [
+      "integer"
+    ],
+    "/participants/*/personnel/wounded": [
+      "integer"
+    ],
+    "/participants/*/personnel/incapacitated": [
+      "integer"
+    ],
+    "/participants/*/personnel/killed": [
+      "integer"
+    ],
+    "/participants/*/personnel/captured": [
+      "integer"
+    ],
+    "/participants/*/personnel/escaped": [
+      "integer"
+    ],
+    "/outcome": [
+      "object"
+    ],
+    "/outcome/resolution_mode": [
+      "string"
+    ],
+    "/outcome/status": [
+      "string"
+    ],
+    "/outcome/victorious_side_refs": [
+      "array"
+    ],
+    "/outcome/victorious_side_refs/*": [
+      "string"
+    ],
+    "/outcome/wake_triggers": [
+      "array"
+    ],
+    "/outcome/wake_triggers/*": [
+      "object"
+    ],
+    "/outcome/semantic_event_id": [
+      "null",
+      "string"
+    ],
+    "/outcome/effect_plan_sha256": [
+      "null",
+      "string"
+    ],
+    "/participants/*/command_authority_basis": [
+      "string"
+    ],
+    "/participants/*/formation_ref": [
+      "string"
+    ],
+    "/participants/*/doctrine_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/training_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/readiness": [
+      "integer"
+    ],
+    "/participants/*/morale": [
+      "integer"
+    ],
+    "/participants/*/cohesion": [
+      "integer"
+    ],
+    "/participants/*/formation_personnel_after": [
+      "integer"
+    ],
+    "/participants/*/capability_source_refs": [
+      "array"
+    ],
+    "/participants/*/capability_source_refs/*": [
+      "string"
+    ],
+    "/participants/*/supply_state": [
+      "string"
+    ],
+    "/participants/*/fortification_milli": [
+      "integer"
+    ],
+    "/participants/*/aggregate_resolved_count": [
+      "integer"
+    ],
+    "/participants/*/named_actor_team_refs": [
+      "object"
+    ],
+    "/participants/*/named_actor_team_refs/*": [
+      "array"
+    ],
+    "/participants/*/named_actor_team_refs/*/*": [
+      "string"
+    ],
+    "/participants/*/named_actor_accounting": [
+      "string"
+    ],
+    "/outcome/pending_named_actor_refs": [
+      "array"
+    ],
+    "/outcome/pending_named_actor_refs/*": [
+      "string"
+    ],
+    "/outcome/resolved_zoom_refs": [
+      "array"
+    ],
+    "/outcome/resolved_zoom_refs/*": [
+      "string"
+    ],
+    "/participants/*/force_ref": [
+      "string"
+    ],
+    "/participants/*/supply_channels_milli/readiness": [
+      "integer"
+    ],
+    "/participants/*/supply_channels_milli/offense": [
+      "integer"
+    ],
+    "/participants/*/supply_channels_milli/control": [
+      "integer"
+    ],
+    "/participants/*/supply_channels_milli/mobility": [
+      "integer"
+    ],
+    "/participants/*/supply_channels_milli/protection": [
+      "integer"
+    ],
+    "/participants/*/supply_channels_milli": [
+      "object"
+    ],
+    "/participants/*/command_channels": [
+      "object"
+    ],
+    "/participants/*/command_channels/profile_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/command_channels/control_milli": [
+      "integer"
+    ],
+    "/participants/*/command_channels/initiative_milli": [
+      "integer"
+    ],
+    "/participants/*/doctrine_channels": [
+      "object"
+    ],
+    "/participants/*/doctrine_channels/doctrine_ref": [
+      "null",
+      "string"
+    ],
+    "/participants/*/doctrine_channels/institution": [
+      "null",
+      "string"
+    ],
+    "/participants/*/doctrine_channels/role": [
+      "null",
+      "string"
+    ],
+    "/participants/*/doctrine_channels/familiarity": [
+      "integer"
+    ],
+    "/participants/*/doctrine_channels/familiarity_milli": [
+      "integer"
+    ],
+    "/participants/*/doctrine_channels/suitability_milli": [
+      "integer"
+    ],
+    "/participants/*/doctrine_channels/coordination_milli": [
+      "integer"
+    ],
+    "/participants/*/doctrine_channels/place_kind": [
+      "string"
+    ],
+    "/participants/*/range_band": [
+      "integer"
+    ],
+    "/participants/*/line_of_sight": [
+      "boolean"
+    ],
+    "/outcome/resolved_elite_actor_refs": [
+      "array"
+    ],
+    "/outcome/resolved_elite_actor_refs/*": [
+      "string"
+    ],
+    "/outcome/elite_overlay_model": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results": [
+      "array"
+    ],
+    "/outcome/elite_overlay_results/*": [
+      "object"
+    ],
+    "/outcome/elite_overlay_results/*/actor_ref": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/parent_side_ref": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/method": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/parent_formation_participant_ref": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/technique_ref": [
+      "null",
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/weapon_ref": [
+      "null",
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/chakra_cost": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/effect_capacity": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/team_refs": [
+      "array"
+    ],
+    "/outcome/elite_overlay_results/*/team_refs/*": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/player_action_delegated": [
+      "boolean"
+    ],
+    "/outcome/elite_overlay_results/*/personnel": [
+      "object"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/total": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/active": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/wounded": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/incapacitated": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/killed": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/captured": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/personnel/escaped": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/resources_after": [
+      "array"
+    ],
+    "/outcome/elite_overlay_results/*/resources_after/*": [
+      "object"
+    ],
+    "/outcome/elite_overlay_results/*/resources_after/*/resource_ref": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/resources_after/*/capacity": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/resources_after/*/current": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu": [
+      "object"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/active_eye_refs": [
+      "array"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/active_eye_refs/*": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions": [
+      "array"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*": [
+      "object"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/eye_ref": [
+      "string"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/side": [
+      "string",
+      "null"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/dojutsu_type": [
+      "string",
+      "null"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/hardware_stage": [
+      "string",
+      "integer",
+      "null"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/integration": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/vision_integrity": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/native_to_current_owner": [
+      "boolean",
+      "null"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/motion_perception_bonus": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/predictive_tracking_bonus": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/chakra_resolution_bonus": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions/*/tenketsu_precision_bonus": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/pair_integration": [
+      "integer",
+      "null"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/passive_drain_milli_accrued": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/passive_chakra_cost": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/registered_active_chakra_cost": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/adjusted_active_chakra_cost": [
+      "integer"
+    ],
+    "/outcome/elite_overlay_results/*/dojutsu/active_transplant_cost_eye_ref": [
+      "string",
+      "null"
+    ],
+    "/participants/*/supply_stock_consumption": [
+      "object",
+      "null"
+    ],
+    "/participants/*/supply_stock_consumption/aggregate_count": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/selected_method_counts": [
+      "object"
+    ],
+    "/participants/*/supply_stock_consumption/selected_method_counts/*": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/demand": [
+      "object"
+    ],
+    "/participants/*/supply_stock_consumption/demand/*": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/consumed": [
+      "object"
+    ],
+    "/participants/*/supply_stock_consumption/consumed/*": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/method_supply_milli": [
+      "object"
+    ],
+    "/participants/*/supply_stock_consumption/method_supply_milli/*": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/sustainment_supply_milli": [
+      "integer"
+    ],
+    "/participants/*/supply_stock_consumption/sustainment_state": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/participants": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/participants/*/named_actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/victorious_side_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/wake_triggers": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/outcome/pending_named_actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/resolved_zoom_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participants/*/named_actor_team_refs/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/participants/*/capability_source_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/resolved_elite_actor_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/elite_overlay_results": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/team_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/resources_after": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/dojutsu/active_eye_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/outcome/elite_overlay_results/*/dojutsu/eye_contributions": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Source force owner remains manpower/ownership authority; the operation owner owns only the temporary committed slice and its combat condition.",
+    "Command authority, force ownership, operational attachment, and location are separate facts.",
+    "Aggregate battle persistence is bounded by force/operation hosts, never participant headcount.",
+    "Named actors wake detailed combat when relevant but are not silently selected from aggregate casualties.",
+    "Named or elite actors embedded in formations resolve as exact conserved participants; their bodies are subtracted from aggregate headcount and their capability never changes the anonymous kernel mean."
+  ]
+}

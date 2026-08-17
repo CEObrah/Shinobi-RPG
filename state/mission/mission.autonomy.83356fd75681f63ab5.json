@@ -1,0 +1,42 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.83356fd75681f63ab5",
+  "issuer_ref": "faction.kiri_hunter_office",
+  "authority_ref": "canon_ao",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.kiri",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-02-26T07:00:00",
+  "authorized_at": "SE-0061-02-26T07:00:00",
+  "starts_at": "SE-0061-02-26T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_ao",
+    "canon_chojuro"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.83356fd75681f63ab5",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "baseline.rich_autonomy_terminal_state"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "baseline.rich_autonomy_terminal_state",
+  "settlement": {
+    "mission_id": "mission.autonomy.83356fd75681f63ab5",
+    "outcome": "aborted",
+    "settlement_token": "baseline:mission.autonomy.83356fd75681f63ab5:terminal-state",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

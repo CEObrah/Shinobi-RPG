@@ -1,0 +1,44 @@
+{
+  "schema": "exact-team",
+  "id": "team.iwa.engineering.command.auto.3d13f5395a68",
+  "name": "Iwa Engineering Command Field Cell",
+  "status": "active",
+  "team_type": "temporary_task_force",
+  "parent_institution_ref": "faction.iwa_engineering_command",
+  "assignment_authority_ref": "canon_kitsuchi",
+  "leader_ref": "canon_kitsuchi",
+  "deputy_ref": "canon_akatsuchi",
+  "member_refs": [
+    "canon_kitsuchi",
+    "canon_akatsuchi"
+  ],
+  "roles": {
+    "canon_kitsuchi": "field_lead",
+    "canon_akatsuchi": "engineering_traps"
+  },
+  "classification": "restricted",
+  "activation": {
+    "at": "SE-0061-02-19T07:00:00",
+    "basis": "Roster revalidated at the current campaign anchor against the organization’s persisted specialist eligibility and active-service requirements."
+  },
+  "doctrine_ref": "team.iwa.engineering.command.auto.3d13f5395a68.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_kitsuchi"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 2,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.iwa_engineering_command"
+  }
+}

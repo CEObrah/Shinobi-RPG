@@ -1,0 +1,68 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.rain.standing",
+  "pool_id": "civil.rain.standing",
+  "source_owner": "force.civil.rain",
+  "stats": {
+    "attributes": {
+      "strength": 55,
+      "endurance": 59,
+      "awareness": 51
+    },
+    "skills": {
+      "weapons": 57,
+      "formation": 57,
+      "tactics": 44
+    },
+    "morale": 57,
+    "discipline": 54,
+    "experience": 42,
+    "methods": {
+      "sword": 0,
+      "unarmed": 0,
+      "thrown_tools": 0,
+      "bow": 0,
+      "polearm": 0,
+      "heavy_weapon": 0,
+      "ninjutsu": 10,
+      "genjutsu": 8,
+      "traps": 41,
+      "sensory": 51,
+      "medical": 20,
+      "sealing": 8
+    }
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 174,
+      "sd": 6.8
+    },
+    "weight_kg": {
+      "mean": 67,
+      "sd": 7.7
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 102,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

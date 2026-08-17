@@ -1,0 +1,289 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "team_id",
+    "name",
+    "status",
+    "familiarity",
+    "effective_from",
+    "approved_by",
+    "motto",
+    "command",
+    "roles",
+    "phases",
+    "standing_rules",
+    "mission_modes",
+    "contingencies",
+    "extraction",
+    "training",
+    "identity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "team-doctrine"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "team_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "inactive"
+      ]
+    },
+    "familiarity": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      }
+    },
+    "effective_from": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approved_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "motto": {
+      "type": "string",
+      "minLength": 1
+    },
+    "command": {
+      "type": "object",
+      "required": [
+        "captain",
+        "deputy",
+        "succession_order"
+      ],
+      "properties": {
+        "captain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "deputy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "succession_order": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "order",
+          "name",
+          "primary_members",
+          "objective",
+          "procedures"
+        ],
+        "properties": {
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "primary_members": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 1
+          },
+          "procedures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "standing_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "rule",
+          "procedures"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1
+          },
+          "procedures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "mission_modes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "mode",
+          "directive"
+        ],
+        "properties": {
+          "mode": {
+            "type": "string",
+            "minLength": 1
+          },
+          "directive": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "contingencies": {
+      "type": "object",
+      "required": [
+        "loss_of_control"
+      ],
+      "properties": {
+        "loss_of_control": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "extraction": {
+      "type": "object",
+      "required": [
+        "primary_members",
+        "procedures"
+      ],
+      "properties": {
+        "primary_members": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "procedures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "training": {
+      "type": "object",
+      "required": [
+        "lead_instructors",
+        "scheduled_sessions",
+        "shared_drills",
+        "role_focus",
+        "attendance_rule",
+        "interrupt_rule",
+        "no_double_counting"
+      ],
+      "properties": {
+        "lead_instructors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "scheduled_sessions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "shared_drills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "role_focus": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "attendance_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interrupt_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "no_double_counting": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}

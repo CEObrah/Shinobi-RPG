@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Information holder routing index",
+  "type": "object",
+  "required": [
+    "schema",
+    "holder_ref",
+    "holder_hash",
+    "claim_count",
+    "nonempty_buckets",
+    "recent_claim_refs",
+    "delivery_count",
+    "nonempty_delivery_buckets",
+    "recent_delivery_refs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "information-knowledge-index"
+    },
+    "holder_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "holder_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{20}$"
+    },
+    "claim_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonempty_buckets": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{2}$"
+      },
+      "uniqueItems": true
+    },
+    "recent_claim_refs": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "pattern": "^claim\\."
+      },
+      "uniqueItems": true
+    },
+    "delivery_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "nonempty_delivery_buckets": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{2}$"
+      },
+      "uniqueItems": true
+    },
+    "recent_delivery_refs": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "pattern": "^delivery\\."
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

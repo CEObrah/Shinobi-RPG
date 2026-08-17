@@ -1,0 +1,36 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "special",
+  "routes": {
+    "technique_known_id": {
+      "path_template": "game/data/tech/records/{method_id}.json",
+      "note": "Load direct technique record, then its effect_profile_path and mechanical_base_path. Do not load technique catalog."
+    },
+    "technique_discovery": {
+      "i": [
+        "game/data/tech/index.json"
+      ],
+      "note": "Only when method_id is unknown."
+    },
+    "dojutsu_mechanics": {
+      "domain": "dojutsu_mechanics"
+    },
+    "ocular_assets": {
+      "i": [
+        "state/medical/ocular-registry.json"
+      ],
+      "domain": "ocular_custody_transplant",
+      "note": "Known owner -> load one ocular owner shard. Homogeneous stored stock may remain deterministic conserved batch until selected."
+    },
+    "intel": {
+      "domain": "intel"
+    },
+    "security_environment_detection": {
+      "r": [
+        "runtime/contracts/environment.json"
+      ],
+      "domain": "security_network",
+      "note": "Security detection consumes registered environment channels by sensor type. Physical weather effects do not reveal hidden actors by themselves and do not degrade chakra/barrier channels unless an exact mechanic says so."
+    }
+  }
+}

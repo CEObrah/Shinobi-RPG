@@ -1,0 +1,53 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.a657fb204a11fee9bc8e",
+  "domain": "border_control",
+  "operation_kind": "crossing_audit",
+  "owner_ref": "faction.fire_border_authority",
+  "authority_ref": "support.border.kazuo_murata",
+  "opened_at": "SE-0061-06-25T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_wind",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.western.border"
+  ],
+  "route_refs": [],
+  "opposition_refs": [
+    "faction.fire_smuggling_network"
+  ],
+  "resource_refs": [
+    "item_evidence_kit",
+    "item_official_documents"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": "no in-transit shipment exists on inspected route",
+  "mission_refs": [
+    "mission.autonomy.fcd77bc2de5d281c49"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.e399584dfeba083022b4bfcb"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.fcd77bc2de5d281c49.result"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.border.kazuo_murata"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile crossing records, inspections, and any seized evidence for the selected route.",
+  "failure_condition": "The crossing_audit objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.mission.autonomy.fcd77bc2de5d281c49.result",
+    "event.autonomous_mission_succeeded.e399584dfeba083022b4bfcb"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "system-contract",
+  "system_id": "operational_world",
+  "authority": false,
+  "authority_paths": [
+    "state/inventory/registry.json",
+    "state/reg/biological-remains.json",
+    "state/reg/commerce.json",
+    "state/reg/information-deliveries.json",
+    "state/reg/mission-markets.json",
+    "state/reg/research.json",
+    "state/reg/security-networks.json",
+    "state/world/routes-and-settlements.json",
+    "state/reg/information/claims/",
+    "state/reg/information/deliveries/",
+    "state/reg/information/knowledge/"
+  ],
+  "owner_templates": [
+    "biological-remains-registry",
+    "commerce-registry",
+    "inventory-registry",
+    "mission-market-runtime",
+    "research-registry",
+    "security-network-registry",
+    "shinobi-world-registry",
+    "information-routing-index",
+    "information-claim-shard",
+    "information-delivery-shard",
+    "information-knowledge-index",
+    "information-knowledge-shard",
+    "information-knowledge-subject-shard",
+    "information-delivery-membership-shard"
+  ],
+  "read_first": [
+    "exact contract/shipment before trade movement",
+    "exact research project and consumed inputs before progression",
+    "exact security sector and evidence event before raising an alarm",
+    "exact market signal evidence before changing demand"
+  ],
+  "write_order": [
+    "validate authority and referenced world objects",
+    "conserve inventory/currency where applicable",
+    "update one domain authority",
+    "emit semantic event and routed information"
+  ],
+  "invariants": [
+    "Trade shipments move conserved cargo and funded escrow; delivery or seizure cannot duplicate goods.",
+    "Research consumes registered inputs and creates evidence/claims, never arbitrary free techniques or biological assets.",
+    "Security alarms require a persisted observation/evidence event; barrier records do not create omniscient detection.",
+    "Mission demand changes only from persisted evidence and is never a static-only clock.",
+    "A recovered corpse or protected remains asset requires an established dead subject and successful recovery mission; retry cannot duplicate the same remains.",
+    "The information root is bounded routing/count metadata only; exact claims, deliveries, holder knowledge, and delivery participation live in deterministic shards.",
+    "A materially risky crossing of a protected route resolves deterministic sector detection; successful detection creates evidence, alarm, claim, and delivery while failed detection creates no knowledge.",
+    "Research success yields knowledge only. Deployment requires an existing registered candidate, time-separated prototype tests, validation, and explicit approval; approval grants neither mastery nor finished stock."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "stats-mechanics",
+  "attribute_scale": {
+    "minimum": 0,
+    "professional_reference": 100,
+    "advanced_reference": 120,
+    "elite_reference": 150,
+    "legendary_reference": 170,
+    "transcendent_reference": 185,
+    "god_tier_reference": 200,
+    "hard_cap": null,
+    "bands": [
+      {"minimum": 0, "maximum": 39, "label": "undeveloped_or_novice"},
+      {"minimum": 40, "maximum": 79, "label": "trained"},
+      {"minimum": 80, "maximum": 119, "label": "professional"},
+      {"minimum": 120, "maximum": 149, "label": "advanced"},
+      {"minimum": 150, "maximum": 169, "label": "elite"},
+      {"minimum": 170, "maximum": 184, "label": "legendary"},
+      {"minimum": 185, "maximum": 199, "label": "transcendent"},
+      {"minimum": 200, "maximum": null, "label": "god_tier_or_exceptional_outlier"}
+    ]
+  },
+  "formulas": {
+    "attribute_support": "floor(10*sqrt(attribute/10))",
+    "universal_action_score": "relevant_skill_or_method_mastery + primary_attribute_support + floor(secondary_attribute_support/2) + equipment + preparation + position + team - fatigue - injury - external_load - disruption - environment"
+  },
+  "margin_bands": {
+    "<=-30": "severe_counter",
+    "-29_to_-15": "failure_with_positional_loss",
+    "-14_to_-5": "weak_or_deflected",
+    "-4_to_4": "glancing_or_contested",
+    "5_to_14": "solid",
+    "15_to_29": "precise",
+    "30_to_44": "decisive",
+    "45_plus": "overwhelming_if_physically_possible"
+  },
+  "rule": "Use a subsystem-specific resolver whenever one exists. The universal action score is only the registered fallback for actions without a more specific mechanical kernel. Capability bands describe comparative rarity, not institutional rank. Values at or above 170 are exceptional and must not be manufactured by routine training."
+}

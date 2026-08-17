@@ -1,0 +1,65 @@
+{
+  "schema": "file-template",
+  "template_id": "template.mission-market-runtime",
+  "target_schema": "mission-market-runtime",
+  "source_schema": "game/schemas/mission-market-runtime.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "markets"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "markets"
+      ],
+      "canonical_order": [
+        "schema",
+        "markets"
+      ]
+    },
+    "/markets": {
+      "mode": "open_map"
+    },
+    "/markets/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "market_ref",
+        "demand_scores",
+        "competition_scores",
+        "evidence_refs",
+        "last_updated_at"
+      ],
+      "canonical_order": [
+        "market_ref",
+        "demand_scores",
+        "competition_scores",
+        "evidence_refs",
+        "last_updated_at"
+      ]
+    },
+    "/markets/*/demand_scores": {
+      "mode": "open_map"
+    },
+    "/markets/*/competition_scores": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {},
+  "array_contracts": {
+    "/markets/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 0,
+      "unique": true
+    }
+  },
+  "writing_rules": []
+}

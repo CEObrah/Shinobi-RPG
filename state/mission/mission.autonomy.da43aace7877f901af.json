@@ -1,0 +1,57 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.da43aace7877f901af",
+  "issuer_ref": "faction.konoha_mission_office",
+  "authority_ref": "support.mission.haruto_seki",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "authorized_at": "SE-0061-06-18T07:00:00",
+  "starts_at": "SE-0061-06-18T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.9b9b37fdee02577015d9",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.da43aace7877f901af",
+    "objective_kind": "escort",
+    "subject_kind": "route",
+    "subject_ref": "route_konoha_fire_west",
+    "subject_label": "route_konoha_fire_west",
+    "report_place_ref": "place.konoha.mission_assignment_desk",
+    "origin_place_ref": "place.konoha.mission_assignment_desk",
+    "destination_place_ref": null,
+    "route_id": "route_konoha_wave",
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-06-18T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Issue a concrete route mission only after subject, route, client, known risk, authority, and funding are committed."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_guy",
+    "canon_lee",
+    "canon_neji",
+    "canon_tenten"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.da43aace7877f901af",
+      "kind": "escort",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

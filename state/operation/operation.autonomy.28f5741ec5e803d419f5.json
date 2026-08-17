@@ -1,0 +1,41 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.28f5741ec5e803d419f5",
+  "domain": "trade_logistics",
+  "operation_kind": "route_profitability_review",
+  "owner_ref": "faction.fire_merchant_network",
+  "authority_ref": "support.merchant.fumiko_takahara",
+  "opened_at": "SE-0061-07-16T07:00:00",
+  "next_due_at": "SE-0061-07-23T07:00:00",
+  "closed_at": null,
+  "status": "pending",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_north_rice",
+  "client_ref": null,
+  "place_refs": [
+    "place.konoha.market"
+  ],
+  "route_refs": [
+    "route_fire_north_rice"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.merchant.fumiko_takahara"
+  ],
+  "progress_milli": 0,
+  "success_condition": "Record route condition, delay/loss evidence, and a bounded profitability assessment.",
+  "failure_condition": "The route_profitability_review objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

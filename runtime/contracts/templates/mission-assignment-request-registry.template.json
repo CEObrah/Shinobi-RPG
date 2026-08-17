@@ -1,0 +1,56 @@
+{
+  "schema": "file-template",
+  "template_id": "template.mission-assignment-request-registry",
+  "target_schema": "mission-assignment-request-registry",
+  "source_schema": "game/schemas/mission-assignment-request-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/reg"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "owner_id", "owner_type", "requests"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "owner_id", "owner_type", "requests"],
+      "canonical_order": ["schema", "owner_id", "owner_type", "requests"]
+    },
+    "/requests": {"mode": "open_map"},
+    "/requests/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "request_ref", "team_ref", "requester_ref", "assignment_authority_ref",
+        "assignment_office_ref", "acceptable_ranks", "mission_focus", "submission_mode",
+        "submitted_from_place_ref", "status", "submitted_at", "fulfilled_at", "offer_ref"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/owner_id": ["string"],
+    "/owner_type": ["string"],
+    "/requests": ["object"],
+    "/requests/*": ["object"],
+    "/requests/*/request_ref": ["string"],
+    "/requests/*/team_ref": ["string"],
+    "/requests/*/requester_ref": ["string"],
+    "/requests/*/assignment_authority_ref": ["string"],
+    "/requests/*/assignment_office_ref": ["string"],
+    "/requests/*/acceptable_ranks": ["array"],
+    "/requests/*/mission_focus": ["string"],
+    "/requests/*/submission_mode": ["string"],
+    "/requests/*/submitted_from_place_ref": ["string"],
+    "/requests/*/status": ["string"],
+    "/requests/*/submitted_at": ["string"],
+    "/requests/*/fulfilled_at": ["string"],
+    "/requests/*/offer_ref": ["string"]
+  },
+  "array_contracts": {
+    "/requests/*/acceptable_ranks": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "Gameplay callers may persist only team, acceptable-rank, and mission-focus preferences plus the registered submission channel and origin place.",
+    "Mission targets, objectives, destinations, rewards, threats, causes, and outcomes remain institutionally generated.",
+    "A registered_message submission requires a real secure-communications affordance at the caller's current place; it does not imply a mission offer or acceptance.",
+    "A fulfilled request points to an independently generated mission offer and never implies player acceptance."
+  ]
+}

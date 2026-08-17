@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Institutional autonomy programs",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "programs",
+    "institution_profiles",
+    "delegated_institutions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "institutional-autonomy-programs"
+    },
+    "authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "programs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "domain",
+          "operation_templates"
+        ],
+        "properties": {
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operation_templates": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "operation_kind",
+                "objective_kind",
+                "mission_archetype_ref",
+                "subject_kind",
+                "subject_candidates",
+                "client_candidates",
+                "place_candidates",
+                "route_candidates",
+                "opposition_candidates",
+                "resource_refs",
+                "report_recipient_candidates",
+                "success_condition",
+                "failure_condition",
+                "classification"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "operation_kind": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "objective_kind": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "mission_archetype_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "subject_kind": {
+                  "enum": [
+                    "person",
+                    "force",
+                    "formation",
+                    "place",
+                    "route",
+                    "asset",
+                    "information",
+                    "institution",
+                    "faction",
+                    "population",
+                    "project",
+                    "case",
+                    "none"
+                  ]
+                },
+                "subject_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "client_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "place_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "route_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "opposition_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "resource_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "report_recipient_candidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "uniqueItems": true
+                },
+                "success_condition": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                "failure_condition": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                "classification": {
+                  "enum": [
+                    "public",
+                    "restricted",
+                    "secret"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "institution_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "match_terms",
+          "domain",
+          "operation_kind",
+          "success_condition",
+          "failure_condition",
+          "classification"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "match_terms": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operation_kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "success_condition": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "failure_condition": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "delegated_institutions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "governance-mechanics",
+  "status_requirements": {
+    "settlement": {
+      "min_population": 50,
+      "min_integration_milli": 200,
+      "requires_garrison": false,
+      "requires_recruitment_rights": false
+    },
+    "village": {
+      "min_population": 250,
+      "min_integration_milli": 400,
+      "requires_garrison": true,
+      "requires_recruitment_rights": false
+    },
+    "hidden_village": {
+      "min_population": 1000,
+      "min_integration_milli": 650,
+      "requires_garrison": true,
+      "requires_recruitment_rights": true
+    }
+  },
+  "notes": "Status requirements are campaign mechanics, not Naruto canon census claims. International recognition is a separate diplomatic agreement rather than an automatic consequence of self-declaration.",
+  "civil_economy": {
+    "workforce_fallback_milli": 600,
+    "adolescent_workforce_milli": 250,
+    "monthly_activity_per_worker_ryo": 60000,
+    "monthly_consumption_per_resident_ryo": 22000,
+    "base_productivity_milli": 700,
+    "integration_productivity_weight_milli": 300,
+    "food_activity_share_milli": 400,
+    "food_need_share_milli": 350,
+    "service_activity_share_milli": 300,
+    "service_need_share_milli": 250,
+    "tax_arrears_catchup_milli": 1000,
+    "reference_population_by_status": {
+      "outpost": 100,
+      "settlement": 500,
+      "village": 2500,
+      "hidden_village": 10000,
+      "territory": 25000,
+      "client_state": 25000,
+      "military_administration": 1000
+    },
+    "rule": "Monthly settlement derives aggregate civilian activity from conserved residents. Local market capacity feeds later services; shortages and infrastructure pressure change integration/resistance; sufficiently attractive, supplied settlements can receive conserved neutral-proportional migrants from their persisted lawful source pool, while severe food insecurity can drive conserved return migration. When a material food, housing, or service development need persists, the administration can spend existing treasury currency into the containing private economy to build aggregate civilian resilience; this changes later food support, infrastructure capacity, or service investment but never grants exact military/medical/workshop facilities. Production and consumption remain value-flow metrics, not minted currency. Jurisdiction tax is paid only by transferring existing currency from the containing regional private-economy holder to the exact treasury.",
+    "market_memory_milli": 800,
+    "market_service_bonus_milli": 200,
+    "migration_attractiveness_threshold_milli": 650,
+    "migration_food_floor_milli": 700,
+    "migration_service_floor_milli": 600,
+    "monthly_migration_rate_milli": 5,
+    "monthly_migration_cap": 250,
+    "severe_shortage_food_milli": 500,
+    "shortage_integration_penalty_milli": 25,
+    "shortage_resistance_gain_milli": 35,
+    "infrastructure_integration_penalty_milli": 10,
+    "infrastructure_resistance_gain_milli": 15,
+    "surplus_integration_gain_milli": 8,
+    "stability_resistance_recovery_milli": 6,
+    "civic_investment_per_resident_ryo": 2500,
+    "civic_investment_effect_milli_per_month": 60,
+    "food_support_decay_milli_per_month": 40,
+    "service_investment_decay_milli_per_month": 10
+  }
+}

@@ -1,0 +1,608 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shinobi-career-pipeline.schema.json",
+  "title": "Aggregate shinobi career cohort progression state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "last_review_at",
+    "villages",
+    "history",
+    "provenance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "shinobi-career-pipeline"
+    },
+    "version": {
+      "const": 1
+    },
+    "last_review_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "villages": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "service_pool_ref",
+          "force_ref",
+          "rank_counts",
+          "promotion_credit_ppm"
+        ],
+        "properties": {
+          "service_pool_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "force_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rank_counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "genin",
+              "chunin",
+              "jonin"
+            ],
+            "properties": {
+              "genin": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "chunin": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "jonin": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "promotion_credit_ppm": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "genin_to_chunin",
+              "chunin_to_jonin"
+            ],
+            "properties": {
+              "genin_to_chunin": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999
+              },
+              "chunin_to_jonin": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 999999
+              }
+            }
+          }
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "village",
+              "graduates",
+              "transfer_id"
+            ],
+            "properties": {
+              "kind": {
+                "const": "academy_genin_intake"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "village": {
+                "type": "string",
+                "minLength": 1
+              },
+              "graduates": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "transfer_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "promotions",
+              "headcount_before",
+              "headcount_after"
+            ],
+            "properties": {
+              "kind": {
+                "const": "aggregate_rank_progression"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "promotions": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "genin_to_chunin",
+                    "chunin_to_jonin"
+                  ],
+                  "properties": {
+                    "genin_to_chunin": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "chunin_to_jonin": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  }
+                }
+              },
+              "headcount_before": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "headcount_after": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "subject_ref",
+              "village",
+              "source_rank",
+              "target_rank",
+              "action"
+            ],
+            "properties": {
+              "kind": {
+                "const": "exact_rank_accounting"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subject_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "village": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_rank": {
+                "enum": [
+                  "genin",
+                  "chunin",
+                  "jonin"
+                ]
+              },
+              "target_rank": {
+                "enum": [
+                  "genin",
+                  "chunin",
+                  "jonin"
+                ]
+              },
+              "action": {
+                "enum": [
+                  "promote",
+                  "demote"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "cycle_id",
+              "profile_ref",
+              "eligible_exact_refs",
+              "player_team_eligible_refs",
+              "canon_status"
+            ],
+            "properties": {
+              "kind": {
+                "const": "promotion_exam_cycle_opened"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cycle_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "profile_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "eligible_exact_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "player_team_eligible_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "canon_status": {
+                "const": "campaign_institutional_not_future_canon"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "cycle_id",
+              "profile_ref",
+              "phase",
+              "canon_status",
+              "authority_ref"
+            ],
+            "properties": {
+              "kind": {
+                "const": "promotion_exam_cycle_phase"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cycle_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "profile_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "phase": {
+                "type": "string",
+                "minLength": 1
+              },
+              "canon_status": {
+                "const": "campaign_institutional_not_future_canon"
+              },
+              "authority_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "cycle_id",
+              "profile_ref",
+              "team_ref",
+              "instructor_ref",
+              "candidate_refs",
+              "canon_status"
+            ],
+            "properties": {
+              "kind": {
+                "const": "promotion_exam_registration"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cycle_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "profile_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "team_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "instructor_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidate_refs": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 16,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "canon_status": {
+                "const": "campaign_institutional_not_future_canon"
+              },
+              "registration_mode": {
+                "enum": [
+                  "institution_autonomous_team_submission",
+                  "ooc_dev_current_cycle_reconciliation"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "cycle_id",
+              "profile_ref",
+              "phase",
+              "team_ref",
+              "evaluator_ref",
+              "candidate_ref",
+              "score",
+              "threshold",
+              "outcome",
+              "canon_status"
+            ],
+            "properties": {
+              "kind": {
+                "const": "promotion_exam_evaluation"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cycle_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "profile_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "phase": {
+                "enum": [
+                  "qualification",
+                  "field_evaluation"
+                ]
+              },
+              "team_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evaluator_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidate_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "score": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "threshold": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "outcome": {
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              },
+              "canon_status": {
+                "const": "campaign_institutional_not_future_canon"
+              },
+              "evaluation_mode": {
+                "enum": [
+                  "institution_autonomous_exact_candidate",
+                  "ooc_dev_current_cycle_reconciliation"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "at",
+              "cycle_id",
+              "profile_ref",
+              "phase",
+              "bout_ref",
+              "round_index",
+              "match_index",
+              "candidate_refs",
+              "winner_ref",
+              "loser_ref",
+              "resolution_method",
+              "resolution_mode",
+              "victorious_side_refs",
+              "judge_scores",
+              "styles",
+              "combat_record",
+              "duration_seconds",
+              "examiner_ref",
+              "canon_status"
+            ],
+            "properties": {
+              "kind": {
+                "const": "promotion_exam_bout"
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cycle_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "profile_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "phase": {
+                "const": "finals"
+              },
+              "bout_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "round_index": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "match_index": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "candidate_refs": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "winner_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "loser_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "resolution_method": {
+                "enum": [
+                  "combat_stoppage",
+                  "judges_decision"
+                ]
+              },
+              "resolution_mode": {
+                "type": "string",
+                "minLength": 1
+              },
+              "victorious_side_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "judge_scores": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 200
+                }
+              },
+              "styles": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "martial_focus",
+                    "domain_focus",
+                    "featured_method_ref"
+                  ],
+                  "properties": {
+                    "martial_focus": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "domain_focus": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "featured_method_ref": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              },
+              "combat_record": {
+                "type": "object"
+              },
+              "duration_seconds": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "examiner_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "canon_status": {
+                "const": "campaign_institutional_not_future_canon"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "provenance": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

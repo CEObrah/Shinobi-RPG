@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "when_to_offer",
+    "suggested_choice_count",
+    "default_visible_total",
+    "default_horizon_mix",
+    "free_form_option_required",
+    "free_form_label",
+    "duration_required_for_every_suggested_choice",
+    "duration_rule",
+    "legality_gate",
+    "horizon_rule",
+    "normal_scene_rule",
+    "combat_horizon_rule",
+    "strategic_horizon_rule",
+    "interrupt_rule",
+    "information_rule",
+    "premise_parity_rule",
+    "declared_intent_rule",
+    "standing_continuation_rule",
+    "ooc_detour_rule",
+    "event_seek_rule",
+    "report_handoff_rule",
+    "meaningful_event_handoff_rule",
+    "selection_render_rule",
+    "bounded_delegation_rule",
+    "menu_rule",
+    "storage_rule",
+    "handoff_rule"
+  ],
+  "properties": {
+    "schema": {
+      "const": "choice-presentation"
+    },
+    "when_to_offer": {
+      "type": "string"
+    },
+    "suggested_choice_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum",
+        "maximum",
+        "default"
+      ],
+      "properties": {
+        "minimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maximum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "default": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "default_visible_total": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "default_horizon_mix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "immediate",
+        "wider_horizon",
+        "free_action"
+      ],
+      "properties": {
+        "immediate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wider_horizon": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "free_action": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "free_form_option_required": {
+      "type": "boolean"
+    },
+    "free_form_label": {
+      "type": "string"
+    },
+    "duration_required_for_every_suggested_choice": {
+      "type": "boolean"
+    },
+    "duration_rule": {
+      "type": "string"
+    },
+    "legality_gate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "horizon_rule": {
+      "type": "string"
+    },
+    "normal_scene_rule": {
+      "type": "string"
+    },
+    "combat_horizon_rule": {
+      "type": "string"
+    },
+    "strategic_horizon_rule": {
+      "type": "string"
+    },
+    "interrupt_rule": {
+      "type": "string"
+    },
+    "information_rule": {
+      "type": "string"
+    },
+    "premise_parity_rule": {
+      "type": "string"
+    },
+    "declared_intent_rule": {
+      "type": "string"
+    },
+    "selection_render_rule": {
+      "type": "string"
+    },
+    "bounded_delegation_rule": {
+      "type": "string"
+    },
+    "menu_rule": {
+      "type": "string"
+    },
+    "storage_rule": {
+      "type": "string"
+    },
+    "handoff_rule": {
+      "type": "string"
+    },
+    "meaningful_event_handoff_rule": {
+      "type": "string"
+    },
+    "report_handoff_rule": {
+      "type": "string"
+    },
+    "standing_continuation_rule": {
+      "type": "string"
+    },
+    "ooc_detour_rule": {
+      "type": "string"
+    },
+    "event_seek_rule": {
+      "type": "string"
+    }
+  }
+}

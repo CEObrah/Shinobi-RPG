@@ -1,0 +1,164 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.kiri.hunter.office.auto.a29a55f55d97.doctrine",
+  "team_id": "team.kiri.hunter.office.auto.a29a55f55d97",
+  "name": "Kiri Hunter Office Field Cell Combat Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_ao": 0,
+    "canon_chojuro": 0
+  },
+  "effective_from": "SE-0061-07-16T07:00:00",
+  "approved_by": "canon_ao",
+  "motto": "Move. Strike. Prepare. Return.",
+  "command": {
+    "captain": "canon_ao",
+    "deputy": "canon_chojuro",
+    "succession_order": [
+      "canon_chojuro"
+    ]
+  },
+  "roles": {
+    "canon_ao": "field_lead",
+    "canon_chojuro": "mobile_interdiction"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "SEE",
+      "primary_members": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "objective": "Establish positions, threats, routes, and uncertainty before committing force.",
+      "procedures": [
+        "Cross-check observations before acting on them."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "SHAPE",
+      "primary_members": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "objective": "Alter movement, terrain, information, or routes to create team advantage.",
+      "procedures": [
+        "Create openings for teammates rather than isolated duels."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "BREAK",
+      "primary_members": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "objective": "Exploit the shaped engagement to disrupt coherent enemy action.",
+      "procedures": [
+        "Concentrate on the mission-critical problem."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "SECURE",
+      "primary_members": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "objective": "Complete the authorized objective and stabilize control.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    },
+    {
+      "order": 5,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_ao",
+        "canon_chojuro"
+      ],
+      "objective": "Account for the team and remove personnel, captives, evidence, or protected assets safely.",
+      "procedures": [
+        "Preserve command and a viable withdrawal route."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Shared objective",
+      "rule": "Openings belong to the team, not the individual who created them.",
+      "procedures": [
+        "Exploit teammate-created advantages when lawful and useful."
+      ]
+    },
+    {
+      "name": "Mission first",
+      "rule": "Do not trade the assigned objective for an unnecessary fight.",
+      "procedures": [
+        "Reorient when combat no longer advances the mission."
+      ]
+    },
+    {
+      "name": "Recover control",
+      "rule": "When coordination breaks, restore information, command, spacing, and an exit before escalating.",
+      "procedures": [
+        "Stabilize before chasing a collapsing plan."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "reconnaissance",
+      "directive": "Verify while preserving concealment and a report route."
+    },
+    {
+      "mode": "capture",
+      "directive": "Create control, restrain the authorized target, and preserve evidence."
+    },
+    {
+      "mode": "protection",
+      "directive": "Keep the protected person or asset viable and preserve extraction."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Re-establish the battlefield picture.",
+      "Confirm command and member accountability.",
+      "Create a regroup or withdrawal route."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_ao",
+      "canon_chojuro"
+    ],
+    "procedures": [
+      "Account for every member and material objective before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_ao"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "rapid integration",
+      "command signals",
+      "objective handoff",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_ao": "field_lead",
+      "canon_chojuro": "mobile_interdiction"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance under the team training model.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "mobile interdiction / assault finisher doctrine"
+}

@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canon continuity manifest",
+  "description": "Static continuity and provenance policy. Campaign state remains authoritative for the lived timeline.",
+  "type": "object",
+  "required": [
+    "schema",
+    "continuity_id",
+    "campaign_authority",
+    "anchor",
+    "source_policy",
+    "source_catalog",
+    "history_routes",
+    "event_index",
+    "runtime_guards"
+  ],
+  "properties": {
+    "schema": {
+      "const": "canon-continuity-manifest"
+    },
+    "continuity_id": {
+      "const": "continuity.naruto.manga_primary_anime_compatible"
+    },
+    "campaign_authority": {
+      "const": false
+    },
+    "anchor": {
+      "type": "object",
+      "required": [
+        "campaign_time",
+        "binding_status",
+        "canon_event_id",
+        "source_locators"
+      ],
+      "properties": {
+        "campaign_time": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^SE--?[0-9]{4,}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"
+        },
+        "binding_status": {
+          "enum": [
+            "unbound",
+            "verified"
+          ]
+        },
+        "canon_event_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^canon\\.anchor\\.[a-z0-9][a-z0-9._-]*$"
+        },
+        "source_locators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "work_id",
+              "locator_kind",
+              "volume",
+              "chapter",
+              "episode",
+              "section"
+            ],
+            "properties": {
+              "work_id": {
+                "type": "string",
+                "pattern": "^canon\\.source\\.[a-z0-9][a-z0-9._-]*$"
+              },
+              "locator_kind": {
+                "enum": [
+                  "volume_chapter",
+                  "episode",
+                  "section"
+                ]
+              },
+              "volume": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "chapter": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "episode": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              },
+              "section": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "binding_status": {
+                "const": "unbound"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "campaign_time": {
+                "const": null
+              },
+              "canon_event_id": {
+                "const": null
+              },
+              "source_locators": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "binding_status": {
+                "const": "verified"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "campaign_time": {
+                "type": "string"
+              },
+              "canon_event_id": {
+                "type": "string"
+              },
+              "source_locators": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "source_policy": {
+      "type": "object",
+      "required": [
+        "primary_manga",
+        "official_supplement",
+        "anime_compatible",
+        "forbidden_authorities"
+      ],
+      "properties": {
+        "primary_manga": {
+          "type": "object",
+          "required": [
+            "precedence",
+            "fact_rule"
+          ],
+          "properties": {
+            "precedence": {
+              "const": 1
+            },
+            "fact_rule": {
+              "const": "establish_with_approved_volume_chapter_locator"
+            }
+          },
+          "additionalProperties": false
+        },
+        "official_supplement": {
+          "type": "object",
+          "required": [
+            "precedence",
+            "fact_rule"
+          ],
+          "properties": {
+            "precedence": {
+              "const": 2
+            },
+            "fact_rule": {
+              "const": "fill_only_nonconflicting_gaps_with_explicit_approval"
+            }
+          },
+          "additionalProperties": false
+        },
+        "anime_compatible": {
+          "type": "object",
+          "required": [
+            "precedence",
+            "fact_rule"
+          ],
+          "properties": {
+            "precedence": {
+              "const": 3
+            },
+            "fact_rule": {
+              "const": "supplement_only_when_explicitly_approved_and_nonconflicting"
+            }
+          },
+          "additionalProperties": false
+        },
+        "forbidden_authorities": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "enum": [
+              "model_memory",
+              "wiki",
+              "fanon",
+              "unverified_summary"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "work_id",
+          "title",
+          "medium",
+          "source_class",
+          "approval_status"
+        ],
+        "properties": {
+          "work_id": {
+            "type": "string",
+            "pattern": "^canon\\.source\\.[a-z0-9][a-z0-9._-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "medium": {
+            "enum": [
+              "manga",
+              "official_supplement",
+              "anime"
+            ]
+          },
+          "source_class": {
+            "enum": [
+              "primary_manga",
+              "official_supplement",
+              "anime_compatible"
+            ]
+          },
+          "approval_status": {
+            "enum": [
+              "approved",
+              "pending",
+              "rejected"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "history_routes": {
+      "type": "object",
+      "required": [
+        "public",
+        "restricted",
+        "secret"
+      ],
+      "properties": {
+        "public": {
+          "type": "object",
+          "required": [
+            "shards",
+            "access_rule"
+          ],
+          "properties": {
+            "shards": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^game/data/canon/history/public/[a-z0-9][a-z0-9._/-]*\\.json$"
+              },
+              "uniqueItems": true
+            },
+            "access_rule": {
+              "const": "ambient_reference_not_automatic_personal_knowledge"
+            }
+          },
+          "additionalProperties": false
+        },
+        "restricted": {
+          "type": "object",
+          "required": [
+            "shards",
+            "access_rule"
+          ],
+          "properties": {
+            "shards": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^game/data/canon/history/restricted/[a-z0-9][a-z0-9._/-]*\\.json$"
+              },
+              "uniqueItems": true
+            },
+            "access_rule": {
+              "const": "requires_saved_access_or_knowledge_route"
+            }
+          },
+          "additionalProperties": false
+        },
+        "secret": {
+          "type": "object",
+          "required": [
+            "shards",
+            "access_rule"
+          ],
+          "properties": {
+            "shards": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^game/data/canon/history/secret/[a-z0-9][a-z0-9._/-]*\\.json$"
+              },
+              "uniqueItems": true
+            },
+            "access_rule": {
+              "const": "world_causality_only_until_saved_discovery"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "event_index": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^canon\\.event\\.[a-z0-9][a-z0-9._-]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "path",
+          "lane"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^game/data/canon/history/(public|restricted|secret)/[a-z0-9][a-z0-9._/-]*\\.json$"
+          },
+          "lane": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "runtime_guards": {
+      "type": "object",
+      "required": [
+        "campaign_state_precedence",
+        "unbound_anchor_forbids_events",
+        "event_seed_requires_primary_locator",
+        "future_outcomes_forbidden",
+        "model_memory_forbidden",
+        "paraphrase_only",
+        "visibility_is_not_character_knowledge"
+      ],
+      "properties": {
+        "campaign_state_precedence": {
+          "const": true
+        },
+        "unbound_anchor_forbids_events": {
+          "const": true
+        },
+        "event_seed_requires_primary_locator": {
+          "const": true
+        },
+        "future_outcomes_forbidden": {
+          "const": true
+        },
+        "model_memory_forbidden": {
+          "const": true
+        },
+        "paraphrase_only": {
+          "const": true
+        },
+        "visibility_is_not_character_knowledge": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

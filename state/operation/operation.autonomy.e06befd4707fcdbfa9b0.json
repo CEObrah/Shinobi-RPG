@@ -1,0 +1,44 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.e06befd4707fcdbfa9b0",
+  "domain": "engineering",
+  "operation_kind": "route_denial_planning",
+  "owner_ref": "faction.iwa_engineering_command",
+  "authority_ref": "canon_kitsuchi",
+  "opened_at": "SE-0061-07-09T07:00:00",
+  "next_due_at": "SE-0061-07-16T07:00:00",
+  "closed_at": null,
+  "status": "pending",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_grass_earth",
+  "client_ref": null,
+  "place_refs": [
+    "place.earth.western.front"
+  ],
+  "route_refs": [
+    "route_kusa_iwa"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_earthwork_toolkit",
+    "item_explosive_tag"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_kitsuchi"
+  ],
+  "progress_milli": 0,
+  "success_condition": "Prepare or execute a bounded route-denial effect with persisted terrain/route evidence.",
+  "failure_condition": "The route_denial_planning objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

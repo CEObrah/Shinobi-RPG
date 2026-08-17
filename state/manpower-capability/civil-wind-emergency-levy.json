@@ -1,0 +1,68 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.wind.emergency_levy",
+  "pool_id": "civil.wind.emergency_levy",
+  "source_owner": "force.civil.wind",
+  "stats": {
+    "attributes": {
+      "strength": 27,
+      "endurance": 31,
+      "awareness": 25
+    },
+    "skills": {
+      "weapons": 29,
+      "formation": 28,
+      "tactics": 17
+    },
+    "morale": 56,
+    "discipline": 53,
+    "experience": 39,
+    "methods": {
+      "sword": 0,
+      "unarmed": 0,
+      "thrown_tools": 0,
+      "bow": 0,
+      "polearm": 0,
+      "heavy_weapon": 0,
+      "ninjutsu": 10,
+      "genjutsu": 8,
+      "traps": 14,
+      "sensory": 25,
+      "medical": 20,
+      "sealing": 8
+    }
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 164,
+      "sd": 7.0
+    },
+    "weight_kg": {
+      "mean": 69,
+      "sd": 7.0
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 85,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

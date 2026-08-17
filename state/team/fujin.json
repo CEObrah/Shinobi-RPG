@@ -1,0 +1,147 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.fujin",
+  "name": "Team Fujin",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "institution.konoha.academy",
+  "leader_ref": "pc_wei_tang",
+  "deputy_ref": "char.mei_arakawa",
+  "member_refs": [
+    "pc_wei_tang",
+    "char.kai",
+    "char.riku_hyuga",
+    "char.mei_arakawa"
+  ],
+  "roles": {
+    "pc_wei_tang": "jonin_instructor_and_team_leader",
+    "char.kai": "timing_disruption_and_sword_pressure",
+    "char.riku_hyuga": "ground_control_frontline_reconnaissance_and_objective_defense",
+    "char.mei_arakawa": "sensor_perception_control_and_field_lead"
+  },
+  "classification": "public",
+  "activation": {
+    "at": "SE-0061-02-05T09:00:00",
+    "basis": "Lawful Konoha Academy / village team assignment process."
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "authority_review",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": null
+  },
+  "doctrine_ref": "team.konoha.fujin.doctrine",
+  "current_assignment_ref": null,
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "char.zhu",
+      "char.linh"
+    ],
+    "facility_refs": [
+      "place.sword_manor"
+    ],
+    "recent_sessions": [
+      {
+        "session_ref": "training.session.7c809fc822d681b1bc36631a944d8803",
+        "started_at": "SE-0061-07-15T07:23:18",
+        "ended_at": "SE-0061-07-15T13:23:18",
+        "active_hours": "6",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness",
+          "pc_wei_tang": "martial_skills.sword"
+        }
+      },
+      {
+        "session_ref": "training.session.05068bcbdcd2421f7cc58a64d86e8ad8",
+        "started_at": "SE-0061-07-18T07:23:18",
+        "ended_at": "SE-0061-07-18T13:23:18",
+        "active_hours": "6",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness",
+          "pc_wei_tang": "repertoire.method_mastery.severing_wake"
+        }
+      },
+      {
+        "session_ref": "training.session.e39fe31075481676b2b017b7baa24616",
+        "started_at": "SE-0061-07-19T07:23:18",
+        "ended_at": "SE-0061-07-19T13:23:18",
+        "active_hours": "6",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness",
+          "pc_wei_tang": "domain_proficiencies.wind"
+        }
+      },
+      {
+        "session_ref": "training.session.ed3a11e17dfe3d88bbf41ce895b44d2a",
+        "started_at": "SE-0061-07-20T07:23:18",
+        "ended_at": "SE-0061-07-20T13:23:18",
+        "active_hours": "6",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness",
+          "pc_wei_tang": "repertoire.method_mastery.severing_wake"
+        }
+      },
+      {
+        "session_ref": "training.session.40506323e2be760eb4af3f58916d2552",
+        "started_at": "SE-0061-07-21T07:23:18",
+        "ended_at": "SE-0061-07-21T13:23:18",
+        "active_hours": "6",
+        "member_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "instructor_ref": "char.linh",
+        "targets": {
+          "char.kai": "martial_skills.movement",
+          "char.mei_arakawa": "martial_skills.movement",
+          "char.riku_hyuga": "attributes.awareness",
+          "pc_wei_tang": "domain_proficiencies.wind"
+        }
+      }
+    ]
+  },
+  "embedded_member_refs": []
+}

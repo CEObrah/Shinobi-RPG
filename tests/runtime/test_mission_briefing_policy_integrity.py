@@ -1,0 +1,33 @@
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+def test_player_offer_briefing_topology_uses_registered_places_and_routes() -> None:
+    autonomy = json.loads(
+        Path("game/rules/autonomy/living-world.json").read_text(encoding="utf-8")
+    )
+    world = json.loads(
+        Path("state/world/routes-and-settlements.json").read_text(encoding="utf-8")
+    )["payload"]
+    places = {row["id"] for row in world["places"]}
+    routes = {row["id"] for row in world["routes"]}
+    offer = autonomy["faction_assignments"]["faction.konoha_mission_office"]["player_offer"]
+
+    mapping = offer["market_demand_to_objective"]
+    dynamic = offer["dynamic_briefing_sources"]
+    for demand_key in offer["objective_cycle"]:
+        objective_kind = mapping[demand_key]
+        if demand_key in dynamic:
+            continue
+        template = offer["briefing_templates"].get(demand_key) or offer["briefing_templates"].get(objective_kind)
+        assert template is not None
+        for field in ("report_place_ref", "origin_place_ref", "destination_place_ref"):
+            place_ref = template.get(field)
+            if place_ref is not None:
+                assert place_ref in places, (objective_kind, field, place_ref)
+        if template.get("subject_kind") == "place":
+            assert template["subject_ref"] in places, (objective_kind, "subject_ref")
+        if template.get("destination_place_ref") is not None:
+            assert template["route_id"] in routes, (objective_kind, "route_id")

@@ -1,0 +1,58 @@
+{
+  "schema": "file-template",
+  "template_id": "template.mission-context-index",
+  "target_schema": "mission-context-index",
+  "source_schema": "game/schemas/mission-context-index.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/mission"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "current_by_participant",
+    "briefing_by_participant",
+    "current_mission_count"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "current_by_participant",
+        "briefing_by_participant",
+        "current_mission_count"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "current_by_participant",
+        "briefing_by_participant",
+        "current_mission_count"
+      ]
+    },
+    "/current_by_participant": {"mode": "open_map"},
+    "/briefing_by_participant": {"mode": "open_map"}
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/authority": ["boolean"],
+    "/current_by_participant": ["object"],
+    "/current_by_participant/*": ["array"],
+    "/current_by_participant/*/*": ["string"],
+    "/briefing_by_participant": ["object"],
+    "/briefing_by_participant/*": ["array"],
+    "/briefing_by_participant/*/*": ["string"],
+    "/current_mission_count": ["integer"]
+  },
+  "array_contracts": {
+    "/current_by_participant/*": {"item_types": ["string"]},
+    "/briefing_by_participant/*": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "This index is a bounded/current routing projection and never mission authority.",
+    "Terminal historical missions remain exact mission owners and are inspected directly by deterministic mission ID.",
+    "Reconcile this index whenever mission state, participants, or briefing availability changes."
+  ]
+}

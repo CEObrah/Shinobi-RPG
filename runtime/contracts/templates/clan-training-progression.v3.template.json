@@ -1,0 +1,378 @@
+{
+  "schema": "file-template",
+  "template_id": "template.clan-training-progression.v3",
+  "target_schema": "clan-training-progression.v3",
+  "source_schema": "game/schemas/clan-training-progression-v3.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/clans"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "principles",
+    "institutions"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "principles",
+        "institutions"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "principles",
+        "institutions"
+      ]
+    },
+    "/principles": {
+      "mode": "open_map"
+    },
+    "/institutions": {
+      "mode": "open_map"
+    },
+    "/institutions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "rank_requirements_ref",
+        "standing_order",
+        "technical_tier_order",
+        "standing_to_technical_tier",
+        "technical_tiers",
+        "institutional_curriculum_source",
+        "promotion",
+        "standing_sections",
+        "training_section_policy",
+        "membership_package_ref",
+        "access_progression"
+      ],
+      "canonical_order": [
+        "kind",
+        "rank_requirements_ref",
+        "standing_order",
+        "technical_tier_order",
+        "standing_to_technical_tier",
+        "technical_tiers",
+        "institutional_curriculum_source",
+        "promotion",
+        "standing_sections",
+        "training_section_policy",
+        "membership_package_ref",
+        "access_progression"
+      ]
+    },
+    "/institutions/*/standing_to_technical_tier": {
+      "mode": "open_map"
+    },
+    "/institutions/*/technical_tiers": {
+      "mode": "open_map"
+    },
+    "/institutions/*/technical_tiers/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "package_ref"
+      ],
+      "canonical_order": [
+        "package_ref"
+      ]
+    },
+    "/institutions/*/institutional_curriculum_source": {
+      "mode": "closed",
+      "allowed_keys": [
+        "enabled",
+        "source_ref",
+        "requires_current_tier_access",
+        "requires_technique_prerequisites",
+        "does_not_grant_mastery"
+      ],
+      "canonical_order": [
+        "enabled",
+        "source_ref",
+        "requires_current_tier_access",
+        "requires_technique_prerequisites",
+        "does_not_grant_mastery"
+      ]
+    },
+    "/institutions/*/promotion": {
+      "mode": "closed",
+      "allowed_keys": [
+        "automatic_from_capability",
+        "review_mode",
+        "direct_next_standing_only",
+        "require_all_numeric_minimums",
+        "require_all_credentials",
+        "review_authority_refs",
+        "delegated_review_refs",
+        "authority_may_commit_standard_promotion_when_requirements_are_complete",
+        "rostered_promotion_requires_identity_preservation",
+        "rostered_promotion_preserves_lightweight_representation",
+        "exact_materialization_is_separate_causal_decision",
+        "appointment_standings",
+        "appointment_standings_do_not_change_technical_tier",
+        "sword_master_requires_explicit_master_board_recognition"
+      ],
+      "canonical_order": [
+        "automatic_from_capability",
+        "review_mode",
+        "direct_next_standing_only",
+        "require_all_numeric_minimums",
+        "require_all_credentials",
+        "review_authority_refs",
+        "delegated_review_refs",
+        "authority_may_commit_standard_promotion_when_requirements_are_complete",
+        "rostered_promotion_requires_identity_preservation",
+        "rostered_promotion_preserves_lightweight_representation",
+        "exact_materialization_is_separate_causal_decision",
+        "appointment_standings",
+        "appointment_standings_do_not_change_technical_tier",
+        "sword_master_requires_explicit_master_board_recognition"
+      ]
+    },
+    "/institutions/*/standing_sections": {
+      "mode": "open_map"
+    },
+    "/institutions/*/training_section_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "organizational_only",
+        "persistent_people_are_not_cohort_membership_statistics",
+        "junior_target_size",
+        "new_admissions_assign_to_normal_junior_sections",
+        "intake_batch_is_not_a_persistent_character_group"
+      ],
+      "canonical_order": [
+        "organizational_only",
+        "persistent_people_are_not_cohort_membership_statistics",
+        "junior_target_size",
+        "new_admissions_assign_to_normal_junior_sections",
+        "intake_batch_is_not_a_persistent_character_group"
+      ]
+    },
+    "/institutions/*/access_progression": {
+      "mode": "closed",
+      "allowed_keys": [
+        "mode",
+        "formal_promotion",
+        "village_rank_does_not_auto_advance_access",
+        "additional_family_restrictions_may_apply",
+        "separate_hereditary_prerequisites_apply"
+      ],
+      "canonical_order": [
+        "mode",
+        "formal_promotion",
+        "village_rank_does_not_auto_advance_access",
+        "additional_family_restrictions_may_apply",
+        "separate_hereditary_prerequisites_apply"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/authority": [
+      "string"
+    ],
+    "/principles": [
+      "object"
+    ],
+    "/principles/*": [
+      "boolean"
+    ],
+    "/institutions": [
+      "object"
+    ],
+    "/institutions/*": [
+      "object"
+    ],
+    "/institutions/*/kind": [
+      "string"
+    ],
+    "/institutions/*/rank_requirements_ref": [
+      "string"
+    ],
+    "/institutions/*/standing_order": [
+      "array"
+    ],
+    "/institutions/*/standing_order/*": [
+      "string"
+    ],
+    "/institutions/*/technical_tier_order": [
+      "array"
+    ],
+    "/institutions/*/technical_tier_order/*": [
+      "string"
+    ],
+    "/institutions/*/standing_to_technical_tier": [
+      "object"
+    ],
+    "/institutions/*/standing_to_technical_tier/*": [
+      "string"
+    ],
+    "/institutions/*/technical_tiers": [
+      "object"
+    ],
+    "/institutions/*/technical_tiers/*": [
+      "object"
+    ],
+    "/institutions/*/technical_tiers/*/package_ref": [
+      "string"
+    ],
+    "/institutions/*/institutional_curriculum_source": [
+      "object"
+    ],
+    "/institutions/*/institutional_curriculum_source/enabled": [
+      "boolean"
+    ],
+    "/institutions/*/institutional_curriculum_source/source_ref": [
+      "string"
+    ],
+    "/institutions/*/institutional_curriculum_source/requires_current_tier_access": [
+      "boolean"
+    ],
+    "/institutions/*/institutional_curriculum_source/requires_technique_prerequisites": [
+      "boolean"
+    ],
+    "/institutions/*/institutional_curriculum_source/does_not_grant_mastery": [
+      "boolean"
+    ],
+    "/institutions/*/promotion": [
+      "object"
+    ],
+    "/institutions/*/promotion/automatic_from_capability": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/review_mode": [
+      "string"
+    ],
+    "/institutions/*/promotion/direct_next_standing_only": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/require_all_numeric_minimums": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/require_all_credentials": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/review_authority_refs": [
+      "array"
+    ],
+    "/institutions/*/promotion/review_authority_refs/*": [
+      "string"
+    ],
+    "/institutions/*/promotion/delegated_review_refs": [
+      "array"
+    ],
+    "/institutions/*/promotion/delegated_review_refs/*": [
+      "string"
+    ],
+    "/institutions/*/promotion/authority_may_commit_standard_promotion_when_requirements_are_complete": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/rostered_promotion_requires_identity_preservation": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/rostered_promotion_preserves_lightweight_representation": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/exact_materialization_is_separate_causal_decision": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/appointment_standings": [
+      "array"
+    ],
+    "/institutions/*/promotion/appointment_standings/*": [
+      "string"
+    ],
+    "/institutions/*/promotion/appointment_standings_do_not_change_technical_tier": [
+      "boolean"
+    ],
+    "/institutions/*/promotion/sword_master_requires_explicit_master_board_recognition": [
+      "boolean"
+    ],
+    "/institutions/*/standing_sections": [
+      "object"
+    ],
+    "/institutions/*/standing_sections/*": [
+      "string"
+    ],
+    "/institutions/*/training_section_policy": [
+      "object"
+    ],
+    "/institutions/*/training_section_policy/organizational_only": [
+      "boolean"
+    ],
+    "/institutions/*/training_section_policy/persistent_people_are_not_cohort_membership_statistics": [
+      "boolean"
+    ],
+    "/institutions/*/training_section_policy/junior_target_size": [
+      "integer"
+    ],
+    "/institutions/*/training_section_policy/new_admissions_assign_to_normal_junior_sections": [
+      "boolean"
+    ],
+    "/institutions/*/training_section_policy/intake_batch_is_not_a_persistent_character_group": [
+      "boolean"
+    ],
+    "/institutions/*/membership_package_ref": [
+      "string"
+    ],
+    "/institutions/*/access_progression": [
+      "object"
+    ],
+    "/institutions/*/access_progression/mode": [
+      "string"
+    ],
+    "/institutions/*/access_progression/formal_promotion": [
+      "boolean"
+    ],
+    "/institutions/*/access_progression/village_rank_does_not_auto_advance_access": [
+      "boolean"
+    ],
+    "/institutions/*/access_progression/additional_family_restrictions_may_apply": [
+      "boolean"
+    ],
+    "/institutions/*/access_progression/separate_hereditary_prerequisites_apply": [
+      "boolean"
+    ]
+  },
+  "array_contracts": {
+    "/institutions/*/standing_order": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/institutions/*/technical_tier_order": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/institutions/*/promotion/review_authority_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/institutions/*/promotion/delegated_review_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/institutions/*/promotion/appointment_standings": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Instruction access is not mastery. Village rank is separate from institutional access. House Tang standing and technical tiers remain separate; lightweight rostered promotions preserve identity without mandatory exactification."
+  ]
+}

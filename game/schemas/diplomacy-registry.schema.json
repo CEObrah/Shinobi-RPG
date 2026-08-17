@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "diplomacy-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "agreements",
+    "incidents"
+  ],
+  "properties": {
+    "schema": {
+      "const": "diplomacy-registry"
+    },
+    "agreements": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "agreement_type",
+          "party_refs",
+          "status",
+          "proposed_by",
+          "consent_refs",
+          "rejection_refs",
+          "terms",
+          "opened_at",
+          "effective_at",
+          "ended_at",
+          "evidence_refs",
+          "visibility"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^agreement\\."
+          },
+          "agreement_type": {
+            "enum": [
+              "nonaggression",
+              "alliance",
+              "trade",
+              "tribute",
+              "client_state",
+              "border",
+              "guarantee",
+              "recognition",
+              "ceasefire_framework",
+              "migration",
+              "military_access"
+            ]
+          },
+          "party_refs": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "status": {
+            "enum": [
+              "proposed",
+              "active",
+              "rejected",
+              "ended"
+            ]
+          },
+          "proposed_by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "consent_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "rejection_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "terms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "uniqueItems": true
+          },
+          "opened_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effective_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ended_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "provisions": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "grantor_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "grantee_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "place_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "route_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "payer_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "payee_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "amount_ryo": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "patron_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "client_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "guarantor_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "protected_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tariff_multiplier_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              }
+            }
+          },
+          "settlement_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "last_settled_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "incidents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "at",
+          "party_refs",
+          "kind",
+          "evidence_ref",
+          "summary",
+          "visibility"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^incident\\."
+          },
+          "at": {
+            "type": "string"
+          },
+          "party_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "kind": {
+            "type": "string"
+          },
+          "evidence_ref": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

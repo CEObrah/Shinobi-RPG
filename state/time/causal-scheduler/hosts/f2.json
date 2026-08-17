@@ -1,0 +1,35 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "f2",
+  "authority": true,
+  "hosts": {
+    "host.faction.faction.suna_puppet_corps": {
+      "host": {
+        "state": {
+          "host_id": "host.faction.faction.suna_puppet_corps",
+          "kind": "faction",
+          "resolved_through": "SE-0061-07-16T07:00:00",
+          "safe_through": "SE-0061-07-23T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "faction.suna_puppet_corps",
+          "next_due": "SE-0061-07-23T07:00:00"
+        },
+        "authority_kind": "faction_plan",
+        "owner_ref": "state/reg/factions/faction-suna-puppet-corps.json",
+        "metadata": {
+          "faction_id": "faction.suna_puppet_corps",
+          "plan_status": "active",
+          "review_interval_seconds": 604800
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.7ebc3943df09cc75aa065b70",
+          "due_at": "SE-0061-07-23T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-07-23.json",
+          "dedupe_key": "faction.periodic_review:faction.suna_puppet_corps"
+        }
+      ]
+    }
+  }
+}

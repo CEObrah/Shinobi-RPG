@@ -1,0 +1,302 @@
+{
+  "schema": "force",
+  "id": "force.civil.lightning",
+  "name": "Lightning conventional forces",
+  "total": 110000,
+  "availability": {
+    "deployed": 13200,
+    "ready_24h": 19800,
+    "mobilizable_7d": 30800,
+    "mobilizable_30d": 24200,
+    "training_or_instruction": 8800,
+    "medical_or_recovery": 2200,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 11000
+  },
+  "military_identity": [
+    "militarized culture",
+    "mountain warfare",
+    "heavy troops and conditioning"
+  ],
+  "reconstitution_policy_ref": "reconstitution.conventional",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "civil.lightning.standing",
+      "count": 33000,
+      "quality": "regular",
+      "role": "standing",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.lightning.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "militarized culture",
+        "mountain warfare",
+        "heavy troops and conditioning"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "standing",
+      "capability_ref": "state/manpower-capability/civil-lightning-standing.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.lightning.garrison",
+      "count": 28600,
+      "quality": "regular",
+      "role": "garrison",
+      "loadout": "load.civil.regular",
+      "doctrine": "doc.civil.lightning.regular",
+      "training": "train.civil.regular",
+      "specialties": [
+        "militarized culture",
+        "mountain warfare",
+        "heavy troops and conditioning"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "garrison",
+      "capability_ref": "state/manpower-capability/civil-lightning-garrison.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.lightning.trained_reserve",
+      "count": 31900,
+      "quality": "militia",
+      "role": "trained_reserve",
+      "loadout": "load.civil.militia",
+      "doctrine": "doc.civil.lightning.militia",
+      "training": "train.civil.militia",
+      "specialties": [
+        "militarized culture",
+        "mountain warfare",
+        "heavy troops and conditioning"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "trained_reserve",
+      "capability_ref": "state/manpower-capability/civil-lightning-trained-reserve.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "civil.lightning.emergency_levy",
+      "count": 16500,
+      "quality": "raw_levy",
+      "role": "emergency_levy",
+      "loadout": "load.civil.raw_levy",
+      "doctrine": "doc.civil.lightning.raw_levy",
+      "training": "train.civil.raw_levy",
+      "specialties": [
+        "militarized culture",
+        "mountain warfare",
+        "heavy troops and conditioning"
+      ],
+      "troop_type": "line_infantry",
+      "readiness_class": "emergency_levy",
+      "capability_ref": "state/manpower-capability/civil-lightning-emergency-levy.json"
+    }
+  ],
+  "mobilization_anchor_ref": "place.lightning.capital",
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 19800,
+      "spread": 10
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 30800,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 24200,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 8800,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 2200,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 0,
+        "awareness": 48,
+        "endurance": 60,
+        "chakra_control": 0,
+        "chakra_output": 0,
+        "movement": 0,
+        "tactics": 42,
+        "team_coordination": 0
+      },
+      "methods": {
+        "sword": 0,
+        "unarmed": 0,
+        "thrown_tools": 0,
+        "bow": 0,
+        "polearm": 0,
+        "heavy_weapon": 0,
+        "ninjutsu": 10,
+        "genjutsu": 8,
+        "traps": 39,
+        "sensory": 48,
+        "medical": 20,
+        "sealing": 8
+      },
+      "experience": 37,
+      "count": 11000,
+      "spread": 12
+    }
+  }
+}

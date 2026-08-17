@@ -1,0 +1,30 @@
+{
+  "schema": "loadout-record",
+  "loadout": {
+    "id": "load.team_fujin.wei",
+    "items": [
+      {"item_id": "armor_house_court", "quantity": 1},
+      {"item_id": "weapon_katana", "quantity": 1},
+      {"item_id": "weapon_kunai", "quantity": 12},
+      {"item_id": "weapon_shuriken", "quantity": 24},
+      {"item_id": "item_smoke_bomb", "quantity": 4},
+      {"item_id": "item_utility_wire", "quantity": 20, "unit": "m"},
+      {"item_id": "item_standard_restraints", "quantity": 2},
+      {"item_id": "item_chakra_suppression_cuffs", "quantity": 1},
+      {"item_id": "item_medical_dressing", "quantity": 4},
+      {"item_id": "item_water_container_1l", "quantity": 1},
+      {"item_id": "item_explosive_tag", "quantity": 6},
+      {"item_id": "item_field_ration_1day", "quantity": 1}
+    ],
+    "inherits": null,
+    "source": "team_permanent_standard",
+    "role_profile": "Team Fujin commander / primary combatant / capture",
+    "purpose": "Permanent role loadout; mission-specific expendables/support may be adjusted before deployment without stacking replacement armor.",
+    "refit_policy": {
+      "assignment_ref": "team.konoha.fujin",
+      "holder_ref": "pc_wei_tang",
+      "authorized_team_roles": ["leader", "instructor", "holder_self"],
+      "supply_stock_refs": ["stock.force_konoha_shinobi", "stock.house.tang"]
+    }
+  }
+}

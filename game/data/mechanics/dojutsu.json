@@ -1,0 +1,97 @@
+{
+  "schema": "dojutsu-mechanics",
+  "scale": "0-200",
+  "core_values": [
+    "eye_hardware",
+    "integration",
+    "ocular_control",
+    "feature_mastery",
+    "dojutsu_aptitude",
+    "vision_integrity",
+    "ocular_strain"
+  ],
+  "formulas": {
+    "effective_feature_mastery": "feature_mastery * sqrt(integration * ocular_control) / 200",
+    "multi_eye_feature_projection": "sum(each functional active eye feature contribution after that eye hardware, integration, vision integrity, and user ocular control/mastery are resolved); clamp only at the destination combat-axis ceiling",
+    "non_native_sharingan_passive_drain_factor": "max(0,(400-integration-ocular_control)/400)^2",
+    "passive_chakra_drain": "base_passive_drain * non_native_sharingan_passive_drain_factor",
+    "active_transplant_efficiency_penalty": "1 + (200-integration)/400 + (200-ocular_control)/400",
+    "active_chakra_cost": "registered_active_cost * active_transplant_efficiency_penalty",
+    "strain_gain": "base_strain * (1 + (200-integration)/100) * (1 + (200-ocular_control)/200)",
+    "pair_integration": "2*left_integration*right_integration/(left_integration+right_integration) when both are required",
+    "activation_margin": "0.45*ocular_control + 0.35*integration + 0.20*relevant_feature_mastery - ability_difficulty - ocular_strain_penalty - injury_penalty",
+    "initial_ocular_control": "min(90,0.35*chakra_control + 0.15*Awareness + 0.10*dojutsu_aptitude)",
+    "ocular_control_development_units": "effective_training_hours * (dojutsu_aptitude/100) * (0.50 + integration/400) * diminishing_returns",
+    "feature_mastery_development_units": "effective_training_hours * (dojutsu_aptitude/100) * relevance_factor * experience_modifier * diminishing_returns",
+    "sharingan_motion_perception_bonus": "0.10*effective_motion_perception*distance_detail_factor",
+    "sharingan_predictive_tracking_bonus": "min(30,0.15*effective_predictive_tracking*distance_detail_factor)",
+    "sharingan_visual_detail_range_m": "20 + 2*effective_fine_visual_tracking",
+    "copy_analysis_units_per_observation": "effective_copy_analysis * observation_quality * prerequisite_fraction / 100",
+    "byakugan_effective_range_m": "100 + 5*effective_distance_focus",
+    "byakugan_blind_spot_degrees": "max(0.5,4.0-0.0175*effective_blind_spot_management)",
+    "byakugan_multi_target_capacity": "1 + floor(effective_multi_target_tracking/10)",
+    "byakugan_chakra_resolution_bonus": "0.15*effective_chakra_network_resolution",
+    "byakugan_tenketsu_precision_bonus": "0.15*effective_tenketsu_identification"
+  },
+  "sharingan_hardware": {
+    "1_tomoe": [
+      "chakra_perception",
+      "basic_motion_perception"
+    ],
+    "2_tomoe": [
+      "chakra_perception",
+      "motion_perception",
+      "early_predictive_tracking",
+      "technique_analysis"
+    ],
+    "3_tomoe": [
+      "chakra_perception",
+      "motion_perception",
+      "predictive_tracking",
+      "technique_analysis",
+      "copy_analysis",
+      "ocular_genjutsu",
+      "genjutsu_detection"
+    ],
+    "mangekyo": [
+      "all_3_tomoe_features",
+      "eye_specific_mangekyo_ability"
+    ]
+  },
+  "sharingan_features": [
+    "chakra_perception",
+    "motion_perception",
+    "predictive_tracking",
+    "fine_visual_tracking",
+    "technique_analysis",
+    "copy_analysis",
+    "genjutsu_detection",
+    "ocular_genjutsu"
+  ],
+  "byakugan_features": [
+    "panoramic_awareness",
+    "distance_focus",
+    "obstruction_penetration",
+    "chakra_network_resolution",
+    "tenketsu_identification",
+    "multi_target_tracking",
+    "rapid_scan",
+    "blind_spot_management"
+  ],
+  "native_rule": "native eye integration is 200 unless damaged",
+  "transplant_rule": "hardware stage is preserved; recipient trains integration/control/mastery rather than re-evolving tomoe",
+  "copy_rule": "observation and analysis never bypass bloodline, anatomy, chakra-nature, equipment, or training prerequisites",
+  "passive_drain_zero_rule": "Integration 200 + Ocular Control 200 produces exactly zero passive Sharingan drain; active techniques still pay inherent cost.",
+  "activation_margin_bands": {
+    "<0": "cannot_stably_execute",
+    "0_to_19": "unstable_or_partial_if_feature_allows",
+    "20_plus": "stable_execution"
+  },
+  "hardware_progression": {
+    "native_sharingan": "Tomoe or Mangekyō hardware changes only through an explicit registered awakening transition committed to the eye instance. Narration alone cannot upgrade hardware.",
+    "transplanted_sharingan": "Tomoe stage and Mangekyō identity are fixed properties of the transplanted eye and do not re-evolve for the recipient.",
+    "byakugan": "No tomoe stages. Training changes control and feature mastery, not bloodline hardware."
+  },
+  "prediction_limit": "Prediction can improve recognition and choice but cannot make the user body move faster than its actual movement/timing mechanics or predict teleportation/unobserved causation.",
+  "blind_spot_rule": "Byakugan blind spot may shrink through blind-spot management but never reaches zero through ordinary mastery."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.75a60e625e948c1646",
+  "issuer_ref": "faction.ame_security_network",
+  "authority_ref": "canon_nagato",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.ame",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "authorized_at": "SE-0061-06-18T07:00:00",
+  "starts_at": "SE-0061-06-18T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.3ff82640e5fa3a9ced11",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.75a60e625e948c1646",
+    "objective_kind": "observe",
+    "subject_kind": "place",
+    "subject_ref": "place.ame.eastern.bridge",
+    "subject_label": "place.ame.eastern.bridge",
+    "report_place_ref": "place.ame.central.towers",
+    "origin_place_ref": "place.ame.central.towers",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-06-18T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Complete a documented surveillance cycle and produce a bounded claim about the selected sector."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_konan",
+    "canon_nagato"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.75a60e625e948c1646",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

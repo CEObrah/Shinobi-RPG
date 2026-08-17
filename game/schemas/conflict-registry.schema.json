@@ -1,0 +1,631 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conflict-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "records"
+  ],
+  "properties": {
+    "schema": {
+      "const": "conflict-registry"
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "status",
+          "side_refs",
+          "objectives",
+          "started_at",
+          "ended_at",
+          "ceasefire_consents",
+          "end_consents",
+          "fronts"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "status": {
+            "enum": [
+              "active",
+              "ceasefire",
+              "ended"
+            ]
+          },
+          "side_refs": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 8,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "objectives": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 500
+              }
+            }
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "ended_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fronts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "name",
+                "status",
+                "place_refs",
+                "route_refs",
+                "formation_refs",
+                "control_ref",
+                "fortification_milli",
+                "route_state",
+                "occupations"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "status": {
+                  "enum": [
+                    "active",
+                    "closed"
+                  ]
+                },
+                "place_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "route_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "formation_refs": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "control_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "fortification_milli": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                },
+                "route_state": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "status",
+                      "controller_ref",
+                      "disruption_milli",
+                      "evidence_event_ref"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "open",
+                          "contested",
+                          "disrupted",
+                          "blocked"
+                        ]
+                      },
+                      "controller_ref": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "disruption_milli": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                      },
+                      "evidence_event_ref": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "occupations": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "place_ref",
+                      "controller_ref",
+                      "evidence_event_ref",
+                      "since"
+                    ],
+                    "properties": {
+                      "place_ref": {
+                        "type": "string"
+                      },
+                      "controller_ref": {
+                        "type": "string"
+                      },
+                      "evidence_event_ref": {
+                        "type": "string"
+                      },
+                      "since": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "battlefields": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "name",
+                      "status",
+                      "place_ref",
+                      "side_refs",
+                      "layout_ref",
+                      "opened_at",
+                      "closed_at",
+                      "last_settled_at",
+                      "updated_at",
+                      "sectors",
+                      "sector_edges",
+                      "assignments",
+                      "reports"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 200
+                      },
+                      "status": {
+                        "enum": [
+                          "active",
+                          "closed"
+                        ]
+                      },
+                      "place_ref": {
+                        "type": "string"
+                      },
+                      "side_refs": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "layout_ref": {
+                        "type": "string"
+                      },
+                      "opened_at": {
+                        "type": "string"
+                      },
+                      "closed_at": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "last_settled_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      },
+                      "sectors": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "name",
+                            "status",
+                            "formation_refs",
+                            "control_ref",
+                            "pressure_milli",
+                            "reported_levels",
+                            "last_changed_at"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 200
+                            },
+                            "status": {
+                              "enum": [
+                                "active",
+                                "critical"
+                              ]
+                            },
+                            "formation_refs": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "control_ref": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "pressure_milli": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 1000
+                              }
+                            },
+                            "reported_levels": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "array",
+                                "uniqueItems": true,
+                                "items": {
+                                  "enum": [
+                                    "critical",
+                                    "collapse"
+                                  ]
+                                }
+                              }
+                            },
+                            "last_changed_at": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "sector_edges": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "a",
+                            "b",
+                            "distance_units"
+                          ],
+                          "properties": {
+                            "a": {
+                              "type": "string"
+                            },
+                            "b": {
+                              "type": "string"
+                            },
+                            "distance_units": {
+                              "type": "integer",
+                              "minimum": 1
+                            }
+                          }
+                        }
+                      },
+                      "assignments": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "formation_ref",
+                            "force_ref",
+                            "side_ref",
+                            "sector_ref",
+                            "status",
+                            "order",
+                            "pending_order",
+                            "pending_redeployment",
+                            "command_eta_at",
+                            "pace",
+                            "target_sector_ref",
+                            "path_sector_refs",
+                            "path_index",
+                            "leg_eta_at",
+                            "transit_from_sector_ref",
+                            "transit_to_sector_ref",
+                            "assigned_at",
+                            "updated_at"
+                          ],
+                          "properties": {
+                            "formation_ref": {
+                              "type": "string"
+                            },
+                            "force_ref": {
+                              "type": "string"
+                            },
+                            "side_ref": {
+                              "type": "string"
+                            },
+                            "sector_ref": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "status": {
+                              "enum": [
+                                "holding",
+                                "redeploying",
+                                "contact",
+                                "released"
+                              ]
+                            },
+                            "order": {
+                              "enum": [
+                                "hold",
+                                "attack",
+                                "breakthrough",
+                                "delay",
+                                "reserve",
+                                "withdraw"
+                              ]
+                            },
+                            "pace": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "enum": [
+                                "forced",
+                                "standard",
+                                "cautious",
+                                null
+                              ]
+                            },
+                            "target_sector_ref": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "path_sector_refs": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "path_index": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "minimum": 0
+                            },
+                            "leg_eta_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "transit_from_sector_ref": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "transit_to_sector_ref": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "assigned_at": {
+                              "type": "string"
+                            },
+                            "updated_at": {
+                              "type": "string"
+                            },
+                            "pending_order": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "enum": [
+                                "hold",
+                                "attack",
+                                "breakthrough",
+                                "delay",
+                                "reserve",
+                                "withdraw",
+                                null
+                              ]
+                            },
+                            "pending_redeployment": {
+                              "type": [
+                                "object",
+                                "null"
+                              ],
+                              "additionalProperties": false,
+                              "required": [
+                                "target_sector_ref",
+                                "pace",
+                                "order"
+                              ],
+                              "properties": {
+                                "target_sector_ref": {
+                                  "type": "string"
+                                },
+                                "pace": {
+                                  "enum": [
+                                    "forced",
+                                    "standard",
+                                    "cautious"
+                                  ]
+                                },
+                                "order": {
+                                  "enum": [
+                                    "hold",
+                                    "attack",
+                                    "breakthrough",
+                                    "delay",
+                                    "reserve",
+                                    "withdraw"
+                                  ]
+                                }
+                              }
+                            },
+                            "command_eta_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "reports": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "sector_ref",
+                            "target_side_ref",
+                            "level",
+                            "pressure_milli",
+                            "created_at",
+                            "deliver_at",
+                            "status",
+                            "delivered_at",
+                            "summary"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "sector_ref": {
+                              "type": "string"
+                            },
+                            "target_side_ref": {
+                              "type": "string"
+                            },
+                            "level": {
+                              "enum": [
+                                "critical",
+                                "collapse",
+                                "intercept"
+                              ]
+                            },
+                            "pressure_milli": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 1000
+                            },
+                            "created_at": {
+                              "type": "string"
+                            },
+                            "deliver_at": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "enum": [
+                                "queued",
+                                "delivered"
+                              ]
+                            },
+                            "delivered_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "summary": {
+                              "type": "string",
+                              "maxLength": 1000
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "ceasefire_consents": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "end_consents": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "support_alignments": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

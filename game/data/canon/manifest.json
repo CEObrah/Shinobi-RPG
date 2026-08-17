@@ -1,0 +1,86 @@
+{
+  "schema": "canon-continuity-manifest",
+  "continuity_id": "continuity.naruto.manga_primary_anime_compatible",
+  "campaign_authority": false,
+  "anchor": {
+    "campaign_time": "SE-0061-02-06T21:15:00",
+    "binding_status": "verified",
+    "canon_event_id": "canon.anchor.pre_chapter_1_academy",
+    "source_locators": [
+      {
+        "work_id": "canon.source.naruto_manga",
+        "locator_kind": "volume_chapter",
+        "volume": "1",
+        "chapter": "1",
+        "episode": null,
+        "section": null
+      }
+    ]
+  },
+  "source_policy": {
+    "primary_manga": {
+      "precedence": 1,
+      "fact_rule": "establish_with_approved_volume_chapter_locator"
+    },
+    "official_supplement": {
+      "precedence": 2,
+      "fact_rule": "fill_only_nonconflicting_gaps_with_explicit_approval"
+    },
+    "anime_compatible": {
+      "precedence": 3,
+      "fact_rule": "supplement_only_when_explicitly_approved_and_nonconflicting"
+    },
+    "forbidden_authorities": [
+      "model_memory",
+      "wiki",
+      "fanon",
+      "unverified_summary"
+    ]
+  },
+  "source_catalog": [
+    {
+      "work_id": "canon.source.naruto_manga",
+      "title": "Naruto manga",
+      "medium": "manga",
+      "source_class": "primary_manga",
+      "approval_status": "approved"
+    },
+    {
+      "work_id": "canon.source.naruto_second_fanbook",
+      "title": "Naruto Second Fanbook",
+      "medium": "official_supplement",
+      "source_class": "official_supplement",
+      "approval_status": "approved"
+    }
+  ],
+  "history_routes": {
+    "public": {
+      "shards": [
+        "game/data/canon/history/public/core.json"
+      ],
+      "access_rule": "ambient_reference_not_automatic_personal_knowledge"
+    },
+    "restricted": {
+      "shards": [
+        "game/data/canon/history/restricted/core.json"
+      ],
+      "access_rule": "requires_saved_access_or_knowledge_route"
+    },
+    "secret": {
+      "shards": [
+        "game/data/canon/history/secret/core.json"
+      ],
+      "access_rule": "world_causality_only_until_saved_discovery"
+    }
+  },
+  "event_index": {},
+  "runtime_guards": {
+    "campaign_state_precedence": true,
+    "unbound_anchor_forbids_events": true,
+    "event_seed_requires_primary_locator": true,
+    "future_outcomes_forbidden": true,
+    "model_memory_forbidden": true,
+    "paraphrase_only": true,
+    "visibility_is_not_character_knowledge": true
+  }
+}

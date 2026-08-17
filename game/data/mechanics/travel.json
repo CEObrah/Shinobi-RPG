@@ -1,0 +1,85 @@
+{
+  "schema": "travel-mechanics",
+  "authority": "Deterministic travel-time authority for registered routes.",
+  "formulas": {
+    "reference_travel_days": "registered route reference_travel_days, or local_travel.reference_hours / 24",
+    "individual_speed_multiplier": "clamp(0.50,1.80, 0.65 + movement/200 + endurance/500)",
+    "party_speed_multiplier": "minimum individual_speed_multiplier among exact travelers",
+    "travel_hours": "reference_travel_days * 24 * route_status_multiplier / party_speed_multiplier"
+  },
+  "route_status_multipliers": {
+    "open": 1.0,
+    "open_controlled": 1.0,
+    "open_guarded": 1.0,
+    "guarded": 1.05,
+    "restricted": 1.2,
+    "open_but_criminally_pressured": 1.05,
+    "weather_dependent": 1.0
+  },
+  "rules": [
+    "Travel uses one registered strategic route or route_local between two distinct registered places that share the same route anchor.",
+    "A multi-person party must be co-located and authorized through a persisted team or other lawful party context; mission travel requires all travelers to be mission participants.",
+    "A party moves at the pace of its slowest exact traveler.",
+    "Route status affects travel time only through the registered route_status_multipliers table.",
+    "Travel advances through the causal scheduler. An earlier unresolved material boundary interrupts travel before arrival.",
+    "Arrival updates every traveler current location and location history only after the complete travel transaction commits.",
+    "Weather, encumbrance and covert posture have no travel-time effect unless a command explicitly supplies saved state and the reducer consumes it. Formation movement does consume registered military force rations and water through formation_travel logistics rules."
+  ],
+  "local_travel": {
+    "reference_hours": 0.5,
+    "rule": "Two distinct registered places sharing one route anchor may use route_local. Local travel still advances causal time and can be interrupted by an earlier event."
+  },
+  "formation_travel": {
+    "local_reference_hours": 2.0,
+    "size_multipliers": [
+      {
+        "max_personnel": 100,
+        "multiplier": 1.0
+      },
+      {
+        "max_personnel": 500,
+        "multiplier": 1.1
+      },
+      {
+        "max_personnel": 1000,
+        "multiplier": 1.2
+      },
+      {
+        "max_personnel": 2500,
+        "multiplier": 1.35
+      },
+      {
+        "max_personnel": 1000000,
+        "multiplier": 1.5
+      }
+    ],
+    "posture_time_multipliers": {
+      "standard": 1.0,
+      "forced": 0.8,
+      "cautious": 1.15
+    },
+    "posture_readiness_delta": {
+      "standard": 0,
+      "forced": -6,
+      "cautious": 0
+    },
+    "coordination_speed_formula": "clamp(0.60,1.05,(readiness + cohesion) / 160)",
+    "rules": [
+      "Formation movement uses one registered strategic route per command; no formation location may change through lifecycle operations after mobilization.",
+      "Movement time is derived from the route, formation size, readiness/cohesion, and declared movement posture.",
+      "Embedded exact-team members move with the formation and remain part of the same aggregate headcount.",
+      "Forced movement is faster but reduces readiness on arrival; cautious movement is slower without a generic combat bonus.",
+      "Registered military formations consume conserved force rations and water for the actual movement duration; stock shortages block movement unless a future logistics command lawfully resupplies them."
+    ],
+    "logistics_consumption": {
+      "rations_person_days_per_travel_day_milli": 1000,
+      "water_liters_per_person_day_milli": 2000,
+      "posture_consumption_milli": {
+        "standard": 1000,
+        "forced": 1150,
+        "cautious": 1050
+      },
+      "rule": "Registered military force stock is consumed for the actual formation headcount and elapsed movement time. Missing conserved rations or water blocks departure rather than creating field supply from prose. Civil levies without a registered military stock remain outside this military-stock rule until a governance/logistics owner supplies them."
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.cc3a87a73cc310a53b",
+  "issuer_ref": "faction.bounty_broker_network",
+  "authority_ref": "support.bounty.goro_kaneda",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.contractors",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-04-02T07:00:00",
+  "authorized_at": "SE-0061-04-02T07:00:00",
+  "starts_at": "SE-0061-04-02T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "faction.bounty_broker_network",
+  "closed_at": "SE-0061-04-09T07:00:00",
+  "briefing": null,
+  "state": "succeeded",
+  "participant_refs": [
+    "support.bounty.goro_kaneda"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.cc3a87a73cc310a53b",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.23d0271e77df9bc57e0d08d5"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": {
+    "mission_id": "mission.autonomy.cc3a87a73cc310a53b",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.0e80e81b4c9158ea113f",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

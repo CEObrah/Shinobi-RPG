@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "formulas",
+    "margin_bands",
+    "release_methods",
+    "rule",
+    "release_margin_bands"
+  ],
+  "properties": {
+    "schema": {
+      "const": "genjutsu-mechanics"
+    },
+    "formulas": {
+      "type": "object"
+    },
+    "margin_bands": {
+      "type": "object"
+    },
+    "release_methods": {
+      "type": "array"
+    },
+    "rule": {
+      "type": "string"
+    },
+    "release_margin_bands": {
+      "type": "object"
+    }
+  }
+}

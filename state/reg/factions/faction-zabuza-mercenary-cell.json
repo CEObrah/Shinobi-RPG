@@ -1,0 +1,61 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.zabuza_mercenary_cell",
+    "name": "Zabuza Mercenary Cell",
+    "status": "active",
+    "leadership_ids": [
+      "canon_zabuza"
+    ],
+    "key_member_ids": [
+      "canon_haku"
+    ],
+    "goal": "survive through selective mercenary contracts while preserving operational freedom",
+    "current_plan": "Seek concrete funded contracts, evaluate risk and client reliability, and execute only accepted terms.",
+    "resources": [
+      "Zabuza",
+      "Haku",
+      "missing-nin field equipment"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.gato_company",
+        "relationship_type": "potential_contracting",
+        "stance": "transactional",
+        "intensity": 45
+      }
+    ],
+    "knowledge_policy": "world truth, operational knowledge, and player knowledge remain separate; decisions use only persisted holder knowledge",
+    "notes": [
+      "Mercenary work requires a concrete client, objective, payment basis, and accepted risk."
+    ],
+    "goals": [
+      "secure viable contracts",
+      "preserve cell survival and mobility"
+    ],
+    "constraints": [
+      "client funding",
+      "operational risk",
+      "target information",
+      "member availability"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-16T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [
+        "mission.autonomy.0fbd16c68f28e10bcf"
+      ],
+      "autonomous_priority_refs": [],
+      "completed_priority_refs": [],
+      "autonomous_team_refs": [
+        "team.zabuza_haku"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.0fbd16c68f28e10bcf"
+      ]
+    },
+    "scope": "Zabuza and Haku mercenary activity",
+    "leadership_model": "cell_leadership"
+  }
+}

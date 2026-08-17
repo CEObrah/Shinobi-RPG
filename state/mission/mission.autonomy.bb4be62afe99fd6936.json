@@ -1,0 +1,43 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.bb4be62afe99fd6936",
+  "issuer_ref": "faction.konoha_anbu",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-02-26T07:00:00",
+  "authorized_at": "SE-0061-02-26T07:00:00",
+  "starts_at": "SE-0061-02-26T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_kakashi",
+    "canon_kosuke_maruboshi",
+    "canon_tsunade"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.bb4be62afe99fd6936",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "baseline.rich_autonomy_terminal_state"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "baseline.rich_autonomy_terminal_state",
+  "settlement": {
+    "mission_id": "mission.autonomy.bb4be62afe99fd6936",
+    "outcome": "aborted",
+    "settlement_token": "baseline:mission.autonomy.bb4be62afe99fd6936:terminal-state",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

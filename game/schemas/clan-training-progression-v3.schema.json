@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Institutional training progression",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "principles",
+    "institutions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "clan-training-progression.v3"
+    },
+    "authority": {
+      "type": "string"
+    },
+    "principles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "institutions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": false
+}

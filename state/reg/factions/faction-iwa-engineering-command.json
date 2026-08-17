@@ -1,0 +1,67 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.iwa_engineering_command",
+    "name": "Iwa Engineering and Demolition Command",
+    "status": "active",
+    "leadership_ids": [
+      "canon_kitsuchi"
+    ],
+    "key_member_ids": [
+      "canon_akatsuchi"
+    ],
+    "goal": "support fortification, demolition, route denial, and Earth Release operations",
+    "current_plan": "Review route, fortification, and demolition requirements against available specialists.",
+    "resources": [
+      "engineers",
+      "Earth specialists",
+      "demolition stores",
+      "fortification knowledge"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.kumo_military_intelligence",
+        "relationship_type": "great_village_strategic_competition",
+        "stance": "competitive",
+        "intensity": 58
+      },
+      {
+        "target_id": "faction.ame_security_network",
+        "relationship_type": "regional_security_pressure",
+        "stance": "wary",
+        "intensity": 48
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Uses existing Earth, formation, and conventional engineering mechanics."
+    ],
+    "goals": [
+      "preserve Iwa fortification and demolition superiority",
+      "support field forces with terrain and engineering expertise"
+    ],
+    "constraints": [
+      "specialist scarcity",
+      "supply movement",
+      "command allocation"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-16T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_team_refs": [
+        "team.iwa.engineering.command.auto.3d13f5395a68"
+      ],
+      "autonomous_priority_refs": [
+        "priority.autonomy.dec7f07fe6878488"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.cf054c4dce15f22e",
+        "priority.autonomy.0be5073d46941acb",
+        "priority.autonomy.fc0c8741eba99cca"
+      ]
+    },
+    "scope": "Iwagakure military engineering, fortification, demolition, and route denial",
+    "leadership_model": "village_military_command"
+  }
+}

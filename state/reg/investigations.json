@@ -1,0 +1,117 @@
+{
+  "schema": "investigation-registry",
+  "owner_id": "registry.investigations",
+  "owner_type": "investigation_registry",
+  "cases": {
+    "investigation.case.49594f34135defc095b3e693": {
+      "case_ref": "investigation.case.49594f34135defc095b3e693",
+      "mission_ref": "mission.offer.2132adf0c1e8a6f134",
+      "objective_id": "objective.2132adf0c1e8a6f134",
+      "profile_ref": "investigation.cargo_transfer_discrepancy",
+      "place_ref": "place.fire.western.border",
+      "truth_key": "criminal",
+      "status": "examined",
+      "created_at": "SE-0061-06-13T22:01:36",
+      "updated_at": "SE-0061-06-14T03:01:36",
+      "locate_work_units": 242,
+      "revealed_observations": [
+        {
+          "observation_ref": "cargo_handoff_scene_bounded",
+          "stage": "locate_scene",
+          "role": "team_search",
+          "text": "Black Hound bounds the discrepancy to the physical handoff point represented by the controlled cargo transfer, where the written custody chain, cargo handling evidence, witness accounts, and approach/exit lines can be examined against one another.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 950,
+          "claim_ref": "claim.investigation.8b9b14b91a03a39bf4d48d56",
+          "revealed_at": "SE-0061-06-14T00:01:36"
+        },
+        {
+          "observation_ref": "criminal_custody_gap",
+          "stage": "examine_scene",
+          "role": "records",
+          "text": "Ensui finds a real custody interval in which the ledger says the cargo changed hands but the receiving entry cannot be reconciled with the preceding holder's record.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 920,
+          "claim_ref": "claim.investigation.d63dfd21da383e0d03cd901e",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        },
+        {
+          "observation_ref": "criminal_witness_possession_conflict",
+          "stage": "examine_scene",
+          "role": "witnesses",
+          "text": "Hana's separated accounts disagree about who controlled the cargo during that interval, and the contradiction concerns physical possession rather than merely paperwork timing.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 880,
+          "claim_ref": "claim.investigation.62df316f24501019519d8a23",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        },
+        {
+          "observation_ref": "criminal_ordinary_tool_tamper",
+          "stage": "examine_scene",
+          "role": "physical",
+          "text": "Tekuno identifies ordinary tool interference on a closure consistent with opening and resealing the cargo outside the documented handoff procedure.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 900,
+          "claim_ref": "claim.investigation.7615cd77b1f1af2a3a307574",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        },
+        {
+          "observation_ref": "criminal_side_access_window",
+          "stage": "examine_scene",
+          "role": "perimeter",
+          "text": "Hoheto identifies a side approach-and-exit line that can account for a short unlogged removal-and-return window without requiring trained shinobi access.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 850,
+          "claim_ref": "claim.investigation.c9f0ebc03b64a9f3fb99928d",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        },
+        {
+          "observation_ref": "scene_evidence_separated",
+          "stage": "examine_scene",
+          "role": "scene_control",
+          "text": "Hayama's scene control keeps the written record set, separated witness accounts, physical handling evidence, and route observations distinct enough to compare without requiring cross-contamination to explain agreement or contradiction.",
+          "epistemic_kind": "observation",
+          "confidence_milli": 950,
+          "claim_ref": "claim.investigation.1b65b9cd67857f4820c9784e",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        },
+        {
+          "observation_ref": "criminal_synthesis",
+          "stage": "examine_scene",
+          "role": "synthesis",
+          "text": "The record gap, possession contradiction, ordinary-tool interference, and viable side access together support deliberate diversion by ordinary criminal means. They do not identify a specific offender or establish a hostile shinobi faction.",
+          "epistemic_kind": "inference",
+          "confidence_milli": 890,
+          "claim_ref": "claim.investigation.bd596c7d4ada7736ab80f2a1",
+          "revealed_at": "SE-0061-06-14T03:01:36"
+        }
+      ],
+      "located_at": "SE-0061-06-14T00:01:36",
+      "investigator_refs": [
+        "pc_wei_tang",
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "canon_hayama_shirakumo"
+      ],
+      "role_work_units": {
+        "records": 324,
+        "witnesses": 300,
+        "physical": 351,
+        "perimeter": 345,
+        "scene_control": 297,
+        "synthesis": 510
+      },
+      "examined_at": "SE-0061-06-14T03:01:36",
+      "assignments": {
+        "records": "canon_ensui_nara",
+        "witnesses": "canon_hana_inuzuka",
+        "physical": "canon_tekuno_kanden",
+        "perimeter": "canon_hoheto_hyuga",
+        "scene_control": "canon_hayama_shirakumo",
+        "synthesis": "pc_wei_tang"
+      }
+    }
+  }
+}

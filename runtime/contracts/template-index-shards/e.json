@@ -1,0 +1,36 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "e",
+  "templates": {
+    "economy-mechanics": {
+      "path": "runtime/contracts/templates/economy-mechanics.template.json",
+      "source_schema": "game/schemas/economy-mechanics.schema.json",
+      "scope": "static_data"
+    },
+    "effect-resolvers": {
+      "path": "runtime/contracts/templates/effect-resolvers.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "element-mechanics": {
+      "path": "runtime/contracts/templates/element-mechanics.template.json",
+      "source_schema": "game/schemas/elements.schema.json",
+      "scope": "static_data"
+    },
+    "encumbrance-mechanics": {
+      "path": "runtime/contracts/templates/encumbrance-mechanics.template.json",
+      "source_schema": null,
+      "scope": "static_data"
+    },
+    "exact-team": {
+      "path": "runtime/contracts/templates/exact-team.template.json",
+      "source_schema": "game/schemas/exact-team.schema.json",
+      "scope": "mutable_state"
+    },
+    "exact-team-registry": {
+      "path": "runtime/contracts/templates/exact-team-registry.template.json",
+      "source_schema": "game/schemas/exact-team-registry.schema.json",
+      "scope": "mutable_state"
+    }
+  }
+}

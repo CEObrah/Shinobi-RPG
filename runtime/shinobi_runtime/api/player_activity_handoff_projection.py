@@ -1,20 +1,14 @@
 """Compact player-facing orientation for unfinished scenes and procedures.
 
-This projection does not create a second activity authority. It derives one
-small turn-continuity hint from already-authoritative scene, examination,
-check-in, report, and time-continuation state so a fresh ChatGPT session can
-distinguish a real player decision from an obvious procedural continuation.
+This module does not create a second activity authority. It derives one small
+turn-continuity hint from already-authoritative scene, examination, check-in,
+report, and time-continuation state so a fresh ChatGPT session can distinguish
+a real player decision from an obvious procedural continuation.
 """
 from __future__ import annotations
 
-import copy
-from functools import wraps
 from typing import Any, Mapping
 
-from shinobi_runtime.api.models import validate_bounded_json
-from shinobi_runtime.api.operations import CampaignOperations
-
-_INSTALLED = False
 _MAX_SOURCE_REFS = 6
 
 
@@ -134,7 +128,13 @@ def _time_continuation(scene: Mapping[str, Any]) -> dict[str, Any] | None:
 
 
 def derive_activity_handoff(scene: Mapping[str, Any]) -> dict[str, Any]:
-    """Derive one primary turn-completion signal from player-visible scene state."""
+    """Derive one primary turn-completion signal from player-visible scene state.
+
+    ``continue_without_player`` is a continuation cue, not standing permission to
+    invent a new objective. A caller may use it only while carrying an already
+    declared ``continue``/wait/procedural purpose; it never authorizes a protected
+    Wei decision.
+    """
 
     resume = _resume_fields(scene)
     decision = _text(scene.get("decision_required"))
@@ -215,27 +215,4 @@ def derive_activity_handoff(scene: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def install_player_activity_handoff_projection() -> None:
-    global _INSTALLED
-    if _INSTALLED:
-        return
-    original_play_context = CampaignOperations.play_context
-    if getattr(original_play_context, "_player_activity_handoff_projection", False):
-        _INSTALLED = True
-        return
-
-    @wraps(original_play_context)
-    def play_context(self: CampaignOperations) -> Mapping[str, Any]:
-        response = copy.deepcopy(original_play_context(self))
-        scene = response.get("scene") if isinstance(response, Mapping) else None
-        if isinstance(scene, dict):
-            scene["activity_handoff"] = derive_activity_handoff(scene)
-        validate_bounded_json(response, label="play context", allow_float=True)
-        return response
-
-    play_context._player_activity_handoff_projection = True  # type: ignore[attr-defined]
-    CampaignOperations.play_context = play_context
-    _INSTALLED = True
-
-
-__all__ = ["derive_activity_handoff", "install_player_activity_handoff_projection"]
+__all__ = ["derive_activity_handoff"]

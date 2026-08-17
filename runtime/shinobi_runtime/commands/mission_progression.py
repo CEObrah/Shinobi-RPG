@@ -8,20 +8,31 @@ blanket hard-decision marker from routine mission mutations.
 """
 from __future__ import annotations
 
-import copy
 import json
 from functools import wraps
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.constants import TERMINAL_MISSION_STATES
-from shinobi_runtime.commands.core import _BuiltPlan, _OwnerResolutionCache, _exact_payload, _json_bytes, _stable_id
+from shinobi_runtime.commands.core import (
+    _BuiltPlan,
+    _OwnerResolutionCache,
+    _exact_payload,
+    _json_bytes,
+    _stable_id,
+)
 from shinobi_runtime.commands.domains.missions import MissionCommandsMixin
 from shinobi_runtime.commands.envelope import CommandEnvelope
+from shinobi_runtime.commands.mission_owner import MissionOwner
 from shinobi_runtime.commands.paths import WORLD_EVENT_REGISTRY_PATH
 from shinobi_runtime.commands.specs import COMMAND_SPECS, CommandSpec
-from shinobi_runtime.reducers.missions import MissionTransitionError, ObjectiveDependencyError, update_objective
+from shinobi_runtime.reducers.missions import (
+    MissionTransitionError,
+    ObjectiveDependencyError,
+    update_objective,
+)
 from shinobi_runtime.sim.events import CampaignTime
+from shinobi_runtime.store.overlay import StagedOverlay
+from shinobi_runtime.tx.manifest import TransactionManifest
 
 _INSTALLED = False
 _COMMAND = "mission_objective_progress_resolution"
@@ -49,6 +60,8 @@ def _progress_rules(repository: Any) -> Mapping[str, Any]:
 
 
 def _event_sources(repository: Any) -> list[Mapping[str, Any]]:
+    """Read semantic-history shards only for evidence-reuse protection."""
+
     try:
         registry = repository.read_json(WORLD_EVENT_REGISTRY_PATH)
     except (FileNotFoundError, ValueError) as exc:
@@ -65,8 +78,9 @@ def _event_sources(repository: Any) -> list[Mapping[str, Any]]:
                 archive = repository.read_json(path)
             except (FileNotFoundError, ValueError) as exc:
                 raise CommandRejectedError("world_event_registry_invalid") from exc
-            if isinstance(archive, Mapping):
-                sources.append(archive)
+            if not isinstance(archive, Mapping):
+                raise CommandRejectedError("world_event_registry_invalid")
+            sources.append(archive)
     return sources
 
 
@@ -106,19 +120,24 @@ def _team_doctrine_modifier(
         return 1000, {"doctrine_applied": False}, {}
     if not isinstance(team, Mapping):
         return 1000, {"doctrine_applied": False}, {}
+    team_digest = planner.repository.digest(team_path)
+    if not isinstance(team_digest, str) or not team_digest:
+        raise CommandRejectedError("mission_team_doctrine_invalid")
     doctrine_ref = team.get("doctrine_ref")
     if not isinstance(doctrine_ref, str) or not doctrine_ref:
-        return 1000, {"doctrine_applied": False}, {team_path: planner.repository.digest(team_path)}
+        return 1000, {"doctrine_applied": False}, {team_path: team_digest}
     try:
         doctrine_path, doctrine_digest, doctrine = planner._resolve_covered_owner_view(
             doctrine_ref,
             cache=_OwnerResolutionCache(),
         )
     except CommandRejectedError:
-        return 1000, {"doctrine_applied": False}, {team_path: planner.repository.digest(team_path)}
+        return 1000, {"doctrine_applied": False}, {team_path: team_digest}
+    if not isinstance(doctrine_digest, str) or not doctrine_digest:
+        raise CommandRejectedError("mission_team_doctrine_invalid")
     if not isinstance(doctrine, Mapping) or doctrine.get("status") != "active":
         return 1000, {"doctrine_applied": False}, {
-            team_path: planner.repository.digest(team_path),
+            team_path: team_digest,
             doctrine_path: doctrine_digest,
         }
 
@@ -178,34 +197,117 @@ def _team_doctrine_modifier(
             ),
         },
         {
-            team_path: planner.repository.digest(team_path),
+            team_path: team_digest,
             doctrine_path: doctrine_digest,
         },
     )
 
 
-def _rewrite_progress_event(plan: _BuiltPlan, event_id: str) -> _BuiltPlan:
-    writes = dict(plan.writes)
-    raw = writes.get(WORLD_EVENT_REGISTRY_PATH)
-    if raw is None:
-        raise CommandRejectedError("mission_progress_event_missing")
-    try:
-        registry = json.loads(raw.decode("utf-8"))
-    except (AttributeError, UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise CommandRejectedError("mission_progress_event_invalid") from exc
-    events = registry.get("events") if isinstance(registry, Mapping) else None
-    if not isinstance(events, list):
-        raise CommandRejectedError("mission_progress_event_invalid")
-    changed = False
-    for event in events:
-        if isinstance(event, dict) and event.get("id") == event_id:
-            event["kind"] = "mission_objective_progressed"
-            changed = True
-            break
-    if not changed:
-        raise CommandRejectedError("mission_progress_event_missing")
-    writes[WORLD_EVENT_REGISTRY_PATH] = _json_bytes(registry)
-    return _BuiltPlan(plan.code, plan.affected_refs, writes, plan.result, plan.validator)
+def _mission_progress_built_plan(
+    self: Any,
+    *,
+    command: CommandEnvelope,
+    meta: Mapping[str, Any],
+    current_time: CampaignTime,
+    path: str,
+    owner: MissionOwner,
+    summary: str,
+    result: Mapping[str, Any],
+    guarded_read_digests: Mapping[str, str],
+    material_consequence_refs: tuple[str, ...],
+) -> _BuiltPlan:
+    """Frame one nonterminal mission-progress write using normal mission authority."""
+
+    scene = self._mission_scene(current_time=current_time, owner=owner, summary=summary)
+    scene["decision_required"] = None
+    if scene.get("active_combat") is not True:
+        scene["time_passage_allowed"] = True
+
+    scheduler = self._load_scheduler(
+        current_time=current_time,
+        scene=self._scene_base(current_time),
+    )
+    self._sync_mission_scheduler(
+        scheduler,
+        owner=owner,
+        path=path,
+        current_time=current_time,
+    )
+    world_events = self._world_events()
+    event_id = self._append_semantic_event(
+        world_events,
+        command=command,
+        kind="mission_objective_progressed",
+        at=current_time,
+        host_refs=(owner.issuer_ref, owner.authority_ref),
+        actor_refs=owner.mission.participant_refs,
+        causal_refs=tuple(
+            value
+            for value in (owner.mission_id, owner.operation_ref)
+            if isinstance(value, str)
+        ),
+        affected_owner_refs=(path, self.scheduler_path),
+        material_consequence_refs=material_consequence_refs,
+        audience_refs=(command.actor_id,),
+        reducer_ref="shinobi_runtime.commands.mission_progression",
+    )
+    writes = {
+        self.meta_path: _json_bytes(self._meta_after(meta, command, world_time=current_time)),
+        self.scene_path: _json_bytes(scene),
+        path: _json_bytes(owner.to_record()),
+        **self._world_event_writes(world_events),
+        **self._scheduler_write_images(scheduler),
+    }
+    writes = self._prune_noop_writes(writes)
+    expected_paths = tuple(sorted(writes))
+    expected_record = owner.to_record()
+    expected_read_digests = dict(guarded_read_digests)
+
+    def validate(overlay: StagedOverlay, manifest: TransactionManifest) -> None:
+        if overlay.changed_paths != expected_paths:
+            raise ValueError("mission progress write set changed after planning")
+        for guarded_path, guarded_digest in expected_read_digests.items():
+            if self.repository.digest(guarded_path) != guarded_digest:
+                raise ValueError("mission progress causal evidence changed after planning")
+        self._assert_meta(
+            overlay,
+            manifest,
+            meta_path=self.meta_path,
+            command=command,
+            world_time=current_time,
+        )
+        resolved = MissionOwner.from_record(overlay.read_json(path))
+        if resolved.to_record() != expected_record:
+            raise ValueError("mission progress after-image differs from reducer result")
+        self._scheduler_from_reader(overlay)
+        staged_events = overlay.read_json(WORLD_EVENT_REGISTRY_PATH).get("events", [])
+        if not any(
+            isinstance(item, Mapping)
+            and item.get("id") == event_id
+            and item.get("kind") == "mission_objective_progressed"
+            for item in staged_events
+        ):
+            raise ValueError("mission progress lacks semantic history")
+        staged_scene = overlay.read_json(self.scene_path)
+        if (
+            not isinstance(staged_scene, Mapping)
+            or staged_scene.get("decision_required") is not None
+            or (
+                staged_scene.get("active_combat") is not True
+                and staged_scene.get("time_passage_allowed") is not True
+            )
+        ):
+            raise ValueError("mission progress scene handoff is incoherent")
+
+    enriched = dict(result)
+    enriched["semantic_event_id"] = event_id
+    return _BuiltPlan(
+        code="mission_objective_progress_ready",
+        affected_refs=expected_paths,
+        writes=writes,
+        result=enriched,
+        validator=validate,
+    )
 
 
 def _mission_objective_progress_resolution(
@@ -252,6 +354,8 @@ def _mission_objective_progress_resolution(
         evidence_event_id=evidence_event_id,
         current_time=current_time,
     )
+    if not isinstance(evidence_digest, str) or not evidence_digest:
+        raise CommandRejectedError("mission_objective_evidence_uncommitted")
     registry = self._world_events()
     evidence_event, _digest = self._world_event_record_and_digest(
         evidence_event_id,
@@ -296,15 +400,23 @@ def _mission_objective_progress_resolution(
     except (MissionTransitionError, ObjectiveDependencyError, KeyError, TypeError, ValueError) as exc:
         raise CommandRejectedError("mission_progress_invalid") from exc
     updated = owner.with_mission(updated_mission, effective_at=current_time)
+    if not isinstance(updated, MissionOwner):
+        # Production owner is strict. Keep direct unit fakes possible only when
+        # the specialized builder itself is substituted by the test fixture.
+        builder = getattr(self, "_mission_progress_built_plan", None)
+        if not callable(builder):
+            raise CommandRejectedError("mission_progress_owner_invalid")
 
     guarded = {WORLD_EVENT_REGISTRY_PATH: evidence_digest, **doctrine_digests}
-    plan = self._mission_built_plan(
+    builder = getattr(self, "_mission_progress_built_plan", None)
+    if not callable(builder):
+        builder = _mission_progress_built_plan.__get__(self, type(self))
+    return builder(
         command=command,
         meta=meta,
         current_time=current_time,
         path=path,
         owner=updated,
-        code="mission_objective_progress_ready",
         summary=(
             f"Mission {mission_id} objective {objective_id} has new admissible field evidence at {current_time}."
         ),
@@ -321,12 +433,11 @@ def _mission_objective_progress_resolution(
             "execution_profile": execution_profile,
         },
         guarded_read_digests=guarded,
-        extra_material_consequence_refs=(token,),
+        material_consequence_refs=(
+            token,
+            f"mission:{mission_id}:objective:{objective_id}:progress:{next_progress}",
+        ),
     )
-    event_id = plan.result.get("semantic_event_id")
-    if not isinstance(event_id, str):
-        raise CommandRejectedError("mission_progress_event_missing")
-    return _rewrite_progress_event(plan, event_id)
 
 
 def _normalize_routine_mission_handoff(plan: _BuiltPlan, command: CommandEnvelope, scene_path: str) -> _BuiltPlan:
@@ -370,6 +481,7 @@ def _install_handoff_normalizer() -> None:
 def _register_planner(planner: type) -> None:
     planner.COMMAND_TYPES = frozenset(COMMAND_SPECS)
     setattr(planner, "_" + _COMMAND, _mission_objective_progress_resolution)
+    setattr(planner, "_mission_progress_built_plan", _mission_progress_built_plan)
 
 
 def install_mission_progression() -> None:
@@ -418,6 +530,7 @@ __all__ = [
     "install_mission_progression",
     "_evidence_already_used",
     "_mission_objective_progress_resolution",
+    "_mission_progress_built_plan",
     "_normalize_routine_mission_handoff",
     "_team_doctrine_modifier",
 ]

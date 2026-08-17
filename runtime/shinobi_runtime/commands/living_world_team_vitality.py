@@ -2,98 +2,25 @@ from __future__ import annotations
 
 from shinobi_runtime.commands.living_world_support import *
 from shinobi_runtime.commands.team_checkin_records import snapshot_refs
+from shinobi_runtime.commands.team_leadership_context import (
+    leadership_topic_cues,
+    relationship_contact_mode,
+    topic_ownership_cues,
+)
 
-
-def _append_topic(topics: list[str], value: object) -> None:
-    if isinstance(value, str) and value and value not in topics:
-        topics.append(value)
-
-
-def _leadership_topic_cues(
-    team: Mapping[str, Any],
-    profile: Mapping[str, Any],
-    doctrine: Mapping[str, Any] | None,
-) -> list[str]:
-    """Derive a bounded leadership agenda from existing exact-team truth.
-
-    The agenda is descriptive only. It never changes doctrine, assigns roles, or
-    decides how Wei responds. The durable ready event snapshots these cues so a
-    later conversation does not drift with newer team state.
-    """
-
-    topics: list[str] = []
-    assignment_ref = team.get("current_assignment_ref")
-    if isinstance(assignment_ref, str) and assignment_ref:
-        _append_topic(topics, "current assignment readiness, delegation, and contingencies")
-
-    familiarity: Mapping[str, Any] | None = None
-    doctrine_training: Mapping[str, Any] | None = None
-    if isinstance(doctrine, Mapping):
-        raw_familiarity = doctrine.get("familiarity")
-        familiarity = raw_familiarity if isinstance(raw_familiarity, Mapping) else None
-        raw_training = doctrine.get("training")
-        doctrine_training = raw_training if isinstance(raw_training, Mapping) else None
-
-    members = [ref for ref in team.get("member_refs", []) if isinstance(ref, str)]
-    if isinstance(familiarity, Mapping):
-        values = [
-            value
-            for ref in members
-            for value in [familiarity.get(ref)]
-            if isinstance(value, int) and not isinstance(value, bool)
-        ]
-        if values and (min(values) < 50 or max(values) - min(values) >= 20):
-            _append_topic(topics, "uneven doctrine familiarity and where leadership attention is needed")
-
-    training = team.get("training")
-    recent = training.get("recent_sessions") if isinstance(training, Mapping) else None
-    if isinstance(recent, list) and recent:
-        latest = recent[-1]
-        targets = latest.get("targets") if isinstance(latest, Mapping) else None
-        if isinstance(targets, Mapping):
-            distinct = {
-                value for value in targets.values()
-                if isinstance(value, str) and value
-            }
-            if len(distinct) > 1:
-                _append_topic(topics, "integrating recent individual training into team coordination")
-            elif distinct:
-                _append_topic(topics, "transferring the latest training block into field execution")
-
-    if isinstance(doctrine_training, Mapping):
-        role_focus = doctrine_training.get("role_focus")
-        if isinstance(role_focus, Mapping):
-            active_focus = {
-                value for value in role_focus.values()
-                if isinstance(value, str) and value
-            }
-            if len(active_focus) > 1:
-                _append_topic(topics, "role cross-coverage, deputy initiative, and succession under pressure")
-
-    training_focus = profile.get("training_focus", [])
-    if isinstance(training_focus, list):
-        for value in training_focus:
-            _append_topic(topics, value)
-            if len(topics) >= 3:
-                break
-
-    if not isinstance(assignment_ref, str) or not assignment_ref:
-        _append_topic(topics, "next training block, readiness, and what the team can own without Wei")
-
-    if not topics:
-        topics.append("readiness, role coverage, and the next training block")
-    return topics[:3]
+# Backwards-compatible source-level helper name used by focused tests and
+# existing callers. The implementation owner is team_leadership_context.py.
+_leadership_topic_cues = leadership_topic_cues
 
 
 class LivingWorldTeamVitalityMixin:
     """Let player-led teams initiate bounded contact without choosing for Wei.
 
     Generic team autonomy correctly refuses to revise doctrine or training on a
-    player-led team because those are consequential command choices. The old
-    behavior stopped there, which made exactly the teams closest to the player
-    socially inert during autonomous review. This overlay preserves the agency
-    boundary while allowing non-player teammates to raise routine field,
-    readiness, training, delegation, and doctrine-integration matters as a
+    player-led team because those are consequential command choices. This
+    overlay preserves that agency boundary while allowing non-player teammates
+    to raise routine field, readiness, training, delegation, doctrine-integration,
+    relationship-shaped communication, and after-action matters as a durable
     player-visible event.
     """
 
@@ -170,13 +97,19 @@ class LivingWorldTeamVitalityMixin:
                 "compacted_reviews": compacted,
             }
 
+        # Use the established deputy as the normal command-channel contact when
+        # one exists. Stable selection remains the fallback for teams without a
+        # non-player deputy. This makes delegation structure visible without
+        # inventing a new command hierarchy.
         deputy_ref = team.get("deputy_ref")
         if isinstance(deputy_ref, str) and deputy_ref in nonplayer_members:
             contact_actor = deputy_ref
+            contact_basis = "established_deputy"
         else:
             contact_actor = nonplayer_members[
                 _stable_roll(team_id, at, "player-led-contact-actor", modulo=len(nonplayer_members))
             ]
+            contact_basis = "stable_team_member"
 
         doctrine: Mapping[str, Any] | None = None
         doctrine_ref = team.get("doctrine_ref")
@@ -199,7 +132,28 @@ class LivingWorldTeamVitalityMixin:
             elif isinstance(doctrine_view, Mapping):
                 doctrine = doctrine_view
 
-        topic_cues = _leadership_topic_cues(team, profile, doctrine)
+        history: Mapping[str, Any] | None = None
+        history_path_resolver = getattr(self, "_team_history_path", None)
+        if callable(history_path_resolver):
+            history_path = history_path_resolver(team_id)
+            staged_history = record_writes.get(history_path)
+            if isinstance(staged_history, Mapping):
+                history = staged_history
+            elif self.repository.read_optional_bytes(history_path) is not None:
+                try:
+                    loaded_history = self.repository.read_json(history_path)
+                except (FileNotFoundError, ValueError):
+                    loaded_history = None
+                if isinstance(loaded_history, Mapping):
+                    history = loaded_history
+
+        topic_cues = leadership_topic_cues(team, profile, doctrine, history)
+        ownership_cues = topic_ownership_cues(topic_cues)
+        contact_mode = relationship_contact_mode(
+            self.repository,
+            contact_actor,
+            command.actor_id,
+        )
 
         classification = team.get("classification")
         if classification not in ("public", "restricted", "secret"):
@@ -217,11 +171,18 @@ class LivingWorldTeamVitalityMixin:
             actor_refs=(contact_actor,),
             affected_owner_refs=(),
             # The ready event is the durable authority for the player-facing
-            # opportunity. Snapshot refs preserve the exact generated agenda
-            # without creating a second writable check-in registry.
+            # opportunity. Snapshot refs preserve the exact generated agenda,
+            # ownership boundary, and observable relationship-shaped contact
+            # mode without creating a second writable check-in or personality
+            # registry.
             material_consequence_refs=(
                 contact_opportunity_ref,
-                *snapshot_refs(stable_team_name, topic_cues),
+                *snapshot_refs(
+                    stable_team_name,
+                    topic_cues,
+                    ownership_cues=ownership_cues,
+                    contact_mode=contact_mode,
+                ),
             ),
             classification=classification,
             audience_refs=(command.actor_id,),
@@ -234,7 +195,10 @@ class LivingWorldTeamVitalityMixin:
             "team_name": stable_team_name,
             "event_id": event_id,
             "contact_actor_ref": contact_actor,
+            "contact_basis": contact_basis,
+            "contact_mode": contact_mode,
             "topic_cues": topic_cues,
+            "ownership_cues": ownership_cues,
             "compacted_reviews": compacted,
         }
 

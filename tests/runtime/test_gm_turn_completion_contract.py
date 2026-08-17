@@ -20,6 +20,10 @@ def test_standing_wait_and_ooc_detour_are_not_false_turn_endings() -> None:
         "OOC DEV repair",
         "resume the same declared horizon automatically",
         "event-seeking",
+        "scene.activity_handoff",
+        "interrupts_continuation",
+        "does not itself justify a menu",
+        "continue_without_player",
     )
     for phrase in required_skill_phrases:
         assert phrase in skill

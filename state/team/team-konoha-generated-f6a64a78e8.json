@@ -1,0 +1,48 @@
+{
+  "schema": "exact-team",
+  "id": "team.konoha.generated.f6a64a78e8",
+  "name": "Konoha Mission Team F6A64A78E8",
+  "status": "active",
+  "team_type": "standard_mission_team",
+  "parent_institution_ref": "institution.konoha.academy",
+  "assignment_authority_ref": "faction.konoha_mission_office",
+  "leader_ref": "canon_asuma",
+  "deputy_ref": "canon_shikamaru",
+  "member_refs": [
+    "canon_asuma",
+    "canon_ino",
+    "canon_shikamaru",
+    "canon_choji"
+  ],
+  "roles": {
+    "canon_asuma": "field_lead",
+    "canon_ino": "battlefield_control",
+    "canon_shikamaru": "infiltration",
+    "canon_choji": "reconnaissance_sensor"
+  },
+  "classification": "public",
+  "activation": {
+    "at": "SE-0061-03-19T07:00:00",
+    "basis": "Autonomous standing-team assignment from current graduated unassigned exact personnel."
+  },
+  "doctrine_ref": "team.konoha.generated.f6a64a78e8.doctrine",
+  "current_assignment_ref": null,
+  "embedded_member_refs": [],
+  "training": {
+    "model_ref": "training.team",
+    "instructor_refs": [
+      "canon_asuma"
+    ],
+    "facility_refs": [],
+    "recent_sessions": []
+  },
+  "lifecycle": {
+    "purpose_kind": "standing",
+    "purpose_ref": null,
+    "purpose_status": "active",
+    "replacement_policy": "maintain_strength",
+    "target_size": 4,
+    "exclusive_active_membership": true,
+    "autonomy_owner_ref": "faction.konoha_mission_office"
+  }
+}

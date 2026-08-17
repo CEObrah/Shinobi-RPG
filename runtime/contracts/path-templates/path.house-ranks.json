@@ -1,0 +1,482 @@
+{
+  "schema": "path-template",
+  "template_id": "path.house-ranks",
+  "glob": "game/data/house/ranks.json",
+  "unknown_key_policy": "reject",
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "assistant_instructor",
+        "junior_disciple",
+        "senior_disciple",
+        "senior_instructor",
+        "sword_master"
+      ],
+      "canonical_order": [
+        "junior_disciple",
+        "senior_disciple",
+        "assistant_instructor",
+        "senior_instructor",
+        "sword_master"
+      ]
+    },
+    "/junior_disciple": {
+      "mode": "closed",
+      "allowed_keys": [
+        "entry_rank",
+        "minimum_age",
+        "minimum_stats",
+        "real_katana_use"
+      ],
+      "canonical_order": [
+        "entry_rank",
+        "minimum_age",
+        "minimum_stats",
+        "real_katana_use"
+      ]
+    },
+    "/senior_disciple": {
+      "mode": "closed",
+      "allowed_keys": [
+        "credentials",
+        "entry_rank",
+        "minimums",
+        "credential_rules",
+        "authority_review_can_commit"
+      ],
+      "canonical_order": [
+        "entry_rank",
+        "minimums",
+        "credentials",
+        "credential_rules",
+        "authority_review_can_commit"
+      ]
+    },
+    "/senior_disciple/minimums": {
+      "mode": "closed",
+      "allowed_keys": [
+        "awareness",
+        "chakra_control",
+        "coordination",
+        "movement",
+        "sword",
+        "wind"
+      ],
+      "canonical_order": [
+        "awareness",
+        "coordination",
+        "sword",
+        "movement",
+        "chakra_control",
+        "wind"
+      ]
+    },
+    "/assistant_instructor": {
+      "mode": "closed",
+      "allowed_keys": [
+        "credentials",
+        "minimums",
+        "appointment_only",
+        "technical_tier_change"
+      ],
+      "canonical_order": [
+        "minimums",
+        "credentials",
+        "appointment_only",
+        "technical_tier_change"
+      ]
+    },
+    "/assistant_instructor/minimums": {
+      "mode": "closed",
+      "allowed_keys": [
+        "awareness",
+        "coordination",
+        "leadership",
+        "movement",
+        "sword",
+        "tactics",
+        "team_coordination"
+      ],
+      "canonical_order": [
+        "awareness",
+        "coordination",
+        "sword",
+        "movement",
+        "tactics",
+        "team_coordination",
+        "leadership"
+      ]
+    },
+    "/senior_instructor": {
+      "mode": "closed",
+      "allowed_keys": [
+        "credentials",
+        "minimums",
+        "appointment_only",
+        "technical_tier_change"
+      ],
+      "canonical_order": [
+        "minimums",
+        "credentials",
+        "appointment_only",
+        "technical_tier_change"
+      ]
+    },
+    "/senior_instructor/minimums": {
+      "mode": "closed",
+      "allowed_keys": [
+        "awareness",
+        "coordination",
+        "leadership",
+        "movement",
+        "sword",
+        "tactics"
+      ],
+      "canonical_order": [
+        "awareness",
+        "coordination",
+        "sword",
+        "movement",
+        "tactics",
+        "leadership"
+      ]
+    },
+    "/sword_master": {
+      "mode": "closed",
+      "allowed_keys": [
+        "additional_major_competencies_100_plus",
+        "advanced_methods_105_plus",
+        "credentials",
+        "methods_95_plus",
+        "minimums",
+        "master_board_required",
+        "authority_review_can_commit"
+      ],
+      "canonical_order": [
+        "minimums",
+        "additional_major_competencies_100_plus",
+        "methods_95_plus",
+        "advanced_methods_105_plus",
+        "credentials",
+        "master_board_required",
+        "authority_review_can_commit"
+      ]
+    },
+    "/sword_master/minimums": {
+      "mode": "closed",
+      "allowed_keys": [
+        "agility",
+        "awareness",
+        "chakra_control",
+        "composure",
+        "coordination",
+        "movement",
+        "sword",
+        "tactics",
+        "wind"
+      ],
+      "canonical_order": [
+        "awareness",
+        "coordination",
+        "agility",
+        "composure",
+        "sword",
+        "movement",
+        "tactics",
+        "chakra_control",
+        "wind"
+      ]
+    },
+    "/senior_disciple/credential_rules": {
+      "mode": "open_map",
+      "value_contract": "/senior_disciple/credential_rules/*"
+    },
+    "/senior_disciple/credential_rules/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "minimums",
+        "requires_service_domains",
+        "requires_all_rank_numeric_minimums",
+        "requires_credentials",
+        "minimum_field_usable_current_tier_methods",
+        "review_authority_required"
+      ],
+      "canonical_order": [
+        "minimums",
+        "requires_service_domains",
+        "requires_all_rank_numeric_minimums",
+        "requires_credentials",
+        "minimum_field_usable_current_tier_methods",
+        "review_authority_required"
+      ]
+    },
+    "/senior_disciple/credential_rules/*/minimums": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/junior_disciple": [
+      "object"
+    ],
+    "/junior_disciple/entry_rank": [
+      "boolean"
+    ],
+    "/junior_disciple/minimum_age": [
+      "null"
+    ],
+    "/junior_disciple/minimum_stats": [
+      "null"
+    ],
+    "/junior_disciple/real_katana_use": [
+      "boolean"
+    ],
+    "/senior_disciple": [
+      "object"
+    ],
+    "/senior_disciple/entry_rank": [
+      "boolean"
+    ],
+    "/senior_disciple/minimums": [
+      "object"
+    ],
+    "/senior_disciple/minimums/awareness": [
+      "integer"
+    ],
+    "/senior_disciple/minimums/coordination": [
+      "integer"
+    ],
+    "/senior_disciple/minimums/sword": [
+      "integer"
+    ],
+    "/senior_disciple/minimums/movement": [
+      "integer"
+    ],
+    "/senior_disciple/minimums/chakra_control": [
+      "integer"
+    ],
+    "/senior_disciple/minimums/wind": [
+      "integer"
+    ],
+    "/senior_disciple/credentials": [
+      "array"
+    ],
+    "/senior_disciple/credentials/*": [
+      "string"
+    ],
+    "/assistant_instructor": [
+      "object"
+    ],
+    "/assistant_instructor/minimums": [
+      "object"
+    ],
+    "/assistant_instructor/minimums/awareness": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/coordination": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/sword": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/movement": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/tactics": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/team_coordination": [
+      "integer"
+    ],
+    "/assistant_instructor/minimums/leadership": [
+      "integer"
+    ],
+    "/assistant_instructor/credentials": [
+      "array"
+    ],
+    "/assistant_instructor/credentials/*": [
+      "string"
+    ],
+    "/senior_instructor": [
+      "object"
+    ],
+    "/senior_instructor/minimums": [
+      "object"
+    ],
+    "/senior_instructor/minimums/awareness": [
+      "integer"
+    ],
+    "/senior_instructor/minimums/coordination": [
+      "integer"
+    ],
+    "/senior_instructor/minimums/sword": [
+      "integer"
+    ],
+    "/senior_instructor/minimums/movement": [
+      "integer"
+    ],
+    "/senior_instructor/minimums/tactics": [
+      "integer"
+    ],
+    "/senior_instructor/minimums/leadership": [
+      "integer"
+    ],
+    "/senior_instructor/credentials": [
+      "array"
+    ],
+    "/senior_instructor/credentials/*": [
+      "string"
+    ],
+    "/sword_master": [
+      "object"
+    ],
+    "/sword_master/minimums": [
+      "object"
+    ],
+    "/sword_master/minimums/awareness": [
+      "integer"
+    ],
+    "/sword_master/minimums/coordination": [
+      "integer"
+    ],
+    "/sword_master/minimums/agility": [
+      "integer"
+    ],
+    "/sword_master/minimums/composure": [
+      "integer"
+    ],
+    "/sword_master/minimums/sword": [
+      "integer"
+    ],
+    "/sword_master/minimums/movement": [
+      "integer"
+    ],
+    "/sword_master/minimums/tactics": [
+      "integer"
+    ],
+    "/sword_master/minimums/chakra_control": [
+      "integer"
+    ],
+    "/sword_master/minimums/wind": [
+      "integer"
+    ],
+    "/sword_master/additional_major_competencies_100_plus": [
+      "integer"
+    ],
+    "/sword_master/methods_95_plus": [
+      "integer"
+    ],
+    "/sword_master/advanced_methods_105_plus": [
+      "integer"
+    ],
+    "/sword_master/credentials": [
+      "array"
+    ],
+    "/sword_master/credentials/*": [
+      "string"
+    ],
+    "/senior_disciple/credential_rules": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/*": [
+      "object"
+    ],
+    "/senior_disciple/authority_review_can_commit": [
+      "boolean"
+    ],
+    "/senior_disciple/credential_rules/protection exercise": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/first aid": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/restraint/capture evaluation": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/House examination": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/*/minimums": [
+      "object"
+    ],
+    "/senior_disciple/credential_rules/*/minimums/*": [
+      "integer"
+    ],
+    "/senior_disciple/credential_rules/*/requires_all_rank_numeric_minimums": [
+      "boolean"
+    ],
+    "/senior_disciple/credential_rules/*/requires_credentials": [
+      "array"
+    ],
+    "/senior_disciple/credential_rules/*/requires_credentials/*": [
+      "string"
+    ],
+    "/senior_disciple/credential_rules/*/minimum_field_usable_current_tier_methods": [
+      "integer"
+    ],
+    "/senior_disciple/credential_rules/*/review_authority_required": [
+      "boolean"
+    ],
+    "/assistant_instructor/appointment_only": [
+      "boolean"
+    ],
+    "/assistant_instructor/technical_tier_change": [
+      "boolean"
+    ],
+    "/senior_instructor/appointment_only": [
+      "boolean"
+    ],
+    "/senior_instructor/technical_tier_change": [
+      "boolean"
+    ],
+    "/sword_master/master_board_required": [
+      "boolean"
+    ],
+    "/sword_master/authority_review_can_commit": [
+      "boolean"
+    ],
+    "/senior_disciple/credential_rules/*/requires_service_domains": [
+      "array"
+    ],
+    "/senior_disciple/credential_rules/*/requires_service_domains/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/senior_disciple/credentials": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/assistant_instructor/credentials": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/senior_instructor/credentials": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/sword_master/credentials": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/senior_disciple/credential_rules/*/requires_credentials": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/senior_disciple/credential_rules/*/requires_service_domains": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for maintenance-authored data.",
+    "Do not add unregistered structural fields without revising this template first.",
+    "Dynamic map IDs may vary; their values must still follow the wildcard contract."
+  ]
+}

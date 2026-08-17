@@ -1,0 +1,478 @@
+{
+  "schema": "file-template",
+  "template_id": "template.causal-scheduler-registry",
+  "target_schema": "causal-scheduler-registry",
+  "source_schema": "game/schemas/causal-scheduler-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/time"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "events",
+    "hosts",
+    "metrics",
+    "bootstrap_source",
+    "owner_id",
+    "owner_type",
+    "schema",
+    "seeded_at",
+    "world_time"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "events",
+        "hosts",
+        "metrics",
+        "bootstrap_source",
+        "owner_id",
+        "owner_type",
+        "schema",
+        "seeded_at",
+        "world_time"
+      ],
+      "canonical_order": [
+        "schema",
+        "owner_id",
+        "owner_type",
+        "authority",
+        "world_time",
+        "seeded_at",
+        "bootstrap_source",
+        "hosts",
+        "events",
+        "metrics"
+      ]
+    },
+    "/hosts": {
+      "mode": "open_map"
+    },
+    "/hosts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority_kind",
+        "metadata",
+        "owner_ref",
+        "state"
+      ],
+      "canonical_order": [
+        "state",
+        "authority_kind",
+        "owner_ref",
+        "metadata"
+      ]
+    },
+    "/hosts/*/state": {
+      "mode": "closed",
+      "allowed_keys": [
+        "handler_ref",
+        "host_id",
+        "kind",
+        "next_due",
+        "resolved_through",
+        "rng_namespace",
+        "safe_through"
+      ],
+      "canonical_order": [
+        "host_id",
+        "kind",
+        "resolved_through",
+        "safe_through",
+        "handler_ref",
+        "rng_namespace",
+        "next_due"
+      ]
+    },
+    "/hosts/*/metadata": {
+      "mode": "closed",
+      "allowed_keys": [
+        "faction_id",
+        "pressure_id",
+        "plan_status",
+        "review_interval_seconds",
+        "status",
+        "mission_id",
+        "scene_id",
+        "commitment_id",
+        "identity",
+        "policy_ref",
+        "person_ref",
+        "force_ref",
+        "force_path",
+        "return_availability_class"
+      ],
+      "canonical_order": [
+        "faction_id",
+        "pressure_id",
+        "plan_status",
+        "review_interval_seconds",
+        "status",
+        "mission_id",
+        "scene_id",
+        "commitment_id",
+        "identity",
+        "policy_ref",
+        "person_ref",
+        "force_ref",
+        "force_path",
+        "return_availability_class"
+      ]
+    },
+    "/events/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "causation_id",
+        "correlation_id",
+        "dedupe_key",
+        "due_at",
+        "event_id",
+        "kind",
+        "payload",
+        "priority",
+        "requires_player",
+        "source_host",
+        "target_host",
+        "visibility"
+      ],
+      "canonical_order": [
+        "event_id",
+        "kind",
+        "due_at",
+        "priority",
+        "source_host",
+        "target_host",
+        "payload",
+        "dedupe_key",
+        "visibility",
+        "requires_player",
+        "causation_id",
+        "correlation_id"
+      ]
+    },
+    "/events/*/payload": {
+      "mode": "closed",
+      "allowed_keys": [
+        "recurrence",
+        "identity",
+        "faction_id",
+        "pressure_id",
+        "owner_ref",
+        "policy_ref",
+        "mission_id",
+        "scene_event_id",
+        "commitment_id",
+        "actor_ref"
+      ],
+      "canonical_order": [
+        "recurrence",
+        "identity",
+        "faction_id",
+        "pressure_id",
+        "owner_ref",
+        "policy_ref",
+        "mission_id",
+        "scene_event_id",
+        "commitment_id",
+        "actor_ref"
+      ]
+    },
+    "/metrics": {
+      "mode": "closed",
+      "allowed_keys": [
+        "host_count",
+        "pending_event_count",
+        "global_person_scans",
+        "global_faction_directory_scans",
+        "last_processed_event_count",
+        "last_public_fact_count",
+        "last_reached_time",
+        "last_requested_target",
+        "last_unsafe_host_count"
+      ],
+      "canonical_order": [
+        "host_count",
+        "pending_event_count",
+        "global_person_scans",
+        "global_faction_directory_scans",
+        "last_processed_event_count",
+        "last_public_fact_count",
+        "last_reached_time",
+        "last_requested_target",
+        "last_unsafe_host_count"
+      ]
+    },
+    "/hosts/*/metagame/data/recurrence": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ],
+      "canonical_order": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ]
+    },
+    "/events/*/payload/recurrence": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ],
+      "canonical_order": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/world_time": [
+      "string"
+    ],
+    "/seeded_at": [
+      "string"
+    ],
+    "/hosts": [
+      "object"
+    ],
+    "/hosts/*": [
+      "object"
+    ],
+    "/hosts/*/state": [
+      "object"
+    ],
+    "/hosts/*/state/host_id": [
+      "string"
+    ],
+    "/hosts/*/state/kind": [
+      "string"
+    ],
+    "/hosts/*/state/resolved_through": [
+      "string"
+    ],
+    "/hosts/*/state/safe_through": [
+      "string"
+    ],
+    "/hosts/*/state/handler_ref": [
+      "string"
+    ],
+    "/hosts/*/state/rng_namespace": [
+      "string"
+    ],
+    "/hosts/*/state/next_due": [
+      "string",
+      "null"
+    ],
+    "/hosts/*/authority_kind": [
+      "string"
+    ],
+    "/hosts/*/owner_ref": [
+      "string",
+      "null"
+    ],
+    "/hosts/*/metadata": [
+      "object"
+    ],
+    "/events": [
+      "array"
+    ],
+    "/events/*": [
+      "object"
+    ],
+    "/events/*/event_id": [
+      "string"
+    ],
+    "/events/*/kind": [
+      "string"
+    ],
+    "/events/*/due_at": [
+      "string"
+    ],
+    "/events/*/priority": [
+      "integer"
+    ],
+    "/events/*/source_host": [
+      "string"
+    ],
+    "/events/*/target_host": [
+      "string"
+    ],
+    "/events/*/payload": [
+      "object"
+    ],
+    "/events/*/dedupe_key": [
+      "string",
+      "null"
+    ],
+    "/events/*/visibility": [
+      "string"
+    ],
+    "/events/*/requires_player": [
+      "boolean"
+    ],
+    "/events/*/causation_id": [
+      "string",
+      "null"
+    ],
+    "/events/*/correlation_id": [
+      "string",
+      "null"
+    ],
+    "/metrics": [
+      "object"
+    ],
+    "/hosts/*/metagame/data/faction_id": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/pressure_id": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/plan_status": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/status": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/mission_id": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/scene_id": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/commitment_id": [
+      "string"
+    ],
+    "/hosts/*/metagame/data/review_interval_seconds": [
+      "integer"
+    ],
+    "/events/*/payload/recurrence": [
+      "object"
+    ],
+    "/events/*/payload/identity": [
+      "string"
+    ],
+    "/events/*/payload/faction_id": [
+      "string"
+    ],
+    "/events/*/payload/pressure_id": [
+      "string"
+    ],
+    "/events/*/payload/owner_ref": [
+      "string"
+    ],
+    "/events/*/payload/mission_id": [
+      "string"
+    ],
+    "/events/*/payload/scene_event_id": [
+      "string"
+    ],
+    "/events/*/payload/commitment_id": [
+      "string"
+    ],
+    "/events/*/payload/recurrence/kind": [
+      "string"
+    ],
+    "/events/*/payload/recurrence/accrual_mode": [
+      "string"
+    ],
+    "/events/*/payload/recurrence/interval_seconds": [
+      "integer"
+    ],
+    "/events/*/payload/recurrence/clock": [
+      "string"
+    ],
+    "/metrics/host_count": [
+      "integer"
+    ],
+    "/metrics/pending_event_count": [
+      "integer"
+    ],
+    "/metrics/global_person_scans": [
+      "integer"
+    ],
+    "/metrics/global_faction_directory_scans": [
+      "integer"
+    ],
+    "/metrics/last_processed_event_count": [
+      "integer"
+    ],
+    "/metrics/last_public_fact_count": [
+      "integer"
+    ],
+    "/metrics/last_reached_time": [
+      "string"
+    ],
+    "/metrics/last_requested_target": [
+      "string"
+    ],
+    "/metrics/last_unsafe_host_count": [
+      "integer"
+    ],
+    "/hosts/*/metadata/identity": [
+      "string"
+    ],
+    "/events/*/payload/policy_ref": [
+      "string"
+    ],
+    "/hosts/*/metadata/policy_ref": [
+      "string"
+    ],
+    "/events/*/payload/actor_ref": [
+      "string"
+    ],
+    "/hosts/*/metadata/person_ref": [
+      "string"
+    ],
+    "/hosts/*/metadata/force_ref": [
+      "string"
+    ],
+    "/hosts/*/metadata/force_path": [
+      "string"
+    ],
+    "/hosts/*/metadata/return_availability_class": [
+      "string"
+    ],
+    "/bootstrap_source": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/events": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This registry owns orchestration cursors and wake events only; domain facts remain in their registered owners.",
+    "Routine analytically derivable facts such as age do not require per-person periodic events.",
+    "No event may invent a backdated outward consequence after its target host is resolved beyond that time.",
+    "The causal scheduler is the only orchestration authority for host cursors and wake events."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.8b46695f61c85847d237",
+  "domain": "legal_bounty",
+  "operation_kind": "bounty_target_intelligence",
+  "owner_ref": "faction.bounty_broker_network",
+  "authority_ref": "support.bounty.goro_kaneda",
+  "opened_at": "SE-0061-07-23T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-30T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "person",
+  "subject_ref": "canon_kisame",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.northern.border"
+  ],
+  "route_refs": [
+    "route_fire_northeast_yuga"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_coded_documents",
+    "item_map_kit"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.a6aa33cdee52a64fae"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.7a7272f4aa2315de26837ee9"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.a6aa33cdee52a64fae.result"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.bounty.goro_kaneda"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Acquire a bounded sourced lead useful to a hunter without inventing the target current location.",
+  "failure_condition": "The bounty_target_intelligence objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.mission.autonomy.a6aa33cdee52a64fae.result",
+    "event.autonomous_mission_succeeded.7a7272f4aa2315de26837ee9"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "training-mechanics",
+  "representation_efficiency": {
+    "exact": 1.0,
+    "person": 1.0,
+    "formation": 1.0
+  },
+  "formulas": {
+    "instructor_access": "min(1, available_instructor_hours / required_instructor_hours)",
+    "capacity_factor": "min(instructor_access, facility_slots/required_slots, equipment_sets/required_sets)",
+    "effective_training_hours": "scheduled_hours * attendance * capacity_factor * instructor_quality_factor * facility_quality_factor * equipment_factor * health_factor * recovery_factor * relevance_factor * difficulty_fit_factor",
+    "learning_rate": "aptitude/100",
+    "diminishing_returns": "1 / (1 + max(0,current_value-100)/100)",
+    "development_units": "effective_training_hours * learning_rate * experience_modifier * diminishing_returns",
+    "skill_gain": "consume development units point-by-point until the routine training ceiling or credit exhaustion",
+    "point_cost(v)": "1 + tier^2 + 2*max(0,tier-3)^2, where tier=floor(max(0,v-40)/20)"
+  },
+  "progression_thresholds": {
+    "routine_training_ceiling": 160,
+    "legendary_band_starts": 170,
+    "transcendent_band_starts": 185,
+    "god_tier_starts": 200,
+    "generic_breakthrough_ceiling": 185,
+    "rule": "Routine training may raise a capability to 160 but may not create advancement beyond it. Capability above 160 requires evidence-backed exact-person breakthrough resolution or a more exceptional subsystem. Generic training, elapsed calendar time, autonomous review count, or banked practice cannot create legendary, transcendent, or god-tier capability."
+  },
+  "breakthrough_rules": {
+    "points_per_resolution": 1,
+    "exact_person_only": true,
+    "evidence_consumed_once_per_person": true,
+    "160_to_169": "B-rank-or-higher mission-grade experience, or genuinely dangerous exact combat",
+    "170_to_179": "A-rank-or-higher mission-grade experience",
+    "180_to_184": "S-rank mission-grade experience",
+    "185_plus": "requires a specific exceptional subsystem; generic mission/combat evidence is insufficient",
+    "field_capabilities_require_combat": true,
+    "operational_capabilities_allow_mission_or_combat": true,
+    "caller_asserted_evidence_forbidden": true
+  },
+  "autonomous_team_training": {
+    "default": {
+      "active_hours_per_week": 6,
+      "target_cycle": [
+        "operational_skills.team_coordination",
+        "martial_skills.movement",
+        "operational_skills.tactics",
+        "attributes.awareness"
+      ]
+    },
+    "standard_mission_team": {
+      "active_hours_per_week": 8,
+      "target_cycle": [
+        "operational_skills.team_coordination",
+        "martial_skills.movement",
+        "operational_skills.investigation",
+        "operational_skills.tactics",
+        "attributes.awareness"
+      ]
+    },
+    "special_mission_cell": {
+      "active_hours_per_week": 12,
+      "target_cycle": [
+        "operational_skills.infiltration",
+        "operational_skills.tactics",
+        "martial_skills.movement",
+        "operational_skills.traps",
+        "operational_skills.team_coordination",
+        "attributes.awareness"
+      ]
+    },
+    "anbu_cell": {
+      "active_hours_per_week": 12,
+      "target_cycle": [
+        "martial_skills.stealth",
+        "operational_skills.infiltration",
+        "operational_skills.investigation",
+        "martial_skills.movement",
+        "operational_skills.team_coordination"
+      ]
+    },
+    "temporary_task_force": {
+      "active_hours_per_week": 6,
+      "target_cycle": [
+        "operational_skills.team_coordination",
+        "operational_skills.tactics",
+        "martial_skills.movement"
+      ]
+    }
+  },
+  "autonomous_scheduling_rule": "Routine team-training volume is a default opportunity, not guaranteed activity. Active missions or team assignments preempt it; the team must be active, members must be healthy and co-located, and a registered non-player instructor must be available. Player characters are never silently trained by an autonomous team review.",
+  "promotion": "qualified_subset_transfer only; rank requires institutional/experience gates in addition to capability",
+  "batch_equivalence": "batch only while all causal inputs remain unchanged; split at any causal change"
+}

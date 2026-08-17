@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.dd3e3e8f84997f31d34f2064",
+  "subject_id": "faction.yamanaka_intelligence",
+  "event_type": "reputation.signal.technical_achievement",
+  "occurred_at": "SE-0061-07-16T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.4ae3abf848745c95218bf6af",
+  "authority": true,
+  "signals": {
+    "technical_competence": {
+      "score": 82,
+      "base_weight": 42
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 72,
+      "base_weight": 28
+    },
+    "prestige": {
+      "score": 66,
+      "base_weight": 20
+    }
+  },
+  "visibility": {
+    "audience_id": "canon_hiruzen",
+    "source_classification": "secret"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.4ae3abf848745c95218bf6af"
+  ],
+  "deliveries": {
+    "canon_hiruzen": {
+      "profile_ref": "state/reputation/audiences/profile.979f5e852c52e097fcc9c4c7.json",
+      "source_event_ref": "event.institutional_operation_completed.4ae3abf848745c95218bf6af"
+    }
+  },
+  "status": "applied"
+}

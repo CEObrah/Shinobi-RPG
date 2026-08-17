@@ -1,0 +1,172 @@
+{
+  "schema": "team-doctrine",
+  "id": "team.konoha.guy.doctrine",
+  "team_id": "team.konoha.guy",
+  "name": "Team Guy Combat Doctrine",
+  "status": "active",
+  "familiarity": {
+    "canon_guy": 100,
+    "canon_lee": 100,
+    "canon_neji": 100,
+    "canon_tenten": 100
+  },
+  "effective_from": "SE-0061-07-31T21:15:00",
+  "approved_by": "canon_guy",
+  "motto": "See the opening. Close the distance. Finish together.",
+  "command": {
+    "captain": "canon_guy",
+    "deputy": "canon_lee",
+    "succession_order": [
+      "canon_lee",
+      "canon_neji",
+      "canon_tenten"
+    ]
+  },
+  "roles": {
+    "canon_guy": "jonin_instructor_and_team_leader",
+    "canon_lee": "close_combat_specialist",
+    "canon_neji": "reconnaissance_and_precision_combat",
+    "canon_tenten": "weapons_and_ranged_support"
+  },
+  "phases": [
+    {
+      "order": 1,
+      "name": "SEE",
+      "primary_members": [
+        "canon_guy",
+        "canon_neji"
+      ],
+      "objective": "Establish positions, threats, routes, and uncertainty before committing force.",
+      "procedures": [
+        "Cross-check observations before acting on them."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "SHAPE",
+      "primary_members": [
+        "canon_guy",
+        "canon_neji"
+      ],
+      "objective": "Alter movement, terrain, information, or routes to create team advantage.",
+      "procedures": [
+        "Create openings for teammates rather than isolated duels."
+      ]
+    },
+    {
+      "order": 3,
+      "name": "BREAK",
+      "primary_members": [
+        "canon_guy",
+        "canon_neji"
+      ],
+      "objective": "Exploit the shaped engagement to disrupt coherent enemy action.",
+      "procedures": [
+        "Concentrate on the mission-critical problem."
+      ]
+    },
+    {
+      "order": 4,
+      "name": "SECURE",
+      "primary_members": [
+        "canon_guy",
+        "canon_neji"
+      ],
+      "objective": "Complete the authorized objective and stabilize control.",
+      "procedures": [
+        "Mission completion outranks unnecessary pursuit."
+      ]
+    },
+    {
+      "order": 5,
+      "name": "EXTRACT",
+      "primary_members": [
+        "canon_guy",
+        "canon_neji"
+      ],
+      "objective": "Account for the team and remove personnel, captives, evidence, or protected assets safely.",
+      "procedures": [
+        "Preserve command and a viable withdrawal route."
+      ]
+    }
+  ],
+  "standing_rules": [
+    {
+      "name": "Shared objective",
+      "rule": "Openings belong to the team, not the individual who created them.",
+      "procedures": [
+        "Exploit teammate-created advantages when lawful and useful."
+      ]
+    },
+    {
+      "name": "Mission first",
+      "rule": "Do not trade the assigned objective for an unnecessary fight.",
+      "procedures": [
+        "Reorient when combat no longer advances the mission."
+      ]
+    },
+    {
+      "name": "Recover control",
+      "rule": "When coordination breaks, restore information, command, spacing, and an exit before escalating.",
+      "procedures": [
+        "Stabilize before chasing a collapsing plan."
+      ]
+    }
+  ],
+  "mission_modes": [
+    {
+      "mode": "reconnaissance",
+      "directive": "Verify while preserving concealment and a report route."
+    },
+    {
+      "mode": "capture",
+      "directive": "Create control, restrain the authorized target, and preserve evidence."
+    },
+    {
+      "mode": "protection",
+      "directive": "Keep the protected person or asset viable and preserve extraction."
+    },
+    {
+      "mode": "direct_combat",
+      "directive": "Concentrate complementary roles on the mission-critical threat."
+    }
+  ],
+  "contingencies": {
+    "loss_of_control": [
+      "Re-establish the battlefield picture.",
+      "Confirm command and member accountability.",
+      "Create a regroup or withdrawal route."
+    ]
+  },
+  "extraction": {
+    "primary_members": [
+      "canon_guy",
+      "canon_neji"
+    ],
+    "procedures": [
+      "Account for every member and material objective before disengagement."
+    ]
+  },
+  "training": {
+    "lead_instructors": [
+      "canon_guy"
+    ],
+    "scheduled_sessions": [],
+    "shared_drills": [
+      "team coordination",
+      "reconnaissance",
+      "objective control",
+      "extraction"
+    ],
+    "role_focus": {
+      "canon_guy": "jonin_instructor_and_team_leader",
+      "canon_lee": "close_combat_specialist",
+      "canon_neji": "reconnaissance_and_precision_combat",
+      "canon_tenten": "weapons_and_ranged_support"
+    },
+    "attendance_rule": "Training credit requires actual lawful attendance under the team training model.",
+    "interrupt_rule": "Missions, injury, travel, or higher lawful orders interrupt training without double counting.",
+    "no_double_counting": true
+  },
+  "identity": "Reconnaissance-supported close-combat doctrine that uses precision information and ranged lanes to create decisive entries while preserving mission discipline."
+}

@@ -1,0 +1,49 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.mizuki_conspiracy",
+    "name": "Mizuki private conspiracy",
+    "status": "active",
+    "leadership_ids": [
+      "canon_mizuki"
+    ],
+    "key_member_ids": [],
+    "goal": "pursue Mizuki's already-established forbidden-scroll objective through causally supported covert preparation",
+    "current_plan": "Assess access and security without assuming the scroll is obtained, stolen, or even reachable.",
+    "resources": [
+      "Mizuki personal access and knowledge actually persisted by the campaign"
+    ],
+    "relationships": [],
+    "knowledge_policy": "Use only Mizuki-held persisted knowledge; canon pressure does not grant secret access or success.",
+    "notes": [
+      "This owner operationalizes an already-persisted personal goal. It does not force the canon theft outcome."
+    ],
+    "goals": [
+      "assess forbidden-scroll access",
+      "avoid premature exposure",
+      "adapt to real security evidence"
+    ],
+    "constraints": [
+      "actual access",
+      "actual knowledge",
+      "Konoha security",
+      "no canon forcing"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-30T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [
+        "mission.autonomy.b5c4a09d68a2906058"
+      ],
+      "autonomous_priority_refs": [],
+      "completed_priority_refs": [],
+      "autonomous_team_refs": [],
+      "wake_required_mission_refs": [
+        "mission.autonomy.b5c4a09d68a2906058"
+      ]
+    },
+    "scope": "Mizuki private covert preparation around his persisted forbidden-scroll goal",
+    "leadership_model": "single_actor_private_plan"
+  }
+}

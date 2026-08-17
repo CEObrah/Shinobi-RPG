@@ -1,0 +1,100 @@
+{
+  "schema": "file-template",
+  "template_id": "template.reputation-event-signals",
+  "target_schema": "reputation-event-signals",
+  "source_schema": "game/schemas/reputation-event-signals.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/reputation"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "game",
+    "signals",
+    "rule"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "game",
+        "signals",
+        "rule"
+      ],
+      "canonical_order": [
+        "schema",
+        "game",
+        "signals",
+        "rule"
+      ]
+    },
+    "/signals": {
+      "mode": "open_map"
+    },
+    "/signals/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "allowed_event_kinds",
+        "standing",
+        "dimensions",
+        "audience_relevance",
+        "memory_class"
+      ],
+      "canonical_order": [
+        "allowed_event_kinds",
+        "standing",
+        "dimensions",
+        "audience_relevance",
+        "memory_class"
+      ]
+    },
+    "/signals/*/standing": {
+      "mode": "open_map"
+    },
+    "/signals/*/dimensions": {
+      "mode": "open_map"
+    },
+    "/signals/*/standing/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "score",
+        "base_weight"
+      ],
+      "canonical_order": [
+        "score",
+        "base_weight"
+      ]
+    },
+    "/signals/*/dimensions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "score",
+        "base_weight"
+      ],
+      "canonical_order": [
+        "score",
+        "base_weight"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/signals/*/allowed_event_kinds": [
+      "array"
+    ],
+    "/signals/*/allowed_event_kinds/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/signals/*/allowed_event_kinds": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Reputation signal definitions are static evidence interpretation authority. Runtime events provide facts; this registry only maps compatible facts into audience belief evidence."
+  ]
+}

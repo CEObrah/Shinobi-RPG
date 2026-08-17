@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Operational world mechanics",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "authority",
+    "research_kinds",
+    "security",
+    "mission_market",
+    "bounty",
+    "commerce",
+    "autonomous_effects",
+    "operation_reputation_signals"
+  ],
+  "properties": {
+    "schema": {
+      "const": "operational-world-mechanics"
+    },
+    "authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "research_kinds": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "required_active_hours",
+          "risk_milli",
+          "material_costs"
+        ],
+        "properties": {
+          "required_active_hours": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "risk_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "material_costs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_step_milli",
+        "barrier_anchor_sets_per_step",
+        "detection_step_milli",
+        "sensor_relays_per_step"
+      ],
+      "properties": {
+        "coverage_step_milli": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "barrier_anchor_sets_per_step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "detection_step_milli": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "sensor_relays_per_step": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "mission_market": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_signal_delta_milli",
+        "signal_delta_milli"
+      ],
+      "properties": {
+        "max_signal_delta_milli": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "signal_delta_milli": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "objective_signal_candidates": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "commerce": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "escrow_required",
+        "aggregate_sinks",
+        "autonomous_shipments"
+      ],
+      "properties": {
+        "escrow_required": {
+          "const": true
+        },
+        "aggregate_sinks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "place_ref",
+              "economy_ref"
+            ],
+            "properties": {
+              "place_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "economy_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "autonomous_shipments": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_stock_ref",
+              "source_owner_ref",
+              "origin_place_ref",
+              "item_candidates",
+              "quantity",
+              "route_sink_refs",
+              "contraband"
+            ],
+            "properties": {
+              "source_stock_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_owner_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "origin_place_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "item_candidates": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "route_sink_refs": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "contraband": {
+                "type": "boolean"
+              },
+              "procurement_stock_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "procurement_owner_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "autonomous_effects": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_kind",
+          "stock_ref",
+          "research_kind",
+          "case_kind",
+          "issue_warrant",
+          "market_ref",
+          "market_axis",
+          "market_signal_ref",
+          "market_direction"
+        ],
+        "properties": {
+          "effect_kind": {
+            "enum": [
+              "legal_case",
+              "research",
+              "security",
+              "mission_market",
+              "commerce_metric",
+              "commerce_shipment",
+              "commerce_inspection",
+              "legal_bounty_funding",
+              "legal_bounty_assignment",
+              "puppet_readiness",
+              "information_observation",
+              "mission_tasking",
+              "service_contract",
+              "diplomacy_incident",
+              "institutional_assessment"
+            ]
+          },
+          "stock_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "research_kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "case_kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "issue_warrant": {
+            "type": "boolean"
+          },
+          "market_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "market_axis": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "market_signal_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "market_direction": {
+            "type": "integer",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "mission_objective_kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mission_rank": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "D",
+              "C",
+              "B",
+              "A",
+              "S",
+              null
+            ]
+          },
+          "service_contract_action": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "offer",
+              "accept",
+              null
+            ]
+          },
+          "requires_known_subject": {
+            "type": "boolean"
+          },
+          "requires_existing_contract": {
+            "type": "boolean"
+          },
+          "requires_subject_dead": {
+            "type": "boolean"
+          },
+          "assessment_kind": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "medical",
+              "intelligence",
+              "security",
+              "technical",
+              "mission",
+              "trade",
+              "administration",
+              "training",
+              "communications",
+              "military",
+              "clan",
+              "institutional",
+              null
+            ]
+          }
+        }
+      }
+    },
+    "bounty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rank_to_mission_rank",
+        "amount_field",
+        "eligible_hunter_organization_refs"
+      ],
+      "properties": {
+        "rank_to_mission_rank": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "D",
+              "C",
+              "B",
+              "A",
+              "S"
+            ]
+          }
+        },
+        "amount_field": {
+          "enum": [
+            "client_fee_typical_ryo",
+            "client_fee_max_ryo"
+          ]
+        },
+        "eligible_hunter_organization_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "operation_reputation_signals": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schema": "file-template",
+  "template_id": "template.causal-scheduler-event-day",
+  "target_schema": "causal-scheduler-event-day",
+  "source_schema": "game/schemas/causal-scheduler-event-day.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/time/causal-scheduler/events"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "day",
+    "events",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "day",
+        "authority",
+        "events"
+      ],
+      "canonical_order": [
+        "schema",
+        "day",
+        "authority",
+        "events"
+      ]
+    },
+    "/events/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "causation_id",
+        "correlation_id",
+        "dedupe_key",
+        "due_at",
+        "event_id",
+        "kind",
+        "payload",
+        "priority",
+        "requires_player",
+        "source_host",
+        "target_host",
+        "visibility"
+      ],
+      "canonical_order": [
+        "event_id",
+        "kind",
+        "due_at",
+        "priority",
+        "source_host",
+        "target_host",
+        "payload",
+        "dedupe_key",
+        "visibility",
+        "requires_player",
+        "causation_id",
+        "correlation_id"
+      ]
+    },
+    "/events/*/payload": {
+      "mode": "closed",
+      "allowed_keys": [
+        "recurrence",
+        "identity",
+        "faction_id",
+        "pressure_id",
+        "owner_ref",
+        "policy_ref",
+        "mission_id",
+        "scene_event_id",
+        "commitment_id",
+        "actor_ref"
+      ],
+      "canonical_order": [
+        "recurrence",
+        "identity",
+        "faction_id",
+        "pressure_id",
+        "owner_ref",
+        "policy_ref",
+        "mission_id",
+        "scene_event_id",
+        "commitment_id",
+        "actor_ref"
+      ]
+    },
+    "/events/*/payload/recurrence": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ],
+      "canonical_order": [
+        "kind",
+        "accrual_mode",
+        "interval_seconds",
+        "clock"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/day": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/events": [
+      "array"
+    ],
+    "/events/*": [
+      "object"
+    ],
+    "/events/*/event_id": [
+      "string"
+    ],
+    "/events/*/kind": [
+      "string"
+    ],
+    "/events/*/due_at": [
+      "string"
+    ],
+    "/events/*/priority": [
+      "integer"
+    ],
+    "/events/*/source_host": [
+      "string"
+    ],
+    "/events/*/target_host": [
+      "string"
+    ],
+    "/events/*/payload": [
+      "object"
+    ],
+    "/events/*/dedupe_key": [
+      "string",
+      "null"
+    ],
+    "/events/*/visibility": [
+      "string"
+    ],
+    "/events/*/requires_player": [
+      "boolean"
+    ],
+    "/events/*/causation_id": [
+      "string",
+      "null"
+    ],
+    "/events/*/correlation_id": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/events": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a scheduler owner.",
+    "Scheduler shards are one temporal authority; routing indexes never duplicate domain truth."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "w",
+  "templates": {
+    "world-event-archive": {
+      "path": "runtime/contracts/templates/world-event-archive.template.json",
+      "source_schema": "game/schemas/world-event-archive.schema.json",
+      "scope": "mutable_state"
+    },
+    "world-event-registry": {
+      "path": "runtime/contracts/templates/world-event-registry.template.json",
+      "source_schema": "game/schemas/world-event-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "world-operation": {
+      "path": "runtime/contracts/templates/world-operation.template.json",
+      "source_schema": "game/schemas/world-operation.schema.json",
+      "scope": "mutable_state"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "repository-route-shard",
+  "shard_id": "canon",
+  "routes": {
+    "canon_pressure_known_id": {
+      "r": [
+        "state/canon/pressures.json"
+      ],
+      "w": [
+        "state/canon/pressures.json"
+      ],
+      "note": "Known stable front ID -> load only the matching pressures map entry, its exact next_boundary process, and explicitly referenced causal owners. Use the canon_pressures contract before writes."
+    },
+    "canon_pressure_registry": {
+      "r": [
+        "state/canon/pressures.json"
+      ],
+      "w": [
+        "state/canon/pressures.json"
+      ],
+      "note": "Bounded mutable front registry. Front truth is separate from visibility and player/NPC knowledge; missing executable detail remains null or empty."
+    },
+    "canon_manifest": {
+      "r": [
+        "game/data/canon/manifest.json"
+      ],
+      "note": "Static continuity policy and discovery only. Campaign state remains authoritative for the lived timeline."
+    },
+    "canon_history_known_id": {
+      "i": [
+        "game/data/canon/manifest.json"
+      ],
+      "note": "Known canon event ID -> resolve event_index to exactly one shard. Do not broaden to other visibility lanes."
+    },
+    "canon_history_public": {
+      "g": [
+        "game/data/canon/history/public/*.json"
+      ],
+      "note": "Public classification permits ambient reference, not automatic personal knowledge. Load only the smallest relevant shard."
+    },
+    "canon_history_restricted": {
+      "g": [
+        "game/data/canon/history/restricted/*.json"
+      ],
+      "note": "Load for world causality or when saved access or knowledge authority permits it; classification alone never informs a character."
+    },
+    "canon_history_secret": {
+      "g": [
+        "game/data/canon/history/secret/*.json"
+      ],
+      "note": "World-causality route only until a saved discovery or knowledge receipt exists. Never narrate repository omniscience as character knowledge."
+    }
+  }
+}

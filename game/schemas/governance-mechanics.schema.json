@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "status_requirements",
+    "notes",
+    "civil_economy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "governance-mechanics"
+    },
+    "status_requirements": {
+      "type": "object",
+      "required": [
+        "settlement",
+        "village",
+        "hidden_village"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "settlement": {
+          "type": "object",
+          "required": [
+            "min_population",
+            "min_integration_milli",
+            "requires_garrison",
+            "requires_recruitment_rights"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "min_population": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min_integration_milli": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "requires_garrison": {
+              "type": "boolean"
+            },
+            "requires_recruitment_rights": {
+              "type": "boolean"
+            }
+          }
+        },
+        "village": {
+          "type": "object",
+          "required": [
+            "min_population",
+            "min_integration_milli",
+            "requires_garrison",
+            "requires_recruitment_rights"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "min_population": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min_integration_milli": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "requires_garrison": {
+              "type": "boolean"
+            },
+            "requires_recruitment_rights": {
+              "type": "boolean"
+            }
+          }
+        },
+        "hidden_village": {
+          "type": "object",
+          "required": [
+            "min_population",
+            "min_integration_milli",
+            "requires_garrison",
+            "requires_recruitment_rights"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "min_population": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "min_integration_milli": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "requires_garrison": {
+              "type": "boolean"
+            },
+            "requires_recruitment_rights": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "civil_economy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workforce_fallback_milli",
+        "adolescent_workforce_milli",
+        "monthly_activity_per_worker_ryo",
+        "monthly_consumption_per_resident_ryo",
+        "base_productivity_milli",
+        "integration_productivity_weight_milli",
+        "food_activity_share_milli",
+        "food_need_share_milli",
+        "service_activity_share_milli",
+        "service_need_share_milli",
+        "tax_arrears_catchup_milli",
+        "market_memory_milli",
+        "market_service_bonus_milli",
+        "migration_attractiveness_threshold_milli",
+        "migration_food_floor_milli",
+        "migration_service_floor_milli",
+        "monthly_migration_rate_milli",
+        "monthly_migration_cap",
+        "severe_shortage_food_milli",
+        "shortage_integration_penalty_milli",
+        "shortage_resistance_gain_milli",
+        "infrastructure_integration_penalty_milli",
+        "infrastructure_resistance_gain_milli",
+        "surplus_integration_gain_milli",
+        "stability_resistance_recovery_milli",
+        "reference_population_by_status",
+        "rule",
+        "civic_investment_per_resident_ryo",
+        "civic_investment_effect_milli_per_month",
+        "food_support_decay_milli_per_month",
+        "service_investment_decay_milli_per_month"
+      ],
+      "properties": {
+        "workforce_fallback_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "adolescent_workforce_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "base_productivity_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "integration_productivity_weight_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "food_activity_share_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "food_need_share_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "service_activity_share_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "service_need_share_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "tax_arrears_catchup_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "monthly_activity_per_worker_ryo": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "monthly_consumption_per_resident_ryo": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reference_population_by_status": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outpost",
+            "settlement",
+            "village",
+            "hidden_village",
+            "territory",
+            "client_state",
+            "military_administration"
+          ],
+          "properties": {
+            "outpost": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "settlement": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "village": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "hidden_village": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "territory": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "client_state": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "military_administration": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "market_memory_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "market_service_bonus_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "migration_attractiveness_threshold_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "migration_food_floor_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "migration_service_floor_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "monthly_migration_rate_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "monthly_migration_cap": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "severe_shortage_food_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "shortage_integration_penalty_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "shortage_resistance_gain_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "infrastructure_integration_penalty_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "infrastructure_resistance_gain_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "surplus_integration_gain_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "stability_resistance_recovery_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "civic_investment_per_resident_ryo": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "civic_investment_effect_milli_per_month": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "food_support_decay_milli_per_month": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "service_investment_decay_milli_per_month": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

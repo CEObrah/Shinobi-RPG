@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "1b",
+  "authority": true,
+  "hosts": {
+    "host.team.team.konoha.generated.a2b320a362": {
+      "host": {
+        "state": {
+          "host_id": "host.team.team.konoha.generated.a2b320a362",
+          "kind": "exact_team",
+          "resolved_through": "SE-0061-07-30T07:00:00",
+          "safe_through": "SE-0061-08-06T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "team.konoha.generated.a2b320a362",
+          "next_due": "SE-0061-08-06T07:00:00"
+        },
+        "authority_kind": "exact_team",
+        "owner_ref": "state/team/team-konoha-generated-a2b320a362.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.68b85727d950bf28b72b22b4",
+          "due_at": "SE-0061-08-06T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-08-06.json",
+          "dedupe_key": "team.periodic_review:team.konoha.generated.a2b320a362"
+        }
+      ]
+    }
+  }
+}

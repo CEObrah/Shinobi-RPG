@@ -1,0 +1,36 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "l",
+  "templates": {
+    "legal-case-registry": {
+      "path": "runtime/contracts/templates/legal-case-registry.template.json",
+      "source_schema": "game/schemas/legal-case-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "live-rule-consumer-registry": {
+      "path": "runtime/contracts/templates/live-rule-consumer-registry.template.json",
+      "source_schema": "game/schemas/live-rule-consumer-registry.schema.json",
+      "scope": "static_data"
+    },
+    "living-world-autonomy-policy": {
+      "path": "runtime/contracts/templates/living-world-autonomy-policy.template.json",
+      "source_schema": "game/schemas/living-world-autonomy-policy.schema.json",
+      "scope": "static_data"
+    },
+    "loadout-index": {
+      "path": "runtime/contracts/templates/loadout-index.template.json",
+      "source_schema": "game/schemas/loadout-index.schema.json",
+      "scope": "static_data"
+    },
+    "loadout-record": {
+      "path": "runtime/contracts/templates/loadout-record.template.json",
+      "source_schema": "game/schemas/loadout-record.schema.json",
+      "scope": "static_data"
+    },
+    "loadouts-index": {
+      "path": "runtime/contracts/templates/loadouts-index.template.json",
+      "source_schema": "game/schemas/loadouts-index.schema.json",
+      "scope": "static_data"
+    }
+  }
+}

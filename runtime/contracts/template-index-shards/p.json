@@ -1,0 +1,56 @@
+{
+  "schema": "template-index-shard",
+  "prefix": "p",
+  "templates": {
+    "path-template-index": {
+      "path": "runtime/contracts/templates/path-template-index.template.json",
+      "source_schema": "game/schemas/path-template-index.schema.json",
+      "scope": "static_data"
+    },
+    "path-template": {
+      "path": "runtime/contracts/templates/path-template.template.json",
+      "source_schema": "game/schemas/path-template.schema.json",
+      "scope": "registered_json_structure"
+    },
+    "perception-mechanics": {
+      "path": "runtime/contracts/templates/perception-mechanics.template.json",
+      "source_schema": "game/schemas/perception.schema.json",
+      "scope": "static_data"
+    },
+    "person": {
+      "path": "runtime/contracts/templates/person.template.json",
+      "source_schema": "game/schemas/person.schema.json",
+      "scope": "mutable_state"
+    },
+    "person-continuity-registry": {
+      "path": "runtime/contracts/templates/person-continuity-registry.template.json",
+      "source_schema": "game/schemas/person-continuity-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "person-core-registry": {
+      "path": "runtime/contracts/templates/person-core-registry.template.json",
+      "source_schema": "game/schemas/person-core-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "place": {
+      "path": "runtime/contracts/templates/place.template.json",
+      "source_schema": "game/schemas/place.schema.json",
+      "scope": "mutable_state"
+    },
+    "player-combat-style": {
+      "path": "runtime/contracts/templates/player-combat-style.template.json",
+      "source_schema": "game/schemas/player-combat-style.schema.json",
+      "scope": "mutable_state"
+    },
+    "population-registry": {
+      "path": "runtime/contracts/templates/population-registry.template.json",
+      "source_schema": "game/schemas/population-registry.schema.json",
+      "scope": "mutable_state"
+    },
+    "puppet-registry": {
+      "path": "runtime/contracts/templates/puppet-registry.template.json",
+      "source_schema": "game/schemas/puppet-registry.schema.json",
+      "scope": "mutable_state"
+    }
+  }
+}

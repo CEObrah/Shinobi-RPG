@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Organization authority model",
+  "type": "object",
+  "required": [
+    "schema",
+    "authority",
+    "layers",
+    "manpower_invariant",
+    "team_invariant",
+    "formation_invariant",
+    "commander_rule",
+    "support_rule",
+    "large_war_rule"
+  ],
+  "properties": {
+    "schema": {"const": "organization-authority-model"},
+    "authority": {"type": "string"},
+    "layers": {"type": "object"},
+    "manpower_invariant": {"type": "string"},
+    "team_invariant": {"type": "string"},
+    "formation_invariant": {"type": "string"},
+    "commander_rule": {"type": "string"},
+    "support_rule": {"type": "string"},
+    "large_war_rule": {"type": "string"}
+  },
+  "additionalProperties": false
+}

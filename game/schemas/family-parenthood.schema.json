@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "parenthood_id",
+    "authority",
+    "parent_refs",
+    "status",
+    "started_at",
+    "expected_at",
+    "source_basis",
+    "child_ref"
+  ],
+  "properties": {
+    "schema": {
+      "const": "family-parenthood"
+    },
+    "parenthood_id": {
+      "type": "string"
+    },
+    "authority": {
+      "const": true
+    },
+    "parent_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "expecting",
+        "completed",
+        "ended"
+      ]
+    },
+    "started_at": {
+      "type": "string"
+    },
+    "expected_at": {
+      "type": "string"
+    },
+    "source_basis": {
+      "type": "string"
+    },
+    "child_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

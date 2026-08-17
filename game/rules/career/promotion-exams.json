@@ -1,0 +1,376 @@
+{
+  "schema": "promotion-exam-rules",
+  "version": 2,
+  "profiles": {
+    "promotion_exam.konoha.chunin": {
+      "id": "promotion_exam.konoha.chunin",
+      "enabled": true,
+      "world_arc_kind": "institutional_promotion_cycle",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "institution_ref": "institution.konoha.academy",
+      "authority_ref": "canon_hiruzen",
+      "service_village": "konoha",
+      "source_rank": "Genin",
+      "target_rank": "Chunin",
+      "registration_authority": "active_team_leader",
+      "registration_team_authority_refs": [
+        "institution.konoha.academy",
+        "faction.konoha_mission_office"
+      ],
+      "hosted_exam": {
+        "host_village": "konoha",
+        "host_arrival_place_ref": "place.konoha",
+        "participating_villages": [
+          "konoha",
+          "suna",
+          "iwa",
+          "kumo",
+          "kiri",
+          "ame",
+          "kusa",
+          "taki",
+          "oto",
+          "yuga"
+        ],
+        "home_village_selection_rule": "Each participating village owns its delegation selection. The host owns examination logistics and evaluation, not foreign promotion authority.",
+        "travel_policy": "The common registration-to-qualification window is derived from the slowest lawful invited home-village route plus the authored arrival buffer. Authored phase offsets are minimum pacing; qualification and every later phase shift together when travel requires more lead time. Foreign selection remains home-village authority.",
+        "foreign_delegations": [
+          {
+            "delegation_ref": "promotion_exam_delegation.suna.common",
+            "service_village": "suna",
+            "selection_authority_ref": "faction_suna",
+            "instructor_ref": "faction_suna",
+            "home_place_ref": "place.suna",
+            "service_pool_ref": "pool.suna.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_gaara",
+              "canon_kankuro",
+              "canon_temari"
+            ],
+            "force_ref": "force.suna.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.iwa.common",
+            "service_village": "iwa",
+            "selection_authority_ref": "faction_iwa",
+            "instructor_ref": "faction_iwa",
+            "home_place_ref": "place.iwa",
+            "service_pool_ref": "pool.iwa.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_kurotsuchi"
+            ],
+            "force_ref": "force.iwa.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.kumo.common",
+            "service_village": "kumo",
+            "selection_authority_ref": "faction_kumo",
+            "instructor_ref": "faction_kumo",
+            "home_place_ref": "place.kumo",
+            "service_pool_ref": "pool.kumo.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_omoi",
+              "canon_karui"
+            ],
+            "force_ref": "force.kumo.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.kiri.common",
+            "service_village": "kiri",
+            "selection_authority_ref": "faction_kiri",
+            "instructor_ref": "faction_kiri",
+            "home_place_ref": "place.kiri",
+            "service_pool_ref": "pool.kiri.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_chojuro"
+            ],
+            "force_ref": "force.kiri.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.ame.common",
+            "service_village": "ame",
+            "selection_authority_ref": "faction_ame",
+            "instructor_ref": "faction_ame",
+            "home_place_ref": "place.ame",
+            "service_pool_ref": "pool.ame.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [],
+            "force_ref": "force.ame.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.kusa.common",
+            "service_village": "kusa",
+            "selection_authority_ref": "faction_kusa",
+            "instructor_ref": "faction_kusa",
+            "home_place_ref": "place.kusa",
+            "service_pool_ref": "pool.kusa.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [],
+            "force_ref": "force.kusa.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.taki.common",
+            "service_village": "taki",
+            "selection_authority_ref": "faction_taki",
+            "instructor_ref": "faction_taki",
+            "home_place_ref": "place.taki",
+            "service_pool_ref": "pool.taki.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_fu_takigakure"
+            ],
+            "force_ref": "force.taki.shinobi"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.oto.common",
+            "service_village": "oto",
+            "selection_authority_ref": "faction_oto",
+            "instructor_ref": "faction_oto",
+            "home_place_ref": "place.oto.network",
+            "service_pool_ref": "pool.oto.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [
+              "canon_zaku",
+              "canon_kin",
+              "canon_dosu"
+            ],
+            "force_ref": "force.oto.network"
+          },
+          {
+            "delegation_ref": "promotion_exam_delegation.yuga.common",
+            "service_village": "yuga",
+            "selection_authority_ref": "faction_yuga",
+            "instructor_ref": "faction_yuga",
+            "home_place_ref": "place.yuga",
+            "service_pool_ref": "pool.yuga.shinobi_service",
+            "delegation_size": 3,
+            "candidate_pool_refs": [],
+            "force_ref": "force.yuga.service"
+          }
+        ],
+        "arrival_buffer_days": 2,
+        "schedule_policy": "slowest_invited_route_plus_buffer",
+        "generated_candidate_calibration": {
+          "force_baseline_offset": -8,
+          "spread": 7,
+          "minimum": 18,
+          "maximum": 120,
+          "basis": "Exactified Genin are sampled below their village field-ready force baseline while remaining on the same open capability scale as exact characters; the maximum is an exam-materialization safety bound, not a universal stat ceiling."
+        }
+      },
+      "result_visibility": {
+        "qualification": "public_after_settlement",
+        "field_evaluation": "public_after_settlement",
+        "finals": "public"
+      },
+      "eligibility_review": {
+        "minimum_source_rank_service_days": 60,
+        "requires_active_standard_mission_team": true,
+        "requires_ready_condition": true
+      },
+      "cycle_start_months": [
+        1,
+        7
+      ],
+      "phases": [
+        "registration",
+        "qualification",
+        "field_evaluation",
+        "finals",
+        "promotion_review",
+        "closed"
+      ],
+      "phase_offsets_days": {
+        "registration": 0,
+        "qualification": 14,
+        "field_evaluation": 16,
+        "finals": 25,
+        "promotion_review": 26,
+        "closed": 27
+      },
+      "evaluation_stages": {
+        "qualification": {
+          "scoring_model": "competency_lanes_v2",
+          "threshold": 60,
+          "metric_cap": 120,
+          "best_lane_count": 2,
+          "minimum_lane_score": 45,
+          "minimum_lanes_above": 2,
+          "lanes": [
+            {
+              "name": "analysis",
+              "best_n": 2,
+              "components": [
+                "attributes.intelligence",
+                "operational_skills.investigation",
+                "attributes.awareness",
+                "chakra_dimensions.sensing"
+              ]
+            },
+            {
+              "name": "judgment_command",
+              "best_n": 2,
+              "components": [
+                "operational_skills.tactics",
+                "attributes.composure",
+                "operational_skills.team_coordination",
+                "operational_skills.leadership"
+              ]
+            },
+            {
+              "name": "practical_execution",
+              "best_n": 2,
+              "components": [
+                "martial_skills.movement",
+                "attributes.coordination",
+                "chakra_dimensions.control",
+                "chakra_dimensions.output",
+                "operational_skills.infiltration",
+                "martial_skills.unarmed",
+                "martial_skills.sword",
+                "martial_skills.thrown_tools"
+              ]
+            },
+            {
+              "name": "resilience",
+              "best_n": 2,
+              "components": [
+                "attributes.endurance",
+                "attributes.toughness",
+                "attributes.presence",
+                "chakra_dimensions.casting_stability",
+                "attributes.composure"
+              ]
+            }
+          ]
+        },
+        "field_evaluation": {
+          "scoring_model": "competency_lanes_v2",
+          "threshold": 60,
+          "metric_cap": 120,
+          "best_lane_count": 3,
+          "minimum_lane_score": 45,
+          "minimum_lanes_above": 3,
+          "lanes": [
+            {
+              "name": "mobility_survival",
+              "best_n": 2,
+              "components": [
+                "martial_skills.movement",
+                "operational_skills.survival",
+                "attributes.endurance",
+                "attributes.awareness"
+              ]
+            },
+            {
+              "name": "team_tactics",
+              "best_n": 2,
+              "components": [
+                "operational_skills.tactics",
+                "operational_skills.team_coordination",
+                "operational_skills.leadership",
+                "attributes.composure"
+              ]
+            },
+            {
+              "name": "objective_execution",
+              "best_n": 2,
+              "components": [
+                "martial_skills.stealth",
+                "operational_skills.infiltration",
+                "operational_skills.tracking",
+                "operational_skills.traps",
+                "martial_skills.unarmed",
+                "martial_skills.sword",
+                "martial_skills.thrown_tools",
+                "chakra_dimensions.output"
+              ]
+            },
+            {
+              "name": "adaptability",
+              "best_n": 2,
+              "components": [
+                "attributes.awareness",
+                "attributes.coordination",
+                "chakra_dimensions.control",
+                "chakra_dimensions.casting_stability",
+                "attributes.intelligence"
+              ]
+            }
+          ]
+        }
+      },
+      "finals_format": {
+        "model": "single_elimination",
+        "venue_ref": "place.konoha.academy.assignment.hall",
+        "bracket_public": true,
+        "bracket_order": "cycle_seeded_stable",
+        "same_team_bouts": "forbidden",
+        "range_band": 1,
+        "max_exchange_ticks": 5,
+        "lethal_force": false,
+        "referee_stoppage": true,
+        "persistent_injury_from_bout_kernel": false,
+        "judge_tiebreak": {
+          "components": [
+            {
+              "path": "attributes.composure",
+              "weight": 2
+            },
+            {
+              "path": "attributes.awareness",
+              "weight": 2
+            },
+            {
+              "path": "operational_skills.tactics",
+              "weight": 2
+            },
+            {
+              "path": "operational_skills.team_coordination",
+              "weight": 1
+            },
+            {
+              "path": "chakra_dimensions.control",
+              "weight": 1
+            },
+            {
+              "path": "attributes.coordination",
+              "weight": 1
+            }
+          ]
+        }
+      },
+      "rules": [
+        "The Konoha world-registry institution scheduler opens a configured hosted cycle; all later phase boundaries are derived from the persisted opening time and these authored phase offsets and are settled only through canonical campaign time transactions.",
+        "A hosted cycle may open only when the scheduled host Academy review occurs in a configured start month.",
+        "The host village administers the examination calendar, venues, examiners, security, public results, and tournament evidence. It does not acquire authority to promote foreign shinobi; foreign promotion remains a separate home-village career decision.",
+        "This common hosted profile invites every configured shinobi village with a lawful service and Academy authority. Each home village selects its own delegation from existing exact Genin or by exactifying already-represented anonymous Genin from its conserved service population; exactification never creates physical headcount or rank headcount.",
+        "The registration-to-qualification window must fit every configured foreign home route plus the authored arrival buffer. A village is never nominally invited while the published common schedule makes lawful attendance impossible.",
+        "A foreign delegation candidate must be living, ready when required, promotion-eligible, at the configured source rank, affiliated with the delegation home village, and able to reach the host through a lawful route within the common arrival window.",
+        "A later phase may advance only when canonical campaign time reaches its configured offset from the persisted registration opening. Qualification and field evaluation additionally remain blocked until every current stage entrant has durable evaluation evidence. Finals remain blocked until the configured tournament bracket has durably settled.",
+        "Academy graduation clears promotion eligibility. A later institutional eligibility review may restore that existing flag only after the authored minimum source-rank service period while the shinobi is living, ready when required, and rostered on an active standard mission team. Eligibility is not registration and does not imply advancement.",
+        "During registration, an active exact-team leader may register members of that team only when they already hold persisted promotion eligibility, the configured source rank, and an affiliation allowed by the hosted profile.",
+        "Eligible non-player standard mission teams under a configured host registration authority submit their own qualified members through institution autonomy; the player still decides whether to submit a player-led team.",
+        "Configured foreign home-village delegations submit only currently lawful members of their authored candidate pools through home-village autonomy. The host cannot manufacture foreign candidates or change foreign eligibility to fill an exam.",
+        "Legacy living-state labels active and alive are equivalent for promotion-exam eligibility and attendance checks; neither label implies an outcome.",
+        "Qualification and field evaluation use configured deterministic competency lanes from persisted exact candidate state. Each lane samples the candidate's strongest relevant components with a bounded metric cap; qualification averages the configured strongest lanes while still requiring authored breadth, and field evaluation requires broader multi-lane competence. Raw one-stat dominance, model sampling, and ad hoc GM scoring are forbidden.",
+        "Public stage results become player-visible after settlement when result_visibility marks that stage public, including candidate identity, delegation/team, village, score, threshold, and pass/fail outcome.",
+        "If a prior evaluable stage has durable results, only candidates who passed it enter the next evaluable stage. If an already-committed legacy cycle crossed a prior stage before this evaluator existed and therefore has no prior-stage evidence at all, registered candidates remain entrants rather than receiving fabricated retroactive results.",
+        "Finals are a public single-elimination bracket over candidates who passed field evaluation. Pairing is deterministic from the cycle and candidate identities; the caller cannot choose pairings, NPC tactics, or winners.",
+        "Finals never pair two candidates registered from the same exact team or hosted delegation. Cross-team opponents are paired deterministically whenever available; if only same-team contenders remain, they are co-finalists and the tournament portion completes without an intra-team bout.",
+        "Registered foreign delegation members settle lawful travel to the host before on-site stages. Non-player finalists already at the host attend the finals venue through scheduled local institutional movement; guarded current-cycle repair may reconstruct omitted foreign travel only with route evidence.",
+        "Each finals bout is settled through the shared deterministic combat kernel as nonlethal examination combat. A referee-stoppage policy converts combat effects into bout evidence rather than directly applying lasting injury from this exam-specific kernel. If the kernel produces no sole victorious side, persisted Chunin-relevant judgment dimensions break the tie deterministically.",
+        "A finals victory establishes only tournament evidence. Winning the bracket never guarantees Chunin promotion, and losing a bout never by itself forbids promotion. Promotion review remains a separate institutional judgment over the candidate's demonstrated readiness and command qualities.",
+        "An evaluation row establishes only Academy stage evidence and pass/fail for that stage. It never establishes injury, promotion, rank accounting, or a future-canon outcome.",
+        "Registration records institutional entry into the current cycle only; it never establishes an examination result, promotion, injury, or future-canon outcome.",
+        "Opening or advancing a cycle never invents an exact candidate, exam result, injury, promotion, or future-canon outcome.",
+        "Exact promotion still requires persisted promotion eligibility and a separately authorized home-village promotion decision, and may advance only one rank.",
+        "Every exact rank change synchronizes conserved aggregate village rank counts."
+      ]
+    }
+  }
+}

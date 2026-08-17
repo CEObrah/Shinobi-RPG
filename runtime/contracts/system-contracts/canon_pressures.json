@@ -1,0 +1,55 @@
+{
+  "schema": "system-contract",
+  "system_id": "canon_pressures",
+  "authority": false,
+  "authority_paths": [
+    "state/canon/pressures.json",
+    "state/time/causal-scheduler.json",
+    "state/time/causal-scheduler/hosts/",
+    "state/time/causal-scheduler/event-index/",
+    "state/time/causal-scheduler/events/"
+  ],
+  "owner_templates": [
+    "canon-pressure-registry",
+    "causal-scheduler-index",
+    "causal-scheduler-host-shard",
+    "causal-scheduler-event-day",
+    "causal-scheduler-event-year-index"
+  ],
+  "read_first": [
+    "exact front record selected by stable front ID",
+    "the exact hashed causal-scheduler host shard named by that front next_boundary",
+    "only host, actor, resource, opposition, evidence and source owners that are explicitly referenced and causally relevant",
+    "separate player or NPC knowledge authority only when information delivery or recognition is being resolved",
+    "world-event registry and relevant domain reducer only when a material autonomous action is actually instantiated"
+  ],
+  "write_order": [
+    "validate stable front identity, current status, elapsed time, exact boundary equivalence, causal evidence and information limits",
+    "if goal, current step, actors, resources or opposition are absent, preserve null or empty authority and resolve only a supported no-op, block or externally caused transition",
+    "instantiate material autonomous action through the relevant world/domain authority before changing a front to claim its consequence",
+    "write authoritative host, actor, resource, opposition or other domain consequences before changing the front summary",
+    "update front truth, conditional stakes, constraints, current step and status only from persisted causal sources",
+    "append one immutable chronology entry for an actual transition; never rewrite prior entries",
+    "write player or NPC knowledge only through its dedicated authority after lawful delivery; visibility classification alone never grants knowledge",
+    "update the front next_boundary and its one causal scheduler host atomically and without changing world time unless the time_process contract separately authorizes advancement",
+    "rebuild the owner index only after authoritative front persistence succeeds, then run validators and read back both front and boundary"
+  ],
+  "invariants": [
+    "Front IDs are stable semantic IDs; map key and record id are identical.",
+    "The registry owns executable front truth. Indexes, routes, tests, prior pressure containers, chat memory and model recall are not front authority.",
+    "Canon is trajectory, not a forced result. Conditional stakes are not future facts and no reducer may select an outcome without causal resolution.",
+    "Missing goal, current step, actors, resources, opposition, evidence or sources remain null or empty; missing detail never becomes convenient support for action.",
+    "Every active, active_hidden or latent_active front has exactly one active causal scheduler host and an exactly matching settled_through and due_at boundary.",
+    "No front carries a hidden second clock; its next_boundary mirrors the causal scheduler rather than competing with it.",
+    "World truth, visibility, player knowledge and each NPC's knowledge are separate. Repository visibility never creates character knowledge.",
+    "Hidden status may preserve an existing hidden classification but does not identify who knows the front.",
+    "Chronology is append-only, time-ordered and source-backed. Maintenance migration creates no fictional in-world event.",
+    "A front transition cannot directly mutate player intent, grant capability, transfer resources, create relationships or resolve a world event without the relevant domain authority and receipt.",
+    "Front settlement never advances state/meta revision or world time by itself.",
+    "A canon-front read resolves its exact scheduler host by host hash; it never reconstructs the lifetime scheduler merely to inspect one boundary."
+  ],
+  "validators": [
+    "tools/quick_check.py",
+    "tools/test_changed.py"
+  ]
+}

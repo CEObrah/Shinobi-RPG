@@ -1,0 +1,554 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formation-registry.schema.json",
+  "title": "Formation Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "owner_id",
+    "owner_type",
+    "authority",
+    "force_ref",
+    "formations"
+  ],
+  "properties": {
+    "schema": {
+      "const": "formation-registry"
+    },
+    "owner_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner_type": {
+      "const": "formation_registry"
+    },
+    "authority": {
+      "const": true
+    },
+    "force_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "formations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "force_ref",
+          "personnel_total",
+          "authorized_personnel",
+          "components"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "force_ref": {
+            "type": "string"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "personnel_total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "doctrine_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "training_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "cohesion": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "morale": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "readiness": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "location_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "tendencies": {
+            "type": "object"
+          },
+          "command_slot": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "command_personnel": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "count"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "troop_type": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "role": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "rank_distribution": {
+                  "type": "object"
+                },
+                "condition": {
+                  "type": "object"
+                },
+                "tendency_profile_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "capability_state": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "source_capability_ref",
+                    "fundamentals",
+                    "methods",
+                    "equipment_methods",
+                    "equipment_readiness_milli",
+                    "spread",
+                    "experience",
+                    "development_evidence",
+                    "intake_fundamental_bias",
+                    "intake_method_bias"
+                  ],
+                  "properties": {
+                    "source_capability_ref": {
+                      "type": "string"
+                    },
+                    "fundamentals": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 200
+                      }
+                    },
+                    "methods": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 200
+                      }
+                    },
+                    "equipment_methods": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "uniqueItems": true
+                    },
+                    "spread": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 50
+                    },
+                    "experience": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 200
+                    },
+                    "development_evidence": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "combat_exchanges",
+                        "mission_events",
+                        "training_hours",
+                        "last_event_ref"
+                      ],
+                      "properties": {
+                        "combat_exchanges": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "mission_events": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "training_hours": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "last_event_ref": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "intake_fundamental_bias": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "combat",
+                        "awareness",
+                        "endurance",
+                        "chakra_control",
+                        "chakra_output",
+                        "movement",
+                        "tactics",
+                        "team_coordination"
+                      ],
+                      "properties": {
+                        "combat": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "awareness": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "endurance": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "chakra_control": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "chakra_output": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "movement": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "tactics": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "team_coordination": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "intake_method_bias": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "sword",
+                        "unarmed",
+                        "thrown_tools",
+                        "bow",
+                        "polearm",
+                        "heavy_weapon",
+                        "ninjutsu",
+                        "genjutsu",
+                        "traps",
+                        "sensory",
+                        "medical",
+                        "sealing"
+                      ],
+                      "properties": {
+                        "sword": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "unarmed": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "thrown_tools": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "bow": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "polearm": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "heavy_weapon": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "ninjutsu": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "genjutsu": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "traps": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "sensory": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "medical": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "sealing": {
+                          "type": "integer",
+                          "minimum": -100,
+                          "maximum": 100
+                        }
+                      }
+                    },
+                    "equipment_readiness_milli": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "authorized_personnel": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "lifecycle_origin": {
+            "enum": [
+              "standing",
+              "mobilized",
+              "split"
+            ]
+          },
+          "operational_objective": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "target_refs",
+              "lethal_authorized"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "capture",
+                  "escape",
+                  "extract",
+                  "eliminate",
+                  "hold",
+                  "secure",
+                  "delay",
+                  "disengage"
+                ]
+              },
+              "target_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "lethal_authorized": {
+                "type": "boolean"
+              }
+            }
+          },
+          "activity_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "doctrine_familiarity": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 200
+          },
+          "operational_memory": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "engagements_total",
+              "aggregate_personnel_committed_total",
+              "killed_total",
+              "wounded_total",
+              "incapacitated_total",
+              "captured_total",
+              "victories_total",
+              "defeats_total",
+              "contested_total",
+              "replacements_total",
+              "last_combat_ref",
+              "last_result_at",
+              "last_outcome",
+              "last_loss_milli"
+            ],
+            "properties": {
+              "engagements_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "aggregate_personnel_committed_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "killed_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "wounded_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "incapacitated_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "captured_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "victories_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "defeats_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "contested_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "replacements_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "last_combat_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_result_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "last_outcome": {
+                "enum": [
+                  "victory",
+                  "defeat",
+                  "contested",
+                  null
+                ]
+              },
+              "last_loss_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "last_reconstituted_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "inherited_from_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "inherited_experience_milli": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1000
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

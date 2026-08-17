@@ -1,0 +1,108 @@
+{
+  "schema": "file-template",
+  "template_id": "template.information-claim-shard",
+  "target_schema": "information-claim-shard",
+  "source_schema": "game/schemas/information-claim-shard.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg/information"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "bucket",
+    "claims",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "bucket",
+        "claims"
+      ],
+      "canonical_order": [
+        "schema",
+        "bucket",
+        "claims"
+      ]
+    },
+    "/claims": {
+      "mode": "open_map"
+    },
+    "/claims/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "claim_id",
+        "subject_ref",
+        "source_ref",
+        "collected_at",
+        "epistemic_kind",
+        "confidence_milli",
+        "evidence_refs"
+      ],
+      "canonical_order": [
+        "claim_id",
+        "subject_ref",
+        "source_ref",
+        "collected_at",
+        "epistemic_kind",
+        "confidence_milli",
+        "evidence_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/bucket": [
+      "string"
+    ],
+    "/claims": [
+      "object"
+    ],
+    "/claims/*": [
+      "object"
+    ],
+    "/claims/*/claim_id": [
+      "string"
+    ],
+    "/claims/*/subject_ref": [
+      "string"
+    ],
+    "/claims/*/source_ref": [
+      "string"
+    ],
+    "/claims/*/collected_at": [
+      "string"
+    ],
+    "/claims/*/epistemic_kind": [
+      "string"
+    ],
+    "/claims/*/confidence_milli": [
+      "integer"
+    ],
+    "/claims/*/evidence_refs": [
+      "array"
+    ],
+    "/claims/*/evidence_refs/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/claims/*/evidence_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Exact information authority is sharded deterministically; the root routing index is never claim/delivery/knowledge truth.",
+    "World truth is not knowledge."
+  ]
+}

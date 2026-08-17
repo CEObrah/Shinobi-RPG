@@ -1,0 +1,586 @@
+{
+  "schema": "formation-registry-index",
+  "authority": false,
+  "registries": {
+    "force.ame.shinobi": "state/formation/force-ame-shinobi.json",
+    "force.iron.samurai": "state/formation/force-iron-samurai.json",
+    "force.iwa.shinobi": "state/formation/force-iwa-shinobi.json",
+    "force.kiri.shinobi": "state/formation/force-kiri-shinobi.json",
+    "force.konoha.shinobi": "state/formation/force-konoha-shinobi.json",
+    "force.kumo.shinobi": "state/formation/force-kumo-shinobi.json",
+    "force.kusa.shinobi": "state/formation/force-kusa-shinobi.json",
+    "force.civil.earth": "state/formation/force-land-earth-civilian-security.json",
+    "force.civil.fire": "state/formation/force-land-fire-civilian-security.json",
+    "force.civil.lightning": "state/formation/force-land-lightning-civilian-security.json",
+    "force.civil.rain": "state/formation/force-land-rain-civilian-security.json",
+    "force.civil.rice": "state/formation/force-land-rice-civilian-security.json",
+    "force.civil.water": "state/formation/force-land-water-civilian-security.json",
+    "force.civil.wind": "state/formation/force-land-wind-civilian-security.json",
+    "force.oto.network": "state/formation/force-oto-network.json",
+    "force.suna.shinobi": "state/formation/force-suna-shinobi.json",
+    "force.taki.shinobi": "state/formation/force-taki-shinobi.json",
+    "force.yuga.service": "state/formation/force-yuga-service.json"
+  },
+  "formation_routes": {
+    "formation.ame.bridge.2": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.ame.suppression.1": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.ame.watch.1": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.ame.watch.2": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.ame.watch.3": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.ame.watch.4": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.iron.samurai.1": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.2": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.3": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.4": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.5": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.6": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.7": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iron.samurai.8": {
+      "force_ref": "force.iron.samurai",
+      "registry_path": "state/formation/force-iron-samurai.json"
+    },
+    "formation.iwa.demolition.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.demolition.2": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.earth.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.earth.2": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.earth.3": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.earth.4": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.earth.5": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.heavy.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.heavy.2": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.heavy.3": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.logistics.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.recon.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.iwa.route.denial.1": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.kiri.boarding.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.hunter.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.hunter.2": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.hunter.3": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.maritime.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.maritime.2": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.mist.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.mist.2": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.mist.3": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.mist.4": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.security.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.kiri.water.control.1": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.konoha.anbu.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.anbu.2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.barrier.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.barrier.2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.barrier.3": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.border.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.border.2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.border.3": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.border.4": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.capture.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.capture.2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.engineer.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.hokage.guard.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.intelligence.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.rapid.1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.konoha.rapid.2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.kumo.assault.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.assault.2": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.assault.3": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.assault.4": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.assault.5": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.logistics.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.mountain.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.pursuit.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.relay.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.relay.2": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.relay.3": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.strategic.guard.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kumo.taijutsu.1": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.kusa.border.1": {
+      "force_ref": "force.kusa.shinobi",
+      "registry_path": "state/formation/force-kusa-shinobi.json"
+    },
+    "formation.kusa.border.2": {
+      "force_ref": "force.kusa.shinobi",
+      "registry_path": "state/formation/force-kusa-shinobi.json"
+    },
+    "formation.kusa.intelligence.1": {
+      "force_ref": "force.kusa.shinobi",
+      "registry_path": "state/formation/force-kusa-shinobi.json"
+    },
+    "formation.land.earth.palace.guard": {
+      "force_ref": "force.civil.earth",
+      "registry_path": "state/formation/force-land-earth-civilian-security.json"
+    },
+    "formation.land.fire.palace.guard": {
+      "force_ref": "force.civil.fire",
+      "registry_path": "state/formation/force-land-fire-civilian-security.json"
+    },
+    "formation.land.lightning.palace.guard": {
+      "force_ref": "force.civil.lightning",
+      "registry_path": "state/formation/force-land-lightning-civilian-security.json"
+    },
+    "formation.land.rain.palace.guard": {
+      "force_ref": "force.civil.rain",
+      "registry_path": "state/formation/force-land-rain-civilian-security.json"
+    },
+    "formation.land.rice.palace.guard": {
+      "force_ref": "force.civil.rice",
+      "registry_path": "state/formation/force-land-rice-civilian-security.json"
+    },
+    "formation.land.water.palace.guard": {
+      "force_ref": "force.civil.water",
+      "registry_path": "state/formation/force-land-water-civilian-security.json"
+    },
+    "formation.land.wind.palace.guard": {
+      "force_ref": "force.civil.wind",
+      "registry_path": "state/formation/force-land-wind-civilian-security.json"
+    },
+    "formation.mobilized.faction.ame.security.network.44bfa4113a": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.4790881e97": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.5281c41faa": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.7dce509e3d": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.b5040cbac7": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.b537ef055f": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.ame.security.network.d6e67ee2f2": {
+      "force_ref": "force.ame.shinobi",
+      "registry_path": "state/formation/force-ame-shinobi.json"
+    },
+    "formation.mobilized.faction.iwa.3261fcba62": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.mobilized.faction.iwa.c0ed793235": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.mobilized.faction.iwa.d389e5eef4": {
+      "force_ref": "force.iwa.shinobi",
+      "registry_path": "state/formation/force-iwa-shinobi.json"
+    },
+    "formation.mobilized.faction.kiri.07fa798296": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.mobilized.faction.kiri.963d783d6a": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.mobilized.faction.kiri.a256c9e8e3": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.mobilized.faction.kiri.b539de432f": {
+      "force_ref": "force.kiri.shinobi",
+      "registry_path": "state/formation/force-kiri-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.0612c7cb0d": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.3086e93c39": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.427bbba7d1": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.72a4294f3a": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.7e3df6d06c": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.81f05c31e0": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.b7332abcba": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.e4ac1eb391": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.f8b96501e0": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.anbu.fc67bd81a5": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.konoha.e0f6d26ab2": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.kumo.52e2234991": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.mobilized.faction.kumo.72dbc3c936": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.mobilized.faction.kumo.8b73bf7abd": {
+      "force_ref": "force.kumo.shinobi",
+      "registry_path": "state/formation/force-kumo-shinobi.json"
+    },
+    "formation.mobilized.faction.oto.research.cells.2f0775edba": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.mobilized.faction.oto.research.cells.5296b771ae": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.mobilized.faction.oto.research.cells.7b48df1f6b": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.mobilized.faction.oto.research.cells.cc53db778c": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.mobilized.faction.oto.research.cells.e327944d53": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.mobilized.faction.root.399700c53c": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.76435a1e9b": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.802be320bb": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.c5ab59cef9": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.c6dccd0902": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.cc8493372f": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.root.e07797efe9": {
+      "force_ref": "force.konoha.shinobi",
+      "registry_path": "state/formation/force-konoha-shinobi.json"
+    },
+    "formation.mobilized.faction.suna.9e9c638372": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.mobilized.faction.suna.d0a30c84d9": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.mobilized.faction.suna.ea78004f98": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.oto.infiltration.1": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.oto.infiltration.2": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.oto.laboratory.security.1": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.oto.retrieval.2": {
+      "force_ref": "force.oto.network",
+      "registry_path": "state/formation/force-oto-network.json"
+    },
+    "formation.suna.desert.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.desert.2": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.desert.3": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.desert.4": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.intelligence.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.oasis.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.poison.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.puppet.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.puppet.2": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.suna.wind.1": {
+      "force_ref": "force.suna.shinobi",
+      "registry_path": "state/formation/force-suna-shinobi.json"
+    },
+    "formation.taki.ambush.1": {
+      "force_ref": "force.taki.shinobi",
+      "registry_path": "state/formation/force-taki-shinobi.json"
+    },
+    "formation.taki.defense.1": {
+      "force_ref": "force.taki.shinobi",
+      "registry_path": "state/formation/force-taki-shinobi.json"
+    },
+    "formation.taki.reserve.1": {
+      "force_ref": "force.taki.shinobi",
+      "registry_path": "state/formation/force-taki-shinobi.json"
+    },
+    "formation.yuga.civil.guard.1": {
+      "force_ref": "force.yuga.service",
+      "registry_path": "state/formation/force-yuga-service.json"
+    },
+    "formation.yuga.route.patrol.1": {
+      "force_ref": "force.yuga.service",
+      "registry_path": "state/formation/force-yuga-service.json"
+    }
+  }
+}

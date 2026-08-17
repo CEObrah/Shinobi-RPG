@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.067df99d5eb7a0307e814158",
+  "subject_id": "canon_torune_aburame",
+  "event_type": "reputation.signal.mission_success",
+  "occurred_at": "SE-0061-07-09T07:00:00",
+  "source_event_ref": "event.mission_result_report_received.730269ec9df4aa14d3bebdc3",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 84,
+      "base_weight": 60
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 76,
+      "base_weight": 42
+    },
+    "prestige": {
+      "score": 70,
+      "base_weight": 32
+    }
+  },
+  "visibility": {
+    "audience_id": "faction.root",
+    "source_classification": "secret"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.mission_result_report_received.730269ec9df4aa14d3bebdc3"
+  ],
+  "deliveries": {
+    "faction.root": {
+      "profile_ref": "state/reputation/audiences/profile.4617d25ecd1755181139eb25.json",
+      "source_event_ref": "event.mission_result_report_received.730269ec9df4aa14d3bebdc3"
+    }
+  },
+  "status": "applied"
+}

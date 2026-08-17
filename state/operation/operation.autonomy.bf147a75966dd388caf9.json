@@ -1,0 +1,58 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.bf147a75966dd388caf9",
+  "domain": "covert_compartment",
+  "operation_kind": "compartmented_surveillance",
+  "owner_ref": "faction.root",
+  "authority_ref": "canon_danzo",
+  "opened_at": "SE-0061-07-02T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-09T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "person",
+  "subject_ref": "canon_sasuke",
+  "client_ref": null,
+  "place_refs": [
+    "place.konoha"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_anbu_mask",
+    "item_coded_documents"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.8235604450c61882af"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.97c5cfd5f023f583b1440ef9",
+    "event.institutional_operation_completed.eb4cd453c54d41300faaf366",
+    "event.institutional_operation_evidence_generated.8147e9692f1cf5bc10ae8e3b"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.8235604450c61882af.result",
+    "claim.operation.439ac9866758a4bcadfd"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_danzo"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Produce a compartmented sourced surveillance claim and deliver it only through authorized Root channels.",
+  "failure_condition": "The compartmented_surveillance objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": [
+    "claim.mission.autonomy.8235604450c61882af.result",
+    "claim.operation.439ac9866758a4bcadfd",
+    "event.autonomous_mission_succeeded.97c5cfd5f023f583b1440ef9",
+    "event.institutional_operation_completed.eb4cd453c54d41300faaf366",
+    "event.institutional_operation_evidence_generated.8147e9692f1cf5bc10ae8e3b",
+    "security.autonomy.df22e009ed01d74c6c98"
+  ]
+}

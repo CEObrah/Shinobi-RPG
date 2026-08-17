@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shinobi deterministic environment climate catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "weather_block_hours",
+    "basis",
+    "country_profiles",
+    "profiles"
+  ],
+  "properties": {
+    "schema": {
+      "const": "shinobi-environment-climate-catalog"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "weather_block_hours": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "country_profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "temperature_index_by_season",
+          "precipitation_chance_pct",
+          "storm_chance_pct",
+          "fog_chance_pct",
+          "cloud_chance_pct",
+          "wind_bias"
+        ],
+        "properties": {
+          "temperature_index_by_season": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "winter",
+              "spring",
+              "summer",
+              "autumn"
+            ],
+            "properties": {
+              "winter": {
+                "type": "integer",
+                "minimum": -10,
+                "maximum": 10
+              },
+              "spring": {
+                "type": "integer",
+                "minimum": -10,
+                "maximum": 10
+              },
+              "summer": {
+                "type": "integer",
+                "minimum": -10,
+                "maximum": 10
+              },
+              "autumn": {
+                "type": "integer",
+                "minimum": -10,
+                "maximum": 10
+              }
+            }
+          },
+          "precipitation_chance_pct": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "winter",
+              "spring",
+              "summer",
+              "autumn"
+            ],
+            "properties": {
+              "winter": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "spring": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "summer": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "autumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "storm_chance_pct": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "winter",
+              "spring",
+              "summer",
+              "autumn"
+            ],
+            "properties": {
+              "winter": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "spring": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "summer": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "autumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "fog_chance_pct": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "winter",
+              "spring",
+              "summer",
+              "autumn"
+            ],
+            "properties": {
+              "winter": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "spring": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "summer": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "autumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "cloud_chance_pct": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "winter",
+              "spring",
+              "summer",
+              "autumn"
+            ],
+            "properties": {
+              "winter": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "spring": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "summer": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "autumn": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "wind_bias": {
+            "type": "integer",
+            "minimum": -100,
+            "maximum": 100
+          }
+        }
+      }
+    }
+  }
+}

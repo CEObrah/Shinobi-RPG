@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Causal scheduler event year index",
+  "type": "object",
+  "required": [
+    "schema",
+    "year",
+    "authority",
+    "days"
+  ],
+  "properties": {
+    "schema": {
+      "const": "causal-scheduler-event-year-index"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "authority": {
+      "const": false
+    },
+    "days": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "path",
+          "count",
+          "earliest_due",
+          "latest_due"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "earliest_due": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "latest_due": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

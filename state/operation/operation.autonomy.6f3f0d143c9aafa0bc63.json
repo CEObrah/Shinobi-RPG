@@ -1,0 +1,46 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.6f3f0d143c9aafa0bc63",
+  "domain": "criminal_logistics",
+  "operation_kind": "contraband_run",
+  "owner_ref": "faction.fire_smuggling_network",
+  "authority_ref": "support.smuggling.reina_kurosawa",
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "next_due_at": "SE-0061-08-06T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_north_rice",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.western.border"
+  ],
+  "route_refs": [
+    "route_fire_northwest_kusa"
+  ],
+  "opposition_refs": [
+    "faction.fire_border_authority"
+  ],
+  "resource_refs": [
+    "item_coded_documents",
+    "item_compact_field_pouch"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": "no lawful stock-connected route for autonomous shipment",
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.smuggling.reina_kurosawa"
+  ],
+  "progress_milli": 900,
+  "success_condition": "Complete a concealed transport leg without seizure, or persist the seizure/exposure consequence.",
+  "failure_condition": "The contraband_run objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": []
+}

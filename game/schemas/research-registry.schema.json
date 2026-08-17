@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projects"
+  ],
+  "properties": {
+    "schema": {
+      "const": "research-registry"
+    },
+    "projects": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "institution_ref",
+          "lead_ref",
+          "place_ref",
+          "project_kind",
+          "subject_ref",
+          "custody_ref",
+          "stock_ref",
+          "material_costs",
+          "status",
+          "hypothesis",
+          "opened_at",
+          "last_advanced_at",
+          "next_due_at",
+          "progress_milli",
+          "risk_milli",
+          "result_claim_refs",
+          "evidence_refs",
+          "classification",
+          "candidate_kind",
+          "candidate_ref",
+          "prototype_status",
+          "prototype_next_test_at",
+          "prototype_test_refs",
+          "successful_test_count",
+          "failed_test_count",
+          "approved_at"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^research\\."
+          },
+          "institution_ref": {
+            "type": "string"
+          },
+          "lead_ref": {
+            "type": "string"
+          },
+          "place_ref": {
+            "type": "string"
+          },
+          "project_kind": {
+            "type": "string"
+          },
+          "subject_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "custody_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stock_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "material_costs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "status": {
+            "enum": [
+              "active",
+              "blocked",
+              "succeeded",
+              "failed",
+              "cancelled"
+            ]
+          },
+          "hypothesis": {
+            "type": "string"
+          },
+          "opened_at": {
+            "type": "string"
+          },
+          "last_advanced_at": {
+            "type": "string"
+          },
+          "next_due_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "progress_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "risk_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "result_claim_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "classification": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "candidate_kind": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "technique",
+              "manufacturing_recipe"
+            ]
+          },
+          "candidate_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "prototype_status": {
+            "enum": [
+              "none",
+              "built",
+              "testing",
+              "validated",
+              "approved"
+            ]
+          },
+          "prototype_next_test_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "prototype_test_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "successful_test_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "failed_test_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "approved_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

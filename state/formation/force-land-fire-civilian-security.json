@@ -1,0 +1,395 @@
+{
+  "schema": "formation-registry",
+  "owner_id": "formations.force.civil.fire",
+  "owner_type": "formation_registry",
+  "authority": true,
+  "force_ref": "force.civil.fire",
+  "formations": [
+    {
+      "id": "formation.land.fire.palace.guard",
+      "name": "Land of Fire Daimyo Guard, First Palace Element",
+      "force_ref": "force.civil.fire",
+      "role": "ready_not_engaged",
+      "lifecycle_origin": "standing",
+      "personnel_total": 25,
+      "authorized_personnel": 25,
+      "doctrine_ref": "doc.civil.field",
+      "training_ref": "train.civil.field",
+      "cohesion": 69,
+      "morale": 65,
+      "readiness": 80,
+      "location_ref": "place.fire.capital",
+      "activity_summary": "standing_readiness",
+      "command_slot": {
+        "representation": "cold_command_slot",
+        "profile_ref": "command_profile.shinobi_tactical_standard"
+      },
+      "command_personnel": {
+        "representation": "conserved_command_personnel",
+        "count": 2,
+        "includes_commander_slot": true,
+        "groups": [
+          {
+            "count": 2,
+            "rank_distribution": {
+              "guard": 1,
+              "senior_guard": 1
+            },
+            "condition": {
+              "healthy": 1,
+              "light_healing_injury": 1
+            }
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "component.land.fire.palace.guard.assault",
+          "troop_type": "guards",
+          "role": "assault",
+          "count": 16,
+          "rank_distribution": {
+            "commander": 1,
+            "guard": 12,
+            "senior_guard": 2,
+            "support": 1
+          },
+          "condition": {
+            "healthy": 15,
+            "light_healing_injury": 1
+          },
+          "tendency_profile_ref": "formation.tendency.05",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/civil-fire-standing.json",
+            "fundamentals": {
+              "combat": 0,
+              "awareness": 50,
+              "endurance": 56,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 44,
+              "team_coordination": 0
+            },
+            "methods": {
+              "sword": 5,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 5,
+              "heavy_weapon": 0,
+              "ninjutsu": 10,
+              "genjutsu": 8,
+              "traps": 41,
+              "sensory": 50,
+              "medical": 20,
+              "sealing": 8
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "polearm",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 36,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 5,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 5,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.land.fire.palace.guard.ranged_control",
+          "troop_type": "archers",
+          "role": "ranged_control",
+          "count": 3,
+          "rank_distribution": {
+            "guard": 3
+          },
+          "condition": {
+            "healthy": 3
+          },
+          "tendency_profile_ref": "formation.tendency.01",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/civil-fire-standing.json",
+            "fundamentals": {
+              "combat": 0,
+              "awareness": 50,
+              "endurance": 56,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 44,
+              "team_coordination": 0
+            },
+            "methods": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 10,
+              "genjutsu": 8,
+              "traps": 41,
+              "sensory": 50,
+              "medical": 20,
+              "sealing": 8
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "polearm",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 36,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 18,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.land.fire.palace.guard.recon",
+          "troop_type": "scouts",
+          "role": "recon",
+          "count": 2,
+          "rank_distribution": {
+            "guard": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.04",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/civil-fire-standing.json",
+            "fundamentals": {
+              "combat": 0,
+              "awareness": 50,
+              "endurance": 56,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 44,
+              "team_coordination": 0
+            },
+            "methods": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 10,
+              "genjutsu": 8,
+              "traps": 41,
+              "sensory": 62,
+              "medical": 20,
+              "sealing": 8
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "polearm",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 36,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 0,
+              "sensory": 12,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        },
+        {
+          "id": "component.land.fire.palace.guard.support",
+          "troop_type": "logistics_support",
+          "role": "support",
+          "count": 2,
+          "rank_distribution": {
+            "guard": 2
+          },
+          "condition": {
+            "healthy": 2
+          },
+          "tendency_profile_ref": "formation.tendency.03",
+          "capability_state": {
+            "source_capability_ref": "state/manpower-capability/civil-fire-standing.json",
+            "fundamentals": {
+              "combat": 0,
+              "awareness": 50,
+              "endurance": 56,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 44,
+              "team_coordination": 0
+            },
+            "methods": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": 0,
+              "genjutsu": 0,
+              "traps": 41,
+              "sensory": 50,
+              "medical": 20,
+              "sealing": 8
+            },
+            "equipment_methods": [
+              "genjutsu",
+              "medical",
+              "ninjutsu",
+              "polearm",
+              "sealing",
+              "sensory",
+              "sword",
+              "traps",
+              "unarmed"
+            ],
+            "spread": 8,
+            "experience": 36,
+            "development_evidence": {
+              "combat_exchanges": 0,
+              "mission_events": 0,
+              "training_hours": 0,
+              "last_event_ref": null
+            },
+            "intake_fundamental_bias": {
+              "combat": 0,
+              "awareness": 0,
+              "endurance": 0,
+              "chakra_control": 0,
+              "chakra_output": 0,
+              "movement": 0,
+              "tactics": 0,
+              "team_coordination": 0
+            },
+            "intake_method_bias": {
+              "sword": 0,
+              "unarmed": 0,
+              "thrown_tools": 0,
+              "bow": 0,
+              "polearm": 0,
+              "heavy_weapon": 0,
+              "ninjutsu": -10,
+              "genjutsu": -8,
+              "traps": 0,
+              "sensory": 0,
+              "medical": 0,
+              "sealing": 0
+            },
+            "equipment_readiness_milli": 1000
+          }
+        }
+      ],
+      "operational_objective": {
+        "kind": "delay",
+        "target_refs": [],
+        "lethal_authorized": false
+      },
+      "doctrine_familiarity": 74
+    }
+  ]
+}

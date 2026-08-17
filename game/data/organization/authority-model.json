@@ -1,0 +1,36 @@
+{
+  "schema": "organization-authority-model",
+  "authority": "Shinobi RPG organization semantics",
+  "layers": {
+    "person": {
+      "owns": "one exact persistent individual when identity is causally relevant",
+      "owns_manpower": false
+    },
+    "team": {
+      "owns": "one exact named roster and its small-group doctrine, leadership and assignments",
+      "owns_manpower": false
+    },
+    "force": {
+      "owns": "conserved manpower, troop pools, broad readiness and institutional military capacity",
+      "owns_manpower": true
+    },
+    "formation": {
+      "owns": "one explicit operational allocation drawn from a force, including current composition, readiness, cohesion, morale, location and command attachments",
+      "owns_manpower": false
+    },
+    "cohort": {
+      "owns": "compressed state for similar unnamed people until exact identity matters",
+      "owns_manpower": false
+    },
+    "indexes": {
+      "owns": "derived routing only",
+      "owns_manpower": false
+    }
+  },
+  "manpower_invariant": "A force is the single manpower-accounting authority. Explicit formation personnel are a subset of the force deployed partition and can never exceed it. Named people or teams embedded in a formation are included in that formation headcount rather than added on top.",
+  "team_invariant": "A team is an exact social and tactical roster. Large forces do not need one persistent team object for every ordinary squad; unnamed squad structure remains implicit in force composition and doctrine until identity matters.",
+  "formation_invariant": "A formation is the operational mass-combat actor. Split, merge, reinforcement, reconstitution and release conserve personnel and material claims. A formation may be represented at whatever size is useful for the current operation.",
+  "commander_rule": "A commander is a separate exact person. Command authority changes control and coordination, never ownership of aggregate manpower and never the commander's personal physical statistics into soldier averages.",
+  "support_rule": "Support personnel and formations contribute only capabilities justified by their troop pools, doctrine, equipment and current assignment. They remain casualty-bearing and targetable when committed.",
+  "large_war_rule": "A 10,000-person army is represented by a force commitment and a bounded set of operational formations. Important exact teams may be attached as subsets of those formations without double-counting their members. Ordinary squads stay aggregate unless a local causal event requires them to materialize."
+}

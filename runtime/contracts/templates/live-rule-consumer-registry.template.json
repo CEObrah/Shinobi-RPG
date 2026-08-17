@@ -1,0 +1,52 @@
+{
+  "schema": "file-template",
+  "template_id": "template.live-rule-consumer-registry",
+  "target_schema": "live-rule-consumer-registry",
+  "source_schema": "game/schemas/live-rule-consumer-registry.schema.json",
+  "scope": "static_data",
+  "current_directories": ["runtime/contracts"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "purpose", "rules"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "purpose", "rules"],
+      "canonical_order": ["schema", "purpose", "rules"]
+    },
+    "/rules/*": {
+      "mode": "closed",
+      "allowed_keys": ["rule_path", "classification", "consumers", "tests"],
+      "canonical_order": ["rule_path", "classification", "consumers", "tests"]
+    },
+    "/rules/*/consumers/*": {
+      "mode": "closed",
+      "allowed_keys": ["path", "symbol"],
+      "canonical_order": ["path", "symbol"]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/purpose": ["string"],
+    "/rules": ["array"],
+    "/rules/*": ["object"],
+    "/rules/*/rule_path": ["string"],
+    "/rules/*/classification": ["string"],
+    "/rules/*/consumers": ["array"],
+    "/rules/*/consumers/*": ["object"],
+    "/rules/*/consumers/*/path": ["string"],
+    "/rules/*/consumers/*/symbol": ["string"],
+    "/rules/*/tests": ["array"],
+    "/rules/*/tests/*": ["string"]
+  },
+  "array_contracts": {
+    "/rules": {"item_types": ["object"]},
+    "/rules/*/consumers": {"item_types": ["object"]},
+    "/rules/*/tests": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "Every live rule must name at least one production consumer and at least one focused regression.",
+    "Non-live mechanics must be explicitly classified rather than presented as executable current rules.",
+    "The registry is parity metadata only and never becomes gameplay authority."
+  ]
+}

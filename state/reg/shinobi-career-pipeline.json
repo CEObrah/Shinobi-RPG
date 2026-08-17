@@ -1,0 +1,2015 @@
+{
+  "schema": "shinobi-career-pipeline",
+  "version": 1,
+  "last_review_at": "SE-0061-08-01T07:00:00",
+  "villages": {
+    "konoha": {
+      "service_pool_ref": "pool.konoha.shinobi_service",
+      "force_ref": "force.konoha.shinobi",
+      "rank_counts": {
+        "genin": 8886,
+        "chunin": 2700,
+        "jonin": 486
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 396000,
+        "chunin_to_jonin": 807800
+      }
+    },
+    "iwa": {
+      "service_pool_ref": "pool.iwa.shinobi_service",
+      "force_ref": "force.iwa.shinobi",
+      "rank_counts": {
+        "genin": 7773,
+        "chunin": 2361,
+        "jonin": 426
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 710000,
+        "chunin_to_jonin": 206000
+      }
+    },
+    "kiri": {
+      "service_pool_ref": "pool.kiri.shinobi_service",
+      "force_ref": "force.kiri.shinobi",
+      "rank_counts": {
+        "genin": 6293,
+        "chunin": 1911,
+        "jonin": 344
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 816000,
+        "chunin_to_jonin": 404400
+      }
+    },
+    "kumo": {
+      "service_pool_ref": "pool.kumo.shinobi_service",
+      "force_ref": "force.kumo.shinobi",
+      "rank_counts": {
+        "genin": 7401,
+        "chunin": 2248,
+        "jonin": 405
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 480000,
+        "chunin_to_jonin": 5000
+      }
+    },
+    "suna": {
+      "service_pool_ref": "pool.suna.shinobi_service",
+      "force_ref": "force.suna.shinobi",
+      "rank_counts": {
+        "genin": 5189,
+        "chunin": 1576,
+        "jonin": 283
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 173000,
+        "chunin_to_jonin": 805900
+      }
+    },
+    "ame": {
+      "service_pool_ref": "pool.ame.shinobi_service",
+      "force_ref": "force.ame.shinobi",
+      "rank_counts": {
+        "genin": 2592,
+        "chunin": 772,
+        "jonin": 140
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 594000,
+        "chunin_to_jonin": 231000
+      }
+    },
+    "kusa": {
+      "service_pool_ref": "pool.kusa.shinobi_service",
+      "force_ref": "force.kusa.shinobi",
+      "rank_counts": {
+        "genin": 1334,
+        "chunin": 397,
+        "jonin": 72
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 335000,
+        "chunin_to_jonin": 118800
+      }
+    },
+    "taki": {
+      "service_pool_ref": "pool.taki.shinobi_service",
+      "force_ref": "force.taki.shinobi",
+      "rank_counts": {
+        "genin": 1186,
+        "chunin": 353,
+        "jonin": 64
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 187000,
+        "chunin_to_jonin": 105600
+      }
+    },
+    "oto": {
+      "service_pool_ref": "pool.oto.shinobi_service",
+      "force_ref": "force.oto.network",
+      "rank_counts": {
+        "genin": 1112,
+        "chunin": 331,
+        "jonin": 60
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 113000,
+        "chunin_to_jonin": 99000
+      }
+    },
+    "yuga": {
+      "service_pool_ref": "pool.yuga.shinobi_service",
+      "force_ref": "force.yuga.service",
+      "rank_counts": {
+        "genin": 445,
+        "chunin": 132,
+        "jonin": 24
+      },
+      "promotion_credit_ppm": {
+        "genin_to_chunin": 445000,
+        "chunin_to_jonin": 39600
+      }
+    }
+  },
+  "history": [
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-03-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-04-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-05-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 1
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-06-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 0
+        },
+        "kiri": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 48188,
+      "headcount_after": 48188
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "iwa",
+      "graduates": 10,
+      "transfer_id": "autonomy.graduation.7d75c776f1dcf3b46970"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "kiri",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.ee6337299b33c317abb4"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "kumo",
+      "graduates": 9,
+      "transfer_id": "autonomy.graduation.7c1c9228b28bdd45e2c6"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "suna",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.befbc1c54d1f75e8fca3"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-07-01T07:00:00",
+      "village": "konoha",
+      "graduates": 12,
+      "transfer_id": "autonomy.graduation.7544f36dd3721efe6fe5"
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-07-01T07:00:00",
+      "promotions": {
+        "iwa": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 1
+        },
+        "kumo": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "suna": {
+          "genin_to_chunin": 5,
+          "chunin_to_jonin": 1
+        }
+      },
+      "headcount_before": 48235,
+      "headcount_after": 48235
+    },
+    {
+      "kind": "promotion_exam_cycle_phase",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "registration",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "authority_ref": "canon_hiruzen"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.fujin",
+      "instructor_ref": "pc_wei_tang",
+      "candidate_refs": [
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.7509160457",
+      "instructor_ref": "canon_kakashi",
+      "candidate_refs": [
+        "canon_naruto",
+        "canon_sakura",
+        "canon_sasuke"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.a2b320a362",
+      "instructor_ref": "canon_kurenai",
+      "candidate_refs": [
+        "canon_hinata",
+        "canon_kiba",
+        "canon_shino"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.generated.f6a64a78e8",
+      "instructor_ref": "canon_asuma",
+      "candidate_refs": [
+        "canon_choji",
+        "canon_ino",
+        "canon_shikamaru"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "team.konoha.guy",
+      "instructor_ref": "canon_guy",
+      "candidate_refs": [
+        "canon_lee",
+        "canon_neji",
+        "canon_tenten"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.suna.common",
+      "instructor_ref": "faction_suna",
+      "candidate_refs": [
+        "canon_gaara",
+        "canon_kankuro",
+        "canon_temari"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.iwa.common",
+      "instructor_ref": "faction_iwa",
+      "candidate_refs": [
+        "canon_kurotsuchi",
+        "char.exam_iwa_dcedf59e5a96",
+        "char.exam_iwa_ffc1fd1c70e2"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kumo.common",
+      "instructor_ref": "faction_kumo",
+      "candidate_refs": [
+        "canon_karui",
+        "canon_omoi",
+        "char.exam_kumo_ca8b5b56581a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kiri.common",
+      "instructor_ref": "faction_kiri",
+      "candidate_refs": [
+        "char.exam_kiri_68ec021a1b8d",
+        "char.exam_kiri_9e5359732335",
+        "char.exam_kiri_a510aa50142a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.ame.common",
+      "instructor_ref": "faction_ame",
+      "candidate_refs": [
+        "char.exam_ame_5c6ecc20e645",
+        "char.exam_ame_8c98d0ca3b7f",
+        "char.exam_ame_d14773260c03"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.kusa.common",
+      "instructor_ref": "faction_kusa",
+      "candidate_refs": [
+        "char.exam_kusa_10356c960c5d",
+        "char.exam_kusa_74ed3730489c",
+        "char.exam_kusa_83fbc73acdf4"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.taki.common",
+      "instructor_ref": "faction_taki",
+      "candidate_refs": [
+        "canon_fu_takigakure",
+        "char.exam_taki_23abc17d55e4",
+        "char.exam_taki_d313752a1e1a"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.oto.common",
+      "instructor_ref": "faction_oto",
+      "candidate_refs": [
+        "canon_dosu",
+        "canon_kin",
+        "canon_zaku"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "promotion_exam_registration",
+      "at": "SE-0061-07-22T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "team_ref": "promotion_exam_delegation.yuga.common",
+      "instructor_ref": "faction_yuga",
+      "candidate_refs": [
+        "char.exam_yuga_4314964a0166",
+        "char.exam_yuga_7c4714fe5e7c",
+        "char.exam_yuga_9a87c8608b04"
+      ],
+      "canon_status": "campaign_institutional_not_future_canon",
+      "registration_mode": "institution_autonomous_team_submission"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "yuga",
+      "graduates": 1,
+      "transfer_id": "autonomy.graduation.a9ca22f8f4c686775d"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "ame",
+      "graduates": 4,
+      "transfer_id": "autonomy.graduation.42fcff4c3cd9e953b1"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "kusa",
+      "graduates": 3,
+      "transfer_id": "autonomy.graduation.eb49700dad7777aee5"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "oto",
+      "graduates": 3,
+      "transfer_id": "autonomy.graduation.c3b57da1ab47075002"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "taki",
+      "graduates": 3,
+      "transfer_id": "autonomy.graduation.1a9aa39c70eb9135a4"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "konoha",
+      "graduates": 12,
+      "transfer_id": "autonomy.graduation.abe142643ea2bee8b5"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "iwa",
+      "graduates": 10,
+      "transfer_id": "autonomy.graduation.028207d277679af9c2"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "kiri",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.5529fdf1e50ce4e3b5"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "kumo",
+      "graduates": 9,
+      "transfer_id": "autonomy.graduation.cf58fa4cb3d99a3c4a"
+    },
+    {
+      "kind": "academy_genin_intake",
+      "at": "SE-0061-08-01T07:00:00",
+      "village": "suna",
+      "graduates": 8,
+      "transfer_id": "autonomy.graduation.5f4f7189fa32e21dbc"
+    },
+    {
+      "kind": "aggregate_rank_progression",
+      "at": "SE-0061-08-01T07:00:00",
+      "promotions": {
+        "ame": {
+          "genin_to_chunin": 2,
+          "chunin_to_jonin": 0
+        },
+        "iwa": {
+          "genin_to_chunin": 8,
+          "chunin_to_jonin": 1
+        },
+        "kiri": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 1
+        },
+        "konoha": {
+          "genin_to_chunin": 9,
+          "chunin_to_jonin": 0
+        },
+        "kumo": {
+          "genin_to_chunin": 7,
+          "chunin_to_jonin": 1
+        },
+        "kusa": {
+          "genin_to_chunin": 1,
+          "chunin_to_jonin": 0
+        },
+        "oto": {
+          "genin_to_chunin": 1,
+          "chunin_to_jonin": 0
+        },
+        "suna": {
+          "genin_to_chunin": 6,
+          "chunin_to_jonin": 0
+        },
+        "taki": {
+          "genin_to_chunin": 1,
+          "chunin_to_jonin": 0
+        },
+        "yuga": {
+          "genin_to_chunin": 0,
+          "chunin_to_jonin": 0
+        }
+      },
+      "headcount_before": 57296,
+      "headcount_after": 57296
+    },
+    {
+      "kind": "promotion_exam_cycle_phase",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "authority_ref": "canon_hiruzen"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.f6a64a78e8",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_choji",
+      "score": 31,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 20,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 25,
+        "judgment_command": 21,
+        "practical_execution": 25,
+        "resilience": 36
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.oto.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_dosu",
+      "score": 52,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 34,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 54,
+        "judgment_command": 37,
+        "practical_execution": 50,
+        "resilience": 44
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.taki.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_fu_takigakure",
+      "score": 112,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 83,
+        "threshold": 78,
+        "outcome": "pass",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 104,
+        "judgment_command": 82,
+        "practical_execution": 120,
+        "resilience": 103
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.suna.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_gaara",
+      "score": 99,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 55,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 90,
+        "judgment_command": 63,
+        "practical_execution": 108,
+        "resilience": 82
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.a2b320a362",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_hinata",
+      "score": 48,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 20,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 46,
+        "judgment_command": 23,
+        "practical_execution": 50,
+        "resilience": 29
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.f6a64a78e8",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_ino",
+      "score": 35,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 25,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 35,
+        "judgment_command": 25,
+        "practical_execution": 35,
+        "resilience": 35
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.suna.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_kankuro",
+      "score": 65,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 49,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 57,
+        "judgment_command": 59,
+        "practical_execution": 70,
+        "resilience": 43
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kumo.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_karui",
+      "score": 51,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 32,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 44,
+        "judgment_command": 34,
+        "practical_execution": 56,
+        "resilience": 45
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.a2b320a362",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_kiba",
+      "score": 38,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 20,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 32,
+        "judgment_command": 21,
+        "practical_execution": 42,
+        "resilience": 33
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.oto.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_kin",
+      "score": 52,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 38,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 51,
+        "judgment_command": 42,
+        "practical_execution": 53,
+        "resilience": 47
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.iwa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_kurotsuchi",
+      "score": 51,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 38,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 53,
+        "judgment_command": 38,
+        "practical_execution": 49,
+        "resilience": 46
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.guy",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_lee",
+      "score": 102,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 50,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 65,
+        "judgment_command": 68,
+        "practical_execution": 115,
+        "resilience": 89
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.7509160457",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_naruto",
+      "score": 66,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 23,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 29,
+        "judgment_command": 29,
+        "practical_execution": 56,
+        "resilience": 75
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.guy",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_neji",
+      "score": 101,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 67,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 98,
+        "judgment_command": 67,
+        "practical_execution": 103,
+        "resilience": 62
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kumo.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_omoi",
+      "score": 52,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 34,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 47,
+        "judgment_command": 35,
+        "practical_execution": 57,
+        "resilience": 43
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.7509160457",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_sakura",
+      "score": 65,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 32,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 62,
+        "judgment_command": 21,
+        "practical_execution": 67,
+        "resilience": 44
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.7509160457",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_sasuke",
+      "score": 67,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 33,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 69,
+        "judgment_command": 25,
+        "practical_execution": 64,
+        "resilience": 41
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.f6a64a78e8",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_shikamaru",
+      "score": 120,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 151,
+        "threshold": 78,
+        "outcome": "pass",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 119,
+        "judgment_command": 120,
+        "practical_execution": 88,
+        "resilience": 77
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.generated.a2b320a362",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_shino",
+      "score": 40,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 26,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 44,
+        "judgment_command": 28,
+        "practical_execution": 32,
+        "resilience": 35
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.suna.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_temari",
+      "score": 67,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 58,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 60,
+        "judgment_command": 74,
+        "practical_execution": 48,
+        "resilience": 52
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.guy",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_tenten",
+      "score": 70,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 49,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 68,
+        "judgment_command": 46,
+        "practical_execution": 72,
+        "resilience": 43
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.oto.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "canon_zaku",
+      "score": 49,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 36,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 48,
+        "judgment_command": 38,
+        "practical_execution": 50,
+        "resilience": 45
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.ame.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_ame_5c6ecc20e645",
+      "score": 63,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 60,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 63,
+        "judgment_command": 62,
+        "practical_execution": 63,
+        "resilience": 63
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.ame.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_ame_8c98d0ca3b7f",
+      "score": 65,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 61,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 66,
+        "judgment_command": 62,
+        "practical_execution": 63,
+        "resilience": 61
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.ame.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_ame_d14773260c03",
+      "score": 66,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 60,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 66,
+        "judgment_command": 60,
+        "practical_execution": 66,
+        "resilience": 61
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.iwa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_iwa_dcedf59e5a96",
+      "score": 75,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 63,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 63,
+        "judgment_command": 74,
+        "practical_execution": 66,
+        "resilience": 75
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.iwa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_iwa_ffc1fd1c70e2",
+      "score": 72,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 65,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 66,
+        "judgment_command": 71,
+        "practical_execution": 66,
+        "resilience": 72
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kiri.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kiri_68ec021a1b8d",
+      "score": 67,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 61,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 67,
+        "judgment_command": 62,
+        "practical_execution": 67,
+        "resilience": 67
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kiri.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kiri_9e5359732335",
+      "score": 73,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 64,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 74,
+        "judgment_command": 63,
+        "practical_execution": 71,
+        "resilience": 64
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kiri.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kiri_a510aa50142a",
+      "score": 67,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 62,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 66,
+        "judgment_command": 62,
+        "practical_execution": 67,
+        "resilience": 64
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kumo.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kumo_ca8b5b56581a",
+      "score": 71,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 62,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 67,
+        "judgment_command": 67,
+        "practical_execution": 68,
+        "resilience": 73
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kusa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kusa_10356c960c5d",
+      "score": 60,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 52,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 61,
+        "judgment_command": 54,
+        "practical_execution": 58,
+        "resilience": 59
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kusa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kusa_74ed3730489c",
+      "score": 59,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 52,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 60,
+        "judgment_command": 55,
+        "practical_execution": 54,
+        "resilience": 57
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.kusa.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_kusa_83fbc73acdf4",
+      "score": 60,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 52,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 62,
+        "judgment_command": 56,
+        "practical_execution": 56,
+        "resilience": 58
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.taki.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_taki_23abc17d55e4",
+      "score": 59,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 53,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 56,
+        "judgment_command": 54,
+        "practical_execution": 59,
+        "resilience": 58
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.taki.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_taki_d313752a1e1a",
+      "score": 60,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 55,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 60,
+        "judgment_command": 59,
+        "practical_execution": 54,
+        "resilience": 60
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.yuga.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_yuga_4314964a0166",
+      "score": 55,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 48,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 54,
+        "judgment_command": 52,
+        "practical_execution": 50,
+        "resilience": 55
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.yuga.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_yuga_7c4714fe5e7c",
+      "score": 56,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 48,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 57,
+        "judgment_command": 48,
+        "practical_execution": 52,
+        "resilience": 54
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "promotion_exam_delegation.yuga.common",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.exam_yuga_9a87c8608b04",
+      "score": 57,
+      "threshold": 60,
+      "outcome": "fail",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "evaluation_mode": "institution_autonomous_exact_candidate",
+      "legacy_evaluation": {
+        "score": 52,
+        "threshold": 78,
+        "outcome": "fail",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 59,
+        "judgment_command": 54,
+        "practical_execution": 54,
+        "resilience": 55
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.fujin",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.kai",
+      "score": 108,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "legacy_evaluation": {
+        "score": 96,
+        "threshold": 78,
+        "outcome": "pass",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 99,
+        "judgment_command": 104,
+        "practical_execution": 112,
+        "resilience": 85
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.fujin",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.mei_arakawa",
+      "score": 109,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "legacy_evaluation": {
+        "score": 106,
+        "threshold": 78,
+        "outcome": "pass",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 109,
+        "judgment_command": 109,
+        "practical_execution": 109,
+        "resilience": 98
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_evaluation",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "team_ref": "team.konoha.fujin",
+      "evaluator_ref": "canon_hiruzen",
+      "candidate_ref": "char.riku_hyuga",
+      "score": 111,
+      "threshold": 60,
+      "outcome": "pass",
+      "canon_status": "campaign_institutional_not_future_canon",
+      "legacy_evaluation": {
+        "score": 94,
+        "threshold": 78,
+        "outcome": "pass",
+        "scoring_model": "weighted_components_v1",
+        "scoring_version": 1
+      },
+      "scoring_model": "competency_lanes_v2",
+      "scoring_version": 2,
+      "lane_scores": {
+        "analysis": 115,
+        "judgment_command": 103,
+        "practical_execution": 96,
+        "resilience": 106
+      },
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05"
+    },
+    {
+      "kind": "promotion_exam_recalibration",
+      "at": "SE-0061-08-05T07:29:58",
+      "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+      "profile_ref": "promotion_exam.konoha.chunin",
+      "phase": "qualification",
+      "authority_ref": "source_repair",
+      "candidate_refs": [
+        "canon_choji",
+        "canon_dosu",
+        "canon_fu_takigakure",
+        "canon_gaara",
+        "canon_hinata",
+        "canon_ino",
+        "canon_kankuro",
+        "canon_karui",
+        "canon_kiba",
+        "canon_kin",
+        "canon_kurotsuchi",
+        "canon_lee",
+        "canon_naruto",
+        "canon_neji",
+        "canon_omoi",
+        "canon_sakura",
+        "canon_sasuke",
+        "canon_shikamaru",
+        "canon_shino",
+        "canon_temari",
+        "canon_tenten",
+        "canon_zaku",
+        "char.exam_ame_5c6ecc20e645",
+        "char.exam_ame_8c98d0ca3b7f",
+        "char.exam_ame_d14773260c03",
+        "char.exam_iwa_dcedf59e5a96",
+        "char.exam_iwa_ffc1fd1c70e2",
+        "char.exam_kiri_68ec021a1b8d",
+        "char.exam_kiri_9e5359732335",
+        "char.exam_kiri_a510aa50142a",
+        "char.exam_kumo_ca8b5b56581a",
+        "char.exam_kusa_10356c960c5d",
+        "char.exam_kusa_74ed3730489c",
+        "char.exam_kusa_83fbc73acdf4",
+        "char.exam_taki_23abc17d55e4",
+        "char.exam_taki_d313752a1e1a",
+        "char.exam_yuga_4314964a0166",
+        "char.exam_yuga_7c4714fe5e7c",
+        "char.exam_yuga_9a87c8608b04",
+        "char.kai",
+        "char.mei_arakawa",
+        "char.riku_hyuga"
+      ],
+      "action": "Recalibrated already-settled qualification evidence from the defective raw weighted model to competency_lanes_v2 while preserving every legacy score and outcome in-row.",
+      "evaluation_mode": "deterministic_campaign_migration",
+      "recalibration_ref": "migration.promotion_exam_scoring.competency_lanes_v2.0061-08-05",
+      "canon_status": "campaign_institutional_not_future_canon"
+    }
+  ],
+  "provenance": "simulation_estimate rank distribution initialized from current conserved service totals; review cursor starts at the existing person-continuity baseline so the first settlement catches up missed lower-throughput career reviews; rebaseline expands the same conserved Academy/career model to Ame, Kusa, Taki, Oto, and Yuga using their pre-existing force headcounts"
+}

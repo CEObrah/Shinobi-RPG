@@ -1,0 +1,323 @@
+{
+  "schema": "force",
+  "id": "force.yuga.service",
+  "name": "Force Yuga Service",
+  "total": 601,
+  "availability": {
+    "deployed": 50,
+    "ready_24h": 105,
+    "mobilizable_7d": 176,
+    "mobilizable_30d": 121,
+    "training_or_instruction": 61,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 88
+  },
+  "military_identity": [
+    "declining military tradition",
+    "local security emphasis"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.field_ready",
+      "count": 171,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_yuga_service.field_ready",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-yuga-service-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.garrison_security",
+      "count": 121,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_yuga_service.garrison_security",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-yuga-service-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.intelligence_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_yuga_service.intelligence_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-yuga-service-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.medical_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_yuga_service.medical_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-yuga-service-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.logistics_support",
+      "count": 22,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_yuga_service.logistics_support",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-yuga-service-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.training_instruction",
+      "count": 72,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_yuga_service.training_instruction",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-yuga-service-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_yuga_service.reserve_recovery",
+      "count": 121,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_yuga_service.reserve_recovery",
+      "doctrine": "doc.force_yuga_service.field",
+      "training": "train.force_yuga_service.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-yuga-service-reserve-recovery.json"
+    }
+  ],
+  "owner_ref": "faction_yuga",
+  "formation_registry_ref": "state/formation/force-yuga-service.json",
+  "mobilization_anchor_ref": "place.yuga",
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 58,
+        "awareness": 64,
+        "endurance": 60,
+        "chakra_control": 60,
+        "chakra_output": 58,
+        "movement": 63,
+        "tactics": 56,
+        "team_coordination": 58
+      },
+      "methods": {
+        "sword": 46,
+        "unarmed": 56,
+        "thrown_tools": 54,
+        "bow": 43,
+        "polearm": 43,
+        "heavy_weapon": 42,
+        "ninjutsu": 67,
+        "genjutsu": 55,
+        "traps": 51,
+        "sensory": 64,
+        "medical": 48,
+        "sealing": 50
+      },
+      "experience": 44,
+      "count": 105,
+      "spread": 10
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 53,
+        "awareness": 59,
+        "endurance": 55,
+        "chakra_control": 55,
+        "chakra_output": 53,
+        "movement": 58,
+        "tactics": 51,
+        "team_coordination": 53
+      },
+      "methods": {
+        "sword": 41,
+        "unarmed": 51,
+        "thrown_tools": 49,
+        "bow": 38,
+        "polearm": 38,
+        "heavy_weapon": 37,
+        "ninjutsu": 62,
+        "genjutsu": 50,
+        "traps": 46,
+        "sensory": 59,
+        "medical": 43,
+        "sealing": 45
+      },
+      "experience": 43,
+      "count": 176,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 45,
+        "awareness": 51,
+        "endurance": 47,
+        "chakra_control": 47,
+        "chakra_output": 45,
+        "movement": 50,
+        "tactics": 43,
+        "team_coordination": 45
+      },
+      "methods": {
+        "sword": 33,
+        "unarmed": 43,
+        "thrown_tools": 41,
+        "bow": 30,
+        "polearm": 30,
+        "heavy_weapon": 29,
+        "ninjutsu": 54,
+        "genjutsu": 42,
+        "traps": 38,
+        "sensory": 51,
+        "medical": 35,
+        "sealing": 37
+      },
+      "experience": 41,
+      "count": 121,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 48,
+        "awareness": 54,
+        "endurance": 50,
+        "chakra_control": 50,
+        "chakra_output": 48,
+        "movement": 53,
+        "tactics": 46,
+        "team_coordination": 48
+      },
+      "methods": {
+        "sword": 41,
+        "unarmed": 51,
+        "thrown_tools": 49,
+        "bow": 38,
+        "polearm": 38,
+        "heavy_weapon": 37,
+        "ninjutsu": 62,
+        "genjutsu": 50,
+        "traps": 46,
+        "sensory": 59,
+        "medical": 43,
+        "sealing": 45
+      },
+      "experience": 42,
+      "count": 61,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 45,
+        "awareness": 51,
+        "endurance": 47,
+        "chakra_control": 47,
+        "chakra_output": 45,
+        "movement": 50,
+        "tactics": 43,
+        "team_coordination": 45
+      },
+      "methods": {
+        "sword": 33,
+        "unarmed": 43,
+        "thrown_tools": 41,
+        "bow": 30,
+        "polearm": 30,
+        "heavy_weapon": 29,
+        "ninjutsu": 54,
+        "genjutsu": 42,
+        "traps": 38,
+        "sensory": 51,
+        "medical": 35,
+        "sealing": 37
+      },
+      "experience": 41,
+      "count": 0,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 45,
+        "awareness": 51,
+        "endurance": 47,
+        "chakra_control": 47,
+        "chakra_output": 45,
+        "movement": 50,
+        "tactics": 43,
+        "team_coordination": 45
+      },
+      "methods": {
+        "sword": 33,
+        "unarmed": 43,
+        "thrown_tools": 41,
+        "bow": 30,
+        "polearm": 30,
+        "heavy_weapon": 29,
+        "ninjutsu": 54,
+        "genjutsu": 42,
+        "traps": 38,
+        "sensory": 51,
+        "medical": 35,
+        "sealing": 37
+      },
+      "experience": 41,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 53,
+        "awareness": 59,
+        "endurance": 55,
+        "chakra_control": 55,
+        "chakra_output": 53,
+        "movement": 58,
+        "tactics": 51,
+        "team_coordination": 53
+      },
+      "methods": {
+        "sword": 41,
+        "unarmed": 51,
+        "thrown_tools": 49,
+        "bow": 38,
+        "polearm": 38,
+        "heavy_weapon": 37,
+        "ninjutsu": 62,
+        "genjutsu": 50,
+        "traps": 46,
+        "sensory": 59,
+        "medical": 43,
+        "sealing": 45
+      },
+      "experience": 43,
+      "count": 88,
+      "spread": 12
+    }
+  },
+  "population_pool_id": "pool.yuga.shinobi_service"
+}

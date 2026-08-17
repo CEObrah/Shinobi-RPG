@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "combat-zoom-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "pending_by_actor"],
+  "properties": {
+    "schema": {"const": "combat-zoom-registry"},
+    "pending_by_actor": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+  }
+}

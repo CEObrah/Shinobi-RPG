@@ -1,0 +1,103 @@
+{
+  "schema": "file-template",
+  "template_id": "template.shinobi-environment-climate-catalog",
+  "target_schema": "shinobi-environment-climate-catalog",
+  "source_schema": "game/schemas/shinobi-environment-climate-catalog.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/content"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "version",
+    "weather_block_hours",
+    "basis",
+    "country_profiles",
+    "profiles"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "version",
+        "weather_block_hours",
+        "basis",
+        "country_profiles",
+        "profiles"
+      ]
+    },
+    "/country_profiles": {
+      "mode": "open_map"
+    },
+    "/profiles": {
+      "mode": "open_map"
+    },
+    "/profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "temperature_index_by_season",
+        "precipitation_chance_pct",
+        "storm_chance_pct",
+        "fog_chance_pct",
+        "cloud_chance_pct",
+        "wind_bias"
+      ]
+    },
+    "/profiles/*/temperature_index_by_season": {
+      "mode": "closed",
+      "allowed_keys": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ]
+    },
+    "/profiles/*/precipitation_chance_pct": {
+      "mode": "closed",
+      "allowed_keys": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ]
+    },
+    "/profiles/*/storm_chance_pct": {
+      "mode": "closed",
+      "allowed_keys": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ]
+    },
+    "/profiles/*/fog_chance_pct": {
+      "mode": "closed",
+      "allowed_keys": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ]
+    },
+    "/profiles/*/cloud_chance_pct": {
+      "mode": "closed",
+      "allowed_keys": [
+        "winter",
+        "spring",
+        "summer",
+        "autumn"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Climate profiles are static deterministic rules data, never mutable campaign weather state."
+  ]
+}

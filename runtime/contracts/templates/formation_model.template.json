@@ -1,0 +1,223 @@
+{
+  "schema": "file-template",
+  "template_id": "template.formation-model",
+  "target_schema": "formation_model",
+  "source_schema": "game/schemas/formation-model.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/organization"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "id",
+    "authority",
+    "definition",
+    "component_rule",
+    "named_team_rule",
+    "large_war_rule",
+    "split_transaction",
+    "merge_transaction",
+    "vectorized_resolution",
+    "core_invariants",
+    "aggregate_combat_authority",
+    "partition_authority",
+    "command_authority"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "id",
+        "authority",
+        "definition",
+        "component_rule",
+        "named_team_rule",
+        "large_war_rule",
+        "split_transaction",
+        "merge_transaction",
+        "vectorized_resolution",
+        "core_invariants",
+        "aggregate_combat_authority",
+        "partition_authority",
+        "command_authority"
+      ],
+      "canonical_order": [
+        "schema",
+        "id",
+        "authority",
+        "definition",
+        "component_rule",
+        "named_team_rule",
+        "large_war_rule",
+        "split_transaction",
+        "merge_transaction",
+        "vectorized_resolution",
+        "core_invariants",
+        "aggregate_combat_authority",
+        "partition_authority",
+        "command_authority"
+      ]
+    },
+    "/split_transaction": {
+      "mode": "closed",
+      "allowed_keys": [
+        "trigger",
+        "conservation",
+        "default_partition",
+        "selected_partition",
+        "identity"
+      ],
+      "canonical_order": [
+        "trigger",
+        "conservation",
+        "default_partition",
+        "selected_partition",
+        "identity"
+      ]
+    },
+    "/merge_transaction": {
+      "mode": "closed",
+      "allowed_keys": [
+        "preconditions",
+        "result",
+        "forbidden"
+      ],
+      "canonical_order": [
+        "preconditions",
+        "result",
+        "forbidden"
+      ]
+    },
+    "/vectorized_resolution": {
+      "mode": "closed",
+      "allowed_keys": [
+        "purpose",
+        "rule",
+        "settlement",
+        "no_hidden_layer"
+      ],
+      "canonical_order": [
+        "purpose",
+        "rule",
+        "settlement",
+        "no_hidden_layer"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/id": [
+      "string"
+    ],
+    "/authority": [
+      "string"
+    ],
+    "/definition": [
+      "string"
+    ],
+    "/component_rule": [
+      "string"
+    ],
+    "/named_team_rule": [
+      "string"
+    ],
+    "/large_war_rule": [
+      "string"
+    ],
+    "/split_transaction": [
+      "object"
+    ],
+    "/split_transaction/trigger": [
+      "string"
+    ],
+    "/split_transaction/conservation": [
+      "array"
+    ],
+    "/split_transaction/conservation/*": [
+      "string"
+    ],
+    "/split_transaction/default_partition": [
+      "string"
+    ],
+    "/split_transaction/selected_partition": [
+      "string"
+    ],
+    "/split_transaction/identity": [
+      "string"
+    ],
+    "/merge_transaction": [
+      "object"
+    ],
+    "/merge_transaction/preconditions": [
+      "array"
+    ],
+    "/merge_transaction/preconditions/*": [
+      "string"
+    ],
+    "/merge_transaction/result": [
+      "string"
+    ],
+    "/merge_transaction/forbidden": [
+      "string"
+    ],
+    "/vectorized_resolution": [
+      "object"
+    ],
+    "/vectorized_resolution/purpose": [
+      "string"
+    ],
+    "/vectorized_resolution/rule": [
+      "string"
+    ],
+    "/vectorized_resolution/settlement": [
+      "string"
+    ],
+    "/vectorized_resolution/no_hidden_layer": [
+      "string"
+    ],
+    "/core_invariants": [
+      "array"
+    ],
+    "/core_invariants/*": [
+      "string"
+    ],
+    "/aggregate_combat_authority": [
+      "string"
+    ],
+    "/partition_authority": [
+      "string"
+    ],
+    "/command_authority": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/split_transaction/conservation": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/merge_transaction/preconditions": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/core_invariants": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is the current semantic formation model.",
+    "Do not add another persistent military echelon to represent the same people.",
+    "Change structure here only together with the formal schema and consuming runtime."
+  ]
+}

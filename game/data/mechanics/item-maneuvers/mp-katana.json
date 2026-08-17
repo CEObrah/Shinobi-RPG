@@ -1,0 +1,241 @@
+{
+  "schema": "item-maneuvers-shard",
+  "maneuver_packages": {
+    "MP_KATANA": {
+      "weapon_family": "katana",
+      "maneuvers": {
+        "draw": {
+          "name": "Draw",
+          "base_startup_s": 0.32,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.14,
+          "geometry": "ready_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "draw_cut": {
+          "name": "Draw cut",
+          "base_startup_s": 0.58,
+          "contact_window_s": 0.1,
+          "base_recovery_s": 0.52,
+          "geometry": "draw_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "katana sheathed",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "short_cut": {
+          "name": "Short cut",
+          "base_startup_s": 0.48,
+          "contact_window_s": 0.1,
+          "base_recovery_s": 0.34,
+          "geometry": "compact_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "standard_cut": {
+          "name": "Standard cut",
+          "base_startup_s": 0.72,
+          "contact_window_s": 0.14,
+          "base_recovery_s": 0.42,
+          "geometry": "committed_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "committed_cut": {
+          "name": "Committed cut",
+          "base_startup_s": 0.95,
+          "contact_window_s": 0.18,
+          "base_recovery_s": 0.68,
+          "geometry": "wide_committed_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": -1,
+          "impact_modifier": 2,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "thrust": {
+          "name": "Thrust",
+          "base_startup_s": 0.63,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.42,
+          "geometry": "narrow_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 1,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "parry": {
+          "name": "Parry",
+          "base_startup_s": 0.18,
+          "contact_window_s": 0.12,
+          "base_recovery_s": 0.26,
+          "geometry": "defensive_arc",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 2,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "block": {
+          "name": "Block",
+          "base_startup_s": 0.24,
+          "contact_window_s": 0.16,
+          "base_recovery_s": 0.34,
+          "geometry": "defensive_plane",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 3,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "bind": {
+          "name": "Bind",
+          "base_startup_s": 0.22,
+          "contact_window_s": 0.3,
+          "base_recovery_s": 0.28,
+          "geometry": "blade_contact",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "blade contact",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "pommel_strike": {
+          "name": "Pommel strike",
+          "base_startup_s": 0.35,
+          "contact_window_s": 0.08,
+          "base_recovery_s": 0.3,
+          "geometry": "short_line",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 1,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "0.35m",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        },
+        "grip_transition": {
+          "name": "Grip transition",
+          "base_startup_s": 0.2,
+          "contact_window_s": 0,
+          "base_recovery_s": 0.1,
+          "geometry": "self_weapon_transition",
+          "grip": "one_or_two_hands",
+          "free_hand_requirement": "none",
+          "accuracy_modifier": 0,
+          "impact_modifier": 0,
+          "penetration_modifier": 0,
+          "guard_modifier": 0,
+          "reach_rule": "weapon_profile",
+          "interruption_conditions": [
+            "loss_of_required_grip",
+            "contact_or_control before startup completes",
+            "weapon unavailable or broken",
+            "geometry becomes invalid"
+          ],
+          "notes": []
+        }
+      }
+    }
+  }
+}

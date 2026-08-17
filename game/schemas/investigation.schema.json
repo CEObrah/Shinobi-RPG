@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Investigation mechanics and mutable case registry",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["schema", "profiles"],
+      "properties": {
+        "schema": {"const": "investigation-mechanics"},
+        "profiles": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["match", "truth_keys", "locate_scene", "examine_scene"],
+            "properties": {
+              "match": {"type": "object"},
+              "truth_keys": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1}
+              },
+              "locate_scene": {"type": "object"},
+              "examine_scene": {"type": "object"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["schema", "owner_id", "owner_type", "cases"],
+      "properties": {
+        "schema": {"const": "investigation-registry"},
+        "owner_id": {"const": "registry.investigations"},
+        "owner_type": {"const": "investigation_registry"},
+        "cases": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "case_ref",
+              "mission_ref",
+              "objective_id",
+              "profile_ref",
+              "place_ref",
+              "truth_key",
+              "status",
+              "created_at",
+              "updated_at",
+              "locate_work_units",
+              "revealed_observations"
+            ],
+            "properties": {
+              "case_ref": {"type": "string", "pattern": "^investigation\\.case\\.[0-9a-f]{24}$"},
+              "mission_ref": {"type": "string", "pattern": "^mission\\."},
+              "objective_id": {"type": "string", "pattern": "^objective\\."},
+              "profile_ref": {"type": "string", "pattern": "^investigation\\."},
+              "place_ref": {"type": "string", "pattern": "^place\\."},
+              "truth_key": {"type": "string", "minLength": 1},
+              "status": {"enum": ["searching", "located", "examining", "examined"]},
+              "created_at": {"type": "string", "minLength": 1},
+              "updated_at": {"type": "string", "minLength": 1},
+              "located_at": {"type": "string", "minLength": 1},
+              "examined_at": {"type": "string", "minLength": 1},
+              "locate_work_units": {"type": "integer", "minimum": 0},
+              "role_work_units": {
+                "type": "object",
+                "additionalProperties": {"type": "integer", "minimum": 0}
+              },
+              "investigator_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "minLength": 1}
+              },
+              "assignments": {
+                "type": "object",
+                "additionalProperties": {"type": "string", "minLength": 1}
+              },
+              "revealed_observations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "observation_ref",
+                    "stage",
+                    "role",
+                    "text",
+                    "epistemic_kind",
+                    "confidence_milli",
+                    "claim_ref",
+                    "revealed_at"
+                  ],
+                  "properties": {
+                    "observation_ref": {"type": "string", "minLength": 1},
+                    "stage": {"type": ["string", "null"]},
+                    "role": {"type": ["string", "null"]},
+                    "text": {"type": "string", "minLength": 1},
+                    "epistemic_kind": {"enum": ["observation", "inference"]},
+                    "confidence_milli": {"type": "integer", "minimum": 0, "maximum": 1000},
+                    "claim_ref": {"type": "string", "pattern": "^claim\\.investigation\\."},
+                    "revealed_at": {"type": "string", "minLength": 1}
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

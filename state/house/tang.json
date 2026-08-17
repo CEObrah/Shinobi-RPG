@@ -1,0 +1,2143 @@
+{
+  "schema": "house",
+  "id": "house.tang",
+  "name": "House Tang",
+  "home": "place.sword_manor",
+  "member_ids": [
+    "pc_wei_tang",
+    "char.zhu",
+    "char.linh",
+    "char.kai",
+    "ht.m023",
+    "ht.core.001",
+    "ht.core.002",
+    "ht.core.003",
+    "ht.core.004",
+    "ht.core.005",
+    "ht.core.006",
+    "ht.core.007",
+    "ht.core.008",
+    "ht.core.009",
+    "ht.core.010",
+    "ht.core.011",
+    "ht.core.012",
+    "ht.core.013",
+    "ht.core.014",
+    "ht.core.015",
+    "ht.core.016",
+    "ht.core.017",
+    "ht.core.018",
+    "ht.core.019",
+    "ht.core.020",
+    "ht.core.021",
+    "ht.core.022",
+    "ht.core.023",
+    "ht.core.024",
+    "ht.core.025",
+    "ht.core.026",
+    "ht.core.027"
+  ],
+  "rostered_member_count": 28,
+  "roster_core_ref": "roster.house_tang",
+  "ranks": [
+    "junior_disciple",
+    "senior_disciple",
+    "assistant_instructor",
+    "senior_instructor",
+    "sword_master"
+  ],
+  "leadership": {
+    "head_of_house": "char.zhu",
+    "dojo_head": "char.zhu",
+    "manor_director": "char.linh",
+    "first_sword": "pc_wei_tang",
+    "field_commander": "pc_wei_tang"
+  },
+  "field_command_warrant": {
+    "holder": "pc_wei_tang",
+    "granted_by": "char.zhu",
+    "may_organize_available_members": true,
+    "may_deploy_lawful_house_formations": true,
+    "strategic_house_authority_retained_by": "char.zhu"
+  },
+  "public_training_for_money": false,
+  "private_guard_force": false,
+  "support_rank": false,
+  "charter": "charter.tang",
+  "covenant": "covenant.invisible_court",
+  "unassigned_members": [
+    "pc_wei_tang"
+  ],
+  "externally_assigned_members": [
+    "char.kai"
+  ],
+  "reconstitution_policy_ref": "reconstitution.house_tang",
+  "standing_readiness_order": "Available House military formations use five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day per seven-day cycle. Lawful missions, external assignments, injury, medical restrictions, and Zhu's retained strategic/dojo authority supersede. Missed volume is not stacked later. Instructors rotate through active practice. Formation training and doctrine references define content. Kai remains externally committed to Konoha service and is not scheduled through this House formation cycle.",
+  "operating_process": {
+    "id": "proc.house.tang",
+    "status": "active",
+    "goal": "maintain House readiness, training, supplies, facilities, security and lawful obligations",
+    "plan": [
+      "settle actual scheduled training",
+      "maintain equipment and stocks",
+      "review injuries and duties",
+      "process only real admissions/projects/contracts"
+    ],
+    "knowledge": "House internal records",
+    "resources": [
+      "stock.house.tang",
+      "Sword Manor facilities"
+    ],
+    "constraints": [
+      "member health",
+      "instructors",
+      "supplies",
+      "charter",
+      "player-controlled permanent organization"
+    ],
+    "opposition": [],
+    "last_review": "SE-0061-08-01T07:00:00",
+    "next_review": "SE-0061-09-01T07:00:00",
+    "quiet_run_count": 6
+  },
+  "cohort_policy": {
+    "formation_types": [
+      "court_pair",
+      "court_team",
+      "escort_knot",
+      "court_section",
+      "manor_response_group",
+      "court_wing"
+    ],
+    "cohorts_player_or_delegated_authority_only": true
+  },
+  "cohorts": [
+    {
+      "id": "cohort.house_tang.sword_master_cadre",
+      "name": "House Tang Sword Master Cadre",
+      "owner": "house.tang",
+      "members": [
+        "char.zhu",
+        "char.linh"
+      ],
+      "roster_refs": [],
+      "role": "institutional_command_training_elite_response",
+      "doctrine": "Invisible Court Core: Command Doctrine",
+      "training": "House Tang sword-master curriculum",
+      "loadout_standard": "load.ht.base",
+      "reconstitution_policy_ref": "reconstitution.house_tang",
+      "aggregate_count": 0,
+      "cohort_profile": null
+    },
+    {
+      "id": "cohort.house_tang.instructor_cadre",
+      "name": "House Tang Instructor Cadre",
+      "owner": "house.tang",
+      "members": [],
+      "roster_refs": [
+        "ht.core.001",
+        "ht.core.002",
+        "ht.core.003",
+        "ht.core.004",
+        "ht.core.005"
+      ],
+      "role": "instruction_manor_response",
+      "doctrine": "Invisible Court Core: Court Defense",
+      "training": "House Tang instructor standing development",
+      "loadout_standard": "load.ht.base",
+      "reconstitution_policy_ref": "reconstitution.house_tang",
+      "aggregate_count": 5,
+      "cohort_profile": {
+        "representation": "house_cohort",
+        "numeric_distributions": {
+          "appearance": {
+            "count": 5,
+            "mean": 68.4,
+            "sd": 12.043255374,
+            "min": 57.0,
+            "max": 91.0
+          },
+          "aptitude.academic_learning": {
+            "count": 5,
+            "mean": 124.2,
+            "sd": 9.744742172,
+            "min": 110.0,
+            "max": 139.0
+          },
+          "aptitude.chakra_learning": {
+            "count": 5,
+            "mean": 132.8,
+            "sd": 2.856571371,
+            "min": 128.0,
+            "max": 135.0
+          },
+          "aptitude.genjutsu_learning": {
+            "count": 5,
+            "mean": 105.2,
+            "sd": 8.975522269,
+            "min": 90.0,
+            "max": 114.0
+          },
+          "aptitude.medical_learning": {
+            "count": 5,
+            "mean": 116.4,
+            "sd": 20.597087173,
+            "min": 93.0,
+            "max": 140.0
+          },
+          "aptitude.nature_transformation_learning": {
+            "count": 5,
+            "mean": 135.4,
+            "sd": 9.583318841,
+            "min": 124.0,
+            "max": 146.0
+          },
+          "aptitude.physical_learning": {
+            "count": 5,
+            "mean": 142.2,
+            "sd": 12.155657119,
+            "min": 128.0,
+            "max": 160.0
+          },
+          "aptitude.sensory_learning": {
+            "count": 5,
+            "mean": 135.4,
+            "sd": 12.705904139,
+            "min": 112.0,
+            "max": 149.0
+          },
+          "aptitude.social_learning": {
+            "count": 5,
+            "mean": 125.2,
+            "sd": 8.726969692,
+            "min": 116.0,
+            "max": 140.0
+          },
+          "aptitude.tactical_learning": {
+            "count": 5,
+            "mean": 138.2,
+            "sd": 11.651609331,
+            "min": 120.0,
+            "max": 154.0
+          },
+          "aptitude.technical_learning": {
+            "count": 5,
+            "mean": 145.4,
+            "sd": 9.911609355,
+            "min": 135.0,
+            "max": 161.0
+          },
+          "body.adult_height_cm": {
+            "count": 5,
+            "mean": 175.98,
+            "sd": 7.298328576,
+            "min": 168.0,
+            "max": 186.0
+          },
+          "body.current_weight_kg": {
+            "count": 5,
+            "mean": 70.88,
+            "sd": 7.014385219,
+            "min": 62.7,
+            "max": 82.4
+          },
+          "body.growth_end_age": {
+            "count": 5,
+            "mean": 18.0,
+            "sd": 0.0,
+            "min": 18.0,
+            "max": 18.0
+          },
+          "stats.attributes.agility": {
+            "count": 5,
+            "mean": 97.6,
+            "sd": 15.957443404,
+            "min": 82.0,
+            "max": 124.0
+          },
+          "stats.attributes.awareness": {
+            "count": 5,
+            "mean": 102.8,
+            "sd": 12.335315156,
+            "min": 93.0,
+            "max": 126.0
+          },
+          "stats.attributes.composure": {
+            "count": 5,
+            "mean": 100.4,
+            "sd": 5.607138308,
+            "min": 90.0,
+            "max": 105.0
+          },
+          "stats.attributes.coordination": {
+            "count": 5,
+            "mean": 107.4,
+            "sd": 11.943198901,
+            "min": 93.0,
+            "max": 124.0
+          },
+          "stats.attributes.endurance": {
+            "count": 5,
+            "mean": 101.6,
+            "sd": 14.947909553,
+            "min": 83.0,
+            "max": 125.0
+          },
+          "stats.attributes.intelligence": {
+            "count": 5,
+            "mean": 108.6,
+            "sd": 10.983624174,
+            "min": 91.0,
+            "max": 125.0
+          },
+          "stats.attributes.presence": {
+            "count": 5,
+            "mean": 100.2,
+            "sd": 6.823488844,
+            "min": 88.0,
+            "max": 108.0
+          },
+          "stats.attributes.strength": {
+            "count": 5,
+            "mean": 101.2,
+            "sd": 6.013318551,
+            "min": 90.0,
+            "max": 108.0
+          },
+          "stats.attributes.toughness": {
+            "count": 5,
+            "mean": 104.4,
+            "sd": 6.468384652,
+            "min": 99.0,
+            "max": 116.0
+          },
+          "stats.chakra_dimensions.casting_stability": {
+            "count": 5,
+            "mean": 90.6,
+            "sd": 16.365818036,
+            "min": 71.0,
+            "max": 113.0
+          },
+          "stats.chakra_dimensions.control": {
+            "count": 5,
+            "mean": 89.0,
+            "sd": 9.033271833,
+            "min": 76.0,
+            "max": 103.0
+          },
+          "stats.chakra_dimensions.efficiency": {
+            "count": 5,
+            "mean": 88.6,
+            "sd": 3.440930107,
+            "min": 85.0,
+            "max": 95.0
+          },
+          "stats.chakra_dimensions.hand_seal_speed": {
+            "count": 5,
+            "mean": 89.4,
+            "sd": 3.720215048,
+            "min": 86.0,
+            "max": 96.0
+          },
+          "stats.chakra_dimensions.multitasking": {
+            "count": 5,
+            "mean": 81.2,
+            "sd": 9.537295214,
+            "min": 71.0,
+            "max": 98.0
+          },
+          "stats.chakra_dimensions.output": {
+            "count": 5,
+            "mean": 90.6,
+            "sd": 9.645724441,
+            "min": 79.0,
+            "max": 104.0
+          },
+          "stats.chakra_dimensions.sensing": {
+            "count": 5,
+            "mean": 96.0,
+            "sd": 12.915107433,
+            "min": 80.0,
+            "max": 111.0
+          },
+          "stats.chakra_dimensions.suppression": {
+            "count": 5,
+            "mean": 90.6,
+            "sd": 8.731551981,
+            "min": 76.0,
+            "max": 101.0
+          },
+          "stats.domain_proficiencies.barrier": {
+            "count": 5,
+            "mean": 39.8,
+            "sd": 7.756287772,
+            "min": 30.0,
+            "max": 52.0
+          },
+          "stats.domain_proficiencies.genjutsu": {
+            "count": 5,
+            "mean": 48.8,
+            "sd": 9.042123644,
+            "min": 36.0,
+            "max": 61.0
+          },
+          "stats.domain_proficiencies.medical": {
+            "count": 5,
+            "mean": 42.0,
+            "sd": 6.387487769,
+            "min": 33.0,
+            "max": 53.0
+          },
+          "stats.domain_proficiencies.sealing": {
+            "count": 5,
+            "mean": 49.6,
+            "sd": 3.826225294,
+            "min": 46.0,
+            "max": 57.0
+          },
+          "stats.domain_proficiencies.wind": {
+            "count": 5,
+            "mean": 88.0,
+            "sd": 11.78134118,
+            "min": 74.0,
+            "max": 104.0
+          },
+          "stats.martial_skills.bow": {
+            "count": 5,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.grappling": {
+            "count": 5,
+            "mean": 72.0,
+            "sd": 12.585706178,
+            "min": 58.0,
+            "max": 90.0
+          },
+          "stats.martial_skills.heavy_weapon": {
+            "count": 5,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.movement": {
+            "count": 5,
+            "mean": 107.0,
+            "sd": 8.786353055,
+            "min": 98.0,
+            "max": 120.0
+          },
+          "stats.martial_skills.polearm": {
+            "count": 5,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.staff": {
+            "count": 5,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.stealth": {
+            "count": 5,
+            "mean": 77.8,
+            "sd": 12.155657119,
+            "min": 66.0,
+            "max": 95.0
+          },
+          "stats.martial_skills.sword": {
+            "count": 5,
+            "mean": 135.2,
+            "sd": 8.818163074,
+            "min": 128.0,
+            "max": 146.0
+          },
+          "stats.martial_skills.thrown_tools": {
+            "count": 5,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.unarmed": {
+            "count": 5,
+            "mean": 72.6,
+            "sd": 2.416609195,
+            "min": 68.0,
+            "max": 75.0
+          },
+          "stats.operational_skills.infiltration": {
+            "count": 5,
+            "mean": 59.4,
+            "sd": 13.52922762,
+            "min": 47.0,
+            "max": 82.0
+          },
+          "stats.operational_skills.investigation": {
+            "count": 5,
+            "mean": 60.6,
+            "sd": 15.666524822,
+            "min": 44.0,
+            "max": 82.0
+          },
+          "stats.operational_skills.leadership": {
+            "count": 5,
+            "mean": 98.2,
+            "sd": 9.064215355,
+            "min": 88.0,
+            "max": 113.0
+          },
+          "stats.operational_skills.medicine": {
+            "count": 5,
+            "mean": 54.8,
+            "sd": 5.306599665,
+            "min": 46.0,
+            "max": 62.0
+          },
+          "stats.operational_skills.survival": {
+            "count": 5,
+            "mean": 62.0,
+            "sd": 5.899152482,
+            "min": 53.0,
+            "max": 69.0
+          },
+          "stats.operational_skills.tactics": {
+            "count": 5,
+            "mean": 94.8,
+            "sd": 5.114684741,
+            "min": 90.0,
+            "max": 101.0
+          },
+          "stats.operational_skills.team_coordination": {
+            "count": 5,
+            "mean": 109.6,
+            "sd": 7.578918129,
+            "min": 101.0,
+            "max": 121.0
+          },
+          "stats.operational_skills.tracking": {
+            "count": 5,
+            "mean": 66.6,
+            "sd": 10.365326816,
+            "min": 52.0,
+            "max": 83.0
+          },
+          "stats.operational_skills.traps": {
+            "count": 5,
+            "mean": 59.6,
+            "sd": 14.416657033,
+            "min": 47.0,
+            "max": 83.0
+          },
+          "stats.resources.chakra.capacity": {
+            "count": 5,
+            "mean": 117.0,
+            "sd": 9.797958971,
+            "min": 109.0,
+            "max": 129.0
+          },
+          "stats.resources.chakra.current": {
+            "count": 5,
+            "mean": 117.0,
+            "sd": 9.797958971,
+            "min": 109.0,
+            "max": 129.0
+          },
+          "stats.resources.fatigue.capacity": {
+            "count": 5,
+            "mean": 100.0,
+            "sd": 0.0,
+            "min": 100.0,
+            "max": 100.0
+          },
+          "stats.resources.fatigue.current": {
+            "count": 5,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.health.capacity": {
+            "count": 5,
+            "mean": 107.2,
+            "sd": 8.818163074,
+            "min": 100.0,
+            "max": 118.0
+          },
+          "stats.resources.health.current": {
+            "count": 5,
+            "mean": 107.2,
+            "sd": 8.818163074,
+            "min": 100.0,
+            "max": 118.0
+          },
+          "stats.resources.strain.current": {
+            "count": 5,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.strain.safe_capacity": {
+            "count": 5,
+            "mean": 81.6,
+            "sd": 6.85857128,
+            "min": 76.0,
+            "max": 90.0
+          }
+        },
+        "category_counts": {
+          "assignment:manor_rotation": 5,
+          "duty:archive": 1,
+          "duty:armory": 1,
+          "duty:formation_training": 1,
+          "duty:medicine": 1,
+          "duty:scheduling": 1,
+          "frame:athletic": 2,
+          "frame:average": 1,
+          "frame:broad": 1,
+          "frame:lean": 1,
+          "health:healthy": 5,
+          "origin:Konoha / Land of Fire": 5,
+          "package:PKG_HT_SENIOR": 5,
+          "qualification:real_katana_use": 5,
+          "rank:assistant_instructor": 3,
+          "rank:senior_instructor": 2
+        },
+        "development": {
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "credits": {},
+          "model": "derived_from_persistent_individuals"
+        },
+        "provenance": [
+          "rostered_person_capability_host_preserves_headcount_and_distribution",
+          "identity_cues_do_not_modify_capability_knowledge_or_outcomes",
+          "house_training_settled:SE-0061-02-24T18:36:42->SE-0061-03-05T07:00:00:active_hours=34.000",
+          "house_training_settled:SE-0061-03-05T07:00:00->SE-0061-04-01T07:00:00:active_hours=136.000",
+          "house_training_settled:SE-0061-04-01T07:00:00->SE-0061-05-01T07:00:00:active_hours=142.000",
+          "house_training_settled:SE-0061-05-01T07:00:00->SE-0061-06-01T07:00:00:active_hours=154.000",
+          "cohort_summary_derived_from_persistent_individual_profiles",
+          "house_training_settled:SE-0061-06-01T07:00:00->SE-0061-07-01T07:00:00:active_hours=146.000",
+          "house_training_settled:SE-0061-07-01T07:00:00->SE-0061-08-01T07:00:00:active_hours=148.000"
+        ]
+      }
+    },
+    {
+      "id": "cohort.house_tang.senior_disciple_company",
+      "name": "House Tang Senior Disciple Company",
+      "owner": "house.tang",
+      "members": [],
+      "roster_refs": [
+        "ht.core.006",
+        "ht.core.007",
+        "ht.core.008",
+        "ht.core.009",
+        "ht.core.010",
+        "ht.core.011",
+        "ht.core.012",
+        "ht.core.013",
+        "ht.core.014"
+      ],
+      "role": "field_ready_house_formation",
+      "doctrine": "Invisible Court Core: Court Interdiction",
+      "training": "House Tang senior-disciple curriculum",
+      "loadout_standard": "load.ht.base",
+      "reconstitution_policy_ref": "reconstitution.house_tang",
+      "aggregate_count": 9,
+      "cohort_profile": {
+        "representation": "house_cohort",
+        "numeric_distributions": {
+          "appearance": {
+            "count": 9,
+            "mean": 74.777777778,
+            "sd": 8.189122566,
+            "min": 57.0,
+            "max": 90.0
+          },
+          "aptitude.academic_learning": {
+            "count": 9,
+            "mean": 128.666666667,
+            "sd": 11.623730516,
+            "min": 114.0,
+            "max": 146.0
+          },
+          "aptitude.chakra_learning": {
+            "count": 9,
+            "mean": 144.222222222,
+            "sd": 10.314798191,
+            "min": 128.0,
+            "max": 162.0
+          },
+          "aptitude.genjutsu_learning": {
+            "count": 9,
+            "mean": 114.111111111,
+            "sd": 16.468450945,
+            "min": 92.0,
+            "max": 144.0
+          },
+          "aptitude.medical_learning": {
+            "count": 9,
+            "mean": 115.555555556,
+            "sd": 14.659931113,
+            "min": 101.0,
+            "max": 145.0
+          },
+          "aptitude.nature_transformation_learning": {
+            "count": 9,
+            "mean": 139.555555556,
+            "sd": 4.901498889,
+            "min": 132.0,
+            "max": 149.0
+          },
+          "aptitude.physical_learning": {
+            "count": 9,
+            "mean": 140.0,
+            "sd": 10.456258094,
+            "min": 128.0,
+            "max": 154.0
+          },
+          "aptitude.sensory_learning": {
+            "count": 9,
+            "mean": 135.444444444,
+            "sd": 9.007541422,
+            "min": 124.0,
+            "max": 154.0
+          },
+          "aptitude.social_learning": {
+            "count": 9,
+            "mean": 118.0,
+            "sd": 15.832456116,
+            "min": 97.0,
+            "max": 145.0
+          },
+          "aptitude.tactical_learning": {
+            "count": 9,
+            "mean": 139.777777778,
+            "sd": 9.952975856,
+            "min": 122.0,
+            "max": 155.0
+          },
+          "aptitude.technical_learning": {
+            "count": 9,
+            "mean": 144.444444444,
+            "sd": 11.412576991,
+            "min": 130.0,
+            "max": 165.0
+          },
+          "body.adult_height_cm": {
+            "count": 9,
+            "mean": 171.666666667,
+            "sd": 9.779797771,
+            "min": 161.0,
+            "max": 186.0
+          },
+          "body.current_weight_kg": {
+            "count": 9,
+            "mean": 65.544444444,
+            "sd": 7.36087421,
+            "min": 55.0,
+            "max": 76.5
+          },
+          "body.growth_end_age": {
+            "count": 9,
+            "mean": 18.0,
+            "sd": 0.0,
+            "min": 18.0,
+            "max": 18.0
+          },
+          "stats.attributes.agility": {
+            "count": 9,
+            "mean": 75.666666667,
+            "sd": 4.642796092,
+            "min": 66.0,
+            "max": 84.0
+          },
+          "stats.attributes.awareness": {
+            "count": 9,
+            "mean": 85.555555556,
+            "sd": 4.16629628,
+            "min": 79.0,
+            "max": 93.0
+          },
+          "stats.attributes.composure": {
+            "count": 9,
+            "mean": 73.111111111,
+            "sd": 7.324910988,
+            "min": 65.0,
+            "max": 87.0
+          },
+          "stats.attributes.coordination": {
+            "count": 9,
+            "mean": 85.111111111,
+            "sd": 3.725123248,
+            "min": 80.0,
+            "max": 91.0
+          },
+          "stats.attributes.endurance": {
+            "count": 9,
+            "mean": 76.777777778,
+            "sd": 7.627112134,
+            "min": 64.0,
+            "max": 87.0
+          },
+          "stats.attributes.intelligence": {
+            "count": 9,
+            "mean": 76.555555556,
+            "sd": 9.334655991,
+            "min": 61.0,
+            "max": 87.0
+          },
+          "stats.attributes.presence": {
+            "count": 9,
+            "mean": 75.111111111,
+            "sd": 4.771313456,
+            "min": 66.0,
+            "max": 81.0
+          },
+          "stats.attributes.strength": {
+            "count": 9,
+            "mean": 79.888888889,
+            "sd": 6.454015881,
+            "min": 69.0,
+            "max": 88.0
+          },
+          "stats.attributes.toughness": {
+            "count": 9,
+            "mean": 73.333333333,
+            "sd": 7.717224602,
+            "min": 61.0,
+            "max": 85.0
+          },
+          "stats.chakra_dimensions.casting_stability": {
+            "count": 9,
+            "mean": 65.333333333,
+            "sd": 7.930251502,
+            "min": 55.0,
+            "max": 78.0
+          },
+          "stats.chakra_dimensions.control": {
+            "count": 9,
+            "mean": 65.444444444,
+            "sd": 12.544242691,
+            "min": 52.0,
+            "max": 81.0
+          },
+          "stats.chakra_dimensions.efficiency": {
+            "count": 9,
+            "mean": 67.111111111,
+            "sd": 6.573421981,
+            "min": 57.0,
+            "max": 79.0
+          },
+          "stats.chakra_dimensions.hand_seal_speed": {
+            "count": 9,
+            "mean": 65.222222222,
+            "sd": 8.456132262,
+            "min": 51.0,
+            "max": 79.0
+          },
+          "stats.chakra_dimensions.multitasking": {
+            "count": 9,
+            "mean": 70.888888889,
+            "sd": 9.206814438,
+            "min": 52.0,
+            "max": 80.0
+          },
+          "stats.chakra_dimensions.output": {
+            "count": 9,
+            "mean": 62.111111111,
+            "sd": 5.58658004,
+            "min": 55.0,
+            "max": 74.0
+          },
+          "stats.chakra_dimensions.sensing": {
+            "count": 9,
+            "mean": 68.666666667,
+            "sd": 7.102425251,
+            "min": 56.0,
+            "max": 78.0
+          },
+          "stats.chakra_dimensions.suppression": {
+            "count": 9,
+            "mean": 64.444444444,
+            "sd": 7.875575621,
+            "min": 52.0,
+            "max": 78.0
+          },
+          "stats.domain_proficiencies.barrier": {
+            "count": 9,
+            "mean": 31.0,
+            "sd": 5.31245915,
+            "min": 21.0,
+            "max": 38.0
+          },
+          "stats.domain_proficiencies.genjutsu": {
+            "count": 9,
+            "mean": 34.888888889,
+            "sd": 4.747969026,
+            "min": 26.0,
+            "max": 45.0
+          },
+          "stats.domain_proficiencies.medical": {
+            "count": 9,
+            "mean": 30.888888889,
+            "sd": 6.505458297,
+            "min": 21.0,
+            "max": 41.0
+          },
+          "stats.domain_proficiencies.sealing": {
+            "count": 9,
+            "mean": 31.666666667,
+            "sd": 6.18241233,
+            "min": 22.0,
+            "max": 40.0
+          },
+          "stats.domain_proficiencies.wind": {
+            "count": 9,
+            "mean": 90.444444444,
+            "sd": 5.459163776,
+            "min": 85.0,
+            "max": 101.0
+          },
+          "stats.martial_skills.bow": {
+            "count": 9,
+            "mean": 39.888888889,
+            "sd": 0.314269681,
+            "min": 39.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.grappling": {
+            "count": 9,
+            "mean": 55.888888889,
+            "sd": 11.85509215,
+            "min": 40.0,
+            "max": 69.0
+          },
+          "stats.martial_skills.heavy_weapon": {
+            "count": 9,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.movement": {
+            "count": 9,
+            "mean": 104.0,
+            "sd": 3.527668415,
+            "min": 101.0,
+            "max": 111.0
+          },
+          "stats.martial_skills.polearm": {
+            "count": 9,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.staff": {
+            "count": 9,
+            "mean": 39.888888889,
+            "sd": 0.314269681,
+            "min": 39.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.stealth": {
+            "count": 9,
+            "mean": 57.111111111,
+            "sd": 6.573421981,
+            "min": 47.0,
+            "max": 69.0
+          },
+          "stats.martial_skills.sword": {
+            "count": 9,
+            "mean": 121.555555556,
+            "sd": 0.496903995,
+            "min": 121.0,
+            "max": 122.0
+          },
+          "stats.martial_skills.thrown_tools": {
+            "count": 9,
+            "mean": 40.0,
+            "sd": 0.0,
+            "min": 40.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.unarmed": {
+            "count": 9,
+            "mean": 50.777777778,
+            "sd": 6.745826327,
+            "min": 42.0,
+            "max": 61.0
+          },
+          "stats.operational_skills.infiltration": {
+            "count": 9,
+            "mean": 46.0,
+            "sd": 9.626352719,
+            "min": 32.0,
+            "max": 60.0
+          },
+          "stats.operational_skills.investigation": {
+            "count": 9,
+            "mean": 46.333333333,
+            "sd": 9.797958971,
+            "min": 33.0,
+            "max": 61.0
+          },
+          "stats.operational_skills.leadership": {
+            "count": 9,
+            "mean": 69.777777778,
+            "sd": 7.114582486,
+            "min": 59.0,
+            "max": 77.0
+          },
+          "stats.operational_skills.medicine": {
+            "count": 9,
+            "mean": 45.333333333,
+            "sd": 8.137703744,
+            "min": 35.0,
+            "max": 59.0
+          },
+          "stats.operational_skills.survival": {
+            "count": 9,
+            "mean": 46.888888889,
+            "sd": 6.935327349,
+            "min": 35.0,
+            "max": 59.0
+          },
+          "stats.operational_skills.tactics": {
+            "count": 9,
+            "mean": 95.555555556,
+            "sd": 7.365250409,
+            "min": 84.0,
+            "max": 104.0
+          },
+          "stats.operational_skills.team_coordination": {
+            "count": 9,
+            "mean": 102.333333333,
+            "sd": 1.632993162,
+            "min": 100.0,
+            "max": 106.0
+          },
+          "stats.operational_skills.tracking": {
+            "count": 9,
+            "mean": 49.666666667,
+            "sd": 8.589399151,
+            "min": 37.0,
+            "max": 59.0
+          },
+          "stats.operational_skills.traps": {
+            "count": 9,
+            "mean": 45.555555556,
+            "sd": 8.084431006,
+            "min": 32.0,
+            "max": 58.0
+          },
+          "stats.resources.chakra.capacity": {
+            "count": 9,
+            "mean": 86.0,
+            "sd": 0.0,
+            "min": 86.0,
+            "max": 86.0
+          },
+          "stats.resources.chakra.current": {
+            "count": 9,
+            "mean": 86.0,
+            "sd": 0.0,
+            "min": 86.0,
+            "max": 86.0
+          },
+          "stats.resources.fatigue.capacity": {
+            "count": 9,
+            "mean": 100.0,
+            "sd": 0.0,
+            "min": 100.0,
+            "max": 100.0
+          },
+          "stats.resources.fatigue.current": {
+            "count": 9,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.health.capacity": {
+            "count": 9,
+            "mean": 79.0,
+            "sd": 0.0,
+            "min": 79.0,
+            "max": 79.0
+          },
+          "stats.resources.health.current": {
+            "count": 9,
+            "mean": 79.0,
+            "sd": 0.0,
+            "min": 79.0,
+            "max": 79.0
+          },
+          "stats.resources.strain.current": {
+            "count": 9,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.strain.safe_capacity": {
+            "count": 9,
+            "mean": 60.0,
+            "sd": 0.0,
+            "min": 60.0,
+            "max": 60.0
+          }
+        },
+        "category_counts": {
+          "assignment:manor_rotation": 9,
+          "duty:barrier_watch": 1,
+          "duty:cooking": 1,
+          "duty:dungeon": 1,
+          "duty:facilities": 1,
+          "duty:finance": 1,
+          "duty:gate_watch": 1,
+          "duty:grounds": 1,
+          "duty:provisions": 1,
+          "duty:records": 1,
+          "frame:athletic": 2,
+          "frame:broad": 3,
+          "frame:lean": 3,
+          "frame:slight": 1,
+          "health:healthy": 9,
+          "origin:Konoha / Land of Fire": 9,
+          "package:PKG_HT_SENIOR": 9,
+          "qualification:real_katana_use": 9,
+          "rank:senior_disciple": 9
+        },
+        "development": {
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "credits": {},
+          "model": "derived_from_persistent_individuals"
+        },
+        "provenance": [
+          "rostered_person_capability_host_preserves_headcount_and_distribution",
+          "identity_cues_do_not_modify_capability_knowledge_or_outcomes",
+          "house_training_settled:SE-0061-02-06T21:15:00->SE-0061-03-05T07:00:00:active_hours=124.000",
+          "house_training_settled:SE-0061-03-05T07:00:00->SE-0061-04-01T07:00:00:active_hours=136.000",
+          "house_training_settled:SE-0061-04-01T07:00:00->SE-0061-05-01T07:00:00:active_hours=142.000",
+          "house_training_settled:SE-0061-05-01T07:00:00->SE-0061-06-01T07:00:00:active_hours=154.000",
+          "cohort_summary_derived_from_persistent_individual_profiles",
+          "house_training_settled:SE-0061-06-01T07:00:00->SE-0061-07-01T07:00:00:active_hours=146.000",
+          "house_training_settled:SE-0061-07-01T07:00:00->SE-0061-08-01T07:00:00:active_hours=148.000"
+        ]
+      }
+    },
+    {
+      "id": "cohort.house_tang.junior_disciple_first",
+      "name": "House Tang First Junior Disciple Section",
+      "owner": "house.tang",
+      "members": [],
+      "roster_refs": [
+        "ht.core.015",
+        "ht.core.016",
+        "ht.core.017",
+        "ht.core.018",
+        "ht.core.019",
+        "ht.core.020",
+        "ht.core.021"
+      ],
+      "role": "junior_training_local_defense",
+      "doctrine": "Invisible Court Core: Manor Defense",
+      "training": "House Tang junior-disciple curriculum",
+      "loadout_standard": "load.ht.base",
+      "reconstitution_policy_ref": "reconstitution.house_tang",
+      "aggregate_count": 7,
+      "cohort_profile": {
+        "representation": "house_cohort",
+        "numeric_distributions": {
+          "appearance": {
+            "count": 7,
+            "mean": 80.0,
+            "sd": 10.014275525,
+            "min": 65.0,
+            "max": 92.0
+          },
+          "aptitude.academic_learning": {
+            "count": 7,
+            "mean": 120.0,
+            "sd": 8.194074514,
+            "min": 108.0,
+            "max": 133.0
+          },
+          "aptitude.chakra_learning": {
+            "count": 7,
+            "mean": 143.285714286,
+            "sd": 8.223907408,
+            "min": 130.0,
+            "max": 158.0
+          },
+          "aptitude.genjutsu_learning": {
+            "count": 7,
+            "mean": 113.142857143,
+            "sd": 19.81650518,
+            "min": 90.0,
+            "max": 141.0
+          },
+          "aptitude.medical_learning": {
+            "count": 7,
+            "mean": 111.285714286,
+            "sd": 13.863768666,
+            "min": 94.0,
+            "max": 132.0
+          },
+          "aptitude.nature_transformation_learning": {
+            "count": 7,
+            "mean": 141.285714286,
+            "sd": 13.697906886,
+            "min": 122.0,
+            "max": 159.0
+          },
+          "aptitude.physical_learning": {
+            "count": 7,
+            "mean": 146.428571429,
+            "sd": 10.251928639,
+            "min": 128.0,
+            "max": 159.0
+          },
+          "aptitude.sensory_learning": {
+            "count": 7,
+            "mean": 134.571428571,
+            "sd": 10.715238053,
+            "min": 118.0,
+            "max": 151.0
+          },
+          "aptitude.social_learning": {
+            "count": 7,
+            "mean": 119.142857143,
+            "sd": 11.243138497,
+            "min": 102.0,
+            "max": 133.0
+          },
+          "aptitude.tactical_learning": {
+            "count": 7,
+            "mean": 133.571428571,
+            "sd": 5.728553616,
+            "min": 127.0,
+            "max": 145.0
+          },
+          "aptitude.technical_learning": {
+            "count": 7,
+            "mean": 144.571428571,
+            "sd": 9.766665506,
+            "min": 133.0,
+            "max": 161.0
+          },
+          "body.adult_height_cm": {
+            "count": 7,
+            "mean": 172.871428571,
+            "sd": 9.414079772,
+            "min": 161.0,
+            "max": 185.0
+          },
+          "body.current_weight_kg": {
+            "count": 7,
+            "mean": 47.342857143,
+            "sd": 10.392835052,
+            "min": 34.3,
+            "max": 63.2
+          },
+          "body.growth_end_age": {
+            "count": 7,
+            "mean": 18.0,
+            "sd": 0.0,
+            "min": 18.0,
+            "max": 18.0
+          },
+          "stats.attributes.agility": {
+            "count": 7,
+            "mean": 37.285714286,
+            "sd": 7.303898875,
+            "min": 29.0,
+            "max": 52.0
+          },
+          "stats.attributes.awareness": {
+            "count": 7,
+            "mean": 86.857142857,
+            "sd": 5.692816813,
+            "min": 78.0,
+            "max": 95.0
+          },
+          "stats.attributes.composure": {
+            "count": 7,
+            "mean": 42.285714286,
+            "sd": 8.223907408,
+            "min": 31.0,
+            "max": 56.0
+          },
+          "stats.attributes.coordination": {
+            "count": 7,
+            "mean": 72.142857143,
+            "sd": 2.166535841,
+            "min": 69.0,
+            "max": 76.0
+          },
+          "stats.attributes.endurance": {
+            "count": 7,
+            "mean": 41.857142857,
+            "sd": 6.577636819,
+            "min": 29.0,
+            "max": 49.0
+          },
+          "stats.attributes.intelligence": {
+            "count": 7,
+            "mean": 44.285714286,
+            "sd": 8.891637897,
+            "min": 29.0,
+            "max": 56.0
+          },
+          "stats.attributes.presence": {
+            "count": 7,
+            "mean": 42.428571429,
+            "sd": 10.335198427,
+            "min": 30.0,
+            "max": 55.0
+          },
+          "stats.attributes.strength": {
+            "count": 7,
+            "mean": 41.142857143,
+            "sd": 9.077894209,
+            "min": 30.0,
+            "max": 55.0
+          },
+          "stats.attributes.toughness": {
+            "count": 7,
+            "mean": 40.714285714,
+            "sd": 8.223907408,
+            "min": 28.0,
+            "max": 54.0
+          },
+          "stats.chakra_dimensions.casting_stability": {
+            "count": 7,
+            "mean": 42.142857143,
+            "sd": 7.881779557,
+            "min": 29.0,
+            "max": 51.0
+          },
+          "stats.chakra_dimensions.control": {
+            "count": 7,
+            "mean": 87.428571429,
+            "sd": 3.331972511,
+            "min": 83.0,
+            "max": 93.0
+          },
+          "stats.chakra_dimensions.efficiency": {
+            "count": 7,
+            "mean": 33.0,
+            "sd": 8.124038405,
+            "min": 26.0,
+            "max": 51.0
+          },
+          "stats.chakra_dimensions.hand_seal_speed": {
+            "count": 7,
+            "mean": 40.0,
+            "sd": 6.210590034,
+            "min": 29.0,
+            "max": 47.0
+          },
+          "stats.chakra_dimensions.multitasking": {
+            "count": 7,
+            "mean": 36.142857143,
+            "sd": 10.245954901,
+            "min": 22.0,
+            "max": 50.0
+          },
+          "stats.chakra_dimensions.output": {
+            "count": 7,
+            "mean": 40.142857143,
+            "sd": 4.911460982,
+            "min": 34.0,
+            "max": 49.0
+          },
+          "stats.chakra_dimensions.sensing": {
+            "count": 7,
+            "mean": 33.0,
+            "sd": 9.695359715,
+            "min": 23.0,
+            "max": 50.0
+          },
+          "stats.chakra_dimensions.suppression": {
+            "count": 7,
+            "mean": 34.142857143,
+            "sd": 5.565931354,
+            "min": 24.0,
+            "max": 42.0
+          },
+          "stats.domain_proficiencies.barrier": {
+            "count": 7,
+            "mean": 12.571428571,
+            "sd": 3.619674131,
+            "min": 8.0,
+            "max": 19.0
+          },
+          "stats.domain_proficiencies.genjutsu": {
+            "count": 7,
+            "mean": 19.714285714,
+            "sd": 4.199125273,
+            "min": 14.0,
+            "max": 26.0
+          },
+          "stats.domain_proficiencies.medical": {
+            "count": 7,
+            "mean": 18.714285714,
+            "sd": 7.38172039,
+            "min": 10.0,
+            "max": 28.0
+          },
+          "stats.domain_proficiencies.sealing": {
+            "count": 7,
+            "mean": 18.571428571,
+            "sd": 7.007284839,
+            "min": 9.0,
+            "max": 28.0
+          },
+          "stats.domain_proficiencies.wind": {
+            "count": 7,
+            "mean": 68.428571429,
+            "sd": 4.46757022,
+            "min": 64.0,
+            "max": 77.0
+          },
+          "stats.martial_skills.bow": {
+            "count": 7,
+            "mean": 27.285714286,
+            "sd": 7.264675506,
+            "min": 16.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.grappling": {
+            "count": 7,
+            "mean": 35.714285714,
+            "sd": 10.415843505,
+            "min": 20.0,
+            "max": 46.0
+          },
+          "stats.martial_skills.heavy_weapon": {
+            "count": 7,
+            "mean": 32.857142857,
+            "sd": 7.863633683,
+            "min": 17.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.movement": {
+            "count": 7,
+            "mean": 99.0,
+            "sd": 1.603567451,
+            "min": 97.0,
+            "max": 102.0
+          },
+          "stats.martial_skills.polearm": {
+            "count": 7,
+            "mean": 28.142857143,
+            "sd": 9.187391538,
+            "min": 17.0,
+            "max": 39.0
+          },
+          "stats.martial_skills.staff": {
+            "count": 7,
+            "mean": 25.571428571,
+            "sd": 8.616547914,
+            "min": 17.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.stealth": {
+            "count": 7,
+            "mean": 24.285714286,
+            "sd": 9.720586192,
+            "min": 15.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.sword": {
+            "count": 7,
+            "mean": 119.571428571,
+            "sd": 0.728431359,
+            "min": 118.0,
+            "max": 120.0
+          },
+          "stats.martial_skills.thrown_tools": {
+            "count": 7,
+            "mean": 26.0,
+            "sd": 7.191264542,
+            "min": 17.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.unarmed": {
+            "count": 7,
+            "mean": 29.857142857,
+            "sd": 8.322578094,
+            "min": 16.0,
+            "max": 39.0
+          },
+          "stats.operational_skills.infiltration": {
+            "count": 7,
+            "mean": 28.857142857,
+            "sd": 8.708428945,
+            "min": 16.0,
+            "max": 39.0
+          },
+          "stats.operational_skills.investigation": {
+            "count": 7,
+            "mean": 22.857142857,
+            "sd": 7.716930763,
+            "min": 13.0,
+            "max": 39.0
+          },
+          "stats.operational_skills.leadership": {
+            "count": 7,
+            "mean": 28.0,
+            "sd": 8.176621726,
+            "min": 16.0,
+            "max": 40.0
+          },
+          "stats.operational_skills.medicine": {
+            "count": 7,
+            "mean": 48.285714286,
+            "sd": 7.629159956,
+            "min": 36.0,
+            "max": 56.0
+          },
+          "stats.operational_skills.survival": {
+            "count": 7,
+            "mean": 28.285714286,
+            "sd": 7.941109777,
+            "min": 16.0,
+            "max": 37.0
+          },
+          "stats.operational_skills.tactics": {
+            "count": 7,
+            "mean": 57.428571429,
+            "sd": 6.38876565,
+            "min": 44.0,
+            "max": 65.0
+          },
+          "stats.operational_skills.team_coordination": {
+            "count": 7,
+            "mean": 95.571428571,
+            "sd": 5.150787536,
+            "min": 87.0,
+            "max": 100.0
+          },
+          "stats.operational_skills.tracking": {
+            "count": 7,
+            "mean": 25.0,
+            "sd": 7.250615737,
+            "min": 13.0,
+            "max": 37.0
+          },
+          "stats.operational_skills.traps": {
+            "count": 7,
+            "mean": 29.142857143,
+            "sd": 8.741176309,
+            "min": 12.0,
+            "max": 40.0
+          },
+          "stats.resources.chakra.capacity": {
+            "count": 7,
+            "mean": 48.0,
+            "sd": 0.0,
+            "min": 48.0,
+            "max": 48.0
+          },
+          "stats.resources.chakra.current": {
+            "count": 7,
+            "mean": 48.0,
+            "sd": 0.0,
+            "min": 48.0,
+            "max": 48.0
+          },
+          "stats.resources.fatigue.capacity": {
+            "count": 7,
+            "mean": 100.0,
+            "sd": 0.0,
+            "min": 100.0,
+            "max": 100.0
+          },
+          "stats.resources.fatigue.current": {
+            "count": 7,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.health.capacity": {
+            "count": 7,
+            "mean": 44.0,
+            "sd": 0.0,
+            "min": 44.0,
+            "max": 44.0
+          },
+          "stats.resources.health.current": {
+            "count": 7,
+            "mean": 44.0,
+            "sd": 0.0,
+            "min": 44.0,
+            "max": 44.0
+          },
+          "stats.resources.strain.current": {
+            "count": 7,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.strain.safe_capacity": {
+            "count": 7,
+            "mean": 34.0,
+            "sd": 0.0,
+            "min": 34.0,
+            "max": 34.0
+          }
+        },
+        "category_counts": {
+          "assignment:manor_rotation": 7,
+          "duty:construction": 1,
+          "duty:equipment": 1,
+          "duty:evidence": 1,
+          "duty:messenger": 1,
+          "duty:night_watch": 1,
+          "duty:pharmacy": 1,
+          "duty:sanitation": 1,
+          "frame:athletic": 1,
+          "frame:average": 2,
+          "frame:broad": 2,
+          "frame:lean": 1,
+          "frame:slight": 1,
+          "health:healthy": 7,
+          "origin:Konoha / Land of Fire": 7,
+          "package:PKG_HT_JUNIOR": 7,
+          "qualification:real_katana_use": 7,
+          "rank:junior_disciple": 7
+        },
+        "development": {
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "credits": {},
+          "model": "derived_from_persistent_individuals"
+        },
+        "provenance": [
+          "rostered_person_capability_host_preserves_headcount_and_distribution",
+          "identity_cues_do_not_modify_capability_knowledge_or_outcomes",
+          "house_training_settled:SE-0061-02-06T21:15:00->SE-0061-03-05T07:00:00:active_hours=124.000",
+          "house_training_settled:SE-0061-03-05T07:00:00->SE-0061-04-01T07:00:00:active_hours=136.000",
+          "house_training_settled:SE-0061-04-01T07:00:00->SE-0061-05-01T07:00:00:active_hours=142.000",
+          "house_training_settled:SE-0061-05-01T07:00:00->SE-0061-06-01T07:00:00:active_hours=154.000",
+          "cohort_summary_derived_from_persistent_individual_profiles",
+          "house_training_settled:SE-0061-06-01T07:00:00->SE-0061-07-01T07:00:00:active_hours=146.000",
+          "house_training_settled:SE-0061-07-01T07:00:00->SE-0061-08-01T07:00:00:active_hours=148.000"
+        ]
+      }
+    },
+    {
+      "id": "cohort.house_tang.junior_disciple_second",
+      "name": "House Tang Second Junior Disciple Section",
+      "owner": "house.tang",
+      "members": [],
+      "roster_refs": [
+        "ht.core.022",
+        "ht.core.023",
+        "ht.core.024",
+        "ht.core.025",
+        "ht.core.026",
+        "ht.core.027",
+        "ht.m023"
+      ],
+      "role": "junior_training_local_defense",
+      "doctrine": "Invisible Court Core: Manor Defense",
+      "training": "House Tang junior-disciple curriculum",
+      "loadout_standard": "load.ht.base",
+      "reconstitution_policy_ref": "reconstitution.house_tang",
+      "aggregate_count": 7,
+      "cohort_profile": {
+        "representation": "house_cohort",
+        "numeric_distributions": {
+          "appearance": {
+            "count": 7,
+            "mean": 71.571428571,
+            "sd": 7.979565739,
+            "min": 61.0,
+            "max": 85.0
+          },
+          "aptitude.academic_learning": {
+            "count": 7,
+            "mean": 132.285714286,
+            "sd": 16.333263918,
+            "min": 111.0,
+            "max": 150.0
+          },
+          "aptitude.chakra_learning": {
+            "count": 7,
+            "mean": 145.857142857,
+            "sd": 11.243138497,
+            "min": 128.0,
+            "max": 163.0
+          },
+          "aptitude.genjutsu_learning": {
+            "count": 7,
+            "mean": 105.571428571,
+            "sd": 10.513353996,
+            "min": 93.0,
+            "max": 119.0
+          },
+          "aptitude.medical_learning": {
+            "count": 7,
+            "mean": 119.0,
+            "sd": 15.8204208,
+            "min": 93.0,
+            "max": 141.0
+          },
+          "aptitude.nature_transformation_learning": {
+            "count": 7,
+            "mean": 140.142857143,
+            "sd": 12.811028412,
+            "min": 122.0,
+            "max": 156.0
+          },
+          "aptitude.physical_learning": {
+            "count": 7,
+            "mean": 142.571428571,
+            "sd": 12.815806567,
+            "min": 129.0,
+            "max": 160.0
+          },
+          "aptitude.sensory_learning": {
+            "count": 7,
+            "mean": 131.428571429,
+            "sd": 12.522632572,
+            "min": 111.0,
+            "max": 147.0
+          },
+          "aptitude.social_learning": {
+            "count": 7,
+            "mean": 124.714285714,
+            "sd": 17.997732283,
+            "min": 96.0,
+            "max": 145.0
+          },
+          "aptitude.tactical_learning": {
+            "count": 7,
+            "mean": 138.571428571,
+            "sd": 6.586938219,
+            "min": 131.0,
+            "max": 148.0
+          },
+          "aptitude.technical_learning": {
+            "count": 7,
+            "mean": 144.571428571,
+            "sd": 7.70634512,
+            "min": 131.0,
+            "max": 157.0
+          },
+          "body.adult_height_cm": {
+            "count": 7,
+            "mean": 176.871428571,
+            "sd": 9.648495706,
+            "min": 163.0,
+            "max": 186.0
+          },
+          "body.current_weight_kg": {
+            "count": 7,
+            "mean": 30.514285714,
+            "sd": 4.970320073,
+            "min": 22.7,
+            "max": 38.0
+          },
+          "body.growth_end_age": {
+            "count": 7,
+            "mean": 18.0,
+            "sd": 0.0,
+            "min": 18.0,
+            "max": 18.0
+          },
+          "stats.attributes.agility": {
+            "count": 7,
+            "mean": 39.428571429,
+            "sd": 8.156629956,
+            "min": 30.0,
+            "max": 56.0
+          },
+          "stats.attributes.awareness": {
+            "count": 7,
+            "mean": 85.285714286,
+            "sd": 2.602981023,
+            "min": 81.0,
+            "max": 90.0
+          },
+          "stats.attributes.composure": {
+            "count": 7,
+            "mean": 38.714285714,
+            "sd": 7.740695534,
+            "min": 29.0,
+            "max": 51.0
+          },
+          "stats.attributes.coordination": {
+            "count": 7,
+            "mean": 71.0,
+            "sd": 3.891382421,
+            "min": 64.0,
+            "max": 78.0
+          },
+          "stats.attributes.endurance": {
+            "count": 7,
+            "mean": 45.0,
+            "sd": 8.017837257,
+            "min": 30.0,
+            "max": 54.0
+          },
+          "stats.attributes.intelligence": {
+            "count": 7,
+            "mean": 41.571428571,
+            "sd": 7.442295016,
+            "min": 33.0,
+            "max": 51.0
+          },
+          "stats.attributes.presence": {
+            "count": 7,
+            "mean": 35.857142857,
+            "sd": 3.136356914,
+            "min": 30.0,
+            "max": 41.0
+          },
+          "stats.attributes.strength": {
+            "count": 7,
+            "mean": 44.285714286,
+            "sd": 7.045044575,
+            "min": 32.0,
+            "max": 52.0
+          },
+          "stats.attributes.toughness": {
+            "count": 7,
+            "mean": 40.428571429,
+            "sd": 8.583325078,
+            "min": 29.0,
+            "max": 54.0
+          },
+          "stats.chakra_dimensions.casting_stability": {
+            "count": 7,
+            "mean": 40.0,
+            "sd": 7.819389819,
+            "min": 23.0,
+            "max": 51.0
+          },
+          "stats.chakra_dimensions.control": {
+            "count": 7,
+            "mean": 87.285714286,
+            "sd": 4.651091599,
+            "min": 84.0,
+            "max": 96.0
+          },
+          "stats.chakra_dimensions.efficiency": {
+            "count": 7,
+            "mean": 35.857142857,
+            "sd": 7.139999428,
+            "min": 24.0,
+            "max": 47.0
+          },
+          "stats.chakra_dimensions.hand_seal_speed": {
+            "count": 7,
+            "mean": 35.857142857,
+            "sd": 11.217697388,
+            "min": 24.0,
+            "max": 51.0
+          },
+          "stats.chakra_dimensions.multitasking": {
+            "count": 7,
+            "mean": 30.0,
+            "sd": 4.750939757,
+            "min": 23.0,
+            "max": 35.0
+          },
+          "stats.chakra_dimensions.output": {
+            "count": 7,
+            "mean": 40.142857143,
+            "sd": 8.692008997,
+            "min": 24.0,
+            "max": 51.0
+          },
+          "stats.chakra_dimensions.sensing": {
+            "count": 7,
+            "mean": 40.428571429,
+            "sd": 10.167976942,
+            "min": 26.0,
+            "max": 52.0
+          },
+          "stats.chakra_dimensions.suppression": {
+            "count": 7,
+            "mean": 32.142857143,
+            "sd": 7.491491773,
+            "min": 24.0,
+            "max": 45.0
+          },
+          "stats.domain_proficiencies.barrier": {
+            "count": 7,
+            "mean": 15.428571429,
+            "sd": 3.849198167,
+            "min": 9.0,
+            "max": 20.0
+          },
+          "stats.domain_proficiencies.genjutsu": {
+            "count": 7,
+            "mean": 20.285714286,
+            "sd": 5.699982098,
+            "min": 10.0,
+            "max": 28.0
+          },
+          "stats.domain_proficiencies.medical": {
+            "count": 7,
+            "mean": 16.428571429,
+            "sd": 6.34388666,
+            "min": 9.0,
+            "max": 27.0
+          },
+          "stats.domain_proficiencies.sealing": {
+            "count": 7,
+            "mean": 14.0,
+            "sd": 6.023762469,
+            "min": 8.0,
+            "max": 25.0
+          },
+          "stats.domain_proficiencies.wind": {
+            "count": 7,
+            "mean": 70.428571429,
+            "sd": 3.774241375,
+            "min": 62.0,
+            "max": 74.0
+          },
+          "stats.martial_skills.bow": {
+            "count": 7,
+            "mean": 34.428571429,
+            "sd": 6.779320296,
+            "min": 22.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.grappling": {
+            "count": 7,
+            "mean": 30.0,
+            "sd": 8.485281374,
+            "min": 19.0,
+            "max": 46.0
+          },
+          "stats.martial_skills.heavy_weapon": {
+            "count": 7,
+            "mean": 27.857142857,
+            "sd": 7.917946549,
+            "min": 19.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.movement": {
+            "count": 7,
+            "mean": 98.428571429,
+            "sd": 2.969229956,
+            "min": 93.0,
+            "max": 102.0
+          },
+          "stats.martial_skills.polearm": {
+            "count": 7,
+            "mean": 31.714285714,
+            "sd": 7.703696436,
+            "min": 17.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.staff": {
+            "count": 7,
+            "mean": 34.714285714,
+            "sd": 6.776309272,
+            "min": 21.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.stealth": {
+            "count": 7,
+            "mean": 26.714285714,
+            "sd": 7.610411772,
+            "min": 16.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.sword": {
+            "count": 7,
+            "mean": 119.428571429,
+            "sd": 1.293626448,
+            "min": 118.0,
+            "max": 122.0
+          },
+          "stats.martial_skills.thrown_tools": {
+            "count": 7,
+            "mean": 31.285714286,
+            "sd": 9.981615754,
+            "min": 17.0,
+            "max": 40.0
+          },
+          "stats.martial_skills.unarmed": {
+            "count": 7,
+            "mean": 36.428571429,
+            "sd": 4.499433071,
+            "min": 30.0,
+            "max": 43.0
+          },
+          "stats.operational_skills.infiltration": {
+            "count": 7,
+            "mean": 27.428571429,
+            "sd": 9.084636055,
+            "min": 11.0,
+            "max": 41.0
+          },
+          "stats.operational_skills.investigation": {
+            "count": 7,
+            "mean": 25.285714286,
+            "sd": 9.19183311,
+            "min": 11.0,
+            "max": 39.0
+          },
+          "stats.operational_skills.leadership": {
+            "count": 7,
+            "mean": 26.285714286,
+            "sd": 6.734013571,
+            "min": 17.0,
+            "max": 36.0
+          },
+          "stats.operational_skills.medicine": {
+            "count": 7,
+            "mean": 47.142857143,
+            "sd": 10.54823711,
+            "min": 32.0,
+            "max": 59.0
+          },
+          "stats.operational_skills.survival": {
+            "count": 7,
+            "mean": 27.285714286,
+            "sd": 7.085483867,
+            "min": 15.0,
+            "max": 36.0
+          },
+          "stats.operational_skills.tactics": {
+            "count": 7,
+            "mean": 61.714285714,
+            "sd": 2.813959372,
+            "min": 56.0,
+            "max": 66.0
+          },
+          "stats.operational_skills.team_coordination": {
+            "count": 7,
+            "mean": 96.857142857,
+            "sd": 3.907084095,
+            "min": 92.0,
+            "max": 104.0
+          },
+          "stats.operational_skills.tracking": {
+            "count": 7,
+            "mean": 21.428571429,
+            "sd": 8.103916916,
+            "min": 11.0,
+            "max": 34.0
+          },
+          "stats.operational_skills.traps": {
+            "count": 7,
+            "mean": 23.714285714,
+            "sd": 9.066646659,
+            "min": 13.0,
+            "max": 36.0
+          },
+          "stats.resources.chakra.capacity": {
+            "count": 7,
+            "mean": 48.0,
+            "sd": 0.0,
+            "min": 48.0,
+            "max": 48.0
+          },
+          "stats.resources.chakra.current": {
+            "count": 7,
+            "mean": 48.0,
+            "sd": 0.0,
+            "min": 48.0,
+            "max": 48.0
+          },
+          "stats.resources.fatigue.capacity": {
+            "count": 7,
+            "mean": 100.0,
+            "sd": 0.0,
+            "min": 100.0,
+            "max": 100.0
+          },
+          "stats.resources.fatigue.current": {
+            "count": 7,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.health.capacity": {
+            "count": 7,
+            "mean": 44.0,
+            "sd": 0.0,
+            "min": 44.0,
+            "max": 44.0
+          },
+          "stats.resources.health.current": {
+            "count": 7,
+            "mean": 44.0,
+            "sd": 0.0,
+            "min": 44.0,
+            "max": 44.0
+          },
+          "stats.resources.strain.current": {
+            "count": 7,
+            "mean": 0.0,
+            "sd": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stats.resources.strain.safe_capacity": {
+            "count": 7,
+            "mean": 34.0,
+            "sd": 0.0,
+            "min": 34.0,
+            "max": 34.0
+          }
+        },
+        "category_counts": {
+          "assignment:manor_rotation": 7,
+          "duty:archive": 1,
+          "duty:grounds": 1,
+          "duty:kitchen": 1,
+          "duty:medical": 1,
+          "duty:night_watch": 1,
+          "duty:provisions": 1,
+          "duty:visitor_escort": 1,
+          "frame:athletic": 2,
+          "frame:average": 1,
+          "frame:lean": 2,
+          "frame:slight": 2,
+          "health:healthy": 7,
+          "origin:Konoha / Land of Fire": 7,
+          "package:PKG_HT_JUNIOR": 7,
+          "qualification:real_katana_use": 7,
+          "rank:junior_disciple": 7
+        },
+        "development": {
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "credits": {},
+          "model": "derived_from_persistent_individuals"
+        },
+        "provenance": [
+          "rostered_person_capability_host_preserves_headcount_and_distribution",
+          "identity_cues_do_not_modify_capability_knowledge_or_outcomes",
+          "house_training_settled:SE-0061-02-06T21:15:00->SE-0061-03-05T07:00:00:active_hours=124.000",
+          "house_training_settled:SE-0061-03-05T07:00:00->SE-0061-04-01T07:00:00:active_hours=136.000",
+          "house_training_settled:SE-0061-04-01T07:00:00->SE-0061-05-01T07:00:00:active_hours=142.000",
+          "house_training_settled:SE-0061-05-01T07:00:00->SE-0061-06-01T07:00:00:active_hours=154.000",
+          "cohort_summary_derived_from_persistent_individual_profiles",
+          "house_training_settled:SE-0061-06-01T07:00:00->SE-0061-07-01T07:00:00:active_hours=146.000",
+          "house_training_settled:SE-0061-07-01T07:00:00->SE-0061-08-01T07:00:00:active_hours=148.000"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.bounty_broker_network",
+    "name": "Regional Bounty Broker Network",
+    "status": "active",
+    "leadership_ids": [
+      "support.bounty.goro_kaneda"
+    ],
+    "key_member_ids": [],
+    "goal": "verify bounties, trade missing-nin information, and connect clients to hunters",
+    "current_plan": "Cross-check target identities and payment sources before circulating new high-value work.",
+    "resources": [
+      "informants",
+      "escrow contacts",
+      "target records"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.fire_smuggling_network",
+        "relationship_type": "information_and_transport_exchange",
+        "stance": "transactional",
+        "intensity": 55
+      },
+      {
+        "target_id": "faction.kiri_hunter_office",
+        "relationship_type": "missing_nin_information_market",
+        "stance": "competitive_transactional",
+        "intensity": 48
+      }
+    ],
+    "knowledge_policy": "world truth and player knowledge remain separate",
+    "notes": [
+      "Brokers know only information actually acquired."
+    ],
+    "goals": [
+      "verify profitable bounties",
+      "protect broker reputation and payment reliability"
+    ],
+    "constraints": [
+      "fraud risk",
+      "competing hunters",
+      "local law"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-30T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_priority_refs": [
+        "priority.autonomy.23e325530684802c"
+      ],
+      "completed_priority_refs": [
+        "priority.autonomy.8d4399c4db674bfb",
+        "priority.autonomy.824e4702cd340417"
+      ],
+      "autonomous_mission_refs": [],
+      "wake_required_mission_refs": []
+    },
+    "scope": "Regional bounty information, escrow, hunters, and missing-nin markets",
+    "leadership_model": "distributed_brokers"
+  }
+}

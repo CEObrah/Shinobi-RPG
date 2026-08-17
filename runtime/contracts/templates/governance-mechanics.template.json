@@ -1,0 +1,364 @@
+{
+  "schema": "file-template",
+  "template_id": "template.governance-mechanics",
+  "target_schema": "governance-mechanics",
+  "source_schema": "game/schemas/governance-mechanics.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "notes",
+    "schema",
+    "status_requirements",
+    "civil_economy"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "notes",
+        "schema",
+        "status_requirements",
+        "civil_economy"
+      ],
+      "canonical_order": [
+        "schema",
+        "status_requirements",
+        "civil_economy",
+        "notes"
+      ]
+    },
+    "/status_requirements": {
+      "mode": "closed",
+      "allowed_keys": [
+        "hidden_village",
+        "settlement",
+        "village"
+      ],
+      "canonical_order": [
+        "settlement",
+        "village",
+        "hidden_village"
+      ]
+    },
+    "/status_requirements/settlement": {
+      "mode": "closed",
+      "allowed_keys": [
+        "min_integration_milli",
+        "min_population",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ],
+      "canonical_order": [
+        "min_population",
+        "min_integration_milli",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ]
+    },
+    "/status_requirements/village": {
+      "mode": "closed",
+      "allowed_keys": [
+        "min_integration_milli",
+        "min_population",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ],
+      "canonical_order": [
+        "min_population",
+        "min_integration_milli",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ]
+    },
+    "/status_requirements/hidden_village": {
+      "mode": "closed",
+      "allowed_keys": [
+        "min_integration_milli",
+        "min_population",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ],
+      "canonical_order": [
+        "min_population",
+        "min_integration_milli",
+        "requires_garrison",
+        "requires_recruitment_rights"
+      ]
+    },
+    "/civil_economy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "workforce_fallback_milli",
+        "adolescent_workforce_milli",
+        "monthly_activity_per_worker_ryo",
+        "monthly_consumption_per_resident_ryo",
+        "base_productivity_milli",
+        "integration_productivity_weight_milli",
+        "food_activity_share_milli",
+        "food_need_share_milli",
+        "service_activity_share_milli",
+        "service_need_share_milli",
+        "tax_arrears_catchup_milli",
+        "market_memory_milli",
+        "market_service_bonus_milli",
+        "migration_attractiveness_threshold_milli",
+        "migration_food_floor_milli",
+        "migration_service_floor_milli",
+        "monthly_migration_rate_milli",
+        "monthly_migration_cap",
+        "severe_shortage_food_milli",
+        "shortage_integration_penalty_milli",
+        "shortage_resistance_gain_milli",
+        "infrastructure_integration_penalty_milli",
+        "infrastructure_resistance_gain_milli",
+        "surplus_integration_gain_milli",
+        "stability_resistance_recovery_milli",
+        "civic_investment_per_resident_ryo",
+        "civic_investment_effect_milli_per_month",
+        "food_support_decay_milli_per_month",
+        "service_investment_decay_milli_per_month",
+        "reference_population_by_status",
+        "rule"
+      ],
+      "canonical_order": [
+        "workforce_fallback_milli",
+        "adolescent_workforce_milli",
+        "monthly_activity_per_worker_ryo",
+        "monthly_consumption_per_resident_ryo",
+        "base_productivity_milli",
+        "integration_productivity_weight_milli",
+        "food_activity_share_milli",
+        "food_need_share_milli",
+        "service_activity_share_milli",
+        "service_need_share_milli",
+        "tax_arrears_catchup_milli",
+        "market_memory_milli",
+        "market_service_bonus_milli",
+        "migration_attractiveness_threshold_milli",
+        "migration_food_floor_milli",
+        "migration_service_floor_milli",
+        "monthly_migration_rate_milli",
+        "monthly_migration_cap",
+        "severe_shortage_food_milli",
+        "shortage_integration_penalty_milli",
+        "shortage_resistance_gain_milli",
+        "infrastructure_integration_penalty_milli",
+        "infrastructure_resistance_gain_milli",
+        "surplus_integration_gain_milli",
+        "stability_resistance_recovery_milli",
+        "civic_investment_per_resident_ryo",
+        "civic_investment_effect_milli_per_month",
+        "food_support_decay_milli_per_month",
+        "service_investment_decay_milli_per_month",
+        "reference_population_by_status",
+        "rule"
+      ]
+    },
+    "/civil_economy/reference_population_by_status": {
+      "mode": "closed",
+      "allowed_keys": [
+        "outpost",
+        "settlement",
+        "village",
+        "hidden_village",
+        "territory",
+        "client_state",
+        "military_administration"
+      ],
+      "canonical_order": [
+        "outpost",
+        "settlement",
+        "village",
+        "hidden_village",
+        "territory",
+        "client_state",
+        "military_administration"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/status_requirements": [
+      "object"
+    ],
+    "/notes": [
+      "string"
+    ],
+    "": [
+      "object"
+    ],
+    "/status_requirements/settlement": [
+      "object"
+    ],
+    "/status_requirements/settlement/min_population": [
+      "integer"
+    ],
+    "/status_requirements/settlement/min_integration_milli": [
+      "integer"
+    ],
+    "/status_requirements/settlement/requires_garrison": [
+      "boolean"
+    ],
+    "/status_requirements/settlement/requires_recruitment_rights": [
+      "boolean"
+    ],
+    "/status_requirements/village": [
+      "object"
+    ],
+    "/status_requirements/village/min_population": [
+      "integer"
+    ],
+    "/status_requirements/village/min_integration_milli": [
+      "integer"
+    ],
+    "/status_requirements/village/requires_garrison": [
+      "boolean"
+    ],
+    "/status_requirements/village/requires_recruitment_rights": [
+      "boolean"
+    ],
+    "/status_requirements/hidden_village": [
+      "object"
+    ],
+    "/status_requirements/hidden_village/min_population": [
+      "integer"
+    ],
+    "/status_requirements/hidden_village/min_integration_milli": [
+      "integer"
+    ],
+    "/status_requirements/hidden_village/requires_garrison": [
+      "boolean"
+    ],
+    "/status_requirements/hidden_village/requires_recruitment_rights": [
+      "boolean"
+    ],
+    "/civil_economy": [
+      "object"
+    ],
+    "/civil_economy/workforce_fallback_milli": [
+      "integer"
+    ],
+    "/civil_economy/adolescent_workforce_milli": [
+      "integer"
+    ],
+    "/civil_economy/monthly_activity_per_worker_ryo": [
+      "integer"
+    ],
+    "/civil_economy/monthly_consumption_per_resident_ryo": [
+      "integer"
+    ],
+    "/civil_economy/base_productivity_milli": [
+      "integer"
+    ],
+    "/civil_economy/integration_productivity_weight_milli": [
+      "integer"
+    ],
+    "/civil_economy/food_activity_share_milli": [
+      "integer"
+    ],
+    "/civil_economy/food_need_share_milli": [
+      "integer"
+    ],
+    "/civil_economy/service_activity_share_milli": [
+      "integer"
+    ],
+    "/civil_economy/service_need_share_milli": [
+      "integer"
+    ],
+    "/civil_economy/tax_arrears_catchup_milli": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status": [
+      "object"
+    ],
+    "/civil_economy/rule": [
+      "string"
+    ],
+    "/civil_economy/reference_population_by_status/outpost": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/settlement": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/village": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/hidden_village": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/territory": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/client_state": [
+      "integer"
+    ],
+    "/civil_economy/reference_population_by_status/military_administration": [
+      "integer"
+    ],
+    "/civil_economy/market_memory_milli": [
+      "integer"
+    ],
+    "/civil_economy/market_service_bonus_milli": [
+      "integer"
+    ],
+    "/civil_economy/migration_attractiveness_threshold_milli": [
+      "integer"
+    ],
+    "/civil_economy/migration_food_floor_milli": [
+      "integer"
+    ],
+    "/civil_economy/migration_service_floor_milli": [
+      "integer"
+    ],
+    "/civil_economy/monthly_migration_rate_milli": [
+      "integer"
+    ],
+    "/civil_economy/monthly_migration_cap": [
+      "integer"
+    ],
+    "/civil_economy/severe_shortage_food_milli": [
+      "integer"
+    ],
+    "/civil_economy/shortage_integration_penalty_milli": [
+      "integer"
+    ],
+    "/civil_economy/shortage_resistance_gain_milli": [
+      "integer"
+    ],
+    "/civil_economy/infrastructure_integration_penalty_milli": [
+      "integer"
+    ],
+    "/civil_economy/infrastructure_resistance_gain_milli": [
+      "integer"
+    ],
+    "/civil_economy/surplus_integration_gain_milli": [
+      "integer"
+    ],
+    "/civil_economy/stability_resistance_recovery_milli": [
+      "integer"
+    ],
+    "/civil_economy/civic_investment_per_resident_ryo": [
+      "integer"
+    ],
+    "/civil_economy/civic_investment_effect_milli_per_month": [
+      "integer"
+    ],
+    "/civil_economy/food_support_decay_milli_per_month": [
+      "integer"
+    ],
+    "/civil_economy/service_investment_decay_milli_per_month": [
+      "integer"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

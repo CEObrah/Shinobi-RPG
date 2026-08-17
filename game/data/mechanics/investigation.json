@@ -1,0 +1,196 @@
+{
+  "schema": "investigation-mechanics",
+  "profiles": {
+    "investigation.cargo_transfer_discrepancy": {
+      "match": {
+        "objective_kind": "investigate",
+        "subject_kind": "place",
+        "subject_ref": "place.fire.western.border",
+        "subject_label": "Western-border cargo-transfer discrepancy"
+      },
+      "truth_keys": [
+        "clerical",
+        "criminal",
+        "hostile"
+      ],
+      "locate_scene": {
+        "minimum_active_hours": 2,
+        "required_work_units": 90,
+        "skill_paths": [
+          "operational_skills.investigation",
+          "operational_skills.tracking",
+          "attributes.awareness"
+        ],
+        "observations": [
+          {
+            "observation_ref": "cargo_handoff_scene_bounded",
+            "stage": "locate_scene",
+            "role": "team_search",
+            "text": "Black Hound bounds the discrepancy to the physical handoff point represented by the controlled cargo transfer, where the written custody chain, cargo handling evidence, witness accounts, and approach/exit lines can be examined against one another.",
+            "epistemic_kind": "observation",
+            "confidence_milli": 950
+          }
+        ]
+      },
+      "examine_scene": {
+        "minimum_active_hours": 3,
+        "roles": {
+          "records": {
+            "skill_paths": [
+              "operational_skills.investigation",
+              "operational_skills.tactics",
+              "attributes.intelligence"
+            ],
+            "required_work_units": 120
+          },
+          "witnesses": {
+            "skill_paths": [
+              "operational_skills.tracking",
+              "operational_skills.investigation",
+              "attributes.awareness"
+            ],
+            "required_work_units": 120
+          },
+          "physical": {
+            "skill_paths": [
+              "operational_skills.traps",
+              "operational_skills.investigation",
+              "attributes.awareness"
+            ],
+            "required_work_units": 120
+          },
+          "perimeter": {
+            "skill_paths": [
+              "attributes.awareness",
+              "domain_proficiencies.sensory",
+              "operational_skills.investigation"
+            ],
+            "required_work_units": 120
+          },
+          "scene_control": {
+            "skill_paths": [
+              "operational_skills.tactics",
+              "operational_skills.leadership",
+              "attributes.awareness"
+            ],
+            "required_work_units": 120
+          },
+          "synthesis": {
+            "skill_paths": [
+              "operational_skills.investigation",
+              "operational_skills.tactics",
+              "attributes.intelligence"
+            ],
+            "required_work_units": 120
+          }
+        },
+        "common_observations": {
+          "scene_control": {
+            "observation_ref": "scene_evidence_separated",
+            "text": "Hayama's scene control keeps the written record set, separated witness accounts, physical handling evidence, and route observations distinct enough to compare without requiring cross-contamination to explain agreement or contradiction.",
+            "epistemic_kind": "observation",
+            "confidence_milli": 950
+          }
+        },
+        "truth_observations": {
+          "clerical": {
+            "records": {
+              "observation_ref": "clerical_records_sequence",
+              "text": "Ensui finds a duplicated transfer entry whose order conflicts with the neighboring timestamps, while the named custody intervals otherwise join without an unexplained possession gap.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 920
+            },
+            "witnesses": {
+              "observation_ref": "clerical_witness_alignment",
+              "text": "Hana's separated accounts agree on who physically held the cargo through the disputed interval; their differences concern when paperwork was completed rather than an unrecorded person or movement.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 880
+            },
+            "physical": {
+              "observation_ref": "clerical_no_supported_tamper",
+              "text": "Tekuno finds ordinary handling wear on the container closures and seals but no supported cut, replacement, forced-lock, or tool-mark pattern indicating that the cargo was opened and resealed during the disputed handoff.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 900
+            },
+            "perimeter": {
+              "observation_ref": "clerical_no_diversion_lane",
+              "text": "Hoheto's approach-and-exit reconstruction establishes no supported unlogged diversion lane that is needed to explain the disputed transfer interval.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 850
+            },
+            "synthesis": {
+              "observation_ref": "clerical_synthesis",
+              "text": "Taken together, the surviving evidence is most consistent with a duplicated or misordered clerical transfer entry. It does not establish criminal diversion or hostile interference.",
+              "epistemic_kind": "inference",
+              "confidence_milli": 900
+            }
+          },
+          "criminal": {
+            "records": {
+              "observation_ref": "criminal_custody_gap",
+              "text": "Ensui finds a real custody interval in which the ledger says the cargo changed hands but the receiving entry cannot be reconciled with the preceding holder's record.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 920
+            },
+            "witnesses": {
+              "observation_ref": "criminal_witness_possession_conflict",
+              "text": "Hana's separated accounts disagree about who controlled the cargo during that interval, and the contradiction concerns physical possession rather than merely paperwork timing.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 880
+            },
+            "physical": {
+              "observation_ref": "criminal_ordinary_tool_tamper",
+              "text": "Tekuno identifies ordinary tool interference on a closure consistent with opening and resealing the cargo outside the documented handoff procedure.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 900
+            },
+            "perimeter": {
+              "observation_ref": "criminal_side_access_window",
+              "text": "Hoheto identifies a side approach-and-exit line that can account for a short unlogged removal-and-return window without requiring trained shinobi access.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 850
+            },
+            "synthesis": {
+              "observation_ref": "criminal_synthesis",
+              "text": "The record gap, possession contradiction, ordinary-tool interference, and viable side access together support deliberate diversion by ordinary criminal means. They do not identify a specific offender or establish a hostile shinobi faction.",
+              "epistemic_kind": "inference",
+              "confidence_milli": 890
+            }
+          },
+          "hostile": {
+            "records": {
+              "observation_ref": "hostile_timing_physical_conflict",
+              "text": "Ensui finds that the written custody chain is unusually neat, but its recorded handoff timing conflicts with the physical sequence implied by the cargo-handling evidence.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 900
+            },
+            "witnesses": {
+              "observation_ref": "hostile_short_custody_gap",
+              "text": "Hana's separated accounts leave a short custody gap that cannot be reconciled to the written handoff sequence; none of the accounts can place ordinary cargo handling inside it.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 860
+            },
+            "physical": {
+              "observation_ref": "hostile_controlled_interference",
+              "text": "Tekuno finds a seal-and-fastening pattern inconsistent with normal handling or the ordinary tool marks expected from a crude diversion, indicating a more controlled interference method.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 880
+            },
+            "perimeter": {
+              "observation_ref": "hostile_concealed_access",
+              "text": "Hoheto's reconstruction identifies a concealed approach-and-exit line that fits a brief trained intrusion better than routine cargo traffic, though it does not identify a faction.",
+              "epistemic_kind": "observation",
+              "confidence_milli": 840
+            },
+            "synthesis": {
+              "observation_ref": "hostile_synthesis",
+              "text": "The combined timing, custody, physical, and access evidence supports trained covert interference. It does not identify a village, clan, organization, or individual.",
+              "epistemic_kind": "inference",
+              "confidence_milli": 870
+            }
+          }
+        }
+      }
+    }
+  }
+}

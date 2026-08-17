@@ -1,0 +1,35 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "f7",
+  "authority": true,
+  "hosts": {
+    "host.faction.faction.yamanaka_intelligence": {
+      "host": {
+        "state": {
+          "host_id": "host.faction.faction.yamanaka_intelligence",
+          "kind": "faction",
+          "resolved_through": "SE-0061-07-30T07:00:00",
+          "safe_through": "SE-0061-08-06T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "faction.yamanaka_intelligence",
+          "next_due": "SE-0061-08-06T07:00:00"
+        },
+        "authority_kind": "faction_plan",
+        "owner_ref": "state/reg/factions/faction-yamanaka-intelligence.json",
+        "metadata": {
+          "faction_id": "faction.yamanaka_intelligence",
+          "plan_status": "active",
+          "review_interval_seconds": 604800
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.2d0683c16ba110aaccbf373c",
+          "due_at": "SE-0061-08-06T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-08-06.json",
+          "dedupe_key": "faction.periodic_review:faction.yamanaka_intelligence"
+        }
+      ]
+    }
+  }
+}

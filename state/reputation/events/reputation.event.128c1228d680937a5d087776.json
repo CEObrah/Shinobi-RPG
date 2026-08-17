@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.128c1228d680937a5d087776",
+  "subject_id": "faction.fire_daimyo_liaison",
+  "event_type": "reputation.signal.institutional_service_success",
+  "occurred_at": "SE-0061-07-23T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.54f134593ba147fdb958ba72",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 76,
+      "base_weight": 34
+    },
+    "institutional_loyalty": {
+      "score": 72,
+      "base_weight": 22
+    }
+  },
+  "standing_signals": {
+    "prestige": {
+      "score": 68,
+      "base_weight": 26
+    }
+  },
+  "visibility": {
+    "audience_id": "faction.fire_border_authority",
+    "source_classification": "restricted"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.54f134593ba147fdb958ba72"
+  ],
+  "deliveries": {
+    "faction.fire_border_authority": {
+      "profile_ref": "state/reputation/audiences/profile.abf26a485f6d6220ca799963.json",
+      "source_event_ref": "event.institutional_operation_completed.54f134593ba147fdb958ba72"
+    }
+  },
+  "status": "applied"
+}

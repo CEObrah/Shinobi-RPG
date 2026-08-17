@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Causal scheduler event day",
+  "type": "object",
+  "required": [
+    "schema",
+    "day",
+    "authority",
+    "events"
+  ],
+  "properties": {
+    "schema": {
+      "const": "causal-scheduler-event-day"
+    },
+    "day": {
+      "type": "string",
+      "pattern": "^SE-[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    },
+    "authority": {
+      "const": true
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "kind",
+          "due_at",
+          "priority",
+          "source_host",
+          "target_host",
+          "payload",
+          "dedupe_key",
+          "visibility",
+          "requires_player",
+          "causation_id",
+          "correlation_id"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "due_at": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "integer"
+          },
+          "source_host": {
+            "type": "string"
+          },
+          "target_host": {
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          },
+          "dedupe_key": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "visibility": {
+            "type": "string"
+          },
+          "requires_player": {
+            "type": "boolean"
+          },
+          "causation_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "correlation_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

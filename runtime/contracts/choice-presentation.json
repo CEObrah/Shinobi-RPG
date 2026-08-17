@@ -1,0 +1,47 @@
+{
+  "schema": "choice-presentation",
+  "when_to_offer": "at a genuine unresolved player decision or a meaningful player-facing event handoff with multiple materially distinct lawful responses, when the player has not already declared the next action",
+  "suggested_choice_count": {
+    "minimum": 2,
+    "maximum": 5,
+    "default": 5
+  },
+  "default_visible_total": 6,
+  "default_horizon_mix": {
+    "immediate": 3,
+    "wider_horizon": 2,
+    "free_action": 1
+  },
+  "free_form_option_required": true,
+  "free_form_label": "Free Action",
+  "duration_required_for_every_suggested_choice": false,
+  "duration_rule": "Show an estimated in-world duration, narrow justified range, or qualitative scene-relative horizon when time materially affects the decision and current player-visible context supports it.",
+  "legality_gate": [
+    "current authority",
+    "current knowledge",
+    "current location",
+    "current equipment/resources",
+    "current health/status",
+    "known deadlines and interrupts",
+    "current tactical geometry when danger is immediate",
+    "current player-facing semantic capability when persistence is implied"
+  ],
+  "horizon_rule": "Horizon is relative to the scene, not a fixed clock category.",
+  "normal_scene_rule": "Prefer three materially different immediate actions plus two materially different wider-horizon actions or objectives, then Free Action. Adapt the mix when the scene cannot support both horizons and never add filler merely to reach the default count.",
+  "combat_horizon_rule": "In active combat or immediate danger, wider-horizon choices are tactical objectives for the next several exchanges or battle objective, such as positioning, protection, capture, escape, isolation, or disengagement. Do not offer unrelated long-term administration.",
+  "strategic_horizon_rule": "In downtime, command, political, institutional, training, relationship, or planning scenes, wider-horizon choices may concern hours, days, weeks, projects, training cycles, commitments, delegation, missions, relationships, institutions, or strategy when player-visible and lawful.",
+  "interrupt_rule": "If a suggestion crosses a known scheduled obligation or hard causal interrupt, state the expected boundary in player-visible terms.",
+  "information_rule": "Choices may state predictable commitments and player-known tradeoffs, but may not promise success, imply a hidden best answer, reveal unseen opposition, leak unknown facts, or encode repository-only information.",
+  "premise_parity_rule": "Every material premise used by a suggested choice must already exist in fresh player-visible context or the immediately preceding narration; choice text cannot create hidden terrain, actors, resources, restrictions, or opportunities.",
+  "declared_intent_rule": "If the player already declared a clear action, resolve it instead of presenting a menu. If one consequential clarification is required, ask only for that clarification.",
+  "standing_continuation_rule": "A declared wait, timeskip, sequential choice, or broader continuation remains unfinished turn intent until its target/horizon is reached, a genuine player-facing event or protected decision interrupts it, or the runtime makes further execution unavailable. A quiet maintenance/time chunk is never turn completion by itself.",
+  "ooc_detour_rule": "An OOC DEV repair, deployment check, source maintenance step, or scene repair does not consume or cancel still-unfinished IC intent. If the same player message or unresolved ordered declaration says to continue afterward, refresh live context and resume that declared intent automatically when it remains lawful.",
+  "event_seek_rule": "When a declared wait/timeskip has a known horizon and an event-seeking command is available, prefer that semantic path over arbitrary short advance_time chunks. Internal causal-work chunks remain invisible and automatic until the horizon or a genuine player-facing interruption is reached.",
+  "meaningful_event_handoff_rule": "After fully presenting a delivered report, briefing, interruption, reveal, arrival consequence, or other meaningful player-facing event, offer grounded response options when two or more materially distinct lawful next actions exist even if scene.decision_required is null. Do not manufacture options when the event has only one obvious procedural continuation or the player already declared that continuation.",
+  "report_handoff_rule": "A report is not a choice by itself. Present its player-readable content first. If the content creates multiple materially distinct responses, show choices at that resulting fork; if the player already said to open, read, answer, or act on it, carry that declared action through before offering a new menu.",
+  "selection_render_rule": "An unambiguous numbered/menu selection becomes an explicit in-world Wei action or line of dialogue within the exact scope of the selected option; never resolve it as an invisible interface click.",
+  "bounded_delegation_rule": "Explicit permission to use Wei judgment/stats authorizes one bounded answer only; use relevant fresh sheet and player-visible knowledge when material, render the answer, and do not carry the delegation forward.",
+  "menu_rule": "Choices are concise, nonbinding suggestions with no default or recommended option unless the player explicitly asks for advice. Any legal natural-language free-form action remains allowed.",
+  "storage_rule": "Never cache generated choice menus in scene state.",
+  "handoff_rule": "Classify endpoints as new decision, meaningful player-facing event handoff, obvious procedural continuation, standing wait/declared continuation, unavailable durable stage, or genuine completion. A null unresolved decision does not by itself end the scene or suppress useful choice scaffolding after a meaningful event."
+}

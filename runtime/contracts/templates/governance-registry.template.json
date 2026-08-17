@@ -1,0 +1,271 @@
+{
+  "schema": "file-template",
+  "template_id": "template.governance-registry",
+  "target_schema": "governance-registry",
+  "source_schema": "game/schemas/governance-registry.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "jurisdictions"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "jurisdictions"
+      ],
+      "canonical_order": [
+        "schema",
+        "jurisdictions"
+      ]
+    },
+    "/jurisdictions": {
+      "mode": "open_map"
+    },
+    "/jurisdictions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "place_ref",
+        "sovereign_ref",
+        "administration_ref",
+        "status",
+        "established_at",
+        "updated_at",
+        "population_pool_ref",
+        "treasury_holder_ref",
+        "recruitment_rights",
+        "tax_milli",
+        "integration_milli",
+        "resistance_milli",
+        "garrison_force_ref",
+        "recognition_agreement_refs",
+        "parent_jurisdiction_ref",
+        "basis_refs",
+        "civil_economy",
+        "visibility"
+      ],
+      "canonical_order": [
+        "id",
+        "place_ref",
+        "sovereign_ref",
+        "administration_ref",
+        "status",
+        "established_at",
+        "updated_at",
+        "population_pool_ref",
+        "treasury_holder_ref",
+        "recruitment_rights",
+        "tax_milli",
+        "integration_milli",
+        "resistance_milli",
+        "garrison_force_ref",
+        "recognition_agreement_refs",
+        "parent_jurisdiction_ref",
+        "basis_refs",
+        "civil_economy",
+        "visibility"
+      ]
+    },
+    "/jurisdictions/*/civil_economy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "last_settled_at",
+        "private_economy_holder_ref",
+        "migration_source_pool_ref",
+        "migration_agreement_ref",
+        "workforce_count",
+        "resident_count",
+        "net_migration_count",
+        "gross_activity_ryo",
+        "consumption_ryo",
+        "surplus_ryo",
+        "shortage_ryo",
+        "food_security_milli",
+        "service_capacity_milli",
+        "local_market_milli",
+        "attractiveness_milli",
+        "infrastructure_pressure_milli",
+        "integration_delta_milli",
+        "resistance_delta_milli",
+        "development_priority",
+        "development_need_milli",
+        "food_support_milli",
+        "infrastructure_capacity_milli",
+        "service_investment_milli",
+        "civic_investment_ryo",
+        "civic_investment_priority",
+        "tax_due_ryo",
+        "tax_paid_ryo",
+        "tax_arrears_ryo"
+      ],
+      "canonical_order": [
+        "last_settled_at",
+        "private_economy_holder_ref",
+        "migration_source_pool_ref",
+        "migration_agreement_ref",
+        "workforce_count",
+        "resident_count",
+        "net_migration_count",
+        "gross_activity_ryo",
+        "consumption_ryo",
+        "surplus_ryo",
+        "shortage_ryo",
+        "food_security_milli",
+        "service_capacity_milli",
+        "local_market_milli",
+        "attractiveness_milli",
+        "infrastructure_pressure_milli",
+        "integration_delta_milli",
+        "resistance_delta_milli",
+        "development_priority",
+        "development_need_milli",
+        "food_support_milli",
+        "infrastructure_capacity_milli",
+        "service_investment_milli",
+        "civic_investment_ryo",
+        "civic_investment_priority",
+        "tax_due_ryo",
+        "tax_paid_ryo",
+        "tax_arrears_ryo"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/jurisdictions": [
+      "object"
+    ],
+    "/jurisdictions/*": [
+      "object"
+    ],
+    "/jurisdictions/*/recognition_agreement_refs": [
+      "array"
+    ],
+    "/jurisdictions/*/recognition_agreement_refs/*": [
+      "string"
+    ],
+    "/jurisdictions/*/basis_refs": [
+      "array"
+    ],
+    "/jurisdictions/*/basis_refs/*": [
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/last_settled_at": [
+      "null",
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/private_economy_holder_ref": [
+      "null",
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/workforce_count": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/resident_count": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/gross_activity_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/consumption_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/surplus_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/shortage_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/food_security_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/service_capacity_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/attractiveness_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/infrastructure_pressure_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/tax_due_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/tax_paid_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/tax_arrears_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy": [
+      "object"
+    ],
+    "/jurisdictions/*/civil_economy/migration_source_pool_ref": [
+      "null",
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/migration_agreement_ref": [
+      "null",
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/net_migration_count": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/local_market_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/integration_delta_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/resistance_delta_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/development_priority": [
+      "null",
+      "string"
+    ],
+    "/jurisdictions/*/civil_economy/development_need_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/food_support_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/infrastructure_capacity_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/service_investment_milli": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/civic_investment_ryo": [
+      "integer"
+    ],
+    "/jurisdictions/*/civil_economy/civic_investment_priority": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/jurisdictions/*/recognition_agreement_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/jurisdictions/*/basis_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Dynamic maps permit stable IDs only; referenced money, people, custody, territory, and force facts remain in their own authorities."
+  ]
+}

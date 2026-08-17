@@ -1,0 +1,60 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.a43ac397aa438a9fb2",
+  "issuer_ref": "faction.fire_smuggling_network",
+  "authority_ref": "support.smuggling.reina_kurosawa",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.land_fire.private",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-02T07:00:00",
+  "authorized_at": "SE-0061-07-02T07:00:00",
+  "starts_at": "SE-0061-07-02T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.f71d77026136f81dae61",
+  "closed_at": "SE-0061-07-09T07:00:00",
+  "briefing": {
+    "briefing_id": "briefing.autonomy.a43ac397aa438a9fb2",
+    "objective_kind": "conceal",
+    "subject_kind": "place",
+    "subject_ref": "place.fire.roadside_inn",
+    "subject_label": "place.fire.roadside_inn",
+    "report_place_ref": "place.fire.roadside_inn",
+    "origin_place_ref": "place.fire.roadside_inn",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.fire_border_authority. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.fire_border_authority",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-02T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Preserve the selected covert logistics node or record its compromise."
+  },
+  "state": "succeeded",
+  "participant_refs": [
+    "support.smuggling.reina_kurosawa"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.a43ac397aa438a9fb2",
+      "kind": "conceal",
+      "required": true,
+      "dependencies": [],
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.e3bd6128574375a595b98434"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": {
+    "mission_id": "mission.autonomy.a43ac397aa438a9fb2",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.223b891cf48f6a218247",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

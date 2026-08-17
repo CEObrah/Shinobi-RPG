@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.553527ce942f5f8300",
+  "issuer_ref": "faction.yamanaka_intelligence",
+  "authority_ref": "canon_inoichi",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.yamanaka_intelligence",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-16T07:00:00",
+  "authorized_at": "SE-0061-07-16T07:00:00",
+  "starts_at": "SE-0061-07-16T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.4094339d7043e2a9adb2",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.553527ce942f5f8300",
+    "objective_kind": "identify",
+    "subject_kind": "information",
+    "subject_ref": "claim.autonomy.5609325f70fed90345",
+    "subject_label": "claim.autonomy.5609325f70fed90345",
+    "report_place_ref": "place.konoha.intelligence.division",
+    "origin_place_ref": "place.konoha.intelligence.division",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-16T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Corroborate, contradict, or downgrade one existing claim and deliver the assessment through the intelligence chain."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_fu_yamanaka",
+    "canon_ino",
+    "canon_inoichi"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.553527ce942f5f8300",
+      "kind": "identify",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

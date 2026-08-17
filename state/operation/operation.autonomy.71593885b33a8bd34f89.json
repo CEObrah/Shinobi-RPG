@@ -1,0 +1,51 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.71593885b33a8bd34f89",
+  "domain": "trade_logistics",
+  "operation_kind": "route_profitability_review",
+  "owner_ref": "faction.fire_merchant_network",
+  "authority_ref": "support.merchant.fumiko_takahara",
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-02T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_capital_konoha",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.capital"
+  ],
+  "route_refs": [
+    "route_fire_capital_konoha"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.569a8874ea2f0cf0936c4b5c",
+    "event.institutional_operation_evidence_generated.2c8e654f556ba3e4566d6547"
+  ],
+  "claim_refs": [
+    "claim.operation.c446e752ce275e17cea5"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.merchant.fumiko_takahara"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Record route condition, delay/loss evidence, and a bounded profitability assessment.",
+  "failure_condition": "The route_profitability_review objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.operation.c446e752ce275e17cea5",
+    "event.institutional_operation_completed.569a8874ea2f0cf0936c4b5c",
+    "event.institutional_operation_evidence_generated.2c8e654f556ba3e4566d6547",
+    "route_fire_capital_konoha"
+  ]
+}

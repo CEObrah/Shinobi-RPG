@@ -1,0 +1,1344 @@
+{
+  "schema": "file-template",
+  "template_id": "template.shinobi-world-registry",
+  "target_schema": "shinobi-world-registry",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "owner_id",
+        "owner_type",
+        "payload",
+        "schema",
+        "source_domain"
+      ],
+      "canonical_order": [
+        "owner_id",
+        "owner_type",
+        "payload",
+        "schema",
+        "source_domain"
+      ]
+    },
+    "/payload": {
+      "mode": "closed",
+      "allowed_keys": [
+        "canon_rule",
+        "clans",
+        "countries",
+        "economies_and_mission_markets",
+        "institutions",
+        "pressures",
+        "places",
+        "routes",
+        "settlement_generation_rule"
+      ],
+      "canonical_order": [
+        "countries",
+        "canon_rule",
+        "pressures",
+        "clans",
+        "institutions",
+        "places",
+        "routes",
+        "settlement_generation_rule",
+        "economies_and_mission_markets"
+      ]
+    },
+    "/payload/clans/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "leader_id",
+        "name",
+        "settlement",
+        "specialization",
+        "village"
+      ],
+      "canonical_order": [
+        "id",
+        "leader_id",
+        "name",
+        "settlement",
+        "specialization",
+        "village"
+      ]
+    },
+    "/payload/clans/*/settlement": {
+      "mode": "closed",
+      "allowed_keys": [
+        "active_goal_ids",
+        "cadence",
+        "dependency_ids",
+        "last_settled_at",
+        "next_due_at",
+        "owner_id",
+        "owner_type",
+        "player_choice_protected",
+        "risk_flags",
+        "routine_profile_id",
+        "stable_seed",
+        "standing_order_ids",
+        "unresolved_player_dependency_ids"
+      ],
+      "canonical_order": [
+        "active_goal_ids",
+        "cadence",
+        "dependency_ids",
+        "last_settled_at",
+        "next_due_at",
+        "owner_id",
+        "owner_type",
+        "player_choice_protected",
+        "risk_flags",
+        "routine_profile_id",
+        "stable_seed",
+        "standing_order_ids",
+        "unresolved_player_dependency_ids"
+      ]
+    },
+    "/payload/countries/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "civilian_force_owner_id",
+        "court_factions",
+        "economy_profile",
+        "government_owner_id",
+        "hidden_village",
+        "id",
+        "last_settled_at",
+        "major_routes_owner_id",
+        "mission_demand",
+        "name",
+        "national_treasury_status",
+        "population_band",
+        "resolution_tier",
+        "village_relationship"
+      ],
+      "canonical_order": [
+        "civilian_force_owner_id",
+        "court_factions",
+        "economy_profile",
+        "government_owner_id",
+        "hidden_village",
+        "id",
+        "last_settled_at",
+        "major_routes_owner_id",
+        "mission_demand",
+        "name",
+        "national_treasury_status",
+        "population_band",
+        "resolution_tier",
+        "village_relationship"
+      ]
+    },
+    "/payload/economies_and_mission_markets": {
+      "mode": "closed",
+      "allowed_keys": [
+        "last_settled_at",
+        "markets",
+        "section",
+        "treasury_rule",
+        "finance"
+      ],
+      "canonical_order": [
+        "last_settled_at",
+        "markets",
+        "section",
+        "treasury_rule",
+        "finance"
+      ]
+    },
+    "/payload/economies_and_mission_markets/markets/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "competition",
+        "demand",
+        "id",
+        "owner_id",
+        "place_ref",
+        "status"
+      ],
+      "canonical_order": [
+        "competition",
+        "demand",
+        "id",
+        "owner_id",
+        "place_ref",
+        "status"
+      ]
+    },
+    "/payload/institutions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "branches",
+        "country_id",
+        "doctrine_id",
+        "id",
+        "leader_id",
+        "name",
+        "settlement"
+      ],
+      "canonical_order": [
+        "branches",
+        "country_id",
+        "doctrine_id",
+        "id",
+        "leader_id",
+        "name",
+        "settlement"
+      ]
+    },
+    "/payload/institutions/*/settlement": {
+      "mode": "closed",
+      "allowed_keys": [
+        "active_goal_ids",
+        "cadence",
+        "dependency_ids",
+        "last_settled_at",
+        "next_due_at",
+        "owner_id",
+        "owner_type",
+        "player_choice_protected",
+        "risk_flags",
+        "routine_profile_id",
+        "stable_seed",
+        "standing_order_ids",
+        "unresolved_player_dependency_ids"
+      ],
+      "canonical_order": [
+        "active_goal_ids",
+        "cadence",
+        "dependency_ids",
+        "last_settled_at",
+        "next_due_at",
+        "owner_id",
+        "owner_type",
+        "player_choice_protected",
+        "risk_flags",
+        "routine_profile_id",
+        "stable_seed",
+        "standing_order_ids",
+        "unresolved_player_dependency_ids"
+      ]
+    },
+    "/payload/pressures/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "canon_forcing",
+        "id",
+        "name",
+        "owner_id",
+        "possible_outcomes",
+        "status"
+      ],
+      "canonical_order": [
+        "canon_forcing",
+        "id",
+        "name",
+        "owner_id",
+        "possible_outcomes",
+        "status"
+      ]
+    },
+    "/payload/routes/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "from",
+        "id",
+        "mode",
+        "reference_travel_days",
+        "status",
+        "knowledge_classification",
+        "scope",
+        "to",
+        "travel_days_band",
+        "travel_mechanics_ref"
+      ],
+      "canonical_order": [
+        "from",
+        "id",
+        "mode",
+        "status",
+        "knowledge_classification",
+        "scope",
+        "to",
+        "travel_days_band",
+        "reference_travel_days",
+        "travel_mechanics_ref"
+      ]
+    },
+    "/payload/places/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "name",
+        "country_id",
+        "kind",
+        "status",
+        "authority_ref",
+        "timeline_status",
+        "knowledge_classification",
+        "provenance",
+        "parent_location_ref",
+        "route_anchor_ref",
+        "mechanical_modules"
+      ],
+      "canonical_order": [
+        "id",
+        "name",
+        "country_id",
+        "kind",
+        "status",
+        "authority_ref",
+        "timeline_status",
+        "knowledge_classification",
+        "provenance",
+        "parent_location_ref",
+        "route_anchor_ref",
+        "mechanical_modules"
+      ]
+    },
+    "/payload/places/*/mechanical_modules": {
+      "mode": "closed",
+      "allowed_keys": [
+        "training",
+        "medical",
+        "custody",
+        "housing",
+        "production",
+        "infrastructure",
+        "laboratory",
+        "security",
+        "fortification",
+        "logistics"
+      ],
+      "canonical_order": [
+        "training",
+        "medical",
+        "custody",
+        "housing",
+        "production",
+        "infrastructure",
+        "laboratory",
+        "security",
+        "fortification",
+        "logistics"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/training": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity_slots",
+        "quality_milli",
+        "supported_categories"
+      ],
+      "canonical_order": [
+        "capacity_slots",
+        "quality_milli",
+        "supported_categories"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/medical": {
+      "mode": "closed",
+      "allowed_keys": [
+        "quality_milli",
+        "specialties",
+        "bed_capacity_units",
+        "bed_load_units",
+        "bed_recovery_units_per_hour",
+        "surgical_capacity_units",
+        "surgical_load_units",
+        "surgical_recovery_units_per_hour",
+        "staff_capacity_units",
+        "staff_load_units",
+        "staff_recovery_units_per_hour",
+        "last_capacity_update_at",
+        "pharmacy_stock_ref"
+      ],
+      "canonical_order": [
+        "quality_milli",
+        "specialties",
+        "bed_capacity_units",
+        "bed_load_units",
+        "bed_recovery_units_per_hour",
+        "surgical_capacity_units",
+        "surgical_load_units",
+        "surgical_recovery_units_per_hour",
+        "staff_capacity_units",
+        "staff_load_units",
+        "staff_recovery_units_per_hour",
+        "last_capacity_update_at",
+        "pharmacy_stock_ref"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/custody": {
+      "mode": "closed",
+      "allowed_keys": [
+        "capacity_slots",
+        "security_milli"
+      ],
+      "canonical_order": [
+        "capacity_slots",
+        "security_milli"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance": {
+      "mode": "closed",
+      "allowed_keys": [
+        "last_settled_at",
+        "next_due_at",
+        "currency_ref",
+        "funding_exact",
+        "funding_prefixes",
+        "accounts",
+        "recurring_flows",
+        "arrears_ryo",
+        "last_period",
+        "capital_assets",
+        "rule"
+      ],
+      "canonical_order": [
+        "last_settled_at",
+        "next_due_at",
+        "currency_ref",
+        "funding_exact",
+        "funding_prefixes",
+        "accounts",
+        "recurring_flows",
+        "arrears_ryo",
+        "last_period",
+        "capital_assets",
+        "rule"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance/funding_exact": {
+      "mode": "open_map"
+    },
+    "/payload/economies_and_mission_markets/finance/funding_prefixes": {
+      "mode": "open_map"
+    },
+    "/payload/economies_and_mission_markets/finance/accounts": {
+      "mode": "open_map"
+    },
+    "/payload/economies_and_mission_markets/finance/accounts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "scope_ref",
+        "monthly_outflow_reference_ryo"
+      ],
+      "canonical_order": [
+        "kind",
+        "scope_ref",
+        "monthly_outflow_reference_ryo"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "source_ref",
+        "destination_ref",
+        "amount_ryo",
+        "kind",
+        "priority"
+      ],
+      "canonical_order": [
+        "id",
+        "source_ref",
+        "destination_ref",
+        "amount_ryo",
+        "kind",
+        "priority"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance/arrears_ryo": {
+      "mode": "open_map"
+    },
+    "/payload/economies_and_mission_markets/finance/last_period": {
+      "mode": "closed",
+      "allowed_keys": [
+        "settled_at",
+        "expected_ryo",
+        "paid_ryo",
+        "unpaid_current_ryo",
+        "arrears_before_ryo",
+        "arrears_after_ryo",
+        "flow_count",
+        "partial_flow_count"
+      ],
+      "canonical_order": [
+        "settled_at",
+        "expected_ryo",
+        "paid_ryo",
+        "unpaid_current_ryo",
+        "arrears_before_ryo",
+        "arrears_after_ryo",
+        "flow_count",
+        "partial_flow_count"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance/capital_assets": {
+      "mode": "open_map"
+    },
+    "/payload/economies_and_mission_markets/finance/capital_assets/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "replacement_value_ryo",
+        "owner_ref",
+        "monthly_upkeep_ryo"
+      ],
+      "canonical_order": [
+        "replacement_value_ryo",
+        "owner_ref",
+        "monthly_upkeep_ryo"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/housing": {
+      "mode": "closed",
+      "allowed_keys": [
+        "resident_capacity_slots",
+        "quality_milli"
+      ],
+      "canonical_order": [
+        "resident_capacity_slots",
+        "quality_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/production": {
+      "mode": "closed",
+      "allowed_keys": [
+        "armor_lines",
+        "weapon_lines",
+        "tool_lines",
+        "medical_lines",
+        "puppet_lines",
+        "quality_milli"
+      ],
+      "canonical_order": [
+        "armor_lines",
+        "weapon_lines",
+        "tool_lines",
+        "medical_lines",
+        "puppet_lines",
+        "quality_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/infrastructure": {
+      "mode": "closed",
+      "allowed_keys": [
+        "support_capacity_slots",
+        "quality_milli"
+      ],
+      "canonical_order": [
+        "support_capacity_slots",
+        "quality_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/laboratory": {
+      "mode": "closed",
+      "allowed_keys": [
+        "research_capacity_slots",
+        "quality_milli"
+      ],
+      "canonical_order": [
+        "research_capacity_slots",
+        "quality_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/security": {
+      "mode": "closed",
+      "allowed_keys": [
+        "coverage_milli",
+        "detection_milli",
+        "response_milli"
+      ],
+      "canonical_order": [
+        "coverage_milli",
+        "detection_milli",
+        "response_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/fortification": {
+      "mode": "closed",
+      "allowed_keys": [
+        "defense_milli",
+        "denial_milli",
+        "repair_capacity_milli"
+      ],
+      "canonical_order": [
+        "defense_milli",
+        "denial_milli",
+        "repair_capacity_milli"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/logistics": {
+      "mode": "closed",
+      "allowed_keys": [
+        "depot_capacity_units",
+        "throughput_milli"
+      ],
+      "canonical_order": [
+        "depot_capacity_units",
+        "throughput_milli"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/owner_id": [
+      "string"
+    ],
+    "/owner_type": [
+      "string"
+    ],
+    "/payload": [
+      "object"
+    ],
+    "/payload/canon_rule": [
+      "string"
+    ],
+    "/payload/clans": [
+      "array"
+    ],
+    "/payload/clans/*": [
+      "object"
+    ],
+    "/payload/clans/*/id": [
+      "string"
+    ],
+    "/payload/clans/*/leader_id": [
+      "null",
+      "string"
+    ],
+    "/payload/clans/*/name": [
+      "string"
+    ],
+    "/payload/clans/*/settlement": [
+      "object"
+    ],
+    "/payload/clans/*/settlement/active_goal_ids": [
+      "array"
+    ],
+    "/payload/clans/*/settlement/cadence": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/dependency_ids": [
+      "array"
+    ],
+    "/payload/clans/*/settlement/last_settled_at": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/next_due_at": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/owner_id": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/owner_type": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/player_choice_protected": [
+      "boolean"
+    ],
+    "/payload/clans/*/settlement/risk_flags": [
+      "array"
+    ],
+    "/payload/clans/*/settlement/routine_profile_id": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/stable_seed": [
+      "integer"
+    ],
+    "/payload/clans/*/settlement/standing_order_ids": [
+      "array"
+    ],
+    "/payload/clans/*/settlement/standing_order_ids/*": [
+      "string"
+    ],
+    "/payload/clans/*/settlement/unresolved_player_dependency_ids": [
+      "array"
+    ],
+    "/payload/clans/*/specialization": [
+      "string"
+    ],
+    "/payload/clans/*/village": [
+      "string"
+    ],
+    "/payload/countries": [
+      "array"
+    ],
+    "/payload/countries/*": [
+      "object"
+    ],
+    "/payload/countries/*/civilian_force_owner_id": [
+      "string"
+    ],
+    "/payload/countries/*/court_factions": [
+      "array"
+    ],
+    "/payload/countries/*/court_factions/*": [
+      "string"
+    ],
+    "/payload/countries/*/economy_profile": [
+      "string"
+    ],
+    "/payload/countries/*/government_owner_id": [
+      "string"
+    ],
+    "/payload/countries/*/hidden_village": [
+      "null",
+      "string"
+    ],
+    "/payload/countries/*/id": [
+      "string"
+    ],
+    "/payload/countries/*/last_settled_at": [
+      "string"
+    ],
+    "/payload/countries/*/major_routes_owner_id": [
+      "string"
+    ],
+    "/payload/countries/*/mission_demand": [
+      "string"
+    ],
+    "/payload/countries/*/name": [
+      "string"
+    ],
+    "/payload/countries/*/national_treasury_status": [
+      "string"
+    ],
+    "/payload/countries/*/population_band": [
+      "string"
+    ],
+    "/payload/countries/*/resolution_tier": [
+      "string"
+    ],
+    "/payload/countries/*/village_relationship": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/last_settled_at": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets": [
+      "array"
+    ],
+    "/payload/economies_and_mission_markets/markets/*": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/competition": [
+      "array"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/competition/*": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/demand": [
+      "array"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/demand/*": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/id": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/owner_id": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/status": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/section": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/treasury_rule": [
+      "string"
+    ],
+    "/payload/institutions": [
+      "array"
+    ],
+    "/payload/institutions/*": [
+      "object"
+    ],
+    "/payload/institutions/*/branches": [
+      "array"
+    ],
+    "/payload/institutions/*/branches/*": [
+      "string"
+    ],
+    "/payload/institutions/*/country_id": [
+      "string"
+    ],
+    "/payload/institutions/*/doctrine_id": [
+      "string"
+    ],
+    "/payload/institutions/*/id": [
+      "string"
+    ],
+    "/payload/institutions/*/leader_id": [
+      "null",
+      "string"
+    ],
+    "/payload/institutions/*/name": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement": [
+      "object"
+    ],
+    "/payload/institutions/*/settlement/active_goal_ids": [
+      "array"
+    ],
+    "/payload/institutions/*/settlement/cadence": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/dependency_ids": [
+      "array"
+    ],
+    "/payload/institutions/*/settlement/last_settled_at": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/next_due_at": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/owner_id": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/owner_type": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/player_choice_protected": [
+      "boolean"
+    ],
+    "/payload/institutions/*/settlement/risk_flags": [
+      "array"
+    ],
+    "/payload/institutions/*/settlement/routine_profile_id": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/stable_seed": [
+      "integer"
+    ],
+    "/payload/institutions/*/settlement/standing_order_ids": [
+      "array"
+    ],
+    "/payload/institutions/*/settlement/standing_order_ids/*": [
+      "string"
+    ],
+    "/payload/institutions/*/settlement/unresolved_player_dependency_ids": [
+      "array"
+    ],
+    "/payload/pressures": [
+      "array"
+    ],
+    "/payload/pressures/*": [
+      "object"
+    ],
+    "/payload/pressures/*/canon_forcing": [
+      "boolean"
+    ],
+    "/payload/pressures/*/id": [
+      "string"
+    ],
+    "/payload/pressures/*/name": [
+      "string"
+    ],
+    "/payload/pressures/*/owner_id": [
+      "string"
+    ],
+    "/payload/pressures/*/possible_outcomes": [
+      "array"
+    ],
+    "/payload/pressures/*/possible_outcomes/*": [
+      "string"
+    ],
+    "/payload/pressures/*/status": [
+      "string"
+    ],
+    "/payload/routes": [
+      "array"
+    ],
+    "/payload/routes/*": [
+      "object"
+    ],
+    "/payload/routes/*/from": [
+      "string"
+    ],
+    "/payload/routes/*/id": [
+      "string"
+    ],
+    "/payload/routes/*/mode": [
+      "string"
+    ],
+    "/payload/routes/*/reference_travel_days": [
+      "number"
+    ],
+    "/payload/routes/*/status": [
+      "string"
+    ],
+    "/payload/routes/*/to": [
+      "string"
+    ],
+    "/payload/routes/*/travel_days_band": [
+      "array"
+    ],
+    "/payload/routes/*/travel_days_band/*": [
+      "integer"
+    ],
+    "/payload/routes/*/travel_mechanics_ref": [
+      "string"
+    ],
+    "/payload/settlement_generation_rule": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/source_domain": [
+      "string"
+    ],
+    "/payload/places": [
+      "array"
+    ],
+    "/payload/places/*": [
+      "object"
+    ],
+    "/payload/places/*/id": [
+      "string"
+    ],
+    "/payload/places/*/name": [
+      "string"
+    ],
+    "/payload/places/*/country_id": [
+      "string",
+      "null"
+    ],
+    "/payload/places/*/kind": [
+      "string"
+    ],
+    "/payload/places/*/status": [
+      "string"
+    ],
+    "/payload/places/*/timeline_status": [
+      "string"
+    ],
+    "/payload/places/*/knowledge_classification": [
+      "string"
+    ],
+    "/payload/places/*/provenance": [
+      "string"
+    ],
+    "/payload/places/*/authority_ref": [
+      "null",
+      "string"
+    ],
+    "/payload/places/*/route_anchor_ref": [
+      "string",
+      "null"
+    ],
+    "/payload/places/*/mechanical_modules": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/training": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/training/capacity_slots": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/training/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/training/supported_categories": [
+      "array"
+    ],
+    "/payload/places/*/mechanical_modules/training/supported_categories/*": [
+      "string"
+    ],
+    "/payload/places/*/mechanical_modules/medical": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/medical/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/specialties": [
+      "array"
+    ],
+    "/payload/places/*/mechanical_modules/medical/specialties/*": [
+      "string"
+    ],
+    "/payload/places/*/mechanical_modules/custody": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/custody/capacity_slots": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_settled_at": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/next_due_at": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/currency_ref": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/funding_exact": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/funding_exact/*": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/funding_prefixes": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/funding_prefixes/*": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/accounts": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/accounts/*": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/accounts/*/kind": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/accounts/*/scope_ref": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/accounts/*/monthly_outflow_reference_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows": [
+      "array"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/id": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/source_ref": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/destination_ref": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/amount_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/kind": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/recurring_flows/*/priority": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/arrears_ryo": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/arrears_ryo/*": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period": [
+      "object",
+      "null"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/settled_at": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/expected_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/paid_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/unpaid_current_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/arrears_before_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/arrears_after_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/flow_count": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/last_period/partial_flow_count": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/capital_assets": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/capital_assets/*": [
+      "object"
+    ],
+    "/payload/economies_and_mission_markets/finance/capital_assets/*/replacement_value_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/capital_assets/*/owner_ref": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/finance/capital_assets/*/monthly_upkeep_ryo": [
+      "integer"
+    ],
+    "/payload/economies_and_mission_markets/finance/rule": [
+      "string"
+    ],
+    "/payload/places/*/mechanical_modules/custody/security_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/housing": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/housing/resident_capacity_slots": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/housing/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/production/armor_lines": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production/weapon_lines": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production/tool_lines": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production/medical_lines": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production/puppet_lines": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/production/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/infrastructure": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/infrastructure/support_capacity_slots": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/infrastructure/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/laboratory": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/laboratory/research_capacity_slots": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/laboratory/quality_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/security": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/security/coverage_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/security/detection_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/security/response_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/fortification": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/fortification/defense_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/fortification/denial_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/fortification/repair_capacity_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/logistics": [
+      "object"
+    ],
+    "/payload/places/*/mechanical_modules/logistics/depot_capacity_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/logistics/throughput_milli": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/bed_capacity_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/bed_load_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/bed_recovery_units_per_hour": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/surgical_capacity_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/surgical_load_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/surgical_recovery_units_per_hour": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/staff_capacity_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/staff_load_units": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/staff_recovery_units_per_hour": [
+      "integer"
+    ],
+    "/payload/places/*/mechanical_modules/medical/last_capacity_update_at": [
+      "string"
+    ],
+    "/payload/places/*/mechanical_modules/medical/pharmacy_stock_ref": [
+      "string",
+      "null"
+    ],
+    "/payload/places/*/parent_location_ref": [
+      "string",
+      "null"
+    ],
+    "/payload/routes/*/scope": [
+      "string"
+    ],
+    "/payload/routes/*/knowledge_classification": [
+      "string"
+    ],
+    "/payload/economies_and_mission_markets/markets/*/place_ref": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/payload/clans": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/clans/*/settlement/standing_order_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/countries": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/countries/*/court_factions": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/economies_and_mission_markets/markets": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/economies_and_mission_markets/markets/*/competition": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/economies_and_mission_markets/markets/*/demand": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/institutions": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/institutions/*/branches": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/institutions/*/settlement/standing_order_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/pressures": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/pressures/*/possible_outcomes": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/routes": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/routes/*/travel_days_band": {
+      "item_types": [
+        "integer"
+      ]
+    },
+    "/payload/places": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/payload/institutions/*/settlement/risk_flags": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/clans/*/settlement/active_goal_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/institutions/*/settlement/active_goal_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/training/supported_categories": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/places/*/mechanical_modules/medical/specialties": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/payload/economies_and_mission_markets/finance/recurring_flows": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Indexes/caches are rebuilt from authority and never used to bless new authoritative fields.",
+    "Canonical key order is a writing convention only; semantic validation does not depend on JSON object order."
+  ]
+}

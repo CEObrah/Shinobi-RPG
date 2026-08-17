@@ -1,0 +1,54 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.3f20fd9004f37bfe71",
+  "issuer_ref": "faction.fire_smuggling_network",
+  "authority_ref": "support.smuggling.reina_kurosawa",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.land_fire.private",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-30T07:00:00",
+  "authorized_at": "SE-0061-07-30T07:00:00",
+  "starts_at": "SE-0061-07-30T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.8feb332840074564ba64",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.3f20fd9004f37bfe71",
+    "objective_kind": "deliver",
+    "subject_kind": "route",
+    "subject_ref": "route_fire_northwest_kusa",
+    "subject_label": "route_fire_northwest_kusa",
+    "report_place_ref": "place.fire.northern.border",
+    "origin_place_ref": "place.fire.northern.border",
+    "destination_place_ref": null,
+    "route_id": "route_konoha_wave",
+    "threat_summary": "Declared opposing actor(s): faction.fire_border_authority. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.fire_border_authority",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-30T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Complete a concealed transport leg without seizure, or persist the seizure/exposure consequence."
+  },
+  "state": "active",
+  "participant_refs": [
+    "support.smuggling.reina_kurosawa"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.3f20fd9004f37bfe71",
+      "kind": "deliver",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

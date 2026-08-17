@@ -1,0 +1,218 @@
+{
+  "schema": "content-archetypes",
+  "kind": "world_event_archetypes",
+  "authority": "cold_non_state_content",
+  "rule": "Archetypes are evaluated only when a causal trigger, scheduled process, or relevant settlement requires them. They are not polled daily.",
+  "archetypes": [
+    {
+      "id": "event.team_fujin_assignment",
+      "type": "scheduled",
+      "status": "pending",
+      "time_window": [
+        "SE-0061-02-05T09:00:00",
+        "SE-0061-02-05T12:00:00"
+      ],
+      "actors": [
+        "pc_wei_tang",
+        "char.kai",
+        "char.riku_hyuga",
+        "char.mei_arakawa"
+      ],
+      "preconditions": [
+        "Team Fujin remains pending assignment"
+      ],
+      "forced_outcome": false,
+      "visibility": "known",
+      "pressure": "Academy team assignment requires an actual scene and cannot be skipped into an already-established team relationship.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.anbu_candidate_review",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "pc_wei_tang",
+        "faction.konoha_anbu"
+      ],
+      "trigger": "Wei ANBU candidacy reaches a lawful review, trial, invitation, or crisis-driven evaluation",
+      "forced_outcome": false,
+      "visibility": "known_goal",
+      "pressure": "May advance or reject Wei; never auto-activates the future six-person squad.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.root_attention_to_wei",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "faction.root",
+        "pc_wei_tang"
+      ],
+      "trigger": "Wei generates sufficient observable threat, inquiry, contact, or evidence around Root",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Root may investigate, misdirect, recruit, isolate, surveil, or prepare defenses using knowledge.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.root_internal_security_shift",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "faction.root"
+      ],
+      "trigger": "Root suffers a leak, missing asset, compromised operative, or credible intrusion warning",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Security changes must be committed before any later battle snapshot.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.fire_border_alarm",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.fire_border_authority",
+        "faction.konoha_mission_office"
+      ],
+      "trigger": "border threat score rises from actual incidents, reports, or force movement",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Creates reconnaissance, escort, protection, or reinforcement demand.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.merchant_route_disruption",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.fire_merchant_network",
+        "faction.konoha_mission_office"
+      ],
+      "trigger": "trade route safety or throughput materially deteriorates",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Raises escort, investigation, suppression, or route-clearing demand.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.missing_nin_bounty_spike",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.bounty_broker_network"
+      ],
+      "trigger": "multiple verified missing-nin incidents or a high-value target enters accessible markets",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Bounty information and capture competition intensify.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.kiri_hunter_operation",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "faction.kiri_hunter_office"
+      ],
+      "trigger": "Kiri identifies a missing-nin, stolen secret, or sensitive target requiring recovery",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Kiri deploys hunter capability through normal travel, authority, and mission procedures.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.kumo_readiness_shift",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.kumo_military_intelligence"
+      ],
+      "trigger": "Kumo threat assessment changes materially",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Can alter patrols, intelligence priorities, and force posture.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.iwa_engineering_mobilization",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.iwa_engineering_command"
+      ],
+      "trigger": "Iwa receives a material fortification, siege, route-denial, or disaster requirement",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Commits existing engineers and Earth specialists; creates no new manpower.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.suna_contract_pressure",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.suna_puppet_corps"
+      ],
+      "trigger": "Suna funding, mission demand, or security situation materially changes",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Can shift specialist availability and mission-market competition.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.oto_experiment_escape",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "faction.oto_research_cells"
+      ],
+      "trigger": "a experiment, prisoner, operative, or project escapes or is compromised",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Creates retrieval, concealment, or external-security consequences.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.ame_security_crackdown",
+      "type": "triggered",
+      "status": "dormant",
+      "actors": [
+        "faction.ame_security_network"
+      ],
+      "trigger": "Ame leadership detects a credible internal or external security threat",
+      "forced_outcome": false,
+      "visibility": "hidden_until_information_path",
+      "pressure": "Checkpoints, surveillance, patrols, and intelligence actions change using existing forces.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.konoha_hospital_overload",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.konoha_hospital"
+      ],
+      "trigger": "casualty intake exceeds current medical throughput",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Treatment queues and staffing availability become material.",
+      "process_id": "process_world_event_triggers"
+    },
+    {
+      "id": "event.clan_political_pressure",
+      "type": "emergent",
+      "status": "dormant",
+      "actors": [
+        "faction.hyuga_clan"
+      ],
+      "trigger": "a clan duty, security issue, marriage/family concern, or Byakugan threat becomes material",
+      "forced_outcome": false,
+      "visibility": "information_path",
+      "pressure": "Creates social, training, security, or political obligations without forcing Riku or Wei decisions.",
+      "process_id": "process_world_event_triggers",
+      "family_domain": "family_transition",
+      "state_authority": "state/family/"
+    }
+  ]
+}

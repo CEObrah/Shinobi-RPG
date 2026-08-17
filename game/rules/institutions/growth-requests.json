@@ -1,0 +1,25 @@
+{
+  "schema": "institution-growth-policy-registry",
+  "authority": "Registered governance for bounded institution-growth requests. A request may delegate only listed scopes; it never transfers general institutional authority.",
+  "policies": {
+    "house.tang": {
+      "decision_authority_ref": "char.zhu",
+      "eligible_requester_refs": ["pc_wei_tang"],
+      "delegable_project_types": [
+        "training_expansion",
+        "residential_expansion",
+        "workshop_expansion",
+        "infrastructure_expansion",
+        "medical_expansion",
+        "custody_expansion"
+      ],
+      "delegable_recruitment_policies": [
+        "recruitment.sword_manor_disciple",
+        "recruitment.sword_manor_outreach"
+      ],
+      "remote_review_allowed": false,
+      "delegation_semantics": "Approved scopes let the named requester execute that registered growth action while Zhu retains all other strategic House authority. Project funding, stock, prerequisites, cooldowns, population conservation, source sovereignty, and ordinary command validation still apply.",
+      "review_posture": "Approve registered capacity-building and disciplined voluntary intake scopes as delegation of execution, not as automatic spending or automatic admission. External outreach may advertise to civilian and support-service volunteers but never conscripts or transfers another village's active shinobi. Unsupported scopes are declined rather than silently broadened."
+    }
+  }
+}

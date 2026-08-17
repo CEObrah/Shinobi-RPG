@@ -1,0 +1,43 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.0802f1d74f9e4d276e",
+  "issuer_ref": "faction.yamanaka_intelligence",
+  "authority_ref": "canon_inoichi",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.yamanaka_intelligence",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-03-05T07:00:00",
+  "authorized_at": "SE-0061-03-05T07:00:00",
+  "starts_at": "SE-0061-03-05T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_fu_yamanaka",
+    "canon_ino",
+    "canon_inoichi"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.0802f1d74f9e4d276e",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "baseline.rich_autonomy_terminal_state"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "baseline.rich_autonomy_terminal_state",
+  "settlement": {
+    "mission_id": "mission.autonomy.0802f1d74f9e4d276e",
+    "outcome": "aborted",
+    "settlement_token": "baseline:mission.autonomy.0802f1d74f9e4d276e:terminal-state",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

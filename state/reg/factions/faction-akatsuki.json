@@ -1,0 +1,58 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.akatsuki",
+    "name": "Akatsuki",
+    "status": "active",
+    "leadership_ids": [
+      "canon_nagato",
+      "canon_konan"
+    ],
+    "key_member_ids": [
+      "canon_itachi",
+      "canon_kisame"
+    ],
+    "goal": "advance Akatsuki strategic collection and covert objectives through compartmented cells",
+    "current_plan": "Maintain secrecy, collect lawful intelligence on strategic targets, and task persisted cells only from information actually held.",
+    "resources": [
+      "Akatsuki paired cells",
+      "hidden sites",
+      "classified intelligence network"
+    ],
+    "relationships": [],
+    "knowledge_policy": "world truth, operational knowledge, and player knowledge remain separate; decisions use only persisted holder knowledge",
+    "notes": [
+      "Future canon is pressure, not destiny; targets require real information and operational prerequisites."
+    ],
+    "goals": [
+      "preserve network secrecy",
+      "collect strategic target intelligence",
+      "task paired cells when evidence and resources support action"
+    ],
+    "constraints": [
+      "compartmentation",
+      "actual target knowledge",
+      "cell availability",
+      "resource and chakra limits"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-30T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [
+        "mission.autonomy.900760abfcade5de96",
+        "mission.autonomy.a2f121d89ab4088638"
+      ],
+      "autonomous_priority_refs": [],
+      "completed_priority_refs": [],
+      "autonomous_team_refs": [
+        "team.akatsuki.itachi_kisame"
+      ],
+      "wake_required_mission_refs": [
+        "mission.autonomy.900760abfcade5de96"
+      ]
+    },
+    "scope": "Akatsuki covert intelligence and paired-cell operations",
+    "leadership_model": "ring_leadership"
+  }
+}

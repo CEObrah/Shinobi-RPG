@@ -1,0 +1,43 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.institution.ed70ef75fa2b11eea72f",
+  "domain": "security_network",
+  "operation_kind": "institution_security_posture_review",
+  "owner_ref": "faction_yuga",
+  "authority_ref": "faction_yuga",
+  "opened_at": "SE-0061-07-01T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "institution",
+  "subject_ref": "faction_yuga",
+  "client_ref": null,
+  "place_refs": [],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.64e0180c3a95a74a52b6b22d"
+  ],
+  "claim_refs": [
+    "claim.institution.2e3c843afbcf37d61116"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile protected sites, alarms, access, custody, or verified threat evidence for the institution's remit.",
+  "failure_condition": "Security posture cannot be supported from established sites, resources, or evidence.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.institution.2e3c843afbcf37d61116",
+    "event.institutional_work_completed.64e0180c3a95a74a52b6b22d",
+    "force.yuga.service"
+  ]
+}

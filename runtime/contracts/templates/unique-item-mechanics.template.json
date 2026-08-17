@@ -1,0 +1,1118 @@
+{
+  "schema": "file-template",
+  "template_id": "template.unique-item-mechanics",
+  "target_schema": "unique-item-mechanics",
+  "source_schema": null,
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "chakra_interfaces",
+    "named_item_base_links",
+    "schema",
+    "unique_modules"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "chakra_interfaces",
+        "named_item_base_links",
+        "schema",
+        "unique_modules"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "chakra_interfaces",
+        "named_item_base_links",
+        "unique_modules"
+      ]
+    },
+    "/chakra_interfaces": {
+      "mode": "closed",
+      "allowed_keys": [
+        "interface_basic_chakra_conductor",
+        "interface_hiramekarei_core",
+        "interface_kiba_dual_lightning",
+        "interface_standard_dual_conductor"
+      ],
+      "canonical_order": [
+        "interface_basic_chakra_conductor",
+        "interface_standard_dual_conductor",
+        "interface_hiramekarei_core",
+        "interface_kiba_dual_lightning"
+      ]
+    },
+    "/chakra_interfaces/interface_basic_chakra_conductor": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_support",
+        "efficiency_support",
+        "name",
+        "nodes",
+        "safe_intensity",
+        "throughput_per_6s"
+      ],
+      "canonical_order": [
+        "name",
+        "throughput_per_6s",
+        "nodes",
+        "control_support",
+        "efficiency_support",
+        "safe_intensity"
+      ]
+    },
+    "/chakra_interfaces/interface_hiramekarei_core": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_support",
+        "efficiency_support",
+        "name",
+        "nodes",
+        "safe_intensity",
+        "stored_capacity",
+        "throughput_per_6s"
+      ],
+      "canonical_order": [
+        "name",
+        "throughput_per_6s",
+        "nodes",
+        "control_support",
+        "efficiency_support",
+        "safe_intensity",
+        "stored_capacity"
+      ]
+    },
+    "/chakra_interfaces/interface_kiba_dual_lightning": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_support",
+        "efficiency_support",
+        "name",
+        "nodes",
+        "safe_intensity",
+        "throughput_per_6s"
+      ],
+      "canonical_order": [
+        "name",
+        "throughput_per_6s",
+        "nodes",
+        "control_support",
+        "efficiency_support",
+        "safe_intensity"
+      ]
+    },
+    "/chakra_interfaces/interface_standard_dual_conductor": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_support",
+        "efficiency_support",
+        "name",
+        "nodes",
+        "safe_intensity",
+        "throughput_per_6s"
+      ],
+      "canonical_order": [
+        "name",
+        "throughput_per_6s",
+        "nodes",
+        "control_support",
+        "efficiency_support",
+        "safe_intensity"
+      ]
+    },
+    "/named_item_base_links": {
+      "mode": "closed",
+      "allowed_keys": [
+        "item_asuma_trench_knives",
+        "item_gaara_sand_gourd",
+        "item_hiramekarei",
+        "item_kubikiribocho",
+        "item_kusanagi",
+        "item_samehada",
+        "item_temari_giant_fan"
+      ],
+      "canonical_order": [
+        "item_samehada",
+        "item_kubikiribocho",
+        "item_hiramekarei",
+        "item_kusanagi",
+        "item_gaara_sand_gourd",
+        "item_temari_giant_fan",
+        "item_asuma_trench_knives"
+      ]
+    },
+    "/unique_modules": {
+      "mode": "closed",
+      "allowed_keys": [
+        "module_chakra_trench_knife_pair",
+        "module_gaara_prepared_sand_reservoir",
+        "module_gunbai_conversion",
+        "module_hiramekarei_chakra_forms",
+        "module_kabutowari_combination",
+        "module_kiba_lightning_blades",
+        "module_kubikiribocho_blood_iron_repair",
+        "module_kusanagi_extension",
+        "module_nuibari_threading",
+        "module_samehada_absorption",
+        "module_shibuki_explosive_scroll",
+        "module_totsuka_sealing",
+        "module_war_fan_wind_focus",
+        "module_yata_mirror"
+      ],
+      "canonical_order": [
+        "module_samehada_absorption",
+        "module_kubikiribocho_blood_iron_repair",
+        "module_hiramekarei_chakra_forms",
+        "module_kusanagi_extension",
+        "module_gaara_prepared_sand_reservoir",
+        "module_war_fan_wind_focus",
+        "module_chakra_trench_knife_pair",
+        "module_kiba_lightning_blades",
+        "module_nuibari_threading",
+        "module_kabutowari_combination",
+        "module_shibuki_explosive_scroll",
+        "module_gunbai_conversion",
+        "module_totsuka_sealing",
+        "module_yata_mirror"
+      ]
+    },
+    "/unique_modules/module_chakra_trench_knife_pair": {
+      "mode": "closed",
+      "allowed_keys": [
+        "interface"
+      ],
+      "canonical_order": [
+        "interface"
+      ]
+    },
+    "/unique_modules/module_gaara_prepared_sand_reservoir": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_support",
+        "gourd_empty_mass_kg",
+        "integrity_max",
+        "mass_tracking_required",
+        "prepared_sand_capacity_kg",
+        "removes_only_material_generation_burden"
+      ],
+      "canonical_order": [
+        "gourd_empty_mass_kg",
+        "prepared_sand_capacity_kg",
+        "integrity_max",
+        "control_support",
+        "removes_only_material_generation_burden",
+        "mass_tracking_required"
+      ]
+    },
+    "/unique_modules/module_gunbai_conversion": {
+      "mode": "closed",
+      "allowed_keys": [
+        "cannot_reflect",
+        "capacity_per_reaction",
+        "coverage"
+      ],
+      "canonical_order": [
+        "capacity_per_reaction",
+        "coverage",
+        "cannot_reflect"
+      ]
+    },
+    "/unique_modules/module_hiramekarei_chakra_forms": {
+      "mode": "closed",
+      "allowed_keys": [
+        "forms",
+        "interface"
+      ],
+      "canonical_order": [
+        "interface",
+        "forms"
+      ]
+    },
+    "/unique_modules/module_hiramekarei_chakra_forms/forms": {
+      "mode": "closed",
+      "allowed_keys": [
+        "broad_hammer",
+        "long_blade",
+        "split_blades"
+      ],
+      "canonical_order": [
+        "broad_hammer",
+        "long_blade",
+        "split_blades"
+      ]
+    },
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/broad_hammer": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_demand",
+        "cost",
+        "impact_bonus"
+      ],
+      "canonical_order": [
+        "cost",
+        "impact_bonus",
+        "control_demand"
+      ]
+    },
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_demand",
+        "cost",
+        "penetration_bonus",
+        "reach_bonus_m"
+      ],
+      "canonical_order": [
+        "cost",
+        "reach_bonus_m",
+        "penetration_bonus",
+        "control_demand"
+      ]
+    },
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/split_blades": {
+      "mode": "closed",
+      "allowed_keys": [
+        "additional_attack_lanes",
+        "cost",
+        "multitasking_demand"
+      ],
+      "canonical_order": [
+        "cost",
+        "additional_attack_lanes",
+        "multitasking_demand"
+      ]
+    },
+    "/unique_modules/module_kabutowari_combination": {
+      "mode": "closed",
+      "allowed_keys": [
+        "armor_stress_bonus",
+        "segments",
+        "transmitted_impact_bonus"
+      ],
+      "canonical_order": [
+        "segments",
+        "armor_stress_bonus",
+        "transmitted_impact_bonus"
+      ]
+    },
+    "/unique_modules/module_kiba_lightning_blades": {
+      "mode": "closed",
+      "allowed_keys": [
+        "cutting_current",
+        "interface",
+        "lightning_capture"
+      ],
+      "canonical_order": [
+        "interface",
+        "cutting_current",
+        "lightning_capture"
+      ]
+    },
+    "/unique_modules/module_kiba_lightning_blades/cutting_current": {
+      "mode": "closed",
+      "allowed_keys": [
+        "chakra_cost",
+        "electrical_injury_bonus",
+        "penetration_bonus"
+      ],
+      "canonical_order": [
+        "chakra_cost",
+        "penetration_bonus",
+        "electrical_injury_bonus"
+      ]
+    },
+    "/unique_modules/module_kiba_lightning_blades/lightning_capture": {
+      "mode": "closed",
+      "allowed_keys": [
+        "control_demand",
+        "maximum_chakra_equivalent"
+      ],
+      "canonical_order": [
+        "maximum_chakra_equivalent",
+        "control_demand"
+      ]
+    },
+    "/unique_modules/module_kubikiribocho_blood_iron_repair": {
+      "mode": "closed",
+      "allowed_keys": [
+        "repair_requires_exact_iron_source",
+        "tracks"
+      ],
+      "canonical_order": [
+        "repair_requires_exact_iron_source",
+        "tracks"
+      ]
+    },
+    "/unique_modules/module_kusanagi_extension": {
+      "mode": "closed",
+      "allowed_keys": [
+        "action_time_added_per_5m",
+        "maximum_extension_m",
+        "precision_penalty_per_5m",
+        "remote_control_demand",
+        "sustained_nodes"
+      ],
+      "canonical_order": [
+        "maximum_extension_m",
+        "action_time_added_per_5m",
+        "precision_penalty_per_5m",
+        "remote_control_demand",
+        "sustained_nodes"
+      ]
+    },
+    "/unique_modules/module_nuibari_threading": {
+      "mode": "closed",
+      "allowed_keys": [
+        "additional_target_costs",
+        "requires_piercing_contact",
+        "tracks_wire_length"
+      ],
+      "canonical_order": [
+        "requires_piercing_contact",
+        "tracks_wire_length",
+        "additional_target_costs"
+      ]
+    },
+    "/unique_modules/module_samehada_absorption": {
+      "mode": "closed",
+      "allowed_keys": [
+        "absorption_limit_chakra_per_contact",
+        "additional_functions",
+        "contest_percent_by_margin",
+        "valid_targets"
+      ],
+      "canonical_order": [
+        "absorption_limit_chakra_per_contact",
+        "valid_targets",
+        "contest_percent_by_margin",
+        "additional_functions"
+      ]
+    },
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin": {
+      "mode": "closed",
+      "allowed_keys": [
+        "-14_to_-1",
+        "-15_or_less",
+        "0_to_14",
+        "15_to_29",
+        "30_plus"
+      ],
+      "canonical_order": [
+        "-15_or_less",
+        "-14_to_-1",
+        "0_to_14",
+        "15_to_29",
+        "30_plus"
+      ]
+    },
+    "/unique_modules/module_shibuki_explosive_scroll": {
+      "mode": "closed",
+      "allowed_keys": [
+        "modes"
+      ],
+      "canonical_order": [
+        "modes"
+      ]
+    },
+    "/unique_modules/module_shibuki_explosive_scroll/modes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "chain_blast",
+        "focused_breach",
+        "single_burst"
+      ],
+      "canonical_order": [
+        "single_burst",
+        "focused_breach",
+        "chain_blast"
+      ]
+    },
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast": {
+      "mode": "closed",
+      "allowed_keys": [
+        "impact",
+        "penetration",
+        "radius_m",
+        "tags"
+      ],
+      "canonical_order": [
+        "tags",
+        "impact",
+        "penetration",
+        "radius_m"
+      ]
+    },
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach": {
+      "mode": "closed",
+      "allowed_keys": [
+        "impact",
+        "penetration",
+        "radius_m",
+        "tags"
+      ],
+      "canonical_order": [
+        "tags",
+        "impact",
+        "penetration",
+        "radius_m"
+      ]
+    },
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst": {
+      "mode": "closed",
+      "allowed_keys": [
+        "impact",
+        "penetration",
+        "radius_m",
+        "tags"
+      ],
+      "canonical_order": [
+        "tags",
+        "impact",
+        "penetration",
+        "radius_m"
+      ]
+    },
+    "/unique_modules/module_totsuka_sealing": {
+      "mode": "closed",
+      "allowed_keys": [
+        "requires_impaling_contact",
+        "requires_susanoo",
+        "sealing_completion_seconds"
+      ],
+      "canonical_order": [
+        "requires_susanoo",
+        "requires_impaling_contact",
+        "sealing_completion_seconds"
+      ]
+    },
+    "/unique_modules/module_war_fan_wind_focus": {
+      "mode": "closed",
+      "allowed_keys": [
+        "states"
+      ],
+      "canonical_order": [
+        "states"
+      ]
+    },
+    "/unique_modules/module_war_fan_wind_focus/states": {
+      "mode": "closed",
+      "allowed_keys": [
+        "closed",
+        "full",
+        "partial"
+      ],
+      "canonical_order": [
+        "closed",
+        "partial",
+        "full"
+      ]
+    },
+    "/unique_modules/module_war_fan_wind_focus/states/closed": {
+      "mode": "closed",
+      "allowed_keys": [
+        "action_modifier_s",
+        "area_support",
+        "wind_control"
+      ],
+      "canonical_order": [
+        "wind_control",
+        "area_support",
+        "action_modifier_s"
+      ]
+    },
+    "/unique_modules/module_war_fan_wind_focus/states/full": {
+      "mode": "closed",
+      "allowed_keys": [
+        "action_modifier_s",
+        "area_support",
+        "wind_control"
+      ],
+      "canonical_order": [
+        "wind_control",
+        "area_support",
+        "action_modifier_s"
+      ]
+    },
+    "/unique_modules/module_war_fan_wind_focus/states/partial": {
+      "mode": "closed",
+      "allowed_keys": [
+        "action_modifier_s",
+        "area_support",
+        "wind_control"
+      ],
+      "canonical_order": [
+        "wind_control",
+        "area_support",
+        "action_modifier_s"
+      ]
+    },
+    "/unique_modules/module_yata_mirror": {
+      "mode": "closed",
+      "allowed_keys": [
+        "cannot_cover",
+        "coverage_arc_degrees",
+        "vectors_per_reaction"
+      ],
+      "canonical_order": [
+        "coverage_arc_degrees",
+        "vectors_per_reaction",
+        "cannot_cover"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/authority": [
+      "string"
+    ],
+    "/chakra_interfaces": [
+      "object"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor": [
+      "object"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/control_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/efficiency_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/name": [
+      "string"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/nodes": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/safe_intensity": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_basic_chakra_conductor/throughput_per_6s": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core": [
+      "object"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/control_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/efficiency_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/name": [
+      "string"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/nodes": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/safe_intensity": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/stored_capacity": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_hiramekarei_core/throughput_per_6s": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning": [
+      "object"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/control_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/efficiency_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/name": [
+      "string"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/nodes": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/safe_intensity": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_kiba_dual_lightning/throughput_per_6s": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor": [
+      "object"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/control_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/efficiency_support": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/name": [
+      "string"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/nodes": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/safe_intensity": [
+      "integer"
+    ],
+    "/chakra_interfaces/interface_standard_dual_conductor/throughput_per_6s": [
+      "integer"
+    ],
+    "/named_item_base_links": [
+      "object"
+    ],
+    "/named_item_base_links/item_asuma_trench_knives": [
+      "array"
+    ],
+    "/named_item_base_links/item_asuma_trench_knives/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_gaara_sand_gourd": [
+      "array"
+    ],
+    "/named_item_base_links/item_gaara_sand_gourd/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_hiramekarei": [
+      "array"
+    ],
+    "/named_item_base_links/item_hiramekarei/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_kubikiribocho": [
+      "array"
+    ],
+    "/named_item_base_links/item_kubikiribocho/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_kusanagi": [
+      "array"
+    ],
+    "/named_item_base_links/item_kusanagi/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_samehada": [
+      "array"
+    ],
+    "/named_item_base_links/item_samehada/*": [
+      "string"
+    ],
+    "/named_item_base_links/item_temari_giant_fan": [
+      "array"
+    ],
+    "/named_item_base_links/item_temari_giant_fan/*": [
+      "string"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/unique_modules": [
+      "object"
+    ],
+    "/unique_modules/module_chakra_trench_knife_pair": [
+      "object"
+    ],
+    "/unique_modules/module_chakra_trench_knife_pair/interface": [
+      "string"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir": [
+      "object"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/control_support": [
+      "integer"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/gourd_empty_mass_kg": [
+      "integer"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/integrity_max": [
+      "integer"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/mass_tracking_required": [
+      "boolean"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/prepared_sand_capacity_kg": [
+      "integer"
+    ],
+    "/unique_modules/module_gaara_prepared_sand_reservoir/removes_only_material_generation_burden": [
+      "boolean"
+    ],
+    "/unique_modules/module_gunbai_conversion": [
+      "object"
+    ],
+    "/unique_modules/module_gunbai_conversion/cannot_reflect": [
+      "array"
+    ],
+    "/unique_modules/module_gunbai_conversion/cannot_reflect/*": [
+      "string"
+    ],
+    "/unique_modules/module_gunbai_conversion/capacity_per_reaction": [
+      "integer"
+    ],
+    "/unique_modules/module_gunbai_conversion/coverage": [
+      "string"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms": [
+      "object"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms": [
+      "object"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/broad_hammer": [
+      "object"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/broad_hammer/control_demand": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/broad_hammer/cost": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/broad_hammer/impact_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade": [
+      "object"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade/control_demand": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade/cost": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade/penetration_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/long_blade/reach_bonus_m": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/split_blades": [
+      "object"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/split_blades/additional_attack_lanes": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/split_blades/cost": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/forms/split_blades/multitasking_demand": [
+      "integer"
+    ],
+    "/unique_modules/module_hiramekarei_chakra_forms/interface": [
+      "string"
+    ],
+    "/unique_modules/module_kabutowari_combination": [
+      "object"
+    ],
+    "/unique_modules/module_kabutowari_combination/armor_stress_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_kabutowari_combination/segments": [
+      "integer"
+    ],
+    "/unique_modules/module_kabutowari_combination/transmitted_impact_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_kiba_lightning_blades": [
+      "object"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/cutting_current": [
+      "object"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/cutting_current/chakra_cost": [
+      "integer"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/cutting_current/electrical_injury_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/cutting_current/penetration_bonus": [
+      "integer"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/interface": [
+      "string"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/lightning_capture": [
+      "object"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/lightning_capture/control_demand": [
+      "integer"
+    ],
+    "/unique_modules/module_kiba_lightning_blades/lightning_capture/maximum_chakra_equivalent": [
+      "integer"
+    ],
+    "/unique_modules/module_kubikiribocho_blood_iron_repair": [
+      "object"
+    ],
+    "/unique_modules/module_kubikiribocho_blood_iron_repair/repair_requires_exact_iron_source": [
+      "boolean"
+    ],
+    "/unique_modules/module_kubikiribocho_blood_iron_repair/tracks": [
+      "array"
+    ],
+    "/unique_modules/module_kubikiribocho_blood_iron_repair/tracks/*": [
+      "string"
+    ],
+    "/unique_modules/module_kusanagi_extension": [
+      "object"
+    ],
+    "/unique_modules/module_kusanagi_extension/action_time_added_per_5m": [
+      "number"
+    ],
+    "/unique_modules/module_kusanagi_extension/maximum_extension_m": [
+      "integer"
+    ],
+    "/unique_modules/module_kusanagi_extension/precision_penalty_per_5m": [
+      "integer"
+    ],
+    "/unique_modules/module_kusanagi_extension/remote_control_demand": [
+      "string"
+    ],
+    "/unique_modules/module_kusanagi_extension/sustained_nodes": [
+      "integer"
+    ],
+    "/unique_modules/module_nuibari_threading": [
+      "object"
+    ],
+    "/unique_modules/module_nuibari_threading/additional_target_costs": [
+      "array"
+    ],
+    "/unique_modules/module_nuibari_threading/additional_target_costs/*": [
+      "string"
+    ],
+    "/unique_modules/module_nuibari_threading/requires_piercing_contact": [
+      "boolean"
+    ],
+    "/unique_modules/module_nuibari_threading/tracks_wire_length": [
+      "boolean"
+    ],
+    "/unique_modules/module_samehada_absorption": [
+      "object"
+    ],
+    "/unique_modules/module_samehada_absorption/absorption_limit_chakra_per_contact": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/additional_functions": [
+      "array"
+    ],
+    "/unique_modules/module_samehada_absorption/additional_functions/*": [
+      "string"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin": [
+      "object"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin/-14_to_-1": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin/-15_or_less": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin/0_to_14": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin/15_to_29": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/contest_percent_by_margin/30_plus": [
+      "integer"
+    ],
+    "/unique_modules/module_samehada_absorption/valid_targets": [
+      "array"
+    ],
+    "/unique_modules/module_samehada_absorption/valid_targets/*": [
+      "string"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll": [
+      "object"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes": [
+      "object"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast": [
+      "object"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast/impact": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast/penetration": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast/radius_m": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/chain_blast/tags": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach": [
+      "object"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach/impact": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach/penetration": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach/radius_m": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/focused_breach/tags": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst": [
+      "object"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst/impact": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst/penetration": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst/radius_m": [
+      "integer"
+    ],
+    "/unique_modules/module_shibuki_explosive_scroll/modes/single_burst/tags": [
+      "integer"
+    ],
+    "/unique_modules/module_totsuka_sealing": [
+      "object"
+    ],
+    "/unique_modules/module_totsuka_sealing/requires_impaling_contact": [
+      "boolean"
+    ],
+    "/unique_modules/module_totsuka_sealing/requires_susanoo": [
+      "boolean"
+    ],
+    "/unique_modules/module_totsuka_sealing/sealing_completion_seconds": [
+      "number"
+    ],
+    "/unique_modules/module_war_fan_wind_focus": [
+      "object"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states": [
+      "object"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/closed": [
+      "object"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/closed/action_modifier_s": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/closed/area_support": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/closed/wind_control": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/full": [
+      "object"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/full/action_modifier_s": [
+      "number"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/full/area_support": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/full/wind_control": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/partial": [
+      "object"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/partial/action_modifier_s": [
+      "number"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/partial/area_support": [
+      "integer"
+    ],
+    "/unique_modules/module_war_fan_wind_focus/states/partial/wind_control": [
+      "integer"
+    ],
+    "/unique_modules/module_yata_mirror": [
+      "object"
+    ],
+    "/unique_modules/module_yata_mirror/cannot_cover": [
+      "array"
+    ],
+    "/unique_modules/module_yata_mirror/cannot_cover/*": [
+      "string"
+    ],
+    "/unique_modules/module_yata_mirror/coverage_arc_degrees": [
+      "integer"
+    ],
+    "/unique_modules/module_yata_mirror/vectors_per_reaction": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/named_item_base_links/item_asuma_trench_knives": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_gaara_sand_gourd": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_hiramekarei": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_kubikiribocho": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_kusanagi": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_samehada": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/named_item_base_links/item_temari_giant_fan": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_gunbai_conversion/cannot_reflect": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_kubikiribocho_blood_iron_repair/tracks": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_nuibari_threading/additional_target_costs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_samehada_absorption/additional_functions": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_samehada_absorption/valid_targets": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/unique_modules/module_yata_mirror/cannot_cover": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

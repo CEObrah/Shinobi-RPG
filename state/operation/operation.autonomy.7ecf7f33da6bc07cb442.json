@@ -1,0 +1,59 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.7ecf7f33da6bc07cb442",
+  "domain": "border_control",
+  "operation_kind": "counter_smuggling",
+  "owner_ref": "faction.fire_border_authority",
+  "authority_ref": "support.border.kazuo_murata",
+  "opened_at": "SE-0061-07-16T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-23T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": "team_fujin.counter_smuggling",
+  "subject_kind": "faction",
+  "subject_ref": "faction.fire_smuggling_network",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.western.border"
+  ],
+  "route_refs": [
+    "route_fire_north_rice"
+  ],
+  "opposition_refs": [
+    "faction.fire_smuggling_network"
+  ],
+  "resource_refs": [
+    "item_evidence_kit",
+    "item_standard_restraints"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": "no in-transit shipment exists on inspected route",
+  "mission_refs": [
+    "mission.autonomy.ca3f07d0a48c0e37cd"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.49d1f44ee79d41875cef9bb7"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.ca3f07d0a48c0e37cd.result"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.d92092dccc56e425d8f9aba7"
+  ],
+  "report_recipient_refs": [
+    "support.border.kazuo_murata",
+    "faction.fire_daimyo_liaison"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Intercept or document one materially supported smuggling movement without fabricating contraband or offenders.",
+  "failure_condition": "The counter_smuggling objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.mission.autonomy.ca3f07d0a48c0e37cd.result",
+    "delivery.autonomy.d92092dccc56e425d8f9aba7",
+    "event.autonomous_mission_succeeded.49d1f44ee79d41875cef9bb7"
+  ]
+}

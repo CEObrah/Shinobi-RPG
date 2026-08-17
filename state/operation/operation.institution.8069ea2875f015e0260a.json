@@ -1,0 +1,45 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.institution.8069ea2875f015e0260a",
+  "domain": "medical_capacity",
+  "operation_kind": "institution_medical_capacity_review",
+  "owner_ref": "faction_konoha",
+  "authority_ref": "canon_hiruzen",
+  "opened_at": "SE-0061-07-01T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "institution",
+  "subject_ref": "faction_konoha",
+  "client_ref": null,
+  "place_refs": [],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.a1c1bc6b98fe274f7cf41508"
+  ],
+  "claim_refs": [
+    "claim.institution.e33f298f365c8585c15c"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_hiruzen"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile current treatment capability, casualty burden, supplies, and recovery obligations without inventing patients or stock.",
+  "failure_condition": "The institution cannot establish a supported medical-capacity assessment.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.institution.e33f298f365c8585c15c",
+    "event.institutional_work_completed.a1c1bc6b98fe274f7cf41508",
+    "force.konoha.shinobi"
+  ]
+}

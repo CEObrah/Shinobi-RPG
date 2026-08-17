@@ -1,0 +1,41 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.33655710505d695d8047",
+  "domain": "mission_market",
+  "operation_kind": "route_tasking",
+  "owner_ref": "faction.konoha_mission_office",
+  "authority_ref": "support.mission.haruto_seki",
+  "opened_at": "SE-0061-07-23T07:00:00",
+  "next_due_at": "SE-0061-08-06T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_capital_konoha",
+  "client_ref": "faction.fire_daimyo_liaison",
+  "place_refs": [
+    "place.konoha.mission_assignment_desk"
+  ],
+  "route_refs": [
+    "route_fire_capital_konoha"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.mission.haruto_seki"
+  ],
+  "progress_milli": 250,
+  "success_condition": "Issue a concrete route mission only after subject, route, client, known risk, authority, and funding are committed.",
+  "failure_condition": "The route_tasking objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

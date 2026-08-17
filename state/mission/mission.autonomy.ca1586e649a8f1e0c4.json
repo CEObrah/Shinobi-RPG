@@ -1,0 +1,44 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.ca1586e649a8f1e0c4",
+  "issuer_ref": "faction.konoha_mission_office",
+  "authority_ref": "support.mission.haruto_seki",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-02-12T07:00:00",
+  "authorized_at": "SE-0061-02-12T07:00:00",
+  "starts_at": "SE-0061-02-12T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_guy",
+    "canon_lee",
+    "canon_neji",
+    "canon_tenten"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.ca1586e649a8f1e0c4",
+      "kind": "deliver",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "baseline.rich_autonomy_terminal_state"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "baseline.rich_autonomy_terminal_state",
+  "settlement": {
+    "mission_id": "mission.autonomy.ca1586e649a8f1e0c4",
+    "outcome": "aborted",
+    "settlement_token": "baseline:mission.autonomy.ca1586e649a8f1e0c4:terminal-state",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

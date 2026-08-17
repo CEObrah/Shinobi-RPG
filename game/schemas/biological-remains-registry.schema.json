@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "records"],
+  "properties": {
+    "schema": {"const": "biological-remains-registry"},
+    "records": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id", "subject_ref", "source_mission_ref", "custodian_ref", "place_ref",
+          "status", "recovered_at", "evidence_refs", "classification"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^remains\\."},
+          "subject_ref": {"type": "string"},
+          "source_mission_ref": {"type": "string", "pattern": "^mission\\."},
+          "custodian_ref": {"type": "string"},
+          "place_ref": {"type": "string", "pattern": "^place\\."},
+          "status": {"enum": ["recovered", "transferred", "destroyed"]},
+          "recovered_at": {"type": "string"},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "classification": {"enum": ["public", "restricted", "secret"]}
+        }
+      }
+    }
+  }
+}

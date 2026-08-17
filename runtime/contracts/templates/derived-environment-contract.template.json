@@ -1,0 +1,64 @@
+{
+  "schema": "file-template",
+  "template_id": "template.derived-environment-contract",
+  "target_schema": "derived-environment-contract",
+  "source_schema": "game/schemas/derived-environment-contract.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "runtime/contracts"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "version",
+    "authority",
+    "separation_invariants",
+    "mechanical_channels"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "version",
+        "authority",
+        "separation_invariants",
+        "mechanical_channels"
+      ]
+    },
+    "/authority": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "mutable_owner",
+        "inputs",
+        "rule"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/authority/inputs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/separation_invariants": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/mechanical_channels": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This contract describes deterministic derived authority only; it never stores current weather as mutable truth."
+  ]
+}

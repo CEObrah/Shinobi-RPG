@@ -1,0 +1,338 @@
+{
+  "schema": "file-template",
+  "template_id": "template.operational-world-mechanics",
+  "target_schema": "operational-world-mechanics",
+  "source_schema": "game/schemas/operational-world-mechanics.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "research_kinds",
+    "security",
+    "mission_market",
+    "bounty",
+    "commerce",
+    "autonomous_effects",
+    "operation_reputation_signals"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "research_kinds",
+        "security",
+        "mission_market",
+        "bounty",
+        "commerce",
+        "autonomous_effects",
+        "operation_reputation_signals",
+        "research_validation"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "research_kinds",
+        "security",
+        "mission_market",
+        "bounty",
+        "commerce",
+        "autonomous_effects",
+        "operation_reputation_signals",
+        "research_validation"
+      ]
+    },
+    "/research_kinds": {
+      "mode": "open_map"
+    },
+    "/research_kinds/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "required_active_hours",
+        "risk_milli",
+        "material_costs",
+        "allowed_candidate_kinds"
+      ],
+      "canonical_order": [
+        "required_active_hours",
+        "risk_milli",
+        "material_costs",
+        "allowed_candidate_kinds"
+      ]
+    },
+    "/research_kinds/*/material_costs": {
+      "mode": "open_map"
+    },
+    "/security": {
+      "mode": "closed",
+      "allowed_keys": [
+        "coverage_step_milli",
+        "barrier_anchor_sets_per_step",
+        "detection_step_milli",
+        "sensor_relays_per_step"
+      ],
+      "canonical_order": [
+        "coverage_step_milli",
+        "barrier_anchor_sets_per_step",
+        "detection_step_milli",
+        "sensor_relays_per_step"
+      ]
+    },
+    "/mission_market": {
+      "mode": "closed",
+      "allowed_keys": [
+        "max_signal_delta_milli",
+        "signal_delta_milli",
+        "objective_signal_candidates"
+      ],
+      "canonical_order": [
+        "max_signal_delta_milli",
+        "signal_delta_milli",
+        "objective_signal_candidates"
+      ]
+    },
+    "/commerce": {
+      "mode": "closed",
+      "allowed_keys": [
+        "escrow_required",
+        "aggregate_sinks",
+        "autonomous_shipments"
+      ],
+      "canonical_order": [
+        "escrow_required",
+        "aggregate_sinks",
+        "autonomous_shipments"
+      ]
+    },
+    "/autonomous_effects": {
+      "mode": "open_map"
+    },
+    "/autonomous_effects/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "effect_kind",
+        "stock_ref",
+        "research_kind",
+        "case_kind",
+        "issue_warrant",
+        "market_ref",
+        "market_axis",
+        "market_signal_ref",
+        "market_direction",
+        "mission_objective_kind",
+        "mission_rank",
+        "service_contract_action",
+        "requires_known_subject",
+        "requires_existing_contract",
+        "requires_subject_dead",
+        "assessment_kind"
+      ],
+      "canonical_order": [
+        "effect_kind",
+        "stock_ref",
+        "research_kind",
+        "case_kind",
+        "issue_warrant",
+        "market_ref",
+        "market_axis",
+        "market_signal_ref",
+        "market_direction",
+        "mission_objective_kind",
+        "mission_rank",
+        "service_contract_action",
+        "requires_known_subject",
+        "requires_existing_contract",
+        "requires_subject_dead",
+        "assessment_kind"
+      ]
+    },
+    "/commerce/aggregate_sinks": {
+      "mode": "open_map"
+    },
+    "/commerce/aggregate_sinks/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "place_ref",
+        "economy_ref"
+      ],
+      "canonical_order": [
+        "place_ref",
+        "economy_ref"
+      ]
+    },
+    "/commerce/autonomous_shipments": {
+      "mode": "open_map"
+    },
+    "/commerce/autonomous_shipments/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "contraband",
+        "item_candidates",
+        "origin_place_ref",
+        "procurement_owner_ref",
+        "procurement_stock_ref",
+        "quantity",
+        "route_sink_refs",
+        "source_owner_ref",
+        "source_stock_ref"
+      ],
+      "canonical_order": [
+        "source_stock_ref",
+        "source_owner_ref",
+        "origin_place_ref",
+        "item_candidates",
+        "quantity",
+        "route_sink_refs",
+        "contraband"
+      ]
+    },
+    "/commerce/autonomous_shipments/*/route_sink_refs": {
+      "mode": "open_map"
+    },
+    "/bounty": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rank_to_mission_rank",
+        "amount_field",
+        "eligible_hunter_organization_refs"
+      ],
+      "canonical_order": [
+        "rank_to_mission_rank",
+        "amount_field",
+        "eligible_hunter_organization_refs"
+      ]
+    },
+    "/bounty/rank_to_mission_rank": {
+      "mode": "open_map"
+    },
+    "/operation_reputation_signals": {
+      "mode": "open_map"
+    },
+    "/research_validation": {
+      "mode": "closed",
+      "allowed_keys": [
+        "minimum_successful_tests",
+        "test_interval_days",
+        "success_threshold_base_milli",
+        "risk_weight_milli",
+        "rule"
+      ],
+      "canonical_order": [
+        "minimum_successful_tests",
+        "test_interval_days",
+        "success_threshold_base_milli",
+        "risk_weight_milli",
+        "rule"
+      ]
+    },
+    "/mission_market/objective_signal_candidates": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/operation_reputation_signals": [
+      "object"
+    ],
+    "/operation_reputation_signals/*": [
+      "string"
+    ],
+    "/commerce/autonomous_shipments/*/procurement_stock_ref": [
+      "null",
+      "string"
+    ],
+    "/commerce/autonomous_shipments/*/procurement_owner_ref": [
+      "null",
+      "string"
+    ],
+    "/autonomous_effects/*/mission_objective_kind": [
+      "null",
+      "string"
+    ],
+    "/autonomous_effects/*/mission_rank": [
+      "null",
+      "string"
+    ],
+    "/autonomous_effects/*/service_contract_action": [
+      "null",
+      "string"
+    ],
+    "/autonomous_effects/*/requires_known_subject": [
+      "boolean"
+    ],
+    "/autonomous_effects/*/requires_existing_contract": [
+      "boolean"
+    ],
+    "/autonomous_effects/*/requires_subject_dead": [
+      "boolean"
+    ],
+    "/autonomous_effects/*/assessment_kind": [
+      "null",
+      "string"
+    ],
+    "/research_kinds/*/allowed_candidate_kinds": [
+      "array"
+    ],
+    "/research_kinds/*/allowed_candidate_kinds/*": [
+      "string"
+    ],
+    "/research_validation": [
+      "object"
+    ],
+    "/research_validation/minimum_successful_tests": [
+      "integer"
+    ],
+    "/research_validation/test_interval_days": [
+      "integer"
+    ],
+    "/research_validation/success_threshold_base_milli": [
+      "integer"
+    ],
+    "/research_validation/risk_weight_milli": [
+      "integer"
+    ],
+    "/research_validation/rule": [
+      "string"
+    ],
+    "/mission_market/objective_signal_candidates": [
+      "object"
+    ],
+    "/mission_market/objective_signal_candidates/*": [
+      "array"
+    ],
+    "/mission_market/objective_signal_candidates/*/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/commerce/autonomous_shipments/*/item_candidates": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/bounty/eligible_hunter_organization_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/research_kinds/*/allowed_candidate_kinds": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 0,
+      "unique": true
+    },
+    "/mission_market/objective_signal_candidates/*": {
+      "item_types": [
+        "string"
+      ],
+      "min_items": 1,
+      "unique": true
+    }
+  },
+  "writing_rules": []
+}

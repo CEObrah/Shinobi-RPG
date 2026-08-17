@@ -1,0 +1,53 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.d5181b5c9727d217a648",
+  "domain": "border_control",
+  "operation_kind": "crossing_audit",
+  "owner_ref": "faction.fire_border_authority",
+  "authority_ref": "support.border.kazuo_murata",
+  "opened_at": "SE-0061-07-23T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-30T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "route",
+  "subject_ref": "route_fire_north_rice",
+  "client_ref": null,
+  "place_refs": [
+    "place.fire.northern.border"
+  ],
+  "route_refs": [],
+  "opposition_refs": [
+    "faction.fire_smuggling_network"
+  ],
+  "resource_refs": [
+    "item_evidence_kit",
+    "item_official_documents"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": "no in-transit shipment exists on inspected route",
+  "mission_refs": [
+    "mission.autonomy.6a630b3c7f28e40248"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.8aaeb5222daf6553bd26f59a"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.6a630b3c7f28e40248.result"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.border.kazuo_murata"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile crossing records, inspections, and any seized evidence for the selected route.",
+  "failure_condition": "The crossing_audit objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.mission.autonomy.6a630b3c7f28e40248.result",
+    "event.autonomous_mission_succeeded.8aaeb5222daf6553bd26f59a"
+  ]
+}

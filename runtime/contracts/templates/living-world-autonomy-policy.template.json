@@ -1,0 +1,182 @@
+{
+  "schema": "file-template",
+  "template_id": "template.living-world-autonomy-policy",
+  "target_schema": "living-world-autonomy-policy",
+  "source_schema": "game/schemas/living-world-autonomy-policy.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/rules/autonomy"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "faction_assignments",
+    "team_profiles",
+    "sovereign_diplomacy"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "faction_assignments",
+        "team_profiles",
+        "sovereign_diplomacy"
+      ],
+      "canonical_order": [
+        "schema",
+        "faction_assignments",
+        "team_profiles",
+        "sovereign_diplomacy"
+      ]
+    },
+    "/faction_assignments": {
+      "mode": "open_map"
+    },
+    "/faction_assignments/*": {
+      "mode": "open"
+    },
+    "/team_profiles": {
+      "mode": "open_map"
+    },
+    "/team_profiles/*": {
+      "mode": "open"
+    },
+    "/sovereign_diplomacy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "honor_threshold_milli",
+        "negotiate_threshold_milli",
+        "active_conflict_penalty_milli",
+        "readiness_weight_milli",
+        "proposal_accept_threshold_milli",
+        "proposal_interval_reviews",
+        "profiles"
+      ],
+      "canonical_order": [
+        "honor_threshold_milli",
+        "negotiate_threshold_milli",
+        "active_conflict_penalty_milli",
+        "readiness_weight_milli",
+        "proposal_accept_threshold_milli",
+        "proposal_interval_reviews",
+        "profiles"
+      ]
+    },
+    "/sovereign_diplomacy/profiles": {
+      "mode": "open_map"
+    },
+    "/sovereign_diplomacy/profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "force_path",
+        "treaty_reliability_milli",
+        "risk_tolerance_milli",
+        "cooperation_milli",
+        "institution_refs",
+        "partner_refs",
+        "proposal_cycle"
+      ],
+      "canonical_order": [
+        "force_path",
+        "treaty_reliability_milli",
+        "risk_tolerance_milli",
+        "cooperation_milli",
+        "institution_refs",
+        "partner_refs",
+        "proposal_cycle"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/faction_assignments": [
+      "object"
+    ],
+    "/faction_assignments/*": [
+      "object"
+    ],
+    "/team_profiles": [
+      "object"
+    ],
+    "/team_profiles/*": [
+      "object"
+    ],
+    "/sovereign_diplomacy": [
+      "object"
+    ],
+    "/sovereign_diplomacy/honor_threshold_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/negotiate_threshold_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/active_conflict_penalty_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/readiness_weight_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/proposal_accept_threshold_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/proposal_interval_reviews": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/profiles": [
+      "object"
+    ],
+    "/sovereign_diplomacy/profiles/*": [
+      "object"
+    ],
+    "/sovereign_diplomacy/profiles/*/force_path": [
+      "string"
+    ],
+    "/sovereign_diplomacy/profiles/*/treaty_reliability_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/profiles/*/risk_tolerance_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/profiles/*/cooperation_milli": [
+      "integer"
+    ],
+    "/sovereign_diplomacy/profiles/*/partner_refs": [
+      "array"
+    ],
+    "/sovereign_diplomacy/profiles/*/proposal_cycle": [
+      "array"
+    ],
+    "/sovereign_diplomacy/profiles/*/institution_refs": [
+      "array"
+    ]
+  },
+  "array_contracts": {
+    "/sovereign_diplomacy/profiles/*/partner_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/sovereign_diplomacy/profiles/*/proposal_cycle": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/sovereign_diplomacy/profiles/*/institution_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This overlay may tune or extend generic autonomy data but may not encode faction-specific runtime branches.",
+    "Exact people named as candidates are opportunities, not forced future membership; current rank, availability, knowledge, authority and active commitments still govern selection.",
+    "The base autonomy policy remains authoritative for fields not overridden here.",
+    "Sovereign diplomacy profiles define bounded lawful decision policy, not predetermined treaty outcomes; autonomous proposals still require counterpart consent and current conflict/treaty state."
+  ]
+}

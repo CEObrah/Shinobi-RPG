@@ -1,0 +1,30 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0062-01-01",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.07e85236c01a37bd5bb88d88",
+      "kind": "population.periodic_review",
+      "due_at": "SE-0062-01-01T07:00:00",
+      "priority": 95,
+      "source_host": "host.population.great_villages",
+      "target_host": "host.population.great_villages",
+      "payload": {
+        "identity": "population.great_villages",
+        "owner_ref": "state/population/registry.json",
+        "policy_ref": "demography.great_villages.baseline",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "clock": "07:00:00",
+          "kind": "calendar_year_start"
+        }
+      },
+      "dedupe_key": "population.periodic_review:population.great_villages",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

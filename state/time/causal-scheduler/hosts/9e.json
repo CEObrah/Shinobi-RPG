@@ -1,0 +1,31 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "9e",
+  "authority": true,
+  "hosts": {
+    "host.person_continuity": {
+      "host": {
+        "state": {
+          "host_id": "host.person_continuity",
+          "kind": "person_continuity",
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "safe_through": "SE-0061-09-01T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "person_continuity",
+          "next_due": "SE-0061-09-01T07:00:00"
+        },
+        "authority_kind": "person_continuity",
+        "owner_ref": "state/reg/person-continuity.json",
+        "metadata": {}
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.83411f9d37313a48d0243fcc",
+          "due_at": "SE-0061-09-01T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-09-01.json",
+          "dedupe_key": "person_continuity.periodic_review:person_continuity"
+        }
+      ]
+    }
+  }
+}

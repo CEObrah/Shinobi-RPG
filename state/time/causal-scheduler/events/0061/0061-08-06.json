@@ -1,0 +1,734 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-08-06",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.00eb436a59f00eff455c4620",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.fire_daimyo_liaison",
+      "target_host": "host.faction.faction.fire_daimyo_liaison",
+      "payload": {
+        "faction_id": "faction.fire_daimyo_liaison",
+        "identity": "faction.fire_daimyo_liaison",
+        "owner_ref": "state/reg/factions/faction-fire-daimyo-liaison.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.fire_daimyo_liaison",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.089bd9ae9fbe969daaa1dd90",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.konoha_mission_office",
+      "target_host": "host.faction.faction.konoha_mission_office",
+      "payload": {
+        "faction_id": "faction.konoha_mission_office",
+        "identity": "faction.konoha_mission_office",
+        "owner_ref": "state/reg/factions/faction-konoha-mission-office.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.konoha_mission_office",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.2d0683c16ba110aaccbf373c",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.yamanaka_intelligence",
+      "target_host": "host.faction.faction.yamanaka_intelligence",
+      "payload": {
+        "faction_id": "faction.yamanaka_intelligence",
+        "identity": "faction.yamanaka_intelligence",
+        "owner_ref": "state/reg/factions/faction-yamanaka-intelligence.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.yamanaka_intelligence",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.3d71b96f86485c2a6970fdef",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.kumo_military_intelligence",
+      "target_host": "host.faction.faction.kumo_military_intelligence",
+      "payload": {
+        "faction_id": "faction.kumo_military_intelligence",
+        "identity": "faction.kumo_military_intelligence",
+        "owner_ref": "state/reg/factions/faction-kumo-military-intelligence.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.kumo_military_intelligence",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.41380ff6bfb2d961cd7d8bd6",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.zabuza_mercenary_cell",
+      "target_host": "host.faction.faction.zabuza_mercenary_cell",
+      "payload": {
+        "faction_id": "faction.zabuza_mercenary_cell",
+        "identity": "faction.zabuza_mercenary_cell",
+        "owner_ref": "state/reg/factions/faction-zabuza-mercenary-cell.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.zabuza_mercenary_cell",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.489f762dea88a218b2244c0b",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.akatsuki",
+      "target_host": "host.faction.faction.akatsuki",
+      "payload": {
+        "faction_id": "faction.akatsuki",
+        "identity": "faction.akatsuki",
+        "owner_ref": "state/reg/factions/faction-akatsuki.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.akatsuki",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.4c3161b306c2b72f10767409",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.root",
+      "target_host": "host.faction.faction.root",
+      "payload": {
+        "faction_id": "faction.root",
+        "identity": "faction.root",
+        "owner_ref": "state/reg/factions/faction-root.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.root",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.52ba343221fdc798df3ae219",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.oto_research_cells",
+      "target_host": "host.faction.faction.oto_research_cells",
+      "payload": {
+        "faction_id": "faction.oto_research_cells",
+        "identity": "faction.oto_research_cells",
+        "owner_ref": "state/reg/factions/faction-oto-research-cells.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.oto_research_cells",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.595f200c8407f223b8ba2c66",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.konoha_hospital",
+      "target_host": "host.faction.faction.konoha_hospital",
+      "payload": {
+        "faction_id": "faction.konoha_hospital",
+        "identity": "faction.konoha_hospital",
+        "owner_ref": "state/reg/factions/faction-konoha-hospital.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.konoha_hospital",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.6203a828ed885258eb74453a",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.mizuki_conspiracy",
+      "target_host": "host.faction.faction.mizuki_conspiracy",
+      "payload": {
+        "faction_id": "faction.mizuki_conspiracy",
+        "identity": "faction.mizuki_conspiracy",
+        "owner_ref": "state/reg/factions/faction-mizuki-conspiracy.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.mizuki_conspiracy",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.6f758d82883e8447c1c900ab",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.iwa_engineering_command",
+      "target_host": "host.faction.faction.iwa_engineering_command",
+      "payload": {
+        "faction_id": "faction.iwa_engineering_command",
+        "identity": "faction.iwa_engineering_command",
+        "owner_ref": "state/reg/factions/faction-iwa-engineering-command.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.iwa_engineering_command",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.74ea30b4ec9c9cf4656ee2ca",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.konoha_anbu",
+      "target_host": "host.faction.faction.konoha_anbu",
+      "payload": {
+        "faction_id": "faction.konoha_anbu",
+        "identity": "faction.konoha_anbu",
+        "owner_ref": "state/reg/factions/faction-konoha-anbu.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.konoha_anbu",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.7e7f0c453f0c889cdd93db77",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.fire_smuggling_network",
+      "target_host": "host.faction.faction.fire_smuggling_network",
+      "payload": {
+        "faction_id": "faction.fire_smuggling_network",
+        "identity": "faction.fire_smuggling_network",
+        "owner_ref": "state/reg/factions/faction-fire-smuggling-network.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.fire_smuggling_network",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.a56b599655656cbca710fe96",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.fire_merchant_network",
+      "target_host": "host.faction.faction.fire_merchant_network",
+      "payload": {
+        "faction_id": "faction.fire_merchant_network",
+        "identity": "faction.fire_merchant_network",
+        "owner_ref": "state/reg/factions/faction-fire-merchant-network.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.fire_merchant_network",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.ab211070d9f1ef7073b3084e",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.ame_security_network",
+      "target_host": "host.faction.faction.ame_security_network",
+      "payload": {
+        "faction_id": "faction.ame_security_network",
+        "identity": "faction.ame_security_network",
+        "owner_ref": "state/reg/factions/faction-ame-security-network.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.ame_security_network",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.abd481e66e2cf012c1be5265",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.fire_border_authority",
+      "target_host": "host.faction.faction.fire_border_authority",
+      "payload": {
+        "faction_id": "faction.fire_border_authority",
+        "identity": "faction.fire_border_authority",
+        "owner_ref": "state/reg/factions/faction-fire-border-authority.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.fire_border_authority",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.b0b9b6f670f927a9d8a74b39",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.gato_company",
+      "target_host": "host.faction.faction.gato_company",
+      "payload": {
+        "faction_id": "faction.gato_company",
+        "identity": "faction.gato_company",
+        "owner_ref": "state/reg/factions/faction-gato-company.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.gato_company",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.b98e9ee57f612bc51f4660d3",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.kiri_hunter_office",
+      "target_host": "host.faction.faction.kiri_hunter_office",
+      "payload": {
+        "faction_id": "faction.kiri_hunter_office",
+        "identity": "faction.kiri_hunter_office",
+        "owner_ref": "state/reg/factions/faction-kiri-hunter-office.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.kiri_hunter_office",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.bc8ca927e64560da5667e01a",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.suna_puppet_corps",
+      "target_host": "host.faction.faction.suna_puppet_corps",
+      "payload": {
+        "faction_id": "faction.suna_puppet_corps",
+        "identity": "faction.suna_puppet_corps",
+        "owner_ref": "state/reg/factions/faction-suna-puppet-corps.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.suna_puppet_corps",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.dd53aff3f0cdf3f4965eba8a",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.hyuga_clan",
+      "target_host": "host.faction.faction.hyuga_clan",
+      "payload": {
+        "faction_id": "faction.hyuga_clan",
+        "identity": "faction.hyuga_clan",
+        "owner_ref": "state/reg/factions/faction-hyuga-clan.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.hyuga_clan",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.ece6b3c05bf65a30cdaefb18",
+      "kind": "faction.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 70,
+      "source_host": "host.faction.faction.bounty_broker_network",
+      "target_host": "host.faction.faction.bounty_broker_network",
+      "payload": {
+        "faction_id": "faction.bounty_broker_network",
+        "identity": "faction.bounty_broker_network",
+        "owner_ref": "state/reg/factions/faction-bounty-broker-network.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "faction.periodic_review:faction.bounty_broker_network",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.104184c27a0f9d8107f7db1c",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.root.field_cell",
+      "target_host": "host.team.team.konoha.root.field_cell",
+      "payload": {
+        "identity": "team.konoha.root.field_cell",
+        "owner_ref": "state/team/team-konoha-root-field_cell.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.root.field_cell",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.14ef0d37c4f76d6ce86e5045",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.suna.puppet.corps.auto.09d41af9515f",
+      "target_host": "host.team.team.suna.puppet.corps.auto.09d41af9515f",
+      "payload": {
+        "identity": "team.suna.puppet.corps.auto.09d41af9515f",
+        "owner_ref": "state/team/team-suna-puppet-corps-auto-09d41af9515f.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.suna.puppet.corps.auto.09d41af9515f",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.31036fba47f9a00bdf8068d8",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.generated.7509160457",
+      "target_host": "host.team.team.konoha.generated.7509160457",
+      "payload": {
+        "identity": "team.konoha.generated.7509160457",
+        "owner_ref": "state/team/team-konoha-generated-7509160457.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.generated.7509160457",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.657ecd0e1bf16dd62eed9b1c",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.kumo.military.intelligence.auto.021c09f80884",
+      "target_host": "host.team.team.kumo.military.intelligence.auto.021c09f80884",
+      "payload": {
+        "identity": "team.kumo.military.intelligence.auto.021c09f80884",
+        "owner_ref": "state/team/team-kumo-military-intelligence-auto-021c09f80884.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.kumo.military.intelligence.auto.021c09f80884",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.68b85727d950bf28b72b22b4",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.generated.a2b320a362",
+      "target_host": "host.team.team.konoha.generated.a2b320a362",
+      "payload": {
+        "identity": "team.konoha.generated.a2b320a362",
+        "owner_ref": "state/team/team-konoha-generated-a2b320a362.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.generated.a2b320a362",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.823659b32f02010dff4df2d7",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.kiri.hunter.office.auto.a29a55f55d97",
+      "target_host": "host.team.team.kiri.hunter.office.auto.a29a55f55d97",
+      "payload": {
+        "identity": "team.kiri.hunter.office.auto.a29a55f55d97",
+        "owner_ref": "state/team/team-kiri-hunter-office-auto-a29a55f55d97.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.kiri.hunter.office.auto.a29a55f55d97",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.8793a7d89ced29e19eba558b",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.anbu.ro",
+      "target_host": "host.team.team.konoha.anbu.ro",
+      "payload": {
+        "identity": "team.konoha.anbu.ro",
+        "owner_ref": "state/team/team-konoha-anbu-ro.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.anbu.ro",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.8d09e12cd1af419f8e31a4dd",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.iwa.engineering.command.auto.3d13f5395a68",
+      "target_host": "host.team.team.iwa.engineering.command.auto.3d13f5395a68",
+      "payload": {
+        "identity": "team.iwa.engineering.command.auto.3d13f5395a68",
+        "owner_ref": "state/team/team-iwa-engineering-command-auto-3d13f5395a68.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.iwa.engineering.command.auto.3d13f5395a68",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.9af63b56a78de5f17c963f3d",
+      "kind": "team.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 75,
+      "source_host": "host.team.team.konoha.generated.f6a64a78e8",
+      "target_host": "host.team.team.konoha.generated.f6a64a78e8",
+      "payload": {
+        "identity": "team.konoha.generated.f6a64a78e8",
+        "owner_ref": "state/team/team-konoha-generated-f6a64a78e8.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "team.periodic_review:team.konoha.generated.f6a64a78e8",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.e1615303ef2a0fee55d60ce6",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-06T07:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_oto_konoha_infiltration",
+      "target_host": "host.canon_pressure.pressure_oto_konoha_infiltration",
+      "payload": {
+        "identity": "pressure_oto_konoha_infiltration",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_oto_konoha_infiltration",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_oto_konoha_infiltration",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.20bfdb064cfa1f7782c5220a",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-06T09:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_konoha_academy_graduation",
+      "target_host": "host.canon_pressure.pressure_konoha_academy_graduation",
+      "payload": {
+        "identity": "pressure_konoha_academy_graduation",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_konoha_academy_graduation",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_konoha_academy_graduation",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

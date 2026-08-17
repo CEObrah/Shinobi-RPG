@@ -1,0 +1,60 @@
+{
+  "schema": "faction-owner",
+  "faction": {
+    "id": "faction.gato_company",
+    "name": "Gato Company",
+    "status": "active",
+    "leadership_ids": [
+      "canon_gato"
+    ],
+    "key_member_ids": [],
+    "goal": "maintain coercive commercial control over Waves shipping and protect monopoly interests",
+    "current_plan": "Use money, contracts, private security, and local influence to preserve shipping control and suppress threats to the monopoly.",
+    "resources": [
+      "Gato Company treasury",
+      "shipping compound",
+      "commercial network",
+      "private security contracts"
+    ],
+    "relationships": [
+      {
+        "target_id": "faction.zabuza_mercenary_cell",
+        "relationship_type": "potential_contracting",
+        "stance": "transactional",
+        "intensity": 50
+      }
+    ],
+    "knowledge_policy": "world truth, operational knowledge, and player knowledge remain separate; decisions use only persisted holder knowledge",
+    "notes": [
+      "This faction is the autonomous operational owner for institution.waves.gato_enterprise; the institution record remains civil/site structure rather than a second planner."
+    ],
+    "goals": [
+      "maintain shipping control",
+      "protect monopoly revenue",
+      "contract coercive services when financially and causally justified"
+    ],
+    "constraints": [
+      "treasury",
+      "commercial exposure",
+      "local resistance",
+      "contractor availability"
+    ],
+    "plan_state": {
+      "status": "active",
+      "last_review_at": "SE-0061-07-30T07:00:00",
+      "wake_policy": "registered causal review or immediate causal trigger/information delivery",
+      "autonomous_mission_refs": [
+        "mission.autonomy.30328375eb35b586b8",
+        "mission.autonomy.2ee0159eacd2f27e82"
+      ],
+      "autonomous_priority_refs": [],
+      "completed_priority_refs": [],
+      "autonomous_team_refs": [],
+      "wake_required_mission_refs": [
+        "mission.autonomy.30328375eb35b586b8"
+      ]
+    },
+    "scope": "Waves coercive commerce, shipping, and contracted security",
+    "leadership_model": "owner_executive"
+  }
+}

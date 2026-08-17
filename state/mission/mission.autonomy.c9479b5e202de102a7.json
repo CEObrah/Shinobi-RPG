@@ -1,0 +1,43 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.c9479b5e202de102a7",
+  "issuer_ref": "faction.root",
+  "authority_ref": "canon_danzo",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.root",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-03-19T07:00:00",
+  "authorized_at": "SE-0061-03-19T07:00:00",
+  "starts_at": "SE-0061-03-19T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": null,
+  "closed_at": "SE-0061-06-11T09:00:00",
+  "briefing": null,
+  "state": "aborted",
+  "participant_refs": [
+    "canon_fu_yamanaka",
+    "canon_torune_aburame",
+    "canon_yamato"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.c9479b5e202de102a7",
+      "kind": "capture",
+      "required": true,
+      "dependencies": [],
+      "status": "failed",
+      "progress_milli": 100,
+      "resolution_ref": "baseline.rich_autonomy_terminal_state"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": "baseline.rich_autonomy_terminal_state",
+  "settlement": {
+    "mission_id": "mission.autonomy.c9479b5e202de102a7",
+    "outcome": "aborted",
+    "settlement_token": "baseline:mission.autonomy.c9479b5e202de102a7:terminal-state",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

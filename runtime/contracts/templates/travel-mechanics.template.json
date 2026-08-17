@@ -1,0 +1,318 @@
+{
+  "schema": "file-template",
+  "template_id": "template.travel-mechanics",
+  "target_schema": "travel-mechanics",
+  "source_schema": null,
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/mechanics"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "formulas",
+    "route_status_multipliers",
+    "local_travel",
+    "rules",
+    "formation_travel",
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "authority",
+        "formulas",
+        "route_status_multipliers",
+        "local_travel",
+        "rules",
+        "formation_travel",
+        "schema"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "formulas",
+        "route_status_multipliers",
+        "local_travel",
+        "formation_travel",
+        "rules"
+      ]
+    },
+    "/formulas": {
+      "mode": "closed",
+      "allowed_keys": [
+        "reference_travel_days",
+        "individual_speed_multiplier",
+        "party_speed_multiplier",
+        "travel_hours"
+      ],
+      "canonical_order": [
+        "reference_travel_days",
+        "individual_speed_multiplier",
+        "party_speed_multiplier",
+        "travel_hours"
+      ]
+    },
+    "/route_status_multipliers": {
+      "mode": "closed",
+      "allowed_keys": [
+        "guarded",
+        "open",
+        "open_but_criminally_pressured",
+        "open_controlled",
+        "open_guarded",
+        "restricted",
+        "weather_dependent"
+      ],
+      "canonical_order": [
+        "open",
+        "open_controlled",
+        "open_guarded",
+        "guarded",
+        "restricted",
+        "open_but_criminally_pressured",
+        "weather_dependent"
+      ]
+    },
+    "/local_travel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "reference_hours",
+        "rule"
+      ],
+      "canonical_order": [
+        "reference_hours",
+        "rule"
+      ]
+    },
+    "/formation_travel": {
+      "mode": "closed",
+      "allowed_keys": [
+        "local_reference_hours",
+        "size_multipliers",
+        "posture_time_multipliers",
+        "posture_readiness_delta",
+        "coordination_speed_formula",
+        "logistics_consumption",
+        "rules"
+      ],
+      "canonical_order": [
+        "local_reference_hours",
+        "size_multipliers",
+        "posture_time_multipliers",
+        "posture_readiness_delta",
+        "coordination_speed_formula",
+        "logistics_consumption",
+        "rules"
+      ]
+    },
+    "/formation_travel/size_multipliers/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "max_personnel",
+        "multiplier"
+      ],
+      "canonical_order": [
+        "max_personnel",
+        "multiplier"
+      ]
+    },
+    "/formation_travel/posture_time_multipliers": {
+      "mode": "closed",
+      "allowed_keys": [
+        "standard",
+        "forced",
+        "cautious"
+      ],
+      "canonical_order": [
+        "standard",
+        "forced",
+        "cautious"
+      ]
+    },
+    "/formation_travel/posture_readiness_delta": {
+      "mode": "closed",
+      "allowed_keys": [
+        "standard",
+        "forced",
+        "cautious"
+      ],
+      "canonical_order": [
+        "standard",
+        "forced",
+        "cautious"
+      ]
+    },
+    "/formation_travel/logistics_consumption": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rations_person_days_per_travel_day_milli",
+        "water_liters_per_person_day_milli",
+        "posture_consumption_milli",
+        "rule"
+      ],
+      "canonical_order": [
+        "rations_person_days_per_travel_day_milli",
+        "water_liters_per_person_day_milli",
+        "posture_consumption_milli",
+        "rule"
+      ]
+    },
+    "/formation_travel/logistics_consumption/posture_consumption_milli": {
+      "mode": "closed",
+      "allowed_keys": [
+        "standard",
+        "forced",
+        "cautious"
+      ],
+      "canonical_order": [
+        "standard",
+        "forced",
+        "cautious"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/authority": [
+      "string"
+    ],
+    "/formulas": [
+      "object"
+    ],
+    "/formulas/party_speed_multiplier": [
+      "string"
+    ],
+    "/formulas/reference_travel_days": [
+      "string"
+    ],
+    "/formulas/travel_hours": [
+      "string"
+    ],
+    "/route_status_multipliers": [
+      "object"
+    ],
+    "/route_status_multipliers/guarded": [
+      "number"
+    ],
+    "/route_status_multipliers/open": [
+      "number"
+    ],
+    "/route_status_multipliers/open_but_criminally_pressured": [
+      "number"
+    ],
+    "/route_status_multipliers/open_controlled": [
+      "number"
+    ],
+    "/route_status_multipliers/open_guarded": [
+      "number"
+    ],
+    "/route_status_multipliers/restricted": [
+      "number"
+    ],
+    "/route_status_multipliers/weather_dependent": [
+      "number"
+    ],
+    "/rules": [
+      "array"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/local_travel": [
+      "object"
+    ],
+    "/local_travel/reference_hours": [
+      "number"
+    ],
+    "/local_travel/rule": [
+      "string"
+    ],
+    "/rules/*": [
+      "string"
+    ],
+    "/formulas/individual_speed_multiplier": [
+      "string"
+    ],
+    "/formation_travel": [
+      "object"
+    ],
+    "/formation_travel/local_reference_hours": [
+      "number"
+    ],
+    "/formation_travel/size_multipliers": [
+      "array"
+    ],
+    "/formation_travel/size_multipliers/*": [
+      "object"
+    ],
+    "/formation_travel/size_multipliers/*/max_personnel": [
+      "integer"
+    ],
+    "/formation_travel/size_multipliers/*/multiplier": [
+      "number"
+    ],
+    "/formation_travel/posture_time_multipliers": [
+      "object"
+    ],
+    "/formation_travel/posture_time_multipliers/*": [
+      "number"
+    ],
+    "/formation_travel/posture_readiness_delta": [
+      "object"
+    ],
+    "/formation_travel/posture_readiness_delta/*": [
+      "integer"
+    ],
+    "/formation_travel/coordination_speed_formula": [
+      "string"
+    ],
+    "/formation_travel/rules": [
+      "array"
+    ],
+    "/formation_travel/rules/*": [
+      "string"
+    ],
+    "/formation_travel/logistics_consumption": [
+      "object"
+    ],
+    "/formation_travel/logistics_consumption/rations_person_days_per_travel_day_milli": [
+      "integer"
+    ],
+    "/formation_travel/logistics_consumption/water_liters_per_person_day_milli": [
+      "integer"
+    ],
+    "/formation_travel/logistics_consumption/posture_consumption_milli": [
+      "object"
+    ],
+    "/formation_travel/logistics_consumption/posture_consumption_milli/*": [
+      "integer"
+    ],
+    "/formation_travel/logistics_consumption/rule": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/rules": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/formation_travel/size_multipliers": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/formation_travel/rules": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is a cold structural contract for schema-bearing static gameplay data.",
+    "Do not add an unregistered field during play or ad hoc maintenance. Revise this template first.",
+    "Dynamic/open maps permit new stable IDs only; wildcard values must retain the registered structure.",
+    "Template controls structure, not facts or balance values."
+  ]
+}

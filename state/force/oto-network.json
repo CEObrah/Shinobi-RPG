@@ -1,0 +1,324 @@
+{
+  "schema": "force",
+  "id": "force.oto.network",
+  "name": "Force Oto Network",
+  "total": 1503,
+  "availability": {
+    "deployed": 1108,
+    "ready_24h": 16,
+    "mobilizable_7d": 0,
+    "mobilizable_30d": 0,
+    "training_or_instruction": 155,
+    "medical_or_recovery": 0,
+    "captured_or_missing": 0,
+    "essential_fixed_duty": 224
+  },
+  "military_identity": [
+    "small experimental force",
+    "high variance",
+    "infiltration and unusual capabilities"
+  ],
+  "reconstitution_policy_ref": "reconstitution.shinobi_village",
+  "troop_pools": [
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.field_ready",
+      "count": 436,
+      "quality": "professional",
+      "role": "field_ready",
+      "loadout": "load.force_oto_network.field_ready",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.field_ready",
+      "troop_type": "general_shinobi",
+      "readiness_class": "field_ready",
+      "capability_ref": "state/manpower-capability/force-oto-network-field-ready.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.garrison_security",
+      "count": 308,
+      "quality": "professional",
+      "role": "garrison_security",
+      "loadout": "load.force_oto_network.garrison_security",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.garrison_security",
+      "troop_type": "general_shinobi",
+      "readiness_class": "garrison_security",
+      "capability_ref": "state/manpower-capability/force-oto-network-garrison-security.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.intelligence_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "intelligence_support",
+      "loadout": "load.force_oto_network.intelligence_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.intelligence_support",
+      "troop_type": "intelligence_specialist",
+      "readiness_class": "intelligence_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-intelligence-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.medical_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "medical_support",
+      "loadout": "load.force_oto_network.medical_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.medical_support",
+      "troop_type": "medical_nin",
+      "readiness_class": "medical_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-medical-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.logistics_support",
+      "count": 56,
+      "quality": "professional",
+      "role": "logistics_support",
+      "loadout": "load.force_oto_network.logistics_support",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.logistics_support",
+      "troop_type": "logistics_support",
+      "readiness_class": "logistics_support",
+      "capability_ref": "state/manpower-capability/force-oto-network-logistics-support.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.training_instruction",
+      "count": 183,
+      "quality": "professional",
+      "role": "training_instruction",
+      "loadout": "load.force_oto_network.training_instruction",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.training_instruction",
+      "troop_type": "training_personnel",
+      "readiness_class": "training_instruction",
+      "capability_ref": "state/manpower-capability/force-oto-network-training-instruction.json"
+    },
+    {
+      "schema": "troop_pool",
+      "id": "force_oto_network.reserve_recovery",
+      "count": 308,
+      "quality": "professional",
+      "role": "reserve_recovery",
+      "loadout": "load.force_oto_network.reserve_recovery",
+      "doctrine": "doc.force_oto_network.field",
+      "training": "train.force_oto_network.reserve_recovery",
+      "troop_type": "general_shinobi",
+      "readiness_class": "reserve_recovery",
+      "capability_ref": "state/manpower-capability/force-oto-network-reserve-recovery.json"
+    }
+  ],
+  "owner_ref": "faction_oto",
+  "formation_registry_ref": "state/formation/force-oto-network.json",
+  "mobilization_anchor_ref": "place.oto.network",
+  "reserve_capability": {
+    "ready_24h": {
+      "fundamentals": {
+        "combat": 61,
+        "awareness": 58,
+        "endurance": 58,
+        "chakra_control": 62,
+        "chakra_output": 62,
+        "movement": 57,
+        "tactics": 53,
+        "team_coordination": 51
+      },
+      "methods": {
+        "sword": 54,
+        "unarmed": 64,
+        "thrown_tools": 62,
+        "bow": 51,
+        "polearm": 51,
+        "heavy_weapon": 50,
+        "ninjutsu": 76,
+        "genjutsu": 62,
+        "traps": 53,
+        "sensory": 63,
+        "medical": 55,
+        "sealing": 57
+      },
+      "experience": 51,
+      "count": 16,
+      "spread": 17
+    },
+    "mobilizable_7d": {
+      "fundamentals": {
+        "combat": 66,
+        "awareness": 63,
+        "endurance": 63,
+        "chakra_control": 67,
+        "chakra_output": 67,
+        "movement": 62,
+        "tactics": 58,
+        "team_coordination": 55
+      },
+      "methods": {
+        "sword": 54,
+        "unarmed": 64,
+        "thrown_tools": 62,
+        "bow": 51,
+        "polearm": 51,
+        "heavy_weapon": 50,
+        "ninjutsu": 75,
+        "genjutsu": 62,
+        "traps": 53,
+        "sensory": 63,
+        "medical": 55,
+        "sealing": 57
+      },
+      "experience": 52,
+      "count": 0,
+      "spread": 12
+    },
+    "mobilizable_30d": {
+      "fundamentals": {
+        "combat": 58,
+        "awareness": 55,
+        "endurance": 55,
+        "chakra_control": 59,
+        "chakra_output": 59,
+        "movement": 54,
+        "tactics": 50,
+        "team_coordination": 47
+      },
+      "methods": {
+        "sword": 46,
+        "unarmed": 56,
+        "thrown_tools": 54,
+        "bow": 43,
+        "polearm": 43,
+        "heavy_weapon": 42,
+        "ninjutsu": 67,
+        "genjutsu": 54,
+        "traps": 45,
+        "sensory": 55,
+        "medical": 47,
+        "sealing": 49
+      },
+      "experience": 50,
+      "count": 0,
+      "spread": 15
+    },
+    "training_or_instruction": {
+      "fundamentals": {
+        "combat": 61,
+        "awareness": 58,
+        "endurance": 58,
+        "chakra_control": 62,
+        "chakra_output": 62,
+        "movement": 57,
+        "tactics": 53,
+        "team_coordination": 50
+      },
+      "methods": {
+        "sword": 54,
+        "unarmed": 64,
+        "thrown_tools": 62,
+        "bow": 51,
+        "polearm": 51,
+        "heavy_weapon": 50,
+        "ninjutsu": 75,
+        "genjutsu": 62,
+        "traps": 53,
+        "sensory": 63,
+        "medical": 55,
+        "sealing": 57
+      },
+      "experience": 51,
+      "count": 155,
+      "spread": 17
+    },
+    "medical_or_recovery": {
+      "fundamentals": {
+        "combat": 58,
+        "awareness": 55,
+        "endurance": 55,
+        "chakra_control": 59,
+        "chakra_output": 59,
+        "movement": 54,
+        "tactics": 50,
+        "team_coordination": 47
+      },
+      "methods": {
+        "sword": 46,
+        "unarmed": 56,
+        "thrown_tools": 54,
+        "bow": 43,
+        "polearm": 43,
+        "heavy_weapon": 42,
+        "ninjutsu": 67,
+        "genjutsu": 54,
+        "traps": 45,
+        "sensory": 55,
+        "medical": 47,
+        "sealing": 49
+      },
+      "experience": 50,
+      "count": 0,
+      "spread": 16
+    },
+    "captured_or_missing": {
+      "fundamentals": {
+        "combat": 58,
+        "awareness": 55,
+        "endurance": 55,
+        "chakra_control": 59,
+        "chakra_output": 59,
+        "movement": 54,
+        "tactics": 50,
+        "team_coordination": 47
+      },
+      "methods": {
+        "sword": 46,
+        "unarmed": 56,
+        "thrown_tools": 54,
+        "bow": 43,
+        "polearm": 43,
+        "heavy_weapon": 42,
+        "ninjutsu": 67,
+        "genjutsu": 54,
+        "traps": 45,
+        "sensory": 55,
+        "medical": 47,
+        "sealing": 49
+      },
+      "experience": 50,
+      "count": 0,
+      "spread": 18
+    },
+    "essential_fixed_duty": {
+      "fundamentals": {
+        "combat": 66,
+        "awareness": 63,
+        "endurance": 63,
+        "chakra_control": 67,
+        "chakra_output": 67,
+        "movement": 62,
+        "tactics": 58,
+        "team_coordination": 55
+      },
+      "methods": {
+        "sword": 54,
+        "unarmed": 64,
+        "thrown_tools": 62,
+        "bow": 51,
+        "polearm": 51,
+        "heavy_weapon": 50,
+        "ninjutsu": 75,
+        "genjutsu": 62,
+        "traps": 53,
+        "sensory": 63,
+        "medical": 55,
+        "sealing": 57
+      },
+      "experience": 52,
+      "count": 224,
+      "spread": 12
+    }
+  },
+  "population_pool_id": "pool.oto.shinobi_service"
+}

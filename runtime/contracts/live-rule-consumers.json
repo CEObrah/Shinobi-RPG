@@ -1,0 +1,187 @@
+{
+  "schema": "live-rule-consumer-registry",
+  "purpose": "Machine-readable parity between current rule/data authorities and production consumers. Live rules must name at least one production consumer and focused regression. Reference-only or partial rules must be classified explicitly instead of masquerading as executable mechanics.",
+  "rules": [
+    {
+      "rule_path": "game/data/house/training-policies.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/living_world_house.py",
+          "symbol": "_house_training_policy"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_house_tang_training_envelope.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/training.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/living_world_training.py",
+          "symbol": "_autonomous_team_training_profile"
+        },
+        {
+          "path": "runtime/shinobi_runtime/reducers/training.py",
+          "symbol": "settle_training"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_training_autonomy_policy.py",
+        "tests/runtime/test_autonomous_team_training_local_assembly.py"
+      ]
+    },
+    {
+      "rule_path": "game/rules/career/promotion-exams.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/promotion_exam_scheduler.py",
+          "symbol": "promotion_exam_profiles"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/promotion_exam_evaluation.py",
+          "symbol": "_evaluation_config"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/promotion_exam_delegation_materialization.py",
+          "symbol": "exactify_home_village_genin"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_promotion_exam_evaluation.py",
+        "tests/runtime/test_promotion_exam_population_calibration.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/economy.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/living_world_operations.py",
+          "symbol": "_economy_item_base_price"
+        },
+        {
+          "path": "runtime/shinobi_runtime/api/operations.py",
+          "symbol": "economy.json"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_release_recruitment_progression.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/governance.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/civil_state.py",
+          "symbol": "governance.json"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/time.py",
+          "symbol": "governance.json"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_civil_state.py",
+        "tests/runtime/test_long_campaign_scaling_hardening.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/battlefield-operations.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/battlefield.py",
+          "symbol": "battlefield-operations.json"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_operational_battlefield.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/travel.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/population.py",
+          "symbol": "TRAVEL_MECHANICS_PATH"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/strategic.py",
+          "symbol": "TRAVEL_MECHANICS_PATH"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_real_campaign_planner.py",
+        "tests/runtime/test_promotion_exam_hosted_intervillage.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/family.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/family.py",
+          "symbol": "game/data/mechanics/family.json"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_family_parentage_template.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/reputation.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/social.py",
+          "symbol": "_REPUTATION_MECHANICS_PATH"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/living_world_social.py",
+          "symbol": "REPUTATION_MECHANICS_PATH"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_real_campaign_planner.py",
+        "tests/runtime/test_reputation_template_registration.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/investigation.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/campaign_investigation.py",
+          "symbol": "investigation.json"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_campaign_investigation_resolution.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/operational-world.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/domains/operational_world.py",
+          "symbol": "_operational_mechanics"
+        },
+        {
+          "path": "runtime/shinobi_runtime/commands/living_world_operations.py",
+          "symbol": "_operational_world_mechanics"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_operational_world.py",
+        "tests/runtime/test_mission_market_geography.py"
+      ]
+    }
+  ]
+}

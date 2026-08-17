@@ -1,0 +1,33 @@
+{
+  "schema": "causal-scheduler-host-shard",
+  "bucket": "d4",
+  "authority": true,
+  "hosts": {
+    "host.world.institutions.konoha": {
+      "host": {
+        "state": {
+          "host_id": "host.world.institutions.konoha",
+          "kind": "world_registry",
+          "resolved_through": "SE-0061-08-01T07:00:00",
+          "safe_through": "SE-0061-09-01T06:59:59",
+          "handler_ref": "causal.scheduler",
+          "rng_namespace": "world.institutions.konoha",
+          "next_due": "SE-0061-09-01T07:00:00"
+        },
+        "authority_kind": "world_registry",
+        "owner_ref": "state/world/institutions-konoha.json",
+        "metadata": {
+          "identity": "world.institutions.konoha"
+        }
+      },
+      "event_routes": [
+        {
+          "event_id": "evt.causal.6fb05af6447184014348d2f6",
+          "due_at": "SE-0061-09-01T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-09-01.json",
+          "dedupe_key": "world_registry.periodic_review:world.institutions.konoha"
+        }
+      ]
+    }
+  }
+}

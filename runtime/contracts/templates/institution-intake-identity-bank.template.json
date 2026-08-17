@@ -1,0 +1,107 @@
+{
+  "schema": "file-template",
+  "template_id": "template.institution-intake-identity-bank",
+  "target_schema": "institution-intake-identity-bank",
+  "source_schema": "game/schemas/institution-intake-identity-bank.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/data/people"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "people"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "people"
+      ]
+    },
+    "/people/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "name",
+        "pronouns",
+        "age_years",
+        "identity_cues"
+      ],
+      "canonical_order": [
+        "name",
+        "pronouns",
+        "age_years",
+        "identity_cues"
+      ]
+    },
+    "/people/*/identity_cues": {
+      "mode": "closed",
+      "allowed_keys": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ],
+      "canonical_order": [
+        "appearance",
+        "temperament",
+        "doctrine_expression"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/people": [
+      "array"
+    ],
+    "/people/*": [
+      "object"
+    ],
+    "/people/*/name": [
+      "string"
+    ],
+    "/people/*/pronouns": [
+      "string"
+    ],
+    "/people/*/age_years": [
+      "integer"
+    ],
+    "/people/*/identity_cues": [
+      "object"
+    ],
+    "/people/*/identity_cues/appearance": [
+      "string"
+    ],
+    "/people/*/identity_cues/temperament": [
+      "string"
+    ],
+    "/people/*/identity_cues/doctrine_expression": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/people": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Cold identity seed data only. Intake materialization must create persistent person-core identity/profile state; this bank never becomes mutable character truth."
+  ]
+}

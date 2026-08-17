@@ -1,0 +1,49 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.3510055510651aa206ee",
+  "domain": "military_intelligence",
+  "operation_kind": "intelligence_corroboration",
+  "owner_ref": "faction.kumo_military_intelligence",
+  "authority_ref": "canon_c",
+  "opened_at": "SE-0061-07-09T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-09T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "information",
+  "subject_ref": "claim.autonomy.5b88029fda7f09a59b",
+  "client_ref": null,
+  "place_refs": [
+    "place.kumo.secure.compound"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_coded_documents"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [
+    "claim.autonomy.5b88029fda7f09a59b"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.1381955dfa48a9f53106835c"
+  ],
+  "report_recipient_refs": [
+    "canon_c",
+    "canon_ay"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Corroborate or downgrade one held intelligence claim and deliver the assessment to command.",
+  "failure_condition": "The intelligence_corroboration objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": [
+    "claim.autonomy.5b88029fda7f09a59b",
+    "delivery.autonomy.1381955dfa48a9f53106835c"
+  ]
+}

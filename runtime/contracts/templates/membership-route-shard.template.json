@@ -1,0 +1,152 @@
+{
+  "schema": "file-template",
+  "template_id": "template.membership-route-shard",
+  "target_schema": "membership-route-shard",
+  "source_schema": "game/schemas/membership-route-shard.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/reg/membership-routes"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "bucket",
+    "authority",
+    "team_member_routes",
+    "team_parent_routes",
+    "team_service_routes",
+    "team_assignment_routes",
+    "house_member_routes"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "bucket",
+        "authority",
+        "team_member_routes",
+        "team_parent_routes",
+        "team_service_routes",
+        "team_assignment_routes",
+        "house_member_routes"
+      ],
+      "canonical_order": [
+        "schema",
+        "bucket",
+        "authority",
+        "team_member_routes",
+        "team_parent_routes",
+        "team_service_routes",
+        "team_assignment_routes",
+        "house_member_routes"
+      ]
+    },
+    "/team_member_routes": {
+      "mode": "open_map"
+    },
+    "/team_parent_routes": {
+      "mode": "open_map"
+    },
+    "/team_service_routes": {
+      "mode": "open_map"
+    },
+    "/house_member_routes": {
+      "mode": "open_map"
+    },
+    "/team_assignment_routes": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/bucket": [
+      "string"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/team_member_routes": [
+      "object"
+    ],
+    "/team_member_routes/*": [
+      "array"
+    ],
+    "/team_member_routes/*/*": [
+      "string"
+    ],
+    "/team_parent_routes": [
+      "object"
+    ],
+    "/team_parent_routes/*": [
+      "array"
+    ],
+    "/team_parent_routes/*/*": [
+      "string"
+    ],
+    "/team_service_routes": [
+      "object"
+    ],
+    "/team_service_routes/*": [
+      "array"
+    ],
+    "/team_service_routes/*/*": [
+      "string"
+    ],
+    "/house_member_routes": [
+      "object"
+    ],
+    "/house_member_routes/*": [
+      "array"
+    ],
+    "/house_member_routes/*/*": [
+      "string"
+    ],
+    "/team_assignment_routes": [
+      "object"
+    ],
+    "/team_assignment_routes/*": [
+      "array"
+    ],
+    "/team_assignment_routes/*/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/team_member_routes/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/team_parent_routes/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/team_service_routes/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/house_member_routes/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/team_assignment_routes/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "This is authority:false routing only; exact team and House owners remain authoritative.",
+    "Reconcile affected person, parent, service-village, assignment, and House routes atomically whenever exact membership changes.",
+    "Never scan all route shards to discover one known member or parent; hash-route the exact key."
+  ]
+}

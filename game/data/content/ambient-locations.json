@@ -1,0 +1,80 @@
+{
+  "schema": "content-archetypes",
+  "kind": "ambient_locations",
+  "authority": "cold_non_state_content",
+  "rule": "These are concrete scene and travel references for ordinary world flavor. They own no mutable inventory, staff, finances, security, damage, schedule, availability, or autonomous process state. Temporary scene facts belong to the current scene or another lawful owner; if persistent mechanical state becomes necessary, promote that concern through registered mutable authority instead of turning the ambient record into a managed sheet.",
+  "archetypes": [
+    {
+      "id": "place.konoha.ichiraku",
+      "type": "ramen_shop",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "Ichiraku Ramen, a compact ramen counter suitable for meals, casual meetings, overheard village texture, and ordinary downtime scenes."
+    },
+    {
+      "id": "place.konoha.yakiniku_q",
+      "type": "restaurant",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "Yakiniku Q, a casual grilled-meat restaurant suitable for team meals, celebrations, informal professional meetings, and village social scenes."
+    },
+    {
+      "id": "place.konoha.dango_shop",
+      "type": "dango_shop",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A familiar Konoha dango shop used for sweets, tea, short conversations, and low-stakes village encounters."
+    },
+    {
+      "id": "place.konoha.traveler_inn",
+      "type": "inn",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A modest traveler inn inside Konoha for visiting merchants, couriers, civilians, and mission-adjacent lodging scenes without persistent business simulation."
+    },
+    {
+      "id": "place.konoha.public_bathhouse",
+      "type": "bathhouse",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A public bathhouse for recovery-flavored downtime, ordinary conversation, and village texture; it carries no managed stock or facility ledger."
+    },
+    {
+      "id": "place.konoha.tea_house",
+      "type": "tea_house",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A quiet Konoha tea house suitable for discreet meetings, family conversations, civilian scenes, and unhurried observation."
+    },
+    {
+      "id": "place.konoha.market",
+      "type": "market",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A busy market lane of ordinary food, cloth, household goods, and small stalls, used as scene texture unless a specific purchase requires a separately resolved item transaction."
+    },
+    {
+      "id": "place.konoha.hokage_rock",
+      "type": "scenic_spot",
+      "region": "Konoha",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "An overlook around the Hokage Monument used for quiet observation, conversation, rendezvous, and village-scale visual context."
+    },
+    {
+      "id": "place.fire.roadside_inn",
+      "type": "inn",
+      "region": "Land of Fire",
+      "visibility": "public",
+      "state_authority": "static_ambient_location",
+      "description": "A representative roadside inn for ordinary Land of Fire travel scenes when no specific managed establishment is mechanically relevant."
+    }
+  ]
+}

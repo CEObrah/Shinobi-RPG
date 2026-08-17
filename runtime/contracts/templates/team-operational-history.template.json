@@ -1,0 +1,44 @@
+{
+  "schema": "file-template",
+  "template_id": "template.team-operational-history",
+  "target_schema": "team-operational-history",
+  "source_schema": "game/schemas/team-operational-history.schema.json",
+  "scope": "mutable_state",
+  "current_directories": ["state/team/history"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "team_id", "as_of", "missions_total", "missions_succeeded", "missions_failed", "training_sessions", "casualty_events", "replacement_events", "former_member_refs", "notable_event_refs", "last_mission_ref", "last_result_at"],
+  "object_contracts": {
+    "": {"mode": "closed", "allowed_keys": ["schema", "team_id", "as_of", "missions_total", "missions_succeeded", "missions_failed", "training_sessions", "casualty_events", "replacement_events", "former_member_refs", "notable_event_refs", "recent_mission_refs", "last_mission_ref", "last_result_at"], "canonical_order": ["schema", "team_id", "as_of", "missions_total", "missions_succeeded", "missions_failed", "training_sessions", "casualty_events", "replacement_events", "former_member_refs", "notable_event_refs", "recent_mission_refs", "last_mission_ref", "last_result_at"]}
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/team_id": ["string"],
+    "/as_of": ["string"],
+    "/missions_total": ["integer"],
+    "/missions_succeeded": ["integer"],
+    "/missions_failed": ["integer"],
+    "/training_sessions": ["integer"],
+    "/casualty_events": ["integer"],
+    "/replacement_events": ["integer"],
+    "/former_member_refs": ["array"],
+    "/former_member_refs/*": ["string"],
+    "/notable_event_refs": ["array"],
+    "/notable_event_refs/*": ["string"],
+    "/recent_mission_refs": ["array"],
+    "/recent_mission_refs/*": ["string"],
+    "/last_mission_ref": ["string", "null"],
+    "/last_result_at": ["string", "null"]
+  },
+  "array_contracts": {
+    "/former_member_refs": {"item_types": ["string"]},
+    "/notable_event_refs": {"item_types": ["string"]},
+    "/recent_mission_refs": {"item_types": ["string"], "max_items": 16, "unique_items": true}
+  },
+  "writing_rules": [
+    "This compact owner is derived from committed exact-team events and training receipts; it never awards progression by itself.",
+    "Keep histories bounded and preserve team identity across routine missions and lawful roster changes.",
+    "recent_mission_refs is a bounded routing/evidence cache for exact mission owners; exact mission owners remain authoritative.",
+    "Do not use history counters as a substitute for authoritative mission, person, casualty, or training state."
+  ]
+}

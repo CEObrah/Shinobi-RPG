@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "governance-registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "jurisdictions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "governance-registry"
+    },
+    "jurisdictions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "place_ref",
+          "sovereign_ref",
+          "administration_ref",
+          "status",
+          "established_at",
+          "updated_at",
+          "population_pool_ref",
+          "treasury_holder_ref",
+          "recruitment_rights",
+          "tax_milli",
+          "integration_milli",
+          "resistance_milli",
+          "garrison_force_ref",
+          "recognition_agreement_refs",
+          "parent_jurisdiction_ref",
+          "basis_refs",
+          "visibility"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^jurisdiction\\."
+          },
+          "place_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sovereign_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "administration_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "military_administration",
+              "outpost",
+              "settlement",
+              "village",
+              "hidden_village",
+              "territory",
+              "client_state"
+            ]
+          },
+          "established_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "population_pool_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "treasury_holder_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recruitment_rights": {
+            "type": "boolean"
+          },
+          "tax_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "integration_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "resistance_milli": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "garrison_force_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "recognition_agreement_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "parent_jurisdiction_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "basis_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "restricted",
+              "secret"
+            ]
+          },
+          "civil_economy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "last_settled_at",
+              "private_economy_holder_ref",
+              "workforce_count",
+              "resident_count",
+              "gross_activity_ryo",
+              "consumption_ryo",
+              "surplus_ryo",
+              "shortage_ryo",
+              "food_security_milli",
+              "service_capacity_milli",
+              "attractiveness_milli",
+              "infrastructure_pressure_milli",
+              "tax_due_ryo",
+              "tax_paid_ryo",
+              "tax_arrears_ryo",
+              "migration_source_pool_ref",
+              "migration_agreement_ref",
+              "net_migration_count",
+              "local_market_milli",
+              "integration_delta_milli",
+              "resistance_delta_milli",
+              "development_priority",
+              "development_need_milli"
+            ],
+            "properties": {
+              "last_settled_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "private_economy_holder_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "workforce_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "resident_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "gross_activity_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "consumption_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "surplus_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "shortage_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "food_security_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "service_capacity_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "attractiveness_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "infrastructure_pressure_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "tax_due_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "tax_paid_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "tax_arrears_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "migration_source_pool_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "migration_agreement_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "net_migration_count": {
+                "type": "integer"
+              },
+              "local_market_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "integration_delta_milli": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              },
+              "resistance_delta_milli": {
+                "type": "integer",
+                "minimum": -1000,
+                "maximum": 1000
+              },
+              "development_priority": {
+                "enum": [
+                  null,
+                  "food_security",
+                  "housing_infrastructure",
+                  "market_services"
+                ]
+              },
+              "development_need_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "food_support_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "infrastructure_capacity_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "service_investment_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "civic_investment_ryo": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "civic_investment_priority": {
+                "enum": [
+                  null,
+                  "food_security",
+                  "housing_infrastructure",
+                  "market_services"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "manpower-capability",
+  "id": "capability.civil.frost.trained_reserve",
+  "pool_id": "civil.frost.trained_reserve",
+  "source_owner": "force.civil.frost",
+  "stats": {
+    "attributes": {
+      "strength": 40,
+      "endurance": 45,
+      "awareness": 34
+    },
+    "skills": {
+      "weapons": 41,
+      "formation": 41,
+      "tactics": 26
+    },
+    "morale": 58,
+    "discipline": 52,
+    "experience": 35,
+    "methods": {
+      "sword": 0,
+      "unarmed": 0,
+      "thrown_tools": 0,
+      "bow": 0,
+      "polearm": 0,
+      "heavy_weapon": 0,
+      "ninjutsu": 10,
+      "genjutsu": 8,
+      "traps": 23,
+      "sensory": 34,
+      "medical": 20,
+      "sealing": 8
+    }
+  },
+  "demographics": {
+    "age_distribution_pct": {
+      "15_19": 18,
+      "20_29": 44,
+      "30_39": 27,
+      "40_plus": 11
+    },
+    "height_cm": {
+      "mean": 174,
+      "sd": 6.2
+    },
+    "weight_kg": {
+      "mean": 62,
+      "sd": 7.8
+    },
+    "individual_records_required": false
+  },
+  "aptitude_distribution": {
+    "mean": 95,
+    "sd": 17,
+    "low_pct": 14,
+    "normal_pct": 60,
+    "high_pct": 22,
+    "exceptional_pct": 4,
+    "source": "population_distribution_not_training_bonus"
+  },
+  "tendencies": {
+    "aggression": 45,
+    "initiative": 40,
+    "caution": 55,
+    "adaptability": 35,
+    "objective_focus": 60
+  }
+}

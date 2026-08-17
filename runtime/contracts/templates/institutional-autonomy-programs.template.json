@@ -1,0 +1,121 @@
+{
+  "schema": "file-template",
+  "template_id": "template.institutional-autonomy-programs",
+  "target_schema": "institutional-autonomy-programs",
+  "source_schema": "game/schemas/institutional-autonomy-programs.schema.json",
+  "scope": "static_data",
+  "current_directories": [
+    "game/rules/autonomy"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "authority",
+    "programs",
+    "institution_profiles"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "programs",
+        "institution_profiles",
+        "delegated_institutions"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "programs",
+        "institution_profiles",
+        "delegated_institutions"
+      ]
+    },
+    "/programs": {
+      "mode": "open_map"
+    },
+    "/programs/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "domain",
+        "operation_templates"
+      ],
+      "canonical_order": [
+        "domain",
+        "operation_templates"
+      ]
+    },
+    "/programs/*/operation_templates/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "operation_kind",
+        "objective_kind",
+        "mission_archetype_ref",
+        "subject_kind",
+        "subject_candidates",
+        "client_candidates",
+        "place_candidates",
+        "route_candidates",
+        "opposition_candidates",
+        "resource_refs",
+        "report_recipient_candidates",
+        "success_condition",
+        "failure_condition",
+        "classification"
+      ],
+      "canonical_order": [
+        "id",
+        "operation_kind",
+        "objective_kind",
+        "mission_archetype_ref",
+        "subject_kind",
+        "subject_candidates",
+        "client_candidates",
+        "place_candidates",
+        "route_candidates",
+        "opposition_candidates",
+        "resource_refs",
+        "report_recipient_candidates",
+        "success_condition",
+        "failure_condition",
+        "classification"
+      ]
+    },
+    "/institution_profiles/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "id",
+        "match_terms",
+        "domain",
+        "operation_kind",
+        "success_condition",
+        "failure_condition",
+        "classification"
+      ],
+      "canonical_order": [
+        "id",
+        "match_terms",
+        "domain",
+        "operation_kind",
+        "success_condition",
+        "failure_condition",
+        "classification"
+      ]
+    },
+    "/delegated_institutions": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/delegated_institutions": [
+      "object"
+    ],
+    "/delegated_institutions/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": []
+}

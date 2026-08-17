@@ -1,0 +1,220 @@
+"""Production preview validation parity with transaction execution.
+
+A READY preview is an attestation used by the MCP write boundary. It must not
+mean only that command planning succeeded while deterministic schema, template,
+or domain validation is deferred until execute. This installer wraps the
+production operations class so every READY preview dry-runs the exact planned
+manifest through the same after-image validators used before persistence.
+
+The dry run is read-only: it constructs a TransactionManifest and StagedOverlay
+but never prepares WAL state, mutates campaign owners, stages Git, or writes a
+receipt. Execution still repeats validation under its transaction lock, so a
+real state change between preview and execution continues to fail safely.
+"""
+from __future__ import annotations
+
+import re
+from typing import Any, Mapping
+
+from shinobi_runtime.api.contracts import CommandPlan, CommandRejectedError
+from shinobi_runtime.api.operations import OperationError
+from shinobi_runtime.commands.production_population_owner_bridge import (
+    _closure_value,
+    _owner_class,
+    _traceback_owner_class,
+)
+from shinobi_runtime.store.overlay import StagedOverlay
+from shinobi_runtime.store.template_validation import TemplateValidationError
+from shinobi_runtime.tx.errors import (
+    DirtyRepositoryError,
+    LockUnavailableError,
+    RecoveryError,
+    StaleRevisionError,
+)
+
+_INSTALLED = False
+_SCHEMA_FAILURE = re.compile(
+    r"^staged (?P<schema>[A-Za-z0-9._-]+) schema validation failed(?: at [^:]+)?:"
+)
+_UNREGISTERED_SCHEMA = re.compile(
+    r"^(?:staged JSON uses an unregistered schema|unregistered top-level schema):\s*['\"]?(?P<schema>[A-Za-z0-9._-]+)['\"]?$"
+)
+_TEMPLATE_REASONS = frozenset(
+    {
+        "array_item_type",
+        "invalid_array_contract",
+        "invalid_array_item_types",
+        "invalid_object_contract",
+        "invalid_template_requirements",
+        "missing_array_contract",
+        "missing_object_contract",
+        "missing_required_key",
+        "missing_template",
+        "missing_template_id",
+        "non_mutable_template",
+        "owner_not_object",
+        "structural_type",
+        "unknown",
+        "unregistered_keys",
+    }
+)
+_BASE_AUTONOMY_DRIFT = "advance_time_base_validation_invalid__autonomous_owner_after_image"
+
+
+def _safe_error_token(value: str) -> str:
+    token = re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+    return token[:64] or "unknown"
+
+
+def _schema_validation_error_code(exc: BaseException) -> str:
+    """Return a bounded diagnostic code without leaking paths or record data."""
+    detail = str(exc)
+    match = _SCHEMA_FAILURE.match(detail)
+    if match is not None:
+        return "preview_schema_validation_failed_" + _safe_error_token(match.group("schema"))
+    match = _UNREGISTERED_SCHEMA.match(detail)
+    if match is not None:
+        return "preview_schema_validation_failed_unregistered_" + _safe_error_token(match.group("schema"))
+    if detail.startswith("staged state JSON requires a registered top-level schema"):
+        return "preview_schema_validation_failed_missing_top_level_schema"
+    if detail.startswith("invalid JSON in staged output"):
+        return "preview_schema_validation_failed_invalid_json"
+    if "runtime-owned path" in detail and "schema" in detail:
+        return "preview_schema_validation_failed_runtime_owner_schema"
+    return "preview_schema_validation_failed"
+
+
+def _template_validation_error_code(exc: BaseException) -> str:
+    """Return schema + static structural reason, never mutable staged detail."""
+    if not isinstance(exc, TemplateValidationError):
+        return "preview_template_validation_failed"
+    reason = exc.reason if exc.reason in _TEMPLATE_REASONS else "unknown"
+    reason_token = _safe_error_token(reason)
+    if isinstance(exc.schema_id, str) and exc.schema_id:
+        return "preview_template_validation_failed_" + _safe_error_token(exc.schema_id) + "_" + reason_token
+    return "preview_template_validation_failed_" + reason_token
+
+
+def _autonomy_drift_code(plan: Any, overlay: Any) -> str | None:
+    expected = _closure_value(getattr(plan, "validator", None), "autonomy_record_writes")
+    if not isinstance(expected, Mapping):
+        return None
+    classes: set[str] = set()
+    for path, record in expected.items():
+        if not isinstance(path, str) or not isinstance(record, Mapping):
+            continue
+        try:
+            actual = overlay.read_json(path)
+        except (FileNotFoundError, TypeError, ValueError):
+            continue
+        if actual != record:
+            classes.add(_owner_class(path, record))
+    if not classes:
+        return None
+    return "autonomous_owner_after_image_drift__" + "__".join(sorted(classes))
+
+
+def _autonomy_drift_fallback(exc: BaseException) -> str | None:
+    """Classify only the owner type already present in the rejected validator frame.
+
+    Some composed production validators do not retain the base time reducer's
+    ``autonomy_record_writes`` mapping as a directly discoverable closure value.
+    The original ValueError is still preserved as the CommandRejectedError cause,
+    so the validator frame can safely expose a bounded schema/path class without
+    exposing the hidden owner ID, path, or record contents.
+    """
+    owner_class = _traceback_owner_class(exc)
+    if owner_class is None:
+        return None
+    return "autonomous_owner_after_image_drift__" + owner_class
+
+
+def _validate_ready_plan(operations: Any, command: Any) -> None:
+    """Dry-run the exact production plan through execution-equivalent validators."""
+    with operations._locked():
+        operations._require_command_base(command)
+        operations.coordinator.git.assert_pristine()
+        before = operations._read_fingerprint()
+        plan = operations.command_planner.plan(command)
+        if not isinstance(plan, CommandPlan):
+            raise OperationError(503, "planner_plan_invalid")
+        operations._require_read_only(before, "planner_mutated_campaign")
+
+        manifest = operations.coordinator.planner.plan(
+            command,
+            transaction_id=plan.transaction_id,
+            created_at=plan.created_at,
+            writes=plan.writes,
+        )
+        overlay = StagedOverlay(operations.repository, manifest)
+
+        try:
+            if operations.schema_validator is not None:
+                operations.schema_validator.validate_overlay(overlay, manifest.paths)
+        except (TypeError, ValueError) as exc:
+            raise OperationError(409, _schema_validation_error_code(exc)) from exc
+
+        try:
+            if operations.template_validator is not None:
+                operations.template_validator.validate_overlay(overlay, manifest.paths)
+        except (TypeError, ValueError) as exc:
+            raise OperationError(409, _template_validation_error_code(exc)) from exc
+
+        try:
+            plan.validator(overlay, manifest)
+        except CommandRejectedError as exc:
+            if exc.code == _BASE_AUTONOMY_DRIFT:
+                diagnostic = _autonomy_drift_code(plan, overlay)
+                if diagnostic is None:
+                    diagnostic = _autonomy_drift_fallback(exc)
+                if diagnostic is not None:
+                    raise OperationError(422, diagnostic) from exc
+            raise OperationError(422, exc.code) from exc
+        except (TypeError, ValueError) as exc:
+            raise OperationError(409, "preview_plan_validation_failed") from exc
+
+        operations._require_read_only(before, "preview_validation_mutated_campaign")
+
+
+def install_preview_validation() -> None:
+    """Install production READY-preview validation once per process."""
+    global _INSTALLED
+    if _INSTALLED:
+        return
+
+    from shinobi_runtime.api import campaign_stable_operations as stable_module
+
+    cls = stable_module.RouteAwareCampaignOperations
+    original = cls.preview_command
+    if getattr(original, "_shinobi_exact_validation_parity", False):
+        _INSTALLED = True
+        return
+
+    def preview_command(self: Any, command: Any) -> Mapping[str, Any]:
+        preview = original(self, command)
+        if preview.get("status") != "ready":
+            return preview
+        try:
+            _validate_ready_plan(self, command)
+        except OperationError:
+            raise
+        except StaleRevisionError as exc:
+            raise OperationError(409, "stale_revision") from exc
+        except LockUnavailableError as exc:
+            raise OperationError(503, "campaign_writer_busy") from exc
+        except (DirtyRepositoryError, RecoveryError) as exc:
+            raise OperationError(503, "campaign_unavailable") from exc
+        return preview
+
+    preview_command._shinobi_exact_validation_parity = True  # type: ignore[attr-defined]
+    cls.preview_command = preview_command
+    _INSTALLED = True
+
+
+__all__ = [
+    "install_preview_validation",
+    "_validate_ready_plan",
+    "_schema_validation_error_code",
+    "_template_validation_error_code",
+    "_autonomy_drift_fallback",
+]

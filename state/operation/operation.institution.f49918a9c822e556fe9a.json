@@ -1,0 +1,43 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.institution.f49918a9c822e556fe9a",
+  "domain": "security_network",
+  "operation_kind": "institution_security_posture_review",
+  "owner_ref": "institution.kumo.strategic_guard",
+  "authority_ref": "institution.kumo.strategic_guard",
+  "opened_at": "SE-0061-07-01T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "institution",
+  "subject_ref": "institution.kumo.strategic_guard",
+  "client_ref": null,
+  "place_refs": [],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.eb1f368229c864c0840621d2"
+  ],
+  "claim_refs": [
+    "claim.institution.6a98a24ac9baa5c99dce"
+  ],
+  "delivery_refs": [],
+  "report_recipient_refs": [],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile protected sites, alarms, access, custody, or verified threat evidence for the institution's remit.",
+  "failure_condition": "Security posture cannot be supported from established sites, resources, or evidence.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.institution.6a98a24ac9baa5c99dce",
+    "event.institutional_work_completed.eb1f368229c864c0840621d2",
+    "force.kumo.shinobi"
+  ]
+}

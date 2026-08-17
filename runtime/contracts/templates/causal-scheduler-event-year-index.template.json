@@ -1,0 +1,91 @@
+{
+  "schema": "file-template",
+  "template_id": "template.causal-scheduler-event-year-index",
+  "target_schema": "causal-scheduler-event-year-index",
+  "source_schema": "game/schemas/causal-scheduler-event-year-index.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/time/causal-scheduler/event-index"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "authority",
+    "days",
+    "schema",
+    "year"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "year",
+        "authority",
+        "days"
+      ],
+      "canonical_order": [
+        "schema",
+        "year",
+        "authority",
+        "days"
+      ]
+    },
+    "/days": {
+      "mode": "open_map"
+    },
+    "/days/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "path",
+        "count",
+        "earliest_due",
+        "latest_due"
+      ],
+      "canonical_order": [
+        "path",
+        "count",
+        "earliest_due",
+        "latest_due"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/year": [
+      "integer"
+    ],
+    "/authority": [
+      "boolean"
+    ],
+    "/days": [
+      "object"
+    ],
+    "/days/*": [
+      "object"
+    ],
+    "/days/*/path": [
+      "string"
+    ],
+    "/days/*/count": [
+      "integer"
+    ],
+    "/days/*/earliest_due": [
+      "string",
+      "null"
+    ],
+    "/days/*/latest_due": [
+      "string",
+      "null"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Load this template before creating or structurally editing a scheduler owner.",
+    "Scheduler shards are one temporal authority; routing indexes never duplicate domain truth."
+  ]
+}

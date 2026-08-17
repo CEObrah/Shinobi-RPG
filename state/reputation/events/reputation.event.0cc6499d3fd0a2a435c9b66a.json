@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.0cc6499d3fd0a2a435c9b66a",
+  "subject_id": "faction.konoha_hospital",
+  "event_type": "reputation.signal.institutional_service_success",
+  "occurred_at": "SE-0061-07-16T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.0561fd630fdc549d4d88f3d0",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 76,
+      "base_weight": 34
+    },
+    "institutional_loyalty": {
+      "score": 72,
+      "base_weight": 22
+    }
+  },
+  "standing_signals": {
+    "prestige": {
+      "score": 68,
+      "base_weight": 26
+    }
+  },
+  "visibility": {
+    "audience_id": "canon_shizune",
+    "source_classification": "restricted"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.0561fd630fdc549d4d88f3d0"
+  ],
+  "deliveries": {
+    "canon_shizune": {
+      "profile_ref": "state/reputation/audiences/profile.a4276da9881dbfdb30a08480.json",
+      "source_event_ref": "event.institutional_operation_completed.0561fd630fdc549d4d88f3d0"
+    }
+  },
+  "status": "applied"
+}

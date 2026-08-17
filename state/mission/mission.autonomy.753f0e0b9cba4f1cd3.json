@@ -1,0 +1,65 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.753f0e0b9cba4f1cd3",
+  "issuer_ref": "faction.konoha_anbu",
+  "authority_ref": "canon_hiruzen",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.konoha",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-06-18T07:00:00",
+  "authorized_at": "SE-0061-06-18T07:00:00",
+  "starts_at": "SE-0061-06-18T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.9ba0a30d2eb753ed812d",
+  "closed_at": "SE-0061-06-25T07:00:00",
+  "briefing": {
+    "briefing_id": "briefing.autonomy.753f0e0b9cba4f1cd3",
+    "objective_kind": "investigate",
+    "subject_kind": "faction",
+    "subject_ref": "faction.fire_smuggling_network",
+    "subject_label": "faction.fire_smuggling_network",
+    "report_place_ref": "place.fire.border",
+    "origin_place_ref": "place.fire.border",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.oto_research_cells. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.oto_research_cells",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts.",
+      "Archetype tasking: Investigate signs of infiltration, identify the source, and report or act within mission authority.",
+      "Intended assignment region: Konoha / Fire Country; this is scope, not proof of the subject's current position.",
+      "Assignment scope: team."
+    ],
+    "report_at": "SE-0061-06-18T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Acquire attributable evidence or clear the selected counterintelligence concern without treating suspicion as proof."
+  },
+  "state": "succeeded",
+  "participant_refs": [
+    "canon_aoba",
+    "canon_hayate",
+    "canon_yugao"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.753f0e0b9cba4f1cd3",
+      "kind": "investigate",
+      "required": true,
+      "dependencies": [],
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.4684f98a20d14705c4757622"
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": {
+    "mission_id": "mission.autonomy.753f0e0b9cba4f1cd3",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.062f7eb81f8c40dd2dda",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
+}

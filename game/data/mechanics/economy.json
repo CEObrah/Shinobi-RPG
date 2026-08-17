@@ -1,0 +1,612 @@
+{
+  "schema": "economy-mechanics",
+  "currency_ref": "currency.ryo",
+  "price_rules": {
+    "open_market_min_milli": 600,
+    "open_market_max_milli": 1600,
+    "controlled_min_milli": 750,
+    "controlled_max_milli": 2500,
+    "institutional_only_sale": false,
+    "not_for_sale_sale": false,
+    "rule": "Ordinary stock uses one public base-price authority. Open and controlled goods may negotiate only inside their registered band. Institutional-only and not-for-sale stock cannot be sold through ordinary purchase contracts."
+  },
+  "item_prices": {
+    "weapon_kunai": {
+      "base_price_ryo": 150,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_shuriken": {
+      "base_price_ryo": 75,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_senbon": {
+      "base_price_ryo": 40,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_tanto": {
+      "base_price_ryo": 4500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_short_sword": {
+      "base_price_ryo": 6500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_wakizashi": {
+      "base_price_ryo": 9000,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_katana": {
+      "base_price_ryo": 15000,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_staff": {
+      "base_price_ryo": 1800,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_spear": {
+      "base_price_ryo": 4500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_heavy_sword": {
+      "base_price_ryo": 28000,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_fuma_shuriken": {
+      "base_price_ryo": 2200,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_bow": {
+      "base_price_ryo": 6000,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "weapon_giant_war_fan": {
+      "base_price_ryo": 65000,
+      "market_access": "controlled",
+      "pricing_unit": "each"
+    },
+    "weapon_chakra_trench_knife_pair": {
+      "base_price_ryo": 180000,
+      "market_access": "controlled",
+      "pricing_unit": "pair"
+    },
+    "weapon_chakra_conductive_blade": {
+      "base_price_ryo": 250000,
+      "market_access": "controlled",
+      "pricing_unit": "each"
+    },
+    "weapon_reinforced_bo": {
+      "base_price_ryo": 3500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "armor_none": {
+      "base_price_ryo": 0,
+      "market_access": "not_for_sale",
+      "pricing_unit": "each"
+    },
+    "armor_basic_clothing": {
+      "base_price_ryo": 1500,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "armor_light_shinobi": {
+      "base_price_ryo": 18000,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "armor_light_concealed": {
+      "base_price_ryo": 24000,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "armor_medium_reinforced": {
+      "base_price_ryo": 42000,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "armor_heavy": {
+      "base_price_ryo": 70000,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "armor_konoha_flak": {
+      "base_price_ryo": 60000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_anbu_light": {
+      "base_price_ryo": 90000,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "armor_suna_desert": {
+      "base_price_ryo": 52000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_kiri_maritime": {
+      "base_price_ryo": 55000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_kumo_assault": {
+      "base_price_ryo": 65000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_iwa_heavy": {
+      "base_price_ryo": 75000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_iron_samurai": {
+      "base_price_ryo": 90000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_kiri_hunter": {
+      "base_price_ryo": 95000,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "armor_medical_field": {
+      "base_price_ryo": 36000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "armor_house_court": {
+      "base_price_ryo": 250000,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "item_field_pack_standard": {
+      "base_price_ryo": 3500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_field_pack_waterproof": {
+      "base_price_ryo": 5000,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_field_pack_desert": {
+      "base_price_ryo": 4500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_basic_medicine": {
+      "base_price_ryo": 600,
+      "market_access": "open",
+      "pricing_unit": "dose"
+    },
+    "item_field_medical_kit": {
+      "base_price_ryo": 7500,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_medical_dressing": {
+      "base_price_ryo": 120,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_triage_tags": {
+      "base_price_ryo": 250,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "item_basic_antidote": {
+      "base_price_ryo": 1200,
+      "market_access": "controlled",
+      "pricing_unit": "dose"
+    },
+    "item_smoke_bomb": {
+      "base_price_ryo": 350,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_explosive_tag": {
+      "base_price_ryo": 1200,
+      "market_access": "controlled",
+      "pricing_unit": "each"
+    },
+    "item_utility_wire": {
+      "base_price_ryo": 20,
+      "market_access": "open",
+      "pricing_unit": "meter"
+    },
+    "item_standard_restraints": {
+      "base_price_ryo": 1800,
+      "market_access": "open",
+      "pricing_unit": "set"
+    },
+    "item_chakra_suppression_cuffs": {
+      "base_price_ryo": 45000,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "item_anbu_mask": {
+      "base_price_ryo": 12000,
+      "market_access": "institutional_only",
+      "pricing_unit": "each"
+    },
+    "item_evidence_kit": {
+      "base_price_ryo": 8000,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_water_container_1l": {
+      "base_price_ryo": 120,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_desert_water_reserve_4l": {
+      "base_price_ryo": 600,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_desert_cloak": {
+      "base_price_ryo": 1500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_sand_goggles": {
+      "base_price_ryo": 800,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_waterproof_document_pouch": {
+      "base_price_ryo": 900,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_breathing_reed": {
+      "base_price_ryo": 250,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_dust_mask": {
+      "base_price_ryo": 100,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_earthwork_toolkit": {
+      "base_price_ryo": 9000,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_survey_toolkit": {
+      "base_price_ryo": 12000,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_construction_documents": {
+      "base_price_ryo": 500,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "item_money_pouch": {
+      "base_price_ryo": 300,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_bodyguard_contract_packet": {
+      "base_price_ryo": 250,
+      "market_access": "open",
+      "pricing_unit": "packet"
+    },
+    "item_weapon_maintenance_kit": {
+      "base_price_ryo": 2800,
+      "market_access": "open",
+      "pricing_unit": "kit"
+    },
+    "item_armor_maintenance_kit": {
+      "base_price_ryo": 3800,
+      "market_access": "open",
+      "pricing_unit": "kit"
+    },
+    "item_map_kit": {
+      "base_price_ryo": 1800,
+      "market_access": "open",
+      "pricing_unit": "kit"
+    },
+    "item_sensor_chimes": {
+      "base_price_ryo": 5000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "item_signal_flare": {
+      "base_price_ryo": 500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_sensor_relay_set": {
+      "base_price_ryo": 35000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "item_barrier_anchor_set": {
+      "base_price_ryo": 45000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "item_puppet_field_kit": {
+      "base_price_ryo": 28000,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_weapon_scroll_set": {
+      "base_price_ryo": 18000,
+      "market_access": "controlled",
+      "pricing_unit": "set"
+    },
+    "item_official_documents": {
+      "base_price_ryo": 200,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "item_access_badge": {
+      "base_price_ryo": 500,
+      "market_access": "institutional_only",
+      "pricing_unit": "each"
+    },
+    "item_medical_badge": {
+      "base_price_ryo": 500,
+      "market_access": "institutional_only",
+      "pricing_unit": "each"
+    },
+    "item_coded_documents": {
+      "base_price_ryo": 1000,
+      "market_access": "institutional_only",
+      "pricing_unit": "set"
+    },
+    "item_field_ration_1day": {
+      "base_price_ryo": 300,
+      "market_access": "open",
+      "pricing_unit": "day"
+    },
+    "item_arrow": {
+      "base_price_ryo": 30,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_quiver_24": {
+      "base_price_ryo": 800,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_sealing_ink": {
+      "base_price_ryo": 1200,
+      "market_access": "controlled",
+      "pricing_unit": "bottle"
+    },
+    "item_sealing_paper": {
+      "base_price_ryo": 80,
+      "market_access": "controlled",
+      "pricing_unit": "sheet"
+    },
+    "item_weapon_grip_wrap": {
+      "base_price_ryo": 250,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_replacement_armor_plate": {
+      "base_price_ryo": 2500,
+      "market_access": "controlled",
+      "pricing_unit": "plate"
+    },
+    "item_signal_whistle": {
+      "base_price_ryo": 150,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_academy_training_kit": {
+      "base_price_ryo": 2500,
+      "market_access": "controlled",
+      "pricing_unit": "kit"
+    },
+    "item_civilian_work_kit": {
+      "base_price_ryo": 4000,
+      "market_access": "open",
+      "pricing_unit": "kit"
+    },
+    "item_travel_coat": {
+      "base_price_ryo": 3500,
+      "market_access": "open",
+      "pricing_unit": "each"
+    },
+    "item_compact_field_pouch": {
+      "base_price_ryo": 1800,
+      "market_access": "open",
+      "pricing_unit": "each"
+    }
+  },
+  "service_prices": {
+    "service.meal.simple": {
+      "base_price_ryo": 120,
+      "pricing_unit": "each"
+    },
+    "service.meal.ramen": {
+      "base_price_ryo": 180,
+      "pricing_unit": "bowl"
+    },
+    "service.meal.restaurant": {
+      "base_price_ryo": 350,
+      "pricing_unit": "each"
+    },
+    "service.meal.premium": {
+      "base_price_ryo": 800,
+      "pricing_unit": "each"
+    },
+    "service.tea_and_snack": {
+      "base_price_ryo": 100,
+      "pricing_unit": "each"
+    },
+    "service.bath.public": {
+      "base_price_ryo": 180,
+      "pricing_unit": "visit"
+    },
+    "service.lodging.bunk": {
+      "base_price_ryo": 800,
+      "pricing_unit": "night"
+    },
+    "service.lodging.standard_room": {
+      "base_price_ryo": 1800,
+      "pricing_unit": "night"
+    },
+    "service.lodging.premium_room": {
+      "base_price_ryo": 4500,
+      "pricing_unit": "night"
+    },
+    "service.medical.exam": {
+      "base_price_ryo": 1500,
+      "pricing_unit": "visit"
+    },
+    "service.medical.minor_treatment": {
+      "base_price_ryo": 5000,
+      "pricing_unit": "visit"
+    },
+    "service.medical.surgery_day": {
+      "base_price_ryo": 50000,
+      "pricing_unit": "day"
+    },
+    "service.training_ground.hour": {
+      "base_price_ryo": 500,
+      "pricing_unit": "hour"
+    },
+    "service.dojo_instruction.hour": {
+      "base_price_ryo": 2500,
+      "pricing_unit": "hour"
+    },
+    "service.specialist_instruction.hour": {
+      "base_price_ryo": 10000,
+      "pricing_unit": "hour"
+    },
+    "service.messenger.local": {
+      "base_price_ryo": 300,
+      "pricing_unit": "delivery"
+    },
+    "service.messenger.intercity": {
+      "base_price_ryo": 1500,
+      "pricing_unit": "delivery"
+    }
+  },
+  "mission_ranks": {
+    "D": {
+      "client_fee_min_ryo": 15000,
+      "client_fee_typical_ryo": 40000,
+      "client_fee_max_ryo": 100000,
+      "participant_bonus_min_ryo": 1000,
+      "participant_bonus_typical_ryo": 8000,
+      "participant_bonus_max_ryo": 20000,
+      "operational_allowance_typical_ryo": 2000
+    },
+    "C": {
+      "client_fee_min_ryo": 60000,
+      "client_fee_typical_ryo": 150000,
+      "client_fee_max_ryo": 350000,
+      "participant_bonus_min_ryo": 10000,
+      "participant_bonus_typical_ryo": 28000,
+      "participant_bonus_max_ryo": 45000,
+      "operational_allowance_typical_ryo": 6000
+    },
+    "B": {
+      "client_fee_min_ryo": 200000,
+      "client_fee_typical_ryo": 400000,
+      "client_fee_max_ryo": 900000,
+      "participant_bonus_min_ryo": 30000,
+      "participant_bonus_typical_ryo": 70000,
+      "participant_bonus_max_ryo": 100000,
+      "operational_allowance_typical_ryo": 18000
+    },
+    "A": {
+      "client_fee_min_ryo": 600000,
+      "client_fee_typical_ryo": 1300000,
+      "client_fee_max_ryo": 3000000,
+      "participant_bonus_min_ryo": 75000,
+      "participant_bonus_typical_ryo": 250000,
+      "participant_bonus_max_ryo": 600000,
+      "operational_allowance_typical_ryo": 60000
+    },
+    "S": {
+      "client_fee_min_ryo": 3000000,
+      "client_fee_typical_ryo": 8000000,
+      "client_fee_max_ryo": 40000000,
+      "participant_bonus_min_ryo": 500000,
+      "participant_bonus_typical_ryo": 1500000,
+      "participant_bonus_max_ryo": 7000000,
+      "operational_allowance_typical_ryo": 250000
+    }
+  },
+  "official_mission_supply": {
+    "standard_issue_rule": "For village or institution-authorized missions, ordinary authorized mission equipment is issued from conserved institutional stock. The shinobi does not personally buy standard kunai, shuriken, wire, rations, or other approved mission consumables.",
+    "loss_rule": "Consumed or legitimately lost issued equipment reduces institutional stock. Deliberate private acquisition, unauthorized loss, luxury upgrades, and personally retained replacements use personal money or an explicit separate authorization.",
+    "reward_rule": "Mission cash terms are compensation/bonus, not reimbursement for ordinary authorized issue. Reward money must be escrowed from a real funding account when the mission is created."
+  },
+  "salary_bands": {
+    "academy_student": {
+      "monthly_typical_ryo": 0
+    },
+    "genin": {
+      "monthly_typical_ryo": 35000
+    },
+    "chunin": {
+      "monthly_typical_ryo": 60000
+    },
+    "special_jonin": {
+      "monthly_typical_ryo": 90000
+    },
+    "jonin": {
+      "monthly_typical_ryo": 140000
+    },
+    "elite_jonin": {
+      "monthly_typical_ryo": 180000
+    },
+    "anbu": {
+      "monthly_typical_ryo": 170000
+    },
+    "kage": {
+      "monthly_typical_ryo": 300000
+    }
+  },
+  "living_costs": {
+    "civilian_adult_monthly_typical_ryo": 25000,
+    "shinobi_adult_monthly_typical_ryo": 35000,
+    "child_monthly_typical_ryo": 15000,
+    "rule": "Routine NPC living costs are macro-economic expenses, not per-person monthly writes. Exact characters spend currency only when their personal finances materially matter."
+  },
+  "macro_rules": {
+    "recurrence_kind": "calendar_month_start",
+    "clock": "07:00:00",
+    "arrears_catchup_cap_milli": 1000,
+    "rule": "Macro settlement uses net background-budget transfers against aggregate economy holders plus only strategically meaningful exact transfers. Ordinary shop revenue, civilian wages, routine payroll, taxes, meals, rent, and household commerce are not separate ledgers. A short source pays only what it has, records arrears, and never blocks world time. At most one current-period amount of old arrears is added to a later payment attempt."
+  },
+  "capital_reference": {
+    "modest_home_replacement_ryo": 4000000,
+    "large_residence_replacement_ryo": 20000000,
+    "small_estate_replacement_ryo": 60000000,
+    "fortified_manor_replacement_ryo": 250000000,
+    "elite_compound_replacement_ryo": 500000000,
+    "academy_wing_ryo": 20000000,
+    "hospital_wing_ryo": 35000000,
+    "major_security_upgrade_ryo": 30000000,
+    "minor_hidden_village_infrastructure_ryo": 3000000000,
+    "great_hidden_village_infrastructure_ryo": 30000000000,
+    "rule": "Capital references are planning/valuation anchors, not automatic sale prices and not mutable ownership facts."
+  },
+  "mission_pricing_rule": {
+    "typical_team_size_reference": 4,
+    "rule": "At the typical point, client fee must cover four typical participant bonuses plus the typical operational allowance. Rank maxima must be high enough to fund four maximum participant bonuses plus the operational allowance. Village subsidies and mission-market aggregation may still absorb exceptional strategic work, but routine paid missions are not structurally loss-making."
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "format_version": 3,
+  "policies": {
+    "house.tang": {
+      "id": "training.house_tang.standing_readiness",
+      "cycle_anchor": "SE-0061-02-05T07:00:00",
+      "training_window_start_seconds": 3600,
+      "weekly_active_hours_cap": 48,
+      "shared_core_active_hours_per_week": 34,
+      "supplemental_individual_active_hours_per_week": 14,
+      "supplemental_rule": "The institutional schedule uses the full forty-eight-hour sustainable envelope while preserving the existing thirty-four-hour shared curriculum as its core. The additional fourteen hours are individual development within each rostered person's own saved profile and curriculum targets, not extra formation-drill credit. One full recovery day remains protected and lawful duties, injury, medical limits or external assignment preempt training without later stacking missed volume.",
+      "daily_active_hours": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        0
+      ],
+      "curricula": {
+        "House Tang sword-master curriculum": {
+          "factors_milli": {
+            "attendance_milli": 900,
+            "instructor_quality_milli": 1150,
+            "facility_quality_milli": 1000,
+            "equipment_milli": 1000,
+            "health_milli": 1000,
+            "recovery_milli": 950,
+            "relevance_milli": 1000,
+            "difficulty_fit_milli": 950,
+            "experience_milli": 950
+          },
+          "technique_practice_milli": 150,
+          "targets": [
+            {
+              "target": "stats.martial_skills.sword",
+              "aptitude": "aptitude.technical_learning",
+              "weight_milli": 200
+            },
+            {
+              "target": "stats.martial_skills.movement",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.operational_skills.team_coordination",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.operational_skills.leadership",
+              "aptitude": "aptitude.social_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.operational_skills.tactics",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.domain_proficiencies.wind",
+              "aptitude": "aptitude.nature_transformation_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.attributes.awareness",
+              "aptitude": "aptitude.sensory_learning",
+              "weight_milli": 80
+            },
+            {
+              "target": "stats.attributes.coordination",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 80
+            },
+            {
+              "target": "stats.attributes.agility",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 50
+            },
+            {
+              "target": "stats.attributes.composure",
+              "aptitude": "aptitude.social_learning",
+              "weight_milli": 50
+            },
+            {
+              "target": "stats.chakra_dimensions.control",
+              "aptitude": "aptitude.chakra_learning",
+              "weight_milli": 40
+            }
+          ],
+          "technique_practice_integrated": true
+        },
+        "House Tang instructor standing development": {
+          "factors_milli": {
+            "attendance_milli": 900,
+            "instructor_quality_milli": 1100,
+            "facility_quality_milli": 1000,
+            "equipment_milli": 1000,
+            "health_milli": 1000,
+            "recovery_milli": 950,
+            "relevance_milli": 1000,
+            "difficulty_fit_milli": 975,
+            "experience_milli": 1000
+          },
+          "technique_practice_milli": 150,
+          "targets": [
+            {
+              "target": "stats.martial_skills.sword",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 220
+            },
+            {
+              "target": "stats.operational_skills.team_coordination",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 170
+            },
+            {
+              "target": "stats.operational_skills.leadership",
+              "aptitude": "aptitude.social_learning",
+              "weight_milli": 170
+            },
+            {
+              "target": "stats.operational_skills.tactics",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 150
+            },
+            {
+              "target": "stats.martial_skills.movement",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 120
+            },
+            {
+              "target": "stats.attributes.awareness",
+              "aptitude": "aptitude.sensory_learning",
+              "weight_milli": 85
+            },
+            {
+              "target": "stats.attributes.coordination",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 85
+            }
+          ],
+          "technique_practice_integrated": true
+        },
+        "House Tang senior-disciple curriculum": {
+          "factors_milli": {
+            "attendance_milli": 950,
+            "instructor_quality_milli": 1050,
+            "facility_quality_milli": 1000,
+            "equipment_milli": 1000,
+            "health_milli": 1000,
+            "recovery_milli": 950,
+            "relevance_milli": 1000,
+            "difficulty_fit_milli": 980,
+            "experience_milli": 1000
+          },
+          "technique_practice_milli": 150,
+          "targets": [
+            {
+              "target": "stats.martial_skills.sword",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 220
+            },
+            {
+              "target": "stats.martial_skills.movement",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 130
+            },
+            {
+              "target": "stats.operational_skills.team_coordination",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 140
+            },
+            {
+              "target": "stats.operational_skills.tactics",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 130
+            },
+            {
+              "target": "stats.domain_proficiencies.wind",
+              "aptitude": "aptitude.nature_transformation_learning",
+              "weight_milli": 80
+            },
+            {
+              "target": "stats.attributes.awareness",
+              "aptitude": "aptitude.sensory_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.attributes.coordination",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.operational_skills.leadership",
+              "aptitude": "aptitude.social_learning",
+              "weight_milli": 100
+            }
+          ],
+          "technique_practice_integrated": true
+        },
+        "House Tang junior-disciple curriculum": {
+          "factors_milli": {
+            "attendance_milli": 950,
+            "instructor_quality_milli": 1100,
+            "facility_quality_milli": 1000,
+            "equipment_milli": 1000,
+            "health_milli": 1000,
+            "recovery_milli": 950,
+            "relevance_milli": 1000,
+            "difficulty_fit_milli": 950,
+            "experience_milli": 1000
+          },
+          "technique_practice_milli": 150,
+          "targets": [
+            {
+              "target": "stats.martial_skills.sword",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 220
+            },
+            {
+              "target": "stats.martial_skills.movement",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 110
+            },
+            {
+              "target": "stats.operational_skills.team_coordination",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 110
+            },
+            {
+              "target": "stats.attributes.awareness",
+              "aptitude": "aptitude.sensory_learning",
+              "weight_milli": 90
+            },
+            {
+              "target": "stats.attributes.coordination",
+              "aptitude": "aptitude.physical_learning",
+              "weight_milli": 100
+            },
+            {
+              "target": "stats.chakra_dimensions.control",
+              "aptitude": "aptitude.chakra_learning",
+              "weight_milli": 110
+            },
+            {
+              "target": "stats.domain_proficiencies.wind",
+              "aptitude": "aptitude.nature_transformation_learning",
+              "weight_milli": 110
+            },
+            {
+              "target": "stats.operational_skills.tactics",
+              "aptitude": "aptitude.tactical_learning",
+              "weight_milli": 90
+            },
+            {
+              "target": "stats.operational_skills.medicine",
+              "aptitude": "aptitude.medical_learning",
+              "weight_milli": 60
+            }
+          ],
+          "technique_practice_integrated": true
+        }
+      }
+    }
+  }
+}

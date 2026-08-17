@@ -1,0 +1,257 @@
+{
+  "schema": "diplomacy-registry",
+  "agreements": {
+    "agreement.autonomy.f24bd9930d4610ca7a2b": {
+      "id": "agreement.autonomy.f24bd9930d4610ca7a2b",
+      "agreement_type": "trade",
+      "party_refs": [
+        "faction_konoha",
+        "faction_kusa"
+      ],
+      "status": "active",
+      "proposed_by": "faction_kusa",
+      "consent_refs": [
+        "faction_konoha",
+        "faction_kusa"
+      ],
+      "rejection_refs": [],
+      "terms": [
+        "Autonomous trade proposal from faction_kusa to faction_konoha."
+      ],
+      "opened_at": "SE-0061-08-01T07:00:00",
+      "effective_at": "SE-0061-08-01T07:00:00",
+      "ended_at": null,
+      "evidence_refs": [],
+      "visibility": "public",
+      "provisions": {
+        "tariff_multiplier_milli": 750,
+        "place_refs": [],
+        "route_refs": []
+      }
+    },
+    "agreement.autonomy.b8a921efd8636caf6d94": {
+      "id": "agreement.autonomy.b8a921efd8636caf6d94",
+      "agreement_type": "nonaggression",
+      "party_refs": [
+        "faction_oto",
+        "faction_taki"
+      ],
+      "status": "active",
+      "proposed_by": "faction_oto",
+      "consent_refs": [
+        "faction_oto",
+        "faction_taki"
+      ],
+      "rejection_refs": [],
+      "terms": [
+        "Autonomous nonaggression proposal from faction_oto to faction_taki."
+      ],
+      "opened_at": "SE-0061-08-01T07:00:00",
+      "effective_at": "SE-0061-08-01T07:00:00",
+      "ended_at": null,
+      "evidence_refs": [],
+      "visibility": "public",
+      "provisions": {}
+    },
+    "agreement.autonomy.4ae09ac14dcc9588ebac": {
+      "id": "agreement.autonomy.4ae09ac14dcc9588ebac",
+      "agreement_type": "nonaggression",
+      "party_refs": [
+        "faction_kiri",
+        "faction_konoha"
+      ],
+      "status": "proposed",
+      "proposed_by": "faction_kiri",
+      "consent_refs": [
+        "faction_kiri"
+      ],
+      "rejection_refs": [],
+      "terms": [
+        "Autonomous nonaggression proposal from faction_kiri to faction_konoha."
+      ],
+      "opened_at": "SE-0061-08-01T07:00:00",
+      "effective_at": null,
+      "ended_at": null,
+      "evidence_refs": [],
+      "visibility": "public",
+      "provisions": {}
+    },
+    "agreement.autonomy.a87837f407476b9a8438": {
+      "id": "agreement.autonomy.a87837f407476b9a8438",
+      "agreement_type": "trade",
+      "party_refs": [
+        "faction_konoha",
+        "faction_kumo"
+      ],
+      "status": "proposed",
+      "proposed_by": "faction_kumo",
+      "consent_refs": [
+        "faction_kumo"
+      ],
+      "rejection_refs": [],
+      "terms": [
+        "Autonomous trade proposal from faction_kumo to faction_konoha."
+      ],
+      "opened_at": "SE-0061-08-01T07:00:00",
+      "effective_at": null,
+      "ended_at": null,
+      "evidence_refs": [],
+      "visibility": "public",
+      "provisions": {
+        "tariff_multiplier_milli": 750,
+        "place_refs": [],
+        "route_refs": []
+      }
+    },
+    "agreement.autonomy.b3a8190b99e50ccbda92": {
+      "id": "agreement.autonomy.b3a8190b99e50ccbda92",
+      "agreement_type": "trade",
+      "party_refs": [
+        "faction_iwa",
+        "faction_suna"
+      ],
+      "status": "proposed",
+      "proposed_by": "faction_suna",
+      "consent_refs": [
+        "faction_suna"
+      ],
+      "rejection_refs": [],
+      "terms": [
+        "Autonomous trade proposal from faction_suna to faction_iwa."
+      ],
+      "opened_at": "SE-0061-08-01T07:00:00",
+      "effective_at": null,
+      "ended_at": null,
+      "evidence_refs": [],
+      "visibility": "public",
+      "provisions": {
+        "tariff_multiplier_milli": 750,
+        "place_refs": [],
+        "route_refs": []
+      }
+    }
+  },
+  "incidents": [
+    {
+      "id": "incident.autonomy.1fc5138ec63794b31ff4",
+      "at": "SE-0061-07-23T07:00:00",
+      "party_refs": [
+        "faction.fire_border_authority",
+        "faction.fire_daimyo_liaison"
+      ],
+      "kind": "border_coordination",
+      "evidence_ref": "event.institutional_operation_evidence_generated.9f8eeb8fe1b13037edcb865d",
+      "summary": "Recorded border_coordination disposition from established institutional authority and evidence.",
+      "visibility": "restricted"
+    },
+    {
+      "id": "incident.autonomy.8f0ff2212b28162e30d8",
+      "at": "SE-0061-07-30T07:00:00",
+      "party_refs": [
+        "faction.fire_border_authority",
+        "faction.fire_daimyo_liaison"
+      ],
+      "kind": "border_coordination",
+      "evidence_ref": "event.institutional_operation_evidence_generated.976fe156285fed3c2f5202dc",
+      "summary": "Recorded border_coordination disposition from established institutional authority and evidence.",
+      "visibility": "restricted"
+    },
+    {
+      "id": "incident.diplomacy.8e916ad22d9423f2c530",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_konoha",
+        "faction_kusa"
+      ],
+      "kind": "agreement_autonomously_proposed",
+      "evidence_ref": "agreement.autonomy.f24bd9930d4610ca7a2b",
+      "summary": "faction_kusa recorded agreement autonomously proposed for agreement.autonomy.f24bd9930d4610ca7a2b through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.diplomacy.fe661a496bd17041e106",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_oto",
+        "faction_taki"
+      ],
+      "kind": "agreement_autonomously_proposed",
+      "evidence_ref": "agreement.autonomy.b8a921efd8636caf6d94",
+      "summary": "faction_oto recorded agreement autonomously proposed for agreement.autonomy.b8a921efd8636caf6d94 through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.diplomacy.a36e44b02e60df92efdd",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_oto",
+        "faction_taki"
+      ],
+      "kind": "agreement_autonomously_accepted",
+      "evidence_ref": "agreement.autonomy.b8a921efd8636caf6d94",
+      "summary": "faction_taki recorded agreement autonomously accepted for agreement.autonomy.b8a921efd8636caf6d94 through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.diplomacy.232668e79d5e9eaaf853",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_konoha",
+        "faction_kusa"
+      ],
+      "kind": "agreement_autonomously_accepted",
+      "evidence_ref": "agreement.autonomy.f24bd9930d4610ca7a2b",
+      "summary": "faction_konoha recorded agreement autonomously accepted for agreement.autonomy.f24bd9930d4610ca7a2b through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.diplomacy.c332bc3e91ec0e6e2537",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_kiri",
+        "faction_konoha"
+      ],
+      "kind": "agreement_autonomously_proposed",
+      "evidence_ref": "agreement.autonomy.4ae09ac14dcc9588ebac",
+      "summary": "faction_kiri recorded agreement autonomously proposed for agreement.autonomy.4ae09ac14dcc9588ebac through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.autonomy.23e57d2559f2c5533e3b",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_kiri",
+        "institution.kiri.hunter_nin",
+        "institution.kiri.mizukage_administration"
+      ],
+      "kind": "kiri_internal_reform_docket",
+      "evidence_ref": "event.institutional_work_completed.758e3d520cf98ec161e33b70",
+      "summary": "Recorded kiri_internal_reform_docket disposition from established institutional authority and evidence.",
+      "visibility": "restricted"
+    },
+    {
+      "id": "incident.diplomacy.d8525efada527daf99ea",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_konoha",
+        "faction_kumo"
+      ],
+      "kind": "agreement_autonomously_proposed",
+      "evidence_ref": "agreement.autonomy.a87837f407476b9a8438",
+      "summary": "faction_kumo recorded agreement autonomously proposed for agreement.autonomy.a87837f407476b9a8438 through its sovereign review.",
+      "visibility": "public"
+    },
+    {
+      "id": "incident.diplomacy.15843a1ef63b4f522b66",
+      "at": "SE-0061-08-01T07:00:00",
+      "party_refs": [
+        "faction_iwa",
+        "faction_suna"
+      ],
+      "kind": "agreement_autonomously_proposed",
+      "evidence_ref": "agreement.autonomy.b3a8190b99e50ccbda92",
+      "summary": "faction_suna recorded agreement autonomously proposed for agreement.autonomy.b3a8190b99e50ccbda92 through its sovereign review.",
+      "visibility": "public"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "training-model-registry",
+  "authority": "Generic Shinobi training models. Team identity, doctrine, instructors and facilities are state/game data, not runtime branches.",
+  "models": {
+    "training.self_directed": {
+      "context_kind": "individual",
+      "requires_instructor": false,
+      "base_factors": {
+        "instructor_quality": "1",
+        "facility_quality": "1",
+        "equipment": "1",
+        "relevance": "1",
+        "difficulty_fit": "1"
+      }
+    },
+    "training.team": {
+      "context_kind": "exact_team",
+      "requires_instructor": true,
+      "base_factors": {
+        "instructor_quality": "1",
+        "facility_quality": "1",
+        "equipment": "1",
+        "relevance": "1",
+        "difficulty_fit": "1"
+      },
+      "schedule_limits": {
+        "cycle_length_days": 7,
+        "maximum_hours_per_member_per_week": 48,
+        "minimum_recovery_hours": 8,
+        "recent_session_limit": 128,
+        "doctrine_familiarity_points_per_active_hour": "1"
+      }
+    },
+    "training.cohort": {
+      "context_kind": "cohort",
+      "requires_instructor": true,
+      "base_factors": {
+        "instructor_quality": "1",
+        "facility_quality": "1",
+        "equipment": "1",
+        "relevance": "1",
+        "difficulty_fit": "1"
+      }
+    }
+  }
+}

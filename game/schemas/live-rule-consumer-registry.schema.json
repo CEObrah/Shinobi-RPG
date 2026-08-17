@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema", "purpose", "rules"],
+  "properties": {
+    "schema": {"const": "live-rule-consumer-registry"},
+    "purpose": {"type": "string", "minLength": 1},
+    "rules": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

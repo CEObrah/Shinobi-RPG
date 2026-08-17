@@ -1,0 +1,124 @@
+{
+  "schema": "bloodlines",
+  "bloodlines": {
+    "bloodline.ice_release": {
+      "id": "bloodline.ice_release",
+      "name": "Ice Release",
+      "type": "kekkei_genkai",
+      "natures": [
+        "water",
+        "wind"
+      ],
+      "mechanic": "combine water and wind chakra to generate/manipulate ice",
+      "grants_all_techniques": false,
+      "shared_by": [
+        "canon_haku",
+        "char.mei_arakawa"
+      ],
+      "source": "Naruto lore shared bloodline"
+    },
+    "bloodline.guardian_current": {
+      "id": "bloodline.guardian_current",
+      "name": "Guardian Current",
+      "type": "house_bloodline_defense",
+      "shared_strength": true,
+      "scales_with_user_stats": false,
+      "activation": "automatic",
+      "chakra_upkeep": 0,
+      "protects_body_before_harmful_contact": true,
+      "below_ceiling_prevents": [
+        "ordinary_knockback",
+        "direct_dragging",
+        "direct_throwing",
+        "ordinary_crushing",
+        "ordinary_debris_contact_burial"
+      ],
+      "defensive_anchoring": true,
+      "offensive_use": false,
+      "flight": false,
+      "ally_protection": false,
+      "automatic_equipment_protection": false,
+      "valid_counterplay": [
+        "sealing",
+        "barriers",
+        "space_time",
+        "oxygen_deprivation",
+        "genjutsu",
+        "mental_control",
+        "possession",
+        "chakra_suppression",
+        "chakra_drain",
+        "internal_poison_or_drugs",
+        "above_ceiling_force",
+        "sustained_force_above_reset",
+        "harm_to_allies_or_objectives"
+      ],
+      "source": "House Tang original"
+    },
+    "bloodline.sharingan": {
+      "id": "bloodline.sharingan",
+      "name": "Sharingan",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false,
+      "transplant_supported": true,
+      "transplant_rules": {
+        "normal_deactivation_unavailable_without_special_mechanism": true,
+        "eye_specific_techniques_remain_bound_to_specific_implant": true,
+        "does_not_grant_uchiha_genetics": true,
+        "blindness_and_consumption_state_tracked_per_eye": true,
+        "mastered_passive_drain_can_reach_zero": true,
+        "passive_drain_formula": "base_passive_drain * max(0,(400-integration-ocular_control)/400)^2",
+        "active_technique_costs_remain_separate": true
+      }
+    },
+    "bloodline.byakugan": {
+      "id": "bloodline.byakugan",
+      "name": "Byakugan",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.shikotsumyaku": {
+      "id": "bloodline.shikotsumyaku",
+      "name": "Shikotsumyaku",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.lava_release": {
+      "id": "bloodline.lava_release",
+      "name": "Lava Release",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.boil_release": {
+      "id": "bloodline.boil_release",
+      "name": "Boil Release",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.magnet_release": {
+      "id": "bloodline.magnet_release",
+      "name": "Magnet Release",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.storm_release": {
+      "id": "bloodline.storm_release",
+      "name": "Storm Release",
+      "type": "kekkei_genkai",
+      "grants_all_techniques": false
+    },
+    "bloodline.wood_release": {
+      "id": "bloodline.wood_release",
+      "name": "Wood Release",
+      "type": "kekkei_genkai_acquired_hashirama_cells",
+      "grants_all_techniques": false,
+      "nature_components": [
+        "earth",
+        "water"
+      ],
+      "notes": [
+        "Yamato/Tenzo uses Wood Release through Hashirama-cell experimentation; possession does not imply Senju/Uchiha ancestry."
+      ]
+    }
+  }
+}

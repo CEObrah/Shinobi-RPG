@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "faction_assignments",
+    "team_profiles",
+    "sovereign_diplomacy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "living-world-autonomy-policy"
+    },
+    "faction_assignments": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "team_profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "sovereign_diplomacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "honor_threshold_milli",
+        "negotiate_threshold_milli",
+        "active_conflict_penalty_milli",
+        "readiness_weight_milli",
+        "proposal_accept_threshold_milli",
+        "proposal_interval_reviews",
+        "profiles"
+      ],
+      "properties": {
+        "honor_threshold_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2000
+        },
+        "negotiate_threshold_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2000
+        },
+        "active_conflict_penalty_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "readiness_weight_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "proposal_accept_threshold_milli": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "proposal_interval_reviews": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "profiles": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "force_path",
+              "treaty_reliability_milli",
+              "risk_tolerance_milli",
+              "cooperation_milli",
+              "partner_refs",
+              "proposal_cycle"
+            ],
+            "properties": {
+              "force_path": {
+                "type": "string",
+                "pattern": "^state/force/"
+              },
+              "treaty_reliability_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "risk_tolerance_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "cooperation_milli": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "partner_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "proposal_cycle": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "enum": [
+                    "trade",
+                    "nonaggression",
+                    "alliance"
+                  ]
+                }
+              },
+              "institution_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^institution\\."
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

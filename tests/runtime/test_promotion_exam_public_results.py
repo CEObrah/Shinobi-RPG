@@ -4,17 +4,10 @@ from shinobi_runtime.api import player_promotion_exam_participation_projection a
 
 
 class FakeOperations:
-    def __init__(self):
-        self.people = {
-            "canon_gaara": {"name": "Gaara", "village_or_affiliation": "Suna"},
-            "char.riku_hyuga": {"name": "Riku Hyuga", "village_or_affiliation": "Konoha"},
-        }
-
-    def _owner_record(self, ref):
-        return f"state/char/{ref}.json", self.people[ref]
+    pass
 
 
-def test_public_stage_results_include_identity_village_score_threshold_and_outcome():
+def test_public_stage_results_return_summaries_and_paged_read_refs_not_bulk_rows():
     cycle_id = "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
     pipeline = {
         "history": [
@@ -73,26 +66,21 @@ def test_public_stage_results_include_identity_village_score_threshold_and_outco
     result = projection._public_stage_results(FakeOperations(), pipeline, profile, cycle_id)
 
     assert result["result_count"] == 2
-    assert result["results_truncated"] is False
     assert result["stage_summaries"]["qualification"] == {
         "candidate_count": 1,
         "pass_count": 1,
         "fail_count": 0,
     }
-    gaara = result["stages"]["qualification"][0]
-    assert gaara == {
-        "candidate_ref": "canon_gaara",
-        "candidate_name": "Gaara",
-        "village": "Suna",
-        "team_ref": "promotion_exam_delegation.suna.baki",
-        "score": 81,
-        "threshold": 78,
-        "outcome": "pass",
+    assert result["stage_summaries"]["field_evaluation"] == {
+        "candidate_count": 1,
+        "pass_count": 1,
+        "fail_count": 0,
     }
-    riku = result["stages"]["field_evaluation"][0]
-    assert riku["candidate_name"] == "Riku Hyuga"
-    assert riku["score"] == 96
-    assert riku["outcome"] == "pass"
+    assert result["read_refs"] == {
+        "qualification": f"exam-results:{cycle_id}:qualification:0",
+        "field_evaluation": f"exam-results:{cycle_id}:field_evaluation:0",
+    }
+    assert "stages" not in result
 
 
 def test_public_after_settlement_does_not_leak_partial_stage_scores(monkeypatch):
@@ -132,6 +120,6 @@ def test_public_after_settlement_does_not_leak_partial_stage_scores(monkeypatch)
 
     result = projection._public_stage_results(FakeOperations(), pipeline, profile, cycle_id)
 
-    assert result["stages"] == {}
     assert result["stage_summaries"] == {}
+    assert result["read_refs"] == {}
     assert result["result_count"] == 0

@@ -5747,6 +5747,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.1cf859edf2077cc59723",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-05T11:29:58",
+        "started_at": "SE-0061-08-05T11:29:58",
+        "ended_at": "SE-0061-08-05T11:29:58"
+      },
+      "host_refs": [
+        "institution.konoha.academy"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/development/banks.json",
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "historical_training_hours:11664.000",
+        "named_shinobi_catchup:83",
+        "qualification_fails:16->13",
+        "qualification_passes:26->29"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+          "repair.named_shinobi_training_and_chunin_qualification.2026-08-17.v1"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T11:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_named_training_exam_repair",
+        "transaction_ref": "tx.gameplay.1cf859edf2077cc59723c7f285ee83f883b36d52db6837992dcf24a9aba728e6",
+        "receipt_refs": [
+          "receipt.gameplay.1cf859edf2077cc59723c7f285ee83f883b36d52db6837992dcf24a9aba728e6"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

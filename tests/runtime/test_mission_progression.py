@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from types import SimpleNamespace
 
 import pytest
 
@@ -80,14 +79,25 @@ class _Repo:
         return "digest:" + path
 
 
+class _Owner:
+    def __init__(self, mission: Mission):
+        self.operation_ref = "team.test"
+        self.mission = mission
+        self.opened_at = CampaignTime.parse("SE-0061-08-01T07:00:00")
+
+    def with_mission(self, mission: Mission, *, effective_at):
+        result = _Owner(mission)
+        result.opened_at = self.opened_at
+        return result
+
+
 class _Planner:
     scene_path = "state/scene.json"
 
     def __init__(self):
         self.repository = _Repo()
-        self.owner = SimpleNamespace(
-            operation_ref="team.test",
-            mission=Mission(
+        self.owner = _Owner(
+            Mission(
                 mission_id="mission.test",
                 state="active",
                 participant_refs=("pc_wei_tang", "char.a"),
@@ -98,9 +108,8 @@ class _Planner:
                         required=True,
                     ),
                 ),
-            ),
+            )
         )
-        self.owner.opened_at = CampaignTime.parse("SE-0061-08-01T07:00:00")
 
     def _read_mission(self, _mission_id, *, actor_id, current_time):
         assert actor_id == "pc_wei_tang"
@@ -242,11 +251,13 @@ def test_progress_at_nonterminal_cap_requires_terminal_evidence() -> None:
         status="in_progress",
         progress_milli=900,
     )
-    planner.owner.mission = Mission(
-        mission_id="mission.test",
-        state="active",
-        participant_refs=("pc_wei_tang", "char.a"),
-        objectives=(capped,),
+    planner.owner = _Owner(
+        Mission(
+            mission_id="mission.test",
+            state="active",
+            participant_refs=("pc_wei_tang", "char.a"),
+            objectives=(capped,),
+        )
     )
     with pytest.raises(CommandRejectedError, match="mission_progress_requires_terminal_evidence"):
         _mission_objective_progress_resolution(

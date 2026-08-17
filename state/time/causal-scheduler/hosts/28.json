@@ -8,11 +8,11 @@
         "state": {
           "host_id": "host.faction.faction.mizuki_conspiracy",
           "kind": "faction",
-          "resolved_through": "SE-0061-07-30T07:00:00",
-          "safe_through": "SE-0061-08-06T06:59:59",
+          "resolved_through": "SE-0061-08-06T07:00:00",
+          "safe_through": "SE-0061-08-13T06:59:59",
           "handler_ref": "causal.scheduler",
           "rng_namespace": "faction.mizuki_conspiracy",
-          "next_due": "SE-0061-08-06T07:00:00"
+          "next_due": "SE-0061-08-13T07:00:00"
         },
         "authority_kind": "faction_plan",
         "owner_ref": "state/reg/factions/faction-mizuki-conspiracy.json",
@@ -24,9 +24,9 @@
       },
       "event_routes": [
         {
-          "event_id": "evt.causal.6203a828ed885258eb74453a",
-          "due_at": "SE-0061-08-06T07:00:00",
-          "path": "state/time/causal-scheduler/events/0061/0061-08-06.json",
+          "event_id": "evt.causal.2df12a5e053cee265221ea32",
+          "due_at": "SE-0061-08-13T07:00:00",
+          "path": "state/time/causal-scheduler/events/0061/0061-08-13.json",
           "dedupe_key": "faction.periodic_review:faction.mizuki_conspiracy"
         }
       ]

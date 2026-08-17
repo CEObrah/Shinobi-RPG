@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.c4608aaa0e37f48075",
+  "issuer_ref": "faction.kumo_military_intelligence",
+  "authority_ref": "canon_c",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.kumo",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "authorized_at": "SE-0061-08-06T07:00:00",
+  "starts_at": "SE-0061-08-06T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.b31959e5b423013a2b4f",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.c4608aaa0e37f48075",
+    "objective_kind": "observe",
+    "subject_kind": "force",
+    "subject_ref": "force.suna.shinobi",
+    "subject_label": "force.suna.shinobi",
+    "report_place_ref": "place.lightning.southern.border",
+    "origin_place_ref": "place.lightning.southern.border",
+    "destination_place_ref": null,
+    "route_id": "route_fire_lightning",
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-08-06T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Produce a bounded sourced claim about the selected foreign force rather than a generic self-report."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_c",
+    "canon_darui",
+    "canon_mabui"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.c4608aaa0e37f48075",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

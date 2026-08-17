@@ -1,0 +1,50 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.6aa94826c2a352d37ae3",
+  "domain": "puppet_poison",
+  "operation_kind": "puppet_readiness",
+  "owner_ref": "faction.suna_puppet_corps",
+  "authority_ref": "canon_chiyo",
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
+  "status": "succeeded",
+  "archetype_ref": null,
+  "subject_kind": "information",
+  "subject_ref": "claim.autonomy.514a30b9e83121634e",
+  "client_ref": null,
+  "place_refs": [
+    "place.suna.training.quarter"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_puppet_field_kit",
+    "item_weapon_maintenance_kit"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [
+    "claim.autonomy.514a30b9e83121634e"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.9cde8904fe19a8d3f92fa7f3"
+  ],
+  "report_recipient_refs": [
+    "canon_chiyo",
+    "canon_rasa"
+  ],
+  "progress_milli": 1000,
+  "success_condition": "Reconcile actual puppet specialists, puppet assets, repair needs, and deployment readiness without treating generic shinobi as puppeteers.",
+  "failure_condition": "The puppet_readiness objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": [
+    "claim.autonomy.514a30b9e83121634e",
+    "delivery.autonomy.9cde8904fe19a8d3f92fa7f3"
+  ]
+}

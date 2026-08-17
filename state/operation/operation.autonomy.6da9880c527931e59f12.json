@@ -1,0 +1,43 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.6da9880c527931e59f12",
+  "domain": "medical_network",
+  "operation_kind": "medical_capacity_review",
+  "owner_ref": "faction.konoha_hospital",
+  "authority_ref": "support.hospital.akemi_hoshino",
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "next_due_at": "SE-0061-08-13T07:00:00",
+  "closed_at": null,
+  "status": "pending",
+  "archetype_ref": null,
+  "subject_kind": "institution",
+  "subject_ref": "institution.konoha.hospital",
+  "client_ref": null,
+  "place_refs": [
+    "place.konoha.hospital"
+  ],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_field_medical_kit",
+    "item_medical_dressing"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.hospital.akemi_hoshino",
+    "canon_shizune"
+  ],
+  "progress_milli": 0,
+  "success_condition": "Reconcile treatment capacity, staff readiness, and critical supply pressure and seed a project when a real deficit exists.",
+  "failure_condition": "The medical_capacity_review objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "restricted",
+  "result_refs": []
+}

@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.57ebce98dfcd7c62c148",
-  "closed_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.e7aa2c01e8556229e2",
     "objective_kind": "investigate",
@@ -33,7 +33,7 @@
     "depart_by": null,
     "completion_condition": "Corroborate or downgrade one held intelligence claim and deliver the assessment to command."
   },
-  "state": "active",
+  "state": "succeeded",
   "participant_refs": [
     "canon_c",
     "canon_darui",
@@ -45,12 +45,18 @@
       "kind": "investigate",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.d9ae2769b89dd4c27e9a9d90"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.e7aa2c01e8556229e2",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.bdc2e45c095a7b8cab3e",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

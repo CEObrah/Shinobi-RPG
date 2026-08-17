@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.97e615ef6ed41fa706c04d5e",
+  "subject_id": "canon_c",
+  "event_type": "reputation.signal.mission_success",
+  "occurred_at": "SE-0061-08-06T07:00:00",
+  "source_event_ref": "event.mission_result_report_received.bc28522fb96e9e49415d1ab0",
+  "authority": true,
+  "signals": {
+    "mission_reliability": {
+      "score": 84,
+      "base_weight": 60
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 76,
+      "base_weight": 42
+    },
+    "prestige": {
+      "score": 70,
+      "base_weight": 32
+    }
+  },
+  "visibility": {
+    "audience_id": "faction.kumo_military_intelligence",
+    "source_classification": "secret"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.mission_result_report_received.bc28522fb96e9e49415d1ab0"
+  ],
+  "deliveries": {
+    "faction.kumo_military_intelligence": {
+      "profile_ref": "state/reputation/audiences/profile.645f47be894d7c37ed031acf.json",
+      "source_event_ref": "event.mission_result_report_received.bc28522fb96e9e49415d1ab0"
+    }
+  },
+  "status": "applied"
+}

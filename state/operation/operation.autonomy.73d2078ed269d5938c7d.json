@@ -1,0 +1,40 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.73d2078ed269d5938c7d",
+  "domain": "civil_governance",
+  "operation_kind": "bounty_funding_review",
+  "owner_ref": "faction.fire_daimyo_liaison",
+  "authority_ref": "support.daimyo.noboru_shimizu",
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "next_due_at": "SE-0061-08-13T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": null,
+  "subject_kind": "case",
+  "subject_ref": "case.autonomy.5a40f523893853726f53",
+  "client_ref": null,
+  "place_refs": [],
+  "route_refs": [],
+  "opposition_refs": [],
+  "resource_refs": [],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.4dc78d177805acd83d"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "support.daimyo.noboru_shimizu",
+    "faction.bounty_broker_network"
+  ],
+  "progress_milli": 100,
+  "success_condition": "Fund one evidence-backed bounty request from the Fire treasury only when the Daimyo authority is the persisted requester and real funds exist.",
+  "failure_condition": "No eligible requested bounty exists or funds/authority are unavailable.",
+  "classification": "restricted",
+  "result_refs": []
+}

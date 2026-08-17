@@ -6,9 +6,9 @@
   "owner_ref": "faction.hyuga_clan",
   "authority_ref": "canon_hiashi",
   "opened_at": "SE-0061-07-16T07:00:00",
-  "next_due_at": "SE-0061-08-06T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "place",
   "subject_ref": "place.konoha.hyuga_compound",
@@ -25,15 +25,25 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.0df8f11fc86d79852d273451",
+    "event.institutional_operation_evidence_generated.3b5dbf03d124c441d0dbb19b"
+  ],
+  "claim_refs": [
+    "claim.operation.1b3c3a91d2f5825d113a"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_hiashi"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Complete a household-security review and persist any verified access or Byakugan-security incident.",
   "failure_condition": "The household_security objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.1b3c3a91d2f5825d113a",
+    "event.institutional_operation_completed.0df8f11fc86d79852d273451",
+    "event.institutional_operation_evidence_generated.3b5dbf03d124c441d0dbb19b",
+    "security.autonomy.38788c9e99de40252950"
+  ]
 }

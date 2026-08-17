@@ -1,0 +1,47 @@
+{
+  "schema": "world-operation",
+  "operation_id": "operation.autonomy.b31959e5b423013a2b4f",
+  "domain": "military_intelligence",
+  "operation_kind": "foreign_force_collection",
+  "owner_ref": "faction.kumo_military_intelligence",
+  "authority_ref": "canon_c",
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "next_due_at": "SE-0061-08-13T07:00:00",
+  "closed_at": null,
+  "status": "active",
+  "archetype_ref": null,
+  "subject_kind": "force",
+  "subject_ref": "force.suna.shinobi",
+  "client_ref": null,
+  "place_refs": [
+    "place.lightning.southern.border"
+  ],
+  "route_refs": [
+    "route_fire_lightning"
+  ],
+  "opposition_refs": [],
+  "resource_refs": [
+    "item_map_kit",
+    "item_sensor_relay_set"
+  ],
+  "team_refs": [],
+  "participant_refs": [],
+  "blocked_reason": null,
+  "mission_refs": [
+    "mission.autonomy.c4608aaa0e37f48075"
+  ],
+  "project_refs": [],
+  "case_refs": [],
+  "evidence_refs": [],
+  "claim_refs": [],
+  "delivery_refs": [],
+  "report_recipient_refs": [
+    "canon_c",
+    "canon_ay"
+  ],
+  "progress_milli": 100,
+  "success_condition": "Produce a bounded sourced claim about the selected foreign force rather than a generic self-report.",
+  "failure_condition": "The foreign_force_collection objective becomes impossible, compromised, or materially incomplete.",
+  "classification": "secret",
+  "result_refs": []
+}

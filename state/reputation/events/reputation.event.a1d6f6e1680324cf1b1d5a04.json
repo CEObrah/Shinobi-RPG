@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.a1d6f6e1680324cf1b1d5a04",
+  "subject_id": "faction.kumo_military_intelligence",
+  "event_type": "reputation.signal.technical_achievement",
+  "occurred_at": "SE-0061-08-06T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.d74adea1a7ea5cd121599a9a",
+  "authority": true,
+  "signals": {
+    "technical_competence": {
+      "score": 82,
+      "base_weight": 42
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 72,
+      "base_weight": 28
+    },
+    "prestige": {
+      "score": 66,
+      "base_weight": 20
+    }
+  },
+  "visibility": {
+    "audience_id": "canon_ay",
+    "source_classification": "secret"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.d74adea1a7ea5cd121599a9a"
+  ],
+  "deliveries": {
+    "canon_ay": {
+      "profile_ref": "state/reputation/audiences/profile.637225b30f3383f1324c05f7.json",
+      "source_event_ref": "event.institutional_operation_completed.d74adea1a7ea5cd121599a9a"
+    }
+  },
+  "status": "applied"
+}

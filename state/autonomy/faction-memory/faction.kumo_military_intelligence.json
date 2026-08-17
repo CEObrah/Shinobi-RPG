@@ -1,22 +1,33 @@
 {
   "schema": "faction-operational-memory",
   "faction_id": "faction.kumo_military_intelligence",
-  "as_of": "SE-0061-07-30T07:00:00",
+  "as_of": "SE-0061-08-06T07:00:00",
   "active_mission_team_refs": {
-    "mission.autonomy.e7aa2c01e8556229e2": "team.kumo.military.intelligence.auto.021c09f80884"
+    "mission.autonomy.c4608aaa0e37f48075": "team.kumo.military.intelligence.auto.021c09f80884"
   },
-  "team_performance": {},
-  "recent_report_refs": [],
+  "team_performance": {
+    "team.kumo.military.intelligence.auto.021c09f80884": {
+      "missions_total": 1,
+      "missions_succeeded": 1,
+      "missions_failed": 0,
+      "last_mission_ref": "mission.autonomy.e7aa2c01e8556229e2",
+      "last_result_at": "SE-0061-08-06T07:00:00"
+    }
+  },
+  "recent_report_refs": [
+    "event.mission_result_report_received.bc28522fb96e9e49415d1ab0"
+  ],
   "work_queue": {
     "pending_refs": [],
     "active_refs": [
-      "operation.autonomy.57ebce98dfcd7c62c148",
+      "operation.autonomy.b31959e5b423013a2b4f",
       "operation.autonomy.e06f495c79465d37c49a"
     ],
     "completed_recent_refs": [
       "operation.autonomy.91c199bcf962f58e3899",
-      "operation.autonomy.b0109807da96402f46cc"
+      "operation.autonomy.b0109807da96402f46cc",
+      "operation.autonomy.57ebce98dfcd7c62c148"
     ],
-    "cursor": 2
+    "cursor": 4
   }
 }

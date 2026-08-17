@@ -6,9 +6,9 @@
   "owner_ref": "faction.suna_puppet_corps",
   "authority_ref": "canon_chiyo",
   "opened_at": "SE-0061-07-16T07:00:00",
-  "next_due_at": "SE-0061-08-06T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "faction.suna_puppet_corps",
@@ -28,16 +28,29 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
-  "delivery_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.5d1cde21108b6533bed79286",
+    "event.institutional_operation_evidence_generated.c7ce573b81e419237d044258"
+  ],
+  "claim_refs": [
+    "claim.operation.001173a0eacd67560076"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.c698e987e5f2bf247a0cf4c0"
+  ],
   "report_recipient_refs": [
     "canon_chiyo",
     "canon_rasa"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Reconcile actual puppet specialists, puppet assets, repair needs, and deployment readiness without treating generic shinobi as puppeteers.",
   "failure_condition": "The puppet_readiness objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.001173a0eacd67560076",
+    "delivery.autonomy.c698e987e5f2bf247a0cf4c0",
+    "event.institutional_operation_completed.5d1cde21108b6533bed79286",
+    "event.institutional_operation_evidence_generated.c7ce573b81e419237d044258",
+    "puppet_readiness:faction.suna_puppet_corps:3:6:0:0"
+  ]
 }

@@ -6,9 +6,9 @@
   "owner_ref": "faction.kumo_military_intelligence",
   "authority_ref": "canon_c",
   "opened_at": "SE-0061-07-30T07:00:00",
-  "next_due_at": "SE-0061-08-06T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "information",
   "subject_ref": "claim.autonomy.6ac65968fec658db56",
@@ -27,18 +27,39 @@
   "mission_refs": [
     "mission.autonomy.e7aa2c01e8556229e2"
   ],
-  "project_refs": [],
+  "project_refs": [
+    "research.autonomy.d78ee1ff0b02bed80725"
+  ],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
-  "delivery_refs": [],
+  "evidence_refs": [
+    "event.autonomous_mission_succeeded.d9ae2769b89dd4c27e9a9d90",
+    "event.institutional_operation_completed.d74adea1a7ea5cd121599a9a",
+    "event.institutional_operation_evidence_generated.b98b4e268b9671a53111aa0c"
+  ],
+  "claim_refs": [
+    "claim.mission.autonomy.e7aa2c01e8556229e2.result",
+    "claim.operation.729dc5abe99e73ccc670"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.724dd48560aa33a7581747b4",
+    "delivery.autonomy.b71504b4ecdecfa5d4ec8617"
+  ],
   "report_recipient_refs": [
     "canon_c",
     "canon_ay"
   ],
-  "progress_milli": 100,
+  "progress_milli": 1000,
   "success_condition": "Corroborate or downgrade one held intelligence claim and deliver the assessment to command.",
   "failure_condition": "The intelligence_corroboration objective becomes impossible, compromised, or materially incomplete.",
   "classification": "secret",
-  "result_refs": []
+  "result_refs": [
+    "claim.mission.autonomy.e7aa2c01e8556229e2.result",
+    "claim.operation.729dc5abe99e73ccc670",
+    "delivery.autonomy.724dd48560aa33a7581747b4",
+    "delivery.autonomy.b71504b4ecdecfa5d4ec8617",
+    "event.autonomous_mission_succeeded.d9ae2769b89dd4c27e9a9d90",
+    "event.institutional_operation_completed.d74adea1a7ea5cd121599a9a",
+    "event.institutional_operation_evidence_generated.b98b4e268b9671a53111aa0c",
+    "research.autonomy.d78ee1ff0b02bed80725"
+  ]
 }

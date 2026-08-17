@@ -1,0 +1,40 @@
+{
+  "schema": "reputation-event",
+  "event_id": "reputation.event.695e70b06da06454fea104c9",
+  "subject_id": "faction.suna_puppet_corps",
+  "event_type": "reputation.signal.technical_achievement",
+  "occurred_at": "SE-0061-08-06T07:00:00",
+  "source_event_ref": "event.institutional_operation_completed.5d1cde21108b6533bed79286",
+  "authority": true,
+  "signals": {
+    "technical_competence": {
+      "score": 82,
+      "base_weight": 42
+    }
+  },
+  "standing_signals": {
+    "renown": {
+      "score": 72,
+      "base_weight": 28
+    },
+    "prestige": {
+      "score": 66,
+      "base_weight": 20
+    }
+  },
+  "visibility": {
+    "audience_id": "canon_rasa",
+    "source_classification": "restricted"
+  },
+  "witnesses": [],
+  "report_routes": [
+    "event.institutional_operation_completed.5d1cde21108b6533bed79286"
+  ],
+  "deliveries": {
+    "canon_rasa": {
+      "profile_ref": "state/reputation/audiences/profile.dd38ca263281fba3956bb3c7.json",
+      "source_event_ref": "event.institutional_operation_completed.5d1cde21108b6533bed79286"
+    }
+  },
+  "status": "applied"
+}

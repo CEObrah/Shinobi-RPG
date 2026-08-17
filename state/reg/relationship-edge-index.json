@@ -1,8 +1,8 @@
 {
   "schema": "relationship-edge-index",
   "derived_index": true,
-  "edge_count": 105,
-  "source_shard_count": 45,
+  "edge_count": 139,
+  "source_shard_count": 53,
   "edge_index": {
     "rel.canon_asuma.canon_hiruzen.son": "state/reg/relationship-edges/canon_asuma.json",
     "rel.canon_choji.canon_choza.son": "state/reg/relationship-edges/canon_choji.json",
@@ -108,16 +108,56 @@
     "rel.canon_hayate.canon_aoba.professional_teammates": "state/reg/relationship-edges/canon_hayate.json",
     "rel.canon_hayate.canon_yugao.professional_teammates": "state/reg/relationship-edges/canon_hayate.json",
     "rel.canon_yugao.canon_aoba.professional_teammates": "state/reg/relationship-edges/canon_yugao.json",
-    "rel.canon_yugao.canon_hayate.professional_teammates": "state/reg/relationship-edges/canon_yugao.json"
+    "rel.canon_yugao.canon_hayate.professional_teammates": "state/reg/relationship-edges/canon_yugao.json",
+    "rel.canon_c.canon_mabui.professional_teammates": "state/reg/relationship-edges/canon_c.json",
+    "rel.canon_darui.canon_mabui.professional_teammates": "state/reg/relationship-edges/canon_darui.json",
+    "rel.canon_mabui.canon_c.professional_teammates": "state/reg/relationship-edges/canon_mabui.json",
+    "rel.canon_mabui.canon_darui.professional_teammates": "state/reg/relationship-edges/canon_mabui.json",
+    "rel.canon_chiyo.canon_maki.professional_teammates": "state/reg/relationship-edges/canon_chiyo.json",
+    "rel.canon_maki.canon_chiyo.professional_teammates": "state/reg/relationship-edges/canon_maki.json",
+    "rel.canon_hinata.canon_kiba.professional_teammates": "state/reg/relationship-edges/canon_hinata.json",
+    "rel.canon_hinata.canon_kurenai.professional_teammates": "state/reg/relationship-edges/canon_hinata.json",
+    "rel.canon_hinata.canon_shino.professional_teammates": "state/reg/relationship-edges/canon_hinata.json",
+    "rel.canon_kiba.canon_hinata.professional_teammates": "state/reg/relationship-edges/canon_kiba.json",
+    "rel.canon_kiba.canon_kurenai.professional_teammates": "state/reg/relationship-edges/canon_kiba.json",
+    "rel.canon_kiba.canon_shino.professional_teammates": "state/reg/relationship-edges/canon_kiba.json",
+    "rel.canon_kurenai.canon_hinata.professional_teammates": "state/reg/relationship-edges/canon_kurenai.json",
+    "rel.canon_kurenai.canon_kiba.professional_teammates": "state/reg/relationship-edges/canon_kurenai.json",
+    "rel.canon_kurenai.canon_shino.professional_teammates": "state/reg/relationship-edges/canon_kurenai.json",
+    "rel.canon_shino.canon_hinata.professional_teammates": "state/reg/relationship-edges/canon_shino.json",
+    "rel.canon_shino.canon_kiba.professional_teammates": "state/reg/relationship-edges/canon_shino.json",
+    "rel.canon_shino.canon_kurenai.professional_teammates": "state/reg/relationship-edges/canon_shino.json",
+    "rel.canon_ao.canon_chojuro.professional_teammates": "state/reg/relationship-edges/canon_ao.json",
+    "rel.canon_chojuro.canon_ao.professional_teammates": "state/reg/relationship-edges/canon_chojuro.json",
+    "rel.canon_akatsuchi.canon_kitsuchi.professional_teammates": "state/reg/relationship-edges/canon_akatsuchi.json",
+    "rel.canon_kitsuchi.canon_akatsuchi.professional_teammates": "state/reg/relationship-edges/canon_kitsuchi.json",
+    "rel.canon_asuma.canon_choji.professional_teammates": "state/reg/relationship-edges/canon_asuma.json",
+    "rel.canon_asuma.canon_ino.professional_teammates": "state/reg/relationship-edges/canon_asuma.json",
+    "rel.canon_asuma.canon_shikamaru.professional_teammates": "state/reg/relationship-edges/canon_asuma.json",
+    "rel.canon_choji.canon_asuma.professional_teammates": "state/reg/relationship-edges/canon_choji.json",
+    "rel.canon_choji.canon_ino.professional_teammates": "state/reg/relationship-edges/canon_choji.json",
+    "rel.canon_choji.canon_shikamaru.professional_teammates": "state/reg/relationship-edges/canon_choji.json",
+    "rel.canon_ino.canon_asuma.professional_teammates": "state/reg/relationship-edges/canon_ino.json",
+    "rel.canon_ino.canon_choji.professional_teammates": "state/reg/relationship-edges/canon_ino.json",
+    "rel.canon_ino.canon_shikamaru.professional_teammates": "state/reg/relationship-edges/canon_ino.json",
+    "rel.canon_shikamaru.canon_asuma.professional_teammates": "state/reg/relationship-edges/canon_shikamaru.json",
+    "rel.canon_shikamaru.canon_choji.professional_teammates": "state/reg/relationship-edges/canon_shikamaru.json",
+    "rel.canon_shikamaru.canon_ino.professional_teammates": "state/reg/relationship-edges/canon_shikamaru.json"
   },
   "person_shards": {
     "canon_asuma": [
       "state/reg/relationship-edges/canon_asuma.json",
-      "state/reg/relationship-edges/canon_hiruzen.json"
+      "state/reg/relationship-edges/canon_choji.json",
+      "state/reg/relationship-edges/canon_hiruzen.json",
+      "state/reg/relationship-edges/canon_ino.json",
+      "state/reg/relationship-edges/canon_shikamaru.json"
     ],
     "canon_choji": [
+      "state/reg/relationship-edges/canon_asuma.json",
       "state/reg/relationship-edges/canon_choji.json",
-      "state/reg/relationship-edges/canon_choza.json"
+      "state/reg/relationship-edges/canon_choza.json",
+      "state/reg/relationship-edges/canon_ino.json",
+      "state/reg/relationship-edges/canon_shikamaru.json"
     ],
     "canon_choza": [
       "state/reg/relationship-edges/canon_choji.json",
@@ -180,6 +220,9 @@
     "canon_hinata": [
       "state/reg/relationship-edges/canon_hiashi.json",
       "state/reg/relationship-edges/canon_hinata.json",
+      "state/reg/relationship-edges/canon_kiba.json",
+      "state/reg/relationship-edges/canon_kurenai.json",
+      "state/reg/relationship-edges/canon_shino.json",
       "state/reg/relationship-edges/char.riku_hyuga.json"
     ],
     "canon_hiruzen": [
@@ -197,8 +240,11 @@
       "state/reg/relationship-edges/canon_tekuno_kanden.json"
     ],
     "canon_ino": [
+      "state/reg/relationship-edges/canon_asuma.json",
+      "state/reg/relationship-edges/canon_choji.json",
       "state/reg/relationship-edges/canon_ino.json",
-      "state/reg/relationship-edges/canon_inoichi.json"
+      "state/reg/relationship-edges/canon_inoichi.json",
+      "state/reg/relationship-edges/canon_shikamaru.json"
     ],
     "canon_inoichi": [
       "state/reg/relationship-edges/canon_ino.json",
@@ -214,7 +260,10 @@
     ],
     "canon_kiba": [
       "state/reg/relationship-edges/canon_hana_inuzuka.json",
+      "state/reg/relationship-edges/canon_hinata.json",
       "state/reg/relationship-edges/canon_kiba.json",
+      "state/reg/relationship-edges/canon_kurenai.json",
+      "state/reg/relationship-edges/canon_shino.json",
       "state/reg/relationship-edges/canon_tsume.json"
     ],
     "canon_lee": [
@@ -253,11 +302,17 @@
       "state/reg/relationship-edges/canon_shikamaru.json"
     ],
     "canon_shikamaru": [
+      "state/reg/relationship-edges/canon_asuma.json",
+      "state/reg/relationship-edges/canon_choji.json",
+      "state/reg/relationship-edges/canon_ino.json",
       "state/reg/relationship-edges/canon_shikaku.json",
       "state/reg/relationship-edges/canon_shikamaru.json",
       "state/reg/relationship-edges/canon_suzaku_nara.json"
     ],
     "canon_shino": [
+      "state/reg/relationship-edges/canon_hinata.json",
+      "state/reg/relationship-edges/canon_kiba.json",
+      "state/reg/relationship-edges/canon_kurenai.json",
       "state/reg/relationship-edges/canon_shibi.json",
       "state/reg/relationship-edges/canon_shino.json"
     ],
@@ -322,11 +377,13 @@
     ],
     "canon_c": [
       "state/reg/relationship-edges/canon_c.json",
-      "state/reg/relationship-edges/canon_darui.json"
+      "state/reg/relationship-edges/canon_darui.json",
+      "state/reg/relationship-edges/canon_mabui.json"
     ],
     "canon_darui": [
       "state/reg/relationship-edges/canon_c.json",
-      "state/reg/relationship-edges/canon_darui.json"
+      "state/reg/relationship-edges/canon_darui.json",
+      "state/reg/relationship-edges/canon_mabui.json"
     ],
     "canon_kakashi": [
       "state/reg/relationship-edges/canon_kakashi.json",
@@ -347,6 +404,41 @@
       "state/reg/relationship-edges/canon_aoba.json",
       "state/reg/relationship-edges/canon_hayate.json",
       "state/reg/relationship-edges/canon_yugao.json"
+    ],
+    "canon_mabui": [
+      "state/reg/relationship-edges/canon_c.json",
+      "state/reg/relationship-edges/canon_darui.json",
+      "state/reg/relationship-edges/canon_mabui.json"
+    ],
+    "canon_chiyo": [
+      "state/reg/relationship-edges/canon_chiyo.json",
+      "state/reg/relationship-edges/canon_maki.json"
+    ],
+    "canon_maki": [
+      "state/reg/relationship-edges/canon_chiyo.json",
+      "state/reg/relationship-edges/canon_maki.json"
+    ],
+    "canon_kurenai": [
+      "state/reg/relationship-edges/canon_hinata.json",
+      "state/reg/relationship-edges/canon_kiba.json",
+      "state/reg/relationship-edges/canon_kurenai.json",
+      "state/reg/relationship-edges/canon_shino.json"
+    ],
+    "canon_ao": [
+      "state/reg/relationship-edges/canon_ao.json",
+      "state/reg/relationship-edges/canon_chojuro.json"
+    ],
+    "canon_chojuro": [
+      "state/reg/relationship-edges/canon_ao.json",
+      "state/reg/relationship-edges/canon_chojuro.json"
+    ],
+    "canon_akatsuchi": [
+      "state/reg/relationship-edges/canon_akatsuchi.json",
+      "state/reg/relationship-edges/canon_kitsuchi.json"
+    ],
+    "canon_kitsuchi": [
+      "state/reg/relationship-edges/canon_akatsuchi.json",
+      "state/reg/relationship-edges/canon_kitsuchi.json"
     ]
   },
   "rule": "Derived routing cache from relationship edge shards. Rebuild after authoritative edge changes; never use the index to invent relationship truth."

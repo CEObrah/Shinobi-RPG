@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.8feb332840074564ba64",
-  "closed_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.3f20fd9004f37bfe71",
     "objective_kind": "deliver",
@@ -33,7 +33,7 @@
     "depart_by": null,
     "completion_condition": "Complete a concealed transport leg without seizure, or persist the seizure/exposure consequence."
   },
-  "state": "active",
+  "state": "failed",
   "participant_refs": [
     "support.smuggling.reina_kurosawa"
   ],
@@ -43,12 +43,18 @@
       "kind": "deliver",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "failed",
+      "progress_milli": 500,
+      "resolution_ref": "event.autonomous_mission_failed.ecc567692e9c941b9ae95be8"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.3f20fd9004f37bfe71",
+    "outcome": "failed",
+    "settlement_token": "autonomy.8d4886dcb5f7441e913f",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

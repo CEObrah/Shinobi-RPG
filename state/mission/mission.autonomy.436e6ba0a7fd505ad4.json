@@ -1,0 +1,56 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.436e6ba0a7fd505ad4",
+  "issuer_ref": "faction.root",
+  "authority_ref": "canon_danzo",
+  "mission_rank": "B",
+  "funding_holder_ref": "faction.root",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-08-06T07:00:00",
+  "authorized_at": "SE-0061-08-06T07:00:00",
+  "starts_at": "SE-0061-08-06T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.d5b66db4fa05c6055c34",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.436e6ba0a7fd505ad4",
+    "objective_kind": "observe",
+    "subject_kind": "person",
+    "subject_ref": "canon_kabuto",
+    "subject_label": "canon_kabuto",
+    "report_place_ref": "place.konoha",
+    "origin_place_ref": "place.konoha",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-08-06T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Produce a compartmented sourced surveillance claim and deliver it only through authorized Root channels."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_fu_yamanaka",
+    "canon_sai",
+    "canon_torune_aburame"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.436e6ba0a7fd505ad4",
+      "kind": "observe",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

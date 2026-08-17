@@ -6,9 +6,9 @@
   "owner_ref": "faction.fire_merchant_network",
   "authority_ref": "support.merchant.fumiko_takahara",
   "opened_at": "SE-0061-07-16T07:00:00",
-  "next_due_at": "SE-0061-08-06T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-06T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "route",
   "subject_ref": "route_fire_north_rice",
@@ -27,15 +27,25 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.07678ece312f20a6b10b0337",
+    "event.institutional_operation_evidence_generated.5ed91d1f4a54e076064e599f"
+  ],
+  "claim_refs": [
+    "claim.operation.5001bfc7a867e96c6267"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "support.merchant.fumiko_takahara"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Record route condition, delay/loss evidence, and a bounded profitability assessment.",
   "failure_condition": "The route_profitability_review objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.5001bfc7a867e96c6267",
+    "event.institutional_operation_completed.07678ece312f20a6b10b0337",
+    "event.institutional_operation_evidence_generated.5ed91d1f4a54e076064e599f",
+    "route_fire_north_rice"
+  ]
 }

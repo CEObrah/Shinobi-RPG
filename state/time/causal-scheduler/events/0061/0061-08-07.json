@@ -4,6 +4,29 @@
   "authority": true,
   "events": [
     {
+      "event_id": "evt.causal.3167c99a71c568a5e447d8d8",
+      "kind": "person.recovery.periodic_review",
+      "due_at": "SE-0061-08-07T07:00:00",
+      "priority": 25,
+      "source_host": "host.recovery.support.smuggling.reina_kurosawa",
+      "target_host": "host.recovery.support.smuggling.reina_kurosawa",
+      "payload": {
+        "actor_ref": "support.smuggling.reina_kurosawa",
+        "identity": "support.smuggling.reina_kurosawa",
+        "owner_ref": "state/person/world/support-smuggling-reina_kurosawa.json",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 86400,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "person.recovery.periodic_review:support.smuggling.reina_kurosawa",
+      "visibility": "restricted",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
       "event_id": "evt.causal.411c7b79b28deb2bc57e58a1",
       "kind": "team.periodic_review",
       "due_at": "SE-0061-08-07T21:15:00",

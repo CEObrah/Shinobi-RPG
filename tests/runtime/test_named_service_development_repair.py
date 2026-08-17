@@ -5,7 +5,7 @@ import copy
 import pytest
 
 from shinobi_runtime.api.contracts import CommandRejectedError
-from shinobi_runtime.commands.campaign_named_training_exam_repair import _qualification_cycle
+from shinobi_runtime.commands.campaign_named_training_exam_repair import _REPAIR_ID, _qualification_cycle
 from shinobi_runtime.commands.named_service_development import (
     _qualifying_status,
     service_start,
@@ -76,6 +76,8 @@ def test_historical_service_catchup_uses_full_weeks_and_existing_bank() -> None:
     assert outcome["hours"] == "24"
     assert str(entry["resolved_through"]) == "SE-0061-03-29T07:00:00"
     assert sum(item["points_gained"] for item in outcome["outcomes"]) > 0
+    assert entry["credits"]
+    assert all(isinstance(value, (int, float)) and not isinstance(value, bool) for value in entry["credits"].values())
 
 
 def test_ordinary_service_review_is_bounded_and_proportional() -> None:
@@ -134,3 +136,13 @@ def test_guarded_repair_accepts_only_exact_old_qualification_shape() -> None:
     changed["history"][0]["outcome"] = "fail"
     with pytest.raises(CommandRejectedError, match="named_training_exam_repair_source_not_exact"):
         _qualification_cycle(changed)
+
+
+def test_guarded_repair_rejects_registered_recalibration_receipt() -> None:
+    repaired = _old_pipeline()
+    repaired["history"].append({
+        "kind": "promotion_exam_recalibration",
+        "recalibration_ref": _REPAIR_ID,
+    })
+    with pytest.raises(CommandRejectedError, match="named_training_exam_repair_source_not_exact"):
+        _qualification_cycle(repaired)

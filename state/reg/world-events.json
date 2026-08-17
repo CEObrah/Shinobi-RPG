@@ -5214,6 +5214,64 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_cancelled.3dde5d0e5c69799ae330",
+      "kind": "commitment_cancelled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "place.sword_manor"
+      ],
+      "actor_refs": [
+        "house.tang",
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.sword_manor.permanent_training.0061-07-30"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "house.tang",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "house.tang",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "house.tang",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_transition",
+        "transaction_ref": "tx.gameplay.3dde5d0e5c69799ae3301a1999493172b9e2cfaf5ef0324995f2a8b2ff517df6",
+        "receipt_refs": [
+          "receipt.gameplay.3dde5d0e5c69799ae3301a1999493172b9e2cfaf5ef0324995f2a8b2ff517df6"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

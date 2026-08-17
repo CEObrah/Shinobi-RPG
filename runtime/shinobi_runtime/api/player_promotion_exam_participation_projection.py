@@ -1,4 +1,4 @@
-"""Expose cycle-wide Chunin Exam participation and public stage results."""
+"""Expose cycle-wide Chunin Exam participation and compact public stage results."""
 from __future__ import annotations
 
 import copy
@@ -15,7 +15,7 @@ from shinobi_runtime.commands.promotion_exam_integrity import team_safe_finals_s
 from shinobi_runtime.commands.promotion_exam_scheduler import promotion_exam_profiles
 
 _INSTALLED = False
-_MAX_PUBLIC_RESULTS = 96
+_RESULTS_REF_PREFIX = "exam-results:"
 
 
 def _cycle_registration_counts(pipeline: Mapping[str, Any], cycle_id: str) -> tuple[int, int]:
@@ -102,20 +102,17 @@ def _public_stage_results(
     profile: Mapping[str, Any],
     cycle_id: str,
 ) -> Mapping[str, Any]:
+    """Return only always-useful public summaries plus exact paged read routes."""
     visibility = profile.get("result_visibility")
     if not isinstance(visibility, Mapping):
         return {
-            "stages": {},
             "stage_summaries": {},
             "result_count": 0,
-            "results_truncated": False,
-            "projection_limit": _MAX_PUBLIC_RESULTS,
+            "read_refs": {},
         }
-    stages: dict[str, list[dict[str, Any]]] = {}
     summaries: dict[str, dict[str, int]] = {}
+    read_refs: dict[str, str] = {}
     total = 0
-    emitted = 0
-    truncated = False
     for phase in ("qualification", "field_evaluation"):
         if visibility.get(phase) != "public_after_settlement":
             continue
@@ -130,41 +127,17 @@ def _public_stage_results(
             key=lambda row: str(row["candidate_ref"]),
         )
         total += len(ordered)
-        pass_count = sum(1 for row in ordered if row.get("outcome") == "pass")
-        fail_count = sum(1 for row in ordered if row.get("outcome") == "fail")
         summaries[phase] = {
             "candidate_count": len(ordered),
-            "pass_count": pass_count,
-            "fail_count": fail_count,
+            "pass_count": sum(1 for row in ordered if row.get("outcome") == "pass"),
+            "fail_count": sum(1 for row in ordered if row.get("outcome") == "fail"),
         }
-        projected: list[dict[str, Any]] = []
-        for row in ordered:
-            if emitted >= _MAX_PUBLIC_RESULTS:
-                truncated = True
-                break
-            candidate_ref = str(row["candidate_ref"])
-            name, village = _public_identity(operations, candidate_ref)
-            projected.append(
-                {
-                    "candidate_ref": candidate_ref,
-                    "candidate_name": name,
-                    "village": village,
-                    "team_ref": row.get("team_ref"),
-                    "score": row.get("score"),
-                    "threshold": row.get("threshold"),
-                    "outcome": row.get("outcome"),
-                }
-            )
-            emitted += 1
-        stages[phase] = projected
-    if total > emitted:
-        truncated = True
+        if ordered:
+            read_refs[phase] = f"{_RESULTS_REF_PREFIX}{cycle_id}:{phase}:0"
     return {
-        "stages": stages,
         "stage_summaries": summaries,
         "result_count": total,
-        "results_truncated": truncated,
-        "projection_limit": _MAX_PUBLIC_RESULTS,
+        "read_refs": read_refs,
     }
 
 
@@ -209,11 +182,10 @@ def install_player_promotion_exam_participation_projection() -> None:
                 villages = hosted.get("participating_villages")
                 handoff["exam_participating_villages"] = list(villages) if isinstance(villages, list) else []
             public = _public_stage_results(operations, pipeline, profile, cycle_id)
-            handoff["public_stage_results"] = public["stages"]
             handoff["public_stage_result_summaries"] = public["stage_summaries"]
             handoff["public_stage_result_count"] = public["result_count"]
-            handoff["public_stage_results_truncated"] = public["results_truncated"]
-            handoff["public_stage_results_projection_limit"] = public["projection_limit"]
+            handoff["public_stage_result_read_refs"] = public["read_refs"]
+            handoff["public_stage_results_in_context"] = False
             if handoff.get("phase") == "finals":
                 try:
                     state = team_safe_finals_state(pipeline, profile, cycle_id)

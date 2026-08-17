@@ -6,7 +6,7 @@ from pathlib import Path
 from shinobi_runtime.commands.standing_training_participation import _registered_training_instructors
 
 
-def test_blackhound_uses_intensive_zhu_linh_solo_and_team_curriculum() -> None:
+def test_blackhound_uses_full_sustainable_zhu_linh_development_envelope() -> None:
     root = json.loads(
         Path("game/rules/training/autonomy-participation.json").read_text(encoding="utf-8")
     )
@@ -14,8 +14,15 @@ def test_blackhound_uses_intensive_zhu_linh_solo_and_team_curriculum() -> None:
 
     assert policy["enabled"] is True
     assert policy["participates_in_autonomous_training"] is False
-    assert policy["active_hours_per_week"] == 34
+    assert policy["active_hours_per_week"] == 48
+    assert policy["shared_core_active_hours_per_week"] == 34
+    assert policy["supplemental_individual_active_hours_per_week"] == 14
     assert policy["full_training_day_hours"] * 5 + policy["taper_day_hours"] == 34
+    assert (
+        policy["shared_core_active_hours_per_week"]
+        + policy["supplemental_individual_active_hours_per_week"]
+        == policy["active_hours_per_week"]
+    )
     assert policy["recovery_days_per_cycle"] == 1
     assert policy["assembly_location_ref"] == "place.sword_manor"
     assert policy["instructor_strategy"] == "replace_team_instructors"
@@ -39,6 +46,24 @@ def test_blackhound_uses_intensive_zhu_linh_solo_and_team_curriculum() -> None:
     }
     assert solo.issubset(set(policy["assessment_paths"]))
     assert tactical.issubset(set(policy["assessment_paths"]))
+
+    assert policy["player_joint_active_hours_per_week"] == 48
+    assert policy["player_joint_shared_core_active_hours_per_week"] == 34
+    assert policy["player_supplemental_active_hours_per_week"] == 14
+    assert (
+        policy["player_joint_shared_core_active_hours_per_week"]
+        + policy["player_supplemental_active_hours_per_week"]
+        == policy["player_joint_active_hours_per_week"]
+    )
+    assert policy["player_joint_target_cycle"][:7] == [
+        "operational_skills.leadership",
+        "operational_skills.team_coordination",
+        "operational_skills.investigation",
+        "operational_skills.tracking",
+        "operational_skills.traps",
+        "chakra_dimensions.hand_seal_speed",
+        "chakra_dimensions.sensing",
+    ]
 
 
 def test_blackhound_policy_replaces_saved_hayama_instruction() -> None:

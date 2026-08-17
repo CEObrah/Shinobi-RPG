@@ -640,6 +640,61 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.campaign_repair_applied.f6ae78dc8ca6eefa7e63",
+      "kind": "campaign_repair_applied",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-07T07:29:58",
+        "started_at": "SE-0061-08-07T07:29:58",
+        "ended_at": "SE-0061-08-07T07:29:58"
+      },
+      "host_refs": [
+        "pc_wei_tang"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/player.json"
+      ],
+      "material_consequence_refs": [
+        "player_attribute_corrected:awareness:145->200",
+        "player_attribute_corrected:coordination:150->200",
+        "player_attribute_corrected:intelligence:170->200"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-07T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.campaign_player_attribute_correction",
+        "transaction_ref": "tx.gameplay.f6ae78dc8ca6eefa7e63cc8bd02fa34425b4683eff12e9fed3eb8ab545e28784",
+        "receipt_refs": [
+          "receipt.gameplay.f6ae78dc8ca6eefa7e63cc8bd02fa34425b4683eff12e9fed3eb8ab545e28784"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

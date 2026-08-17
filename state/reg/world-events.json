@@ -2817,6 +2817,86 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.34225f65f8f54a48f7ba",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-07-31T13:00:00",
+        "started_at": "SE-0061-07-31T13:00:00",
+        "ended_at": "SE-0061-07-31T13:00:00"
+      },
+      "host_refs": [
+        "team.konoha.fujin"
+      ],
+      "actor_refs": [
+        "char.kai",
+        "char.linh",
+        "char.mei_arakawa",
+        "char.riku_hyuga",
+        "pc_wei_tang"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/kai.json",
+        "state/char/mei-arakawa.json",
+        "state/char/riku-hyuga.json",
+        "state/development/banks.json",
+        "state/player.json",
+        "state/team/doctrine/team-konoha-fujin.json",
+        "state/team/fujin.json"
+      ],
+      "material_consequence_refs": [
+        "doctrine_familiarity:team.konoha.fujin.doctrine:shared_training",
+        "training:char.kai:operational_skills.team_coordination:104->105",
+        "training:char.mei_arakawa:operational_skills.tactics:107->108",
+        "training:char.riku_hyuga:operational_skills.team_coordination:101->102",
+        "training:pc_wei_tang:operational_skills.investigation:75->81"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "char.kai",
+          "char.linh",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "char.kai",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "char.kai",
+          "char.linh",
+          "char.mei_arakawa",
+          "char.riku_hyuga",
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-31T13:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.training.settle_training",
+        "transaction_ref": "tx.gameplay.34225f65f8f54a48f7ba944e1073eb4685c1b459f03815be1f6e7d2a053cc499",
+        "receipt_refs": [
+          "receipt.gameplay.34225f65f8f54a48f7ba944e1073eb4685c1b459f03815be1f6e7d2a053cc499"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

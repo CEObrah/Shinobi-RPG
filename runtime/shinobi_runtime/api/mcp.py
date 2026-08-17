@@ -209,7 +209,7 @@ class McpOAuthSettings:
                 for item in allowed_client_ids
             )
         ):
-            raise RuntimeError("SHINOBI_OAUTH_ALLOWED_CLIENT_IDS is invalid")
+            raise RuntimeError("MCP OAuth_ALLOWED_CLIENT_IDS is invalid")
         preview_secret = _required_env("SHINOBI_MCP_PREVIEW_SECRET")
         if not _PREVIEW_SECRET.fullmatch(preview_secret):
             raise RuntimeError(
@@ -371,6 +371,37 @@ def _tool_call(call: Any) -> dict[str, Any]:
     except OperationError as exc:
         return _failure(exc)
     return _success(result=value)
+
+
+def _command_identity(operations: CampaignOperations) -> Mapping[str, Any]:
+    """Return the smallest authoritative identity read available for preview."""
+
+    reader = getattr(operations, "command_identity", None)
+    if callable(reader):
+        identity = reader()
+    else:
+        context = operations.play_context()
+        identity = context.get("campaign") if isinstance(context, Mapping) else None
+    if not isinstance(identity, Mapping):
+        raise OperationError(503, "campaign_command_identity_invalid")
+    campaign_id = identity.get("campaign_id")
+    revision = identity.get("revision")
+    player_id = identity.get("player_id")
+    if (
+        not isinstance(campaign_id, str)
+        or not campaign_id
+        or isinstance(revision, bool)
+        or not isinstance(revision, int)
+        or revision < 0
+        or not isinstance(player_id, str)
+        or not player_id
+    ):
+        raise OperationError(503, "campaign_command_identity_invalid")
+    return {
+        "campaign_id": campaign_id,
+        "revision": revision,
+        "player_id": player_id,
+    }
 
 
 def _require_write_scope(scope: str) -> Optional[dict[str, Any]]:
@@ -645,8 +676,7 @@ def create_mcp_server(
             return _failure(OperationError(422, "command_preview_input_invalid"))
         try:
             validate_bounded_json(payload, label="command payload")
-            context = operations.play_context()
-            campaign = context["campaign"]
+            campaign = _command_identity(operations)
             if expected_revision != campaign["revision"]:
                 raise OperationError(409, "stale_revision")
             command = CommandEnvelope(
@@ -786,9 +816,6 @@ def mount_mcp(
 
     @app.get(metadata_path, include_in_schema=False)
     def protected_resource_metadata() -> JSONResponse:
-        # The SDK uses its global minimum scope for both middleware and
-        # metadata.  Publish every supported scope here while keeping the MCP
-        # transport readable with the least-privilege read scope.
         return JSONResponse(
             {
                 "resource": oauth.public_url,

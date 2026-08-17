@@ -6,9 +6,9 @@
   "owner_ref": "org_inuzuka",
   "authority_ref": "canon_tsume",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "org_inuzuka",
@@ -23,15 +23,25 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.b39590ee846a00c036ab6626"
+  ],
+  "claim_refs": [
+    "claim.institution.75271d82aa4b29ddf761"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_tsume"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Review training, household continuity, security, access, and current obligations without inventing family decisions or private motives.",
   "failure_condition": "No supported clan-affairs issue requires institutional action.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "canon_tsume",
+    "claim.institution.75271d82aa4b29ddf761",
+    "event.institutional_work_completed.b39590ee846a00c036ab6626",
+    "family.parentage.bootstrap.0acec8463b30337443",
+    "family.parentage.bootstrap.84673e85121cf1701e"
+  ]
 }

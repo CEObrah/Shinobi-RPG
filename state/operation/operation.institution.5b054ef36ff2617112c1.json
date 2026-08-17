@@ -6,9 +6,9 @@
   "owner_ref": "org_nara",
   "authority_ref": "canon_shikaku",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "org_nara",
@@ -23,15 +23,24 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.3176570b5da6c9297ec3bb27"
+  ],
+  "claim_refs": [
+    "claim.institution.711cf4c3c35a5ecf7c05"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_shikaku"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Review training, household continuity, security, access, and current obligations without inventing family decisions or private motives.",
   "failure_condition": "No supported clan-affairs issue requires institutional action.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "canon_shikaku",
+    "claim.institution.711cf4c3c35a5ecf7c05",
+    "event.institutional_work_completed.3176570b5da6c9297ec3bb27",
+    "family.parentage.bootstrap.109c6325b66acdaced"
+  ]
 }

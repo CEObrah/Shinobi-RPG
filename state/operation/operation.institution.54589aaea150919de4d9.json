@@ -6,9 +6,9 @@
   "owner_ref": "institution.kiri.academy",
   "authority_ref": "institution.kiri.academy",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "institution.kiri.academy",
@@ -23,13 +23,21 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.0761aca641ccc62340ca8fe6"
+  ],
+  "claim_refs": [
+    "claim.institution.74a2564cd9dbdc059d52"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Reconcile intake, training capacity, progression, and graduation against conserved population and instructional capacity.",
   "failure_condition": "Training or intake cannot proceed under current population or institutional constraints.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.institution.74a2564cd9dbdc059d52",
+    "event.institutional_work_completed.0761aca641ccc62340ca8fe6",
+    "force.kiri.shinobi"
+  ]
 }

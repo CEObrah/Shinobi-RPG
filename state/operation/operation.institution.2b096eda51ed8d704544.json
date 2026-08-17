@@ -6,9 +6,9 @@
   "owner_ref": "institution.suna.hospital",
   "authority_ref": "institution.suna.hospital",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "institution.suna.hospital",
@@ -23,13 +23,21 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.4fc95df540cc5743a0f208f6"
+  ],
+  "claim_refs": [
+    "claim.institution.2c99b17ec323f559e459"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Reconcile current treatment capability, casualty burden, supplies, and recovery obligations without inventing patients or stock.",
   "failure_condition": "The institution cannot establish a supported medical-capacity assessment.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.institution.2c99b17ec323f559e459",
+    "event.institutional_work_completed.4fc95df540cc5743a0f208f6",
+    "force.suna.shinobi"
+  ]
 }

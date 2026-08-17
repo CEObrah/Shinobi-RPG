@@ -6,9 +6,9 @@
   "owner_ref": "institution.taki.village_administration",
   "authority_ref": "institution.taki.village_administration",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "institution.taki.village_administration",
@@ -23,13 +23,21 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.e9bbdc72dc16e4793fcb1a8e"
+  ],
+  "claim_refs": [
+    "claim.institution.3c687e8cd80a633ef4d1"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Reconcile protected sites, alarms, access, custody, or verified threat evidence for the institution's remit.",
   "failure_condition": "Security posture cannot be supported from established sites, resources, or evidence.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.institution.3c687e8cd80a633ef4d1",
+    "event.institutional_work_completed.e9bbdc72dc16e4793fcb1a8e",
+    "force.taki.shinobi"
+  ]
 }

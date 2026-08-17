@@ -6,9 +6,9 @@
   "owner_ref": "institution.oto.hideout_network",
   "authority_ref": "canon_orochimaru",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "institution.oto.hideout_network",
@@ -23,15 +23,23 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.194210bd2c5bd77788e8e125"
+  ],
+  "claim_refs": [
+    "claim.institution.5c9066c62cc6b2d18707"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_orochimaru"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Produce a sourced institutional assessment or collection requirement tied to established evidence.",
   "failure_condition": "No lawful evidence or collection basis supports a report.",
   "classification": "secret",
-  "result_refs": []
+  "result_refs": [
+    "claim.autonomy.18b6d9501de2c01534",
+    "claim.institution.5c9066c62cc6b2d18707",
+    "event.institutional_work_completed.194210bd2c5bd77788e8e125"
+  ]
 }

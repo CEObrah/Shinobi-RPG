@@ -498,22 +498,29 @@
         "purge backlash",
         "regional autonomy"
       ],
-      "actors": [],
+      "actors": [
+        "institution.kiri.mizukage_administration"
+      ],
       "resources": [],
       "constraints": {
         "canon_forcing": false,
         "refs": []
       },
       "opposition": [],
-      "current_step": null,
+      "current_step": "diplomacy_record_incident:event.diplomacy_record_incident.7e2faf62d34ef5623ae92498",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_kiri_transition",
         "settled_through": "SE-0061-07-26T07:00:00",
         "due_at": "SE-0061-08-02T07:00:00"
       },
       "reducer_ref": "runtime/contracts/system-contracts/canon_pressures.json",
-      "source_refs": [],
-      "evidence_refs": [],
+      "source_refs": [
+        "faction_kiri",
+        "institution.kiri.mizukage_administration"
+      ],
+      "evidence_refs": [
+        "event.diplomacy_record_incident.7e2faf62d34ef5623ae92498"
+      ],
       "visibility": {
         "classification": null,
         "basis_refs": []
@@ -522,7 +529,19 @@
         "player_refs": [],
         "npc_refs": []
       },
-      "chronology": []
+      "chronology": [
+        {
+          "entry_id": "front_history.kiri_transition.0c895ac1cd5a8c4c8981",
+          "at": "SE-0061-08-01T07:00:00",
+          "kind": "committed_domain_evidence",
+          "status_before": "active",
+          "status_after": "active",
+          "source_refs": [
+            "event.diplomacy_record_incident.7e2faf62d34ef5623ae92498",
+            "faction_kiri"
+          ]
+        }
+      ]
     },
     "pressure_akatsuki_intelligence": {
       "id": "pressure_akatsuki_intelligence",

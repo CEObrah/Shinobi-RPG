@@ -6,9 +6,9 @@
   "owner_ref": "institution.iron.samurai_command",
   "authority_ref": "canon_mifune",
   "opened_at": "SE-0061-07-01T07:00:00",
-  "next_due_at": "SE-0061-07-31T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-08-01T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "institution",
   "subject_ref": "institution.iron.samurai_command",
@@ -23,15 +23,24 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
+  "evidence_refs": [
+    "event.institutional_work_completed.fdab9a918b5485fbfe5ce46e"
+  ],
+  "claim_refs": [
+    "claim.institution.06c9a801e69e9132dbe7"
+  ],
   "delivery_refs": [],
   "report_recipient_refs": [
     "canon_mifune"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Identify or progress a technically lawful project using existing facilities, materials, and authority.",
   "failure_condition": "Required site, labor, stock, funding, or authority is unavailable.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.institution.06c9a801e69e9132dbe7",
+    "event.institutional_work_completed.fdab9a918b5485fbfe5ce46e",
+    "project.manufacturing.32d9275c0563bb872303596d",
+    "project.manufacturing.9c7ed5ec62a4f96915aa6bfc"
+  ]
 }

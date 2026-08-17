@@ -1,0 +1,41 @@
+{
+  "schema": "file-template",
+  "template_id": "template.procedure-time-rules",
+  "target_schema": "procedure-time-rules",
+  "source_schema": "game/schemas/procedure-time-rules.schema.json",
+  "scope": "static_data",
+  "current_directories": ["game/data/mechanics"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": ["schema", "version", "policy", "procedures", "invariants"],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": ["schema", "version", "policy", "procedures", "invariants"]
+    },
+    "/procedures": {"mode": "open_map"},
+    "/procedures/*": {
+      "mode": "closed",
+      "allowed_keys": ["duration_seconds", "use"]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/version": ["integer"],
+    "/policy": ["string"],
+    "/procedures": ["object"],
+    "/procedures/*": ["object"],
+    "/procedures/*/duration_seconds": ["integer"],
+    "/procedures/*/use": ["string"],
+    "/invariants": ["array"],
+    "/invariants/*": ["string"]
+  },
+  "array_contracts": {
+    "/invariants": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "Static elapsed-time policy only; never store current procedure state here.",
+    "The causal scheduler remains the sole world-time authority.",
+    "Callers select an authored procedure kind and never supply arbitrary elapsed seconds."
+  ]
+}

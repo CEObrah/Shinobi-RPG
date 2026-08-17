@@ -1,0 +1,59 @@
+{
+  "schema": "file-template",
+  "template_id": "template.mission-progress-rules",
+  "target_schema": "mission-progress-rules",
+  "source_schema": "game/schemas/mission-progress-rules.schema.json",
+  "scope": "static_data",
+  "current_directories": ["game/data/mechanics"],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema", "version", "policy", "base_progress_milli_by_event_kind",
+    "objective_mode", "doctrine", "maximum_nonterminal_progress_milli", "invariants"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema", "version", "policy", "base_progress_milli_by_event_kind",
+        "objective_mode", "doctrine", "maximum_nonterminal_progress_milli", "invariants"
+      ]
+    },
+    "/base_progress_milli_by_event_kind": {"mode": "open_map"},
+    "/objective_mode": {"mode": "open_map"},
+    "/doctrine": {
+      "mode": "closed",
+      "allowed_keys": [
+        "familiarity_bonus_floor", "familiarity_bonus_per_point_milli",
+        "matching_mission_mode_bonus_milli", "complete_role_coverage_bonus_milli",
+        "maximum_total_multiplier_milli"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": ["object"],
+    "/schema": ["string"],
+    "/version": ["integer"],
+    "/policy": ["string"],
+    "/base_progress_milli_by_event_kind": ["object"],
+    "/base_progress_milli_by_event_kind/*": ["integer"],
+    "/objective_mode": ["object"],
+    "/objective_mode/*": ["string"],
+    "/doctrine": ["object"],
+    "/doctrine/familiarity_bonus_floor": ["integer"],
+    "/doctrine/familiarity_bonus_per_point_milli": ["integer"],
+    "/doctrine/matching_mission_mode_bonus_milli": ["integer"],
+    "/doctrine/complete_role_coverage_bonus_milli": ["integer"],
+    "/doctrine/maximum_total_multiplier_milli": ["integer"],
+    "/maximum_nonterminal_progress_milli": ["integer"],
+    "/invariants": ["array"],
+    "/invariants/*": ["string"]
+  },
+  "array_contracts": {
+    "/invariants": {"item_types": ["string"]}
+  },
+  "writing_rules": [
+    "Static balance and causal policy only; never store mission state here.",
+    "Objective progress remains in the exact mission owner.",
+    "Doctrine modifiers may scale admissible evidence efficiency but never create evidence or terminal outcomes."
+  ]
+}

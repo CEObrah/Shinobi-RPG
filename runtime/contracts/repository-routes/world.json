@@ -56,6 +56,15 @@
       "domain": "mission_lifecycle",
       "note": "Known stable mission ID resolves one executable mission owner. Mission creation still requires verified issuer, participant, timing, and institutional authority; a typed gameplay command may mutate only an existing owner."
     },
+    "mission_progression": {
+      "r": [
+        "state/mission/",
+        "state/reg/world-events.json",
+        "game/data/mechanics/mission-progress.json"
+      ],
+      "domain": "mission_lifecycle",
+      "note": "Partial objective progress remains inside the exact mission owner and requires one persisted admissible mission-causal world event. Exact-team doctrine may modify evidence efficiency through existing team/doctrine owners; it never creates evidence or terminal success."
+    },
     "investigation_case_registry": {
       "r": [
         "state/reg/investigations.json"

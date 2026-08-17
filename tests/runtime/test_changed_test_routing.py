@@ -67,3 +67,11 @@ def test_procedure_time_policy_routes_to_causal_time_regressions() -> None:
 
     assert "tests/runtime/test_procedure_time_resolution.py" in selected
     assert "tests/runtime/test_advance_until_event.py" in selected
+
+
+def test_mission_progress_changes_route_to_main_and_archive_regressions() -> None:
+    selected = _selected("runtime/shinobi_runtime/commands/mission_progression.py")
+
+    assert "tests/runtime/test_mission_progression.py" in selected
+    assert "tests/runtime/test_mission_progression_archive_guard.py" in selected
+    assert "tests/runtime/test_missions.py" in selected

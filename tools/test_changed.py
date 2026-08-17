@@ -71,6 +71,8 @@ ROUTES = (
         "tests/runtime/test_mission_context_handoff.py",
         "tests/runtime/test_mission_market_geography.py",
         "tests/runtime/test_operational_world.py",
+        "tests/runtime/test_mission_progression.py",
+        "tests/runtime/test_mission_progression_archive_guard.py",
     }),
     (("combat", "formation", "force/", "conflict"), {
         "tests/runtime/test_combat.py",

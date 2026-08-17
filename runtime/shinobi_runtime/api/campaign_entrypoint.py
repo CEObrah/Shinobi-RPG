@@ -35,6 +35,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.story_vitality import install_story_vitality
     from shinobi_runtime.commands.scene_resume_projection import install_scene_resume_projection
     from shinobi_runtime.commands.player_mission_continuity import install_player_mission_continuity
+    from shinobi_runtime.commands.mission_progression import install_mission_progression
     from shinobi_runtime.commands.player_mission_delegation import install_player_mission_delegation
     from shinobi_runtime.commands.campaign_mission_continuity_repair import install_campaign_mission_continuity_repair
     from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
@@ -110,6 +111,7 @@ def _install_campaign_extensions() -> None:
     install_story_vitality()
     install_scene_resume_projection()
     install_player_mission_continuity()
+    install_mission_progression()
     install_player_mission_delegation()
     install_campaign_mission_continuity_repair()
     install_campaign_mission_boundary_repair()

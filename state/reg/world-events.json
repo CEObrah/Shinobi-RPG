@@ -4412,6 +4412,153 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.institution_manufacturing_settled.54fc6b3d55f2aa7b6edd",
+      "kind": "institution_manufacturing_settled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-03T15:00:00",
+        "started_at": "SE-0061-08-03T15:00:00",
+        "ended_at": "SE-0061-08-03T15:00:00"
+      },
+      "host_refs": [
+        "faction_iron",
+        "faction_iwa",
+        "faction_konoha",
+        "faction_suna"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/inventory/registry.json",
+        "state/reg/missions-contracts-projects.json",
+        "state/stock/iron-samurai.json",
+        "state/stock/iwa-shinobi.json",
+        "state/stock/konoha-shinobi.json",
+        "state/stock/suna-shinobi.json"
+      ],
+      "material_consequence_refs": [
+        "manufactured:item_basic_antidote:8",
+        "manufactured:item_puppet_field_kit:1",
+        "procurement:treasury.suna->economy.contractors:20000ryo",
+        "procurement:treasury.suna->economy.contractors:30000ryo"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-03T15:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.institution_manufacturing_settlement",
+        "transaction_ref": "tx.gameplay.54fc6b3d55f2aa7b6edd616b0214902503ad1019e1f3ddee2ca71d4f8ed986b5",
+        "receipt_refs": [
+          "receipt.gameplay.54fc6b3d55f2aa7b6edd616b0214902503ad1019e1f3ddee2ca71d4f8ed986b5"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.dfa27dcfaa9124251dec",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-03T15:00:00",
+        "started_at": "SE-0061-08-03T15:00:00",
+        "ended_at": "SE-0061-08-03T15:00:00"
+      },
+      "host_refs": [
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "char.zhu"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/ensui-nara.json",
+        "state/char/hana-inuzuka.json",
+        "state/char/hayama-shirakumo.json",
+        "state/char/hoheto-hyuga.json",
+        "state/char/tekuno-kanden.json",
+        "state/development/banks.json",
+        "state/team/blackhound.json",
+        "state/team/doctrine/black-hound.json"
+      ],
+      "material_consequence_refs": [
+        "doctrine_familiarity:team.blackhound.doctrine:shared_training",
+        "training:canon_ensui_nara:operational_skills.team_coordination:113->113",
+        "training:canon_hana_inuzuka:operational_skills.team_coordination:89->90",
+        "training:canon_hayama_shirakumo:operational_skills.team_coordination:101->102",
+        "training:canon_hoheto_hyuga:operational_skills.team_coordination:99->100",
+        "training:canon_tekuno_kanden:operational_skills.team_coordination:103->103"
+      ],
+      "visibility": {
+        "classification": "secret",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "char.zhu"
+        ],
+        "audience_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "char.zhu"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-03T15:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.training.settle_training",
+        "transaction_ref": "tx.gameplay.dfa27dcfaa9124251dec153cc928e061fd532cd217da600739faf8d06d4af580",
+        "receipt_refs": [
+          "receipt.gameplay.dfa27dcfaa9124251dec153cc928e061fd532cd217da600739faf8d06d4af580"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

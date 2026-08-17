@@ -209,7 +209,7 @@ class McpOAuthSettings:
                 for item in allowed_client_ids
             )
         ):
-            raise RuntimeError("MCP OAuth_ALLOWED_CLIENT_IDS is invalid")
+            raise RuntimeError("SHINOBI_OAUTH_ALLOWED_CLIENT_IDS is invalid")
         preview_secret = _required_env("SHINOBI_MCP_PREVIEW_SECRET")
         if not _PREVIEW_SECRET.fullmatch(preview_secret):
             raise RuntimeError(
@@ -816,6 +816,9 @@ def mount_mcp(
 
     @app.get(metadata_path, include_in_schema=False)
     def protected_resource_metadata() -> JSONResponse:
+        # The SDK uses its global minimum scope for both middleware and
+        # metadata.  Publish every supported scope here while keeping the MCP
+        # transport readable with the least-privilege read scope.
         return JSONResponse(
             {
                 "resource": oauth.public_url,

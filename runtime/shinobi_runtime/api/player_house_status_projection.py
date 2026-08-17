@@ -73,7 +73,7 @@ def _house_roster_status(self: Any) -> Mapping[str, Any]:
     }
 
 
-def _outreach_status(self: Any) -> Mapping[str, Any]:
+def _outreach_status(self: Any, player_id: str) -> Mapping[str, Any]:
     try:
         registry = self.repository.read_json(COMMITMENT_REGISTRY_PATH)
     except (FileNotFoundError, ValueError) as exc:
@@ -102,6 +102,11 @@ def _outreach_status(self: Any) -> Mapping[str, Any]:
             "review_at": None,
             "pending_source_pool_refs": [],
             "review_ready_source_pool_refs": [],
+            "completed_source_pool_refs": [],
+            "player_review_required": False,
+            "review_owner_ref": None,
+            "next_command_type": None,
+            "next_action": None,
         }
 
     active = sorted(
@@ -114,6 +119,11 @@ def _outreach_status(self: Any) -> Mapping[str, Any]:
         for row in matched
         if row.get("status") == "overdue" and isinstance(row.get("target_ref"), str)
     )
+    completed = sorted(
+        row.get("target_ref")
+        for row in matched
+        if row.get("status") == "completed" and isinstance(row.get("target_ref"), str)
+    )
     due = sorted(
         row.get("due_at") for row in matched if isinstance(row.get("due_at"), str)
     )
@@ -123,6 +133,20 @@ def _outreach_status(self: Any) -> Mapping[str, Any]:
     refs = sorted(
         row.get("id") for row in matched if isinstance(row.get("id"), str)
     )
+    ready_for_player = any(
+        row.get("status") == "overdue"
+        and row.get("subject_ref") == player_id
+        and isinstance(row.get("target_ref"), str)
+        for row in matched
+    )
+    review_owners = sorted(
+        {
+            row.get("subject_ref")
+            for row in matched
+            if row.get("status") == "overdue" and isinstance(row.get("subject_ref"), str)
+        }
+    )
+    review_owner = review_owners[0] if len(review_owners) == 1 else None
     status = "review_ready" if ready else ("active" if active else "settled")
     return {
         "status": status,
@@ -132,6 +156,16 @@ def _outreach_status(self: Any) -> Mapping[str, Any]:
         "review_at": due[0] if due else None,
         "pending_source_pool_refs": active[:32],
         "review_ready_source_pool_refs": ready[:32],
+        "completed_source_pool_refs": completed[:32],
+        "player_review_required": ready_for_player,
+        "review_owner_ref": review_owner,
+        "next_command_type": "institution_intake_resolution" if ready_for_player else None,
+        "next_action": (
+            "Review a mature source pool and choose whether to intake a voluntary applicant batch; "
+            "successful intake consumes that source pool's outreach window."
+            if ready_for_player
+            else None
+        ),
     }
 
 
@@ -161,7 +195,7 @@ def install_player_house_status_projection() -> None:
             return result
 
         house_status = _house_roster_status(self)
-        outreach_status = _outreach_status(self)
+        outreach_status = _outreach_status(self, player_id)
         enriched_houses = []
         for row in houses:
             if not isinstance(row, Mapping):

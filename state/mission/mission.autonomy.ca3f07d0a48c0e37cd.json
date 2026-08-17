@@ -12,7 +12,7 @@
   "deadline_at": null,
   "next_due_at": null,
   "operation_ref": "operation.autonomy.7ecf7f33da6bc07cb442",
-  "closed_at": null,
+  "closed_at": "SE-0061-07-23T07:00:00",
   "briefing": {
     "briefing_id": "briefing.autonomy.ca3f07d0a48c0e37cd",
     "objective_kind": "intercept",
@@ -36,7 +36,7 @@
     "depart_by": null,
     "completion_condition": "Intercept or document one materially supported smuggling movement without fabricating contraband or offenders."
   },
-  "state": "active",
+  "state": "succeeded",
   "participant_refs": [
     "support.border.kazuo_murata"
   ],
@@ -46,12 +46,18 @@
       "kind": "intercept",
       "required": true,
       "dependencies": [],
-      "status": "in_progress",
-      "progress_milli": 100,
-      "resolution_ref": null
+      "status": "succeeded",
+      "progress_milli": 1000,
+      "resolution_ref": "event.autonomous_mission_succeeded.49d1f44ee79d41875cef9bb7"
     }
   ],
   "settlement_terms": [],
   "terminal_reason_ref": null,
-  "settlement": null
+  "settlement": {
+    "mission_id": "mission.autonomy.ca3f07d0a48c0e37cd",
+    "outcome": "succeeded",
+    "settlement_token": "autonomy.1d9f58a7d1ebf0c924e7",
+    "reward_term_ids": [],
+    "cost_term_ids": []
+  }
 }

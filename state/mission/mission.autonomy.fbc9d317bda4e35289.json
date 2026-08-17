@@ -1,0 +1,55 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.fbc9d317bda4e35289",
+  "issuer_ref": "faction.oto_research_cells",
+  "authority_ref": "canon_orochimaru",
+  "mission_rank": "B",
+  "funding_holder_ref": "treasury.oto",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-23T07:00:00",
+  "authorized_at": "SE-0061-07-23T07:00:00",
+  "starts_at": "SE-0061-07-23T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.3abc0b4618f46ab7c436",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.fbc9d317bda4e35289",
+    "objective_kind": "capture",
+    "subject_kind": "person",
+    "subject_ref": "canon_kimimaro",
+    "subject_label": "canon_kimimaro",
+    "report_place_ref": "place.oto.hidden_laboratory",
+    "origin_place_ref": "place.oto.hidden_laboratory",
+    "destination_place_ref": null,
+    "route_id": null,
+    "threat_summary": "Declared opposing actor(s): faction.konoha_anbu. Their current location, intent, and strength remain unknown unless separately evidenced.",
+    "threat_source_ref": "faction.konoha_anbu",
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-23T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Acquire a mechanically conserved subject/material for a defined research project, or persist failure/casualties."
+  },
+  "state": "active",
+  "participant_refs": [
+    "canon_kabuto",
+    "canon_orochimaru"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.fbc9d317bda4e35289",
+      "kind": "capture",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

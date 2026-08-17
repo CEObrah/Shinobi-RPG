@@ -6,9 +6,9 @@
   "owner_ref": "faction.fire_daimyo_liaison",
   "authority_ref": "support.daimyo.noboru_shimizu",
   "opened_at": "SE-0061-07-09T07:00:00",
-  "next_due_at": "SE-0061-07-23T07:00:00",
-  "closed_at": null,
-  "status": "active",
+  "next_due_at": null,
+  "closed_at": "SE-0061-07-23T07:00:00",
+  "status": "succeeded",
   "archetype_ref": null,
   "subject_kind": "place",
   "subject_ref": "place.fire.western.border",
@@ -25,16 +25,30 @@
   "mission_refs": [],
   "project_refs": [],
   "case_refs": [],
-  "evidence_refs": [],
-  "claim_refs": [],
-  "delivery_refs": [],
+  "evidence_refs": [
+    "event.institutional_operation_completed.54f134593ba147fdb958ba72",
+    "event.institutional_operation_evidence_generated.9f8eeb8fe1b13037edcb865d"
+  ],
+  "claim_refs": [
+    "claim.operation.81a0b69b0e35c17c879e"
+  ],
+  "delivery_refs": [
+    "delivery.autonomy.f326aa23502149245afa80a0"
+  ],
   "report_recipient_refs": [
     "support.daimyo.noboru_shimizu",
     "faction.fire_border_authority"
   ],
-  "progress_milli": 250,
+  "progress_milli": 1000,
   "success_condition": "Resolve one jurisdictional or resourcing issue affecting a border authority without inventing legal consent.",
   "failure_condition": "The border_coordination objective becomes impossible, compromised, or materially incomplete.",
   "classification": "restricted",
-  "result_refs": []
+  "result_refs": [
+    "claim.operation.81a0b69b0e35c17c879e",
+    "delivery.autonomy.f326aa23502149245afa80a0",
+    "event.diplomacy_record_incident.63a7239e9af9b22305bbf6b8",
+    "event.institutional_operation_completed.54f134593ba147fdb958ba72",
+    "event.institutional_operation_evidence_generated.9f8eeb8fe1b13037edcb865d",
+    "incident.autonomy.1fc5138ec63794b31ff4"
+  ]
 }

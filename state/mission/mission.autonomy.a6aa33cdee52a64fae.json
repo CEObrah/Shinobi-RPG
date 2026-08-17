@@ -1,0 +1,54 @@
+{
+  "schema": "mission-runtime",
+  "mission_id": "mission.autonomy.a6aa33cdee52a64fae",
+  "issuer_ref": "faction.bounty_broker_network",
+  "authority_ref": "support.bounty.goro_kaneda",
+  "mission_rank": "B",
+  "funding_holder_ref": "economy.contractors",
+  "escrow_holder_ref": null,
+  "opened_at": "SE-0061-07-23T07:00:00",
+  "authorized_at": "SE-0061-07-23T07:00:00",
+  "starts_at": "SE-0061-07-23T07:00:00",
+  "deadline_at": null,
+  "next_due_at": null,
+  "operation_ref": "operation.autonomy.8b46695f61c85847d237",
+  "closed_at": null,
+  "briefing": {
+    "briefing_id": "briefing.autonomy.a6aa33cdee52a64fae",
+    "objective_kind": "investigate",
+    "subject_kind": "person",
+    "subject_ref": "canon_kisame",
+    "subject_label": "canon_kisame",
+    "report_place_ref": "place.fire.northern.border",
+    "origin_place_ref": "place.fire.northern.border",
+    "destination_place_ref": null,
+    "route_id": "route_fire_northeast_yuga",
+    "threat_summary": "No specific opposing actor is established by this assignment; verify threats from evidence rather than assumption.",
+    "threat_source_ref": null,
+    "intelligence_constraints": [
+      "The selected operating area is not proof of the subject's current location.",
+      "Treat only persisted claims, observations, and evidence as known facts."
+    ],
+    "report_at": "SE-0061-07-23T07:00:00",
+    "depart_by": null,
+    "completion_condition": "Acquire a bounded sourced lead useful to a hunter without inventing the target current location."
+  },
+  "state": "active",
+  "participant_refs": [
+    "support.bounty.goro_kaneda"
+  ],
+  "objectives": [
+    {
+      "objective_id": "objective.a6aa33cdee52a64fae",
+      "kind": "investigate",
+      "required": true,
+      "dependencies": [],
+      "status": "in_progress",
+      "progress_milli": 100,
+      "resolution_ref": null
+    }
+  ],
+  "settlement_terms": [],
+  "terminal_reason_ref": null,
+  "settlement": null
+}

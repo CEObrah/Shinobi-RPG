@@ -115,15 +115,16 @@
       "material_costs": {
         "item_evidence_kit": 1
       },
-      "status": "active",
+      "status": "succeeded",
       "hypothesis": "Resolve claim_analysis through persisted evidence and conserved materials.",
       "opened_at": "SE-0061-07-16T07:00:00",
-      "last_advanced_at": "SE-0061-07-16T07:00:00",
-      "next_due_at": "SE-0061-07-23T07:00:00",
-      "progress_milli": 500,
+      "last_advanced_at": "SE-0061-07-23T07:00:00",
+      "next_due_at": null,
+      "progress_milli": 1000,
       "risk_milli": 100,
       "result_claim_refs": [],
       "evidence_refs": [
+        "event.institutional_operation_evidence_generated.044f5376adc5dcfa8cf7db8d",
         "event.institutional_operation_evidence_generated.d2ac3c04e5c18fc13d5c03b8"
       ],
       "classification": "secret",
@@ -160,6 +161,40 @@
         "event.institutional_operation_evidence_generated.2100ac2f1d462b72cf2899b3"
       ],
       "classification": "secret",
+      "candidate_kind": null,
+      "candidate_ref": null,
+      "prototype_status": "none",
+      "prototype_next_test_at": null,
+      "prototype_test_refs": [],
+      "successful_test_count": 0,
+      "failed_test_count": 0,
+      "approved_at": null
+    },
+    "research.autonomy.2ea6d885afd939d34e18": {
+      "id": "research.autonomy.2ea6d885afd939d34e18",
+      "institution_ref": "faction.suna_puppet_corps",
+      "lead_ref": "canon_chiyo",
+      "place_ref": "place.suna.command",
+      "project_kind": "poison",
+      "subject_ref": "item_basic_antidote",
+      "custody_ref": null,
+      "stock_ref": "stock.force_suna_shinobi",
+      "material_costs": {
+        "item_basic_antidote": 8,
+        "item_field_medical_kit": 1
+      },
+      "status": "active",
+      "hypothesis": "Resolve poison_antidote_readiness through persisted evidence and conserved materials.",
+      "opened_at": "SE-0061-07-23T07:00:00",
+      "last_advanced_at": "SE-0061-07-23T07:00:00",
+      "next_due_at": "SE-0061-07-30T07:00:00",
+      "progress_milli": 250,
+      "risk_milli": 600,
+      "result_claim_refs": [],
+      "evidence_refs": [
+        "event.institutional_operation_evidence_generated.d9131f0ca89bf4c5d909ea4a"
+      ],
+      "classification": "restricted",
       "candidate_kind": null,
       "candidate_ref": null,
       "prototype_status": "none",

@@ -3,7 +3,8 @@
 This module does not create a second activity authority. It derives one small
 turn-continuity hint from already-authoritative scene, examination, check-in,
 report, and time-continuation state so a fresh ChatGPT session can distinguish
-a real player decision from an obvious procedural continuation.
+a protected player decision, a player-facing interrupt, and an obvious
+procedural continuation.
 """
 from __future__ import annotations
 
@@ -20,25 +21,6 @@ def _texts(value: object) -> list[str]:
     if not isinstance(value, list):
         return []
     return [item for item in value if isinstance(item, str) and item]
-
-
-def _resume_fields(scene: Mapping[str, Any]) -> dict[str, Any]:
-    narrative = scene.get("narrative")
-    result: dict[str, Any] = {}
-    if isinstance(narrative, Mapping):
-        last_major = _text(narrative.get("last_major_choice"))
-        last_scene = _text(narrative.get("last_scene_summary"))
-        scene_type = _text(narrative.get("current_scene_type"))
-        if last_major is not None:
-            result["last_major_choice_summary"] = last_major
-        if last_scene is not None:
-            result["last_scene_summary"] = last_scene
-        if scene_type is not None:
-            result["scene_type"] = scene_type
-    summary = _text(scene.get("scene_summary"))
-    if summary is not None:
-        result["current_scene_summary"] = summary
-    return result
 
 
 def _exam_actionable(row: Mapping[str, Any]) -> tuple[str, str] | None:
@@ -75,6 +57,7 @@ def _exam_activity(handoffs: object) -> tuple[dict[str, Any] | None, dict[str, A
                 "kind": "promotion_exam",
                 "status": "requires_player_decision",
                 "requires_player_decision": True,
+                "interrupts_continuation": True,
                 "continue_without_player": False,
                 "current_stage": stage,
                 "phase": phase,
@@ -91,6 +74,7 @@ def _exam_activity(handoffs: object) -> tuple[dict[str, Any] | None, dict[str, A
                 "kind": "promotion_exam",
                 "status": "standing_wait",
                 "requires_player_decision": False,
+                "interrupts_continuation": False,
                 "continue_without_player": True,
                 "phase": phase,
                 "cycle_id": cycle_id,
@@ -119,6 +103,7 @@ def _time_continuation(scene: Mapping[str, Any]) -> dict[str, Any] | None:
         "kind": "time_continuation",
         "status": "procedural_continuation",
         "requires_player_decision": False,
+        "interrupts_continuation": False,
         "continue_without_player": True,
         "reason": "A previously declared time horizon still has bounded causal work remaining.",
     }
@@ -132,25 +117,25 @@ def derive_activity_handoff(scene: Mapping[str, Any]) -> dict[str, Any]:
 
     ``continue_without_player`` is a continuation cue, not standing permission to
     invent a new objective. A caller may use it only while carrying an already
-    declared ``continue``/wait/procedural purpose; it never authorizes a protected
-    Wei decision.
+    declared ``continue``/wait/procedural purpose. ``interrupts_continuation``
+    means the event must be staged before any further automatic continuation;
+    it does not by itself create a protected Wei decision.
     """
 
-    resume = _resume_fields(scene)
     decision = _text(scene.get("decision_required"))
     if decision is not None:
         return {
-            **resume,
             "kind": "protected_decision",
             "status": "requires_player_decision",
             "requires_player_decision": True,
+            "interrupts_continuation": True,
             "continue_without_player": False,
             "reason": decision,
         }
 
     exam_actionable, exam_waiting = _exam_activity(scene.get("promotion_exam_handoffs"))
     if exam_actionable is not None:
-        return {**resume, **exam_actionable}
+        return exam_actionable
 
     checkins = scene.get("team_checkin_handoffs")
     if isinstance(checkins, list):
@@ -167,14 +152,14 @@ def derive_activity_handoff(scene: Mapping[str, Any]) -> dict[str, Any]:
                 if value is not None
             ][:_MAX_SOURCE_REFS]
             result: dict[str, Any] = {
-                **resume,
                 "kind": "team_checkin",
-                "status": "requires_player_decision",
-                "requires_player_decision": True,
+                "status": "player_facing_event",
+                "requires_player_decision": False,
+                "interrupts_continuation": True,
                 "continue_without_player": False,
                 "pending_count": len(visible),
                 "source_refs": source_refs,
-                "reason": "A player-led team has a durable unhandled check-in ready for Wei.",
+                "reason": "A player-led team has a durable unhandled check-in ready to be staged for Wei.",
             }
             topics = _texts(first.get("topic_cues"))[:3]
             if topics:
@@ -186,30 +171,30 @@ def derive_activity_handoff(scene: Mapping[str, Any]) -> dict[str, Any]:
         reports = _texts(narrative.get("available_reports"))
         if reports:
             return {
-                **resume,
                 "kind": "report_handoff",
-                "status": "requires_player_decision",
-                "requires_player_decision": True,
+                "status": "player_facing_event",
+                "requires_player_decision": False,
+                "interrupts_continuation": True,
                 "continue_without_player": False,
                 "pending_count": len(reports),
-                "reason": "A newly available player-visible report is waiting for review or handling.",
+                "reason": "A newly available player-visible report must be presented before further automatic continuation.",
             }
 
     continuation = _time_continuation(scene)
     if continuation is not None:
-        return {**resume, **continuation}
+        return continuation
 
     if exam_waiting is not None:
-        return {**resume, **exam_waiting}
+        return exam_waiting
 
     return {
-        **resume,
         "kind": "scene",
         "status": "scene_open",
         "requires_player_decision": False,
+        "interrupts_continuation": False,
         "continue_without_player": False,
         "reason": (
-            "No protected decision or authoritative automatic continuation is currently projected; "
+            "No protected decision, player-facing interrupt, or authoritative automatic continuation is currently projected; "
             "use the live scene and the player's declared intent to decide whether the scene naturally continues."
         ),
     }

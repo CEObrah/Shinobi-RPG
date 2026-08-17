@@ -37,6 +37,11 @@
         "information_report",
         "mission_generate"
       ],
+      "crisis_action_cycle": [
+        "formation_expand",
+        "mission_generate",
+        "information_report"
+      ],
       "player_visibility": "knowledge_only",
       "canon_forcing": false,
       "event_sources": [
@@ -73,6 +78,19 @@
           "actor_refs": [],
           "material_ref_prefixes": [],
           "role": "source"
+        },
+        {
+          "event_kinds": [
+            "promotion_exam_cycle_phase_changed"
+          ],
+          "host_refs": [
+            "institution.konoha.academy"
+          ],
+          "actor_refs": [],
+          "material_ref_prefixes": [
+            "promotion_exam_cycle.promotion_exam.konoha.chunin."
+          ],
+          "role": "context"
         }
       ]
     },

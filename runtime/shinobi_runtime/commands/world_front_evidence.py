@@ -43,6 +43,8 @@ def _record_evidence(
 ) -> Optional[Mapping[str, Any]]:
     event_id=event.get("id")
     if not isinstance(event_id,str): return None
+    if role not in ("source","opposition","context"):
+        raise CommandRejectedError("world_front_policy_invalid")
     evidence=pressure.get("evidence_refs"); actors=pressure.get("actors"); opposition=pressure.get("opposition")
     chronology=pressure.get("chronology"); source_refs=pressure.get("source_refs"); resources=pressure.get("resources")
     if not all(isinstance(value,list) for value in (evidence,actors,opposition,chronology,source_refs,resources)):
@@ -54,9 +56,15 @@ def _record_evidence(
     if role=="source":
         _add(source_refs,source_anchor)
         for ref in event_actors:_add(actors,ref)
-    else:
+    elif role=="opposition":
         _add(opposition,source_anchor)
         for ref in event_actors:_add(opposition,ref)
+    else:
+        # Context is a causal opportunity, deadline, venue, or other external
+        # condition. It advances pressure because the event materially changes
+        # the front's environment, but it does not turn the contextual host or
+        # its actors into members of either side.
+        _add(source_refs,source_anchor)
     provenance=event.get("provenance") if isinstance(event.get("provenance"),Mapping) else {}
     for ref in provenance.get("source_refs",[]) if isinstance(provenance.get("source_refs"),list) else []:
         _add(source_refs,ref)

@@ -28,7 +28,7 @@ def test_event_snapshot_preserves_topics_ownership_and_observable_contact_mode()
             "Team Fujin",
             ["latest mission lessons, delegated ownership, and follow-through"],
             ownership_cues=["team_can_own_follow_through"],
-            contact_mode="direct_trusted_professional",
+            contact_mode="direct_concise",
         ),
     ]
     event = {
@@ -55,5 +55,5 @@ def test_event_snapshot_preserves_topics_ownership_and_observable_contact_mode()
         "latest mission lessons, delegated ownership, and follow-through"
     ]
     assert projected["ownership_cues"] == ["team_can_own_follow_through"]
-    assert projected["contact_mode"] == "direct_trusted_professional"
+    assert projected["contact_mode"] == "direct_concise"
     assert projected["snapshot_basis"] == "event_snapshot"

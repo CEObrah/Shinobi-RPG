@@ -4671,6 +4671,263 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_cycle_phase_changed.7cd7f25f52b5b257ca6a563f",
+      "kind": "promotion_exam_cycle_phase_changed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-08-05T07:29:58",
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "institution.konoha.academy"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "phase:qualification",
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_hiruzen",
+          "institution.konoha.academy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_pacing",
+        "transaction_ref": "tx.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22",
+        "receipt_refs": [
+          "receipt.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_npc_stage_evaluated.57228e54c50f3f52c92fea03",
+      "kind": "promotion_exam_npc_stage_evaluated",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-08-05T07:29:58",
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+      ],
+      "actor_refs": [],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/shinobi-career-pipeline.json"
+      ],
+      "material_consequence_refs": [
+        "npc_evaluation_count:39"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_integrity",
+        "transaction_ref": "tx.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22",
+        "receipt_refs": [
+          "receipt.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
+    },
+    {
+      "id": "event.promotion_exam_hosted_delegations_arrived.2b3c9c8ecc1698c213f71941",
+      "kind": "promotion_exam_hosted_delegations_arrived",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-08-05T07:29:58",
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [
+        "place.konoha"
+      ],
+      "actor_refs": [
+        "canon_dosu",
+        "canon_fu_takigakure",
+        "canon_gaara",
+        "canon_kankuro",
+        "canon_karui",
+        "canon_kin",
+        "canon_kurotsuchi",
+        "canon_omoi",
+        "canon_temari",
+        "canon_zaku",
+        "char.exam_ame_5c6ecc20e645",
+        "char.exam_ame_8c98d0ca3b7f",
+        "char.exam_ame_d14773260c03",
+        "char.exam_iwa_dcedf59e5a96",
+        "char.exam_iwa_ffc1fd1c70e2",
+        "char.exam_kiri_68ec021a1b8d",
+        "char.exam_kiri_9e5359732335",
+        "char.exam_kiri_a510aa50142a",
+        "char.exam_kumo_ca8b5b56581a",
+        "char.exam_kusa_10356c960c5d",
+        "char.exam_kusa_74ed3730489c",
+        "char.exam_kusa_83fbc73acdf4",
+        "char.exam_taki_23abc17d55e4",
+        "char.exam_taki_d313752a1e1a",
+        "char.exam_yuga_4314964a0166",
+        "char.exam_yuga_7c4714fe5e7c",
+        "char.exam_yuga_9a87c8608b04"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/dosu.json",
+        "state/char/exam-ame-5c6ecc20e645.json",
+        "state/char/exam-ame-8c98d0ca3b7f.json",
+        "state/char/exam-ame-d14773260c03.json",
+        "state/char/exam-iwa-dcedf59e5a96.json",
+        "state/char/exam-iwa-ffc1fd1c70e2.json",
+        "state/char/exam-kiri-68ec021a1b8d.json",
+        "state/char/exam-kiri-9e5359732335.json",
+        "state/char/exam-kiri-a510aa50142a.json",
+        "state/char/exam-kumo-ca8b5b56581a.json",
+        "state/char/exam-kusa-10356c960c5d.json",
+        "state/char/exam-kusa-74ed3730489c.json",
+        "state/char/exam-kusa-83fbc73acdf4.json",
+        "state/char/exam-taki-23abc17d55e4.json",
+        "state/char/exam-taki-d313752a1e1a.json",
+        "state/char/exam-yuga-4314964a0166.json",
+        "state/char/exam-yuga-7c4714fe5e7c.json",
+        "state/char/exam-yuga-9a87c8608b04.json",
+        "state/char/fu-takigakure.json",
+        "state/char/gaara.json",
+        "state/char/kankuro.json",
+        "state/char/karui.json",
+        "state/char/kin.json",
+        "state/char/kurotsuchi.json",
+        "state/char/omoi.json",
+        "state/char/temari.json",
+        "state/char/zaku.json"
+      ],
+      "material_consequence_refs": [
+        "hosted_exam_arrival:canon_dosu:place.konoha:SE-0061-07-29T07:29:58",
+        "hosted_exam_arrival:canon_fu_takigakure:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:canon_gaara:place.konoha:SE-0061-07-30T07:29:58",
+        "hosted_exam_arrival:canon_kankuro:place.konoha:SE-0061-07-30T07:29:58",
+        "hosted_exam_arrival:canon_karui:place.konoha:SE-0061-08-02T07:29:58",
+        "hosted_exam_arrival:canon_kin:place.konoha:SE-0061-07-29T07:29:58",
+        "hosted_exam_arrival:canon_kurotsuchi:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:canon_omoi:place.konoha:SE-0061-08-02T07:29:58",
+        "hosted_exam_arrival:canon_temari:place.konoha:SE-0061-07-30T07:29:58",
+        "hosted_exam_arrival:canon_zaku:place.konoha:SE-0061-07-29T07:29:58",
+        "hosted_exam_arrival:char.exam_ame_5c6ecc20e645:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_ame_8c98d0ca3b7f:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_ame_d14773260c03:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_iwa_dcedf59e5a96:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:char.exam_iwa_ffc1fd1c70e2:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:char.exam_kiri_68ec021a1b8d:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:char.exam_kiri_9e5359732335:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:char.exam_kiri_a510aa50142a:place.konoha:SE-0061-08-01T07:29:58",
+        "hosted_exam_arrival:char.exam_kumo_ca8b5b56581a:place.konoha:SE-0061-08-02T07:29:58",
+        "hosted_exam_arrival:char.exam_kusa_10356c960c5d:place.konoha:SE-0061-07-27T07:29:58",
+        "hosted_exam_arrival:char.exam_kusa_74ed3730489c:place.konoha:SE-0061-07-27T07:29:58",
+        "hosted_exam_arrival:char.exam_kusa_83fbc73acdf4:place.konoha:SE-0061-07-27T07:29:58",
+        "hosted_exam_arrival:char.exam_taki_23abc17d55e4:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_taki_d313752a1e1a:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_yuga_4314964a0166:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_yuga_7c4714fe5e7c:place.konoha:SE-0061-07-28T07:29:58",
+        "hosted_exam_arrival:char.exam_yuga_9a87c8608b04:place.konoha:SE-0061-07-28T07:29:58"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "canon_dosu",
+          "canon_fu_takigakure",
+          "canon_gaara",
+          "canon_kankuro",
+          "canon_karui",
+          "canon_kin",
+          "canon_kurotsuchi",
+          "canon_omoi",
+          "canon_temari",
+          "canon_zaku",
+          "char.exam_ame_5c6ecc20e645",
+          "char.exam_ame_8c98d0ca3b7f",
+          "char.exam_ame_d14773260c03",
+          "char.exam_iwa_dcedf59e5a96",
+          "char.exam_iwa_ffc1fd1c70e2",
+          "char.exam_kiri_68ec021a1b8d",
+          "char.exam_kiri_9e5359732335",
+          "char.exam_kiri_a510aa50142a",
+          "char.exam_kumo_ca8b5b56581a",
+          "char.exam_kusa_10356c960c5d",
+          "char.exam_kusa_74ed3730489c",
+          "char.exam_kusa_83fbc73acdf4",
+          "char.exam_taki_23abc17d55e4",
+          "char.exam_taki_d313752a1e1a",
+          "char.exam_yuga_4314964a0166",
+          "char.exam_yuga_7c4714fe5e7c",
+          "char.exam_yuga_9a87c8608b04"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "place.konoha"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.promotion_exam_hosted_lifecycle",
+        "transaction_ref": "tx.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22",
+        "receipt_refs": [
+          "receipt.gameplay.ac41fe62812d24b4ca7ab9d571e8f0b27362101e0fd8349525d0682589036e22"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

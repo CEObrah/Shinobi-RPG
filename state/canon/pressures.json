@@ -257,7 +257,7 @@
         "canon_hayate",
         "canon_yugao"
       ],
-      "current_step": "institution_priority_review:event.institutional_operation_queued.a4856aed4e4e297666452f6c",
+      "current_step": "promotion_exam_cycle_phase_changed:event.promotion_exam_cycle_phase_changed.7cd7f25f52b5b257ca6a563f",
       "next_boundary": {
         "host_ref": "host.canon_pressure.pressure_oto_konoha_infiltration",
         "settled_through": "SE-0061-07-30T07:00:00",
@@ -267,7 +267,8 @@
       "source_refs": [
         "faction.oto_research_cells",
         "canon_orochimaru",
-        "canon_hiruzen"
+        "canon_hiruzen",
+        "institution.konoha.academy"
       ],
       "evidence_refs": [
         "event.formation_created.45ce61e684bc0ad7982a669c",
@@ -283,7 +284,8 @@
         "event.autonomous_mission_started.c83b6795c87aae9eed818976",
         "event.formation_created.3133e50b039010f3df40ea5f",
         "event.autonomous_information_report.edeaa683364684743f1f3b13",
-        "event.institutional_operation_queued.a4856aed4e4e297666452f6c"
+        "event.institutional_operation_queued.a4856aed4e4e297666452f6c",
+        "event.promotion_exam_cycle_phase_changed.7cd7f25f52b5b257ca6a563f"
       ],
       "visibility": {
         "classification": "hidden",
@@ -446,6 +448,17 @@
           "source_refs": [
             "event.formation_created.3133e50b039010f3df40ea5f",
             "faction.konoha_anbu"
+          ]
+        },
+        {
+          "entry_id": "front_history.oto_konoha_infiltration.69d95cd4b707f9a0296c",
+          "at": "SE-0061-08-05T07:29:58",
+          "kind": "committed_domain_evidence",
+          "status_before": "active_hidden",
+          "status_after": "active_hidden",
+          "source_refs": [
+            "event.promotion_exam_cycle_phase_changed.7cd7f25f52b5b257ca6a563f",
+            "institution.konoha.academy"
           ]
         }
       ]

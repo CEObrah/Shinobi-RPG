@@ -51,7 +51,6 @@ def test_compact_play_context_removes_rehydratable_bulk_and_stays_in_wire_budget
                     "phase": "field_evaluation",
                     "public_stage_results": {
                         "qualification": public_rows[:42],
-                        "field_evaluation": public_rows[42:],
                     },
                     "public_stage_result_summaries": {
                         "qualification": {"candidate_count": 42, "pass_count": 29, "fail_count": 13},

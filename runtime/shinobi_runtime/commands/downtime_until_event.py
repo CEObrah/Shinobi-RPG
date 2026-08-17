@@ -23,16 +23,56 @@ _INSTALLED = False
 _COMMAND = "advance_until_event"
 _PROCEDURE_COMMAND = "procedure_time_resolution"
 _PROCEDURE_RULES = "game/data/mechanics/procedure-time.json"
+_CUE_REF_KEYS = (
+    "event_id",
+    "delivery_id",
+    "report_ref",
+    "mission_id",
+    "mission_ref",
+    "team_ref",
+    "cycle_id",
+    "pressure_ref",
+    "commitment_ref",
+    "checkin_ref",
+    "source_event_ref",
+)
 
 
-def _player_facing_event(result: Mapping[str, Any]) -> bool:
+def _bounded_event_cue(kind: str, row: Mapping[str, Any]) -> dict[str, Any]:
+    refs: list[str] = []
+    for key in _CUE_REF_KEYS:
+        value = row.get(key)
+        if isinstance(value, str) and value and value not in refs:
+            refs.append(value)
+        if len(refs) >= 6:
+            break
+    cue: dict[str, Any] = {"kind": kind, "source_refs": refs}
+    actor_ref = row.get("contact_actor_ref")
+    if isinstance(actor_ref, str) and actor_ref:
+        cue["contact_actor_ref"] = actor_ref
+    return cue
+
+
+def _player_facing_event_cue(result: Mapping[str, Any]) -> dict[str, Any] | None:
+    """Return one bounded player-safe cue for the first soft event in result order."""
+
     explicit = result.get("player_facing_events")
-    if isinstance(explicit, list) and any(isinstance(row, Mapping) for row in explicit):
-        return True
+    if isinstance(explicit, list):
+        for row in explicit:
+            if isinstance(row, Mapping):
+                kind = row.get("kind")
+                return _bounded_event_cue(
+                    kind if isinstance(kind, str) and kind else "player_facing_event",
+                    row,
+                )
 
     updates = result.get("world_front_updates")
-    if isinstance(updates, list) and updates:
-        return True
+    if isinstance(updates, list):
+        for row in updates:
+            if isinstance(row, Mapping):
+                return _bounded_event_cue("world_front_update", row)
+            if isinstance(row, str) and row:
+                return {"kind": "world_front_update", "source_refs": [row]}
 
     actions = result.get("autonomous_actions")
     if isinstance(actions, list):
@@ -40,20 +80,26 @@ def _player_facing_event(result: Mapping[str, Any]) -> bool:
             if not isinstance(action, Mapping):
                 continue
             if action.get("kind") == "player_mission_offer" and action.get("skipped") is None:
-                return True
-            if isinstance(action.get("promotion_exam_cycle"), Mapping):
-                return True
+                return _bounded_event_cue("player_mission_offer", action)
+            cycle = action.get("promotion_exam_cycle")
+            if isinstance(cycle, Mapping):
+                return _bounded_event_cue("promotion_exam_cycle", cycle)
             deliveries = action.get("player_report_deliveries")
-            if isinstance(deliveries, list) and any(isinstance(row, Mapping) for row in deliveries):
-                return True
+            if isinstance(deliveries, list):
+                for delivery in deliveries:
+                    if isinstance(delivery, Mapping):
+                        return _bounded_event_cue("player_report_delivery", delivery)
 
     reviews = result.get("team_reviews")
-    if isinstance(reviews, list) and any(
-        isinstance(row, Mapping) and row.get("kind") == "player_led_team_checkin"
-        for row in reviews
-    ):
-        return True
-    return False
+    if isinstance(reviews, list):
+        for row in reviews:
+            if isinstance(row, Mapping) and row.get("kind") == "player_led_team_checkin":
+                return _bounded_event_cue("player_led_team_checkin", row)
+    return None
+
+
+def _player_facing_event(result: Mapping[str, Any]) -> bool:
+    return _player_facing_event_cue(result) is not None
 
 
 def _staged_player_facing_event(plan: _BuiltPlan, scene_path: str) -> bool:
@@ -162,8 +208,9 @@ def _advance_until_event(
 
     scene_path = getattr(self, "scene_path", "state/scene.json")
     staged_scene_event = _staged_player_facing_event(base, scene_path)
+    event_cue = _player_facing_event_cue(result)
     stop_kind = _stop_kind(result, staged_scene_event=staged_scene_event)
-    result["advance_until_event"] = {
+    boundary_result: dict[str, Any] = {
         "requested_target": str(requested),
         "boundary_target": str(target),
         "stop_kind": stop_kind,
@@ -171,6 +218,12 @@ def _advance_until_event(
         "player_facing_event": stop_kind == "player_facing_event",
         "hard_decision": stop_kind == "hard_decision",
     }
+    if stop_kind == "player_facing_event":
+        boundary_result["event_cue"] = event_cue or {
+            "kind": "scene_projection_event",
+            "source_refs": [],
+        }
+    result["advance_until_event"] = boundary_result
     if stop_kind == "internal_boundary" and reached < requested:
         result["continuation_required"] = True
         result["continuation_target"] = str(requested)
@@ -369,6 +422,7 @@ __all__ = [
     "install_downtime_until_event",
     "_meaningful",
     "_player_facing_event",
+    "_player_facing_event_cue",
     "_procedure_rules",
     "_procedure_time_resolution",
     "_register_planner",

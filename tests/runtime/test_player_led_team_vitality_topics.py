@@ -136,7 +136,7 @@ class _RelationshipRepository:
         }
 
 
-def test_relationship_changes_observable_contact_mode_without_exposing_scores() -> None:
+def test_relationship_changes_observable_contact_mode_without_exposing_scores_or_axis_names() -> None:
     edge = {
         "id": "rel.test",
         "source_id": "char.mei_arakawa",
@@ -150,12 +150,14 @@ def test_relationship_changes_observable_contact_mode_without_exposing_scores() 
         "char.mei_arakawa",
         "pc_wei_tang",
     )
-    assert mode == "direct_trusted_professional"
+    assert mode == "direct_concise"
     assert "72" not in mode
     assert "70" not in mode
+    assert "trust" not in mode
+    assert "respect" not in mode
 
 
-def test_saved_tension_takes_priority_over_numeric_relationship_axes() -> None:
+def test_saved_tension_changes_behavior_without_disclosing_the_tension_label() -> None:
     edge = {
         "id": "rel.test",
         "source_id": "char.mei_arakawa",
@@ -164,8 +166,11 @@ def test_saved_tension_takes_priority_over_numeric_relationship_axes() -> None:
         "respect": 90,
         "current_tension": "unresolved_professional_disagreement",
     }
-    assert relationship_contact_mode(
+    mode = relationship_contact_mode(
         _RelationshipRepository(edge),
         "char.mei_arakawa",
         "pc_wei_tang",
-    ) == "tension_aware_professional"
+    )
+    assert mode == "careful_professional"
+    assert "disagreement" not in mode
+    assert "tension" not in mode

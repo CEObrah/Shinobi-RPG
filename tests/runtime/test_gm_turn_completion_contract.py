@@ -28,6 +28,9 @@ def test_standing_wait_and_ooc_detour_are_not_false_turn_endings() -> None:
     assert "does not consume or cancel" in contract["ooc_detour_rule"]
     assert "event-seeking command" in contract["event_seek_rule"]
     assert "arbitrary short advance_time chunks" in contract["event_seek_rule"]
+    assert "scene.activity_handoff" in contract["activity_handoff_rule"]
+    assert "continue_without_player=true" in contract["activity_handoff_rule"]
+    assert "never authorizes a new protected Wei choice" in contract["activity_handoff_rule"]
 
 
 def test_choice_menu_is_not_a_substitute_for_unfinished_continuation() -> None:
@@ -40,6 +43,8 @@ def test_choice_menu_is_not_a_substitute_for_unfinished_continuation() -> None:
     assert "Do not offer `keep waiting`" in choices
     assert "standing wait/declared continuation" in contract["handoff_rule"]
     assert "quiet maintenance/time chunk" in contract["standing_continuation_rule"]
+    assert "delegation" in contract["menu_rule"]
+    assert "cosmetic wording" in contract["menu_rule"]
 
 
 def test_scene_craft_stages_group_results_and_uses_activity_handoff() -> None:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from shinobi_runtime.api import campaign_environment
 from shinobi_runtime.api.player_activity_handoff_projection import derive_activity_handoff
 
 
@@ -17,6 +18,18 @@ def _scene(**updates):
     return value
 
 
+def _completed_exam_handoff() -> dict:
+    return {
+        "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
+        "team_ref": "team.konoha.fujin",
+        "phase": "field_evaluation",
+        "evaluation_open": False,
+        "unevaluated_candidate_refs": [],
+        "next_phase": "finals",
+        "next_phase_at": "SE-0061-08-16T07:29:58",
+    }
+
+
 def test_protected_decision_is_always_a_stop_boundary() -> None:
     handoff = derive_activity_handoff(
         _scene(decision_required="Wei must choose whether to accept the command posting.")
@@ -29,19 +42,7 @@ def test_protected_decision_is_always_a_stop_boundary() -> None:
 
 def test_completed_exam_stage_becomes_standing_wait_not_scene_completion() -> None:
     handoff = derive_activity_handoff(
-        _scene(
-            promotion_exam_handoffs=[
-                {
-                    "cycle_id": "promotion_exam_cycle.promotion_exam.konoha.chunin.0061-07",
-                    "team_ref": "team.konoha.fujin",
-                    "phase": "field_evaluation",
-                    "evaluation_open": False,
-                    "unevaluated_candidate_refs": [],
-                    "next_phase": "finals",
-                    "next_phase_at": "SE-0061-08-16T07:29:58",
-                }
-            ]
-        )
+        _scene(promotion_exam_handoffs=[_completed_exam_handoff()])
     )
 
     assert handoff["kind"] == "promotion_exam"
@@ -119,3 +120,40 @@ def test_fallback_scene_never_invents_an_automatic_continuation() -> None:
     assert handoff["status"] == "scene_open"
     assert handoff["continue_without_player"] is False
     assert handoff["current_scene_summary"] == "Team Fujin has completed its field evaluation."
+
+
+def test_production_context_adds_activity_handoff_before_budget_degradation(monkeypatch) -> None:
+    rich = {
+        "campaign": {
+            "campaign_id": "shinobi-test",
+            "revision": 74,
+            "world_time": "SE-0061-08-07T07:29:58",
+            "state_root": "a" * 64,
+            "player_id": "pc_wei_tang",
+        },
+        "scene": _scene(
+            promotion_exam_handoffs=[_completed_exam_handoff()],
+            optional_bulk=[
+                {"index": index, "values": list(range(20))}
+                for index in range(256)
+            ],
+        ),
+        "player": {},
+        "person_reads": {},
+        "object_reads": {},
+        "commands": {"supported_command_types": []},
+        "narration": {},
+        "context_policy": {},
+    }
+    monkeypatch.setattr(campaign_environment._Base, "play_context", lambda self: rich)
+    operations = campaign_environment.RouteAwareCampaignOperations.__new__(
+        campaign_environment.RouteAwareCampaignOperations
+    )
+
+    projected = operations.play_context()
+
+    assert projected["scene"]["activity_handoff"]["kind"] == "promotion_exam"
+    assert projected["scene"]["activity_handoff"]["continue_without_player"] is True
+    assert projected["scene"]["activity_handoff"]["next_stage"] == "finals"
+    assert "optional_bulk" not in projected["scene"]
+    assert projected["context_policy"]["degraded_projection"] is True

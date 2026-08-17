@@ -40,6 +40,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
     from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
     from shinobi_runtime.commands.campaign_player_training_order_repair import install_campaign_player_training_order_repair
+    from shinobi_runtime.commands.campaign_player_attribute_correction import install_campaign_player_attribute_correction
     from shinobi_runtime.commands.campaign_named_training_exam_repair import install_campaign_named_training_exam_repair
     from shinobi_runtime.commands.campaign_promotion_exam_eligibility_repair import (
         install_campaign_promotion_exam_eligibility_repair,
@@ -111,6 +112,7 @@ def _install_campaign_extensions() -> None:
     install_campaign_mission_boundary_repair()
     install_campaign_family_continuity_repair()
     install_campaign_player_training_order_repair()
+    install_campaign_player_attribute_correction()
     install_campaign_named_training_exam_repair()
     install_campaign_promotion_exam_eligibility_repair()
     install_campaign_promotion_exam_participation_repair()

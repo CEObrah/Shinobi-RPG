@@ -40,6 +40,7 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.campaign_mission_boundary_repair import install_campaign_mission_boundary_repair
     from shinobi_runtime.commands.campaign_family_continuity_repair import install_campaign_family_continuity_repair
     from shinobi_runtime.commands.campaign_player_training_order_repair import install_campaign_player_training_order_repair
+    from shinobi_runtime.commands.campaign_named_training_exam_repair import install_campaign_named_training_exam_repair
     from shinobi_runtime.commands.campaign_promotion_exam_eligibility_repair import (
         install_campaign_promotion_exam_eligibility_repair,
     )
@@ -52,6 +53,8 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.commands.team_checkin_handoffs import install_team_checkin_handoffs
     from shinobi_runtime.commands.institution_review_runtime_guard import install_institution_review_runtime_guard
     from shinobi_runtime.commands.production_population_owner_bridge import install_production_population_owner_bridge
+    from shinobi_runtime.commands.team_training_cursor_reconciliation import install_team_training_cursor_reconciliation
+    from shinobi_runtime.commands.named_service_development import install_named_service_development
     from shinobi_runtime.commands.global_team_training_load import install_global_team_training_load
     from shinobi_runtime.commands.joint_player_team_training import install_joint_player_team_training
     from shinobi_runtime.commands.autonomous_training_error_guard import install_autonomous_training_error_guard
@@ -78,9 +81,6 @@ def _install_campaign_extensions() -> None:
     from shinobi_runtime.api.player_family_projection import install_player_family_projection
     from shinobi_runtime.api.player_training_model_projection import install_player_training_model_projection
 
-    # Install semantic-event multiplicity before any campaign extension can emit
-    # composed time-settlement events. Mission boundary integrity must also be
-    # active before any lifecycle command resynchronizes a mission host.
     install_semantic_event_integrity()
     install_mission_boundary_integrity()
     install_legacy_scheduler_compat()
@@ -111,13 +111,16 @@ def _install_campaign_extensions() -> None:
     install_campaign_mission_boundary_repair()
     install_campaign_family_continuity_repair()
     install_campaign_player_training_order_repair()
+    install_campaign_named_training_exam_repair()
     install_campaign_promotion_exam_eligibility_repair()
     install_campaign_promotion_exam_participation_repair()
     install_campaign_promotion_exam_attendance_repair()
     install_house_recruitment_outreach()
     install_external_house_intake_origin()
     install_joint_player_team_training()
+    install_team_training_cursor_reconciliation()
     install_global_team_training_load()
+    install_named_service_development()
     install_autonomous_training_error_guard()
     install_promotion_exam_integrity()
     install_promotion_exam_pairing()
@@ -125,12 +128,7 @@ def _install_campaign_extensions() -> None:
     install_promotion_exam_attendance()
     install_promotion_exam_hosted_intervillage()
     install_shinobi_career_service_authority()
-    # Central owner-level retention must be installed only after every legacy
-    # career/exam producer has imported its old finite cursor constant.
     install_career_history_retention()
-    # Diagnostic-only guard for unexpected TypeError/ValueError failures anywhere
-    # inside the composed time settlement path. It preserves all normal domain
-    # rejection codes and exposes only a bounded runtime module token.
     install_time_planner_error_guard()
     install_player_global_team_training_projection()
     install_player_house_outreach_projection()

@@ -85,6 +85,28 @@
       ]
     }
   },
+  "named_service_development": {
+    "active_hours_per_month": 24,
+    "historical_hours_per_full_week": 6,
+    "target_cycle": [
+      "operational_skills.team_coordination",
+      "martial_skills.movement",
+      "operational_skills.tactics",
+      "attributes.awareness"
+    ],
+    "eligible_status_tokens": [
+      "genin",
+      "chunin",
+      "jonin",
+      "shinobi",
+      "ninja",
+      "anbu",
+      "kage",
+      "sannin",
+      "missing-nin"
+    ],
+    "rule": "Active exact named shinobi without a lawful exact-team training owner receive bounded service-development opportunities at person-continuity reviews. Exact team training takes precedence. Academy students, civilians, retired or dead characters, and the authenticated player are excluded. Historical debt is never inferred during ordinary play and may only be settled by an explicit guarded repair."
+  },
   "autonomous_scheduling_rule": "Routine team-training volume is a default opportunity, not guaranteed activity. Active missions or team assignments preempt it; the team must be active, members must be healthy and co-located, and a registered non-player instructor must be available. Player characters are never silently trained by an autonomous team review.",
   "promotion": "qualified_subset_transfer only; rank requires institutional/experience gates in addition to capability",
   "batch_equivalence": "batch only while all causal inputs remain unchanged; split at any causal change"

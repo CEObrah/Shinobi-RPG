@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+from types import SimpleNamespace
+
+import pytest
+
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands import campaign_investigation_environment as module
 from shinobi_runtime.commands.campaign_investigation_environment import (
     _adjust_quality,
@@ -9,22 +14,40 @@ from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.sim.events import CampaignTime
 
 
+class _Briefing:
+    def to_record(self):
+        return {
+            "objective_kind": "investigate",
+            "subject_kind": "place",
+            "subject_ref": "place.konoha.training_ground_3",
+        }
+
+
 class _Planner:
     repository = object()
 
+    def __init__(self, *, scene_location="place.konoha.training_ground_3"):
+        self.scene_location = scene_location
+        objective = SimpleNamespace(kind="investigate")
+        self.owner = SimpleNamespace(
+            mission=SimpleNamespace(objective_by_id={"objective.test": objective}),
+            briefing=_Briefing(),
+        )
+
     def _scene_base(self, _current_time):
-        return {"location_id": "place.konoha.training_ground_3"}
+        return {"location_id": self.scene_location}
 
-    def _load(self):
-        return {"profiles": {}}
+    def _investigation_mechanics(self):
+        return {"schema": "investigation-mechanics"}
 
-    def _objective_context(self, mission_ref, objective_id, actor_id, current_time):
+    def _read_mission(self, mission_ref, *, actor_id, current_time):
         assert mission_ref == "mission.test"
-        assert objective_id == "objective.test"
         assert actor_id == "pc_wei_tang"
-        return object(), object(), object()
+        return "state/mission/mission.test.json", self.owner
 
-    def _profile_for_objective(self, mechanics, brief):
+    def _matching_profile(self, mechanics, objective_kind, brief):
+        assert objective_kind == "investigate"
+        assert brief["subject_ref"] == "place.konoha.training_ground_3"
         return "profile.test", {
             "locate_scene": {
                 "skill_paths": ["attributes.awareness", "operational_skills.tracking"]
@@ -40,12 +63,14 @@ class _Planner:
         }
 
 
-def _command(action: str) -> CommandEnvelope:
+def _command(action: str, *, place_ref="place.konoha.training_ground_3") -> CommandEnvelope:
     payload = {
         "action": action,
         "mission_ref": "mission.test",
         "objective_id": "objective.test",
+        "place_ref": place_ref,
         "target_time": "SE-0061-08-07T12:00:00",
+        "participant_refs": ["pc_wei_tang"],
     }
     if action == "examine_scene":
         payload["case_ref"] = "investigation.test"
@@ -123,3 +148,29 @@ def test_examine_scene_applies_only_authored_perimeter_policy(monkeypatch) -> No
         "investigation.examine_scene.witnesses",
         "investigation.examine_scene.synthesis",
     }
+
+
+def test_wrong_scene_or_command_place_is_rejected_before_weather_sampling(monkeypatch) -> None:
+    called = False
+
+    def fake_profile(*_args, **_kwargs):
+        nonlocal called
+        called = True
+        raise AssertionError("weather must not be sampled for a wrong investigation site")
+
+    monkeypatch.setattr(module, "environment_action_profile", fake_profile)
+    with pytest.raises(CommandRejectedError, match="investigation_scene_location_required"):
+        _environment_context(
+            _Planner(scene_location="place.konoha"),
+            _command("locate_scene"),
+            CampaignTime.parse("SE-0061-08-07T08:00:00"),
+        )
+    assert called is False
+
+    with pytest.raises(CommandRejectedError, match="investigation_scene_location_required"):
+        _environment_context(
+            _Planner(),
+            _command("locate_scene", place_ref="place.konoha"),
+            CampaignTime.parse("SE-0061-08-07T08:00:00"),
+        )
+    assert called is False

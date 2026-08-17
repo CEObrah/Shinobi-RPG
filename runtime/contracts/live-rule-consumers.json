@@ -11,9 +11,7 @@
           "symbol": "_house_training_policy"
         }
       ],
-      "tests": [
-        "tests/runtime/test_house_tang_training_envelope.py"
-      ]
+      "tests": ["tests/runtime/test_house_tang_training_envelope.py"]
     },
     {
       "rule_path": "game/data/mechanics/training.json",
@@ -31,6 +29,34 @@
       "tests": [
         "tests/runtime/test_training_autonomy_policy.py",
         "tests/runtime/test_autonomous_team_training_local_assembly.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/procedure-time.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/downtime_until_event.py",
+          "symbol": "_procedure_time_resolution"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_procedure_time_resolution.py",
+        "tests/runtime/test_advance_until_event.py"
+      ]
+    },
+    {
+      "rule_path": "game/data/mechanics/mission-progress.json",
+      "classification": "live",
+      "consumers": [
+        {
+          "path": "runtime/shinobi_runtime/commands/mission_progression.py",
+          "symbol": "_mission_objective_progress_resolution"
+        }
+      ],
+      "tests": [
+        "tests/runtime/test_mission_progression.py",
+        "tests/runtime/test_mission_progression_archive_guard.py"
       ]
     },
     {
@@ -68,9 +94,7 @@
           "symbol": "economy.json"
         }
       ],
-      "tests": [
-        "tests/runtime/test_release_recruitment_progression.py"
-      ]
+      "tests": ["tests/runtime/test_release_recruitment_progression.py"]
     },
     {
       "rule_path": "game/data/mechanics/governance.json",
@@ -99,9 +123,7 @@
           "symbol": "battlefield-operations.json"
         }
       ],
-      "tests": [
-        "tests/runtime/test_operational_battlefield.py"
-      ]
+      "tests": ["tests/runtime/test_operational_battlefield.py"]
     },
     {
       "rule_path": "game/data/mechanics/travel.json",
@@ -130,9 +152,7 @@
           "symbol": "game/data/mechanics/family.json"
         }
       ],
-      "tests": [
-        "tests/runtime/test_family_parentage_template.py"
-      ]
+      "tests": ["tests/runtime/test_family_parentage_template.py"]
     },
     {
       "rule_path": "game/data/mechanics/reputation.json",
@@ -161,9 +181,7 @@
           "symbol": "investigation.json"
         }
       ],
-      "tests": [
-        "tests/runtime/test_campaign_investigation_resolution.py"
-      ]
+      "tests": ["tests/runtime/test_campaign_investigation_resolution.py"]
     },
     {
       "rule_path": "game/data/mechanics/operational-world.json",

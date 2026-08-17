@@ -1,6 +1,6 @@
 {
   "schema": "team-training-participation-policies",
-  "version": 4,
+  "version": 5,
   "policies": {
     "team.konoha.fujin": {
       "enabled": true,
@@ -14,7 +14,9 @@
         "char.zhu",
         "char.linh"
       ],
-      "active_hours_per_week": 34,
+      "active_hours_per_week": 48,
+      "shared_core_active_hours_per_week": 34,
+      "supplemental_individual_active_hours_per_week": 14,
       "training_days_per_cycle": 6,
       "full_training_day_hours": 6,
       "taper_day_hours": 4,
@@ -55,7 +57,7 @@
         "operational_skills.team_coordination",
         "operational_skills.tracking"
       ],
-      "basis": "Team Fujin uses Sword Manor as its standing intensive-development base: five six-active-hour training days, one four-active-hour taper, and one recovery/readiness day. Zhu and Linh own routine instruction. The curriculum deliberately rotates physical fundamentals, chakra control, stealth, fieldcraft, investigation, tactics, coordination and each shinobi's technical strengths rather than farming one favored statistic. Lawful missions, injury, travel, medical restrictions and higher orders preempt the schedule; missed hours are not stacked. Wei's personal credit is settled once through the joint Fujin and Black Hound command block when he is home."
+      "basis": "Team Fujin uses the full sustainable forty-eight-active-hour weekly envelope when duties permit. Thirty-four hours remain the shared core: five six-active-hour blocks plus one four-active-hour taper. The remaining fourteen hours are individualized supervised development selected through the same weakness-strength-balanced assessment so each genin works on personal gaps, role technique or specialist fundamentals rather than adding fourteen more hours of formation drill. One recovery/readiness day remains protected. Zhu and Linh own routine instruction. Lawful missions, injury, travel, medical restrictions, examinations and higher orders preempt the schedule; missed hours are not stacked. Wei's own forty-eight-hour total is global across Fujin and Black Hound and is credited once through the joint command-training owner rather than once per team."
     },
     "team.blackhound": {
       "enabled": true,
@@ -69,7 +71,9 @@
         "char.zhu",
         "char.linh"
       ],
-      "active_hours_per_week": 34,
+      "active_hours_per_week": 48,
+      "shared_core_active_hours_per_week": 34,
+      "supplemental_individual_active_hours_per_week": 14,
       "training_days_per_cycle": 6,
       "full_training_day_hours": 6,
       "taper_day_hours": 4,
@@ -120,23 +124,28 @@
         "team.konoha.fujin",
         "team.blackhound"
       ],
-      "player_joint_active_hours_per_week": 34,
+      "player_joint_active_hours_per_week": 48,
+      "player_joint_shared_core_active_hours_per_week": 34,
+      "player_supplemental_active_hours_per_week": 14,
       "player_joint_target_cycle": [
         "operational_skills.leadership",
         "operational_skills.team_coordination",
+        "operational_skills.investigation",
+        "operational_skills.tracking",
+        "operational_skills.traps",
+        "chakra_dimensions.hand_seal_speed",
+        "chakra_dimensions.sensing",
         "operational_skills.tactics",
-        "attributes.awareness",
         "attributes.composure",
         "chakra_dimensions.multitasking",
-        "chakra_dimensions.control",
+        "martial_skills.stealth",
+        "operational_skills.survival",
         "martial_skills.movement",
         "martial_skills.sword",
         "domain_proficiencies.wind",
-        "martial_skills.stealth",
-        "operational_skills.investigation",
-        "operational_skills.survival"
+        "attributes.awareness"
       ],
-      "basis": "Black Hound uses Sword Manor for the same intensive thirty-four-active-hour weekly cycle as Fujin. Zhu and Linh replace Hayama as routine training instructors; Hayama remains operational deputy and field commander. The autonomous curriculum rotates broad combat, physical, chakra, stealth, fieldcraft and operational competencies while preserving role specialties. When Wei is home and available, his thirty-four active hours are one joint Fujin and Black Hound command-training block, credited once globally and rotated through leadership, coordination, tactics, awareness, composure, chakra multitasking, movement, swordwork, Wind Release, stealth, investigation and survival. When Wei is away, Zhu or Linh continues both teams' routine training without inventing personal credit for him."
+      "basis": "Black Hound uses the full sustainable forty-eight-active-hour weekly envelope when mission tempo permits. Thirty-four hours remain the shared cell core for coordination, investigation, counter-ambush work, stealth, pursuit, containment, capture/extraction and specialist integration. The remaining fourteen hours are individualized supervised specialist development chosen from each member's weakness-aware assessment and role strengths. Hayama remains operational deputy rather than a standing instructor. Zhu and Linh own routine instruction. Wei's forty-eight hours are one global Fujin/Black Hound development envelope credited once, with operational weaknesses prioritized ahead of maintenance work in already-elite sword, movement, Wind Release and awareness lanes. Missions, injury, travel, medical restrictions and higher orders preempt training; missed volume is never stacked."
     }
   }
 }

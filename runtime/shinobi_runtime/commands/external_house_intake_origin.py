@@ -5,7 +5,9 @@ outreach policy inherits its standards but can draw only voluntary civilian and
 support-service applicants from explicitly listed foreign village population
 owners. Accepted people become House Tang personnel, never Konoha shinobi.
 Foreign intake is unavailable until the matching persisted outreach response
-window has matured.
+window has matured. A matured response window is one-shot authority: successful
+intake consumes that outreach commitment so the same campaign cannot be reused
+indefinitely.
 """
 from __future__ import annotations
 
@@ -17,6 +19,7 @@ from typing import Any, Mapping
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.house_recruitment_outreach import _outreach_commitments
+from shinobi_runtime.commands.paths import COMMITMENT_REGISTRY_PATH
 from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest
@@ -85,13 +88,20 @@ class _OutreachRepository:
 
 
 class _OverlayAdapter:
-    def __init__(self, overlay: StagedOverlay, overrides: Mapping[str, Any]):
+    def __init__(
+        self,
+        overlay: StagedOverlay,
+        overrides: Mapping[str, Any],
+        *,
+        changed_paths: tuple[str, ...] | None = None,
+    ):
         self._overlay = overlay
         self._overrides = overrides
+        self._changed_paths = changed_paths
 
     @property
     def changed_paths(self):
-        return self._overlay.changed_paths
+        return self._changed_paths if self._changed_paths is not None else self._overlay.changed_paths
 
     def read_json(self, path: str):
         if path in self._overrides:
@@ -119,6 +129,8 @@ def _require_mature_outreach(
     )
     mature: list[Mapping[str, Any]] = []
     for row in matches:
+        if row.get("status") not in ("active", "overdue"):
+            continue
         try:
             due_at = CampaignTime.parse(row.get("due_at"))
         except (TypeError, ValueError) as exc:
@@ -136,6 +148,37 @@ def _require_mature_outreach(
         # of silently inheriting Wei's player commitment.
         raise CommandRejectedError("institution_recruitment_outreach_actor_mismatch")
     return row
+
+
+def _consume_outreach_commitment(
+    repository: Any,
+    commitment: Mapping[str, Any],
+    *,
+    current_time: CampaignTime,
+    accepted_count: int,
+    source_pool_id: str,
+) -> tuple[Mapping[str, Any], Mapping[str, Any]]:
+    try:
+        old_registry = repository.read_json(COMMITMENT_REGISTRY_PATH)
+    except (FileNotFoundError, ValueError) as exc:
+        raise CommandRejectedError("commitment_registry_invalid") from exc
+    registry = copy.deepcopy(old_registry)
+    records = registry.get("records") if isinstance(registry, dict) else None
+    commitment_id = commitment.get("id")
+    if not isinstance(records, list) or not isinstance(commitment_id, str):
+        raise CommandRejectedError("commitment_registry_invalid")
+    matches = [row for row in records if isinstance(row, dict) and row.get("id") == commitment_id]
+    if len(matches) != 1:
+        raise CommandRejectedError("institution_recruitment_outreach_state_invalid")
+    row = matches[0]
+    if row.get("status") not in ("active", "overdue"):
+        raise CommandRejectedError("institution_recruitment_outreach_response_window_not_mature")
+    row["status"] = "completed"
+    row["resolution_summary"] = (
+        f"External recruitment response window consumed by intake from {source_pool_id}; "
+        f"{accepted_count} voluntary applicant(s) accepted at {current_time}."
+    )
+    return old_registry, registry
 
 
 def install_external_house_intake_origin() -> None:
@@ -240,24 +283,47 @@ def install_external_house_intake_origin() -> None:
         result["source_owner_ref"] = owner_ref
         result["source_origin"] = origin
         result["destination_service_status"] = _PRIVATE_STATUS
+
+        old_commitments = None
+        commitments = None
         if policy_ref == _OUTREACH_REF:
             result["outreach_modes"] = list(policy.get("outreach_modes", ()))
             result["outreach_commitment_id"] = outreach_commitment.get("id") if isinstance(outreach_commitment, Mapping) else None
+            if not isinstance(outreach_commitment, Mapping):
+                raise CommandRejectedError("institution_recruitment_outreach_state_invalid")
+            old_commitments, commitments = _consume_outreach_commitment(
+                self.repository,
+                outreach_commitment,
+                current_time=current_time,
+                accepted_count=accepted,
+                source_pool_id=source_pool_id,
+            )
+            writes[COMMITMENT_REGISTRY_PATH] = _json_bytes(commitments)
+            result["outreach_commitment_status"] = "completed"
+
         base_validator = plan.validator
+        base_paths = tuple(sorted(plan.writes))
 
         def validate(overlay: StagedOverlay, manifest: TransactionManifest) -> None:
             base_validator(
-                _OverlayAdapter(overlay, {core_path: old_core, house_path: old_house}),
+                _OverlayAdapter(
+                    overlay,
+                    {core_path: old_core, house_path: old_house},
+                    changed_paths=base_paths,
+                ),
                 manifest,
             )
             if overlay.read_json(core_path) != core:
                 raise ValueError("institution intake source-aware person origin mismatch")
             if overlay.read_json(house_path) != house:
                 raise ValueError("institution intake source-aware cohort mismatch")
+            if commitments is not None and overlay.read_json(COMMITMENT_REGISTRY_PATH) != commitments:
+                raise ValueError("institution outreach commitment consumption mismatch")
 
+        affected_refs = tuple(sorted(writes))
         return _BuiltPlan(
             code=plan.code,
-            affected_refs=plan.affected_refs,
+            affected_refs=affected_refs,
             writes=writes,
             result=result,
             validator=validate,

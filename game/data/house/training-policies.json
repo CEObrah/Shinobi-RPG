@@ -1,17 +1,21 @@
 {
-  "format_version": 2,
+  "format_version": 3,
   "policies": {
     "house.tang": {
       "id": "training.house_tang.standing_readiness",
       "cycle_anchor": "SE-0061-02-05T07:00:00",
       "training_window_start_seconds": 3600,
+      "weekly_active_hours_cap": 48,
+      "shared_core_active_hours_per_week": 34,
+      "supplemental_individual_active_hours_per_week": 14,
+      "supplemental_rule": "The institutional schedule uses the full forty-eight-hour sustainable envelope while preserving the existing thirty-four-hour shared curriculum as its core. The additional fourteen hours are individual development within each rostered person's own saved profile and curriculum targets, not extra formation-drill credit. One full recovery day remains protected and lawful duties, injury, medical limits or external assignment preempt training without later stacking missed volume.",
       "daily_active_hours": [
-        6,
-        6,
-        6,
-        6,
-        6,
-        4,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
         0
       ],
       "curricula": {

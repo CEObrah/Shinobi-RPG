@@ -1,7 +1,6 @@
 """Final player-safe API projection for current derived environment."""
 from __future__ import annotations
 
-import copy
 from collections.abc import Mapping
 from typing import Any
 
@@ -88,10 +87,14 @@ class RouteAwareCampaignOperations(_Base):
         authorizes a protected player decision.
         """
 
-        context = copy.deepcopy(dict(super().play_context()))
+        context = dict(super().play_context())
         scene = context.get("scene")
-        if isinstance(scene, dict):
-            scene["activity_handoff"] = derive_activity_handoff(scene)
+        if isinstance(scene, Mapping):
+            updated_scene = dict(scene)
+            updated_scene["activity_handoff"] = derive_activity_handoff(updated_scene)
+            context["scene"] = updated_scene
+        # compact_play_context performs the one defensive deep copy for the wire
+        # result; avoid copying the entire rich long-campaign projection twice.
         return compact_play_context(context)
 
     def _project_play_context(

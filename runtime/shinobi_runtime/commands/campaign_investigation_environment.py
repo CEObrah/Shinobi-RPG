@@ -50,20 +50,47 @@ def _environment_context(
     except (TypeError, ValueError):
         return {}, []  # the base reducer owns the canonical target-time rejection
 
-    scene = planner._scene_base(current_time)
-    place_ref = scene.get("location_id") if isinstance(scene, Mapping) else None
-    if not isinstance(place_ref, str) or not place_ref:
-        raise CommandRejectedError("investigation_environment_unavailable")
+    place_ref = command.payload.get("place_ref")
+    mission_ref = command.payload.get("mission_ref")
+    objective_id = command.payload.get("objective_id")
+    if (
+        not isinstance(place_ref, str)
+        or not place_ref
+        or not isinstance(mission_ref, str)
+        or not mission_ref
+        or not isinstance(objective_id, str)
+        or not objective_id
+    ):
+        return {}, []  # preserve the base reducer's exact input error ownership
 
     try:
-        mechanics = planner._load()
-        _owner, objective, brief = planner._objective_context(
-            command.payload.get("mission_ref"),
-            command.payload.get("objective_id"),
-            command.actor_id,
-            current_time,
+        mechanics = planner._investigation_mechanics()
+        _mission_path, mission_owner = planner._read_mission(
+            mission_ref,
+            actor_id=command.actor_id,
+            current_time=current_time,
         )
-        _profile_ref, profile = planner._profile_for_objective(mechanics, brief)
+        objective = mission_owner.mission.objective_by_id.get(objective_id)
+        if objective is None:
+            raise CommandRejectedError("mission_objective_not_found")
+        brief = mission_owner.briefing.to_record() if mission_owner.briefing is not None else None
+        if not isinstance(brief, Mapping):
+            raise CommandRejectedError("investigation_briefing_missing")
+        # Use the same site authority the base reducer enforces: command place,
+        # fresh scene location, and mission briefing subject must agree. Checking
+        # it here prevents sampling unrelated weather before the base reducer
+        # rejects a stale/wrong location.
+        scene = planner._scene_base(current_time)
+        if (
+            scene.get("location_id") != place_ref
+            or brief.get("subject_ref") != place_ref
+        ):
+            raise CommandRejectedError("investigation_scene_location_required")
+        _profile_ref, profile = planner._matching_profile(
+            mechanics,
+            objective.kind,
+            brief,
+        )
     except CommandRejectedError:
         raise
     except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
@@ -75,6 +102,8 @@ def _environment_context(
         if action == "locate_scene":
             locate_cfg = profile["locate_scene"]
             paths = locate_cfg["skill_paths"]
+            if not isinstance(paths, list):
+                raise ValueError("investigation locate skills invalid")
             key = _paths_key(paths)
             env = environment_action_profile(
                 planner.repository,

@@ -29,6 +29,8 @@ def test_standing_wait_and_ooc_detour_are_not_false_turn_endings() -> None:
     assert "event-seeking command" in contract["event_seek_rule"]
     assert "arbitrary short advance_time chunks" in contract["event_seek_rule"]
     assert "scene.activity_handoff" in contract["activity_handoff_rule"]
+    assert "interrupts_continuation=true" in contract["activity_handoff_rule"]
+    assert "does not by itself create a protected Wei decision or justify a menu" in contract["activity_handoff_rule"]
     assert "continue_without_player=true" in contract["activity_handoff_rule"]
     assert "never authorizes a new protected Wei choice" in contract["activity_handoff_rule"]
 
@@ -54,6 +56,8 @@ def test_scene_craft_stages_group_results_and_uses_activity_handoff() -> None:
     assert "Do not make Wei the conversational routing hub" in craft
     assert "Leadership scenes should expose what subordinates can own" in craft
     assert "scene.activity_handoff" in craft
+    assert "`interrupts_continuation: true`" in craft
+    assert "does not justify an immediate menu" in craft
     assert "`continue_without_player: true`" in craft
     assert "Numbers belong after the lived beat" in craft
     assert "materially different in posture, commitment, timing, delegation, risk, or resource use" in craft

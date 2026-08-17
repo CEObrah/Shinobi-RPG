@@ -45,6 +45,7 @@
     "No owner, cohort, formation, or institution cursor may advance across an interval until every authoritative elapsed-time subsystem covering that owner has settled the interval or explicitly established zero eligible activity.",
     "Trainable capability values and learning aptitudes have no hard maximum; 200 is a reference threshold only, and earned progression above it remains legal under normal point-cost and diminishing-return rules.",
     "A bank stores development credit already earned from resolved eligible activity; it never stores unearned scheduled hours.",
+    "Development-bank residual credits persist as nonnegative JSON numbers under the registered owner schema; canonical command and receipt aggregates may use decimal strings without changing the owner representation.",
     "Credits never transfer between owners or capability targets.",
     "Each owner has exactly one authoritative development cursor; a bank entry's resolved_through supersedes and forbids a duplicate writable cursor on that exact character.",
     "Aggregate process settled_through never erases an owner-specific unresolved development interval.",

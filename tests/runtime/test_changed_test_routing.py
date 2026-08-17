@@ -60,3 +60,10 @@ def test_mcp_change_routes_to_reliability_regression() -> None:
 
     assert "tests/runtime/test_mcp_reliability.py" in selected
     assert "tests/runtime/test_mcp_plugin.py" in selected
+
+
+def test_procedure_time_policy_routes_to_causal_time_regressions() -> None:
+    selected = _selected("game/data/mechanics/procedure-time.json")
+
+    assert "tests/runtime/test_procedure_time_resolution.py" in selected
+    assert "tests/runtime/test_advance_until_event.py" in selected

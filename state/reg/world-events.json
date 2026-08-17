@@ -1963,6 +1963,59 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.canon_pressure_reviewed.49674c343cebc2c484493876",
+      "kind": "canon_pressure_reviewed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": "SE-0061-07-22T18:00:00",
+        "occurred_at": "SE-0061-07-22T18:00:00",
+        "started_at": "SE-0061-07-22T18:00:00",
+        "ended_at": "SE-0061-07-22T18:00:00"
+      },
+      "host_refs": [
+        "pressure_mizuki_forbidden_scroll"
+      ],
+      "actor_refs": [
+        "canon_mizuki"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/canon/pressures.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "conditional_pressure:pressure_mizuki_forbidden_scroll"
+      ],
+      "visibility": {
+        "classification": "restricted",
+        "witness_refs": [
+          "canon_mizuki"
+        ],
+        "audience_refs": [],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "autonomous_host_review",
+        "source_refs": [
+          "canon_mizuki",
+          "faction.mizuki_conspiracy"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-07-22T18:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.autonomy.canon_pressure_reviewed",
+        "transaction_ref": "tx.gameplay.c9adce004ce261ec5844a51a50b5a14051fe8b4d19d85ef1ce0e8f96db3cd946",
+        "receipt_refs": [
+          "receipt.gameplay.c9adce004ce261ec5844a51a50b5a14051fe8b4d19d85ef1ce0e8f96db3cd946"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

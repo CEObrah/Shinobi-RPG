@@ -1,0 +1,30 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-07-29",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.909392f55c0d6217bd0ef28c",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-07-29T18:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
+      "target_host": "host.canon_pressure.pressure_mizuki_forbidden_scroll",
+      "payload": {
+        "identity": "pressure_mizuki_forbidden_scroll",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_mizuki_forbidden_scroll",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_mizuki_forbidden_scroll",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

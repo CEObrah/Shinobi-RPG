@@ -1,0 +1,14 @@
+{
+  "schema": "mcp-reliability",
+  "version": 1,
+  "transport": "streamable_http",
+  "session_lifecycle": "The host FastAPI lifespan must enter the MCP server session_manager directly. Mounted ASGI sub-application lifespan execution is not relied upon.",
+  "tool_failure_boundary": "Expected OperationError values preserve their stable public code. Any other Exception raised inside a tool implementation is logged server-side and converted to retryable runtime_internal_error without exception text, repository paths, secrets, or partial campaign truth.",
+  "write_uncertainty_rule": "An unexpected execute failure never authorizes replay with a different request. The exact canonical command/request id remains the only safe retry so an already-committed receipt can be recovered idempotently.",
+  "authority_rule": "Transport recovery never reconstructs campaign truth and never substitutes cached chat state for runtime reads.",
+  "verification": [
+    "mounted host lifespan enters and exits session_manager.run",
+    "unexpected read implementation exception returns structured runtime_internal_error",
+    "existing MCP initialize, tools/list, OAuth, preview attestation, and duplicate receipt regressions remain routed"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "procedure-time-rules",
+  "version": 1,
+  "policy": "These are deterministic elapsed-time defaults for one already-established substantive procedure stage. The caller selects only a closed procedure kind against the fresh scene; the caller never supplies seconds. The causal scheduler remains the sole authority that actually advances world time and may interrupt the procedure at an earlier player-facing boundary.",
+  "procedures": {
+    "brief_exchange": {
+      "duration_seconds": 300,
+      "use": "A short but substantive exchange, routine debrief question, or narrow administrative interaction whose content has already been staged."
+    },
+    "substantive_conversation": {
+      "duration_seconds": 900,
+      "use": "A multi-person or consequential conversation with several meaningful exchanges but no longer formal agenda."
+    },
+    "briefing": {
+      "duration_seconds": 1200,
+      "use": "Mission, command, intelligence, or operational briefing for an already-established audience and subject."
+    },
+    "team_checkin": {
+      "duration_seconds": 1200,
+      "use": "A substantive player-led team check-in, after-action discussion, or leadership review."
+    },
+    "training_review": {
+      "duration_seconds": 1800,
+      "use": "An after-action/training review, instruction block, or focused correction session distinct from the training session itself."
+    },
+    "medical_consultation": {
+      "duration_seconds": 1800,
+      "use": "A non-emergency examination, consultation, or treatment-planning stage whose medical outcome is separately owned by medical mechanics."
+    },
+    "negotiation_session": {
+      "duration_seconds": 1800,
+      "use": "A substantive negotiation or institutional discussion stage before any separately persisted agreement or commitment."
+    },
+    "examination_evaluation": {
+      "duration_seconds": 3600,
+      "use": "A substantive practical examination/evaluation stage involving observation, execution, and review. The examination outcome remains owned by its domain reducer."
+    },
+    "council_session": {
+      "duration_seconds": 3600,
+      "use": "A formal council, command conference, political session, or comparable multi-party agenda block."
+    }
+  },
+  "invariants": [
+    "Procedure-time settlement never creates the procedure, outcome, agreement, medical result, examination score, training gain, or relationship consequence.",
+    "The current scene must allow time passage, must not be in active combat, and must not already require a protected player decision.",
+    "The supplied scene_id must exactly match the current authoritative scene so stale conversational context cannot consume time.",
+    "Soft player-facing events interrupt event-seeking settlement for presentation without being promoted into protected player choices.",
+    "A hard protected decision stops settlement immediately.",
+    "Internal scheduler boundaries may require bounded continuation toward the same authored procedure target."
+  ]
+}

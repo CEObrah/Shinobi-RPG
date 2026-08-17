@@ -118,7 +118,7 @@ class _Planner:
     def _mission_objective_evidence(self, **kwargs):
         assert kwargs["target_status"] == "in_progress"
         assert kwargs["evidence_event_id"] == "event.evidence"
-        return "event.evidence", "digest:world-events"
+        return "event.evidence", "digest:state/reg/world-events.json"
 
     def _world_events(self):
         return self.repository.world_events
@@ -126,7 +126,7 @@ class _Planner:
     def _world_event_record_and_digest(self, event_id, *, registry):
         assert registry is self.repository.world_events
         assert event_id == "event.evidence"
-        return registry["events"][0], "digest:world-events"
+        return registry["events"][0], "digest:state/reg/world-events.json"
 
     def _exact_team(self, team_ref):
         assert team_ref == "team.test"
@@ -136,17 +136,24 @@ class _Planner:
         assert doctrine_ref == "team.test.doctrine"
         return "state/team/doctrine/test.json", "digest:doctrine", self.repository.doctrine
 
-    def _mission_built_plan(self, *, command, owner, result, extra_material_consequence_refs, **kwargs):
+    def _mission_progress_built_plan(
+        self,
+        *,
+        owner,
+        result,
+        material_consequence_refs,
+        **kwargs,
+    ):
         self.owner = owner
-        event_id = "event.mission-progress"
+        event_id = "event.mission_objective_progressed.test"
         registry = {
             **self.repository.world_events,
             "events": [
                 *self.repository.world_events["events"],
                 {
                     "id": event_id,
-                    "kind": "mission_settled",
-                    "material_consequence_refs": list(extra_material_consequence_refs),
+                    "kind": "mission_objective_progressed",
+                    "material_consequence_refs": list(material_consequence_refs),
                 },
             ],
         }
@@ -157,8 +164,8 @@ class _Planner:
                 "state/scene.json": _json_bytes({
                     "schema": "scene",
                     "active_combat": False,
-                    "time_passage_allowed": False,
-                    "decision_required": "synthetic hard stop",
+                    "time_passage_allowed": True,
+                    "decision_required": None,
                 }),
                 "state/reg/world-events.json": _json_bytes(registry),
             },
@@ -233,7 +240,10 @@ def test_progress_resolution_caps_below_terminal_success_and_marks_history() -> 
     assert objective.progress_milli < 1000
     assert plan.result["progress_delta_milli"] == 286
     registry = json.loads(plan.writes["state/reg/world-events.json"].decode("utf-8"))
-    progress_event = next(row for row in registry["events"] if row.get("id") == "event.mission-progress")
+    progress_event = next(
+        row for row in registry["events"]
+        if row.get("id") == "event.mission_objective_progressed.test"
+    )
     assert progress_event["kind"] == "mission_objective_progressed"
     assert any(
         value.startswith("mission_progress_evidence:")

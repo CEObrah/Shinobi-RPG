@@ -3721,6 +3721,93 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.team_training_session_resolved.67ff110fefd280790101",
+      "kind": "team_training_session_resolved",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-01T19:00:00",
+        "started_at": "SE-0061-08-01T19:00:00",
+        "ended_at": "SE-0061-08-01T19:00:00"
+      },
+      "host_refs": [
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "canon_ensui_nara",
+        "canon_hana_inuzuka",
+        "canon_hayama_shirakumo",
+        "canon_hoheto_hyuga",
+        "canon_tekuno_kanden",
+        "char.zhu"
+      ],
+      "place_refs": [
+        "place.sword_manor"
+      ],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/char/ensui-nara.json",
+        "state/char/hana-inuzuka.json",
+        "state/char/hayama-shirakumo.json",
+        "state/char/hoheto-hyuga.json",
+        "state/char/tekuno-kanden.json",
+        "state/development/banks.json",
+        "state/team/blackhound.json",
+        "state/team/doctrine/black-hound.json"
+      ],
+      "material_consequence_refs": [
+        "doctrine_familiarity:team.blackhound.doctrine:shared_training",
+        "training:canon_ensui_nara:repertoire.method_mastery.counter_ambush_drill:123->123",
+        "training:canon_hana_inuzuka:repertoire.method_mastery.pursuit_rotation:83->84",
+        "training:canon_hayama_shirakumo:repertoire.method_mastery.close_capture_swordwork:121->121",
+        "training:canon_hoheto_hyuga:repertoire.method_mastery.byakugan_long_range_reconnaissance:98->99",
+        "training:canon_tekuno_kanden:repertoire.method_mastery.wire_and_trap_safety:118->118"
+      ],
+      "visibility": {
+        "classification": "secret",
+        "witness_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "char.zhu"
+        ],
+        "audience_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "canon_ensui_nara",
+          "canon_hana_inuzuka",
+          "canon_hayama_shirakumo",
+          "canon_hoheto_hyuga",
+          "canon_tekuno_kanden",
+          "char.zhu"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-01T19:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.reducers.training.settle_training",
+        "transaction_ref": "tx.gameplay.67ff110fefd280790101bc5bb4479e25c865e8ed0b1f8802a8e31aa823c22cf6",
+        "receipt_refs": [
+          "receipt.gameplay.67ff110fefd280790101bc5bb4479e25c865e8ed0b1f8802a8e31aa823c22cf6"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

@@ -110,6 +110,7 @@ ROUTES = (
         "tests/runtime/test_api_models.py",
         "tests/runtime/test_command_discovery.py",
         "tests/runtime/test_mcp_plugin.py",
+        "tests/runtime/test_mcp_reliability.py",
         "tests/runtime/test_play_context_wire_contract.py",
         "tests/runtime/test_player_activity_handoff_projection.py",
         "tests/runtime/test_route_discovery.py",

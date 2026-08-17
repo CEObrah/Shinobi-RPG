@@ -6,6 +6,7 @@ import base64
 import hashlib
 import hmac
 import json
+import logging
 import os
 import re
 import time
@@ -33,6 +34,7 @@ from shinobi_runtime.api.operations import CampaignOperations, OperationError
 from shinobi_runtime.commands import CommandEnvelope
 
 
+_LOGGER = logging.getLogger(__name__)
 _SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]*$")
 _ALGORITHM = re.compile(r"^[A-Z0-9-]{3,16}$")
 _SCOPE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9:._/-]{0,127}$")
@@ -365,11 +367,24 @@ def _failure(exc: OperationError) -> dict[str, Any]:
     }
 
 
-def _tool_call(call: Any) -> dict[str, Any]:
+def _internal_failure(operation: str) -> dict[str, Any]:
+    """Convert an unexpected tool implementation failure into a stable wire error.
+
+    The traceback stays server-side. The client receives no repository paths,
+    exception text, secrets, or partial result that could be mistaken for truth.
+    """
+
+    _LOGGER.exception("Unexpected Shinobi MCP %s failure", operation)
+    return _failure(OperationError(503, "runtime_internal_error"))
+
+
+def _tool_call(call: Any, *, operation: str = "read") -> dict[str, Any]:
     try:
         value = call()
     except OperationError as exc:
         return _failure(exc)
+    except Exception:
+        return _internal_failure(operation)
     return _success(result=value)
 
 
@@ -582,7 +597,10 @@ def create_mcp_server(
         structured_output=True,
     )
     def get_play_context() -> ReadToolOutput:
-        return _tool_call(lambda: compact_play_context(operations.play_context()))
+        return _tool_call(
+            lambda: compact_play_context(operations.play_context()),
+            operation="get_play_context",
+        )
 
     @server.tool(
         name="get_command_contract",
@@ -599,7 +617,10 @@ def create_mcp_server(
     def get_command_contract(command_type: str) -> ReadToolOutput:
         if not isinstance(command_type, str) or len(command_type) > 96 or not _SAFE_ID.fullmatch(command_type):
             return _failure(OperationError(422, "command_type_invalid"))
-        return _tool_call(lambda: dict(operations.command_contract(command_type)))
+        return _tool_call(
+            lambda: dict(operations.command_contract(command_type)),
+            operation="get_command_contract",
+        )
 
     @server.tool(
         name="get_person_sheet",
@@ -621,7 +642,10 @@ def create_mcp_server(
             or not re.fullmatch(r"[a-z0-9][a-z0-9._:-]*", person_id)
         ):
             return _failure(OperationError(422, "person_id_invalid"))
-        return _tool_call(lambda: operations.person_sheet(person_id))
+        return _tool_call(
+            lambda: operations.person_sheet(person_id),
+            operation="get_person_sheet",
+        )
 
     @server.tool(
         name="inspect_game_object",
@@ -642,7 +666,10 @@ def create_mcp_server(
             or not re.fullmatch(r"[a-z0-9][a-z0-9._:-]*", object_ref)
         ):
             return _failure(OperationError(422, "object_ref_invalid"))
-        return _tool_call(lambda: operations.inspect_game_object(object_ref))
+        return _tool_call(
+            lambda: operations.inspect_game_object(object_ref),
+            operation="inspect_game_object",
+        )
 
     @server.tool(
         name="preview_command",
@@ -694,6 +721,8 @@ def create_mcp_server(
             return _failure(exc)
         except (TypeError, ValueError):
             return _failure(OperationError(422, "command_preview_input_invalid"))
+        except Exception:
+            return _internal_failure("preview_command")
         return _success(
             preview=preview,
             command=command.to_record(),
@@ -751,6 +780,8 @@ def create_mcp_server(
             return _failure(exc)
         except (TypeError, ValueError):
             return _failure(OperationError(422, "invalid_command_envelope"))
+        except Exception:
+            return _internal_failure("execute_command")
         return _success(receipt=receipt)
 
     @server.tool(
@@ -781,7 +812,10 @@ def create_mcp_server(
             )
         ):
             return _failure(OperationError(422, "ooc_input_invalid"))
-        return _tool_call(lambda: operations.ooc_audit(focus, values))
+        return _tool_call(
+            lambda: operations.ooc_audit(focus, values),
+            operation="ooc_audit",
+        )
 
     return server
 
@@ -810,14 +844,13 @@ def mount_mcp(
         ),
     )
     original_lifespan = app.router.lifespan_context
-    mcp_lifespan = mcp_app.router.lifespan_context
 
     metadata_path = "/.well-known/oauth-protected-resource/mcp"
 
     @app.get(metadata_path, include_in_schema=False)
     def protected_resource_metadata() -> JSONResponse:
         # The SDK uses its global minimum scope for both middleware and
-        # metadata.  Publish every supported scope here while keeping the MCP
+        # metadata. Publish every supported scope here while keeping the MCP
         # transport readable with the least-privilege read scope.
         return JSONResponse(
             {
@@ -830,8 +863,12 @@ def mount_mcp(
 
     @asynccontextmanager
     async def combined_lifespan(parent: FastAPI):
+        # Starlette does not run mounted sub-application lifespans. MCP 2.x
+        # requires its Streamable HTTP session manager to be entered explicitly
+        # by the host application, otherwise requests can fail inside an
+        # uninitialized AnyIO task group.
         async with original_lifespan(parent):
-            async with mcp_lifespan(mcp_app):
+            async with server.session_manager.run():
                 yield
 
     app.router.lifespan_context = combined_lifespan

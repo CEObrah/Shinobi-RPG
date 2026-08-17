@@ -3586,6 +3586,61 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.player_led_team_checkin_handled.7f58562ace90b73e3663",
+      "kind": "player_led_team_checkin_handled",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-01T07:00:00",
+        "started_at": "SE-0061-08-01T07:00:00",
+        "ended_at": "SE-0061-08-01T07:00:00"
+      },
+      "host_refs": [
+        "team.blackhound"
+      ],
+      "actor_refs": [
+        "pc_wei_tang"
+      ],
+      "place_refs": [],
+      "causal_refs": [
+        "event.player_led_team_checkin_ready.ffce3818dcdf54356e7d80dc"
+      ],
+      "affected_owner_refs": [
+        "state/team/blackhound.json"
+      ],
+      "material_consequence_refs": [
+        "team_checkin_handling:discussed:team_checkin.ffce3818dcdf54356e7d80dc"
+      ],
+      "visibility": {
+        "classification": "secret",
+        "witness_refs": [
+          "pc_wei_tang"
+        ],
+        "audience_refs": [
+          "pc_wei_tang"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-01T07:00:00"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.team_checkin_handoffs.team_checkin_handoff_resolution",
+        "transaction_ref": "tx.gameplay.7f58562ace90b73e3663fe5b3374ad8a6c12925714f7b182f058500605aca02a",
+        "receipt_refs": [
+          "receipt.gameplay.7f58562ace90b73e3663fe5b3374ad8a6c12925714f7b182f058500605aca02a"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

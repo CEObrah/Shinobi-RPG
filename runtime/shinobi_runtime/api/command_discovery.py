@@ -116,18 +116,46 @@ def _compact_promotion_exam_handoffs(scene: dict[str, Any], compacted_fields: li
             compacted.append(row)
             continue
         updated = dict(row)
-        public_results = updated.pop("public_stage_results", None)
         cycle_id = updated.get("cycle_id")
-        read_refs: dict[str, str] = {}
+        existing_refs = updated.get("public_stage_result_read_refs")
+        read_refs: dict[str, str] = {
+            phase: ref
+            for phase, ref in existing_refs.items()
+            if isinstance(phase, str) and isinstance(ref, str)
+        } if isinstance(existing_refs, Mapping) else {}
+
+        summaries = updated.get("public_stage_result_summaries")
+        if isinstance(summaries, Mapping) and isinstance(cycle_id, str):
+            for phase, summary in summaries.items():
+                if (
+                    isinstance(phase, str)
+                    and isinstance(summary, Mapping)
+                    and isinstance(summary.get("candidate_count"), int)
+                    and summary.get("candidate_count", 0) > 0
+                ):
+                    read_refs.setdefault(phase, _exam_results_ref(cycle_id, phase))
+
+        # Compatibility with older rich projections: remove embedded rows and
+        # reconstruct exact first-page refs from any settled rows that remain.
+        public_results = updated.pop("public_stage_results", None)
         if isinstance(public_results, Mapping) and isinstance(cycle_id, str):
             for phase, rows in public_results.items():
                 if isinstance(phase, str) and isinstance(rows, list) and rows:
-                    read_refs[phase] = _exam_results_ref(cycle_id, phase)
+                    read_refs.setdefault(phase, _exam_results_ref(cycle_id, phase))
         if public_results is not None:
             compacted_fields.append("scene.promotion_exam_handoffs.public_stage_results")
-            updated["public_stage_results_in_context"] = False
+
+        for legacy_field in (
+            "public_stage_results_truncated",
+            "public_stage_results_projection_limit",
+        ):
+            if legacy_field in updated:
+                updated.pop(legacy_field, None)
+                compacted_fields.append(f"scene.promotion_exam_handoffs.{legacy_field}")
+
+        updated["public_stage_results_in_context"] = False
         if read_refs:
-            updated["public_stage_result_read_refs"] = read_refs
+            updated["public_stage_result_read_refs"] = dict(sorted(read_refs.items()))
         compacted.append(updated)
     scene["promotion_exam_handoffs"] = compacted
 

@@ -122,10 +122,11 @@ def topic_ownership_cues(topics: list[str]) -> list[str]:
 def relationship_contact_mode(repository: Any, contact_ref: str, player_ref: str) -> str:
     """Translate a directed saved relationship into observable contact style.
 
-    Raw relationship numbers remain private implementation evidence. The returned
-    mode is the committed social presentation of this check-in, not a disclosure
-    of hidden sentiment and not permission to invent promises, loyalty, romance,
-    hostility, or a protected decision.
+    Raw relationship numbers and their interpretation remain private mechanical
+    evidence. Returned labels describe only the behavior that becomes observable
+    in this committed contact; they do not disclose *why* the actor used that
+    style and do not authorize promises, loyalty, romance, hostility, or a
+    protected decision.
     """
 
     path = f"{_RELATIONSHIP_ROOT}/{_slug(contact_ref)}.json"
@@ -149,15 +150,15 @@ def relationship_contact_mode(repository: Any, contact_ref: str, player_ref: str
     edge = sorted(candidates, key=lambda row: str(row.get("id", "")))[0]
     tension = edge.get("current_tension")
     if isinstance(tension, str) and tension and tension != "none_saved":
-        return "tension_aware_professional"
+        return "careful_professional"
     trust = edge.get("trust")
     respect = edge.get("respect")
     if any(isinstance(value, bool) or not isinstance(value, int) for value in (trust, respect)):
         return "professional"
     if trust >= 65 and respect >= 65:
-        return "direct_trusted_professional"
+        return "direct_concise"
     if respect >= 65:
-        return "respectful_direct"
+        return "formal_concise"
     if trust <= 35:
         return "explicit_confirmation"
     return "professional"

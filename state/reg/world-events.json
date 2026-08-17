@@ -4928,6 +4928,62 @@
       },
       "supersedes_ref": null,
       "superseded_by_ref": null
+    },
+    {
+      "id": "event.commitment_completed.f3e7764b8839f05ecacf",
+      "kind": "commitment_completed",
+      "status": "resolved",
+      "timing": {
+        "scheduled_for": null,
+        "occurred_at": "SE-0061-08-05T07:29:58",
+        "started_at": "SE-0061-08-05T07:29:58",
+        "ended_at": "SE-0061-08-05T07:29:58"
+      },
+      "host_refs": [],
+      "actor_refs": [
+        "pc_wei_tang",
+        "team.konoha.fujin"
+      ],
+      "place_refs": [],
+      "causal_refs": [],
+      "affected_owner_refs": [
+        "state/reg/commitments.json",
+        "state/time/causal-scheduler.json"
+      ],
+      "material_consequence_refs": [
+        "commitment.team_fujin.exam_priority.0061-07-22"
+      ],
+      "visibility": {
+        "classification": "public",
+        "witness_refs": [
+          "pc_wei_tang",
+          "team.konoha.fujin"
+        ],
+        "audience_refs": [
+          "pc_wei_tang",
+          "team.konoha.fujin"
+        ],
+        "knowledge_refs": [],
+        "route_refs": []
+      },
+      "provenance": {
+        "source_kind": "semantic_command",
+        "source_refs": [
+          "pc_wei_tang",
+          "team.konoha.fujin"
+        ],
+        "archetype_ref": null,
+        "recorded_at": "SE-0061-08-05T07:29:58"
+      },
+      "execution": {
+        "reducer_ref": "shinobi_runtime.commands.commitment_transition",
+        "transaction_ref": "tx.gameplay.f3e7764b8839f05ecacff0c7e53a4d94a1de8f549abf778e4168b31dbf2c8bab",
+        "receipt_refs": [
+          "receipt.gameplay.f3e7764b8839f05ecacff0c7e53a4d94a1de8f549abf778e4168b31dbf2c8bab"
+        ]
+      },
+      "supersedes_ref": null,
+      "superseded_by_ref": null
     }
   ],
   "archetype_catalog_ref": "game/data/content/world-event-archetypes.json"

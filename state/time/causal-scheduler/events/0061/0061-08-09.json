@@ -1,0 +1,99 @@
+{
+  "schema": "causal-scheduler-event-day",
+  "day": "SE-0061-08-09",
+  "authority": true,
+  "events": [
+    {
+      "event_id": "evt.causal.56ba1c666d3d6abe291a0a7c",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-09T07:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_akatsuki_intelligence",
+      "target_host": "host.canon_pressure.pressure_akatsuki_intelligence",
+      "payload": {
+        "identity": "pressure_akatsuki_intelligence",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_akatsuki_intelligence",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_akatsuki_intelligence",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.a62b574fb71c81e1bc33c415",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-09T07:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_great_village_mission_market",
+      "target_host": "host.canon_pressure.pressure_great_village_mission_market",
+      "payload": {
+        "identity": "pressure_great_village_mission_market",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_great_village_mission_market",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_great_village_mission_market",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.a74c244d6c833b5ca125f0c7",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-09T07:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_suna_funding",
+      "target_host": "host.canon_pressure.pressure_suna_funding",
+      "payload": {
+        "identity": "pressure_suna_funding",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_suna_funding",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_suna_funding",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    },
+    {
+      "event_id": "evt.causal.b76a664ecf56b29d38f455df",
+      "kind": "canon_pressure.periodic_review",
+      "due_at": "SE-0061-08-09T07:00:00",
+      "priority": 80,
+      "source_host": "host.canon_pressure.pressure_kiri_transition",
+      "target_host": "host.canon_pressure.pressure_kiri_transition",
+      "payload": {
+        "identity": "pressure_kiri_transition",
+        "owner_ref": "state/canon/pressures.json",
+        "pressure_id": "pressure_kiri_transition",
+        "recurrence": {
+          "accrual_mode": "boundary_only",
+          "interval_seconds": 604800,
+          "kind": "fixed_interval"
+        }
+      },
+      "dedupe_key": "canon_pressure.periodic_review:pressure_kiri_transition",
+      "visibility": "hidden",
+      "requires_player": false,
+      "causation_id": null,
+      "correlation_id": null
+    }
+  ]
+}

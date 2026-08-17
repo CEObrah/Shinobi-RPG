@@ -71,7 +71,8 @@ def _install_api_reads() -> None:
                         key: row.get(key)
                         for key in (
                             "checkin_ref", "source_event_ref", "team_ref", "team_name",
-                            "contact_actor_ref", "ready_at", "topic_cues", "snapshot_basis",
+                            "contact_actor_ref", "ready_at", "topic_cues",
+                            "ownership_cues", "contact_mode", "snapshot_basis",
                         )
                     }
                     for row in unhandled
@@ -86,7 +87,7 @@ def _install_api_reads() -> None:
                 object_reads["team_checkin_ref_count"] = len(refs)
                 object_reads["unhandled_team_checkin_refs"] = unhandled_refs
                 object_reads["handled_team_checkin_refs"] = handled_refs
-                object_reads["use"] = str(object_reads.get("use") or "") + "; inspect team_checkin.<id> for a player-visible exact team check-in and its snapshotted agenda"
+                object_reads["use"] = str(object_reads.get("use") or "") + "; inspect team_checkin.<id> for a player-visible exact team check-in, its snapshotted agenda, ownership boundary, and observable contact style"
             validate_bounded_json(response, label="play context", allow_float=True)
             return response
 

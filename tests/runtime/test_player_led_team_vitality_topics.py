@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from shinobi_runtime.commands.living_world_team_vitality import _leadership_topic_cues
+from shinobi_runtime.commands.team_leadership_context import (
+    relationship_contact_mode,
+    topic_ownership_cues,
+)
 
 
 def test_active_assignment_prioritizes_real_leadership_and_doctrine_gaps() -> None:
@@ -43,6 +47,29 @@ def test_active_assignment_prioritizes_real_leadership_and_doctrine_gaps() -> No
         "uneven doctrine familiarity and where leadership attention is needed",
         "integrating recent individual training into team coordination",
     ]
+    assert topic_ownership_cues(topics) == [
+        "shared_boundary",
+        "shared_boundary",
+        "team_can_own_routine_preparation",
+    ]
+
+
+def test_recent_mission_becomes_after_action_leadership_agenda() -> None:
+    team = {
+        "member_refs": ["pc_wei_tang", "char.kai", "char.mei_arakawa"],
+        "current_assignment_ref": None,
+        "training": {"recent_sessions": []},
+    }
+    profile = {"training_focus": ["tracking discipline"]}
+    history = {
+        "last_mission_ref": "mission.test",
+        "last_result_at": "SE-0061-08-01T10:00:00",
+    }
+
+    topics = _leadership_topic_cues(team, profile, None, history)
+
+    assert topics[0] == "latest mission lessons, delegated ownership, and follow-through"
+    assert topic_ownership_cues(topics)[0] == "team_can_own_follow_through"
 
 
 def test_unassigned_team_surfaces_cross_coverage_before_generic_training() -> None:
@@ -94,3 +121,56 @@ def test_checkin_agenda_is_bounded_and_deduplicated() -> None:
 
     assert topics == ["readiness", "coordination", "tracking"]
     assert len(topics) == 3
+
+
+class _RelationshipRepository:
+    def __init__(self, edge):
+        self.edge = edge
+
+    def read_json(self, path):
+        assert path == "state/reg/relationship-edges/char.mei_arakawa.json"
+        return {
+            "schema": "relationship-edge-shard",
+            "source_id": "char.mei_arakawa",
+            "relationship_edges": {"rel.test": self.edge},
+        }
+
+
+def test_relationship_changes_observable_contact_mode_without_exposing_scores_or_axis_names() -> None:
+    edge = {
+        "id": "rel.test",
+        "source_id": "char.mei_arakawa",
+        "target_id": "pc_wei_tang",
+        "trust": 72,
+        "respect": 70,
+        "current_tension": "none_saved",
+    }
+    mode = relationship_contact_mode(
+        _RelationshipRepository(edge),
+        "char.mei_arakawa",
+        "pc_wei_tang",
+    )
+    assert mode == "direct_concise"
+    assert "72" not in mode
+    assert "70" not in mode
+    assert "trust" not in mode
+    assert "respect" not in mode
+
+
+def test_saved_tension_changes_behavior_without_disclosing_the_tension_label() -> None:
+    edge = {
+        "id": "rel.test",
+        "source_id": "char.mei_arakawa",
+        "target_id": "pc_wei_tang",
+        "trust": 90,
+        "respect": 90,
+        "current_tension": "unresolved_professional_disagreement",
+    }
+    mode = relationship_contact_mode(
+        _RelationshipRepository(edge),
+        "char.mei_arakawa",
+        "pc_wei_tang",
+    )
+    assert mode == "careful_professional"
+    assert "disagreement" not in mode
+    assert "tension" not in mode

@@ -10,6 +10,8 @@ _READY_PREFIX = "event.player_led_team_checkin_ready."
 _CHECKIN_PREFIX = "team_checkin."
 _LABEL_PREFIX = "team_checkin_label:"
 _TOPIC_PREFIX = "team_checkin_topic:"
+_OWNERSHIP_PREFIX = "team_checkin_ownership:"
+_CONTACT_MODE_PREFIX = "team_checkin_contact_mode:"
 _HANDLING_PREFIX = "team_checkin_handling:"
 
 
@@ -28,7 +30,15 @@ def event_id_for_checkin(checkin_ref: str) -> str:
     return _READY_PREFIX + digest
 
 
-def snapshot_refs(team_name: str, topic_cues: Iterable[str]) -> tuple[str, ...]:
+def snapshot_refs(
+    team_name: str,
+    topic_cues: Iterable[str],
+    *,
+    ownership_cues: Iterable[str] = (),
+    contact_mode: str | None = None,
+) -> tuple[str, ...]:
+    """Encode one immutable player-facing check-in snapshot in world-event refs."""
+
     label = team_name if isinstance(team_name, str) and team_name else "team"
     refs = [_LABEL_PREFIX + quote(label, safe="")]
     refs.extend(
@@ -36,6 +46,13 @@ def snapshot_refs(team_name: str, topic_cues: Iterable[str]) -> tuple[str, ...]:
         for value in topic_cues
         if isinstance(value, str) and value
     )
+    refs.extend(
+        _OWNERSHIP_PREFIX + quote(value, safe="")
+        for value in ownership_cues
+        if isinstance(value, str) and value
+    )
+    if isinstance(contact_mode, str) and contact_mode:
+        refs.append(_CONTACT_MODE_PREFIX + quote(contact_mode, safe=""))
     return tuple(refs)
 
 
@@ -78,12 +95,16 @@ def _player_can_see(event: Mapping[str, Any], player_id: str) -> bool:
     return player_id in (audience or ()) or player_id in (witnesses or ())
 
 
-def _snapshot_from_event(event: Mapping[str, Any]) -> tuple[Optional[str], list[str]]:
+def _snapshot_from_event(
+    event: Mapping[str, Any],
+) -> tuple[Optional[str], list[str], list[str], Optional[str]]:
     material = event.get("material_consequence_refs")
     if not isinstance(material, list):
-        return None, []
+        return None, [], [], None
     label: Optional[str] = None
     topics: list[str] = []
+    ownership: list[str] = []
+    contact_mode: Optional[str] = None
     for ref in material:
         if not isinstance(ref, str):
             continue
@@ -95,7 +116,15 @@ def _snapshot_from_event(event: Mapping[str, Any]) -> tuple[Optional[str], list[
             value = unquote(ref[len(_TOPIC_PREFIX):])
             if value and value not in topics:
                 topics.append(value)
-    return label, topics[:3]
+        elif ref.startswith(_OWNERSHIP_PREFIX):
+            value = unquote(ref[len(_OWNERSHIP_PREFIX):])
+            if value and value not in ownership:
+                ownership.append(value)
+        elif ref.startswith(_CONTACT_MODE_PREFIX):
+            value = unquote(ref[len(_CONTACT_MODE_PREFIX):])
+            if value:
+                contact_mode = value
+    return label, topics[:3], ownership[:3], contact_mode
 
 
 def _legacy_snapshot(repository: Any, team_ref: str, source_event: Mapping[str, Any]) -> tuple[str, list[str]]:
@@ -157,10 +186,12 @@ def project_team_checkin(repository: Any, checkin_ref: str, player_id: str) -> M
     contact_ref = next((value for value in actors or () if isinstance(value, str) and value != player_id), None)
     if not isinstance(team_ref, str) or not isinstance(contact_ref, str):
         raise ValueError("team_checkin_event_invalid")
-    team_name, topics = _snapshot_from_event(source)
+    team_name, topics, ownership, contact_mode = _snapshot_from_event(source)
     snapshot_basis = "event_snapshot"
     if not team_name or not topics:
         team_name, topics = _legacy_snapshot(repository, team_ref, source)
+        ownership = []
+        contact_mode = None
         snapshot_basis = "legacy_reconstructed"
     handling = _handling_event(repository, source_event_id, player_id)
     handling_value: Optional[str] = None
@@ -189,6 +220,8 @@ def project_team_checkin(repository: Any, checkin_ref: str, player_id: str) -> M
         "contact_actor_ref": contact_ref,
         "ready_at": ready_at,
         "topic_cues": topics,
+        "ownership_cues": ownership,
+        "contact_mode": contact_mode,
         "handled": handling is not None,
         "handling": handling_value,
         "handled_event_ref": handled_event_ref,

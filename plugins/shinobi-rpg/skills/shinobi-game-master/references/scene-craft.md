@@ -1,6 +1,6 @@
 # Scene Craft and Human Presentation
 
-Use this reference with `narration.md` for substantive people-centered scenes: team briefings, family exchanges, mission handoffs, command meetings, negotiations, training reviews, village administration, political discussions, and other beats where the interaction itself is the scene.
+Use this reference with `narration.md` for substantive people-centered scenes: team briefings, family exchanges, mission handoffs, command meetings, negotiations, training reviews, village administration, political discussions, examinations, and other beats where the interaction itself is the scene.
 
 ## Prime rule: generate the scene, do not report on it
 
@@ -15,6 +15,24 @@ Prefer:
 `small spatial frame -> human action/reaction -> several short exchanges -> concise narrator bridge -> genuine consequence or decision`
 
 If the scene's purpose is conversation, dialogue and interaction should carry most of the beat unless silence, incapacity, separation, stealth, extreme urgency, or deliberate compression gives a concrete reason otherwise.
+
+## Resolved group outcomes are scenes, not scoreboards
+
+When a command settles an examination, training review, team exercise, briefing stage, inspection, medical procedure, council vote, negotiation step, or another group process, treat the structured result as the **constraint underneath the scene**, not as final prose.
+
+For a substantive result involving two or more established named people, normally render 2-4 concrete lived beats before summarizing the outcome. Use only consequences supported by the committed result and current player-visible state. Good beats include:
+
+- one participant executing cleanly while another has to recover or adapt;
+- a teammate covering a lane, correcting timing, challenging an assumption, or acknowledging another person's contribution;
+- an examiner pressing the part of the performance that the resolved categories actually make relevant;
+- a leader, medic, scout, deputy, or junior reacting from their role;
+- a short after-action exchange that exposes coordination, confidence, uncertainty, fatigue, or professional judgment already supported by current truth.
+
+Do **not** invent intermediate rolls, hidden mistakes, secret motives, injuries, techniques, tactical causes, or evaluator judgments merely to dramatize a score. If the runtime establishes only a high-level pass/fail or aggregate result, stage observable behavior conservatively and keep causal specifics no stronger than the authority supports.
+
+Numbers belong after the lived beat, not before it. Show exact scores, thresholds, points, or stat deltas in IC only when they are an in-world artifact or decision-relevant information Wei can actually receive. Otherwise translate them into visible performance and, if useful, place a compact mechanical summary OOC after the scene. A three-person examination should not read like three rows in a table simply because the runtime returned three rows.
+
+A result with no meaningful interpersonal or physical texture may be compressed, but compression should still lead with what happened rather than the storage shape of the result.
 
 ## Keep strict truth underneath natural prose
 
@@ -46,6 +64,14 @@ Keep speaker identity clear. With three or more plausible speakers, re-anchor ea
 
 Never invent Wei's protected dialogue, private thought, emotional conclusion, promise, consent, spending, allegiance, mercy, romance, or permanent strategy. If the player supplied or delegated Wei's immediate answer, render it faithfully before moving to the NPC reaction.
 
+### Do not make Wei the conversational routing hub
+
+Wei is the player viewpoint and often the authority figure; he is not the only edge in the social graph. In a substantive scene with three or more established people, normally include at least one grounded NPC-to-NPC action or exchange before ending the beat when speech and movement are socially plausible. That interaction can be a correction, question, handoff, joke, disagreement, confirmation, tactical callout, or visible response.
+
+Do not force cross-talk merely to satisfy a quota. The point is to show independent social presence. A subordinate may report to a deputy before the deputy addresses Wei. Two students may compare what went wrong. A medic may answer a scout's concern. A family member may interrupt another family member. Preserve rank, audience, knowledge, and relationship boundaries while allowing people to have relationships that do not pass through Wei.
+
+If everyone repeatedly waits for Wei to speak, move, notice, or authorize ordinary reversible behavior despite having lawful local agency, treat that as a scene-craft defect rather than as respect for player agency.
+
 ## Put Wei's chosen words on screen
 
 When the player supplies dialogue, selects a menu option whose substance is dialogue, or explicitly delegates formulation of the current answer, make Wei's actual words visible before the other character reacts. Do not collapse a meaningful spoken choice into `you answer`, `you explain`, `you choose 3`, or a narrator paraphrase when the line can be rendered naturally.
@@ -70,6 +96,14 @@ If fresh context establishes that Wei and a teammate, family member, friend, or 
 
 Let established relationships affect rhythm. Teammates may interrupt each other, a parent may speak differently from a superior, and a field veteran may address a junior differently in private than before command staff. Use only player-visible characterization and current context.
 
+### Leadership scenes should expose what subordinates can own
+
+When Wei is acting as instructor, captain, commander, clan authority, or senior operative, do not reduce leadership to `give order -> everyone complies`. Use authoritative team/check-in/doctrine/assignment information to surface real leadership questions: what should be delegated, what a deputy can own, where familiarity is uneven, whether role coverage is brittle, which constraint needs instructor attention, and when Wei should deliberately refrain from solving a problem himself.
+
+A durable team check-in is an opportunity for the team to bring Wei a bounded agenda, not an automatic request for him to make every decision. Let the contact actor state the concern in their own voice after loading the relevant person/team detail. Let teammates disagree or add context when lawfully present. Stop before changing doctrine, assignments, mission commitments, spending, or another protected/durable choice unless the player decides it.
+
+Do not turn every check-in into a crisis. A good leadership scene can be a deputy saying, in effect, `we can own this, but this other piece still needs you`.
+
 ## Briefing, command, and political scenes
 
 Do not substitute an omniscient mission card for a meeting.
@@ -77,6 +111,14 @@ Do not substitute an omniscient mission card for a meeting.
 Surface decision-relevant facts through people using maps, reports, seals, schedules, route sketches, equipment checks, casualty lists, witness accounts, and practical objections. A scout may focus on sight lines, a medic on evacuation, an intelligence officer on source confidence, a superior on authority and timing.
 
 Use narration to orient space and compress repeated procedure. Use dialogue to carry differing roles, incentives, uncertainty, and professional judgment.
+
+## Training and examination scenes
+
+Training at high capability should not be narrated as a hunt for another integer. When the committed mechanics show little or no raw stat gain, look for other authoritative texture already present: team familiarity, readiness, doctrine, recent-session targets, teaching, role integration, residual development, technique reliability, or a meaningful absence of improvement. Never invent a gain merely to make practice feel rewarding.
+
+For repeated training, establish the meaningful pattern and then compress repetitions. Expand the point where somebody adapts, teaches, fails to transfer a skill, shows a coordination gap, demonstrates improved reliability, or raises a leadership question that current truth supports.
+
+For examinations, let the evaluative categories shape what the camera notices without turning category names into shouted numbers. If exact scores are player-visible, place them after the performance and reactions as a concise result. Passing an evaluation is a durable outcome; how teammates look at one another, catch their breath, trade a correction, or absorb the result may be reversible scene presentation when current cast and vitality support it.
 
 ## Reversible scene motion
 
@@ -145,23 +187,35 @@ Before ending, ask:
 3. Is the scene still socially active with established participants?
 4. Has a genuinely new consequential decision landed?
 
+Use fresh `scene.activity_handoff` when present as a compact derived turn-completion cue, not as a new mechanical authority:
+
+- `requires_player_decision: true` is a stop boundary. Stage the event or question, then return agency with choices only when scaffolding is useful.
+- `continue_without_player: true` means no **new** Wei decision is required inside an already-declared `continue`, standing wait, or procedural purpose. Carry that existing purpose through the lawful runtime continuation path rather than ending merely because one command settled. It never authorizes a new objective, protected dialogue, spending, strategy, mission acceptance, or other voluntary commitment.
+- `next_boundary_at` or `target_time` is a horizon for the appropriate time/event-seeking command, not proof that time has already passed. Real player-facing events may interrupt it first.
+- `status: scene_open` means the projection did not prove automatic continuation. Use the player's current declared intent and the live scene; do not invent a wait or objective from the field.
+
 If the next beat is a reversible continuation, continue it. If the larger process continues but no new decision exists, keep that process alive in the fiction instead of manufacturing choices. If the scene naturally settles without a decision, end on a lived beat.
 
 If an NPC's final beat asks Wei for a new consequential answer about allegiance, mission commitment, command, rank, office, spending, promises, surrender, mercy, strategy, romance, family, relationships, or another protected voluntary choice, the question itself creates a player-facing decision even when `decision_required` is null. Unless the player's current message already supplied that answer, do not end on the bare question; load and apply `choices.md` and provide grounded decision scaffolding. A routine reversible clarification does not trigger this guard.
 
 Use `choices.md` only when a real player-facing fork exists. `unresolved_decision: null` is not a cue to generate a menu and is not a cue to fade to black.
 
+When choices are useful, make them materially different in posture, commitment, timing, delegation, risk, or resource use. Do not generate cosmetic paraphrases of the same action merely to fill a menu.
+
 ## Quick quality check
 
 Before sending substantive IC prose, verify:
 
 - The opening is a scene, not a state dump.
+- A resolved group outcome was staged as lived action before any score/status summary when the result was substantively scene-worthy.
 - The backend boundary is invisible inside IC wording.
 - Present important NPCs are not mute without a reason.
+- In a three-plus-person scene, Wei is not the only conversational routing hub when lawful NPC-to-NPC interaction is natural.
 - Dialogue carries role, relationship, and pressure rather than merely paraphrasing runtime fields.
 - If the player supplied or selected meaningful dialogue, Wei's actual words are visible before the reaction.
 - Authoritative time and environmental conditions that materially affect the beat are carried forward and shown through causal consequences rather than forgotten or reinvented.
 - Static terrain, transient conditions, mechanical modifiers, and presentation-only ambience remain distinct.
 - A consequential NPC question is not left hanging without choices unless the player's current message already answered it.
+- `scene.activity_handoff` was respected without treating it as permission for a new protected choice.
 - Only decision-relevant limitations are stated.
 - The ending follows the causal scene instead of defaulting to a menu.

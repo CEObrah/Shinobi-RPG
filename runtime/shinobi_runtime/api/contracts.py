@@ -15,10 +15,11 @@ from shinobi_runtime.store.overlay import StagedOverlay
 
 # A single causal time command can legitimately settle many independent scheduled
 # hosts that share one timestamp. Keep the transaction bounded, but size the
-# path ceiling for a full world-review wave rather than a small hand-authored
-# action. Total encoded bytes remain independently capped below.
+# path and byte ceilings for a full world-review wave rather than a small
+# hand-authored action. The production frontier regression exercises the real
+# current campaign boundary so these limits remain covered by an exact plan.
 MAX_PLAN_WRITE_PATHS = 1024
-MAX_PLAN_WRITE_BYTES = 4 * 1024 * 1024
+MAX_PLAN_WRITE_BYTES = 16 * 1024 * 1024
 
 
 class PlannerUnavailableError(RuntimeError):
@@ -153,18 +154,9 @@ class OocAuditResult:
 class OocAuditProvider(Protocol):
     def __call__(
         self,
-        focus: Optional[str],
-        observations: Tuple[str, ...],
+        focus: Optional[str], observations: Tuple[str, ...]
     ) -> OocAuditResult:
         ...
-
-
-class UnavailableCommandPlanner:
-    def preview(self, command: CommandEnvelope) -> CommandPreview:
-        raise PlannerUnavailableError("command planner is not configured")
-
-    def plan(self, command: CommandEnvelope) -> CommandPlan:
-        raise PlannerUnavailableError("command planner is not configured")
 
 
 def unresolved_sheet(person_id: str) -> Optional[Mapping[str, Any]]:
@@ -178,3 +170,11 @@ def basic_ooc_audit(
         diagnostics=("command_planner_not_configured",),
         suggestions=("connect_a_reviewed_command_planner_before_gameplay",),
     )
+
+
+class UnavailableCommandPlanner:
+    def preview(self, command: CommandEnvelope) -> CommandPreview:
+        raise PlannerUnavailableError("command planner is not configured")
+
+    def plan(self, command: CommandEnvelope) -> CommandPlan:
+        raise PlannerUnavailableError("command planner is not configured")

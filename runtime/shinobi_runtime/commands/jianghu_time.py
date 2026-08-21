@@ -16,7 +16,7 @@ from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.martial_world.scheduler import due_events, settle_schedule
 from shinobi_runtime.martial_world.event_seeking import event_seeking_boundary_summary
-from shinobi_runtime.martial_world.time_integration import settle_martial_world_frontier
+from shinobi_runtime.martial_world.time_progression import settle_martial_world_frontier
 from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest

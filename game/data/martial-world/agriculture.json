@@ -1,0 +1,242 @@
+{
+  "units": {
+    "land": "mu",
+    "food": "ration_day",
+    "herb": "herb_unit",
+    "money": "copper_cash",
+    "labor": "person_day"
+  },
+  "food_crops": {
+    "staple_grain": {
+      "growth_days": 120,
+      "seed_cost_cash_per_mu": 120,
+      "labor_days_per_mu": 18,
+      "yield_food_per_mu": 360,
+      "shelf_life_days": 540,
+      "planting_months": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "optimal_temperature_c_tenths": [
+        180,
+        260
+      ],
+      "water_need_milli": 550,
+      "base_value_cash_per_food_ration_day": 25
+    },
+    "legumes": {
+      "growth_days": 90,
+      "seed_cost_cash_per_mu": 90,
+      "labor_days_per_mu": 14,
+      "yield_food_per_mu": 260,
+      "shelf_life_days": 360,
+      "planting_months": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "optimal_temperature_c_tenths": [
+        170,
+        280
+      ],
+      "water_need_milli": 450,
+      "base_value_cash_per_food_ration_day": 25
+    },
+    "vegetables": {
+      "growth_days": 60,
+      "seed_cost_cash_per_mu": 80,
+      "labor_days_per_mu": 20,
+      "yield_food_per_mu": 180,
+      "shelf_life_days": 30,
+      "planting_months": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "optimal_temperature_c_tenths": [
+        160,
+        280
+      ],
+      "water_need_milli": 650,
+      "base_value_cash_per_food_ration_day": 25
+    }
+  },
+  "medicinal_herbs": {
+    "ginseng": {
+      "growth_days": 365,
+      "seed_cost_cash_per_mu": 800,
+      "labor_days_per_mu": 22,
+      "yield_herb_units_per_mu": 40,
+      "shelf_life_days": 720,
+      "planting_months": [
+        2,
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        100,
+        220
+      ],
+      "water_need_milli": 650,
+      "base_value_cash_per_herb_unit": 183
+    },
+    "astragalus": {
+      "growth_days": 180,
+      "seed_cost_cash_per_mu": 300,
+      "labor_days_per_mu": 16,
+      "yield_herb_units_per_mu": 80,
+      "shelf_life_days": 540,
+      "planting_months": [
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        120,
+        260
+      ],
+      "water_need_milli": 500,
+      "base_value_cash_per_herb_unit": 63
+    },
+    "angelica": {
+      "growth_days": 180,
+      "seed_cost_cash_per_mu": 350,
+      "labor_days_per_mu": 18,
+      "yield_herb_units_per_mu": 70,
+      "shelf_life_days": 540,
+      "planting_months": [
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        110,
+        240
+      ],
+      "water_need_milli": 600,
+      "base_value_cash_per_herb_unit": 81
+    },
+    "licorice": {
+      "growth_days": 240,
+      "seed_cost_cash_per_mu": 300,
+      "labor_days_per_mu": 14,
+      "yield_herb_units_per_mu": 70,
+      "shelf_life_days": 720,
+      "planting_months": [
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        120,
+        280
+      ],
+      "water_need_milli": 400,
+      "base_value_cash_per_herb_unit": 63
+    },
+    "ginger": {
+      "growth_days": 150,
+      "seed_cost_cash_per_mu": 200,
+      "labor_days_per_mu": 18,
+      "yield_herb_units_per_mu": 100,
+      "shelf_life_days": 240,
+      "planting_months": [
+        3,
+        4,
+        5
+      ],
+      "optimal_temperature_c_tenths": [
+        180,
+        300
+      ],
+      "water_need_milli": 750,
+      "base_value_cash_per_herb_unit": 55
+    },
+    "coptis": {
+      "growth_days": 270,
+      "seed_cost_cash_per_mu": 500,
+      "labor_days_per_mu": 20,
+      "yield_herb_units_per_mu": 50,
+      "shelf_life_days": 540,
+      "planting_months": [
+        2,
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        80,
+        220
+      ],
+      "water_need_milli": 750,
+      "base_value_cash_per_herb_unit": 128
+    },
+    "safflower": {
+      "growth_days": 120,
+      "seed_cost_cash_per_mu": 250,
+      "labor_days_per_mu": 16,
+      "yield_herb_units_per_mu": 90,
+      "shelf_life_days": 360,
+      "planting_months": [
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        160,
+        300
+      ],
+      "water_need_milli": 500,
+      "base_value_cash_per_herb_unit": 55
+    },
+    "notoginseng": {
+      "growth_days": 365,
+      "seed_cost_cash_per_mu": 900,
+      "labor_days_per_mu": 24,
+      "yield_herb_units_per_mu": 35,
+      "shelf_life_days": 720,
+      "planting_months": [
+        2,
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        120,
+        240
+      ],
+      "water_need_milli": 700,
+      "base_value_cash_per_herb_unit": 229
+    },
+    "corydalis": {
+      "growth_days": 180,
+      "seed_cost_cash_per_mu": 420,
+      "labor_days_per_mu": 18,
+      "yield_herb_units_per_mu": 60,
+      "shelf_life_days": 540,
+      "planting_months": [
+        2,
+        3,
+        4
+      ],
+      "optimal_temperature_c_tenths": [
+        100,
+        240
+      ],
+      "water_need_milli": 600,
+      "base_value_cash_per_herb_unit": 95
+    }
+  },
+  "settlement_rules": {
+    "daily_food_consumption_per_person": 1,
+    "harvest": "On the exact growth-day boundary, an active planted crop consumes its recorded seed and labor commitments and adds its fixed yield. No random harvest roll exists in phase 1.",
+    "replant": "Replanting is a new planting action with a new seed cost and labor commitment.",
+    "harvest_formula": "floor(base_yield * planted_mu * labor_coverage_milli * infrastructure_milli * climate_suitability_milli / 1000^3) at the exact growth boundary",
+    "climate_suitability": "derived from registered temperature/precipitation summary over the crop cycle; no random harvest roll",
+    "level5_controlled_cultivation": "L5 Agriculture may use registered irrigation/shade/protected-bed capacity to satisfy the cultivation requirements of any herb in the finite registry, but still consumes land, labor, water, seed and time."
+  }
+}

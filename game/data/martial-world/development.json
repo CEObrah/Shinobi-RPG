@@ -1,0 +1,14 @@
+{
+  "aptitude_min": 0,
+  "aptitude_max": 200,
+  "capability_max": null,
+  "weekly_deliberate_training_hours_max": 48,
+  "gain_formula": "runtime.shinobi_runtime.martial_world.training.training_gain_milli; current skill raises point cost continuously but never makes gain impossible",
+  "instructor_capacity": {
+    "direct": "4 + floor(instruction/20)",
+    "group": "(20 + floor(instruction/2)) * max(1,facility_level)/3",
+    "hierarchy_rule": "chief instructors may supervise subordinate instructors; each subordinate separately supplies its own group capacity, so there is no artificial faction-wide unit cap"
+  },
+  "combat_evidence_rule": "combat and difficult field work create development evidence/novelty; training, reflection or instruction converts that evidence through the same progression formula rather than granting arbitrary instant skill points",
+  "representation_parity": "Full Character, Person Lite and aggregate-derived recruits use the same progression law."
+}

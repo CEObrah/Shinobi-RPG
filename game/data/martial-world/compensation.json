@@ -1,0 +1,33 @@
+{
+  "currency": "copper_cash",
+  "interval_days": 30,
+  "grade_monthly_cash": {
+    "probationary": 75,
+    "junior": 100,
+    "full": 150,
+    "senior": 225,
+    "elite": 300,
+    "elder": 375
+  },
+  "office_monthly_cash": {
+    "leader": 600,
+    "deputy_leader": 350,
+    "senior_elder": 250,
+    "elder": 175,
+    "chief_martial_instructor": 250,
+    "discipline_instructor": 150,
+    "field_commander": 300,
+    "deputy_field_commander": 200,
+    "scout_leader": 150,
+    "chief_steward": 200,
+    "treasurer": 200,
+    "quartermaster": 175,
+    "chief_physician": 250,
+    "chief_apothecary": 225,
+    "archivist": 150,
+    "master_weaponsmith": 225
+  },
+  "shortfall_rule": "Pay in deterministic roster order until treasury is exhausted; unpaid amounts are reported as arrears pressure but no debt owner is created unless a later contract explicitly creates one.",
+  "extra_income_rule": "Contract shares, tournament prizes, gifts, trade profit and personal business income are separate conserved transfers into the same personal_cash balance.",
+  "stipend_rule": "Faction membership normally provides food, housing, training and institutional support. This cash amount is a modest personal allowance, not a full labor wage; enterprise/professional earnings and contract shares are separate transfers."
+}

@@ -1,0 +1,113 @@
+{
+  "poisons": {
+    "sedative": {
+      "onset_minutes": 20,
+      "burden_per_dose": 30,
+      "effects_per_100_burden": {
+        "perception_penalty": 20,
+        "speed_penalty": 10,
+        "consciousness_pressure": 25
+      },
+      "potency": 65
+    },
+    "paralytic": {
+      "onset_minutes": 10,
+      "burden_per_dose": 35,
+      "effects_per_100_burden": {
+        "dexterity_penalty": 25,
+        "speed_penalty": 30,
+        "respiratory_pressure": 10
+      },
+      "potency": 78
+    },
+    "anticoagulant": {
+      "onset_minutes": 15,
+      "burden_per_dose": 30,
+      "effects_per_100_burden": {
+        "bleeding_rate_multiplier_milli": 1500
+      },
+      "potency": 72
+    },
+    "cardiotoxic": {
+      "onset_minutes": 8,
+      "burden_per_dose": 40,
+      "effects_per_100_burden": {
+        "endurance_penalty": 30,
+        "shock_pressure": 25
+      },
+      "potency": 92
+    },
+    "neurotoxic": {
+      "onset_minutes": 12,
+      "burden_per_dose": 40,
+      "effects_per_100_burden": {
+        "dexterity_penalty": 20,
+        "perception_penalty": 20,
+        "consciousness_pressure": 20
+      },
+      "potency": 88
+    }
+  },
+  "natural_clearance_per_hour": 2,
+  "rule": "Poison effects are deterministic functions of registered dose, elapsed time, current burden, Endurance/Qi resistance and treatment. No random status-effect roll.",
+  "resistance_rule": "Deterministic resistance uses Endurance + effective Qi/Qi Control against poison potency and delivered dose. Resistance has no percentage ceiling; sufficiently weak exposure can establish zero burden.",
+  "active_qi_purge": {
+    "qi_cost_per_burden": 4,
+    "control_efficiency_rule": "Qi Control determines how much burden one unit of spent Qi can clear; elapsed treatment time limits throughput."
+  },
+  "production": {
+    "rule": "Fictional abstract reagent units + actual apothecary + apothecary station + reserved time produce conserved poison doses. No real-world formulation is represented.",
+    "recipes": {
+      "sedative": {
+        "inputs": {
+          "toxin_reagent_unit": 2,
+          "carrier_reagent_unit": 1
+        },
+        "batch_size": 6,
+        "labor_hours": 5,
+        "minimum_apothecary_level": 2,
+        "minimum_medicine_skill": 55
+      },
+      "paralytic": {
+        "inputs": {
+          "toxin_reagent_unit": 2,
+          "carrier_reagent_unit": 1
+        },
+        "batch_size": 6,
+        "labor_hours": 6,
+        "minimum_apothecary_level": 2,
+        "minimum_medicine_skill": 55
+      },
+      "anticoagulant": {
+        "inputs": {
+          "toxin_reagent_unit": 2,
+          "carrier_reagent_unit": 1
+        },
+        "batch_size": 6,
+        "labor_hours": 6,
+        "minimum_apothecary_level": 2,
+        "minimum_medicine_skill": 55
+      },
+      "cardiotoxic": {
+        "inputs": {
+          "toxin_reagent_unit": 3,
+          "carrier_reagent_unit": 1
+        },
+        "batch_size": 6,
+        "labor_hours": 7,
+        "minimum_apothecary_level": 3,
+        "minimum_medicine_skill": 80
+      },
+      "neurotoxic": {
+        "inputs": {
+          "toxin_reagent_unit": 3,
+          "carrier_reagent_unit": 1
+        },
+        "batch_size": 6,
+        "labor_hours": 7,
+        "minimum_apothecary_level": 3,
+        "minimum_medicine_skill": 80
+      }
+    }
+  }
+}

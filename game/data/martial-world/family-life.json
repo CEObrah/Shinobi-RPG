@@ -1,0 +1,53 @@
+{
+  "courtship": {
+    "minimum_age": 16,
+    "minimum_mutual_affection": 20,
+    "minimum_mutual_trust": 10
+  },
+  "marriage": {
+    "minimum_age": 16,
+    "requires_mutual_consent": true,
+    "requires_existing_courtship_or_arrangement": true
+  },
+  "birth": {
+    "gestation_days": 280,
+    "minimum_maternal_age": 16,
+    "maximum_maternal_age": 48
+  },
+  "childhood": {
+    "adult_age": 16,
+    "martial_training_minimum_age": 8,
+    "qi_training_minimum_age": 10,
+    "adult_attribute_floor_base": 20,
+    "aptitude_attribute_weight_milli": 400,
+    "maximum_annual_body_mass_gain_kg": {
+      "age_0_2": 8,
+      "age_3_12": 5,
+      "age_13_17": 8
+    },
+    "maximum_annual_attribute_floor_gain": 7
+  },
+  "rules": [
+    "Marriage never automatically transfers faction membership, office, property or allegiance.",
+    "Children receive one persistent identity at birth and deterministic inherited appearance/aptitudes; no rerolls.",
+    "Household movement, guardianship, widowhood, inheritance and succession claims are separate facts."
+  ],
+  "conception": {
+    "deterministic_cycle_months": 18,
+    "minimum_days_after_birth": 365,
+    "rule": "Within an existing consenting marriage, an eligible non-player household has one stable fertility month in each 18-month cycle. Failed checks are not persisted."
+  },
+  "demographic_family_formation": {
+    "target_paired_adult_share_milli": 500,
+    "low_family_faction_refs": [
+      "shaolin",
+      "quanzhen"
+    ],
+    "low_family_target_share_milli": 80,
+    "maximum_age_gap_years": 18,
+    "monthly_base_start_permille": 120,
+    "monthly_deficit_bonus_permille_per_pair": 12,
+    "monthly_max_start_permille": 550,
+    "rule": "Ordinary non-player faction members may form a deterministic courtship from compatible local adults even when no prior exact social edge existed. Only the selected pair is materialized into social/family state."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-custody-state-1.0",
+  "target_schema": "jianghu-custody-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "records"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "records"
+      ]
+    },
+    "/records/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "custody_id",
+        "person_ref",
+        "captor_ref",
+        "status",
+        "location_ref",
+        "basis",
+        "started_at"
+      ],
+      "canonical_order": [
+        "custody_id",
+        "person_ref",
+        "captor_ref",
+        "status",
+        "location_ref",
+        "basis",
+        "started_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/records": [
+      "array"
+    ],
+    "/records/*": [
+      "object"
+    ],
+    "/records/*/custody_id": [
+      "string"
+    ],
+    "/records/*/person_ref": [
+      "string"
+    ],
+    "/records/*/captor_ref": [
+      "string"
+    ],
+    "/records/*/status": [
+      "string"
+    ],
+    "/records/*/location_ref": [
+      "string"
+    ],
+    "/records/*/basis": [
+      "string"
+    ],
+    "/records/*/started_at": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/records": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Load this template before creating or structurally editing a target owner.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Dynamic/open maps permit new IDs only; each value must still satisfy the wildcard value contract.",
+    "Canonical key order is a writing convention only."
+  ]
+}

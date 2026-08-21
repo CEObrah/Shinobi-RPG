@@ -1,0 +1,114 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-family-state-1.0",
+  "target_schema": "jianghu-family-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "marriages",
+    "parentage",
+    "households",
+    "succession_claims"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "marriages",
+        "parentage",
+        "households",
+        "succession_claims"
+      ],
+      "canonical_order": [
+        "schema",
+        "marriages",
+        "parentage",
+        "households",
+        "succession_claims"
+      ]
+    },
+    "/marriages": {
+      "mode": "open_map"
+    },
+    "/marriages/*": {
+      "mode": "open_map"
+    },
+    "/parentage": {
+      "mode": "open_map"
+    },
+    "/parentage/*": {
+      "mode": "open_map"
+    },
+    "/households": {
+      "mode": "open_map"
+    },
+    "/households/*": {
+      "mode": "open_map"
+    },
+    "/succession_claims": {
+      "mode": "open_map"
+    },
+    "/succession_claims/*": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/marriages": [
+      "object"
+    ],
+    "/marriages/*": [
+      "object"
+    ],
+    "/parentage": [
+      "object"
+    ],
+    "/parentage/*": [
+      "object"
+    ],
+    "/households": [
+      "object"
+    ],
+    "/households/*": [
+      "object"
+    ],
+    "/succession_claims": [
+      "object"
+    ],
+    "/succession_claims/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/households/*/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/parentage/*/*": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/marriages/*/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Do not add unregistered fields.",
+    "A current pregnancy is stored only on its active marriage owner and is consumed at birth; there is no duplicate pregnancy index."
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "jianghu-duty-roles-1.0",
+  "rules": [
+    "Duty is a current work assignment, never a membership grade or social caste.",
+    "Routine assignments are deterministically reassessed from institutional need, current suitability and availability.",
+    "A person's current duty consumes finite time and therefore reduces institutional training availability.",
+    "Only the current standing duty persists; no hourly schedule or duty-history ledger is stored."
+  ],
+  "duties": {
+    "kitchen_service": {
+      "time_share_milli": 300,
+      "professional_skill": null,
+      "site_type": "residential_compound",
+      "minimum_age": 12,
+      "rotation_period_months": 3
+    },
+    "records_administration": {
+      "time_share_milli": 400,
+      "professional_skill": "administration",
+      "minimum_professional_skill": 10,
+      "site_type": "library_records",
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "trade_service": {
+      "time_share_milli": 420,
+      "professional_skill": "commerce",
+      "minimum_professional_skill": 10,
+      "site_type": "main_hall",
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "workshop_service": {
+      "time_share_milli": 440,
+      "professional_skill": "crafting",
+      "minimum_professional_skill": 10,
+      "site_type": "armory_workshop",
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "infirmary_service": {
+      "time_share_milli": 440,
+      "professional_skill": "medicine",
+      "minimum_professional_skill": 10,
+      "site_type": "infirmary_apothecary",
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "storehouse_logistics": {
+      "time_share_milli": 340,
+      "professional_skill": null,
+      "site_type": "storehouse",
+      "minimum_age": 13,
+      "rotation_period_months": 3
+    },
+    "transport_stable_service": {
+      "time_share_milli": 340,
+      "professional_skill": null,
+      "site_type": "transport_yard",
+      "minimum_age": 13,
+      "rotation_period_months": 3
+    },
+    "general_household_service": {
+      "time_share_milli": 280,
+      "professional_skill": null,
+      "site_type": "residential_compound",
+      "minimum_age": 12,
+      "rotation_period_months": 3
+    }
+  }
+}

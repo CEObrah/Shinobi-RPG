@@ -1,0 +1,122 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-scheduler-1.0",
+  "target_schema": "jianghu-scheduler-1.0",
+  "source_schema": "game/schemas/jianghu-scheduler.schema.json",
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "settled_through",
+    "recurring",
+    "one_off"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "settled_through",
+        "recurring",
+        "one_off"
+      ],
+      "canonical_order": [
+        "schema",
+        "settled_through",
+        "recurring",
+        "one_off"
+      ]
+    },
+    "/recurring": {
+      "mode": "open_map"
+    },
+    "/recurring/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "interval_days",
+        "next_due_at",
+        "owner_cursor",
+        "owner_refs",
+        "event_kinds"
+      ],
+      "canonical_order": [
+        "interval_days",
+        "next_due_at",
+        "owner_cursor",
+        "owner_refs",
+        "event_kinds"
+      ]
+    },
+    "/one_off": {
+      "mode": "open_map"
+    },
+    "/one_off/*": {
+      "mode": "open"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/settled_through": [
+      "string"
+    ],
+    "/recurring": [
+      "object"
+    ],
+    "/recurring/*": [
+      "object"
+    ],
+    "/recurring/*/interval_days": [
+      "integer"
+    ],
+    "/recurring/*/next_due_at": [
+      "string"
+    ],
+    "/recurring/*/owner_refs": [
+      "array"
+    ],
+    "/recurring/*/owner_refs/*": [
+      "string"
+    ],
+    "/recurring/*/event_kinds": [
+      "array"
+    ],
+    "/recurring/*/event_kinds/*": [
+      "string"
+    ],
+    "/recurring/*/owner_cursor": [
+      "integer"
+    ],
+    "/one_off": [
+      "object"
+    ],
+    "/one_off/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/recurring/*/owner_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/recurring/*/event_kinds": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Store only the next due boundary for recurring work; never pre-expand future repetitions.",
+    "Advance a recurring next_due_at only after its current boundary is settled.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first.",
+    "Use owner_cursor only as a resumable bounded-work cursor; it never limits how many lawful owners exist or remain eligible."
+  ]
+}

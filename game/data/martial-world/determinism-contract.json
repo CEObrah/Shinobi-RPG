@@ -1,0 +1,231 @@
+{
+  "rule": "A quantitative authoritative field is not considered mechanically complete until a deterministic runtime consumer exists. Presentation-only labels may describe derived state but may never create or modify mechanical state.",
+  "global_invariants": [
+    "no narrator-created people",
+    "no narrator-created money",
+    "no narrator-created equipment or materials",
+    "no narrator-created crops, herbs, medicine or pills",
+    "no free building or enterprise level",
+    "no free training or aptitude change",
+    "no random candidate reroll",
+    "no random crafting quality or crafting success",
+    "no random route duration",
+    "same world seed plus place plus six-hour block yields the same weather",
+    "martial faction deployments conserve exact faction members",
+    "government ordinary soldiers remain aggregate exact headcounts",
+    "capability stats are uncapped; aptitude is bounded 0 through 200",
+    "item hardware remains physically bounded even when character capability exceeds 200",
+    "all martial-faction population counts reconcile to persistent Person Lite or Full Character identities",
+    "civilian markets have finite saved stock and production; no infinite shop inventory",
+    "paid contracts require escrowed issuer funding before acceptance",
+    "medicine dose use decrements exact inventory before effect application",
+    "medicine saturation, toxicity and active effects settle from exact elapsed time",
+    "public reputation and rankings cannot consume hidden true stats or undelivered events",
+    "autonomous world work is classified as internal, soft player-facing or hard decision before event-seeking time stops",
+    "there is no mercenary-company faction type or mercenary-contract enterprise type in the Jianghu ruleset",
+    "personal combat health authority is anatomy, blood loss, pain, shock, consciousness and function; no hit-point pool",
+    "direct Qi-restoration/cultivation pills do not exist; Qi recovery comes from elapsed rest/health/Qi Control and growth comes from cultivation/training",
+    "faction stock is owned by exact faction inventory owners; coarse equipment/material/medicine counts on faction records are forbidden"
+  ],
+  "subsystems": {
+    "equipment": {
+      "data": [
+        "game/data/martial-world/equipment.json",
+        "game/data/martial-world/workshop.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/equipment.py",
+      "production_consumer": "runtime/shinobi_runtime/martial_world/production.py",
+      "status": "executable_new_world"
+    },
+    "infrastructure": {
+      "data": [
+        "game/data/martial-world/buildings.json",
+        "game/data/martial-world/enterprises.json",
+        "game/data/martial-world/economy.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/infrastructure.py",
+      "status": "executable_new_world"
+    },
+    "agriculture": {
+      "data": [
+        "game/data/martial-world/agriculture.json",
+        "game/data/martial-world/climate.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/agriculture.py",
+      "weather_consumer": "runtime/shinobi_runtime/martial_world/weather.py",
+      "status": "executable_new_world"
+    },
+    "medicine": {
+      "data": "game/data/martial-world/medicine.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/production.py",
+      "status": "executable_new_world"
+    },
+    "recruitment": {
+      "data": "game/data/martial-world/population-recruitment.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/recruitment.py",
+      "status": "executable_new_world"
+    },
+    "training": {
+      "data": [
+        "game/data/martial-world/character-system.json",
+        "game/data/martial-world/development.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/training.py",
+      "status": "executable_new_world"
+    },
+    "geography_travel_weather": {
+      "data": [
+        "game/data/martial-world/geography.json",
+        "game/data/martial-world/travel.json",
+        "game/data/martial-world/climate.json"
+      ],
+      "consumer": [
+        "runtime/shinobi_runtime/martial_world/travel.py",
+        "runtime/shinobi_runtime/martial_world/weather.py"
+      ],
+      "status": "executable_new_world"
+    },
+    "world_events": {
+      "data": "game/data/martial-world/world-events.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/events.py",
+      "status": "live_jianghu_authority"
+    },
+    "factions": {
+      "data": [
+        "game/data/martial-world/faction-types.json",
+        "game/data/martial-world/faction-structure.json",
+        "game/data/martial-world/world-seed.json"
+      ],
+      "status": "live_jianghu_authority"
+    },
+    "medicine_use": {
+      "data": "game/data/martial-world/medicine.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/medicine.py",
+      "production_consumer": "runtime/shinobi_runtime/martial_world/production.py",
+      "status": "executable_new_world"
+    },
+    "regional_economy": {
+      "data": [
+        "game/data/martial-world/regional-economy.json",
+        "game/data/martial-world/economy.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/regional_economy.py",
+      "status": "executable_new_world",
+      "state": "state/martial-world/markets/"
+    },
+    "contracts": {
+      "data": "game/data/martial-world/contracts.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/contracts.py",
+      "status": "live_jianghu_authority"
+    },
+    "outlaw_activity": {
+      "data": "game/data/martial-world/world-seed.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/outlaws.py",
+      "status": "executable_new_world"
+    },
+    "faction_autonomy": {
+      "data": [
+        "game/data/martial-world/autonomy.json",
+        "game/data/martial-world/world-seed.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/factions.py",
+      "status": "live_jianghu_authority"
+    },
+    "faction_rosters": {
+      "data": [
+        "state/martial-world/people/",
+        "state/martial-world/person-routes.json",
+        "state/martial-world/person-routes/"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/live_state.py",
+      "status": "live_jianghu_authority"
+    },
+    "upkeep": {
+      "data": [
+        "game/data/martial-world/economy.json",
+        "game/data/martial-world/buildings.json",
+        "game/data/martial-world/enterprises.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/upkeep.py",
+      "status": "executable_new_world"
+    },
+    "handoff_event_seeking": {
+      "data": [
+        "game/data/martial-world/handoff.json",
+        "game/data/martial-world/procedures.json"
+      ],
+      "consumer": [
+        "runtime/shinobi_runtime/martial_world/handoffs.py",
+        "runtime/shinobi_runtime/martial_world/event_seeking.py",
+        "runtime/shinobi_runtime/martial_world/procedures.py"
+      ],
+      "status": "live_jianghu_authority"
+    },
+    "reputation_rankings": {
+      "data": "game/data/martial-world/rankings.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/rankings.py",
+      "status": "live_jianghu_authority"
+    },
+    "life_course": {
+      "data": "game/data/martial-world/life-course.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/life_course.py",
+      "status": "live_jianghu_authority"
+    },
+    "poison": {
+      "data": "game/data/martial-world/poisons.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/poison.py",
+      "status": "executable_new_world"
+    },
+    "government_response": {
+      "data": [
+        "game/data/martial-world/government-response.json",
+        "game/data/martial-world/government-troops.json"
+      ],
+      "consumer": "runtime/shinobi_runtime/martial_world/government.py",
+      "status": "executable_new_world"
+    },
+    "tournaments": {
+      "data": [
+        "game/data/martial-world/world-events.json",
+        "game/data/martial-world/tournaments.json"
+      ],
+      "consumer": [
+        "runtime/shinobi_runtime/martial_world/events.py",
+        "runtime/shinobi_runtime/martial_world/tournaments.py"
+      ],
+      "status": "live_jianghu_authority"
+    },
+    "combat_health": {
+      "data": [
+        "game/data/martial-world/combat.json",
+        "game/data/martial-world/anatomy.json",
+        "game/data/martial-world/equipment.json",
+        "game/data/martial-world/qi.json"
+      ],
+      "consumer": [
+        "runtime/shinobi_runtime/martial_world/combat.py",
+        "runtime/shinobi_runtime/martial_world/health.py",
+        "runtime/shinobi_runtime/martial_world/equipment.py"
+      ],
+      "status": "live_jianghu_authority"
+    },
+    "faction_inventory": {
+      "data": [
+        "game/data/martial-world/equipment.json",
+        "game/data/martial-world/medicine.json",
+        "game/data/martial-world/economy.json"
+      ],
+      "consumer": [
+        "runtime/shinobi_runtime/martial_world/production.py",
+        "runtime/shinobi_runtime/martial_world/equipment_lifecycle.py"
+      ],
+      "state": "state/martial-world/inventories/",
+      "status": "materialized_exact_stock_authority"
+    },
+    "qi": {
+      "data": "game/data/martial-world/qi.json",
+      "consumer": "runtime/shinobi_runtime/martial_world/qi.py",
+      "status": "executable_new_world"
+    }
+  }
+}

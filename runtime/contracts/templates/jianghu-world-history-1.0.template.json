@@ -1,0 +1,79 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-world-history-1.0",
+  "target_schema": "jianghu-world-history-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "recent",
+    "counters",
+    "totals"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "recent",
+        "counters",
+        "totals"
+      ],
+      "canonical_order": [
+        "schema",
+        "recent",
+        "counters",
+        "totals"
+      ]
+    },
+    "/recent/*": {
+      "mode": "open_map"
+    },
+    "/counters": {
+      "mode": "open_map"
+    },
+    "/totals": {
+      "mode": "open_map"
+    },
+    "/totals/*": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "/": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/recent": [
+      "array"
+    ],
+    "/recent/*": [
+      "object"
+    ],
+    "/counters": [
+      "object"
+    ],
+    "/totals": [
+      "object"
+    ],
+    "/totals/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/recent": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Keep only bounded meaningful completed-event receipts. Current state remains authoritative; never store dialogue, monthly debug output, or failed checks here."
+  ]
+}

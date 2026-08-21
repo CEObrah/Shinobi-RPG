@@ -1,0 +1,253 @@
+{
+  "calendar_events": {
+    "regional_martial_tournament": {
+      "cadence": "YEARLY",
+      "month_day": "04-15",
+      "formats": [
+        "individual"
+      ],
+      "registration_closes_days_before": 3,
+      "registration_opens_days_before_close": 90,
+      "convergence_days_before": 2
+    },
+    "great_jianghu_tournament": {
+      "cadence": "EVERY_4_YEARS",
+      "month_day": "09-01",
+      "formats": [
+        "individual"
+      ],
+      "advance_notice_days_before": 365,
+      "registration_closes_days_before": 8,
+      "registration_opens_days_before_close": 180,
+      "derive_open_from_connected_route": true,
+      "preparation_route_mode": "foot",
+      "preparation_buffer_days": 60,
+      "convergence_days_before": 7
+    },
+    "spring_recruitment_season": {
+      "cadence": "YEARLY",
+      "month_day": "02-01",
+      "duration_days": 30
+    },
+    "autumn_recruitment_season": {
+      "cadence": "YEARLY",
+      "month_day": "08-01",
+      "duration_days": 30
+    },
+    "spring_trade_fair": {
+      "cadence": "YEARLY",
+      "month_day": "03-01",
+      "duration_days": 7
+    },
+    "autumn_trade_fair": {
+      "cadence": "YEARLY",
+      "month_day": "09-15",
+      "duration_days": 7
+    },
+    "jianghu_ranking_publication": {
+      "cadence": "YEARLY",
+      "month_day": "12-15",
+      "knowledge_rule": "Uses only documented public results and propagated reports; never hidden true stats."
+    },
+    "winter_martial_lectures": {
+      "cadence": "YEARLY",
+      "month_day": "01-10",
+      "duration_days": 5,
+      "registration_closes_days_before": 10
+    },
+    "lantern_city_martial_exhibitions": {
+      "cadence": "YEARLY",
+      "month_day": "01-15",
+      "duration_days": 3,
+      "registration_closes_days_before": 7
+    },
+    "spring_escort_exchange": {
+      "cadence": "YEARLY",
+      "month_day": "03-20",
+      "duration_days": 4
+    },
+    "summer_river_trade_convoy_season": {
+      "cadence": "YEARLY",
+      "month_day": "05-15",
+      "duration_days": 45
+    },
+    "midyear_junior_tournament": {
+      "cadence": "YEARLY",
+      "month_day": "06-15",
+      "simulation_mode": "flavor_only"
+    },
+    "ghost_month_security_surge": {
+      "cadence": "YEARLY",
+      "month_day": "07-15",
+      "duration_days": 15
+    },
+    "autumn_escort_exchange": {
+      "cadence": "YEARLY",
+      "month_day": "10-05",
+      "duration_days": 4
+    },
+    "winter_school_challenge_meets": {
+      "cadence": "YEARLY",
+      "month_day": "11-10",
+      "duration_days": 10
+    },
+    "year_end_faction_accounts": {
+      "cadence": "YEARLY",
+      "month_day": "12-01",
+      "duration_days": 15
+    },
+    "year_end_member_assessments": {
+      "cadence": "YEARLY",
+      "month_day": "12-20",
+      "duration_days": 5
+    }
+  },
+  "tournament_rules": {
+    "individual": {
+      "combat_engine": "full_exact",
+      "victory": [
+        "surrender",
+        "incapacitation",
+        "referee_stoppage",
+        "ring_out_if_venue_uses_boundary"
+      ],
+      "persistent_injury": true,
+      "death_possible": true
+    }
+  },
+  "causal_events_rule": "Wars, feuds, marriages, assassinations, deaths, faction splits and political crises are not calendar flavor events. They require actual causal conditions and committed actor decisions.",
+  "host_cycles": {
+    "regional_martial_tournament": [
+      "luoyang",
+      "kaifeng",
+      "xiangyang",
+      "jingzhou",
+      "suzhou",
+      "hangzhou",
+      "chengdu",
+      "changan"
+    ],
+    "host_formula": "host_index = world_year % len(host_cycle)",
+    "great_jianghu_tournament_host": "luoyang"
+  },
+  "calendar_rule": "Calendar events are generated from exact dates and host cycles. Registration and brackets are deterministic from eligible saved entrants; no narrator-created event or entrant.",
+  "causal_event_templates": {
+    "master_death_succession": {
+      "requires": [
+        "leader_or_master_death",
+        "eligible_successors"
+      ],
+      "result": "succession_process"
+    },
+    "faction_foundation": {
+      "requires": [
+        "founder",
+        "followers",
+        "funded_site_or_lease",
+        "charter_type"
+      ],
+      "result": "new_independent_faction"
+    },
+    "faction_split": {
+      "requires": [
+        "internal_conflict",
+        "lawful_departing_members",
+        "asset_split"
+      ],
+      "result": "two_conserved_factions"
+    },
+    "faction_dissolution": {
+      "requires": [
+        "zero_viable_leadership_or_membership_decision"
+      ],
+      "result": "members_and_assets_reclassified"
+    },
+    "formal_challenge": {
+      "requires": [
+        "challenger",
+        "target",
+        "known_grievance_or_reputation_goal"
+      ],
+      "result": "delivered_challenge_offer"
+    },
+    "feud_escalation": {
+      "requires": [
+        "hostility_threshold",
+        "recent_grievance",
+        "capability_to_act"
+      ],
+      "result": "hostile_commitment"
+    },
+    "marriage_negotiation": {
+      "requires": [
+        "eligible_people",
+        "lawful_family_or_self_authority",
+        "mutual_interest"
+      ],
+      "result": "proposal_or_negotiation"
+    },
+    "outlaw_bounty_issue": {
+      "requires": [
+        "delivered_crime_evidence",
+        "jurisdiction",
+        "funding"
+      ],
+      "result": "active_warrant_and_government_response"
+    },
+    "escort_demand": {
+      "requires": [
+        "saved_shipment",
+        "route",
+        "cargo",
+        "payer"
+      ],
+      "result": "funded_escort_offer"
+    },
+    "market_shortage": {
+      "requires": [
+        "market_stock_below_threshold"
+      ],
+      "result": "price_pressure_and_trade_demand"
+    },
+    "medical_emergency": {
+      "requires": [
+        "actual_injury_or_disease_owner"
+      ],
+      "result": "treatment_need"
+    },
+    "leadership_vacancy": {
+      "requires": [
+        "vacant_office"
+      ],
+      "result": "appointment_or_succession_review"
+    },
+    "tournament_rivalry": {
+      "requires": [
+        "public_match_result",
+        "relationship_update"
+      ],
+      "result": "reputation_and_optional_challenge_pressure"
+    },
+    "government_crackdown": {
+      "requires": [
+        "delivered_crime_evidence",
+        "attention_threshold"
+      ],
+      "result": "mobilization_or_bounty"
+    },
+    "outlaw_fragmentation": {
+      "requires": [
+        "leadership_loss_or_severe_shortage",
+        "surviving_members"
+      ],
+      "result": "split_merge_surrender_or_dissolve_review"
+    },
+    "talent_competition": {
+      "requires": [
+        "known_recruit_candidate",
+        "multiple_interested_factions"
+      ],
+      "result": "competing_recruitment_offers"
+    }
+  }
+}

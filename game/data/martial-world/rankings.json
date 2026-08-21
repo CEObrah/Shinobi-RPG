@@ -1,0 +1,54 @@
+{
+  "public_score_weights": {
+    "tournament_points": 5,
+    "documented_duel_points": 4,
+    "documented_contract_points": 2
+  },
+  "rule": "Rankings are publications computed only from documented public tournament, duel, and contract results. Hidden true stats are forbidden inputs. Ties sort by stable person ID.",
+  "awareness_and_fame": {
+    "score_range": [
+      0,
+      1000
+    ],
+    "knowledge_threshold_milli": 250,
+    "high_awareness_threshold_milli": 700,
+    "baseline_by_audience_kind": {
+      "local_government": 900,
+      "martial_faction": 720,
+      "escort_agency": 700,
+      "merchant": 620,
+      "local_public": 520,
+      "distant_government": 430,
+      "distant_merchant": 300,
+      "distant_public": 140
+    },
+    "same_settlement_bonus_milli": 180,
+    "imperial_capital_prominence_bonus_milli": 80,
+    "house_tang_prominence_bonus_milli": 120,
+    "personal_fame_gains": {
+      "tournament_win": 180,
+      "tournament_placement": 90,
+      "documented_duel": 70,
+      "fulfilled_contract": 45,
+      "major_rescue": 90,
+      "public_crime": 85,
+      "government_crime_report": 55
+    },
+    "faction_awareness_gains": {
+      "public_tournament": 70,
+      "public_contract": 35,
+      "government_report": 55,
+      "merchant_report": 35,
+      "major_public_act": 90
+    },
+    "faction_reputation_axes": [
+      "martial_respect",
+      "trustworthiness",
+      "honor",
+      "fear",
+      "reliability",
+      "criminal_notoriety"
+    ],
+    "rule": "Awareness, faction reputation, personal fame, direct relationship and current-scene recognition are separate. Audience state changes only from evidence lawfully delivered to that audience; static baseline awareness is derived from prominence and audience context."
+  }
+}

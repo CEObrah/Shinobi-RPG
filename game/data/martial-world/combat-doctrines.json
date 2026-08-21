@@ -1,0 +1,68 @@
+{
+  "schema": "jianghu-combat-doctrines-1.0",
+  "doctrines": {
+    "doctrine.tang_wei.precision_function_denial": {
+      "principle": "precision_function_denial",
+      "selection_rule": "Prefer a still-functional high-value structure that is physically reachable; explicit player target and lethality intent always override this standing preference.",
+      "disable_priority": [
+        {
+          "target": "weapon-side wrist/hand when identifiable",
+          "structure_selector": "wrist",
+          "purpose": "disable_weapon_control"
+        },
+        {
+          "target": "eye",
+          "structure_selector": "eye",
+          "purpose": "destroy_or_disrupt_vision"
+        },
+        {
+          "target": "ankle",
+          "structure_selector": "ankle",
+          "purpose": "collapse_footing_and_mobility"
+        },
+        {
+          "target": "knee",
+          "structure_selector": "knee",
+          "purpose": "collapse_weight_bearing_and_mobility"
+        },
+        {
+          "target": "armpit/axilla",
+          "structure_selector": "axilla",
+          "purpose": "attack_soft_tissue_and_arm_control"
+        },
+        {
+          "target": "elbow/weapon arm",
+          "structure_selector": "elbow",
+          "purpose": "disable_weapon_or_guarding_limb"
+        },
+        {
+          "target": "neck opening",
+          "structure_selector": "neck_vital",
+          "purpose": "threaten_vital_line_within_authorized_nonlethal_intent"
+        }
+      ],
+      "lethal_priority": [
+        {
+          "target": "neck/throat",
+          "structure_selector": "neck_vital",
+          "purpose": "rapid_lethal_incapacitation"
+        },
+        {
+          "target": "armpit/axilla",
+          "structure_selector": "axilla",
+          "purpose": "attack_major_vessel_and_soft_tissue_line"
+        },
+        {
+          "target": "eye/head opening",
+          "structure_selector": "eye",
+          "purpose": "catastrophic_incapacitation"
+        },
+        {
+          "target": "upper torso vital opening",
+          "structure_selector": "upper_torso_vital",
+          "purpose": "rapid_lethal_incapacitation"
+        }
+      ]
+    }
+  }
+}

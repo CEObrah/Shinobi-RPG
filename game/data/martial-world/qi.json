@@ -1,0 +1,46 @@
+{
+  "persistent_stats": [
+    "qi",
+    "qi_control"
+  ],
+  "resource": "current_qi ranges from 0 to current maximum Qi stat; maximum Qi equals the current Qi capability value.",
+  "formulas": {
+    "control_efficiency": "qi_control / (qi_control + 100)",
+    "effective_cultivation": "0 if qi + qi_control == 0 else (2 * qi * qi_control) / (qi + qi_control)",
+    "biological_aging_rate": "1 / sqrt(1 + effective_cultivation / 100)",
+    "rest_recovery_per_hour": "max_qi * 0.05 * (0.5 + 0.5 * control_efficiency)",
+    "sleep_recovery_per_hour": "max_qi * 0.10 * (0.5 + 0.5 * control_efficiency)",
+    "safe_flow_per_second": "sqrt(max(qi,0)) * (1 + control_efficiency)",
+    "redistribution_latency_seconds": "0.60 / (1 + qi_control / 100)",
+    "external_projection_decay": "projected_effect_at_distance = release_effect * exp(-distance_m / max(0.25, qi_control / 100))"
+  },
+  "universal_applications": [
+    "body_reinforcement",
+    "localized_reinforcement",
+    "weapon_reinforcement",
+    "explosive_movement",
+    "light_footed_movement",
+    "qi_supported_striking",
+    "injury_stabilization",
+    "recovery_support",
+    "poison_resistance",
+    "close_range_qi_sensing",
+    "qi_suppression",
+    "qi_disruption",
+    "inefficient_external_projection"
+  ],
+  "forbidden": [
+    "teleportation",
+    "resurrection",
+    "limb_regrowth",
+    "matter_creation",
+    "element_creation",
+    "conjured_entities",
+    "clones",
+    "illusions_from_qi_alone",
+    "time_stop",
+    "inertia_cancellation",
+    "automatic_unseen_defense",
+    "instant_wound_erasure"
+  ]
+}

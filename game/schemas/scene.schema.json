@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: scene.",
+  "type": "object",
+  "required": [
+    "schema",
+    "scene_id",
+    "location_id",
+    "present_person_ids",
+    "visible_person_ids"
+  ],
+  "properties": {
+    "schema": {
+      "const": "scene"
+    },
+    "scene_id": {
+      "type": "string"
+    },
+    "location_id": {
+      "type": "string"
+    },
+    "active_combat_ref": {
+      "type": "string"
+    },
+    "decision_required": {
+      "type": "string"
+    },
+    "present_person_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "visible_person_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted."
+}

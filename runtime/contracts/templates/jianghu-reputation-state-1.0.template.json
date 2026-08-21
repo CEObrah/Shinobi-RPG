@@ -1,0 +1,127 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-reputation-state-1.0",
+  "target_schema": "jianghu-reputation-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "audiences",
+    "rankings"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "audiences",
+        "rankings",
+        "faction_awareness",
+        "faction_reputation",
+        "personal_fame"
+      ],
+      "canonical_order": [
+        "schema",
+        "audiences",
+        "rankings",
+        "faction_awareness",
+        "faction_reputation",
+        "personal_fame"
+      ]
+    },
+    "/audiences": {
+      "mode": "open_map"
+    },
+    "/audiences/*": {
+      "mode": "open_map"
+    },
+    "/rankings": {
+      "mode": "open_map"
+    },
+    "/rankings/*": {
+      "mode": "open_map"
+    },
+    "/faction_awareness": {
+      "mode": "open_map"
+    },
+    "/faction_awareness/*": {
+      "mode": "open_map"
+    },
+    "/faction_reputation": {
+      "mode": "open_map"
+    },
+    "/faction_reputation/*": {
+      "mode": "open_map"
+    },
+    "/faction_reputation/*/*": {
+      "mode": "open_map"
+    },
+    "/personal_fame": {
+      "mode": "open_map"
+    },
+    "/personal_fame/*": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/audiences": [
+      "object"
+    ],
+    "/audiences/*": [
+      "object"
+    ],
+    "/rankings": [
+      "object"
+    ],
+    "/rankings/*": [
+      "object"
+    ],
+    "/faction_awareness": [
+      "object"
+    ],
+    "/faction_awareness/*": [
+      "object"
+    ],
+    "/faction_awareness/*/*": [
+      "integer"
+    ],
+    "/faction_reputation": [
+      "object"
+    ],
+    "/faction_reputation/*": [
+      "object"
+    ],
+    "/faction_reputation/*/*": [
+      "object"
+    ],
+    "/faction_reputation/*/*/*": [
+      "integer"
+    ],
+    "/personal_fame": [
+      "object"
+    ],
+    "/personal_fame/*": [
+      "object"
+    ],
+    "/personal_fame/*/*": [
+      "integer"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Public-evidence aggregates under audiences remain person publication evidence, not observer awareness.",
+    "Faction awareness/reputation and personal fame are keyed by the audience that actually received information.",
+    "Omit empty audience maps; do not materialize a world-wide matrix.",
+    "Current-scene recognition remains a derived recognition-system result and is never stored here."
+  ]
+}

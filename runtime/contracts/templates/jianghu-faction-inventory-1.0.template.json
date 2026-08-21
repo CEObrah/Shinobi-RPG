@@ -1,0 +1,135 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-faction-inventory-1.0",
+  "target_schema": "jianghu-faction-inventory-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world/inventories"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "faction_ref",
+    "food_ration_days"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "faction_ref",
+        "food_ration_days",
+        "equipment",
+        "raw_materials",
+        "herbs",
+        "medicines",
+        "transport_assets",
+        "poisons"
+      ],
+      "canonical_order": [
+        "schema",
+        "faction_ref",
+        "food_ration_days",
+        "equipment",
+        "raw_materials",
+        "herbs",
+        "medicines",
+        "poisons",
+        "transport_assets"
+      ]
+    },
+    "/equipment": {
+      "mode": "open_map"
+    },
+    "/raw_materials": {
+      "mode": "open_map"
+    },
+    "/herbs": {
+      "mode": "open_map"
+    },
+    "/medicines": {
+      "mode": "open_map"
+    },
+    "/transport_assets": {
+      "mode": "closed",
+      "allowed_keys": [
+        "riding_horses",
+        "pack_animals",
+        "wagons"
+      ],
+      "canonical_order": [
+        "riding_horses",
+        "pack_animals",
+        "wagons"
+      ]
+    },
+    "/poisons": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/faction_ref": [
+      "string",
+      "null"
+    ],
+    "/food_ration_days": [
+      "integer"
+    ],
+    "/equipment": [
+      "object"
+    ],
+    "/equipment/*": [
+      "integer"
+    ],
+    "/raw_materials": [
+      "object"
+    ],
+    "/raw_materials/*": [
+      "integer"
+    ],
+    "/herbs": [
+      "object"
+    ],
+    "/herbs/*": [
+      "integer"
+    ],
+    "/medicines": [
+      "object"
+    ],
+    "/medicines/*": [
+      "integer"
+    ],
+    "/transport_assets": [
+      "object"
+    ],
+    "/transport_assets/riding_horses": [
+      "integer"
+    ],
+    "/transport_assets/pack_animals": [
+      "integer"
+    ],
+    "/poisons": [
+      "object"
+    ],
+    "/poisons/*": [
+      "integer"
+    ],
+    "/transport_assets/wagons": [
+      "integer"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "All quantities are conserved authoritative current stock.",
+    "Zero-valued stock entries and empty stock buckets are omitted; runtime absence means zero.",
+    "Settlement chronology belongs to the scheduler, not inventory.",
+    "No negative quantity is valid."
+  ]
+}

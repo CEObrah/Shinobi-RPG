@@ -1,0 +1,196 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-civic-people-state-1.0",
+  "target_schema": "jianghu-civic-people-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "people"
+      ],
+      "canonical_order": [
+        "schema",
+        "people"
+      ]
+    },
+    "/people/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_id",
+        "name",
+        "birth_year",
+        "sex",
+        "body_mass_kg",
+        "appearance",
+        "aptitudes",
+        "attributes",
+        "martial_skills",
+        "professional_skills",
+        "qi",
+        "qi_control",
+        "current_qi",
+        "health",
+        "standing_offices",
+        "affiliation_ref",
+        "social_rank",
+        "home_place_ref",
+        "location_ref",
+        "public_site_types",
+        "personal_cash",
+        "fatigue_milli"
+      ],
+      "canonical_order": [
+        "person_id",
+        "name",
+        "birth_year",
+        "sex",
+        "body_mass_kg",
+        "appearance",
+        "aptitudes",
+        "attributes",
+        "martial_skills",
+        "professional_skills",
+        "qi",
+        "qi_control",
+        "current_qi",
+        "health",
+        "standing_offices",
+        "affiliation_ref",
+        "social_rank",
+        "home_place_ref",
+        "location_ref",
+        "public_site_types",
+        "personal_cash",
+        "fatigue_milli"
+      ]
+    },
+    "/people/*/aptitudes": {
+      "mode": "open_map"
+    },
+    "/people/*/attributes": {
+      "mode": "open_map"
+    },
+    "/people/*/martial_skills": {
+      "mode": "open_map"
+    },
+    "/people/*/professional_skills": {
+      "mode": "open_map"
+    },
+    "/people/*/health": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/people": [
+      "array"
+    ],
+    "/people/*": [
+      "object"
+    ],
+    "/people/*/person_id": [
+      "string"
+    ],
+    "/people/*/name": [
+      "string"
+    ],
+    "/people/*/birth_year": [
+      "integer"
+    ],
+    "/people/*/sex": [
+      "string"
+    ],
+    "/people/*/body_mass_kg": [
+      "integer"
+    ],
+    "/people/*/appearance": [
+      "integer"
+    ],
+    "/people/*/aptitudes": [
+      "object"
+    ],
+    "/people/*/attributes": [
+      "object"
+    ],
+    "/people/*/martial_skills": [
+      "object"
+    ],
+    "/people/*/professional_skills": [
+      "object"
+    ],
+    "/people/*/qi": [
+      "integer"
+    ],
+    "/people/*/qi_control": [
+      "integer"
+    ],
+    "/people/*/current_qi": [
+      "integer"
+    ],
+    "/people/*/health": [
+      "object"
+    ],
+    "/people/*/standing_offices": [
+      "array"
+    ],
+    "/people/*/affiliation_ref": [
+      "string"
+    ],
+    "/people/*/social_rank": [
+      "string"
+    ],
+    "/people/*/home_place_ref": [
+      "string"
+    ],
+    "/people/*/location_ref": [
+      "string"
+    ],
+    "/people/*/public_site_types": [
+      "array"
+    ],
+    "/people/*/personal_cash": [
+      "integer"
+    ],
+    "/people/*/fatigue_milli": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/people": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/people/*/standing_offices": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/people/*/public_site_types": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Civic people are exact named identities outside martial-faction population accounting.",
+    "Do not create daily schedules; home place and bounded public-site eligibility support deterministic attendance.",
+    "Do not use civic identity state as a second government authority; offices and government actions remain governed by the existing government system."
+  ]
+}

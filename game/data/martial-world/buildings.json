@@ -1,0 +1,1298 @@
+{
+  "level_rules": {
+    "minimum_level": 1,
+    "maximum_level": 5,
+    "meaning": "Building level is operational/construction quality only. Physical footprint and capacity are separate mutable faction infrastructure facts.",
+    "quality_rule": "Quality affects efficiency, training environment, durability and construction standard; it never creates land, rooms, beds, workstations, storage, watch positions or labor."
+  },
+  "building_types": {
+    "main_hall": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 15000,
+            "materials": {
+              "timber_kg": 6000,
+              "stone_kg": 6000,
+              "brick_tile_kg": 2000,
+              "metal_kg": 75,
+              "lime_kg": 500
+            },
+            "general_labor_hours": 900,
+            "skilled_labor_hours": 250,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 25500,
+            "materials": {
+              "timber_kg": 10200,
+              "stone_kg": 10200,
+              "brick_tile_kg": 3400,
+              "metal_kg": 125,
+              "lime_kg": 800
+            },
+            "general_labor_hours": 1530,
+            "skilled_labor_hours": 425,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 42000,
+            "materials": {
+              "timber_kg": 16800,
+              "stone_kg": 16800,
+              "brick_tile_kg": 5600,
+              "metal_kg": 200,
+              "lime_kg": 1400
+            },
+            "general_labor_hours": 2520,
+            "skilled_labor_hours": 700,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 66000,
+            "materials": {
+              "timber_kg": 26400,
+              "stone_kg": 26400,
+              "brick_tile_kg": 8800,
+              "metal_kg": 325,
+              "lime_kg": 2200
+            },
+            "general_labor_hours": 3960,
+            "skilled_labor_hours": 1100,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 102000,
+            "materials": {
+              "timber_kg": 40800,
+              "stone_kg": 40800,
+              "brick_tile_kg": 13600,
+              "metal_kg": 500,
+              "lime_kg": 3400
+            },
+            "general_labor_hours": 6120,
+            "skilled_labor_hours": 1700,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 4000,
+        "minimum_expansion_m2": 200,
+        "capacity_rules": {
+          "administrative_workstations": {
+            "m2_per_unit": 40
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 2040,
+          "materials": {
+            "timber_kg": 816,
+            "stone_kg": 816,
+            "brick_tile_kg": 272,
+            "metal_kg": 10,
+            "lime_kg": 68
+          },
+          "general_labor_hours": 123,
+          "skilled_labor_hours": 34,
+          "minimum_calendar_days_per_1000_m2": 35
+        }
+      }
+    },
+    "residential_compound": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 22000,
+            "materials": {
+              "timber_kg": 10000,
+              "stone_kg": 7000,
+              "brick_tile_kg": 6000,
+              "lime_kg": 800
+            },
+            "general_labor_hours": 1800,
+            "skilled_labor_hours": 350,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 37400,
+            "materials": {
+              "timber_kg": 17000,
+              "stone_kg": 12000,
+              "brick_tile_kg": 10200,
+              "lime_kg": 1400
+            },
+            "general_labor_hours": 3060,
+            "skilled_labor_hours": 595,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 61600,
+            "materials": {
+              "timber_kg": 28000,
+              "stone_kg": 19600,
+              "brick_tile_kg": 16800,
+              "lime_kg": 2200
+            },
+            "general_labor_hours": 5040,
+            "skilled_labor_hours": 980,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 96800,
+            "materials": {
+              "timber_kg": 44000,
+              "stone_kg": 30800,
+              "brick_tile_kg": 26400,
+              "lime_kg": 3500
+            },
+            "general_labor_hours": 7920,
+            "skilled_labor_hours": 1540,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 149600,
+            "materials": {
+              "timber_kg": 68000,
+              "stone_kg": 47600,
+              "brick_tile_kg": 40800,
+              "lime_kg": 5400
+            },
+            "general_labor_hours": 12240,
+            "skilled_labor_hours": 2380,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 9000,
+        "minimum_expansion_m2": 300,
+        "floor_area_ratio_milli": 680,
+        "capacity_rules": {
+          "resident_capacity": {
+            "m2_per_unit": 44
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 1330,
+          "materials": {
+            "timber_kg": 605,
+            "stone_kg": 424,
+            "brick_tile_kg": 363,
+            "lime_kg": 48
+          },
+          "general_labor_hours": 109,
+          "skilled_labor_hours": 22,
+          "minimum_calendar_days_per_1000_m2": 16
+        }
+      }
+    },
+    "training_hall": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 12000,
+            "materials": {
+              "timber_kg": 6500,
+              "stone_kg": 4000,
+              "brick_tile_kg": 2500,
+              "lime_kg": 500
+            },
+            "general_labor_hours": 800,
+            "skilled_labor_hours": 250,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 20400,
+            "materials": {
+              "timber_kg": 11000,
+              "stone_kg": 6800,
+              "brick_tile_kg": 4200,
+              "lime_kg": 800
+            },
+            "general_labor_hours": 1360,
+            "skilled_labor_hours": 425,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 33600,
+            "materials": {
+              "timber_kg": 18200,
+              "stone_kg": 11200,
+              "brick_tile_kg": 7000,
+              "lime_kg": 1400
+            },
+            "general_labor_hours": 2240,
+            "skilled_labor_hours": 700,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 52800,
+            "materials": {
+              "timber_kg": 28600,
+              "stone_kg": 17600,
+              "brick_tile_kg": 11000,
+              "lime_kg": 2200
+            },
+            "general_labor_hours": 3520,
+            "skilled_labor_hours": 1100,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 81600,
+            "materials": {
+              "timber_kg": 44200,
+              "stone_kg": 27200,
+              "brick_tile_kg": 17000,
+              "lime_kg": 3400
+            },
+            "general_labor_hours": 5440,
+            "skilled_labor_hours": 1700,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 3400,
+        "minimum_expansion_m2": 200,
+        "capacity_rules": {
+          "simultaneous_indoor_trainees": {
+            "m2_per_unit": 25
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 1920,
+          "materials": {
+            "timber_kg": 1040,
+            "stone_kg": 640,
+            "brick_tile_kg": 400,
+            "lime_kg": 80
+          },
+          "general_labor_hours": 128,
+          "skilled_labor_hours": 40,
+          "minimum_calendar_days_per_1000_m2": 42
+        }
+      }
+    },
+    "training_grounds": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 7000,
+            "materials": {
+              "timber_kg": 2500,
+              "stone_kg": 3000,
+              "rope_m": 400
+            },
+            "general_labor_hours": 500,
+            "skilled_labor_hours": 120,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 11900,
+            "materials": {
+              "timber_kg": 4200,
+              "stone_kg": 5200,
+              "rope_m": 700
+            },
+            "general_labor_hours": 850,
+            "skilled_labor_hours": 204,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 19600,
+            "materials": {
+              "timber_kg": 7000,
+              "stone_kg": 8400,
+              "rope_m": 1100
+            },
+            "general_labor_hours": 1400,
+            "skilled_labor_hours": 336,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 30800,
+            "materials": {
+              "timber_kg": 11000,
+              "stone_kg": 13200,
+              "rope_m": 1800
+            },
+            "general_labor_hours": 2200,
+            "skilled_labor_hours": 528,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 47600,
+            "materials": {
+              "timber_kg": 17000,
+              "stone_kg": 20400,
+              "rope_m": 2700
+            },
+            "general_labor_hours": 3400,
+            "skilled_labor_hours": 816,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 34000,
+        "minimum_expansion_m2": 1000,
+        "capacity_rules": {
+          "simultaneous_outdoor_trainees": {
+            "m2_per_unit": 100
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 112,
+          "materials": {
+            "timber_kg": 40,
+            "stone_kg": 48,
+            "rope_m": 7
+          },
+          "general_labor_hours": 8,
+          "skilled_labor_hours": 2,
+          "minimum_calendar_days_per_1000_m2": 5
+        }
+      }
+    },
+    "qi_hall": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 14000,
+            "materials": {
+              "timber_kg": 5500,
+              "stone_kg": 6000,
+              "brick_tile_kg": 2400,
+              "lime_kg": 600
+            },
+            "general_labor_hours": 750,
+            "skilled_labor_hours": 300,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 23800,
+            "materials": {
+              "timber_kg": 9400,
+              "stone_kg": 10200,
+              "brick_tile_kg": 4100,
+              "lime_kg": 1000
+            },
+            "general_labor_hours": 1275,
+            "skilled_labor_hours": 510,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 39200,
+            "materials": {
+              "timber_kg": 15400,
+              "stone_kg": 16800,
+              "brick_tile_kg": 6700,
+              "lime_kg": 1700
+            },
+            "general_labor_hours": 2100,
+            "skilled_labor_hours": 840,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 61600,
+            "materials": {
+              "timber_kg": 24200,
+              "stone_kg": 26400,
+              "brick_tile_kg": 10600,
+              "lime_kg": 2600
+            },
+            "general_labor_hours": 3300,
+            "skilled_labor_hours": 1320,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 95200,
+            "materials": {
+              "timber_kg": 37400,
+              "stone_kg": 40800,
+              "brick_tile_kg": 16300,
+              "lime_kg": 4100
+            },
+            "general_labor_hours": 5100,
+            "skilled_labor_hours": 2040,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 2800,
+        "minimum_expansion_m2": 200,
+        "capacity_rules": {
+          "simultaneous_qi_trainees": {
+            "m2_per_unit": 26
+          },
+          "quiet_chambers": {
+            "m2_per_unit": 104
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 2720,
+          "materials": {
+            "timber_kg": 1069,
+            "stone_kg": 1166,
+            "brick_tile_kg": 466,
+            "lime_kg": 118
+          },
+          "general_labor_hours": 146,
+          "skilled_labor_hours": 59,
+          "minimum_calendar_days_per_1000_m2": 50
+        }
+      }
+    },
+    "armory_workshop": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 22000,
+            "materials": {
+              "timber_kg": 5500,
+              "stone_kg": 9000,
+              "brick_tile_kg": 3000,
+              "metal_kg": 300,
+              "charcoal_kg": 250
+            },
+            "general_labor_hours": 1000,
+            "skilled_labor_hours": 450,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 37400,
+            "materials": {
+              "timber_kg": 9400,
+              "stone_kg": 15200,
+              "brick_tile_kg": 5100,
+              "metal_kg": 500,
+              "charcoal_kg": 400
+            },
+            "general_labor_hours": 1700,
+            "skilled_labor_hours": 765,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 61600,
+            "materials": {
+              "timber_kg": 15400,
+              "stone_kg": 25200,
+              "brick_tile_kg": 8400,
+              "metal_kg": 850,
+              "charcoal_kg": 700
+            },
+            "general_labor_hours": 2800,
+            "skilled_labor_hours": 1260,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 96800,
+            "materials": {
+              "timber_kg": 24200,
+              "stone_kg": 39600,
+              "brick_tile_kg": 13200,
+              "metal_kg": 1325,
+              "charcoal_kg": 1100
+            },
+            "general_labor_hours": 4400,
+            "skilled_labor_hours": 1980,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 149600,
+            "materials": {
+              "timber_kg": 37400,
+              "stone_kg": 61200,
+              "brick_tile_kg": 20400,
+              "metal_kg": 2050,
+              "charcoal_kg": 1700
+            },
+            "general_labor_hours": 6800,
+            "skilled_labor_hours": 3060,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 2800,
+        "minimum_expansion_m2": 200,
+        "capacity_rules": {
+          "craft_workstations": {
+            "m2_per_unit": 82
+          },
+          "repair_bays": {
+            "m2_per_unit": 140
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 4275,
+          "materials": {
+            "timber_kg": 1069,
+            "stone_kg": 1749,
+            "brick_tile_kg": 583,
+            "metal_kg": 59,
+            "charcoal_kg": 49
+          },
+          "general_labor_hours": 195,
+          "skilled_labor_hours": 88,
+          "minimum_calendar_days_per_1000_m2": 50
+        }
+      }
+    },
+    "infirmary_apothecary": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 20000,
+            "materials": {
+              "timber_kg": 5000,
+              "stone_kg": 7000,
+              "brick_tile_kg": 2800,
+              "lime_kg": 1000,
+              "cloth_m": 80
+            },
+            "general_labor_hours": 900,
+            "skilled_labor_hours": 420,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 34000,
+            "materials": {
+              "timber_kg": 8500,
+              "stone_kg": 12000,
+              "brick_tile_kg": 4800,
+              "lime_kg": 1700,
+              "cloth_m": 140
+            },
+            "general_labor_hours": 1530,
+            "skilled_labor_hours": 714,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 56000,
+            "materials": {
+              "timber_kg": 14000,
+              "stone_kg": 19600,
+              "brick_tile_kg": 7800,
+              "lime_kg": 2800,
+              "cloth_m": 220
+            },
+            "general_labor_hours": 2520,
+            "skilled_labor_hours": 1176,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 88000,
+            "materials": {
+              "timber_kg": 22000,
+              "stone_kg": 30800,
+              "brick_tile_kg": 12300,
+              "lime_kg": 4400,
+              "cloth_m": 360
+            },
+            "general_labor_hours": 3960,
+            "skilled_labor_hours": 1848,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 136000,
+            "materials": {
+              "timber_kg": 34000,
+              "stone_kg": 47600,
+              "brick_tile_kg": 19000,
+              "lime_kg": 6800,
+              "cloth_m": 540
+            },
+            "general_labor_hours": 6120,
+            "skilled_labor_hours": 2856,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 3300,
+        "minimum_expansion_m2": 200,
+        "capacity_rules": {
+          "beds": {
+            "m2_per_unit": 61
+          },
+          "treatment_stations": {
+            "m2_per_unit": 122
+          },
+          "apothecary_workstations": {
+            "m2_per_unit": 122
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 3297,
+          "materials": {
+            "timber_kg": 825,
+            "stone_kg": 1154,
+            "brick_tile_kg": 461,
+            "lime_kg": 165,
+            "cloth_m": 14
+          },
+          "general_labor_hours": 149,
+          "skilled_labor_hours": 70,
+          "minimum_calendar_days_per_1000_m2": 43
+        }
+      }
+    },
+    "storehouse": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 10000,
+            "materials": {
+              "timber_kg": 7000,
+              "stone_kg": 6000,
+              "brick_tile_kg": 2500,
+              "lime_kg": 400
+            },
+            "general_labor_hours": 700,
+            "skilled_labor_hours": 180,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 17000,
+            "materials": {
+              "timber_kg": 11900,
+              "stone_kg": 10200,
+              "brick_tile_kg": 4200,
+              "lime_kg": 700
+            },
+            "general_labor_hours": 1190,
+            "skilled_labor_hours": 306,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 28000,
+            "materials": {
+              "timber_kg": 19600,
+              "stone_kg": 16800,
+              "brick_tile_kg": 7000,
+              "lime_kg": 1100
+            },
+            "general_labor_hours": 1960,
+            "skilled_labor_hours": 504,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 44000,
+            "materials": {
+              "timber_kg": 30800,
+              "stone_kg": 26400,
+              "brick_tile_kg": 11000,
+              "lime_kg": 1800
+            },
+            "general_labor_hours": 3080,
+            "skilled_labor_hours": 792,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 68000,
+            "materials": {
+              "timber_kg": 47600,
+              "stone_kg": 40800,
+              "brick_tile_kg": 17000,
+              "lime_kg": 2700
+            },
+            "general_labor_hours": 4760,
+            "skilled_labor_hours": 1224,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 5000,
+        "minimum_expansion_m2": 250,
+        "capacity_rules": {
+          "dry_storage_kg": {
+            "units_per_m2_milli": 16320
+          },
+          "secure_storage_kg": {
+            "units_per_m2_milli": 2720
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 1088,
+          "materials": {
+            "timber_kg": 762,
+            "stone_kg": 653,
+            "brick_tile_kg": 272,
+            "lime_kg": 44
+          },
+          "general_labor_hours": 77,
+          "skilled_labor_hours": 20,
+          "minimum_calendar_days_per_1000_m2": 28
+        }
+      }
+    },
+    "library_records": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 10000,
+            "materials": {
+              "timber_kg": 4500,
+              "stone_kg": 3600,
+              "brick_tile_kg": 2000,
+              "lime_kg": 400
+            },
+            "general_labor_hours": 600,
+            "skilled_labor_hours": 220,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 17000,
+            "materials": {
+              "timber_kg": 7600,
+              "stone_kg": 6200,
+              "brick_tile_kg": 3400,
+              "lime_kg": 700
+            },
+            "general_labor_hours": 1020,
+            "skilled_labor_hours": 374,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 28000,
+            "materials": {
+              "timber_kg": 12600,
+              "stone_kg": 10000,
+              "brick_tile_kg": 5600,
+              "lime_kg": 1100
+            },
+            "general_labor_hours": 1680,
+            "skilled_labor_hours": 616,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 44000,
+            "materials": {
+              "timber_kg": 19800,
+              "stone_kg": 15800,
+              "brick_tile_kg": 8800,
+              "lime_kg": 1800
+            },
+            "general_labor_hours": 2640,
+            "skilled_labor_hours": 968,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 68000,
+            "materials": {
+              "timber_kg": 30600,
+              "stone_kg": 24400,
+              "brick_tile_kg": 13600,
+              "lime_kg": 2700
+            },
+            "general_labor_hours": 4080,
+            "skilled_labor_hours": 1496,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 2700,
+        "minimum_expansion_m2": 150,
+        "capacity_rules": {
+          "research_seats": {
+            "m2_per_unit": 50
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 2015,
+          "materials": {
+            "timber_kg": 907,
+            "stone_kg": 723,
+            "brick_tile_kg": 403,
+            "lime_kg": 80
+          },
+          "general_labor_hours": 121,
+          "skilled_labor_hours": 45,
+          "minimum_calendar_days_per_1000_m2": 52
+        }
+      }
+    },
+    "walls_gate": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 30000,
+            "materials": {
+              "timber_kg": 8000,
+              "stone_kg": 36000,
+              "brick_tile_kg": 9000,
+              "metal_kg": 300,
+              "lime_kg": 2000
+            },
+            "general_labor_hours": 2200,
+            "skilled_labor_hours": 650,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 51000,
+            "materials": {
+              "timber_kg": 13600,
+              "stone_kg": 61200,
+              "brick_tile_kg": 15300,
+              "metal_kg": 500,
+              "lime_kg": 3400
+            },
+            "general_labor_hours": 3740,
+            "skilled_labor_hours": 1105,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 84000,
+            "materials": {
+              "timber_kg": 22400,
+              "stone_kg": 100800,
+              "brick_tile_kg": 25200,
+              "metal_kg": 850,
+              "lime_kg": 5600
+            },
+            "general_labor_hours": 6160,
+            "skilled_labor_hours": 1820,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 132000,
+            "materials": {
+              "timber_kg": 35200,
+              "stone_kg": 158400,
+              "brick_tile_kg": 39600,
+              "metal_kg": 1325,
+              "lime_kg": 8800
+            },
+            "general_labor_hours": 9680,
+            "skilled_labor_hours": 2860,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 204000,
+            "materials": {
+              "timber_kg": 54400,
+              "stone_kg": 244800,
+              "brick_tile_kg": 61200,
+              "metal_kg": 2050,
+              "lime_kg": 13600
+            },
+            "general_labor_hours": 14960,
+            "skilled_labor_hours": 4420,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "estate_boundary",
+        "base_level5_footprint_m2": 2720,
+        "minimum_expansion_m2": 0,
+        "wall_strip_width_m": 2,
+        "gate_spacing_m": 200,
+        "watch_spacing_m": 25,
+        "base_wall_height_m": 7,
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 6000,
+          "materials": {
+            "timber_kg": 1600,
+            "stone_kg": 7200,
+            "brick_tile_kg": 1800,
+            "metal_kg": 61,
+            "lime_kg": 400
+          },
+          "general_labor_hours": 440,
+          "skilled_labor_hours": 130,
+          "minimum_calendar_days_per_1000_m2": 52
+        }
+      }
+    },
+    "transport_yard": {
+      "levels": {
+        "1": {
+          "quality_milli": 850,
+          "upgrade_to_this_level": {
+            "cash_overhead": 9000,
+            "materials": {
+              "timber_kg": 6000,
+              "stone_kg": 3000,
+              "brick_tile_kg": 1500,
+              "rope_m": 800
+            },
+            "general_labor_hours": 650,
+            "skilled_labor_hours": 150,
+            "minimum_calendar_days": 20,
+            "required_crafting_or_administration": 0
+          }
+        },
+        "2": {
+          "quality_milli": 950,
+          "upgrade_to_this_level": {
+            "cash_overhead": 15300,
+            "materials": {
+              "timber_kg": 10200,
+              "stone_kg": 5200,
+              "brick_tile_kg": 2600,
+              "rope_m": 1400
+            },
+            "general_labor_hours": 1105,
+            "skilled_labor_hours": 255,
+            "minimum_calendar_days": 35,
+            "required_crafting_or_administration": 20
+          }
+        },
+        "3": {
+          "quality_milli": 1050,
+          "upgrade_to_this_level": {
+            "cash_overhead": 25200,
+            "materials": {
+              "timber_kg": 16800,
+              "stone_kg": 8400,
+              "brick_tile_kg": 4200,
+              "rope_m": 2200
+            },
+            "general_labor_hours": 1820,
+            "skilled_labor_hours": 420,
+            "minimum_calendar_days": 60,
+            "required_crafting_or_administration": 40
+          }
+        },
+        "4": {
+          "quality_milli": 1150,
+          "upgrade_to_this_level": {
+            "cash_overhead": 39600,
+            "materials": {
+              "timber_kg": 26400,
+              "stone_kg": 13200,
+              "brick_tile_kg": 6600,
+              "rope_m": 3500
+            },
+            "general_labor_hours": 2860,
+            "skilled_labor_hours": 660,
+            "minimum_calendar_days": 95,
+            "required_crafting_or_administration": 60
+          }
+        },
+        "5": {
+          "quality_milli": 1250,
+          "upgrade_to_this_level": {
+            "cash_overhead": 61200,
+            "materials": {
+              "timber_kg": 40800,
+              "stone_kg": 20400,
+              "brick_tile_kg": 10200,
+              "rope_m": 5400
+            },
+            "general_labor_hours": 4420,
+            "skilled_labor_hours": 1020,
+            "minimum_calendar_days": 140,
+            "required_crafting_or_administration": 80
+          }
+        }
+      },
+      "physical_model": {
+        "scale_basis": "footprint_m2",
+        "base_level5_footprint_m2": 6800,
+        "minimum_expansion_m2": 400,
+        "capacity_rules": {
+          "mount_or_pack_slots": {
+            "m2_per_unit": 50
+          },
+          "wagon_slots": {
+            "m2_per_unit": 200
+          }
+        },
+        "seed_scale_milli_by_level": {
+          "1": 147,
+          "2": 250,
+          "3": 412,
+          "4": 647,
+          "5": 1000
+        },
+        "expansion_standard_per_100_m2": {
+          "cash_overhead": 720,
+          "materials": {
+            "timber_kg": 480,
+            "stone_kg": 240,
+            "brick_tile_kg": 120,
+            "rope_m": 64
+          },
+          "general_labor_hours": 52,
+          "skilled_labor_hours": 12,
+          "minimum_calendar_days_per_1000_m2": 21
+        }
+      }
+    }
+  },
+  "rules": [
+    "Each faction has at most one authoritative facility of each registered building type at a site. Expansion enlarges that same facility; it does not spawn duplicate differently-levelled facilities.",
+    "Building level is quality only. Mutable infrastructure state owns estate land, facility footprint and physical capacity.",
+    "An upgrade consumes exact cash, registered material lots and labor hours and cannot complete before minimum_calendar_days.",
+    "An expansion consumes estate land, exact materials, exact labor and time. Costs scale deterministically with added footprint and current construction quality.",
+    "Building condition is tracked separately from level; damage never silently lowers or raises the saved level.",
+    "All factions use the same quality and expansion formulas."
+  ],
+  "physical_material_units": "game/data/martial-world/economy.json"
+}

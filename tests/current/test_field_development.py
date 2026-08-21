@@ -101,7 +101,12 @@ def test_leading_field_party_adds_command_development_without_extra_time():
 
 def test_combat_against_far_weaker_opponent_cannot_be_farmed():
     elite = _person("elite", sword=180)
-    weak = _person("weak", sword=5)
+    weak = _person("weak", sword=5, scouting=0, command=0)
+    weak["attributes"] = {key: 10 for key in weak["attributes"]}
+    weak["martial_skills"]["unarmed"] = 0
+    weak["qi_control"] = 0
+    weak["qi"] = 0
+    weak["current_qi"] = 0
     people_after = {"elite": elite, "weak": weak}
     events = [{
         "actor_ref": "elite",
@@ -122,7 +127,6 @@ def test_combat_against_far_weaker_opponent_cannot_be_farmed():
 
 def test_credible_combat_builds_only_the_skill_actually_used():
     actor = _person("actor", sword=70)
-    opponent = _person("opponent", sword=80)
     after, gain = apply_single_combat_action(actor, domain="sword", pressure_milli=1100)
     assert gain["evidence_added_milli"] > 0
     evidence = after["training_state"]["evidence_milli"]

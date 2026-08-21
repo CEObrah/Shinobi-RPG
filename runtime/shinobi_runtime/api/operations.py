@@ -11,6 +11,7 @@ from shinobi_runtime.api.contracts import (
     CommandPlan, CommandPlanner, CommandPreview, CommandRejectedError,
     OocAuditProvider, OocAuditResult, PersonSheetResolver, PlannerUnavailableError,
 )
+from shinobi_runtime.api.contract_visibility import contract_is_player_visible, player_visible_contract_rows
 from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.martial_world.live_state import player_view_from_person
@@ -131,10 +132,10 @@ class CampaignOperations:
         try:
             with self._locked():
                 self.coordinator.git.assert_pristine(); before=self._read_fingerprint()
-                meta=self.repository.read_json('state/meta.json'); scene=self.repository.read_json('state/scene.json'); player_sheet=self.sheet_resolver(str(meta.get('player_id') or ''))
+                meta=self.repository.read_json('state/meta.json'); scene=self.repository.read_json('state/scene.json'); player_sheet=self.sheet_resolver(str(meta.get('player_id') or '')); contract_index=self.repository.read_json('state/martial-world/contracts/index.json')
                 self._require_read_only(before,'play_context_mutated_campaign')
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
-        if not all(isinstance(x,Mapping) for x in (meta,scene,player_sheet)) or meta.get('game')!='jianghu': raise OperationError(503,'campaign_state_invalid')
+        if not all(isinstance(x,Mapping) for x in (meta,scene,player_sheet,contract_index)) or meta.get('game')!='jianghu': raise OperationError(503,'campaign_state_invalid')
         scene_view=dict(scene); scene_view['world_time']=meta.get('time'); scene_view['active_combat']=bool(scene_view.get('active_combat_ref')); scene_view['time_passage_allowed']=not scene_view['active_combat']; scene_view['freeform_actions_allowed']=True
         derived_present=self._derived_public_presence(meta,scene)
         if derived_present:
@@ -145,6 +146,12 @@ class CampaignOperations:
             scene_view['present_person_ids']=merged[:64]
         player=player_view_from_person(player_sheet)
         player['appearance_profile']=appearance_profile(player_sheet,current_year=_campaign_year(meta.get('time')),health=player_sheet.get('health'))
+        visible_contracts=player_visible_contract_rows(
+            contract_index,
+            player_id=str(meta.get('player_id') or ''),
+            faction_ref=str(player_sheet.get('faction_ref') or ''),
+            world_time=str(meta.get('time') or ''),
+        )
         supported=sorted(getattr(self.command_planner,'COMMAND_TYPES',()))
         commands={name:COMMAND_SPECS[name].public_descriptor() for name in supported if name in COMMAND_SPECS}
         result={
@@ -153,6 +160,7 @@ class CampaignOperations:
           'player':player,
           'person_reads':{'suggested_owner_ids':self._present_ids(scene_view),'use':'Load one person sheet when a person materially affects the current scene.'},
           'object_reads':{'supported_ref_prefixes':['faction:','inventory:','contract:','deployment:','project:','tournament:','market:','site:','relations','government'],'use':'Inspect one exact Jianghu owner when its current state matters.'},
+          'contract_reads':{'available_contracts':visible_contracts,'use':'Inspect an advertised contract object_ref for exact current terms before accepting it.'},
           'commands':{'supported_command_types':supported,'command_types':commands,'limits':{'one_semantic_command_per_write':True,'preview_before_execute':True,'unsupported_intent_fails_closed':True}},
           'narration':{'setting':'Chinese Jianghu/Murim','rule':'Narrate only committed/player-visible truth; physical mechanics determine consequential outcomes.'},
           'context_policy':{'bounded_reads':True,'direct_person_routes':True,'aggregate_civilians':True,'no_omniscient_hidden_state':True},
@@ -214,7 +222,16 @@ class CampaignOperations:
     def inspect_game_object(self,object_ref:str)->Mapping[str,Any]:
         try:
             with self._locked():
-                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); obj,view=self._object(object_ref); self._require_read_only(before,'object_inspection_mutated_campaign')
+                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); meta=self.repository.read_json('state/meta.json'); player=self.sheet_resolver(str(meta.get('player_id') or '')); obj,view=self._object(object_ref)
+                if object_ref.startswith('contract:'):
+                    if not isinstance(player,Mapping) or not contract_is_player_visible(
+                        obj,
+                        player_id=str(meta.get('player_id') or ''),
+                        faction_ref=str(player.get('faction_ref') or ''),
+                        world_time=str(meta.get('time') or ''),
+                    ):
+                        raise OperationError(404,'object_not_found')
+                self._require_read_only(before,'object_inspection_mutated_campaign')
         except OperationError: raise
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
         except (FileNotFoundError,KeyError,TypeError,ValueError) as exc: raise OperationError(404,'object_not_found') from exc

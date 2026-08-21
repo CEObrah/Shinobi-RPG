@@ -275,3 +275,40 @@ class CampaignOperations:
     @staticmethod
     def _receipt_response(status,receipt):
         return {'status':status,'request_id':receipt.request_id,'transaction_id':receipt.transaction_id,'campaign_id':receipt.campaign_id,'committed_revision':receipt.committed_revision,'committed_at':receipt.committed_at,'result':thaw_json(receipt.result)}
+
+    def execute_command(self,command:CommandEnvelope)->Mapping[str,Any]:
+        self._require_command_base(command)
+        try:
+            existing=self.coordinator.lookup_receipt(command)
+            if existing is not None:return self._receipt_response('duplicate',existing)
+            with self._locked():
+                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); plan=self.command_planner.plan(command); self._require_read_only(before,'planner_mutated_campaign'); planned_head,planned_root=before
+            def guarded(overlay,manifest):
+                if self.coordinator.git.head()!=planned_head or self.state_roots.read(planned_head).root_sha256!=planned_root: raise PlanStateChangedError()
+                if self.schema_validator is not None:self.schema_validator.validate_overlay(overlay,manifest.paths)
+                if self.template_validator is not None:self.template_validator.validate_overlay(overlay,manifest.paths)
+                plan.validator(overlay,manifest)
+            execution=self.coordinator.execute(command,transaction_id=plan.transaction_id,created_at=plan.created_at,writes=plan.writes,result=thaw_json(plan.result),validator=guarded)
+        except CommandRejectedError as exc: raise OperationError(422,exc.code) from exc
+        except StaleRevisionError as exc: raise OperationError(409,'stale_revision') from exc
+        except IdempotencyConflictError as exc: raise OperationError(409,'idempotency_conflict') from exc
+        except PlanStateChangedError as exc: raise OperationError(409,'planned_state_changed') from exc
+        except (LockUnavailableError,DirtyRepositoryError,RecoveryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
+        except TransactionError as exc: raise OperationError(409,'transaction_rejected') from exc
+        return self._receipt_response(execution.status,execution.receipt)
+
+    def lookup_command_receipt(self,command:CommandEnvelope)->Optional[Mapping[str,Any]]:
+        self._require_command_base(command)
+        try: existing=self.coordinator.lookup_receipt(command)
+        except IdempotencyConflictError as exc: raise OperationError(409,'idempotency_conflict') from exc
+        return None if existing is None else self._receipt_response('duplicate',existing)
+
+    def ooc_audit(self,focus:Optional[str],observations:Sequence[str])->Mapping[str,Any]:
+        try:
+            with self._locked():
+                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); report=self.audit_provider(focus,tuple(observations)); self._require_read_only(before,'ooc_audit_mutated_campaign')
+        except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
+        if not isinstance(report,OocAuditResult) or report.write_plan is not None: raise OperationError(503,'ooc_audit_invalid')
+        return {'diagnostics':list(report.diagnostics),'suggestions':list(report.suggestions)}
+
+__all__=['CampaignOperations','OperationError','PlanStateChangedError']

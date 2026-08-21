@@ -92,7 +92,7 @@ Development work never advances campaign time. Read `references/ooc-dev.md` and 
 
 ## Scene craft
 
-For substantive people-centered scenes, stage actual interaction rather than dumping state summaries. Let several established people speak when socially and physically plausible. Translate mechanics into lived evidence. Do not expose implementation vocabulary inside ordinary IC fiction.
+For substantive people-centered scenes, stage actual interaction rather than dumping state summaries. Let several established people speak when socially and physically plausible. When the player supplied meaningful speech or a concrete action, show Wei's chosen words/action on screen before NPC reaction or consequence; a faithful natural equivalent is allowed only when it adds no new commitment. Re-anchor speaker identity whenever more than one person could plausibly be speaking. Translate mechanics into lived evidence and put structured accounting after the scene when needed. Do not expose implementation vocabulary inside ordinary IC fiction.
 
 Read `references/scene-craft.md` and `references/narration.md` when scene quality materially matters. Use `references/choices.md` only when a genuine unresolved decision benefits from scaffolding.
 

@@ -1,10 +1,10 @@
-"""Chronology wrapper for field development and player-visible contract wakes.
+"""Chronology wrapper for field development and player-visible wakes.
 
-The production frontier remains the sole world scheduler.  This module only
+The production frontier remains the sole world scheduler. This module only
 post-processes a frontier that has already been deterministically settled:
-route hours become bounded field development, and newly-created public funded
-contracts become soft player-facing handoffs so event-seeking waits can stop at
-an actual mission offer.
+route hours become bounded field development, newly-created public funded
+contracts become soft player-facing handoffs, and requested standing retinues
+are assigned from conserved current faction people at their scheduled review.
 """
 from __future__ import annotations
 
@@ -15,11 +15,13 @@ from typing import Any, Callable, Mapping, Sequence
 from .field_development import apply_field_activity
 from .handoffs import classify_handoff
 from .live_state import roster_person, set_roster_person
+from .retinues import select_retinue_members
 from .time_integration import settle_martial_world_frontier as _settle_martial_world_frontier
 
 _ROUTE_OPERATIONS = "state/martial-world/route-operations.json"
 _COMMITMENTS = "state/martial-world/commitments.json"
 _CONTRACTS = "state/martial-world/contracts/index.json"
+_DEPLOYMENTS = "state/martial-world/deployments.json"
 
 
 class _FrontierReadView:
@@ -168,8 +170,88 @@ def _append_new_contract_handoffs(
     return added
 
 
+def _settle_retinue_assignments(
+    *, read_json: Callable[[str], Mapping[str, Any]], writes: dict[str, Any],
+    handoffs: list[dict[str, Any]], events: Sequence[Mapping[str, Any]], at: datetime,
+) -> list[dict[str, Any]]:
+    assignment_events = [
+        row for row in events
+        if isinstance(row, Mapping) and row.get("kind") == "retinue_assignment_review"
+    ]
+    if not assignment_events:
+        return []
+    state_raw = writes.get(_DEPLOYMENTS)
+    state = copy.deepcopy(dict(state_raw)) if isinstance(state_raw, Mapping) else _read_or(
+        read_json, _DEPLOYMENTS, {"schema": "jianghu-deployment-state-1.0", "deployments": {}}
+    )
+    rows = state.setdefault("deployments", {})
+    if not isinstance(rows, dict):
+        return []
+    commitments_raw = writes.get(_COMMITMENTS)
+    commitments = copy.deepcopy(dict(commitments_raw)) if isinstance(commitments_raw, Mapping) else _read_or(
+        read_json, _COMMITMENTS, {"commitments": {}, "person_index": {}}
+    )
+    person_index = commitments.get("person_index", {}) if isinstance(commitments.get("person_index"), Mapping) else {}
+    unavailable = sorted(str(ref) for ref in person_index if isinstance(ref, str))
+    view = _FrontierReadView(read_json, writes)
+    settled: list[dict[str, Any]] = []
+
+    for event in sorted(assignment_events, key=lambda row: str(row.get("event_id") or "")):
+        retinue_ref = str(event.get("retinue_ref") or event.get("owner_ref") or "")
+        current = rows.get(retinue_ref)
+        if not isinstance(current, Mapping) or current.get("operation_kind") != "standing_retinue" or current.get("status") != "assignment_pending":
+            continue
+        leader_ref = str(current.get("leader_ref") or "")
+        try:
+            _path, roster, _ordinal, leader = roster_person(view, leader_ref)
+        except (FileNotFoundError, KeyError, TypeError, ValueError):
+            continue
+        people = roster.get("people", []) if isinstance(roster.get("people"), list) else []
+        requested = max(2, min(3, int(current.get("requested_count", 2))))
+        member_refs, roles = select_retinue_members(
+            leader,
+            [row for row in people if isinstance(row, Mapping)],
+            requested_count=requested,
+            year=at.year,
+            unavailable_refs=unavailable,
+        )
+        if len(member_refs) < requested:
+            failed = copy.deepcopy(dict(current))
+            failed["status"] = "assignment_blocked"
+            failed["assignment_reviewed_at"] = at.isoformat()
+            failed["assignment_blocked_reason"] = "insufficient_currently_available_members"
+            rows[retinue_ref] = failed
+            continue
+        assigned = copy.deepcopy(dict(current))
+        assigned["member_refs"] = member_refs
+        assigned["member_roles"] = {ref: roles[ref] for ref in member_refs}
+        assigned["status"] = "active"
+        assigned["assigned_at"] = at.isoformat()
+        rows[retinue_ref] = assigned
+        notice = {
+            "kind": "retinue_assigned",
+            "event_id": f"retinue_assigned:{retinue_ref}:{at.isoformat()}",
+            "retinue_ref": retinue_ref,
+            "chooser_ref": str(assigned.get("chooser_ref") or ""),
+            "leader_ref": leader_ref,
+            "member_refs": list(member_refs),
+            "member_roles": copy.deepcopy(assigned["member_roles"]),
+            "delivered_to_player": True,
+            "requires_player_decision": False,
+        }
+        handoffs.append({**notice, "handoff": classify_handoff(notice)})
+        settled.append({
+            "retinue_ref": retinue_ref,
+            "member_refs": list(member_refs),
+            "member_roles": copy.deepcopy(assigned["member_roles"]),
+        })
+    writes[_DEPLOYMENTS] = state
+    return settled
+
+
 def augment_frontier_with_progression(
     *, read_json: Callable[[str], Mapping[str, Any]], frontier: Mapping[str, Any], at: datetime,
+    events: Sequence[Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
     out = copy.deepcopy(dict(frontier))
     writes = {
@@ -179,6 +261,9 @@ def augment_frontier_with_progression(
     }
     handoffs = [copy.deepcopy(dict(row)) for row in out.get("handoffs", []) if isinstance(row, Mapping)]
     route_development = _apply_route_field_development(read_json=read_json, writes=writes)
+    retinues = _settle_retinue_assignments(
+        read_json=read_json, writes=writes, handoffs=handoffs, events=events, at=at,
+    )
     new_contracts = _append_new_contract_handoffs(read_json=read_json, writes=writes, handoffs=handoffs, at=at)
     reviews = [copy.deepcopy(dict(row)) for row in out.get("reviews", []) if isinstance(row, Mapping)]
     if route_development:
@@ -187,6 +272,8 @@ def augment_frontier_with_progression(
             "movement_count": len(route_development),
             "movements": route_development[:32],
         })
+    if retinues:
+        reviews.append({"kind": "retinue_assignment_review", "retinues": retinues[:16]})
     if new_contracts:
         reviews.append({"kind": "player_visible_contract_wake", "contract_refs": new_contracts[:32]})
     out["writes"] = writes
@@ -200,7 +287,7 @@ def settle_martial_world_frontier(
     events: Sequence[Mapping[str, Any]], at: datetime,
 ) -> dict[str, Any]:
     frontier = _settle_martial_world_frontier(read_json=read_json, schedule=schedule, events=events, at=at)
-    return augment_frontier_with_progression(read_json=read_json, frontier=frontier, at=at)
+    return augment_frontier_with_progression(read_json=read_json, frontier=frontier, at=at, events=events)
 
 
 __all__ = ["settle_martial_world_frontier", "augment_frontier_with_progression"]

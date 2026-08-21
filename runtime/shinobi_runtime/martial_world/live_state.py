@@ -101,6 +101,7 @@ def player_view_from_person(person: Mapping[str, Any]) -> dict[str, Any]:
         "social_rank": person.get("social_rank"),
         "standing_offices": copy.deepcopy(person.get("standing_offices", [])),
         "combat_doctrine_ref": person.get("combat_doctrine_ref"),
+        "known_family_relations": copy.deepcopy(person.get("known_family_relations", {})),
     }
 
 

@@ -11,6 +11,7 @@ from shinobi_runtime.api.contracts import (
     CommandPlan, CommandPlanner, CommandPreview, CommandRejectedError,
     OocAuditProvider, OocAuditResult, PersonSheetResolver, PlannerUnavailableError,
 )
+from shinobi_runtime.api.contract_visibility import contract_is_player_visible, player_visible_contract_rows
 from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.martial_world.live_state import player_view_from_person
@@ -131,10 +132,10 @@ class CampaignOperations:
         try:
             with self._locked():
                 self.coordinator.git.assert_pristine(); before=self._read_fingerprint()
-                meta=self.repository.read_json('state/meta.json'); scene=self.repository.read_json('state/scene.json'); player_sheet=self.sheet_resolver(str(meta.get('player_id') or ''))
+                meta=self.repository.read_json('state/meta.json'); scene=self.repository.read_json('state/scene.json'); player_sheet=self.sheet_resolver(str(meta.get('player_id') or '')); contract_index=self.repository.read_json('state/martial-world/contracts/index.json')
                 self._require_read_only(before,'play_context_mutated_campaign')
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
-        if not all(isinstance(x,Mapping) for x in (meta,scene,player_sheet)) or meta.get('game')!='jianghu': raise OperationError(503,'campaign_state_invalid')
+        if not all(isinstance(x,Mapping) for x in (meta,scene,player_sheet,contract_index)) or meta.get('game')!='jianghu': raise OperationError(503,'campaign_state_invalid')
         scene_view=dict(scene); scene_view['world_time']=meta.get('time'); scene_view['active_combat']=bool(scene_view.get('active_combat_ref')); scene_view['time_passage_allowed']=not scene_view['active_combat']; scene_view['freeform_actions_allowed']=True
         derived_present=self._derived_public_presence(meta,scene)
         if derived_present:
@@ -145,6 +146,12 @@ class CampaignOperations:
             scene_view['present_person_ids']=merged[:64]
         player=player_view_from_person(player_sheet)
         player['appearance_profile']=appearance_profile(player_sheet,current_year=_campaign_year(meta.get('time')),health=player_sheet.get('health'))
+        visible_contracts=player_visible_contract_rows(
+            contract_index,
+            player_id=str(meta.get('player_id') or ''),
+            faction_ref=str(player_sheet.get('faction_ref') or ''),
+            world_time=str(meta.get('time') or ''),
+        )
         supported=sorted(getattr(self.command_planner,'COMMAND_TYPES',()))
         commands={name:COMMAND_SPECS[name].public_descriptor() for name in supported if name in COMMAND_SPECS}
         result={
@@ -153,6 +160,7 @@ class CampaignOperations:
           'player':player,
           'person_reads':{'suggested_owner_ids':self._present_ids(scene_view),'use':'Load one person sheet when a person materially affects the current scene.'},
           'object_reads':{'supported_ref_prefixes':['faction:','inventory:','contract:','deployment:','project:','tournament:','market:','site:','relations','government'],'use':'Inspect one exact Jianghu owner when its current state matters.'},
+          'contract_reads':{'available_contracts':visible_contracts,'use':'Inspect an advertised contract object_ref for exact current terms before accepting it.'},
           'commands':{'supported_command_types':supported,'command_types':commands,'limits':{'one_semantic_command_per_write':True,'preview_before_execute':True,'unsupported_intent_fails_closed':True}},
           'narration':{'setting':'Chinese Jianghu/Murim','rule':'Narrate only committed/player-visible truth; physical mechanics determine consequential outcomes.'},
           'context_policy':{'bounded_reads':True,'direct_person_routes':True,'aggregate_civilians':True,'no_omniscient_hidden_state':True},
@@ -214,7 +222,16 @@ class CampaignOperations:
     def inspect_game_object(self,object_ref:str)->Mapping[str,Any]:
         try:
             with self._locked():
-                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); obj,view=self._object(object_ref); self._require_read_only(before,'object_inspection_mutated_campaign')
+                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); meta=self.repository.read_json('state/meta.json'); player=self.sheet_resolver(str(meta.get('player_id') or '')); obj,view=self._object(object_ref)
+                if object_ref.startswith('contract:'):
+                    if not isinstance(player,Mapping) or not contract_is_player_visible(
+                        obj,
+                        player_id=str(meta.get('player_id') or ''),
+                        faction_ref=str(player.get('faction_ref') or ''),
+                        world_time=str(meta.get('time') or ''),
+                    ):
+                        raise OperationError(404,'object_not_found')
+                self._require_read_only(before,'object_inspection_mutated_campaign')
         except OperationError: raise
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
         except (FileNotFoundError,KeyError,TypeError,ValueError) as exc: raise OperationError(404,'object_not_found') from exc
@@ -258,40 +275,3 @@ class CampaignOperations:
     @staticmethod
     def _receipt_response(status,receipt):
         return {'status':status,'request_id':receipt.request_id,'transaction_id':receipt.transaction_id,'campaign_id':receipt.campaign_id,'committed_revision':receipt.committed_revision,'committed_at':receipt.committed_at,'result':thaw_json(receipt.result)}
-
-    def execute_command(self,command:CommandEnvelope)->Mapping[str,Any]:
-        self._require_command_base(command)
-        try:
-            existing=self.coordinator.lookup_receipt(command)
-            if existing is not None:return self._receipt_response('duplicate',existing)
-            with self._locked():
-                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); plan=self.command_planner.plan(command); self._require_read_only(before,'planner_mutated_campaign'); planned_head,planned_root=before
-            def guarded(overlay,manifest):
-                if self.coordinator.git.head()!=planned_head or self.state_roots.read(planned_head).root_sha256!=planned_root: raise PlanStateChangedError()
-                if self.schema_validator is not None:self.schema_validator.validate_overlay(overlay,manifest.paths)
-                if self.template_validator is not None:self.template_validator.validate_overlay(overlay,manifest.paths)
-                plan.validator(overlay,manifest)
-            execution=self.coordinator.execute(command,transaction_id=plan.transaction_id,created_at=plan.created_at,writes=plan.writes,result=thaw_json(plan.result),validator=guarded)
-        except CommandRejectedError as exc: raise OperationError(422,exc.code) from exc
-        except StaleRevisionError as exc: raise OperationError(409,'stale_revision') from exc
-        except IdempotencyConflictError as exc: raise OperationError(409,'idempotency_conflict') from exc
-        except PlanStateChangedError as exc: raise OperationError(409,'planned_state_changed') from exc
-        except (LockUnavailableError,DirtyRepositoryError,RecoveryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
-        except TransactionError as exc: raise OperationError(409,'transaction_rejected') from exc
-        return self._receipt_response(execution.status,execution.receipt)
-
-    def lookup_command_receipt(self,command:CommandEnvelope)->Optional[Mapping[str,Any]]:
-        self._require_command_base(command)
-        try: existing=self.coordinator.lookup_receipt(command)
-        except IdempotencyConflictError as exc: raise OperationError(409,'idempotency_conflict') from exc
-        return None if existing is None else self._receipt_response('duplicate',existing)
-
-    def ooc_audit(self,focus:Optional[str],observations:Sequence[str])->Mapping[str,Any]:
-        try:
-            with self._locked():
-                self.coordinator.git.assert_pristine(); before=self._read_fingerprint(); report=self.audit_provider(focus,tuple(observations)); self._require_read_only(before,'ooc_audit_mutated_campaign')
-        except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
-        if not isinstance(report,OocAuditResult) or report.write_plan is not None: raise OperationError(503,'ooc_audit_invalid')
-        return {'diagnostics':list(report.diagnostics),'suggestions':list(report.suggestions)}
-
-__all__=['CampaignOperations','OperationError','PlanStateChangedError']

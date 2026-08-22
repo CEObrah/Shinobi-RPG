@@ -7,6 +7,7 @@ from shinobi_runtime.martial_world.field_development import (
     apply_field_activity,
     apply_single_combat_action,
 )
+from shinobi_runtime.martial_world import time_progression
 from shinobi_runtime.martial_world.time_progression import augment_frontier_with_progression
 
 
@@ -153,14 +154,16 @@ def test_invalid_or_precommit_combat_action_adds_no_development():
     assert developed["actor"].get("training_state", {}).get("evidence_milli", {}) == {}
 
 
-def test_new_public_contract_offer_interrupts_event_seeking_wait():
+def test_new_public_contract_offer_interrupts_event_seeking_wait(monkeypatch):
     contracts_path = "state/martial-world/contracts/index.json"
     route_path = "state/martial-world/route-operations.json"
     commitments_path = "state/martial-world/commitments.json"
+    meta_path = "state/meta.json"
     before = {
         contracts_path: {"schema": "jianghu-contract-index-1.0", "active": {}, "archive": {}},
         route_path: {"schema": "jianghu-route-operations-1.0", "movements": {}},
         commitments_path: {"schema": "jianghu-commitment-state-1.0", "commitments": {}},
+        meta_path: {"schema": "meta", "player_id": "pc.test"},
     }
 
     def read_json(path):
@@ -168,6 +171,16 @@ def test_new_public_contract_offer_interrupts_event_seeking_wait():
             raise FileNotFoundError(path)
         return before[path]
 
+    monkeypatch.setattr(
+        time_progression,
+        "roster_person",
+        lambda _view, _ref: (
+            "state/martial-world/people/house_tang.json",
+            {},
+            0,
+            {"person_id": "pc.test", "faction_ref": "house_tang"},
+        ),
+    )
     offered = {
         "contract_ref": "contract.test.public",
         "contract_type": "escort",
@@ -196,6 +209,6 @@ def test_new_public_contract_offer_interrupts_event_seeking_wait():
     )
     handoff = next(row for row in out["handoffs"] if row.get("contract_ref") == "contract.test.public")
     assert handoff["kind"] == "funded_contract_offer"
-    assert handoff["handoff"]["player_facing"] is True
+    assert handoff["handoff"]["class"] == "soft_player_facing"
     assert handoff["handoff"]["interrupts_event_seeking"] is True
     assert handoff["handoff"]["requires_player_decision"] is False

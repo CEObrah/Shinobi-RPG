@@ -1,4 +1,23 @@
 {
   "schema": "jianghu-deployment-state-1.0",
-  "deployments": {}
+  "deployments": {
+    "retinue.wei.permanent_travel_team": {
+      "deployment_ref": "retinue.wei.permanent_travel_team",
+      "operation_kind": "standing_retinue",
+      "faction_ref": "house_tang",
+      "leader_ref": "pc_wei_tang",
+      "chooser_refs": [
+        "char.zhu",
+        "char.ling"
+      ],
+      "chooser_ref": "char.zhu",
+      "requested_count": 3,
+      "delegated_requested_count": 0,
+      "member_refs": [],
+      "member_roles": {},
+      "status": "assignment_pending",
+      "requested_at": "0061-09-13T21:15:00",
+      "training_policy": "house_curriculum_idle_field_experience_active"
+    }
+  }
 }

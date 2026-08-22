@@ -3,7 +3,7 @@
   "faction_id": "faction.safe_passage_escort_agency",
   "headquarters": "dengfeng",
   "local_site_ref": "site.safe_passage_escort_agency",
-  "population": 27,
+  "population": 25,
   "treasury_cash": 92124,
   "buildings": {
     "main_hall": 1,
@@ -24,9 +24,181 @@
   },
   "training_epoch": {
     "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
-    "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "settled_through": "0061-08-29T21:15:00",
+    "elapsed_training_days": 15,
+    "intensity_milli": 1000,
+    "history": [
+      {
+        "segment_id": "training.faction.safe_passage_escort_agency.0.607c2914c9b5",
+        "start_day": 0,
+        "end_day": 15,
+        "started_at": "0061-08-14T21:15:00",
+        "settled_through": "0061-08-29T21:15:00",
+        "environment_fingerprint": "607c2914c9b5fb90fb0b96df",
+        "curriculum": {
+          "spear": 78,
+          "unarmed": 52,
+          "stealth_scouting": 49,
+          "command": 77,
+          "qi": 34,
+          "qi_control": 33
+        },
+        "facilities": {
+          "armory_workshop": 0,
+          "infirmary_apothecary": 0,
+          "library_records": 1,
+          "main_hall": 1,
+          "qi_hall": 1,
+          "training_grounds": 1,
+          "training_hall": 1
+        },
+        "intensity_milli": 1000,
+        "eligible_student_count": 27,
+        "instruction_profiles": {
+          "spear": {
+            "coverage_milli": 1000,
+            "facility_capacity": 49,
+            "instructor_skill": 32,
+            "instruction_skill": 22
+          },
+          "unarmed": {
+            "coverage_milli": 1000,
+            "facility_capacity": 69,
+            "instructor_skill": 42,
+            "instruction_skill": 26
+          },
+          "stealth_scouting": {
+            "coverage_milli": 1000,
+            "facility_capacity": 49,
+            "instructor_skill": 42,
+            "instruction_skill": 24
+          },
+          "command": {
+            "coverage_milli": 1000,
+            "facility_capacity": 49,
+            "instructor_skill": 35,
+            "instruction_skill": 25
+          },
+          "qi": {
+            "coverage_milli": 555,
+            "facility_capacity": 15,
+            "instructor_skill": 31,
+            "instruction_skill": 24
+          },
+          "qi_control": {
+            "coverage_milli": 111,
+            "facility_capacity": 3,
+            "instructor_skill": 26,
+            "instruction_skill": 24
+          },
+          "administration": {
+            "coverage_milli": 259,
+            "facility_capacity": 7,
+            "instructor_skill": 82,
+            "instruction_skill": 17
+          },
+          "commerce": {
+            "coverage_milli": 259,
+            "facility_capacity": 7,
+            "instructor_skill": 70,
+            "instruction_skill": 21
+          },
+          "instruction": {
+            "coverage_milli": 740,
+            "facility_capacity": 20,
+            "instructor_skill": 30,
+            "instruction_skill": 30
+          }
+        },
+        "guard_duty_milli": 0,
+        "external_teaching_duty_milli": {}
+      }
+    ],
+    "current_environment": {
+      "segment_id": "training.faction.safe_passage_escort_agency.15.a8702e94c6a7",
+      "start_day": 15,
+      "end_day": 15,
+      "started_at": "0061-08-29T21:15:00",
+      "settled_through": "0061-08-29T21:15:00",
+      "environment_fingerprint": "a8702e94c6a71c325eb4dc0b",
+      "curriculum": {
+        "spear": 78,
+        "unarmed": 52,
+        "stealth_scouting": 49,
+        "command": 77,
+        "qi": 34,
+        "qi_control": 33
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 1,
+        "main_hall": 1,
+        "qi_hall": 1,
+        "training_grounds": 1,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 20,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 49,
+          "instructor_skill": 33,
+          "instruction_skill": 27
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 69,
+          "instructor_skill": 46,
+          "instruction_skill": 25
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 49,
+          "instructor_skill": 46,
+          "instruction_skill": 25
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 49,
+          "instructor_skill": 37,
+          "instruction_skill": 25
+        },
+        "qi": {
+          "coverage_milli": 750,
+          "facility_capacity": 15,
+          "instructor_skill": 31,
+          "instruction_skill": 24
+        },
+        "qi_control": {
+          "coverage_milli": 150,
+          "facility_capacity": 3,
+          "instructor_skill": 26,
+          "instruction_skill": 24
+        },
+        "administration": {
+          "coverage_milli": 350,
+          "facility_capacity": 7,
+          "instructor_skill": 82,
+          "instruction_skill": 17
+        },
+        "commerce": {
+          "coverage_milli": 350,
+          "facility_capacity": 7,
+          "instructor_skill": 70,
+          "instruction_skill": 21
+        },
+        "instruction": {
+          "coverage_milli": 1000,
+          "facility_capacity": 20,
+          "instructor_skill": 28,
+          "instruction_skill": 28
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 13500,

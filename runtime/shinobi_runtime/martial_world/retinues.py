@@ -15,8 +15,21 @@ _CRITICAL_OFFICES = {
 _DISCRETIONARY_THIRD_SCORE = 420
 
 
+def _office_keys(person: Mapping[str, Any]) -> set[str]:
+    return {
+        str(x).split(": 1", 1)[0] if ": 1" in str(x) else str(x).split(":", 1)[0]
+        for x in person.get("standing_offices", [])
+        if isinstance(x, str)
+    }
+
+
 def _ready(person: Mapping[str, Any], *, year: int) -> bool:
     if bool(person.get("retired_from_field", False)):
+        return False
+    # Permanent attachment to Wei must not hollow out the House's standing
+    # command, medical or instruction backbone merely because an office-holder
+    # is individually excellent at the role.
+    if _office_keys(person) & _CRITICAL_OFFICES:
         return False
     birth = person.get("birth_year")
     if not isinstance(birth, int) or year - birth < 14:
@@ -29,48 +42,34 @@ def _ready(person: Mapping[str, Any], *, year: int) -> bool:
     return True
 
 
-def _critical_penalty(person: Mapping[str, Any]) -> int:
-    offices = {
-        str(x).split(":", 1)[0]
-        for x in person.get("standing_offices", [])
-        if isinstance(x, str)
-    }
-    return 180 if offices & _CRITICAL_OFFICES else 0
-
-
 def _scores(person: Mapping[str, Any]) -> dict[str, int]:
     attrs = person.get("attributes", {}) if isinstance(person.get("attributes"), Mapping) else {}
     martial = person.get("martial_skills", {}) if isinstance(person.get("martial_skills"), Mapping) else {}
     prof = person.get("professional_skills", {}) if isinstance(person.get("professional_skills"), Mapping) else {}
-    penalty = _critical_penalty(person)
     return {
         "protective_guard": (
             max(int(martial.get("sword", 0)), int(martial.get("unarmed", 0))) * 4
             + int(attrs.get("endurance", 0)) * 2
             + int(attrs.get("perception", 0))
             + int(attrs.get("willpower", 0))
-            - penalty
         ),
         "scout": (
             int(martial.get("stealth_scouting", 0)) * 5
             + int(attrs.get("perception", 0)) * 2
             + int(attrs.get("speed", 0))
             + int(attrs.get("dexterity", 0))
-            - penalty
         ),
         "field_medic": (
             int(prof.get("medicine", 0)) * 6
             + int(attrs.get("perception", 0)) * 2
             + int(attrs.get("intelligence", 0)) * 2
             + int(attrs.get("willpower", 0))
-            - penalty
         ),
         "field_deputy": (
             int(martial.get("command", 0)) * 5
             + int(attrs.get("intelligence", 0)) * 2
             + int(attrs.get("perception", 0))
             + int(attrs.get("willpower", 0)) * 2
-            - penalty
         ),
     }
 

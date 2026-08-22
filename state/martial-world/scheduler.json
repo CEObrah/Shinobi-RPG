@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 52
+      "owner_cursor": 56
     },
     "faction_annual": {
       "interval_days": 365,
@@ -2808,6 +2808,32 @@
       "planted_mu": 1,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "taian",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.golden_reed_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.golden_reed_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.golden_reed_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 21,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "xining",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.golden_summit_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.golden_summit_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.golden_summit_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 50,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "zhengzhou",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

@@ -10,6 +10,7 @@ class _Repository:
             "game/data/martial-world/local-sites.json": {
                 "sites": {
                     "site.start": {"parent_place_ref": "place.start"},
+                    "site.local": {"parent_place_ref": "place.start"},
                     "site.end": {"parent_place_ref": "place.end"},
                 }
             },
@@ -72,7 +73,7 @@ class _Harness(JianghuTravelTeamCommandsMixin):
 
     def _timed_person_activity_plan(self, command, meta, current_time, **kwargs):
         self.captured_party = list(kwargs["person_refs"])
-        extra = dict(kwargs["staged_records"])
+        extra = dict(kwargs.get("staged_records", {}))
         extra["state/martial-world/people/house_tang.json"] = {
             "schema": "jianghu-person-lite-roster-1.0",
             "faction_ref": "house_tang",
@@ -92,9 +93,8 @@ class _Harness(JianghuTravelTeamCommandsMixin):
         }
 
 
-def test_strategic_travel_moves_wei_and_three_permanent_team_members(monkeypatch):
+def _patch_common(monkeypatch):
     import shinobi_runtime.commands.jianghu_travel_team as travel_team
-    import shinobi_runtime.martial_world.live_state as live_state
 
     monkeypatch.setattr(
         travel_team,
@@ -108,6 +108,24 @@ def test_strategic_travel_moves_wei_and_three_permanent_team_members(monkeypatch
         "encumbrance_effects",
         lambda **_kwargs: {"movement_factor_milli": 1000},
     )
+    return travel_team
+
+
+def _assert_full_party(result, harness, destination):
+    expected = ["pc_wei_tang", "team.medic", "team.scout", "team.guard"]
+    assert harness.captured_party == expected
+    assert result["result"]["travel_party_refs"] == expected
+    assert result["result"]["travel_party_count"] == 4
+    assert result["scene"]["present_person_ids"] == expected
+    assert result["scene"]["visible_person_ids"] == expected
+    final_people = result["extra_records"]["state/martial-world/people/house_tang.json"]["people"]
+    assert {row["location_ref"] for row in final_people} == {destination}
+
+
+def test_strategic_travel_moves_wei_and_three_permanent_team_members(monkeypatch):
+    travel_team = _patch_common(monkeypatch)
+    import shinobi_runtime.martial_world.live_state as live_state
+
     monkeypatch.setattr(
         travel_team,
         "travel_plan",
@@ -133,12 +151,32 @@ def test_strategic_travel_moves_wei_and_three_permanent_team_members(monkeypatch
         {"world_seed": "test"},
         CampaignTime.parse("SE-0061-01-01T00:00:00"),
     )
+    _assert_full_party(result, harness, "site.end")
 
-    expected = ["pc_wei_tang", "team.medic", "team.scout", "team.guard"]
-    assert harness.captured_party == expected
-    assert result["result"]["travel_party_refs"] == expected
-    assert result["result"]["travel_party_count"] == 4
-    assert result["scene"]["present_person_ids"] == expected
-    assert result["scene"]["visible_person_ids"] == expected
-    final_people = result["extra_records"]["state/martial-world/people/house_tang.json"]["people"]
-    assert {row["location_ref"] for row in final_people} == {"site.end"}
+
+def test_local_travel_keeps_active_permanent_team_with_wei(monkeypatch):
+    travel_team = _patch_common(monkeypatch)
+    monkeypatch.setattr(
+        travel_team,
+        "local_travel_quote",
+        lambda **_kwargs: {
+            "walking_minutes": 10,
+            "distance_m": 700,
+            "from_site_ref": "site.start",
+            "to_site_ref": "site.local",
+        },
+    )
+
+    harness = _Harness()
+    command = SimpleNamespace(
+        actor_id="pc_wei_tang",
+        request_id="local-travel-team-test",
+        command_type="jianghu_local_travel_resolution",
+        payload={"destination_site_ref": "site.local"},
+    )
+    result = harness._jianghu_local_travel_resolution(
+        command,
+        {"world_seed": "test"},
+        CampaignTime.parse("SE-0061-01-01T00:00:00"),
+    )
+    _assert_full_party(result, harness, "site.local")

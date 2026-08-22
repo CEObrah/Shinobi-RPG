@@ -28,9 +28,165 @@
   },
   "training_epoch": {
     "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
-    "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "settled_through": "0061-08-19T21:15:00",
+    "elapsed_training_days": 5,
+    "intensity_milli": 1000,
+    "history": [
+      {
+        "segment_id": "training.faction.tiger_step_school.0.4f519c8f5773",
+        "start_day": 0,
+        "end_day": 5,
+        "started_at": "0061-08-14T21:15:00",
+        "settled_through": "0061-08-19T21:15:00",
+        "environment_fingerprint": "4f519c8f577338c6037b5997",
+        "curriculum": {
+          "unarmed": 70,
+          "stealth_scouting": 28,
+          "command": 26,
+          "qi": 44,
+          "qi_control": 49,
+          "sword": 38
+        },
+        "facilities": {
+          "armory_workshop": 0,
+          "infirmary_apothecary": 0,
+          "library_records": 0,
+          "main_hall": 2,
+          "qi_hall": 1,
+          "training_grounds": 2,
+          "training_hall": 1
+        },
+        "intensity_milli": 1000,
+        "eligible_student_count": 32,
+        "instruction_profiles": {
+          "sword": {
+            "coverage_milli": 1000,
+            "facility_capacity": 105,
+            "instructor_skill": 33,
+            "instruction_skill": 39
+          },
+          "unarmed": {
+            "coverage_milli": 1000,
+            "facility_capacity": 105,
+            "instructor_skill": 60,
+            "instruction_skill": 38
+          },
+          "stealth_scouting": {
+            "coverage_milli": 1000,
+            "facility_capacity": 85,
+            "instructor_skill": 49,
+            "instruction_skill": 41
+          },
+          "command": {
+            "coverage_milli": 1000,
+            "facility_capacity": 85,
+            "instructor_skill": 54,
+            "instruction_skill": 36
+          },
+          "qi": {
+            "coverage_milli": 468,
+            "facility_capacity": 15,
+            "instructor_skill": 61,
+            "instruction_skill": 37
+          },
+          "qi_control": {
+            "coverage_milli": 93,
+            "facility_capacity": 3,
+            "instructor_skill": 65,
+            "instruction_skill": 39
+          },
+          "instruction": {
+            "coverage_milli": 625,
+            "facility_capacity": 20,
+            "instructor_skill": 50,
+            "instruction_skill": 50
+          }
+        },
+        "guard_duty_milli": 0,
+        "external_teaching_duty_milli": {
+          "mw.person.tiger_step_school.1009": 360,
+          "mw.person.tiger_step_school.1005": 360,
+          "mw.person.tiger_step_school.1008": 80
+        }
+      }
+    ],
+    "current_environment": {
+      "segment_id": "training.faction.tiger_step_school.5.f171c102db56",
+      "start_day": 5,
+      "end_day": 5,
+      "started_at": "0061-08-19T21:15:00",
+      "settled_through": "0061-08-19T21:15:00",
+      "environment_fingerprint": "f171c102db5675a1f46ee5f0",
+      "curriculum": {
+        "unarmed": 70,
+        "stealth_scouting": 28,
+        "command": 26,
+        "qi": 44,
+        "qi_control": 49,
+        "sword": 38
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 29,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 33,
+          "instruction_skill": 40
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 60,
+          "instruction_skill": 38
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 49,
+          "instruction_skill": 40
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 54,
+          "instruction_skill": 35
+        },
+        "qi": {
+          "coverage_milli": 517,
+          "facility_capacity": 15,
+          "instructor_skill": 61,
+          "instruction_skill": 37
+        },
+        "qi_control": {
+          "coverage_milli": 103,
+          "facility_capacity": 3,
+          "instructor_skill": 65,
+          "instruction_skill": 39
+        },
+        "instruction": {
+          "coverage_milli": 689,
+          "facility_capacity": 20,
+          "instructor_skill": 50,
+          "instruction_skill": 50
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {
+        "mw.person.tiger_step_school.1009": 360,
+        "mw.person.tiger_step_school.1005": 360,
+        "mw.person.tiger_step_school.1008": 80
+      }
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,

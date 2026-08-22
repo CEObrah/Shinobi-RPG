@@ -28,6 +28,9 @@
     "/commitments/*": {
       "mode": "open_map"
     },
+    "/commitments/*/resources/*": {
+      "mode": "open_map"
+    },
     "/person_index": {
       "mode": "open_map"
     }
@@ -45,6 +48,54 @@
     "/commitments/*": [
       "object"
     ],
+    "/commitments/*/commitment_ref": [
+      "string"
+    ],
+    "/commitments/*/activity_ref": [
+      "string"
+    ],
+    "/commitments/*/activity_kind": [
+      "string"
+    ],
+    "/commitments/*/kind": [
+      "string"
+    ],
+    "/commitments/*/actor_ref": [
+      "string"
+    ],
+    "/commitments/*/owner_ref": [
+      "string"
+    ],
+    "/commitments/*/resources": [
+      "array"
+    ],
+    "/commitments/*/resources/*": [
+      "object"
+    ],
+    "/commitments/*/resources/*/kind": [
+      "string"
+    ],
+    "/commitments/*/resources/*/ref": [
+      "string"
+    ],
+    "/commitments/*/resources/*/owner_ref": [
+      "string"
+    ],
+    "/commitments/*/person_refs": [
+      "array"
+    ],
+    "/commitments/*/person_refs/*": [
+      "string"
+    ],
+    "/commitments/*/started_at": [
+      "string"
+    ],
+    "/commitments/*/status": [
+      "string"
+    ],
+    "/commitments/*/location_ref": [
+      "string"
+    ],
     "/person_index": [
       "object"
     ],
@@ -52,8 +103,20 @@
       "string"
     ]
   },
-  "array_contracts": {},
+  "array_contracts": {
+    "/commitments/*/resources": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/commitments/*/person_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
   "writing_rules": [
-    "Only unresolved current reservations belong here."
+    "Only unresolved current reservations belong here.",
+    "Resources are exact conserved reservations. Person arrays are current membership in the activity, never a fictional population cap."
   ]
 }

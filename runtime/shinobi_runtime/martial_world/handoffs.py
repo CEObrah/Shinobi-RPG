@@ -5,6 +5,6 @@ HARD={'hostile_contact','irreversible_treatment_choice','contract_acceptance_dea
 SOFT={'funded_contract_offer','ranking_publication','tournament_registration','faction_report','family_checkin','formal_challenge','succession_notice','trade_opportunity','bounty_notice','tournament_result','government_summons','retinue_assigned'}
 def classify_handoff(event:Mapping[str,Any])->dict[str,Any]:
     kind=event.get('kind')
-    if event.get('requires_player_decision') is True or kind in HARD: return {'class':'hard_decision','interrupts_event_seeking':True,'requires_player_decision':True}
-    if event.get('delivered_to_player') is True or kind in SOFT: return {'class':'soft_player_facing','interrupts_event_seeking':True,'requires_player_decision':False}
-    return {'class':'internal','interrupts_event_seeking':False,'requires_player_decision':False}
+    if event.get('requires_player_decision') is True or kind in HARD: return {'class':'hard_decision','player_facing':True,'interrupts_event_seeking':True,'requires_player_decision':True}
+    if event.get('delivered_to_player') is True or kind in SOFT: return {'class':'soft_player_facing','player_facing':True,'interrupts_event_seeking':True,'requires_player_decision':False}
+    return {'class':'internal','player_facing':False,'interrupts_event_seeking':False,'requires_player_decision':False}

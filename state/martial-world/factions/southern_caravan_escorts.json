@@ -3,8 +3,8 @@
   "faction_id": "southern_caravan_escorts",
   "headquarters": "chengdu",
   "local_site_ref": "site.southern_caravan_escorts",
-  "population": 98,
-  "treasury_cash": 490000,
+  "population": 101,
+  "treasury_cash": 435926,
   "buildings": {
     "main_hall": 4,
     "residential_compound": 4,
@@ -24,10 +24,108 @@
     "property_rent": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.southern_caravan_escorts.0.583f77bd4e51",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "583f77bd4e51dfcc98b5afe2",
+      "curriculum": {
+        "spear": 70,
+        "unarmed": 45,
+        "stealth_scouting": 57,
+        "command": 72,
+        "qi": 31,
+        "qi_control": 41
+      },
+      "facilities": {
+        "armory_workshop": 3,
+        "infirmary_apothecary": 3,
+        "library_records": 4,
+        "main_hall": 4,
+        "qi_hall": 4,
+        "training_grounds": 4,
+        "training_hall": 4
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 101,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 42,
+          "instruction_skill": 11
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 307,
+          "instructor_skill": 44,
+          "instruction_skill": 3
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 71,
+          "instruction_skill": 17
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 60,
+          "instruction_skill": 17
+        },
+        "qi": {
+          "coverage_milli": 683,
+          "facility_capacity": 69,
+          "instructor_skill": 49,
+          "instruction_skill": 16
+        },
+        "qi_control": {
+          "coverage_milli": 168,
+          "facility_capacity": 17,
+          "instructor_skill": 60,
+          "instruction_skill": 10
+        },
+        "medicine": {
+          "coverage_milli": 217,
+          "facility_capacity": 22,
+          "instructor_skill": 80,
+          "instruction_skill": 29
+        },
+        "administration": {
+          "coverage_milli": 336,
+          "facility_capacity": 34,
+          "instructor_skill": 60,
+          "instruction_skill": 21
+        },
+        "commerce": {
+          "coverage_milli": 336,
+          "facility_capacity": 34,
+          "instructor_skill": 81,
+          "instruction_skill": 7
+        },
+        "crafting": {
+          "coverage_milli": 138,
+          "facility_capacity": 14,
+          "instructor_skill": 84,
+          "instruction_skill": 17
+        },
+        "instruction": {
+          "coverage_milli": 871,
+          "facility_capacity": 88,
+          "instructor_skill": 30,
+          "instruction_skill": 30
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 62600,
@@ -82,5 +180,9 @@
     "property_rent": {
       "registered_property_units": 4
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 3
   }
 }

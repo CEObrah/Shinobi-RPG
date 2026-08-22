@@ -3,8 +3,8 @@
   "faction_id": "house_tang",
   "headquarters": "luoyang",
   "local_site_ref": "site.house_tang",
-  "population": 100,
-  "treasury_cash": 500000,
+  "population": 104,
+  "treasury_cash": 419746,
   "buildings": {
     "main_hall": 5,
     "residential_compound": 5,
@@ -26,10 +26,113 @@
     "escort_service": 5
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.house_tang.0.706351af2134",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "706351af2134466bc51d288c",
+      "curriculum": {
+        "sword": 100,
+        "unarmed": 65,
+        "stealth_scouting": 70,
+        "command": 85,
+        "qi": 100,
+        "qi_control": 100,
+        "medicine": 65,
+        "administration": 55,
+        "commerce": 35,
+        "crafting": 45,
+        "instruction": 75
+      },
+      "facilities": {
+        "armory_workshop": 5,
+        "infirmary_apothecary": 5,
+        "library_records": 5,
+        "main_hall": 5,
+        "qi_hall": 5,
+        "training_grounds": 5,
+        "training_hall": 5
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 104,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 476,
+          "instructor_skill": 112,
+          "instruction_skill": 66
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 476,
+          "instructor_skill": 72,
+          "instruction_skill": 108
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 340,
+          "instructor_skill": 69,
+          "instruction_skill": 19
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 340,
+          "instructor_skill": 90,
+          "instruction_skill": 108
+        },
+        "qi": {
+          "coverage_milli": 1000,
+          "facility_capacity": 107,
+          "instructor_skill": 147,
+          "instruction_skill": 66
+        },
+        "qi_control": {
+          "coverage_milli": 250,
+          "facility_capacity": 26,
+          "instructor_skill": 92,
+          "instruction_skill": 82
+        },
+        "medicine": {
+          "coverage_milli": 519,
+          "facility_capacity": 54,
+          "instructor_skill": 120,
+          "instruction_skill": 82
+        },
+        "administration": {
+          "coverage_milli": 519,
+          "facility_capacity": 54,
+          "instructor_skill": 92,
+          "instruction_skill": 108
+        },
+        "commerce": {
+          "coverage_milli": 519,
+          "facility_capacity": 54,
+          "instructor_skill": 77,
+          "instruction_skill": 30
+        },
+        "crafting": {
+          "coverage_milli": 326,
+          "facility_capacity": 34,
+          "instructor_skill": 68,
+          "instruction_skill": 19
+        },
+        "instruction": {
+          "coverage_milli": 1000,
+          "facility_capacity": 136,
+          "instructor_skill": 108,
+          "instruction_skill": 108
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 108000,
@@ -92,5 +195,9 @@
     "escort_service": {
       "simultaneous_contract_capacity": 14
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 4
   }
 }

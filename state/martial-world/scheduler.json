@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 212
+      "owner_cursor": 216
     },
     "faction_annual": {
       "interval_days": 365,
@@ -535,8 +535,10 @@
         "route.changan.zhongnan",
         "route.chongqing.kunming",
         "route.hangzhou.tiantai",
+        "route.luoyang.taiyuan",
         "route.wuhan.nanchang",
         "route.xining.golmud",
+        "route.xuchang.xiangyang",
         "route.zhengzhou.dengfeng"
       ],
       "event_kinds": [
@@ -3609,6 +3611,79 @@
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "hangzhou",
       "agriculture_level": 2,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:house_shen:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:house_shen:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:house_shen:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:house_shen:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:house_shen:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "house_shen",
+      "crop_ref": "vegetables",
+      "planted_mu": 46,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "suzhou",
+      "agriculture_level": 3,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:house_tang:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:house_tang:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "house_tang",
+      "crop_ref": "vegetables",
+      "planted_mu": 9,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "luoyang",
+      "agriculture_level": 5,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:house_yue:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:house_yue:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:house_yue:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:house_yue:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:house_yue:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "house_yue",
+      "crop_ref": "vegetables",
+      "planted_mu": 30,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "xiangyang",
+      "agriculture_level": 2,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:house_zhao:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:house_zhao:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:house_zhao:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:house_zhao:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:house_zhao:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "house_zhao",
+      "crop_ref": "vegetables",
+      "planted_mu": 37,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "taiyuan",
+      "agriculture_level": 3,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }

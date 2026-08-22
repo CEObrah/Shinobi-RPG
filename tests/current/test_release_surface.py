@@ -82,8 +82,12 @@ def test_current_month_timeskip_builds_and_validates_the_exact_transaction_overl
     current=datetime.fromisoformat(str(meta['time']).removeprefix('SE-'))
     reached=datetime.fromisoformat(str(plan.result['world_time']).removeprefix('SE-'))
     requested=datetime.fromisoformat(target.removeprefix('SE-'))
-    assert current < reached <= requested
+    # Equality is lawful when the compact scheduler still has a resumable owner
+    # chunk or another schedule class due at the current campaign timestamp.
+    assert current <= reached <= requested
     assert isinstance(plan.result['continuation_required'],bool)
+    if reached == current:
+        assert plan.result['continuation_required'] or plan.result['interrupted']
 
 
 def test_combat_state_does_not_persist_exchange_trace_history():

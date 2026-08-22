@@ -3,8 +3,8 @@
   "faction_id": "faction.spring_river_escort_agency",
   "headquarters": "chengdu",
   "local_site_ref": "site.spring_river_escort_agency",
-  "population": 41,
-  "treasury_cash": 109347,
+  "population": 42,
+  "treasury_cash": 105087,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,84 @@
     "school_tuition": 0
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.spring_river_escort_agency.0.9e0a49c9d2e8",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "9e0a49c9d2e8ceaff00d5805",
+      "curriculum": {
+        "spear": 78,
+        "unarmed": 50,
+        "stealth_scouting": 54,
+        "command": 74,
+        "qi": 35,
+        "qi_control": 48
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 42,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 53,
+          "instruction_skill": 33
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 66,
+          "instruction_skill": 22
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 46,
+          "instruction_skill": 39
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 22,
+          "instruction_skill": 31
+        },
+        "qi": {
+          "coverage_milli": 357,
+          "facility_capacity": 15,
+          "instructor_skill": 61,
+          "instruction_skill": 34
+        },
+        "qi_control": {
+          "coverage_milli": 71,
+          "facility_capacity": 3,
+          "instructor_skill": 69,
+          "instruction_skill": 42
+        },
+        "instruction": {
+          "coverage_milli": 476,
+          "facility_capacity": 20,
+          "instructor_skill": 53,
+          "instruction_skill": 53
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -73,5 +147,9 @@
     "escort_service": {
       "simultaneous_contract_capacity": 2
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

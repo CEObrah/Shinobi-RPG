@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 144
+      "owner_cursor": 148
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3324,6 +3324,19 @@
       "planted_mu": 10,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "hunyuan",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.red_maple_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.red_maple_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.red_maple_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 7,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "hangzhou",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

@@ -100,6 +100,7 @@ def player_view_from_person(person: Mapping[str, Any]) -> dict[str, Any]:
         "affiliation_ref": person.get("affiliation_ref"),
         "social_rank": person.get("social_rank"),
         "standing_offices": copy.deepcopy(person.get("standing_offices", [])),
+        "standing_retinues": copy.deepcopy(person.get("standing_retinues", [])),
         "combat_doctrine_ref": person.get("combat_doctrine_ref"),
     }
 

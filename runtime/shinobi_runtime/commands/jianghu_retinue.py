@@ -14,6 +14,7 @@ from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest
 
+_CONTRACTS = "state/martial-world/contracts/index.json"
 _DEPLOYMENTS = "state/martial-world/deployments.json"
 _SCHEDULE = "state/martial-world/scheduler.json"
 _AUTHORIZED_CHOOSER_OFFICES = {"leader", "deputy_leader", "chief_instructor", "chief_martial_instructor"}
@@ -29,6 +30,35 @@ def _office_keys(person: Mapping[str, Any]) -> set[str]:
         for row in person.get("standing_offices", [])
         if isinstance(row, str)
     }
+
+
+def _delegated_mission_guard_count(
+    contracts: Mapping[str, Any], *, actor_ref: str, faction_ref: str,
+) -> int:
+    """Return the largest current escort guard minimum delegated to the House.
+
+    The actor is already one martial escort, so the personal travel detail must
+    supply ``minimum_escort_count - 1`` additional people. This derives a real
+    mission-sized retinue without imposing a fictional 2/3-person world cap.
+    """
+    active = contracts.get("active", {}) if isinstance(contracts, Mapping) else {}
+    if not isinstance(active, Mapping):
+        return 0
+    required = 0
+    for contract in active.values():
+        if not isinstance(contract, Mapping):
+            continue
+        if contract.get("contract_type") != "escort" or contract.get("status") != "accepted":
+            continue
+        if str(contract.get("beneficiary_ref") or "") != faction_ref:
+            continue
+        participants = contract.get("participants", [])
+        if not isinstance(participants, list) or actor_ref not in participants:
+            continue
+        objective = contract.get("objective", {}) if isinstance(contract.get("objective"), Mapping) else {}
+        minimum = max(1, int(objective.get("minimum_escort_count", 1)))
+        required = max(required, max(2, minimum - 1))
+    return required
 
 
 class JianghuRetinueCommandsMixin:
@@ -58,7 +88,7 @@ class JianghuRetinueCommandsMixin:
                 raise CommandRejectedError("retinue_requested_count_invalid") from exc
             if not retinue_ref or not retinue_ref.startswith("retinue."):
                 raise CommandRejectedError("retinue_ref_invalid")
-            if requested_count not in {0, 2, 3}:
+            if requested_count == 1 or requested_count < 0:
                 raise CommandRejectedError("retinue_requested_count_invalid")
             if any(
                 isinstance(existing, Mapping)
@@ -87,6 +117,21 @@ class JianghuRetinueCommandsMixin:
                 if not (_office_keys(chooser) & _AUTHORIZED_CHOOSER_OFFICES):
                     raise CommandRejectedError("retinue_chooser_not_authorized")
 
+            stored_count = requested_count
+            mission_sized = False
+            if requested_count == 0:
+                try:
+                    mission_minimum = _delegated_mission_guard_count(
+                        self.repository.read_json(_CONTRACTS),
+                        actor_ref=command.actor_id,
+                        faction_ref=faction_ref,
+                    )
+                except (FileNotFoundError, TypeError, ValueError):
+                    mission_minimum = 0
+                if mission_minimum > 3:
+                    stored_count = mission_minimum
+                    mission_sized = True
+
             requested_at = _dt(current_time)
             due_at = requested_at + timedelta(hours=12)
             rows[retinue_ref] = {
@@ -99,7 +144,9 @@ class JianghuRetinueCommandsMixin:
                 # until that reducer is extracted from time_progression.
                 "chooser_refs": chooser_refs,
                 "chooser_ref": chooser_refs[0],
-                "requested_count": requested_count,
+                "requested_count": stored_count,
+                "delegated_requested_count": requested_count,
+                "mission_sized_detail": mission_sized,
                 "member_refs": [],
                 "member_roles": {},
                 "status": "assignment_pending",
@@ -144,6 +191,8 @@ class JianghuRetinueCommandsMixin:
                     raise ValueError("retinue request missing after planning")
                 if row.get("chooser_refs") != chooser_refs:
                     raise ValueError("retinue joint chooser authority changed after planning")
+                if int(row.get("requested_count", 0)) != stored_count:
+                    raise ValueError("retinue mission sizing changed after planning")
                 schedule_after = overlay.read_json(_SCHEDULE)
                 event = schedule_after.get("one_off", {}).get(f"retinue_assignment_review:{retinue_ref}") if isinstance(schedule_after, Mapping) else None
                 if not isinstance(event, Mapping) or event.get("due_at") != due_at.isoformat():
@@ -161,7 +210,9 @@ class JianghuRetinueCommandsMixin:
                     "retinue_ref": retinue_ref,
                     "chooser_refs": chooser_refs,
                     "requested_count": requested_count,
-                    "chooser_discretion_2_to_3": requested_count == 0,
+                    "assignment_member_count": stored_count if stored_count > 0 else None,
+                    "chooser_discretion_2_to_3": requested_count == 0 and stored_count == 0,
+                    "mission_sized_detail": mission_sized,
                     "assignment_review_at": due_at.isoformat(),
                     "time_reserved_hours": 0,
                 },

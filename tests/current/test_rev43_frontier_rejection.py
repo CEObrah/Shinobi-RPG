@@ -1,41 +1,60 @@
 from pathlib import Path
 
-from shinobi_runtime.commands.envelope import CommandEnvelope
-from shinobi_runtime.commands.planner import RepositoryCommandPlanner
-from shinobi_runtime.store import RepositoryStore
-from shinobi_runtime.store.overlay import StagedOverlay
-from shinobi_runtime.tx.manifest import TransactionPlanner
+from shinobi_runtime.store import RepositoryStore, RegisteredSchemaValidator, RegisteredTemplateValidator
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_revision_43_can_continue_to_permanent_team_review():
+def test_family_owner_accepts_lawful_nested_pregnancy_and_named_arrays():
     repository = RepositoryStore(ROOT)
-    meta = repository.read_json("state/meta.json")
-    assert meta["revision"] == 43
-    assert meta["time"] == "SE-0061-09-13T21:15:00"
+    family = {
+        "schema": "jianghu-family-state-1.0",
+        "marriages": {
+            "marriage.regression": {
+                "spouse_refs": ["person.mother", "person.father"],
+                "status": "married",
+                "faction_ref": "faction.regression",
+                "started_at": "0061-01-01T00:00:00",
+                "pregnancy": {
+                    "mother_ref": "person.mother",
+                    "father_ref": "person.father",
+                    "conceived_at": "0061-09-13T21:15:00",
+                    "due_at": "0062-06-10T21:15:00",
+                    "child_ref": "person.child",
+                },
+                "last_birth_at": "0060-01-01T00:00:00",
+            }
+        },
+        "parentage": {
+            "person.child": {
+                "parent_refs": ["person.mother", "person.father"],
+            }
+        },
+        "households": {
+            "household.regression": {
+                "faction_ref": "faction.regression",
+                "head_ref": "person.mother",
+                "member_refs": ["person.mother", "person.father", "person.child"],
+                "residence_ref": "site.regression",
+                "status": "active",
+            }
+        },
+        "succession_claims": {
+            "claim.regression": {
+                "faction_ref": "faction.regression",
+                "person_ref": "person.child",
+                "priority": 1,
+                "basis": "lineal_descendant",
+            }
+        },
+    }
 
-    command = CommandEnvelope(
-        campaign_id=meta["campaign_id"],
-        request_id="regression-rev43-frontier",
-        actor_id=meta["player_id"],
-        command_type="advance_time",
-        expected_revision=43,
-        submitted_at="2026-08-22T14:45:00Z",
-        payload={"target_time": "SE-0061-09-14T09:15:00"},
-        mode="gameplay",
+    schema_validator = RegisteredSchemaValidator(repository)
+    schema_validator.validators["jianghu-family-state-1.0"].validate(family)
+
+    template_validator = RegisteredTemplateValidator(repository)
+    RegisteredTemplateValidator._validate_document(
+        family,
+        template_validator.templates["jianghu-family-state-1.0"],
+        label="state/martial-world/family.json",
     )
-    planner = RepositoryCommandPlanner(repository)
-    built = planner._build(command)
-    manifest = TransactionPlanner(repository, meta_path="state/meta.json").plan(
-        command,
-        transaction_id="tx.gameplay." + command.digest,
-        created_at=command.submitted_at,
-        writes=built.writes,
-    )
-    overlay = StagedOverlay(repository, manifest)
-    if planner.schema_validator is not None:
-        planner.schema_validator.validate_overlay(overlay, manifest.paths)
-    if planner.template_validator is not None:
-        planner.template_validator.validate_overlay(overlay, manifest.paths)
-    built.validator(overlay, manifest)

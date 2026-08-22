@@ -1,4 +1,4 @@
-"""Persistent zero-time Jianghu retinue selection and training policy.
+"""Persistent zero-time Jianghu retinue selection.
 
 A retinue is an identity/coordination owner, not an activity. Membership never
 reserves a person's hours. Actual escort, travel, combat and other commitments
@@ -6,13 +6,13 @@ remain responsible for finite time and for pausing institutional training.
 """
 from __future__ import annotations
 
-import copy
 from typing import Any, Mapping, Sequence
 
 _CRITICAL_OFFICES = {
     "leader", "deputy_leader", "chief_instructor", "chief_martial_instructor",
     "chief_physician", "master_weaponsmith",
 }
+_DISCRETIONARY_THIRD_SCORE = 420
 
 
 def _ready(person: Mapping[str, Any], *, year: int) -> bool:
@@ -98,8 +98,18 @@ def select_retinue_members(
     year: int,
     unavailable_refs: Sequence[str] = (),
 ) -> tuple[list[str], dict[str, str]]:
-    """Select a small complementary field party from conserved current people."""
-    count = max(2, min(3, int(requested_count)))
+    """Select a complementary two/three-person field party from conserved people.
+
+    ``requested_count`` may be 2 or 3 for an exact player request. Zero means
+    the player delegated the two-versus-three choice to the authorized chooser:
+    two strong complements are mandatory, and a third is added only when the
+    next missing role has a materially capable non-reserved candidate.
+    """
+    raw_count = int(requested_count)
+    if raw_count not in {0, 2, 3}:
+        raise ValueError("retinue requested count invalid")
+    discretionary = raw_count == 0
+    target_count = 3 if discretionary else raw_count
     leader_ref = str(leader.get("person_id") or "")
     faction_ref = str(leader.get("faction_ref") or "")
     unavailable = {str(x) for x in unavailable_refs if isinstance(x, str)}
@@ -116,7 +126,7 @@ def select_retinue_members(
     chosen: list[str] = []
     assigned: dict[str, str] = {}
     for role in roles:
-        if len(chosen) >= count:
+        if len(chosen) >= target_count:
             break
         ranked = sorted(
             (
@@ -128,38 +138,12 @@ def select_retinue_members(
         )
         if not ranked:
             continue
-        _score, person_ref, _person = ranked[0]
+        score, person_ref, _person = ranked[0]
+        if discretionary and len(chosen) >= 2 and score < _DISCRETIONARY_THIRD_SCORE:
+            break
         chosen.append(person_ref)
         assigned[person_ref] = role
     return chosen, assigned
 
 
-def retinue_training_focus(person: Mapping[str, Any], role: str) -> str | None:
-    """Return a same-budget institutional focus for roles with a direct discipline.
-
-    Field medicine remains on the ordinary faction curriculum because the
-    current personal-focus contract intentionally covers martial/Qi disciplines
-    only. This function never creates extra training hours.
-    """
-    martial = person.get("martial_skills", {}) if isinstance(person.get("martial_skills"), Mapping) else {}
-    if role == "scout":
-        return "stealth_scouting"
-    if role == "field_deputy":
-        return "command"
-    if role == "protective_guard":
-        return "sword" if int(martial.get("sword", 0)) >= int(martial.get("unarmed", 0)) else "unarmed"
-    return None
-
-
-def apply_retinue_focus(person: Mapping[str, Any], role: str) -> tuple[dict[str, Any], str | None, str | None]:
-    out = copy.deepcopy(dict(person))
-    state = copy.deepcopy(dict(out.get("training_state", {}))) if isinstance(out.get("training_state"), Mapping) else {}
-    prior = state.get("focus") if isinstance(state.get("focus"), str) else None
-    focus = retinue_training_focus(out, role)
-    if focus is not None:
-        state["focus"] = focus
-        out["training_state"] = state
-    return out, prior, focus
-
-
-__all__ = ["apply_retinue_focus", "retinue_training_focus", "select_retinue_members"]
+__all__ = ["select_retinue_members"]

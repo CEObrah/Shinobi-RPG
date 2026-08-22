@@ -7,6 +7,7 @@ import py_compile
 import re
 import subprocess
 import sys
+from datetime import datetime, timedelta
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -45,9 +46,16 @@ def check_commands(errors):
     if set(compact['supported_command_types'])!=set(COMMAND_SPECS): errors.append('command discovery surface mismatch')
     meta=repo.read_json('state/meta.json')
     base=dict(campaign_id=meta['campaign_id'],actor_id=meta['player_id'],expected_revision=meta['revision'],submitted_at='2026-08-20T04:00:00Z',mode='gameplay')
+    current_text=str(meta.get('time') or '')
+    normalized=current_text.removeprefix('SE-')
+    try:
+        future=(datetime.fromisoformat(normalized)+timedelta(hours=1)).isoformat()
+    except ValueError as exc:
+        errors.append(f'campaign time invalid for command smoke preview: {exc}')
+        return
     examples=[
       ('jianghu_training_focus_resolution',{'subject_ref':meta['player_id'],'focus':'sword'}),
-      ('advance_time',{'target_time':'SE-0061-08-14T22:15:00'}),
+      ('advance_time',{'target_time':'SE-'+future}),
     ]
     for i,(name,payload) in enumerate(examples):
         try:

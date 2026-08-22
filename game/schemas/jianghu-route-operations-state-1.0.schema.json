@@ -2,13 +2,38 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "jianghu-route-operations-state-1.0",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "schema": {
       "const": "jianghu-route-operations-state-1.0"
+    },
+    "movements": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "contacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "daily_outlaw_attack_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {"type": "string"},
+        "counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "required": ["date", "counts"]
     }
   },
-  "required": [
-    "schema"
-  ],
-  "additionalProperties": true
+  "required": ["schema", "movements", "contacts"]
 }

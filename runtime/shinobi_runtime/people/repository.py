@@ -1,10 +1,26 @@
 """Persistent Jianghu person-sheet resolution through deterministic roster routes."""
 from __future__ import annotations
 import copy
+from datetime import datetime
 from typing import Any, Mapping, Optional
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.martial_world.health import combat_status_families, functional_penalties, vision_state
 from shinobi_runtime.martial_world.live_state import roster_person
+from shinobi_runtime.martial_world.faction_state import read_faction, roster_path
+from shinobi_runtime.martial_world.person_state import hydrate_roster_state
+from shinobi_runtime.martial_world.training import advance_faction_training_epoch, apply_institutional_training
+
+
+def _campaign_time_iso(value: Any) -> str:
+    """Normalize persisted campaign chronology for Jianghu domain mechanics."""
+    text = str(value or "")
+    if text.startswith("SE-"):
+        text = text[3:]
+    try:
+        datetime.fromisoformat(text)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("campaign time invalid for person-sheet projection") from exc
+    return text
 
 
 class RepositoryPersonSheetResolver:
@@ -49,12 +65,50 @@ class RepositoryPersonSheetResolver:
                 break
         return out
 
+    def _project_institutional_training(self, person: Mapping[str, Any]) -> dict[str, Any]:
+        """Return a read-only logical sheet caught up to current campaign time.
+
+        Persistent faction training is intentionally lazy.  Stored faction epochs
+        only need to advance at causal write frontiers, but a current person-sheet
+        read must not expose a capability snapshot that is days behind the campaign
+        clock.  Advance an in-memory faction/roster copy through ``state/meta.json``
+        and materialize the person's pending institutional gains without writing
+        either owner.
+        """
+        out = copy.deepcopy(dict(person))
+        faction_ref = out.get("faction_ref")
+        if not isinstance(faction_ref, str) or not faction_ref:
+            return out
+        meta = self.repository.read_json("state/meta.json")
+        if not isinstance(meta, Mapping):
+            raise ValueError("campaign meta invalid for person-sheet projection")
+        at_iso = _campaign_time_iso(meta.get("time"))
+        _fpath, faction = read_faction(self.repository, faction_ref)
+        raw_roster = self.repository.read_json(roster_path(faction_ref))
+        if not isinstance(raw_roster, Mapping):
+            raise ValueError("jianghu roster invalid for person-sheet projection")
+        roster = hydrate_roster_state(raw_roster, faction=faction)
+        advanced, _summary = advance_faction_training_epoch(
+            faction,
+            roster,
+            at_iso=at_iso,
+            refresh_environment=False,
+        )
+        people = roster.get("people", [])
+        if not isinstance(people, list):
+            raise ValueError("jianghu roster people invalid for person-sheet projection")
+        return apply_institutional_training(
+            out,
+            faction=advanced,
+            roster_people=[row for row in people if isinstance(row, Mapping)],
+        )
+
     def __call__(self, person_id: str) -> Optional[Mapping[str, Any]]:
         try:
             _path, _roster, _ordinal, person = roster_person(self.repository, person_id)
         except (FileNotFoundError, KeyError):
             return None
-        person = copy.deepcopy(person)
+        person = self._project_institutional_training(person)
         person.pop("__state_defaults", None)
         health = person.get("health", {}) if isinstance(person.get("health"), Mapping) else {}
         wounds = health.get("injuries", []) if isinstance(health.get("injuries"), list) else []

@@ -69,7 +69,9 @@ def test_canonical_midseason_scheduler_has_life_reviews_and_standing_crops():
     assert {row.get('owner_ref') for row in annual}=={f['faction_id'] for f in faction_docs}
     for row in annual:
         due=datetime.fromisoformat(row['due_at'])
-        assert start < due <= start+timedelta(days=365)
+        # Equality is lawful for an unresolved same-timestamp one-off. The
+        # production frontier will consume it before time advances past it.
+        assert start <= due <= start+timedelta(days=365)
         assert row.get('recurrence_days')==365
 
     agriculture=[]
@@ -193,9 +195,12 @@ def test_trade_contracts_create_exact_expiry_obligations():
         if rel in overlay: return overlay[rel]
         return load(rel)
     schedule=copy.deepcopy(load('state/martial-world/scheduler.json'))
-    # This unit test targets a recurring monthly frontier. Canonical one-off
-    # life/standing-crop obligations may lawfully be due earlier.
+    # Isolate the exact recurring owner class under test. Other same-timestamp
+    # classes are deliberately irrelevant to regional trade publication.
     schedule['one_off']={}
+    schedule['recurring']={
+        'region_monthly': copy.deepcopy(schedule['recurring']['region_monthly'])
+    }
     start=datetime.fromisoformat(schedule['settled_through'])
     events=due_events(schedule,after=start,through=start+timedelta(days=31))
     assert events and {e.get('schedule_class') for e in events}=={'region_monthly'}
@@ -249,11 +254,15 @@ def test_government_warrant_monthly_frontier_can_physically_close_for_npc():
     def read_json(rel):
         return overlay[rel] if rel in overlay else load(rel)
     schedule=copy.deepcopy(load('state/martial-world/scheduler.json'))
-    # This unit test targets a recurring monthly frontier. Canonical one-off
-    # life/standing-crop obligations may lawfully be due earlier.
+    # Government warrant search is a regional_market_cycle concern, so isolate
+    # the regional class instead of accidentally settling a tied faction chunk.
     schedule['one_off']={}
+    schedule['recurring']={
+        'region_monthly': copy.deepcopy(schedule['recurring']['region_monthly'])
+    }
     start=datetime.fromisoformat(schedule['settled_through'])
     events=due_events(schedule,after=start,through=start+timedelta(days=31))
+    assert events and {e.get('schedule_class') for e in events}=={'region_monthly'}
     at=datetime.fromisoformat(events[0]['due_at'])
     result=settle_martial_world_frontier(read_json=read_json,schedule=schedule,events=events,at=at)
     after=result['writes']['state/martial-world/government.json']

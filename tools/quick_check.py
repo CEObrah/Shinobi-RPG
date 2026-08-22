@@ -32,6 +32,28 @@ def check_python(errors):
             except Exception as exc: errors.append(f'python compile failed {p.relative_to(ROOT)}: {exc}')
 
 
+def _diagnose_preview(planner, command):
+    """Return the hidden staged-validation cause without weakening fail-closed preview."""
+    try:
+        from shinobi_runtime.store import RegisteredSchemaValidator, RegisteredTemplateValidator
+        from shinobi_runtime.store.overlay import StagedOverlay
+        from shinobi_runtime.tx.manifest import TransactionPlanner
+        built=planner._build(command)
+        transaction_id=("tx.autonomous." if command.mode=="autonomous" else "tx.gameplay.")+command.digest
+        manifest=TransactionPlanner(planner.repository,meta_path=planner.meta_path).plan(
+            command, transaction_id=transaction_id, created_at=command.submitted_at, writes=built.writes,
+        )
+        overlay=StagedOverlay(planner.repository,manifest)
+        schema=RegisteredSchemaValidator.optional(planner.repository)
+        template=RegisteredTemplateValidator.optional(planner.repository)
+        if schema is not None: schema.validate_overlay(overlay,manifest.paths)
+        if template is not None: template.validate_overlay(overlay,manifest.paths)
+        built.validator(overlay,manifest)
+        return 'diagnostic rerun unexpectedly passed'
+    except Exception as exc:
+        return f'{type(exc).__name__}: {exc}'
+
+
 def check_commands(errors):
     from shinobi_runtime.commands.planner import RepositoryCommandPlanner
     from shinobi_runtime.commands.specs import COMMAND_SPECS
@@ -58,10 +80,14 @@ def check_commands(errors):
       ('advance_time',{'target_time':'SE-'+future}),
     ]
     for i,(name,payload) in enumerate(examples):
+        command=CommandEnvelope(request_id=f'quick-{i}',command_type=name,payload=payload,**base)
         try:
-            preview=planner.preview(CommandEnvelope(request_id=f'quick-{i}',command_type=name,payload=payload,**base))
+            preview=planner.preview(command)
             if preview.status!='ready': errors.append(f'{name} smoke preview not ready')
-        except Exception as exc: errors.append(f'{name} smoke preview failed: {exc}')
+        except Exception as exc:
+            detail=_diagnose_preview(planner,command) if str(exc)=='transaction_rejected' else ''
+            suffix=f' [{detail}]' if detail else ''
+            errors.append(f'{name} smoke preview failed: {exc}{suffix}')
 
 
 def check_consumers(errors):

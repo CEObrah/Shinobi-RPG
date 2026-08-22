@@ -18,7 +18,7 @@ def test_scheduler_uses_due_frontier_and_resumable_owner_cursor():
     s=initial_schedule(start=start,faction_ids=owners,region_ids=['r1'],route_ids=[])
 
     # Annual life reviews are intentionally staggered per faction instead of
-    # waking the whole world on one anniversary.  The exact one-off schedule is
+    # waking the whole world on one anniversary. The exact one-off schedule is
     # deterministic and covers every faction once.
     annual=[row for row in s['one_off'].values() if row.get('kind')=='annual_faction_life_review']
     assert len(annual)==len(owners)
@@ -56,7 +56,7 @@ def test_great_tournament_advance_notice_is_discoverable_one_year_before_event()
     assert notice['host_place_id']=='luoyang'
 
 
-def test_canonical_midseason_scheduler_has_life_reviews_and_standing_crops():
+def test_canonical_midseason_scheduler_has_life_reviews_and_valid_standing_crops_when_present():
     from shinobi_runtime.martial_world.agriculture import harvest_quote
     schedule=load('state/martial-world/scheduler.json')
     start=datetime.fromisoformat(schedule['settled_through'])
@@ -69,21 +69,24 @@ def test_canonical_midseason_scheduler_has_life_reviews_and_standing_crops():
     assert {row.get('owner_ref') for row in annual}=={f['faction_id'] for f in faction_docs}
     for row in annual:
         due=datetime.fromisoformat(row['due_at'])
-        assert start < due <= start+timedelta(days=365)
+        # Equality is lawful for an unresolved same-timestamp one-off. The
+        # production frontier will consume it before time advances past it.
+        assert start <= due <= start+timedelta(days=365)
         assert row.get('recurrence_days')==365
 
-    agriculture=[]
+    agriculture={}
     meta=load('state/meta.json')
     for faction in faction_docs:
         level=int((faction.get('enterprises') or {}).get('agriculture_landholding',0) or 0)
         scale=((faction.get('enterprise_scale') or {}).get('agriculture_landholding') or {})
         managed=int(scale.get('managed_land_mu',0) or 0)
         if level>0 and managed>0:
-            agriculture.append((faction,level,managed))
-    assert len(harvest)==len(agriculture)==84
-    by_faction={row['faction_ref']:row for row in harvest}
-    for faction,level,managed in agriculture:
-        row=by_faction[faction['faction_id']]
+            agriculture[faction['faction_id']]=(faction,level,managed)
+    # Anchor-time crops disappear lawfully after harvest. If any remain in the
+    # current save, every one must still be physically and economically valid.
+    assert {row['faction_ref'] for row in harvest}.issubset(agriculture)
+    for row in harvest:
+        faction,level,managed=agriculture[row['faction_ref']]
         planted=datetime.fromisoformat(row['planted_at']); due=datetime.fromisoformat(row['due_at'])
         assert planted < start < due
         assert row['crop_ref']=='staple_grain'
@@ -187,19 +190,20 @@ def test_one_off_causal_event_is_exact_and_consumed_not_logged_forever():
 
 def test_trade_contracts_create_exact_expiry_obligations():
     from shinobi_runtime.martial_world.time_integration import settle_martial_world_frontier
-    root=ROOT
     overlay={}
     def read_json(rel):
         if rel in overlay: return overlay[rel]
         return load(rel)
     schedule=copy.deepcopy(load('state/martial-world/scheduler.json'))
-    # This unit test targets a recurring monthly frontier. Canonical one-off
-    # life/standing-crop obligations may lawfully be due earlier.
     schedule['one_off']={}
-    start=datetime.fromisoformat(schedule['settled_through'])
-    events=due_events(schedule,after=start,through=start+timedelta(days=31))
+    schedule['recurring']={
+        'region_monthly': copy.deepcopy(schedule['recurring']['region_monthly'])
+    }
+    # Calendar events are synthesized independently of one_off. Pin the query to
+    # the exact regional due instant so this test settles the intended domain.
+    at=datetime.fromisoformat(schedule['recurring']['region_monthly']['next_due_at'])
+    events=due_events(schedule,after=at-timedelta(seconds=1),through=at)
     assert events and {e.get('schedule_class') for e in events}=={'region_monthly'}
-    at=datetime.fromisoformat(events[0]['due_at'])
     result=settle_martial_world_frontier(read_json=read_json,schedule=schedule,events=events,at=at)
     created=[]
     for review in result['reviews']:
@@ -249,12 +253,13 @@ def test_government_warrant_monthly_frontier_can_physically_close_for_npc():
     def read_json(rel):
         return overlay[rel] if rel in overlay else load(rel)
     schedule=copy.deepcopy(load('state/martial-world/scheduler.json'))
-    # This unit test targets a recurring monthly frontier. Canonical one-off
-    # life/standing-crop obligations may lawfully be due earlier.
     schedule['one_off']={}
-    start=datetime.fromisoformat(schedule['settled_through'])
-    events=due_events(schedule,after=start,through=start+timedelta(days=31))
-    at=datetime.fromisoformat(events[0]['due_at'])
+    schedule['recurring']={
+        'region_monthly': copy.deepcopy(schedule['recurring']['region_monthly'])
+    }
+    at=datetime.fromisoformat(schedule['recurring']['region_monthly']['next_due_at'])
+    events=due_events(schedule,after=at-timedelta(seconds=1),through=at)
+    assert events and {e.get('schedule_class') for e in events}=={'region_monthly'}
     result=settle_martial_world_frontier(read_json=read_json,schedule=schedule,events=events,at=at)
     after=result['writes']['state/martial-world/government.json']
     assert f'warrant:{subject}' not in after['warrants']

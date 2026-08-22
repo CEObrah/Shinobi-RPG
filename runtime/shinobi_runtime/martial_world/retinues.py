@@ -97,15 +97,15 @@ def select_retinue_members(
     year: int,
     unavailable_refs: Sequence[str] = (),
 ) -> tuple[list[str], dict[str, str]]:
-    """Select a complementary two/three-person field party from conserved people.
+    """Select a complementary field retinue from conserved current people.
 
-    ``requested_count`` may be 2 or 3 for an exact player request. Zero means
-    the player delegated the two-versus-three choice to the authorized chooser:
-    two strong complements are mandatory, and a third is added only when the
-    next missing role has a materially capable non-reserved candidate.
+    ``requested_count`` may be any exact count of at least two. Zero retains the
+    ordinary delegated two-versus-three choice. Mission-aware callers may turn a
+    delegated request into an exact larger minimum derived from a real contract;
+    this function contains no fictional maximum headcount.
     """
     raw_count = int(requested_count)
-    if raw_count not in {0, 2, 3}:
+    if raw_count == 1 or raw_count < 0:
         raise ValueError("retinue requested count invalid")
     discretionary = raw_count == 0
     target_count = 3 if discretionary else raw_count
@@ -142,6 +142,24 @@ def select_retinue_members(
             break
         chosen.append(person_ref)
         assigned[person_ref] = role
+
+    # Large mission-sized details still preserve the complementary core above.
+    # Additional members are selected by protective capability and serve as
+    # protective guards rather than inventing more one-off specialist roles.
+    if not discretionary and len(chosen) < target_count:
+        ranked_guards = sorted(
+            (
+                (_scores(person)["protective_guard"], str(person["person_id"]))
+                for person in candidates
+                if str(person["person_id"]) not in chosen
+            ),
+            key=lambda row: (-row[0], row[1]),
+        )
+        for _score, person_ref in ranked_guards:
+            if len(chosen) >= target_count:
+                break
+            chosen.append(person_ref)
+            assigned[person_ref] = "protective_guard"
     return chosen, assigned
 
 

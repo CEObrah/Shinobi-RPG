@@ -14,6 +14,7 @@ from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.tx.manifest import TransactionManifest
 
+_CONTRACTS = "state/martial-world/contracts/index.json"
 _DEPLOYMENTS = "state/martial-world/deployments.json"
 _SCHEDULE = "state/martial-world/scheduler.json"
 _AUTHORIZED_CHOOSER_OFFICES = {"leader", "deputy_leader", "chief_instructor", "chief_martial_instructor"}
@@ -31,6 +32,35 @@ def _office_keys(person: Mapping[str, Any]) -> set[str]:
     }
 
 
+def _delegated_mission_guard_count(
+    contracts: Mapping[str, Any], *, actor_ref: str, faction_ref: str,
+) -> int:
+    """Return the largest current escort guard minimum delegated to the House.
+
+    The actor is already one martial escort, so the personal travel detail must
+    supply ``minimum_escort_count - 1`` additional people. This derives a real
+    mission-sized retinue without imposing a fictional 2/3-person world cap.
+    """
+    active = contracts.get("active", {}) if isinstance(contracts, Mapping) else {}
+    if not isinstance(active, Mapping):
+        return 0
+    required = 0
+    for contract in active.values():
+        if not isinstance(contract, Mapping):
+            continue
+        if contract.get("contract_type") != "escort" or contract.get("status") != "accepted":
+            continue
+        if str(contract.get("beneficiary_ref") or "") != faction_ref:
+            continue
+        participants = contract.get("participants", [])
+        if not isinstance(participants, list) or actor_ref not in participants:
+            continue
+        objective = contract.get("objective", {}) if isinstance(contract.get("objective"), Mapping) else {}
+        minimum = max(1, int(objective.get("minimum_escort_count", 1)))
+        required = max(required, max(2, minimum - 1))
+    return required
+
+
 class JianghuRetinueCommandsMixin:
     def _jianghu_retinue_resolution(
         self, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime
@@ -43,15 +73,22 @@ class JianghuRetinueCommandsMixin:
 
         if action == "request":
             retinue_ref = str(command.payload.get("retinue_ref") or "")
-            chooser_ref = str(command.payload.get("chooser_ref") or "")
+            chooser_refs_raw = command.payload.get("chooser_refs")
+            if (
+                not isinstance(chooser_refs_raw, (list, tuple))
+                or not chooser_refs_raw
+                or any(not isinstance(ref, str) or not ref for ref in chooser_refs_raw)
+                or len(set(chooser_refs_raw)) != len(chooser_refs_raw)
+            ):
+                raise CommandRejectedError("retinue_chooser_refs_invalid")
+            chooser_refs = [str(ref) for ref in chooser_refs_raw]
             try:
                 requested_count = int(command.payload.get("requested_count"))
             except (TypeError, ValueError) as exc:
                 raise CommandRejectedError("retinue_requested_count_invalid") from exc
             if not retinue_ref or not retinue_ref.startswith("retinue."):
                 raise CommandRejectedError("retinue_ref_invalid")
-            # 0 means the authorized chooser may decide between two and three.
-            if requested_count not in {0, 2, 3}:
+            if requested_count == 1 or requested_count < 0:
                 raise CommandRejectedError("retinue_requested_count_invalid")
             if any(
                 isinstance(existing, Mapping)
@@ -64,15 +101,36 @@ class JianghuRetinueCommandsMixin:
 
             try:
                 _actor_path, actor_roster, _actor_ordinal, actor = roster_person(self.repository, command.actor_id)
-                _chooser_path, chooser_roster, _chooser_ordinal, chooser = roster_person(self.repository, chooser_ref)
             except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
                 raise CommandRejectedError("retinue_person_not_found") from exc
             faction_ref = str(actor.get("faction_ref") or actor_roster.get("faction_ref") or "")
-            chooser_faction = str(chooser.get("faction_ref") or chooser_roster.get("faction_ref") or "")
-            if not faction_ref or chooser_faction != faction_ref:
+            if not faction_ref:
                 raise CommandRejectedError("retinue_chooser_wrong_faction")
-            if not (_office_keys(chooser) & _AUTHORIZED_CHOOSER_OFFICES):
-                raise CommandRejectedError("retinue_chooser_not_authorized")
+            for chooser_ref in chooser_refs:
+                try:
+                    _path, chooser_roster, _ordinal, chooser = roster_person(self.repository, chooser_ref)
+                except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
+                    raise CommandRejectedError("retinue_person_not_found") from exc
+                chooser_faction = str(chooser.get("faction_ref") or chooser_roster.get("faction_ref") or "")
+                if chooser_faction != faction_ref:
+                    raise CommandRejectedError("retinue_chooser_wrong_faction")
+                if not (_office_keys(chooser) & _AUTHORIZED_CHOOSER_OFFICES):
+                    raise CommandRejectedError("retinue_chooser_not_authorized")
+
+            stored_count = requested_count
+            mission_sized = False
+            if requested_count == 0:
+                try:
+                    mission_minimum = _delegated_mission_guard_count(
+                        self.repository.read_json(_CONTRACTS),
+                        actor_ref=command.actor_id,
+                        faction_ref=faction_ref,
+                    )
+                except (FileNotFoundError, TypeError, ValueError):
+                    mission_minimum = 0
+                if mission_minimum > 3:
+                    stored_count = mission_minimum
+                    mission_sized = True
 
             requested_at = _dt(current_time)
             due_at = requested_at + timedelta(hours=12)
@@ -81,8 +139,14 @@ class JianghuRetinueCommandsMixin:
                 "operation_kind": "standing_retinue",
                 "faction_ref": faction_ref,
                 "leader_ref": command.actor_id,
-                "chooser_ref": chooser_ref,
-                "requested_count": requested_count,
+                # chooser_refs is the authority. chooser_ref is a temporary
+                # compatibility projection for the existing assignment reducer
+                # until that reducer is extracted from time_progression.
+                "chooser_refs": chooser_refs,
+                "chooser_ref": chooser_refs[0],
+                "requested_count": stored_count,
+                "delegated_requested_count": requested_count,
+                "mission_sized_detail": mission_sized,
                 "member_refs": [],
                 "member_roles": {},
                 "status": "assignment_pending",
@@ -97,7 +161,8 @@ class JianghuRetinueCommandsMixin:
                         "kind": "retinue_assignment_review",
                         "owner_ref": retinue_ref,
                         "retinue_ref": retinue_ref,
-                        "chooser_ref": chooser_ref,
+                        "chooser_refs": chooser_refs,
+                        "chooser_ref": chooser_refs[0],
                         "due_at": due_at.isoformat(),
                         "requires_player_decision": False,
                     },
@@ -124,10 +189,16 @@ class JianghuRetinueCommandsMixin:
                 row = state.get("deployments", {}).get(retinue_ref) if isinstance(state, Mapping) else None
                 if not isinstance(row, Mapping) or row.get("status") != "assignment_pending":
                     raise ValueError("retinue request missing after planning")
+                if row.get("chooser_refs") != chooser_refs:
+                    raise ValueError("retinue joint chooser authority changed after planning")
+                if int(row.get("requested_count", 0)) != stored_count:
+                    raise ValueError("retinue mission sizing changed after planning")
                 schedule_after = overlay.read_json(_SCHEDULE)
                 event = schedule_after.get("one_off", {}).get(f"retinue_assignment_review:{retinue_ref}") if isinstance(schedule_after, Mapping) else None
                 if not isinstance(event, Mapping) or event.get("due_at") != due_at.isoformat():
                     raise ValueError("retinue assignment review missing after planning")
+                if event.get("chooser_refs") != chooser_refs:
+                    raise ValueError("retinue assignment review lost joint chooser authority")
 
             return _BuiltPlan(
                 code="retinue_assignment_requested",
@@ -137,9 +208,11 @@ class JianghuRetinueCommandsMixin:
                     "command_type": "jianghu_retinue_resolution",
                     "action": "request",
                     "retinue_ref": retinue_ref,
-                    "chooser_ref": chooser_ref,
+                    "chooser_refs": chooser_refs,
                     "requested_count": requested_count,
-                    "chooser_discretion_2_to_3": requested_count == 0,
+                    "assignment_member_count": stored_count if stored_count > 0 else None,
+                    "chooser_discretion_2_to_3": requested_count == 0 and stored_count == 0,
+                    "mission_sized_detail": mission_sized,
                     "assignment_review_at": due_at.isoformat(),
                     "time_reserved_hours": 0,
                 },

@@ -122,3 +122,22 @@ def test_discretionary_request_stops_at_two_when_third_role_is_too_weak():
         people[0], people, requested_count=0, year=61,
     )
     assert len(refs) == 2
+
+
+def test_exact_mission_sized_retinue_can_exceed_old_three_person_policy():
+    people = [
+        _leader(),
+        _person("medic", medicine=95),
+        _person("scout", scouting=92),
+        _person("deputy", command=88),
+        _person("guard.1", sword=100),
+        _person("guard.2", sword=95),
+        _person("guard.3", sword=90),
+    ]
+    refs, roles = select_retinue_members(
+        people[0], people, requested_count=5, year=61,
+    )
+    assert len(refs) == 5
+    assert len(set(refs)) == 5
+    assert set(refs).issubset({p["person_id"] for p in people[1:]})
+    assert list(roles.values()).count("protective_guard") >= 2

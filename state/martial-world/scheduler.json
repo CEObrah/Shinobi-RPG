@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 204
+      "owner_cursor": 208
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3547,6 +3547,19 @@
       "planted_mu": 3,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "wuhan",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.yellow_crane_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.yellow_crane_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.yellow_crane_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 11,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "xiangyang",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

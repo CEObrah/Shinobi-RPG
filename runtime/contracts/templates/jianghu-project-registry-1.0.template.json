@@ -4,49 +4,86 @@
   "target_schema": "jianghu-project-registry-1.0",
   "source_schema": null,
   "scope": "mutable_state",
-  "current_directories": [
-    "state/martial-world"
-  ],
+  "current_directories": ["state/martial-world"],
   "unknown_key_policy": "reject",
-  "required_top_level_keys": [
-    "schema",
-    "projects"
-  ],
+  "required_top_level_keys": ["schema", "projects"],
   "object_contracts": {
     "": {
       "mode": "closed",
+      "allowed_keys": ["schema", "projects"],
+      "canonical_order": ["schema", "projects"]
+    },
+    "/projects": {"mode": "open_map"},
+    "/projects/*": {
+      "mode": "closed",
       "allowed_keys": [
-        "schema",
-        "projects"
-      ],
-      "canonical_order": [
-        "schema",
-        "projects"
+        "project_type", "project_ref", "faction_ref", "started_at", "planned_days",
+        "building_type", "enterprise_type", "from_level", "target_level", "quality_level", "active_level",
+        "additional_footprint_m2", "additional_land_m2", "new_estate_area_m2",
+        "old_perimeter_m", "new_perimeter_m", "perimeter_extension_m", "wall_height_m",
+        "current_scale", "additional_scale", "target_scale",
+        "elapsed_calendar_days", "minimum_calendar_days",
+        "general_labor_hours_remaining", "skilled_labor_hours_remaining",
+        "management_labor_hours_remaining", "general_setup_labor_hours_remaining",
+        "treasury_cash_after_start", "material_stock_after_start", "completed", "quote",
+        "skilled_worker_refs", "management_worker_refs", "general_worker_refs"
       ]
     },
-    "/projects": {
-      "mode": "open_map"
-    },
-    "/projects/*": {
-      "mode": "open_map"
-    }
+    "/projects/*/material_stock_after_start": {"mode": "open_map"},
+    "/projects/*/quote": {"mode": "open"}
   },
   "type_contracts": {
-    "": [
-      "object"
-    ],
-    "/schema": [
-      "string"
-    ],
-    "/projects": [
-      "object"
-    ],
-    "/projects/*": [
-      "object"
-    ]
+    "": ["object"],
+    "/schema": ["string"],
+    "/projects": ["object"],
+    "/projects/*": ["object"],
+    "/projects/*/project_type": ["string"],
+    "/projects/*/project_ref": ["string"],
+    "/projects/*/faction_ref": ["string"],
+    "/projects/*/started_at": ["string"],
+    "/projects/*/planned_days": ["integer"],
+    "/projects/*/building_type": ["string"],
+    "/projects/*/enterprise_type": ["string"],
+    "/projects/*/from_level": ["integer"],
+    "/projects/*/target_level": ["integer"],
+    "/projects/*/quality_level": ["integer"],
+    "/projects/*/active_level": ["integer"],
+    "/projects/*/additional_footprint_m2": ["integer"],
+    "/projects/*/additional_land_m2": ["integer"],
+    "/projects/*/new_estate_area_m2": ["integer"],
+    "/projects/*/old_perimeter_m": ["integer"],
+    "/projects/*/new_perimeter_m": ["integer"],
+    "/projects/*/perimeter_extension_m": ["integer"],
+    "/projects/*/wall_height_m": ["integer"],
+    "/projects/*/current_scale": ["integer"],
+    "/projects/*/additional_scale": ["integer"],
+    "/projects/*/target_scale": ["integer"],
+    "/projects/*/elapsed_calendar_days": ["integer"],
+    "/projects/*/minimum_calendar_days": ["integer"],
+    "/projects/*/general_labor_hours_remaining": ["integer"],
+    "/projects/*/skilled_labor_hours_remaining": ["integer"],
+    "/projects/*/management_labor_hours_remaining": ["integer"],
+    "/projects/*/general_setup_labor_hours_remaining": ["integer"],
+    "/projects/*/treasury_cash_after_start": ["integer"],
+    "/projects/*/material_stock_after_start": ["object"],
+    "/projects/*/material_stock_after_start/*": ["integer"],
+    "/projects/*/completed": ["boolean"],
+    "/projects/*/quote": ["object"],
+    "/projects/*/skilled_worker_refs": ["array"],
+    "/projects/*/skilled_worker_refs/*": ["string"],
+    "/projects/*/management_worker_refs": ["array"],
+    "/projects/*/management_worker_refs/*": ["string"],
+    "/projects/*/general_worker_refs": ["array"],
+    "/projects/*/general_worker_refs/*": ["string"]
   },
-  "array_contracts": {},
+  "array_contracts": {
+    "/projects/*/skilled_worker_refs": {"item_types": ["string"]},
+    "/projects/*/management_worker_refs": {"item_types": ["string"]},
+    "/projects/*/general_worker_refs": {"item_types": ["string"]}
+  },
   "writing_rules": [
-    "Do not add unregistered fields."
+    "Projects are current funded work owners, not historical logs.",
+    "Worker reference arrays contain exact currently committed people and are not capacity or population caps.",
+    "Quote snapshots and material stock are bounded project evidence; project row keys remain closed."
   ]
 }

@@ -19,9 +19,9 @@ from shinobi_runtime.commands.jianghu_retinue import JianghuRetinueCommandsMixin
 from shinobi_runtime.commands.jianghu_time import JianghuTimeCommandsMixin
 from shinobi_runtime.commands.specs import COMMAND_SPECS
 from shinobi_runtime.sim.events import CampaignTime
-from shinobi_runtime.store import RepositoryStore
+from shinobi_runtime.store import RegisteredSchemaValidator, RegisteredTemplateValidator, RepositoryStore
 from shinobi_runtime.store.overlay import StagedOverlay
-from shinobi_runtime.tx.manifest import TransactionManifest
+from shinobi_runtime.tx.manifest import TransactionManifest, TransactionPlanner
 
 _SUBMITTED_AT=re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$")
 
@@ -33,6 +33,7 @@ class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCom
     COMMAND_TYPES=frozenset(COMMAND_SPECS)
     def __init__(self, repository: RepositoryStore, *, meta_path="state/meta.json", scene_path="state/scene.json", **_ignored):
         self.repository=repository; self.meta_path=meta_path; self.scene_path=scene_path
+        self.schema_validator=RegisteredSchemaValidator.optional(repository); self.template_validator=RegisteredTemplateValidator.optional(repository)
     def _base(self,command:CommandEnvelope)->Tuple[dict[str,Any],CampaignTime]:
         if command.mode not in {"gameplay","autonomous"}: raise CommandRejectedError("gameplay_mode_required")
         if command.command_type not in self.COMMAND_TYPES: raise CommandRejectedError("unsupported_command_type")
@@ -82,7 +83,27 @@ class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCom
         fn=getattr(self,"_"+command.command_type,None)
         if not callable(fn): raise RuntimeError("missing command reducer for "+command.command_type)
         return fn(command,meta,now)
+    def _validate_preview_plan(self,command:CommandEnvelope,built:_BuiltPlan)->None:
+        """Dry-run the exact staged transaction validators without persistence."""
+        transaction_id=("tx.autonomous." if command.mode=="autonomous" else "tx.gameplay.")+command.digest
+        try:
+            manifest=TransactionPlanner(self.repository,meta_path=self.meta_path).plan(
+                command,
+                transaction_id=transaction_id,
+                created_at=command.submitted_at,
+                writes=built.writes,
+            )
+            overlay=StagedOverlay(self.repository,manifest)
+            if self.schema_validator is not None:
+                self.schema_validator.validate_overlay(overlay,manifest.paths)
+            if self.template_validator is not None:
+                self.template_validator.validate_overlay(overlay,manifest.paths)
+            built.validator(overlay,manifest)
+        except CommandRejectedError:
+            raise
+        except (TypeError,ValueError) as exc:
+            raise CommandRejectedError("transaction_rejected") from exc
     def preview(self,command:CommandEnvelope)->CommandPreview:
-        built=self._build(command); return CommandPreview(status="ready",code=built.code,target_revision=command.expected_revision+1,affected_refs=built.affected_refs)
+        built=self._build(command); self._validate_preview_plan(command,built); return CommandPreview(status="ready",code=built.code,target_revision=command.expected_revision+1,affected_refs=built.affected_refs)
     def plan(self,command:CommandEnvelope)->CommandPlan:
         built=self._build(command); return CommandPlan(transaction_id=("tx.autonomous." if command.mode=="autonomous" else "tx.gameplay.")+command.digest,created_at=command.submitted_at,writes=built.writes,result=built.result,validator=built.validator)

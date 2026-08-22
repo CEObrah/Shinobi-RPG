@@ -158,7 +158,6 @@ def main() -> int:
         if missing:
             errors.append(f"{fid}: identity missing fields {sorted(missing)}")
         if identity.get("faction_type") != faction.get("type"):
-            # Type is normally defaulted from identity and omitted from sparse state.
             if faction.get("type") is not None:
                 errors.append(f"{fid}: mutable faction type disagrees with static identity")
         type_counts[str(identity.get("faction_type"))] += 1
@@ -223,30 +222,17 @@ def main() -> int:
             age = current_year - int(person.get("birth_year", current_year))
             if age < 0:
                 errors.append(f"{pid}: birth_year lies in the future")
-            # Minimum entry age governs external recruitment. Children born into
-            # an existing faction household remain lawful probationary members
-            # while age/development gates prevent adult training or deployment.
             offices = person.get("standing_offices") or []
             if "leader" in offices:
                 leader_count += 1
             if "heir" in offices:
                 heir_count += 1
-            # Existing grades are durable institutional status. Current capability
-            # may later fall through injury, age, or an intentional rebalance; the
-            # live promotion reducer applies the current eligibility thresholds to
-            # future promotions without retroactively demoting established elders.
-            # No deleted ontology may survive in living people.
             for node_path, node in walk(person):
                 if node_path and node_path[-1].lower() == "shield":
                     errors.append(f"{pid}: deleted Shield field survives at {'.'.join(node_path)}")
         if leader_count != 1:
             errors.append(f"{fid}: expected exactly one living leader, found {leader_count}")
-        # House succession is owned by the family succession-claim authority,
-        # not by giving every child an adult ``heir`` standing office.
 
-    # Exact martial identities that leave a faction move into the sparse
-    # independent owner. They remain mechanically real and must stay inside
-    # conservation/semantic checks even though they no longer have a membership grade.
     independent_doc = load("state/martial-world/independent-people.json")
     independent_rows = independent_doc.get("people", []) if isinstance(independent_doc, dict) else []
     independent_people: dict[str, dict] = {}
@@ -293,10 +279,6 @@ def main() -> int:
     if len(names) < 9000 or metrics["maximum_name_collision"] > 8:
         errors.append(f"generated name diversity remains too low: unique={len(names)} max_collision={metrics['maximum_name_collision']}")
 
-    # Child physical/current capability validity. Authored adolescents may be
-    # exceptional; the hard defects are infants and young children with adult bodies.
-    # Mass ceilings mirror deterministic_body_mass_kg's actual maximum male
-    # growth envelope (adult seed maximum 82 kg) rather than the bootstrap sample maxima.
     child_bands = {
         "0_3": {"ages": range(0, 4), "mass": 20, "physical_attribute": 24, "martial": 10, "professional": 0},
         "4_7": {"ages": range(4, 8), "mass": 36, "physical_attribute": 55, "martial": 16, "professional": 3},
@@ -325,7 +307,6 @@ def main() -> int:
                 errors.append(f"child band {label}: {actual_key}={summary[actual_key]} exceeds age-aware ceiling {band[key]}")
     metrics["child_bands"] = child_metrics
 
-    # Tang family is validated by stable IDs, never by ambiguous display name.
     for pid, target in TANG_TARGETS.items():
         person = people.get(pid)
         if person is None:
@@ -348,7 +329,6 @@ def main() -> int:
         if "shield" in json.dumps(person, ensure_ascii=False).lower():
             errors.append(f"{pid}: deleted shield identity survives")
 
-    # Faction names and mechanical focus must agree for explicit specialization names.
     keyword_focus = (("sword", "sword"), ("bow", "bow"), ("spear", "spear"), ("boxing", "unarmed"), ("palm", "unarmed"))
     for fid, identity in identities.items():
         lower_name = str(identity.get("name", "")).lower()
@@ -358,7 +338,6 @@ def main() -> int:
             if token in lower_name and martial[discipline] < max(martial.values(), default=0):
                 errors.append(f"{fid}: name says {token} but {discipline} is not a top martial priority")
 
-    # Equipment ontology is exact and setting-appropriate.
     equipment = load("game/data/martial-world/equipment.json")
     expected_weapons = {
         "weapon_jian", "weapon_dao", "weapon_long_dao", "weapon_short_sword", "weapon_dagger",
@@ -387,9 +366,6 @@ def main() -> int:
                         errors.append(f"{path.relative_to(ROOT)}: banned hot-state key {key}")
                     if key in {"techniques", "named_techniques", "jutsu", "technique_tree", "skill_tree", "item_rarity", "rarity"}:
                         errors.append(f"{path.relative_to(ROOT)}: prohibited gameplay ontology key {key}")
-                    # Template paths are JSON keys too. Checking only exact key ==
-                    # "shield" allowed stale paths such as /training/shield to
-                    # survive while the semantic gate still reported PASS.
                     if FORBIDDEN_ONTOLOGY_RE.search(key):
                         forbidden_ontology_hits.append(
                             f"{path.relative_to(ROOT)}: deleted ontology survives in key {'.'.join(node_path)}"
@@ -399,8 +375,6 @@ def main() -> int:
                         f"{path.relative_to(ROOT)}: deleted ontology survives at {'.'.join(node_path)}: {node!r}"
                     )
 
-    # Runtime source is also part of the active ontology. A removed mechanic is
-    # not truly removed if an old resolver/helper can still be reconnected.
     runtime_root = ROOT / "runtime/shinobi_runtime"
     for path in runtime_root.rglob("*.py"):
         text = path.read_text(encoding="utf-8").lower()
@@ -414,7 +388,6 @@ def main() -> int:
         errors.extend(forbidden_ontology_hits)
     metrics["forbidden_ontology_hits"] = len(forbidden_ontology_hits)
 
-    # Martial Houses must be real family institutions.
     family = load("state/martial-world/family.json")
     marriages = family.get("marriages", {})
     parentage = family.get("parentage", {})
@@ -428,7 +401,6 @@ def main() -> int:
             errors.append(f"{fid}: no succession claim")
     metrics["family"] = {"marriages": len(marriages), "parentage": len(parentage), "households": len(households), "succession_claims": len(succession)}
 
-    # One faction/domain scheduler, never one persistent host per person.
     recurring = scheduler.get("recurring", {})
     for cadence, rows in recurring.items():
         if isinstance(rows, dict):
@@ -437,18 +409,84 @@ def main() -> int:
                     errors.append(f"per-person scheduler host survives: {cadence}/{owner_ref}")
     metrics["scheduler_recurring_domains"] = sorted(recurring)
 
-    # Commitment uniqueness and exact resource conservation links.
-    commitments = load("state/martial-world/commitments.json").get("commitments", {})
+    # Commitment uniqueness and exact resource conservation links. The current
+    # owner stores a list of resources per activity; every resource must be
+    # unique globally and the person index must exactly mirror person resources.
+    commitment_state = load("state/martial-world/commitments.json")
+    commitments = commitment_state.get("commitments", {}) if isinstance(commitment_state, dict) else {}
+    person_index = commitment_state.get("person_index", {}) if isinstance(commitment_state, dict) else {}
+    if not isinstance(commitments, dict):
+        errors.append("commitment owner has invalid commitments map")
+        commitments = {}
+    if not isinstance(person_index, dict):
+        errors.append("commitment owner has invalid person_index map")
+        person_index = {}
     resource_owner: dict[tuple[str, str], str] = {}
     for cid, row in commitments.items():
-        resource = (str(row.get("resource_kind")), str(row.get("resource_ref")))
-        previous = resource_owner.get(resource)
-        if previous is not None:
-            errors.append(f"resource double-booked by commitments {previous} and {cid}: {resource}")
-        resource_owner[resource] = cid
+        if not isinstance(row, dict):
+            errors.append(f"{cid}: commitment row is not an object")
+            continue
+        if row.get("status", "active") != "active":
+            errors.append(f"{cid}: inactive commitment persisted in current owner")
+        if row.get("commitment_ref") != cid:
+            errors.append(f"{cid}: commitment_ref disagrees with map key")
+        resources = row.get("resources", [])
+        person_refs = row.get("person_refs", [])
+        if not isinstance(resources, list):
+            errors.append(f"{cid}: resources is not an array")
+            resources = []
+        if not isinstance(person_refs, list) or any(not isinstance(ref, str) or not ref for ref in person_refs):
+            errors.append(f"{cid}: person_refs is not a valid string array")
+            person_refs = []
+        row_resources: set[tuple[str, str]] = set()
+        resource_people: set[str] = set()
+        for index, resource_row in enumerate(resources):
+            if not isinstance(resource_row, dict):
+                errors.append(f"{cid}: resource[{index}] is not an object")
+                continue
+            kind = resource_row.get("kind")
+            ref = resource_row.get("ref")
+            owner_ref = resource_row.get("owner_ref")
+            if not isinstance(kind, str) or not kind or not isinstance(ref, str) or not ref:
+                errors.append(f"{cid}: resource[{index}] lacks exact kind/ref")
+                continue
+            if not isinstance(owner_ref, str) or not owner_ref:
+                errors.append(f"{cid}: resource[{index}] lacks owner_ref")
+            resource = (kind, ref)
+            if resource in row_resources:
+                errors.append(f"{cid}: duplicate resource inside commitment: {resource}")
+            row_resources.add(resource)
+            previous = resource_owner.get(resource)
+            if previous is not None and previous != cid:
+                errors.append(f"resource double-booked by commitments {previous} and {cid}: {resource}")
+            else:
+                resource_owner[resource] = cid
+            if kind == "person":
+                resource_people.add(ref)
+                if ref not in persistent_people:
+                    errors.append(f"{cid}: committed person resource does not exist: {ref}")
+        declared_people = set(person_refs)
+        if len(declared_people) != len(person_refs):
+            errors.append(f"{cid}: duplicate person_refs")
+        if declared_people != resource_people:
+            errors.append(f"{cid}: person_refs disagree with person resources")
+        for person_ref in declared_people:
+            if person_index.get(person_ref) != cid:
+                errors.append(f"{cid}: person_index disagrees for {person_ref}")
+    for person_ref, cid in person_index.items():
+        if not isinstance(person_ref, str) or person_ref not in persistent_people:
+            errors.append(f"person_index references missing person {person_ref!r}")
+            continue
+        row = commitments.get(cid)
+        if not isinstance(cid, str) or not isinstance(row, dict):
+            errors.append(f"person_index references missing commitment {cid!r} for {person_ref}")
+            continue
+        refs = row.get("person_refs", [])
+        if not isinstance(refs, list) or person_ref not in refs:
+            errors.append(f"person_index entry {person_ref} is absent from {cid} person_refs")
     metrics["active_commitments"] = len(commitments)
+    metrics["committed_resources"] = len(resource_owner)
 
-    # Government warrants retain the compact current evidence reference used to justify the warrant.
     government = load("state/martial-world/government.json")
     attention = government.get("attention", {})
     for warrant_ref, warrant in government.get("warrants", {}).items():
@@ -462,7 +500,6 @@ def main() -> int:
             if isinstance(last_evidence_ref, str) and last_evidence_ref and last_evidence_ref != evidence_ref:
                 errors.append(f"{warrant_ref}: warrant evidence disagrees with subject attention")
 
-    # Route operations can only reference exact persistent people and conserved commitments.
     route_ops = load("state/martial-world/route-operations.json")
     for collection in ("movements",):
         for op_ref, operation in (route_ops.get(collection) or {}).items():
@@ -478,7 +515,6 @@ def main() -> int:
             if pid not in persistent_people:
                 errors.append(f"{contact_ref}: contact references missing participant {pid}")
 
-    # Current hot state should not carry implementation history or version trees.
     schema_version_hits = []
     for path in (ROOT / "state").rglob("*.json"):
         doc = json.loads(path.read_text(encoding="utf-8"))

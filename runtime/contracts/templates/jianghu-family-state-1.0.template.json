@@ -37,78 +37,147 @@
       "mode": "open_map"
     },
     "/marriages/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "spouse_refs",
+        "status",
+        "faction_ref",
+        "faction_refs",
+        "started_at",
+        "pregnancy",
+        "last_birth_at"
+      ],
+      "canonical_order": [
+        "spouse_refs",
+        "status",
+        "faction_ref",
+        "faction_refs",
+        "started_at",
+        "pregnancy",
+        "last_birth_at"
+      ]
+    },
+    "/marriages/*/pregnancy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "mother_ref",
+        "father_ref",
+        "conceived_at",
+        "due_at",
+        "child_ref"
+      ],
+      "canonical_order": [
+        "mother_ref",
+        "father_ref",
+        "conceived_at",
+        "due_at",
+        "child_ref"
+      ]
     },
     "/parentage": {
       "mode": "open_map"
     },
     "/parentage/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "parent_refs"
+      ]
     },
     "/households": {
       "mode": "open_map"
     },
     "/households/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "faction_ref",
+        "head_ref",
+        "member_refs",
+        "residence_ref",
+        "status"
+      ],
+      "canonical_order": [
+        "faction_ref",
+        "head_ref",
+        "member_refs",
+        "residence_ref",
+        "status"
+      ]
     },
     "/succession_claims": {
       "mode": "open_map"
     },
     "/succession_claims/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "faction_ref",
+        "person_ref",
+        "priority",
+        "basis"
+      ],
+      "canonical_order": [
+        "faction_ref",
+        "person_ref",
+        "priority",
+        "basis"
+      ]
     }
   },
   "type_contracts": {
-    "": [
-      "object"
-    ],
-    "/schema": [
-      "string"
-    ],
-    "/marriages": [
-      "object"
-    ],
-    "/marriages/*": [
-      "object"
-    ],
-    "/parentage": [
-      "object"
-    ],
-    "/parentage/*": [
-      "object"
-    ],
-    "/households": [
-      "object"
-    ],
-    "/households/*": [
-      "object"
-    ],
-    "/succession_claims": [
-      "object"
-    ],
-    "/succession_claims/*": [
-      "object"
-    ]
+    "": ["object"],
+    "/schema": ["string"],
+    "/marriages": ["object"],
+    "/marriages/*": ["object"],
+    "/marriages/*/spouse_refs": ["array"],
+    "/marriages/*/spouse_refs/*": ["string"],
+    "/marriages/*/status": ["string"],
+    "/marriages/*/faction_ref": ["string"],
+    "/marriages/*/faction_refs": ["array"],
+    "/marriages/*/faction_refs/*": ["string"],
+    "/marriages/*/started_at": ["string"],
+    "/marriages/*/pregnancy": ["object"],
+    "/marriages/*/pregnancy/mother_ref": ["string"],
+    "/marriages/*/pregnancy/father_ref": ["string"],
+    "/marriages/*/pregnancy/conceived_at": ["string"],
+    "/marriages/*/pregnancy/due_at": ["string"],
+    "/marriages/*/pregnancy/child_ref": ["string"],
+    "/marriages/*/last_birth_at": ["string"],
+    "/parentage": ["object"],
+    "/parentage/*": ["object"],
+    "/parentage/*/parent_refs": ["array"],
+    "/parentage/*/parent_refs/*": ["string"],
+    "/households": ["object"],
+    "/households/*": ["object"],
+    "/households/*/faction_ref": ["string"],
+    "/households/*/head_ref": ["string"],
+    "/households/*/member_refs": ["array"],
+    "/households/*/member_refs/*": ["string"],
+    "/households/*/residence_ref": ["string"],
+    "/households/*/status": ["string"],
+    "/succession_claims": ["object"],
+    "/succession_claims/*": ["object"],
+    "/succession_claims/*/faction_ref": ["string"],
+    "/succession_claims/*/person_ref": ["string"],
+    "/succession_claims/*/priority": ["integer"],
+    "/succession_claims/*/basis": ["string"]
   },
   "array_contracts": {
-    "/households/*/*": {
-      "item_types": [
-        "string"
-      ]
+    "/marriages/*/spouse_refs": {
+      "item_types": ["string"]
     },
-    "/parentage/*/*": {
-      "item_types": [
-        "string"
-      ]
+    "/marriages/*/faction_refs": {
+      "item_types": ["string"]
     },
-    "/marriages/*/*": {
-      "item_types": [
-        "string"
-      ]
+    "/parentage/*/parent_refs": {
+      "item_types": ["string"]
+    },
+    "/households/*/member_refs": {
+      "item_types": ["string"]
     }
   },
   "writing_rules": [
-    "Do not add unregistered fields.",
-    "A current pregnancy is stored only on its active marriage owner and is consumed at birth; there is no duplicate pregnancy index."
+    "Do not add unregistered family row fields.",
+    "Dynamic marriage, parentage, household, and succession IDs are open maps whose row records are closed durable authorities.",
+    "A current pregnancy is stored only on its active marriage owner and is consumed at birth; there is no duplicate pregnancy index.",
+    "Named arrays retain their semantic pointers during structural validation; wildcard row objects must not collapse arrays or nested pregnancy data into generic paths."
   ]
 }

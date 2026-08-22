@@ -94,7 +94,11 @@ class JianghuRetinueCommandsMixin:
                 "operation_kind": "standing_retinue",
                 "faction_ref": faction_ref,
                 "leader_ref": command.actor_id,
+                # chooser_refs is the authority. chooser_ref is a temporary
+                # compatibility projection for the existing assignment reducer
+                # until that reducer is extracted from time_progression.
                 "chooser_refs": chooser_refs,
+                "chooser_ref": chooser_refs[0],
                 "requested_count": requested_count,
                 "member_refs": [],
                 "member_roles": {},
@@ -111,6 +115,7 @@ class JianghuRetinueCommandsMixin:
                         "owner_ref": retinue_ref,
                         "retinue_ref": retinue_ref,
                         "chooser_refs": chooser_refs,
+                        "chooser_ref": chooser_refs[0],
                         "due_at": due_at.isoformat(),
                         "requires_player_decision": False,
                     },
@@ -143,6 +148,8 @@ class JianghuRetinueCommandsMixin:
                 event = schedule_after.get("one_off", {}).get(f"retinue_assignment_review:{retinue_ref}") if isinstance(schedule_after, Mapping) else None
                 if not isinstance(event, Mapping) or event.get("due_at") != due_at.isoformat():
                     raise ValueError("retinue assignment review missing after planning")
+                if event.get("chooser_refs") != chooser_refs:
+                    raise ValueError("retinue assignment review lost joint chooser authority")
 
             return _BuiltPlan(
                 code="retinue_assignment_requested",

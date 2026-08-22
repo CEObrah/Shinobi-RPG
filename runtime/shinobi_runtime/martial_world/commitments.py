@@ -30,12 +30,7 @@ def reserve_resources(state:Mapping[str,Any],*,resources:Sequence[tuple[str,str,
     return out
 
 def extend_commitment_resources(state:Mapping[str,Any],*,activity_ref:str,resources:Sequence[tuple[str,str,str]])->dict[str,Any]:
-    """Add newly mobilized exact resources to one existing active activity.
-
-    This is used when a lawful operation expands after initial planning, such as
-    a war muster that commits more available members. It never creates a second
-    owner and rejects any resource already committed elsewhere.
-    """
+    """Add newly mobilized exact resources to one existing active activity."""
     out=copy.deepcopy(dict(state)); rows=out.setdefault('commitments',{}); index=out.setdefault('person_index',{})
     if not isinstance(rows,dict) or not isinstance(index,dict): raise ValueError('commitments invalid')
     cid=f'commitment:{activity_ref}'; row=rows.get(cid)
@@ -54,6 +49,26 @@ def extend_commitment_resources(state:Mapping[str,Any],*,activity_ref:str,resour
             index[key[1]]=cid
     return out
 
+def remove_people_from_commitments(state:Mapping[str,Any],*,person_refs:Sequence[str])->dict[str,Any]:
+    """Remove unavailable/dead people from all current reservations without deleting other resources."""
+    out=copy.deepcopy(dict(state)); rows=out.setdefault('commitments',{}); index=out.setdefault('person_index',{})
+    if not isinstance(rows,dict) or not isinstance(index,dict): raise ValueError('commitments invalid')
+    removed={str(x) for x in person_refs if isinstance(x,str) and x}
+    if not removed:return out
+    for cid,raw in list(rows.items()):
+        if not isinstance(raw,Mapping):continue
+        people=[str(x) for x in raw.get('person_refs',[]) if isinstance(x,str)] if isinstance(raw.get('person_refs'),list) else []
+        if not any(ref in removed for ref in people):continue
+        row=copy.deepcopy(dict(raw)); resources=row.get('resources',[]) if isinstance(row.get('resources'),list) else []
+        row['resources']=[r for r in resources if not (isinstance(r,Mapping) and r.get('kind')=='person' and str(r.get('ref')) in removed)]
+        row['person_refs']=[ref for ref in people if ref not in removed]
+        for ref in people:
+            if ref in removed and index.get(ref)==cid:index.pop(ref,None)
+        has_nonperson=any(isinstance(r,Mapping) and r.get('kind')!='person' for r in row['resources'])
+        if not row['person_refs'] and not has_nonperson:rows.pop(cid,None)
+        else:rows[cid]=row
+    return out
+
 def release_resources(state:Mapping[str,Any],*,activity_ref:str)->dict[str,Any]:
     out=copy.deepcopy(dict(state)); rows=out.setdefault('commitments',{}); index=out.setdefault('person_index',{}); cid=f'commitment:{activity_ref}'
     row=rows.pop(cid,None)
@@ -62,4 +77,4 @@ def release_resources(state:Mapping[str,Any],*,activity_ref:str)->dict[str,Any]:
             if index.get(p)==cid: index.pop(p,None)
     return out
 
-__all__=['extend_commitment_resources','release_resources','reserve_resources']
+__all__=['extend_commitment_resources','release_resources','remove_people_from_commitments','reserve_resources']

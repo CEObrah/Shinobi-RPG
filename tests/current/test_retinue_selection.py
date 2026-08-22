@@ -1,4 +1,7 @@
-from shinobi_runtime.martial_world.retinues import select_retinue_members
+from shinobi_runtime.martial_world.retinues import (
+    select_mission_escort_reinforcements,
+    select_retinue_members,
+)
 
 
 def _person(
@@ -58,7 +61,7 @@ def _leader():
     return row
 
 
-def test_delegated_retinue_prefers_complementary_roles_and_may_choose_three():
+def test_delegated_retinue_is_exactly_three_complementary_permanent_members():
     people = [
         _leader(),
         _person("medic", medicine=90),
@@ -95,7 +98,7 @@ def test_retinue_excludes_critical_house_officers_minors_and_unavailable_people(
     assert "busy_scout" not in refs
 
 
-def test_exact_two_member_request_stays_two():
+def test_legacy_exact_two_member_selection_remains_readable_but_is_not_live_default():
     people = [
         _leader(),
         _person("medic", medicine=90),
@@ -109,7 +112,7 @@ def test_exact_two_member_request_stays_two():
     assert len(roles) == 2
 
 
-def test_discretionary_request_stops_at_two_when_third_role_is_too_weak():
+def test_delegated_team_still_fills_three_when_third_candidate_is_weak():
     people = [
         _leader(),
         _person("medic", medicine=90),
@@ -121,23 +124,30 @@ def test_discretionary_request_stops_at_two_when_third_role_is_too_weak():
     refs, _roles = select_retinue_members(
         people[0], people, requested_count=0, year=61,
     )
-    assert len(refs) == 2
+    assert len(refs) == 3
+    assert "weak_third" in refs
 
 
-def test_exact_mission_sized_retinue_can_exceed_old_three_person_policy():
+def test_mission_reinforcements_are_separate_from_permanent_team():
+    leader = _leader()
+    permanent = ["medic", "scout", "guard.core"]
     people = [
-        _leader(),
+        leader,
         _person("medic", medicine=95),
         _person("scout", scouting=92),
-        _person("deputy", command=88),
-        _person("guard.1", sword=100),
-        _person("guard.2", sword=95),
-        _person("guard.3", sword=90),
+        _person("guard.core", sword=95),
+        _person("guard.temp.1", sword=110),
+        _person("guard.temp.2", sword=105),
+        _person("guard.temp.3", sword=100),
+        _person("chief", sword=180, offices=("chief_instructor",)),
     ]
-    refs, roles = select_retinue_members(
-        people[0], people, requested_count=5, year=61,
+    refs = select_mission_escort_reinforcements(
+        leader,
+        people,
+        needed_count=2,
+        year=61,
+        exclude_refs=[leader["person_id"], *permanent],
     )
-    assert len(refs) == 5
-    assert len(set(refs)) == 5
-    assert set(refs).issubset({p["person_id"] for p in people[1:]})
-    assert list(roles.values()).count("protective_guard") >= 2
+    assert refs == ["guard.temp.1", "guard.temp.2"]
+    assert not set(refs) & set(permanent)
+    assert "chief" not in refs

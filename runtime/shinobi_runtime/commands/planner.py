@@ -18,6 +18,7 @@ from shinobi_runtime.commands.jianghu_development import JianghuDevelopmentComma
 from shinobi_runtime.commands.jianghu_extended import JianghuExtendedCommandsMixin
 from shinobi_runtime.commands.jianghu_retinue import JianghuRetinueCommandsMixin
 from shinobi_runtime.commands.jianghu_time import JianghuTimeCommandsMixin
+from shinobi_runtime.commands.jianghu_travel_team import JianghuTravelTeamCommandsMixin
 from shinobi_runtime.commands.specs import COMMAND_SPECS
 from shinobi_runtime.sim.events import CampaignTime
 from shinobi_runtime.store import RegisteredSchemaValidator, RegisteredTemplateValidator, RepositoryStore
@@ -30,7 +31,7 @@ class _ExpandedCommand:
     def __init__(self, base: CommandEnvelope, payload: Mapping[str,Any]):
         self.campaign_id=base.campaign_id; self.request_id=base.request_id; self.actor_id=base.actor_id; self.command_type=base.command_type; self.expected_revision=base.expected_revision; self.submitted_at=base.submitted_at; self.payload=payload; self.mode=base.mode; self.digest=base.digest
 
-class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCommandsMixin,JianghuExtendedCommandsMixin,JianghuContractCommandsMixin,JianghuCommandsMixin,JianghuTimeCommandsMixin):
+class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCommandsMixin,JianghuTravelTeamCommandsMixin,JianghuExtendedCommandsMixin,JianghuContractCommandsMixin,JianghuCommandsMixin,JianghuTimeCommandsMixin):
     COMMAND_TYPES=frozenset(COMMAND_SPECS)
     def __init__(self, repository: RepositoryStore, *, meta_path="state/meta.json", scene_path="state/scene.json", **_ignored):
         self.repository=repository; self.meta_path=meta_path; self.scene_path=scene_path

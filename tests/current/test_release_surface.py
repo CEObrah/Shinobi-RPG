@@ -48,7 +48,7 @@ def test_current_save_is_live_jianghu_and_no_dev_receipt_history():
 def test_structure_validator_passes():
     r=subprocess.run([sys.executable,str(ROOT/'tools/verify_structure.py')],cwd=ROOT,capture_output=True,text=True)
     assert r.returncode==0,r.stdout+r.stderr
-    assert '11691 people' in r.stdout
+    assert '11691 persistent martial identities' in r.stdout
 
 
 def test_live_planner_previews_current_training_and_time_commands():

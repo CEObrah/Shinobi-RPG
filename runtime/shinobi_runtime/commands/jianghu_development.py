@@ -3,8 +3,10 @@
 Field development is part of the same conserved command transaction as travel
 and combat. A standing retinue is a zero-time identity owner while idle, but
 available members automatically join Wei's strategic travel, consume the same
-finite travel interval, pause institutional training for those hours, move to
-the same destination and gain only the field experience they actually lived.
+finite travel interval, pause institutional training while committed, move to
+the same destination and gain only development supported by the hours they
+actually lived: bounded active route duty plus bounded self-practice drawn from
+non-route rest time.
 """
 from __future__ import annotations
 
@@ -22,6 +24,12 @@ from shinobi_runtime.martial_world.faction_state import inventory_path as canoni
 from shinobi_runtime.martial_world.health import functional_capacity_factors
 from shinobi_runtime.martial_world.live_state import roster_person, set_roster_person
 from shinobi_runtime.martial_world.mounts import active_mount_allocations
+from shinobi_runtime.martial_world.rest_practice import (
+    apply_rest_practice,
+    journey_hour_budget,
+    practice_domain,
+    practice_pressure_milli,
+)
 from shinobi_runtime.martial_world.travel import travel_plan
 from shinobi_runtime.sim.events import CampaignTime
 
@@ -82,15 +90,15 @@ class JianghuDevelopmentCommandsMixin:
             validator=built.validator,
         )
 
-    def _standing_retinue_member_refs(self, actor_ref: str) -> list[str]:
+    def _standing_retinue_member_roles(self, actor_ref: str) -> dict[str, str]:
         try:
             state = self.repository.read_json(_DEPLOYMENTS)
         except FileNotFoundError:
-            return []
+            return {}
         rows = state.get("deployments", {}) if isinstance(state, Mapping) else {}
         if not isinstance(rows, Mapping):
-            return []
-        refs: list[str] = []
+            return {}
+        roles: dict[str, str] = {}
         for retinue_ref in sorted(str(ref) for ref in rows if isinstance(ref, str)):
             row = rows.get(retinue_ref)
             if not isinstance(row, Mapping):
@@ -100,9 +108,15 @@ class JianghuDevelopmentCommandsMixin:
             if row.get("leader_ref") != actor_ref:
                 continue
             members = row.get("member_refs", [])
+            member_roles = row.get("member_roles", {}) if isinstance(row.get("member_roles"), Mapping) else {}
             if isinstance(members, list):
-                refs.extend(str(ref) for ref in members if isinstance(ref, str) and ref)
-        return list(dict.fromkeys(refs))
+                for ref in members:
+                    if isinstance(ref, str) and ref:
+                        roles.setdefault(ref, str(member_roles.get(ref) or ""))
+        return roles
+
+    def _standing_retinue_member_refs(self, actor_ref: str) -> list[str]:
+        return list(self._standing_retinue_member_roles(actor_ref))
 
     def _jianghu_strategic_travel_resolution(
         self, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime
@@ -126,7 +140,8 @@ class JianghuDevelopmentCommandsMixin:
             raise CommandRejectedError("jianghu_use_local_travel")
 
         faction_ref = str(actor.get("faction_ref") or "")
-        retinue_refs = self._standing_retinue_member_refs(command.actor_id)
+        retinue_roles = self._standing_retinue_member_roles(command.actor_id)
+        retinue_refs = list(retinue_roles)
         available_retinue: list[str] = []
         unavailable_retinue: list[str] = []
         for ref in retinue_refs:
@@ -265,7 +280,10 @@ class JianghuDevelopmentCommandsMixin:
             raise CommandRejectedError("jianghu_roster_invalid")
         party_set = set(party_refs)
         found: set[str] = set()
-        hours_milli = max(0, int(round(float(plan["travel_hours"]) * 1000)))
+        elapsed_hours_milli = max(0, int(round(float(plan["travel_hours"]) * 1000)))
+        hour_budget = journey_hour_budget(elapsed_hours_milli)
+        active_hours_milli = int(hour_budget["active_route_hours_milli"])
+        rest_practice_hours_milli = int(hour_budget["rest_practice_hours_milli"])
         field_summary: dict[str, Any] = {}
         for i, row in enumerate(rows):
             if not isinstance(row, Mapping):
@@ -275,14 +293,26 @@ class JianghuDevelopmentCommandsMixin:
                 continue
             developed, summary = apply_field_activity(
                 row,
-                duration_hours_milli=hours_milli,
+                duration_hours_milli=active_hours_milli,
                 activity_kind="road_travel",
                 leader=ref == command.actor_id,
                 pressure_milli=650,
             )
+            domain = practice_domain(developed, retinue_role=retinue_roles.get(ref))
+            developed, rest_summary = apply_rest_practice(
+                developed,
+                duration_hours_milli=rest_practice_hours_milli,
+                domain=domain,
+                pressure_milli=practice_pressure_milli(journey=True),
+            )
             developed["location_ref"] = destination
             rows[i] = developed
-            field_summary[ref] = summary
+            field_summary[ref] = {
+                **summary,
+                "elapsed_journey_hours_milli": elapsed_hours_milli,
+                "active_route_hours_milli": active_hours_milli,
+                "rest_practice": rest_summary,
+            }
             found.add(ref)
         if found != party_set:
             raise CommandRejectedError("jianghu_person_unresolved")
@@ -305,6 +335,7 @@ class JianghuDevelopmentCommandsMixin:
             "party_speed_milli": party_speed_milli,
             "party_encumbrance_milli": party_load_time_milli,
             "party_carried_mass_kg": member_masses,
+            "journey_hour_budget": hour_budget,
             "field_development": field_summary,
         }
         return self._combine_time_plan(

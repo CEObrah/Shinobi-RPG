@@ -3,8 +3,8 @@
   "faction_id": "faction.eastern_spear_school",
   "headquarters": "nanchang",
   "local_site_ref": "site.eastern_spear_school",
-  "population": 31,
-  "treasury_cash": 66650,
+  "population": 32,
+  "treasury_cash": 76770,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,87 @@
     "school_tuition": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.eastern_spear_school.0.4708af2b93e3",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "4708af2b93e326bacbff5615",
+      "curriculum": {
+        "spear": 72,
+        "unarmed": 64,
+        "stealth_scouting": 26,
+        "command": 25,
+        "qi": 40,
+        "qi_control": 55
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 32,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 79,
+          "instruction_skill": 33
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 29,
+          "instruction_skill": 31
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 60,
+          "instruction_skill": 14
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 22,
+          "instruction_skill": 31
+        },
+        "qi": {
+          "coverage_milli": 468,
+          "facility_capacity": 15,
+          "instructor_skill": 64,
+          "instruction_skill": 49
+        },
+        "qi_control": {
+          "coverage_milli": 93,
+          "facility_capacity": 3,
+          "instructor_skill": 64,
+          "instruction_skill": 43
+        },
+        "instruction": {
+          "coverage_milli": 625,
+          "facility_capacity": 20,
+          "instructor_skill": 52,
+          "instruction_skill": 52
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {
+        "mw.person.eastern_spear_school.1026": 360,
+        "mw.person.eastern_spear_school.1005": 360
+      }
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -70,5 +147,9 @@
     "school_tuition": {
       "paying_student_slots": 30
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

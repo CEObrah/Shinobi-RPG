@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 40
+      "owner_cursor": 44
     },
     "faction_annual": {
       "interval_days": 365,
@@ -532,7 +532,8 @@
       "next_due_at": "0061-09-14T21:15:00",
       "owner_cursor": 0,
       "owner_refs": [
-        "route.changan.zhongnan"
+        "route.changan.zhongnan",
+        "route.wuhan.nanchang"
       ],
       "event_kinds": [
         "route_activity_cycle"
@@ -2767,6 +2768,19 @@
       "planted_mu": 6,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "zhengzhou",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.east_lake_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.east_lake_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.east_lake_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 23,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "chengdu",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

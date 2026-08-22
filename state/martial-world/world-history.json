@@ -390,12 +390,61 @@
         "mw.person.hidden_brook_sect.1025",
         "mw.person.hidden_brook_sect.1028"
       ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "infrastructure_project_started",
+      "faction_ref": "beggars_society",
+      "project_ref": "project:auto:beggars_society:006109:expand_building"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "formal_challenge_mobilized",
+      "faction_ref": "black_lance_company",
+      "target_faction_ref": "faction.south_gate_martial_school",
+      "participant_count": 1,
+      "source_camp": "outlaw",
+      "target_camp": "orthodox",
+      "departure_at": "0061-09-14T20:15:00",
+      "arrival_at": "0061-09-15T20:15:00"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "infrastructure_project_started",
+      "faction_ref": "black_lance_company",
+      "project_ref": "project:auto:black_lance_company:006109:expand_building"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "merchant_trade_departed",
+      "faction_ref": "black_lance_company",
+      "route_ref": "route.changan.zhongnan",
+      "destination_region": "temperate_mountain",
+      "item_ref": "leather_kg",
+      "quantity": 600,
+      "purchase_cash": 18600,
+      "toll_cash": 0
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "infrastructure_project_started",
+      "faction_ref": "black_pine_stockade",
+      "project_ref": "project:auto:black_pine_stockade:006109:expand_building"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "infrastructure_project_started",
+      "faction_ref": "diancang",
+      "project_ref": "project:auto:diancang:006109:expand_building"
     }
   ],
   "counters": {
     "field_retirement": 19,
     "faction_departure": 3,
-    "natural_death": 8
+    "natural_death": 8,
+    "infrastructure_project_started": 4,
+    "formal_challenge_mobilized": 1,
+    "merchant_trade_departed": 1
   },
   "totals": {
     "field_retirement": {
@@ -406,6 +455,15 @@
     },
     "natural_death": {
       "count": 12
+    },
+    "infrastructure_project_started": {},
+    "formal_challenge_mobilized": {
+      "participant_count": 1
+    },
+    "merchant_trade_departed": {
+      "quantity": 600,
+      "purchase_cash": 18600,
+      "toll_cash": 0
     }
   }
 }

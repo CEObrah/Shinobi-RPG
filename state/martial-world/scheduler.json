@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 0
+      "owner_cursor": 4
     },
     "faction_annual": {
       "interval_days": 365,
@@ -526,6 +526,17 @@
         "trade_demand_review"
       ],
       "owner_cursor": 0
+    },
+    "route_daily": {
+      "interval_days": 1,
+      "next_due_at": "0061-09-14T21:15:00",
+      "owner_cursor": 0,
+      "owner_refs": [
+        "route.changan.zhongnan"
+      ],
+      "event_kinds": [
+        "route_activity_cycle"
+      ]
     }
   },
   "one_off": {
@@ -2572,6 +2583,54 @@
       ],
       "chooser_ref": "char.zhu",
       "due_at": "0061-09-14T09:15:00",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:beggars_society:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:beggars_society:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-28T21:15:00",
+      "owner_ref": "project:auto:beggars_society:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:formal_challenge:black_lance_company:faction.south_gate_martial_school:006109": {
+      "event_id": "operation_arrival:operation:formal_challenge:black_lance_company:faction.south_gate_martial_school:006109",
+      "kind": "faction_operation_arrival",
+      "due_at": "0061-09-15T20:15:00",
+      "owner_ref": "operation:formal_challenge:black_lance_company:faction.south_gate_martial_school:006109",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:black_lance_company:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:black_lance_company:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:black_lance_company:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:black_pine_stockade:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:black_pine_stockade:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:black_pine_stockade:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:diancang:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:diancang:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:diancang:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:diancang:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:diancang:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "diancang",
+      "crop_ref": "vegetables",
+      "planted_mu": 75,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "cangshan",
+      "agriculture_level": 3,
+      "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }
   }

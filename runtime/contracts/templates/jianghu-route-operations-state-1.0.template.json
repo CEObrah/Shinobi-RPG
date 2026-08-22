@@ -4,59 +4,39 @@
   "target_schema": "jianghu-route-operations-state-1.0",
   "source_schema": null,
   "scope": "mutable_state",
-  "current_directories": [
-    "state/martial-world"
-  ],
+  "current_directories": ["state/martial-world"],
   "unknown_key_policy": "reject",
-  "required_top_level_keys": [
-    "schema",
-    "movements",
-    "contacts"
-  ],
+  "required_top_level_keys": ["schema", "movements", "contacts"],
   "object_contracts": {
     "": {
       "mode": "closed",
-      "allowed_keys": [
-        "schema",
-        "movements",
-        "contacts"
-      ]
+      "allowed_keys": ["schema", "movements", "contacts"]
     },
-    "/movements": {
-      "mode": "open_map"
-    },
-    "/movements/*": {
-      "mode": "open_map"
-    },
-    "/contacts": {
-      "mode": "open_map"
-    },
-    "/contacts/*": {
-      "mode": "open_map"
-    }
+    "/movements": {"mode": "open_map"},
+    "/movements/*": {"mode": "open_map"},
+    "/contacts": {"mode": "open_map"},
+    "/contacts/*": {"mode": "open_map"}
   },
   "type_contracts": {
-    "": [
-      "object"
-    ],
-    "/schema": [
-      "string"
-    ],
-    "/movements": [
-      "object"
-    ],
-    "/movements/*": [
-      "object"
-    ],
-    "/contacts": [
-      "object"
-    ],
-    "/contacts/*": [
-      "object"
-    ]
+    "": ["object"],
+    "/schema": ["string"],
+    "/movements": ["object"],
+    "/movements/*": ["object"],
+    "/movements/*/*": ["string", "integer", "number", "boolean", "object", "array", "null"],
+    "/contacts": ["object"],
+    "/contacts/*": ["object"],
+    "/contacts/*/*": ["string", "integer", "number", "boolean", "object", "array", "null"]
   },
-  "array_contracts": {},
+  "array_contracts": {
+    "/movements/*/*": {
+      "item_types": ["string", "integer", "object"]
+    },
+    "/contacts/*/*": {
+      "item_types": ["string", "integer", "object"]
+    }
+  },
   "writing_rules": [
-    "Store only unresolved current route movements and player-facing contacts. Aggregate route outcomes belong in ephemeral simulation/review output, not hot state."
+    "Store only unresolved current route movements and player-facing contacts. Aggregate route outcomes belong in ephemeral simulation/review output, not hot state.",
+    "Movement and contact rows remain extensible across registered movement kinds; any nested array must contain only bounded semantic refs, scalar indices, or compact structured records. Array transport does not cap fictional participation."
   ]
 }

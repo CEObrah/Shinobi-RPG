@@ -10,12 +10,18 @@
   "object_contracts": {
     "": {
       "mode": "closed",
-      "allowed_keys": ["schema", "movements", "contacts"]
+      "allowed_keys": ["schema", "movements", "contacts", "daily_outlaw_attack_budget"]
     },
     "/movements": {"mode": "open_map"},
     "/movements/*": {"mode": "open_map"},
     "/contacts": {"mode": "open_map"},
-    "/contacts/*": {"mode": "open_map"}
+    "/contacts/*": {"mode": "open_map"},
+    "/daily_outlaw_attack_budget": {
+      "mode": "closed",
+      "allowed_keys": ["date", "counts"],
+      "canonical_order": ["date", "counts"]
+    },
+    "/daily_outlaw_attack_budget/counts": {"mode": "open_map"}
   },
   "type_contracts": {
     "": ["object"],
@@ -25,7 +31,11 @@
     "/movements/*/*": ["string", "integer", "number", "boolean", "object", "array", "null"],
     "/contacts": ["object"],
     "/contacts/*": ["object"],
-    "/contacts/*/*": ["string", "integer", "number", "boolean", "object", "array", "null"]
+    "/contacts/*/*": ["string", "integer", "number", "boolean", "object", "array", "null"],
+    "/daily_outlaw_attack_budget": ["object"],
+    "/daily_outlaw_attack_budget/date": ["string"],
+    "/daily_outlaw_attack_budget/counts": ["object"],
+    "/daily_outlaw_attack_budget/counts/*": ["integer"]
   },
   "array_contracts": {
     "/movements/*/*": {
@@ -36,7 +46,8 @@
     }
   },
   "writing_rules": [
-    "Store only unresolved current route movements and player-facing contacts. Aggregate route outcomes belong in ephemeral simulation/review output, not hot state.",
+    "Store only unresolved current route movements, player-facing contacts, and the bounded current-day route attack budget needed for resumable chunk equivalence. Aggregate route outcomes belong in ephemeral simulation/review output, not hot state.",
+    "daily_outlaw_attack_budget is a transient same-day accumulator keyed by exact outlaw faction and must be removed after the final route_daily owner chunk for that date.",
     "Movement and contact rows remain extensible across registered movement kinds; any nested array must contain only bounded semantic refs, scalar indices, or compact structured records. Array transport does not cap fictional participation."
   ]
 }

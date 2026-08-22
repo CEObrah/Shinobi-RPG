@@ -3,8 +3,8 @@
   "faction_id": "faction.red_plum_school",
   "headquarters": "hangzhou",
   "local_site_ref": "site.red_plum_school",
-  "population": 32,
-  "treasury_cash": 45152,
+  "population": 33,
+  "treasury_cash": 55537,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,87 @@
     "school_tuition": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.red_plum_school.0.b728b2b772ee",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "b728b2b772ee8cc23125b880",
+      "curriculum": {
+        "unarmed": 70,
+        "stealth_scouting": 34,
+        "command": 23,
+        "qi": 47,
+        "qi_control": 51,
+        "sword": 38
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 33,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 22,
+          "instruction_skill": 18
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 41,
+          "instruction_skill": 18
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 103,
+          "instruction_skill": 31
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 71,
+          "instruction_skill": 36
+        },
+        "qi": {
+          "coverage_milli": 454,
+          "facility_capacity": 15,
+          "instructor_skill": 61,
+          "instruction_skill": 48
+        },
+        "qi_control": {
+          "coverage_milli": 90,
+          "facility_capacity": 3,
+          "instructor_skill": 72,
+          "instruction_skill": 20
+        },
+        "instruction": {
+          "coverage_milli": 606,
+          "facility_capacity": 20,
+          "instructor_skill": 55,
+          "instruction_skill": 55
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {
+        "mw.person.red_plum_school.1027": 360,
+        "mw.person.red_plum_school.1021": 360
+      }
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -70,5 +147,9 @@
     "school_tuition": {
       "paying_student_slots": 30
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

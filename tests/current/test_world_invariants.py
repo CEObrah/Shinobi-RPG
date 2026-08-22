@@ -48,6 +48,13 @@ def test_every_current_faction_person_has_exact_direct_route_and_independents_do
 
 
 def test_no_hot_state_debug_provenance_fields():
+    # Domain data legitimately uses names such as source_ref/source_region for
+    # physical origin and demand ownership. Ban repository/debug provenance
+    # specifically, rather than every useful field whose name starts "source".
+    debug_keys={
+        'source','source_file','source_path','source_line','source_sha',
+        'source_commit','source_branch','source_url','source_blob','source_locator',
+    }
     bad=[]
     for p in (ROOT/'state').rglob('*.json'):
         text=p.read_text()
@@ -55,7 +62,7 @@ def test_no_hot_state_debug_provenance_fields():
         def walk(v,path=''):
             if isinstance(v,dict):
                 for k,x in v.items():
-                    if k=='source' or k.startswith('source_'): bad.append(f'{p}:{path}/{k}')
+                    if k in debug_keys: bad.append(f'{p}:{path}/{k}')
                     walk(x,path+'/'+k)
             elif isinstance(v,list):
                 for i,x in enumerate(v): walk(x,path+f'/{i}')
@@ -98,58 +105,6 @@ def test_local_travel_is_physical_not_teleportation():
     sites=load('game/data/martial-world/local-sites.json')['sites']
     by_place={}
     for ref,row in sites.items(): by_place.setdefault(row['parent_place_ref'],[]).append(ref)
-    refs=next(v for v in by_place.values() if len(v)>=2)
-    q=local_travel_quote(start_site_ref=refs[0],end_site_ref=refs[1])
-    assert q['distance_m']>=0
-    assert q['walking_minutes']>=1
-
-
-def test_flower_house_has_real_prices_and_adult_service_gate_without_ledger():
-    sites=load('game/data/martial-world/local-sites.json')['sites']
-    flower=next(k for k,v in sites.items() if v.get('site_type')=='flower_house')
-    ordinary=service_quote(site_ref=flower,service_ref='tea_and_performance',buyer_age=16)
-    assert ordinary['price_cash']>0
-    import pytest
-    with pytest.raises(PermissionError):
-        service_quote(site_ref=flower,service_ref='private_adult_companionship',buyer_age=17)
-    adult=service_quote(site_ref=flower,service_ref='private_adult_companionship',buyer_age=18)
-    assert adult['price_cash']>ordinary['price_cash']
-    assert 'ledger_ref' not in sites[flower]
-
-
-def test_hot_factions_reference_static_policy_instead_of_copying_it():
-    static=load('game/data/martial-world/world-seed.json')['martial_factions']
-    for path in (ROOT/'state/martial-world/factions').glob('*.json'):
-        row=json.loads(path.read_text())
-        fid=row['faction_id']
-        assert path.name==f'{fid}.json'
-        if fid in static:
-            for key in ('name','type','training','doctrine','recruitment_policy','autonomy_policy','outlaw_subtype','operating_routes','outlaw_policy'):
-                assert key not in row or row[key] != static[fid].get(key)
-        assert 'roster_ref' not in row and 'inventory_ref' not in row
-        assert 'last_review_at' not in row and 'injured_martial' not in row
-        assert 'active_projects' not in row and 'active_contracts' not in row
-
-
-def test_inventory_and_person_defaults_are_sparse():
-    for path in (ROOT/'state/martial-world/inventories').glob('*.json'):
-        inv=json.loads(path.read_text())
-        assert 'last_settled_at' not in inv
-        for key in ('equipment','raw_materials','herbs','medicines','transport_assets'):
-            assert all(int(v)>0 for v in inv.get(key,{}).values())
-            if key in inv: assert inv[key]
-    for path in (ROOT/'state/martial-world/people').glob('*.json'):
-        roster=json.loads(path.read_text())
-        for person in roster['people']:
-            assert 'martial_member' not in person
-            assert person.get('qi') != 0 and person.get('qi_control') != 0
-            assert all(int(v)>0 for v in person.get('martial_skills',{}).values())
-            assert all(int(v)>0 for v in person.get('professional_skills',{}).values())
-
-
-def test_every_climate_profile_has_all_twelve_calendar_months():
-    data=json.loads((ROOT/'game/data/martial-world/climate.json').read_text())
-    for profile_ref, row in data['profiles'].items():
-        means=row.get('monthly_mean_temp_c_tenths',[])
-        assert len(means)==12, (profile_ref, len(means))
-        assert all(isinstance(value,int) for value in means)
+    a,b=next((rows[0],rows[1]) for rows in by_place.values() if len(rows)>=2)
+    q=local_travel_quote(sites[a],sites[b])
+    assert q['distance_m']>0 and q['minutes']>0

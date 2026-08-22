@@ -1154,6 +1154,32 @@
       "started_at": "0061-09-13T21:15:00",
       "status": "active",
       "location_ref": "luoyang"
+    },
+    "commitment:merchant_trade:faction.river_boatmen_society:route.zhengzhou.dengfeng:006109": {
+      "commitment_ref": "commitment:merchant_trade:faction.river_boatmen_society:route.zhengzhou.dengfeng:006109",
+      "activity_ref": "merchant_trade:faction.river_boatmen_society:route.zhengzhou.dengfeng:006109",
+      "activity_kind": "merchant_trade",
+      "kind": "merchant_trade",
+      "actor_ref": "mw.person.faction.river_boatmen_society.5011",
+      "owner_ref": "faction.river_boatmen_society",
+      "resources": [
+        {
+          "kind": "person",
+          "ref": "mw.person.faction.river_boatmen_society.5011",
+          "owner_ref": "faction.river_boatmen_society"
+        },
+        {
+          "kind": "transport_asset",
+          "ref": "faction.river_boatmen_society:merchant_convoy",
+          "owner_ref": "faction.river_boatmen_society"
+        }
+      ],
+      "person_refs": [
+        "mw.person.faction.river_boatmen_society.5011"
+      ],
+      "started_at": "0061-09-13T21:15:00",
+      "status": "active",
+      "location_ref": "dengfeng"
     }
   },
   "person_index": {
@@ -1260,6 +1286,7 @@
     "mw.person.nine_roads_escort_agency.1020": "commitment:merchant_trade:faction.nine_roads_escort_agency:route.zhengzhou.dengfeng:006109",
     "mw.person.peaceful_roads_escort_agency.1021": "commitment:merchant_trade:faction.peaceful_roads_escort_agency:route.chongqing.kunming:006109",
     "mw.person.faction.red_road_band.0008": "commitment:operation:formal_challenge:faction.red_road_band:faction.misty_ridge_sect:006109",
-    "mw.person.faction.red_willow_band.0012": "commitment:operation:formal_challenge:faction.red_willow_band:faction.southern_merchants_society:006109"
+    "mw.person.faction.red_willow_band.0012": "commitment:operation:formal_challenge:faction.red_willow_band:faction.southern_merchants_society:006109",
+    "mw.person.faction.river_boatmen_society.5011": "commitment:merchant_trade:faction.river_boatmen_society:route.zhengzhou.dengfeng:006109"
   }
 }

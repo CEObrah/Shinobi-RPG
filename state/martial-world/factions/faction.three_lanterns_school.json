@@ -3,8 +3,8 @@
   "faction_id": "faction.three_lanterns_school",
   "headquarters": "changan",
   "local_site_ref": "site.three_lanterns_school",
-  "population": 24,
-  "treasury_cash": 46632,
+  "population": 25,
+  "treasury_cash": 59202,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,88 @@
     "school_tuition": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.three_lanterns_school.0.0410e3a708f8",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "0410e3a708f805b07a83879a",
+      "curriculum": {
+        "sword": 70,
+        "unarmed": 54,
+        "stealth_scouting": 40,
+        "command": 30,
+        "qi": 41,
+        "qi_control": 53
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 25,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 37,
+          "instruction_skill": 37
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 31,
+          "instruction_skill": 39
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 31,
+          "instruction_skill": 23
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 67,
+          "instruction_skill": 16
+        },
+        "qi": {
+          "coverage_milli": 600,
+          "facility_capacity": 15,
+          "instructor_skill": 62,
+          "instruction_skill": 43
+        },
+        "qi_control": {
+          "coverage_milli": 120,
+          "facility_capacity": 3,
+          "instructor_skill": 63,
+          "instruction_skill": 48
+        },
+        "instruction": {
+          "coverage_milli": 800,
+          "facility_capacity": 20,
+          "instructor_skill": 47,
+          "instruction_skill": 47
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {
+        "mw.person.three_lanterns_school.1003": 360,
+        "mw.person.three_lanterns_school.1012": 360,
+        "mw.person.three_lanterns_school.1006": 80
+      }
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -70,5 +148,9 @@
     "school_tuition": {
       "paying_student_slots": 30
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

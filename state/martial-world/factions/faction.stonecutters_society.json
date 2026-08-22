@@ -3,8 +3,8 @@
   "faction_id": "faction.stonecutters_society",
   "headquarters": "kaifeng",
   "local_site_ref": "site.stonecutters_society",
-  "population": 23,
-  "treasury_cash": 75624,
+  "population": 24,
+  "treasury_cash": 67744,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,84 @@
     "school_tuition": 0
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.stonecutters_society.0.6bec3b804ea3",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "6bec3b804ea3abdb09e425b4",
+      "curriculum": {
+        "unarmed": 70,
+        "stealth_scouting": 57,
+        "command": 55,
+        "qi": 28,
+        "qi_control": 36,
+        "spear": 38
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 24,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 25,
+          "instruction_skill": 39
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 47,
+          "instruction_skill": 39
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 27,
+          "instruction_skill": 31
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 23,
+          "instruction_skill": 37
+        },
+        "qi": {
+          "coverage_milli": 625,
+          "facility_capacity": 15,
+          "instructor_skill": 61,
+          "instruction_skill": 36
+        },
+        "qi_control": {
+          "coverage_milli": 125,
+          "facility_capacity": 3,
+          "instructor_skill": 72,
+          "instruction_skill": 33
+        },
+        "instruction": {
+          "coverage_milli": 833,
+          "facility_capacity": 20,
+          "instructor_skill": 53,
+          "instruction_skill": 53
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -66,5 +140,9 @@
   "holdings": {
     "urban_estate_area_m2": 19500
   },
-  "enterprise_scale": {}
+  "enterprise_scale": {},
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
+  }
 }

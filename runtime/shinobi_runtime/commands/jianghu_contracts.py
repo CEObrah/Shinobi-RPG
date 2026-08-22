@@ -4,7 +4,10 @@ The public semantic surface remains ``jianghu_contract_resolution``. Escort
 contracts may protect cargo, aggregate civilian parties, exact persistent people,
 or mixed convoys. Acceptance claims the commission; departure forms the actual
 lawful field party from accepted principals plus an already-active standing
-retinue. No unrelated faction member is auto-conscripted.
+travel team. If the physical mission requires more martial coverage, the House
+adds deterministic temporary mission staff from ready people at the route origin.
+Those reinforcements belong to the contract commitment only and never become
+members of the permanent travel team.
 """
 from __future__ import annotations
 
@@ -23,6 +26,7 @@ from shinobi_runtime.martial_world.escort import (
 )
 from shinobi_runtime.martial_world.live_state import roster_person
 from shinobi_runtime.martial_world.regional_economy import unit_market_price_cash
+from shinobi_runtime.martial_world.retinues import select_mission_escort_reinforcements
 from shinobi_runtime.martial_world.scheduler import sync_route_activity
 from shinobi_runtime.sim.events import CampaignTime
 
@@ -101,7 +105,7 @@ class JianghuContractCommandsMixin:
         contract = active.get(contract_ref) if isinstance(active, dict) else None
         if not isinstance(contract, Mapping) or contract.get("contract_type") != "escort":
             raise CommandRejectedError("jianghu_contract_unresolved")
-        _path, _roster, _ordinal, actor = self._person(command.actor_id)
+        _path, actor_roster, _ordinal, actor = self._person(command.actor_id)
         faction_ref = str(actor.get("faction_ref") or "")
         if not faction_ref:
             raise CommandRejectedError("jianghu_contract_not_authorized")
@@ -226,16 +230,47 @@ class JianghuContractCommandsMixin:
                 records[fpath] = issuer_faction
 
         deployments = self.repository.read_json(_DEPLOYMENTS)
-        escort_refs = active_retinue_party(deployments, leader_ref=command.actor_id, principals=accepted)
+        core_escort_refs = active_retinue_party(
+            deployments, leader_ref=command.actor_id, principals=accepted
+        )
         minimum = max(1, int(normalized.get("minimum_escort_count", 1)))
-        if len(escort_refs) < minimum:
-            raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
 
         sites_data = self.repository.read_json(_LOCAL_SITES)
         sites = sites_data.get("sites", {}) if isinstance(sites_data, Mapping) else {}
         if not isinstance(sites, Mapping):
             raise CommandRejectedError("jianghu_local_sites_invalid")
         unavailable = self._unavailable_person_refs()
+
+        temporary_escort_refs: list[str] = []
+        needed = max(0, minimum - len(core_escort_refs))
+        if needed:
+            people = actor_roster.get("people", []) if isinstance(actor_roster, Mapping) else []
+            if not isinstance(people, list):
+                raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+            origin_people = [
+                person for person in people
+                if isinstance(person, Mapping)
+                and isinstance(person.get("person_id"), str)
+                and _person_location_matches(person, source_place=source_place, sites=sites)
+            ]
+            temporary_escort_refs = select_mission_escort_reinforcements(
+                actor,
+                origin_people,
+                needed_count=needed,
+                year=current_time.year,
+                unavailable_refs=sorted(unavailable),
+                exclude_refs=core_escort_refs,
+            )
+            if len(temporary_escort_refs) < needed:
+                raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+
+        escort_refs = list(core_escort_refs)
+        for ref in temporary_escort_refs:
+            if ref not in escort_refs:
+                escort_refs.append(ref)
+        if len(escort_refs) < minimum:
+            raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+
         all_people = list(escort_refs)
         for ref in protected_refs:
             if ref not in all_people:
@@ -305,6 +340,8 @@ class JianghuContractCommandsMixin:
             "cargo_value_cash": max(0, int(normalized.get("cargo_value_cash", 0))),
             "beneficiary_ref": faction_ref,
             "escort_refs": escort_refs,
+            "core_escort_refs": core_escort_refs,
+            "temporary_mission_escort_refs": temporary_escort_refs,
             "protected_person_refs": protected_refs,
             "protected_people_count": protected_count,
             "participant_refs": all_people,
@@ -349,7 +386,9 @@ class JianghuContractCommandsMixin:
             code="jianghu_contract_started",
             result={
                 "command_type":command.command_type,"action":"start","contract_ref":contract_ref,
-                "status":"in_progress","escort_refs":escort_refs,"protected_person_refs":protected_refs,
+                "status":"in_progress","escort_refs":escort_refs,"core_escort_refs":core_escort_refs,
+                "temporary_mission_escort_refs":temporary_escort_refs,
+                "protected_person_refs":protected_refs,
                 "protected_people_count":protected_count,"minimum_escort_count":minimum,
                 "reward_cash":funded_reward,"escrow_refunded_cash":refund,
             },

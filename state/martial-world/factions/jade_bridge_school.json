@@ -3,8 +3,8 @@
   "faction_id": "jade_bridge_school",
   "headquarters": "hangzhou",
   "local_site_ref": "site.jade_bridge_school",
-  "population": 65,
-  "treasury_cash": 325000,
+  "population": 67,
+  "treasury_cash": 378911,
   "buildings": {
     "main_hall": 3,
     "residential_compound": 3,
@@ -23,10 +23,112 @@
     "property_rent": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.jade_bridge_school.0.ff600340135d",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "ff600340135d15b4d4b6d549",
+      "curriculum": {
+        "sword": 70,
+        "unarmed": 55,
+        "stealth_scouting": 31,
+        "command": 28,
+        "qi": 43,
+        "qi_control": 44
+      },
+      "facilities": {
+        "armory_workshop": 2,
+        "infirmary_apothecary": 2,
+        "library_records": 3,
+        "main_hall": 3,
+        "qi_hall": 3,
+        "training_grounds": 3,
+        "training_hall": 3
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 67,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 196,
+          "instructor_skill": 72,
+          "instruction_skill": 16
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 196,
+          "instructor_skill": 63,
+          "instruction_skill": 12
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 43,
+          "instruction_skill": 18
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 45,
+          "instruction_skill": 15
+        },
+        "qi": {
+          "coverage_milli": 656,
+          "facility_capacity": 44,
+          "instructor_skill": 60,
+          "instruction_skill": 18
+        },
+        "qi_control": {
+          "coverage_milli": 164,
+          "facility_capacity": 11,
+          "instructor_skill": 68,
+          "instruction_skill": 14
+        },
+        "medicine": {
+          "coverage_milli": 179,
+          "facility_capacity": 12,
+          "instructor_skill": 90,
+          "instruction_skill": 15
+        },
+        "administration": {
+          "coverage_milli": 328,
+          "facility_capacity": 22,
+          "instructor_skill": 65,
+          "instruction_skill": 3
+        },
+        "commerce": {
+          "coverage_milli": 328,
+          "facility_capacity": 22,
+          "instructor_skill": 70,
+          "instruction_skill": 23
+        },
+        "crafting": {
+          "coverage_milli": 119,
+          "facility_capacity": 8,
+          "instructor_skill": 80,
+          "instruction_skill": 28
+        },
+        "instruction": {
+          "coverage_milli": 835,
+          "facility_capacity": 56,
+          "instructor_skill": 29,
+          "instruction_skill": 29
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {
+        "mw.person.jade_bridge_school.0010": 360,
+        "mw.person.jade_bridge_school.0017": 360,
+        "mw.person.jade_bridge_school.5023": 169
+      }
+    }
   },
   "infrastructure": {
     "estate_area_m2": 37200,
@@ -78,5 +180,9 @@
     "property_rent": {
       "registered_property_units": 4
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 2
   }
 }

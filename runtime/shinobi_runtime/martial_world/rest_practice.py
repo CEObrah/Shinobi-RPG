@@ -6,16 +6,20 @@ self-directed and receives no faction instructor or facility bonus.
 """
 from __future__ import annotations
 
+import copy
 import json
 from datetime import datetime, time, timedelta
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Mapping
 
+from .field_development import _apply_gain, _health_milli
+
 _ROOT = Path(__file__).resolve().parents[3]
 _RULE_PATH = _ROOT / "game" / "data" / "martial-world" / "rest-practice.json"
 _COMBAT_DOMAINS = ("sword", "spear", "bow", "hidden_weapons", "unarmed")
 _SELF_FOCI = frozenset((*_COMBAT_DOMAINS, "stealth_scouting", "command", "qi", "qi_control"))
+_ALLOWED_PRACTICE_DOMAINS = frozenset((*_SELF_FOCI, "professional:medicine"))
 
 
 @lru_cache(maxsize=1)
@@ -109,7 +113,28 @@ def practice_pressure_milli(*, journey: bool) -> int:
     return max(0, min(1400, int(rules.get(key, 500 if journey else 650))))
 
 
+def apply_rest_practice(
+    person: Mapping[str, Any], *, duration_hours_milli: int,
+    domain: str | None, pressure_milli: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Apply self-practice through the existing fractional training authority."""
+    out = copy.deepcopy(dict(person))
+    hours = max(0, int(duration_hours_milli))
+    if domain not in _ALLOWED_PRACTICE_DOMAINS or hours <= 0 or _health_milli(out) < 350:
+        return out, {"domain": domain, "duration_hours_milli": hours, "gain_milli": 0, "points": 0, "evidence_added_milli": 0}
+    gain = _apply_gain(
+        out,
+        domain=str(domain),
+        effective_hours_milli=hours,
+        pressure_milli=max(0, min(1400, int(pressure_milli))),
+        evidence_gain_milli=max(1, hours // 30),
+        recovery_milli=900,
+    )
+    return out, {"duration_hours_milli": hours, **gain}
+
+
 __all__ = [
+    "apply_rest_practice",
     "evening_practice_hours_milli",
     "journey_hour_budget",
     "practice_domain",

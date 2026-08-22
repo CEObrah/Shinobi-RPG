@@ -9,10 +9,11 @@ _COPPER_PER_TAEL = 1000
 def copper_breakdown(value: Any) -> dict[str, int | str]:
     copper = max(0, int(value))
     taels, remainder = divmod(copper, _COPPER_PER_TAEL)
+    unit = "tael" if taels == 1 else "taels"
     if taels and remainder:
-        text = f"{taels:,} taels, {remainder:,} copper"
+        text = f"{taels:,} {unit}, {remainder:,} copper"
     elif taels:
-        text = f"{taels:,} taels"
+        text = f"{taels:,} {unit}"
     else:
         text = f"{remainder:,} copper"
     return {"copper": copper, "taels": taels, "remainder_copper": remainder, "display": text}

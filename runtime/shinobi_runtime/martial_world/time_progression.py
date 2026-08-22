@@ -2,9 +2,9 @@
 
 The production frontier remains the sole world scheduler. This module only
 post-processes a frontier that has already been deterministically settled:
-route hours become bounded field development, newly-created public funded
-contracts become soft player-facing handoffs, and requested standing retinues
-are assigned from conserved current faction people at their scheduled review.
+route hours become bounded field development, newly player-visible funded
+contracts become soft handoffs, and requested standing retinues are assigned
+from conserved current faction people at their scheduled review.
 """
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ import copy
 from datetime import datetime
 from typing import Any, Callable, Mapping, Sequence
 
+from shinobi_runtime.api.contract_visibility import contract_is_player_visible
 from .field_development import apply_field_activity
 from .handoffs import classify_handoff
 from .live_state import roster_person, set_roster_person
@@ -22,6 +23,7 @@ _ROUTE_OPERATIONS = "state/martial-world/route-operations.json"
 _COMMITMENTS = "state/martial-world/commitments.json"
 _CONTRACTS = "state/martial-world/contracts/index.json"
 _DEPLOYMENTS = "state/martial-world/deployments.json"
+_META = "state/meta.json"
 
 
 class _FrontierReadView:
@@ -141,26 +143,43 @@ def _append_new_contract_handoffs(
     after_active = raw_after.get("active", {}) if isinstance(raw_after.get("active"), Mapping) else {}
     if not isinstance(before_active, Mapping) or not isinstance(after_active, Mapping):
         return []
+
+    view = _FrontierReadView(read_json, writes)
+    try:
+        meta = view.read_json(_META)
+        player_id = str(meta.get("player_id") or "") if isinstance(meta, Mapping) else ""
+        _path, _roster, _ordinal, player = roster_person(view, player_id)
+        faction_ref = str(player.get("faction_ref") or "")
+    except (FileNotFoundError, KeyError, TypeError, ValueError):
+        return []
+    if not player_id:
+        return []
+
+    world_time = at.isoformat()
     existing = {str(row.get("contract_ref") or "") for row in handoffs if isinstance(row, Mapping)}
     added: list[str] = []
-    for contract_ref in sorted(set(str(x) for x in after_active) - set(str(x) for x in before_active)):
+    for contract_ref in sorted(str(x) for x in after_active if isinstance(x, str)):
         contract = after_active.get(contract_ref)
-        if not isinstance(contract, Mapping) or str(contract.get("status") or "") != "offered" or contract.get("beneficiary_ref") not in (None, ""):
+        if not isinstance(contract, Mapping) or str(contract.get("status") or "") != "offered":
             continue
-        expires_raw = contract.get("expires_at")
-        try:
-            expires = datetime.fromisoformat(str(expires_raw))
-        except (TypeError, ValueError):
+        if not contract_is_player_visible(
+            contract, player_id=player_id, faction_ref=faction_ref, world_time=world_time,
+        ):
             continue
-        if expires <= at or contract_ref in existing:
+        before_contract = before_active.get(contract_ref)
+        was_visible = isinstance(before_contract, Mapping) and contract_is_player_visible(
+            before_contract, player_id=player_id, faction_ref=faction_ref, world_time=world_time,
+        )
+        if was_visible or contract_ref in existing:
             continue
         notice = {
             "kind": "funded_contract_offer",
             "event_id": f"funded_contract_offer:{contract_ref}",
             "contract_ref": contract_ref,
             "issuer_ref": str(contract.get("issuer_ref") or ""),
+            "beneficiary_ref": contract.get("beneficiary_ref"),
             "reward_cash": max(0, int(contract.get("reward_cash", 0))),
-            "expires_at": str(expires_raw),
+            "expires_at": contract.get("expires_at"),
             "delivered_to_player": True,
             "requires_player_decision": False,
         }
@@ -192,7 +211,7 @@ def _settle_retinue_assignments(
         read_json, _COMMITMENTS, {"commitments": {}, "person_index": {}}
     )
     person_index = commitments.get("person_index", {}) if isinstance(commitments.get("person_index"), Mapping) else {}
-    unavailable = sorted(str(ref) for ref in person_index if isinstance(ref, str))
+    base_unavailable = sorted(str(ref) for ref in person_index if isinstance(ref, str))
     view = _FrontierReadView(read_json, writes)
     settled: list[dict[str, Any]] = []
 
@@ -202,25 +221,41 @@ def _settle_retinue_assignments(
         if not isinstance(current, Mapping) or current.get("operation_kind") != "standing_retinue" or current.get("status") != "assignment_pending":
             continue
         leader_ref = str(current.get("leader_ref") or "")
+        chooser_ref = str(current.get("chooser_ref") or "")
         try:
             _path, roster, _ordinal, leader = roster_person(view, leader_ref)
         except (FileNotFoundError, KeyError, TypeError, ValueError):
             continue
         people = roster.get("people", []) if isinstance(roster.get("people"), list) else []
-        requested = max(2, min(3, int(current.get("requested_count", 2))))
-        member_refs, roles = select_retinue_members(
-            leader,
-            [row for row in people if isinstance(row, Mapping)],
-            requested_count=requested,
-            year=at.year,
-            unavailable_refs=unavailable,
-        )
-        if len(member_refs) < requested:
+        requested = int(current.get("requested_count", 0))
+        minimum_required = 2 if requested == 0 else requested
+        try:
+            member_refs, roles = select_retinue_members(
+                leader,
+                [row for row in people if isinstance(row, Mapping)],
+                requested_count=requested,
+                year=at.year,
+                unavailable_refs=[*base_unavailable, chooser_ref],
+            )
+        except ValueError:
+            member_refs, roles = [], {}
+        if len(member_refs) < minimum_required:
             failed = copy.deepcopy(dict(current))
             failed["status"] = "assignment_blocked"
             failed["assignment_reviewed_at"] = at.isoformat()
             failed["assignment_blocked_reason"] = "insufficient_currently_available_members"
             rows[retinue_ref] = failed
+            notice = {
+                "kind": "retinue_assignment_blocked",
+                "event_id": f"retinue_assignment_blocked:{retinue_ref}:{at.isoformat()}",
+                "retinue_ref": retinue_ref,
+                "chooser_ref": chooser_ref,
+                "leader_ref": leader_ref,
+                "reason": failed["assignment_blocked_reason"],
+                "delivered_to_player": True,
+                "requires_player_decision": False,
+            }
+            handoffs.append({**notice, "handoff": classify_handoff(notice)})
             continue
         assigned = copy.deepcopy(dict(current))
         assigned["member_refs"] = member_refs
@@ -232,7 +267,7 @@ def _settle_retinue_assignments(
             "kind": "retinue_assigned",
             "event_id": f"retinue_assigned:{retinue_ref}:{at.isoformat()}",
             "retinue_ref": retinue_ref,
-            "chooser_ref": str(assigned.get("chooser_ref") or ""),
+            "chooser_ref": chooser_ref,
             "leader_ref": leader_ref,
             "member_refs": list(member_refs),
             "member_roles": copy.deepcopy(assigned["member_roles"]),

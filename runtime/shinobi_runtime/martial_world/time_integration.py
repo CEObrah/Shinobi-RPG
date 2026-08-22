@@ -18,9 +18,10 @@ from typing import Any, Callable, Mapping, Sequence
 from .escort import settle_monthly_escort_demand
 from .escort_route import reconcile_escort_route_settlement
 from .time_integration_legacy import settle_martial_world_frontier as _legacy_settle
+from .warfare import expand_new_strategic_mobilizations, settle_faction_operation_arrivals
 
 _SCHEDULER = "state/martial-world/scheduler.json"
-_EXTRACTED_EVENT_KINDS = frozenset({"trade_demand_review"})
+_EXTRACTED_EVENT_KINDS = frozenset({"trade_demand_review", "faction_operation_arrival"})
 _EXTRACTED_PLACEHOLDER_PREFIX = "__extracted__:"
 
 
@@ -36,14 +37,7 @@ class _OverlayRead:
 
 
 def _legacy_placeholder(event: Mapping[str, Any]) -> dict[str, Any]:
-    """Keep extracted recurring owners visible to scheduler settlement.
-
-    ``settle_schedule`` advances owners, not event kinds. Removing one kind from
-    a multi-kind recurring owner chunk would make legacy advance the chunk and a
-    second domain settlement try to advance it again. A harmless unknown kind
-    preserves the exact owner/timestamp/schedule_class while bypassing the old
-    domain reducer. Its internal calendar-review artifact is removed below.
-    """
+    """Keep extracted recurring/one-off owners visible to scheduler settlement."""
     row = copy.deepcopy(dict(event))
     row["kind"] = _EXTRACTED_PLACEHOLDER_PREFIX + str(event.get("kind") or "")
     return row
@@ -75,9 +69,9 @@ def settle_martial_world_frontier(
         for row in normalized
     ]
 
-    # Legacy still receives every owner in the recurring chunk, so it advances
-    # the compact scheduler exactly once. Only the extracted domain mechanics
-    # are replaced.
+    # Legacy still receives every owner in the scheduler chunk, so compact
+    # scheduler advancement happens exactly once. Extracted domain mechanics are
+    # replaced without creating a second chronology authority.
     legacy = _legacy_settle(
         read_json=read_json,
         schedule=schedule,
@@ -99,6 +93,15 @@ def settle_martial_world_frontier(
     ]
     schedule_after = copy.deepcopy(dict(legacy.get("schedule_after", writes.get(_SCHEDULER, schedule))))
 
+    # Legacy strategic autonomy may have created a small seed operation. Expand
+    # that seed into the lawful physical muster before any later arrival sees it.
+    mobilization_reviews = expand_new_strategic_mobilizations(
+        read_json=read_json,
+        writes=writes,
+        at=at,
+    )
+    reviews.extend(mobilization_reviews)
+
     if extracted:
         overlay = _OverlayRead(read_json, writes)
         escort = settle_monthly_escort_demand(
@@ -112,6 +115,22 @@ def settle_martial_world_frontier(
                 writes[path] = copy.deepcopy(record)
         reviews.extend(copy.deepcopy(dict(row)) for row in escort.get("reviews", []) if isinstance(row, Mapping))
         schedule_after = copy.deepcopy(dict(escort.get("schedule_after", writes.get(_SCHEDULER, schedule_after))))
+        writes[_SCHEDULER] = schedule_after
+
+        overlay = _OverlayRead(read_json, writes)
+        warfare = settle_faction_operation_arrivals(
+            read_json=overlay,
+            writes=writes,
+            events=extracted,
+            at=at,
+            schedule_after=schedule_after,
+        )
+        for path, record in dict(warfare.get("writes", {})).items():
+            if isinstance(path, str):
+                writes[path] = copy.deepcopy(record)
+        reviews.extend(copy.deepcopy(dict(row)) for row in warfare.get("reviews", []) if isinstance(row, Mapping))
+        handoffs.extend(copy.deepcopy(dict(row)) for row in warfare.get("handoffs", []) if isinstance(row, Mapping))
+        schedule_after = copy.deepcopy(dict(warfare.get("schedule_after", writes.get(_SCHEDULER, schedule_after))))
         writes[_SCHEDULER] = schedule_after
 
     # Route exposure/contact remains in the mature reducer while objective

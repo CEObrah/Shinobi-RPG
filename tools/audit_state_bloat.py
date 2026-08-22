@@ -17,6 +17,12 @@ STATIC_FACTION_KEYS={'admission_policy','membership_ladder','office_structure_re
 ALLOWED_LARGE_ARRAY_SUFFIXES={
  'people','edges','rows','events','registrations','bracket','wounds','subject_refs','owner_refs','event_kinds','sites','routes',
 }
+# Known semantic journals must have an explicit path-specific budget rather than
+# being hidden behind a broad suffix allowlist. The world-history writer itself
+# enforces the same 256-event rolling window in world_history.record_event.
+BOUNDED_ARRAY_LIMITS={
+ 'state/martial-world/world-history.json:recent': 256,
+}
 
 def walk(v:Any,path=()):
  yield path,v
@@ -34,7 +40,6 @@ def snapshot(root:Path):
  return {'exists':True,'file_count':len(files),'total_bytes':sum(x[1] for x in files),'largest_files':[{'path':p,'bytes':n} for p,n in files[:25]]}
 
 
-
 def main():
  ap=argparse.ArgumentParser(); ap.add_argument('--before-root'); ap.add_argument('--json',dest='out'); args=ap.parse_args()
  errors=[]; warnings=[]; counts=collections.Counter(); oversized=[]
@@ -50,9 +55,14 @@ def main():
     if key in {'training_curriculum','admission_policy','combat_doctrine_definition'}: counts['static_policy_copies']+=1
    if isinstance(node,list) and len(node)>100:
     suffix=path[-1] if path else ''
-    oversized.append({'path':f'{rel}:{".".join(path)}','length':len(node),'allowed_kind':suffix in ALLOWED_LARGE_ARRAY_SUFFIXES})
-    if suffix not in ALLOWED_LARGE_ARRAY_SUFFIXES:
-     errors.append(f'{rel}:{".".join(path)}: unexplained append-style array length {len(node)}')
+    pointer=f'{rel}:{".".join(path)}'
+    explicit_limit=BOUNDED_ARRAY_LIMITS.get(pointer)
+    allowed=suffix in ALLOWED_LARGE_ARRAY_SUFFIXES or (explicit_limit is not None and len(node)<=explicit_limit)
+    oversized.append({'path':pointer,'length':len(node),'allowed_kind':allowed,'explicit_limit':explicit_limit})
+    if explicit_limit is not None and len(node)>explicit_limit:
+     errors.append(f'{pointer}: bounded semantic array exceeded limit {explicit_limit}: {len(node)}')
+    elif not allowed:
+     errors.append(f'{pointer}: unexplained append-style array length {len(node)}')
  scheduler=json.loads((ROOT/'state/martial-world/scheduler.json').read_text())
  for class_id,row in scheduler.get('recurring',{}).items():
   for owner in row.get('owner_refs',[]):

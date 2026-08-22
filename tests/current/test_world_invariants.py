@@ -106,5 +106,5 @@ def test_local_travel_is_physical_not_teleportation():
     by_place={}
     for ref,row in sites.items(): by_place.setdefault(row['parent_place_ref'],[]).append(ref)
     a,b=next((rows[0],rows[1]) for rows in by_place.values() if len(rows)>=2)
-    q=local_travel_quote(sites[a],sites[b])
-    assert q['distance_m']>0 and q['minutes']>0
+    q=local_travel_quote(start_site_ref=a,end_site_ref=b)
+    assert q['distance_m']>0 and q['walking_minutes']>0

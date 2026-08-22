@@ -50,10 +50,16 @@ class JianghuRetinueCommandsMixin:
                 raise CommandRejectedError("retinue_requested_count_invalid") from exc
             if not retinue_ref or not retinue_ref.startswith("retinue."):
                 raise CommandRejectedError("retinue_ref_invalid")
-            if requested_count not in {2, 3}:
+            # 0 means the authorized chooser may decide between two and three.
+            if requested_count not in {0, 2, 3}:
                 raise CommandRejectedError("retinue_requested_count_invalid")
-            existing = rows.get(retinue_ref)
-            if isinstance(existing, Mapping) and str(existing.get("status") or "") in {"assignment_pending", "active"}:
+            if any(
+                isinstance(existing, Mapping)
+                and existing.get("operation_kind") == "standing_retinue"
+                and existing.get("leader_ref") == command.actor_id
+                and str(existing.get("status") or "") in {"assignment_pending", "active"}
+                for existing in rows.values()
+            ):
                 raise CommandRejectedError("retinue_already_exists")
 
             try:
@@ -118,6 +124,10 @@ class JianghuRetinueCommandsMixin:
                 row = state.get("deployments", {}).get(retinue_ref) if isinstance(state, Mapping) else None
                 if not isinstance(row, Mapping) or row.get("status") != "assignment_pending":
                     raise ValueError("retinue request missing after planning")
+                schedule_after = overlay.read_json(_SCHEDULE)
+                event = schedule_after.get("one_off", {}).get(f"retinue_assignment_review:{retinue_ref}") if isinstance(schedule_after, Mapping) else None
+                if not isinstance(event, Mapping) or event.get("due_at") != due_at.isoformat():
+                    raise ValueError("retinue assignment review missing after planning")
 
             return _BuiltPlan(
                 code="retinue_assignment_requested",
@@ -129,6 +139,7 @@ class JianghuRetinueCommandsMixin:
                     "retinue_ref": retinue_ref,
                     "chooser_ref": chooser_ref,
                     "requested_count": requested_count,
+                    "chooser_discretion_2_to_3": requested_count == 0,
                     "assignment_review_at": due_at.isoformat(),
                     "time_reserved_hours": 0,
                 },
@@ -143,8 +154,16 @@ class JianghuRetinueCommandsMixin:
             if row.get("leader_ref") != command.actor_id:
                 raise CommandRejectedError("retinue_not_owned_by_actor")
             rows.pop(retinue_ref, None)
+            try:
+                schedule = copy.deepcopy(self.repository.read_json(_SCHEDULE))
+                one_off = schedule.get("one_off", {}) if isinstance(schedule, Mapping) else None
+                if isinstance(one_off, dict):
+                    one_off.pop(f"retinue_assignment_review:{retinue_ref}", None)
+            except (FileNotFoundError, TypeError, ValueError) as exc:
+                raise CommandRejectedError("jianghu_scheduler_invalid") from exc
             writes = {
                 _DEPLOYMENTS: _json_bytes(deployments),
+                _SCHEDULE: _json_bytes(schedule),
                 self.meta_path: _json_bytes(self._meta_after(meta, command, world_time=current_time)),
             }
             writes = self._prune_noop_writes(writes)
@@ -157,6 +176,10 @@ class JianghuRetinueCommandsMixin:
                     overlay, manifest, meta_path=self.meta_path,
                     command=command, world_time=current_time,
                 )
+                state = overlay.read_json(_DEPLOYMENTS)
+                remaining = state.get("deployments", {}).get(retinue_ref) if isinstance(state, Mapping) else None
+                if remaining is not None:
+                    raise ValueError("retinue still present after release")
 
             return _BuiltPlan(
                 code="retinue_released",

@@ -3,8 +3,8 @@
   "faction_id": "silent_seal_hall",
   "headquarters": "nanjing",
   "local_site_ref": "site.silent_seal_hall",
-  "population": 82,
-  "treasury_cash": 410000,
+  "population": 85,
+  "treasury_cash": 372305,
   "buildings": {
     "main_hall": 4,
     "residential_compound": 4,
@@ -23,10 +23,115 @@
     "escort_service": 4
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.silent_seal_hall.0.dc5c27ef73fd",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "dc5c27ef73fdb4e58e24402b",
+      "curriculum": {
+        "hidden_weapons": 85,
+        "sword": 52,
+        "unarmed": 42,
+        "stealth_scouting": 82,
+        "command": 47,
+        "qi": 54,
+        "qi_control": 53
+      },
+      "facilities": {
+        "armory_workshop": 3,
+        "infirmary_apothecary": 3,
+        "library_records": 4,
+        "main_hall": 4,
+        "qi_hall": 4,
+        "training_grounds": 4,
+        "training_hall": 4
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 85,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 307,
+          "instructor_skill": 27,
+          "instruction_skill": 9
+        },
+        "hidden_weapons": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 45,
+          "instruction_skill": 9
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 307,
+          "instructor_skill": 22,
+          "instruction_skill": 11
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 76,
+          "instruction_skill": 6
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 219,
+          "instructor_skill": 45,
+          "instruction_skill": 11
+        },
+        "qi": {
+          "coverage_milli": 811,
+          "facility_capacity": 69,
+          "instructor_skill": 49,
+          "instruction_skill": 14
+        },
+        "qi_control": {
+          "coverage_milli": 200,
+          "facility_capacity": 17,
+          "instructor_skill": 55,
+          "instruction_skill": 22
+        },
+        "medicine": {
+          "coverage_milli": 258,
+          "facility_capacity": 22,
+          "instructor_skill": 75,
+          "instruction_skill": 6
+        },
+        "administration": {
+          "coverage_milli": 400,
+          "facility_capacity": 34,
+          "instructor_skill": 65,
+          "instruction_skill": 13
+        },
+        "commerce": {
+          "coverage_milli": 400,
+          "facility_capacity": 34,
+          "instructor_skill": 76,
+          "instruction_skill": 3
+        },
+        "crafting": {
+          "coverage_milli": 164,
+          "facility_capacity": 14,
+          "instructor_skill": 72,
+          "instruction_skill": 23
+        },
+        "instruction": {
+          "coverage_milli": 1000,
+          "facility_capacity": 88,
+          "instructor_skill": 29,
+          "instruction_skill": 29
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 58800,
@@ -78,5 +183,9 @@
     "escort_service": {
       "simultaneous_contract_capacity": 9
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 3
   }
 }

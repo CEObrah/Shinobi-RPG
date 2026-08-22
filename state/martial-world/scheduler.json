@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 228
+      "owner_cursor": 232
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3814,6 +3814,53 @@
       "kind": "autonomous_project_due",
       "due_at": "0061-09-23T21:15:00",
       "owner_ref": "project:auto:red_tiger_stronghold:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:river_reed_society:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:river_reed_society:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:river_reed_society:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:shaolin:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:shaolin:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-28T21:15:00",
+      "owner_ref": "project:auto:shaolin:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:shaolin:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:shaolin:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "shaolin",
+      "crop_ref": "vegetables",
+      "planted_mu": 182,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "shaolin_temple",
+      "agriculture_level": 4,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:songshan:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:songshan:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:songshan:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:songshan:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:songshan:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "songshan",
+      "crop_ref": "vegetables",
+      "planted_mu": 95,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "songshan",
+      "agriculture_level": 3,
+      "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }
   }

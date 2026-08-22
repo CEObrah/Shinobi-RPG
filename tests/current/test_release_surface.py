@@ -71,7 +71,11 @@ def test_current_month_timeskip_builds_and_validates_the_exact_transaction_overl
     )
     overlay=StagedOverlay(repo,manifest)
     plan.validator(overlay,manifest)
-    assert plan.result['world_time']=='SE-0061-08-31T23:59:59'
+    # The current save's first resumable causal frontier is the next-day
+    # Three Bridges member cycle, not the old month-end assumption. This exact
+    # assertion is deliberate: if the committed scheduler snapshot changes,
+    # the release regression must be reviewed with that state change.
+    assert plan.result['world_time']=='SE-0061-08-15T21:15:00'
     assert plan.result['continuation_required'] is True
 
 

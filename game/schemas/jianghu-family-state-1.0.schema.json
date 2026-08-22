@@ -2,13 +2,100 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "jianghu-family-state-1.0",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
     "schema": {
       "const": "jianghu-family-state-1.0"
+    },
+    "marriages": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "spouse_refs": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true
+          },
+          "status": {"type": "string"},
+          "faction_ref": {"type": "string"},
+          "faction_refs": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "started_at": {"type": "string"},
+          "pregnancy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mother_ref": {"type": "string"},
+              "father_ref": {"type": "string"},
+              "conceived_at": {"type": "string"},
+              "due_at": {"type": "string"},
+              "child_ref": {"type": "string"}
+            },
+            "required": ["mother_ref", "father_ref", "conceived_at", "due_at", "child_ref"]
+          },
+          "last_birth_at": {"type": "string"}
+        },
+        "required": ["spouse_refs", "status"]
+      }
+    },
+    "parentage": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "parent_refs": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": ["parent_refs"]
+      }
+    },
+    "households": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "faction_ref": {"type": "string"},
+          "head_ref": {"type": "string"},
+          "member_refs": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "residence_ref": {"type": "string"},
+          "status": {"type": "string"}
+        },
+        "required": ["faction_ref", "head_ref", "member_refs", "residence_ref", "status"]
+      }
+    },
+    "succession_claims": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "faction_ref": {"type": "string"},
+          "person_ref": {"type": "string"},
+          "priority": {"type": "integer", "minimum": 0},
+          "basis": {"type": "string"}
+        },
+        "required": ["faction_ref", "person_ref", "priority", "basis"]
+      }
     }
   },
-  "required": [
-    "schema"
-  ],
-  "additionalProperties": true
+  "required": ["schema", "marriages", "parentage", "households", "succession_claims"]
 }

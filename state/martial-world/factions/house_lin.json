@@ -3,7 +3,7 @@
   "faction_id": "house_lin",
   "headquarters": "hangzhou",
   "local_site_ref": "site.house_lin",
-  "population": 95,
+  "population": 92,
   "treasury_cash": 475000,
   "buildings": {
     "main_hall": 3,
@@ -27,9 +27,205 @@
   },
   "training_epoch": {
     "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
-    "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "settled_through": "0061-09-01T21:15:00",
+    "elapsed_training_days": 18,
+    "intensity_milli": 1000,
+    "history": [
+      {
+        "segment_id": "training.house_lin.0.dba05ab3f024",
+        "start_day": 0,
+        "end_day": 18,
+        "started_at": "0061-08-14T21:15:00",
+        "settled_through": "0061-09-01T21:15:00",
+        "environment_fingerprint": "dba05ab3f024a6df0a2ff6c2",
+        "curriculum": {
+          "unarmed": 70,
+          "stealth_scouting": 37,
+          "command": 55,
+          "qi": 62,
+          "qi_control": 67,
+          "sword": 38
+        },
+        "facilities": {
+          "armory_workshop": 2,
+          "infirmary_apothecary": 2,
+          "library_records": 3,
+          "main_hall": 3,
+          "qi_hall": 3,
+          "training_grounds": 3,
+          "training_hall": 3
+        },
+        "intensity_milli": 1000,
+        "eligible_student_count": 95,
+        "instruction_profiles": {
+          "sword": {
+            "coverage_milli": 1000,
+            "facility_capacity": 196,
+            "instructor_skill": 21,
+            "instruction_skill": 16
+          },
+          "unarmed": {
+            "coverage_milli": 1000,
+            "facility_capacity": 196,
+            "instructor_skill": 39,
+            "instruction_skill": 15
+          },
+          "stealth_scouting": {
+            "coverage_milli": 1000,
+            "facility_capacity": 140,
+            "instructor_skill": 52,
+            "instruction_skill": 18
+          },
+          "command": {
+            "coverage_milli": 1000,
+            "facility_capacity": 140,
+            "instructor_skill": 47,
+            "instruction_skill": 18
+          },
+          "qi": {
+            "coverage_milli": 463,
+            "facility_capacity": 44,
+            "instructor_skill": 92,
+            "instruction_skill": 15
+          },
+          "qi_control": {
+            "coverage_milli": 115,
+            "facility_capacity": 11,
+            "instructor_skill": 122,
+            "instruction_skill": 7
+          },
+          "medicine": {
+            "coverage_milli": 126,
+            "facility_capacity": 12,
+            "instructor_skill": 77,
+            "instruction_skill": 28
+          },
+          "administration": {
+            "coverage_milli": 231,
+            "facility_capacity": 22,
+            "instructor_skill": 63,
+            "instruction_skill": 8
+          },
+          "commerce": {
+            "coverage_milli": 231,
+            "facility_capacity": 22,
+            "instructor_skill": 80,
+            "instruction_skill": 17
+          },
+          "crafting": {
+            "coverage_milli": 84,
+            "facility_capacity": 8,
+            "instructor_skill": 56,
+            "instruction_skill": 16
+          },
+          "instruction": {
+            "coverage_milli": 589,
+            "facility_capacity": 56,
+            "instructor_skill": 30,
+            "instruction_skill": 30
+          }
+        },
+        "guard_duty_milli": 0,
+        "external_teaching_duty_milli": {}
+      }
+    ],
+    "current_environment": {
+      "segment_id": "training.house_lin.18.c5452e4b9993",
+      "start_day": 18,
+      "end_day": 18,
+      "started_at": "0061-09-01T21:15:00",
+      "settled_through": "0061-09-01T21:15:00",
+      "environment_fingerprint": "c5452e4b99930f390ee4449e",
+      "curriculum": {
+        "unarmed": 70,
+        "stealth_scouting": 37,
+        "command": 55,
+        "qi": 62,
+        "qi_control": 67,
+        "sword": 38
+      },
+      "facilities": {
+        "armory_workshop": 2,
+        "infirmary_apothecary": 2,
+        "library_records": 3,
+        "main_hall": 3,
+        "qi_hall": 3,
+        "training_grounds": 3,
+        "training_hall": 3
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 78,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 196,
+          "instructor_skill": 23,
+          "instruction_skill": 15
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 196,
+          "instructor_skill": 43,
+          "instruction_skill": 16
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 52,
+          "instruction_skill": 16
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 48,
+          "instruction_skill": 16
+        },
+        "qi": {
+          "coverage_milli": 564,
+          "facility_capacity": 44,
+          "instructor_skill": 92,
+          "instruction_skill": 15
+        },
+        "qi_control": {
+          "coverage_milli": 141,
+          "facility_capacity": 11,
+          "instructor_skill": 122,
+          "instruction_skill": 7
+        },
+        "medicine": {
+          "coverage_milli": 153,
+          "facility_capacity": 12,
+          "instructor_skill": 69,
+          "instruction_skill": 26
+        },
+        "administration": {
+          "coverage_milli": 282,
+          "facility_capacity": 22,
+          "instructor_skill": 63,
+          "instruction_skill": 8
+        },
+        "commerce": {
+          "coverage_milli": 282,
+          "facility_capacity": 22,
+          "instructor_skill": 80,
+          "instruction_skill": 17
+        },
+        "crafting": {
+          "coverage_milli": 102,
+          "facility_capacity": 8,
+          "instructor_skill": 51,
+          "instruction_skill": 9
+        },
+        "instruction": {
+          "coverage_milli": 717,
+          "facility_capacity": 56,
+          "instructor_skill": 30,
+          "instruction_skill": 30
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 37200,

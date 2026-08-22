@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 
+from shinobi_runtime.martial_world.compensation import monthly_stipend
 from shinobi_runtime.martial_world.enterprise_operations import (
     operate_apothecary_month,
     operate_brotherhood_livelihood_month,
@@ -8,6 +9,7 @@ from shinobi_runtime.martial_world.enterprise_operations import (
     operate_workshop_month,
 )
 from shinobi_runtime.martial_world.escort import plan_escort_objective, quote_escort_objective
+from shinobi_runtime.martial_world.upkeep import monthly_upkeep_quote
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -84,6 +86,19 @@ def test_typical_escort_is_institutional_scale_not_regional_wealth_percentage():
     assert 5_000 <= reward <= 50_000
     assert reward // max(1, escort_hours) <= 60
     assert quote["cargo_liability_cash"] <= objective["cargo_value_cash"] // 500
+
+
+def test_member_cash_is_a_stipend_because_living_support_is_already_in_kind():
+    compensation = json.loads((ROOT / "game/data/martial-world/compensation.json").read_text())
+    elite = {"membership_grade": "elite", "standing_offices": []}
+    stipend = monthly_stipend(elite)
+    market_month = 30 * 8 * 30  # general labor: cash/hour * hours/day * days/month
+    assert stipend == 300
+    assert stipend < market_month // 10
+    assert "allowance" in compensation["stipend_rule"].lower()
+    upkeep = monthly_upkeep_quote({"population": 1, "buildings": {}, "enterprises": {}})
+    assert upkeep["food_ration_days"] == 30
+    assert upkeep["household_cash"] > 0
 
 
 def test_enterprise_levels_describe_efficiency_and_scale_not_passive_cash_multipliers():

@@ -3,8 +3,8 @@
   "faction_id": "faction.nine_knives_band",
   "headquarters": "kunming",
   "local_site_ref": "site.nine_knives_band",
-  "population": 25,
-  "treasury_cash": 41025,
+  "population": 26,
+  "treasury_cash": 30800,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -28,10 +28,84 @@
     "criminal_enterprise": 1
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.nine_knives_band.0.1382f9780063",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "1382f97800634e598b573665",
+      "curriculum": {
+        "sword": 70,
+        "unarmed": 56,
+        "stealth_scouting": 76,
+        "command": 47,
+        "qi": 29,
+        "qi_control": 37
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 26,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 43,
+          "instruction_skill": 22
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 56,
+          "instruction_skill": 23
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 53,
+          "instruction_skill": 12
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 63,
+          "instruction_skill": 30
+        },
+        "qi": {
+          "coverage_milli": 576,
+          "facility_capacity": 15,
+          "instructor_skill": 64,
+          "instruction_skill": 50
+        },
+        "qi_control": {
+          "coverage_milli": 115,
+          "facility_capacity": 3,
+          "instructor_skill": 75,
+          "instruction_skill": 44
+        },
+        "instruction": {
+          "coverage_milli": 769,
+          "facility_capacity": 20,
+          "instructor_skill": 51,
+          "instruction_skill": 51
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -71,5 +145,9 @@
     "criminal_enterprise": {
       "registered_cells_or_ventures": 2
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

@@ -12,7 +12,7 @@ from typing import Any, Callable, Mapping
 
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.martial_world.escort_migration import plan_escort_policy_v3_migration
-from shinobi_runtime.martial_world.retinue_migration import plan_permanent_team_cohort_v2_migration
+from shinobi_runtime.martial_world.retinue_migration import plan_permanent_team_cohort_v3_migration
 from shinobi_runtime.store import RegisteredSchemaValidator, RegisteredTemplateValidator, RepositoryStore
 from shinobi_runtime.tx import TransactionCoordinator
 from shinobi_runtime.tx.canonical import canonical_sha256
@@ -118,8 +118,8 @@ def run_startup_maintenance(
         _execute_maintenance_plan(
             repository,
             coordinator,
-            migration_name="permanent_travel_team_cohort_v2",
-            planner=plan_permanent_team_cohort_v2_migration,
+            migration_name="permanent_travel_team_cohort_v3",
+            planner=plan_permanent_team_cohort_v3_migration,
         ),
     ]
     committed = [row for row in migrations if str(row.get("status") or "") in {"committed", "duplicate"}]

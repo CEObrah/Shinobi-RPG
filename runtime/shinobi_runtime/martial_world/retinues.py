@@ -17,6 +17,7 @@ _CRITICAL_OFFICES = {
 }
 _PERMANENT_TEAM_MIN_AGE = 16
 _PERMANENT_TEAM_MAX_AGE_GAP = 18
+_PERMANENT_TEAM_MIN_TENURE_YEARS = 1
 _PERMANENT_TEAM_GRADES = {"junior", "full", "senior", "elite"}
 
 
@@ -38,9 +39,6 @@ def _person_age(person: Mapping[str, Any], *, year: int) -> int | None:
 def _ready(person: Mapping[str, Any], *, year: int) -> bool:
     if bool(person.get("retired_from_field", False)):
         return False
-    # Permanent attachment or routine mission staffing must not hollow out the
-    # House's standing command, medical or instruction backbone merely because
-    # an office-holder is individually excellent in the field.
     if _office_keys(person) & _CRITICAL_OFFICES:
         return False
     age = _person_age(person, year=year)
@@ -55,13 +53,7 @@ def _ready(person: Mapping[str, Any], *, year: int) -> bool:
 
 
 def permanent_team_age_bounds(leader: Mapping[str, Any], *, year: int) -> tuple[int, int]:
-    """Return the socially plausible age band for a long-term field companion.
-
-    This is deliberately not a global combat or work-age cap. A temporary guard,
-    instructor, physician or veteran may be much older. The constraint exists
-    because a permanent travel team is expected to live, train and campaign with
-    its leader for years, so a multi-generation mismatch is a poor assignment.
-    """
+    """Return the socially plausible age band for a long-term field companion."""
     leader_age = _person_age(leader, year=year)
     if leader_age is None:
         raise ValueError("permanent team leader age unresolved")
@@ -82,10 +74,10 @@ def permanent_team_member_eligible(
     minimum, maximum = permanent_team_age_bounds(leader, year=year)
     if age < minimum or age > maximum:
         return False
-    # A permanent heir's field team is trusted standing personnel, not a place
-    # to park probationary recruits. This restriction is intentionally absent
-    # from temporary mission reinforcement selection.
     if str(person.get("membership_grade") or "") not in _PERMANENT_TEAM_GRADES:
+        return False
+    joined_year = person.get("joined_year")
+    if isinstance(joined_year, int) and year - joined_year < _PERMANENT_TEAM_MIN_TENURE_YEARS:
         return False
     return True
 
@@ -125,9 +117,6 @@ def _scores(person: Mapping[str, Any]) -> dict[str, int]:
 def _leader_need_order(leader: Mapping[str, Any]) -> list[str]:
     martial = leader.get("martial_skills", {}) if isinstance(leader.get("martial_skills"), Mapping) else {}
     prof = leader.get("professional_skills", {}) if isinstance(leader.get("professional_skills"), Mapping) else {}
-    # The permanent trio should complement Wei instead of duplicating his
-    # strongest weapon skill: medicine, scouting/awareness and field command are
-    # weighted by his own gaps, with direct protection always remaining useful.
     needs = {
         "field_medic": max(0, 120 - int(prof.get("medicine", 0))) * 5,
         "scout": max(0, 110 - int(martial.get("stealth_scouting", 0))) * 4,
@@ -147,18 +136,13 @@ def select_retinue_members(
 ) -> tuple[list[str], dict[str, str]]:
     """Select Wei's persistent complementary travel team.
 
-    Zero means the authorized chooser owns the identities but not the headcount:
-    the standing travel team is still exactly three people. Permanent members
-    must be trusted standing personnel within a plausible long-term cohort for
-    the leader. Specialist labels are relative assignments inside that lawful
-    cohort, not artificial mastery thresholds: the parents choose the best medic,
-    scout and protector the actual House can field among plausible companions.
-    If fewer than the requested number of lawful cohort members exist, selection
-    blocks rather than reaching across generations merely to fill a slot.
-
-    Exact two/three remains readable for backward-compatible tests/state, but the
-    live retinue command requests three for new assignments. This helper never
-    expands a standing retinue to satisfy a caravan's escort minimum.
+    Permanent members must be established trusted personnel within a plausible
+    long-term cohort for the leader. Once a person is inside that lawful cohort,
+    capability determines selection; a weaker 18-year-old does not outrank a
+    stronger 30-year-old just for being closer to Wei's age. Specialist labels
+    are relative assignments, not artificial mastery thresholds. If fewer than
+    the requested number of lawful cohort members exist, selection blocks rather
+    than reaching across generations or taking an unproven new recruit.
     """
     raw_count = int(requested_count)
     if raw_count not in {0, 2, 3}:
@@ -166,8 +150,7 @@ def select_retinue_members(
     target_count = 3 if raw_count == 0 else raw_count
     leader_ref = str(leader.get("person_id") or "")
     faction_ref = str(leader.get("faction_ref") or "")
-    leader_age = _person_age(leader, year=year)
-    if leader_age is None:
+    if _person_age(leader, year=year) is None:
         raise ValueError("permanent team leader age unresolved")
     unavailable = {str(x) for x in unavailable_refs if isinstance(x, str)}
     candidates = [
@@ -187,11 +170,7 @@ def select_retinue_members(
             break
         ranked = sorted(
             (
-                (
-                    _scores(person)[role]
-                    - abs((_person_age(person, year=year) or leader_age) - leader_age) * 8,
-                    str(person["person_id"]),
-                )
+                (_scores(person)[role], str(person["person_id"]))
                 for person in candidates
                 if str(person["person_id"]) not in chosen
             ),
@@ -214,16 +193,7 @@ def select_mission_escort_reinforcements(
     unavailable_refs: Sequence[str] = (),
     exclude_refs: Sequence[str] = (),
 ) -> list[str]:
-    """Select temporary House manpower for one escort mission.
-
-    These people are not added to the standing retinue. The contract commitment
-    owns their time only for that mission, after which they return to ordinary
-    House duties. Selection is deterministic, same-faction, readiness-gated and
-    biased toward protective capability because the permanent trio already
-    carries specialist travel roles. Temporary staffing deliberately does not
-    apply the permanent team's cohort or standing-grade restrictions: an older
-    veteran can still be a perfectly sensible guard for one caravan.
-    """
+    """Select temporary House manpower for one escort mission."""
     needed = int(needed_count)
     if needed < 0:
         raise ValueError("mission escort reinforcement count invalid")

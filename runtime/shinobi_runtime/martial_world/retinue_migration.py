@@ -1,10 +1,11 @@
 """Pure maintenance repair for the permanent travel-team selector policy.
 
 The original permanent-team selector considered raw complementary capability but
-not long-term cohort compatibility. That could assign elderly House members to a
-teenage heir's standing travel team. This planner recomputes only the affected
-standing retinue from the existing conserved roster under the corrected policy.
-It never creates, deletes, rerolls, moves, trains or otherwise mutates people.
+not long-term cohort compatibility. Later policy refinement also requires some
+House tenure and ranks capability above age closeness once a candidate is inside
+the lawful cohort. This planner recomputes only the affected standing retinue
+from the existing conserved roster. It never creates, deletes, rerolls, moves,
+trains or otherwise mutates people.
 """
 from __future__ import annotations
 
@@ -18,12 +19,10 @@ _DEPLOYMENTS = "state/martial-world/deployments.json"
 _COMMITMENTS = "state/martial-world/commitments.json"
 _META = "state/meta.json"
 _RETINUE_REF = "retinue.wei.permanent_travel_team"
-_POLICY_NAME = "permanent_travel_team_cohort_v2"
+_POLICY_NAME = "permanent_travel_team_cohort_v3"
 
 
 def _world_year(meta: Mapping[str, Any]) -> int:
-    # ``time`` is the canonical persisted meta field. ``world_time`` is accepted
-    # only for bounded test/adapter compatibility with read projections.
     raw = str(meta.get("time") or meta.get("world_time") or "")
     match = re.match(r"(?:SE-)?(\d+)-", raw)
     if not match:
@@ -38,7 +37,7 @@ def _find_person(people: list[Any], person_ref: str) -> Mapping[str, Any] | None
     return None
 
 
-def plan_permanent_team_cohort_v2_migration(
+def plan_permanent_team_cohort_v3_migration(
     read_json: Callable[[str], Mapping[str, Any]],
 ) -> dict[str, Any]:
     """Return an idempotent deployment-only correction for the affected team."""
@@ -65,18 +64,11 @@ def plan_permanent_team_cohort_v2_migration(
     if not isinstance(leader, Mapping):
         raise ValueError("permanent-team migration leader missing from roster")
 
-    meta = read_json(_META)
-    year = _world_year(meta)
+    year = _world_year(read_json(_META))
     commitments = read_json(_COMMITMENTS)
     person_index = commitments.get("person_index", {}) if isinstance(commitments, Mapping) else {}
-    unavailable = {
-        str(ref)
-        for ref in person_index
-        if isinstance(person_index, Mapping) and isinstance(ref, str) and ref
-    }
+    unavailable = {str(ref) for ref in person_index if isinstance(person_index, Mapping) and isinstance(ref, str) and ref}
 
-    # Standing teams do not reserve hours, but a person already attached to a
-    # different active standing retinue should not be duplicated into Wei's.
     for other_ref, other in rows.items():
         if str(other_ref) == _RETINUE_REF or not isinstance(other, Mapping):
             continue
@@ -118,9 +110,6 @@ def plan_permanent_team_cohort_v2_migration(
     after = copy.deepcopy(dict(current))
     after["member_refs"] = list(member_refs)
     after["member_roles"] = normalized_new_roles
-    # This is a maintenance correction of the original delegated choice, not a
-    # second in-world appointment. Preserve requested/assigned timestamps and
-    # all chooser authority exactly as committed.
     rows[_RETINUE_REF] = after
     deployments["deployments"] = rows
     return {
@@ -135,4 +124,4 @@ def plan_permanent_team_cohort_v2_migration(
     }
 
 
-__all__ = ["plan_permanent_team_cohort_v2_migration"]
+__all__ = ["plan_permanent_team_cohort_v3_migration"]

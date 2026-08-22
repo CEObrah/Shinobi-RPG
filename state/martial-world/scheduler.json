@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 4
+      "owner_cursor": 8
     },
     "faction_annual": {
       "interval_days": 365,
@@ -2630,6 +2630,39 @@
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "cangshan",
       "agriculture_level": 3,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:emei:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:emei:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-23T21:15:00",
+      "owner_ref": "project:auto:emei:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:emei:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:emei:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "emei",
+      "crop_ref": "vegetables",
+      "planted_mu": 113,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "emeishan",
+      "agriculture_level": 3,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.black_bamboo_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.black_bamboo_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.black_bamboo_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 5,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "changan",
+      "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }

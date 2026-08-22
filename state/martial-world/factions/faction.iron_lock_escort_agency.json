@@ -3,8 +3,8 @@
   "faction_id": "faction.iron_lock_escort_agency",
   "headquarters": "xining",
   "local_site_ref": "site.iron_lock_escort_agency",
-  "population": 23,
-  "treasury_cash": 83996,
+  "population": 24,
+  "treasury_cash": 79088,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,84 @@
     "school_tuition": 0
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.iron_lock_escort_agency.0.b4e2a890b0c6",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "b4e2a890b0c6cbe8fa6dabb5",
+      "curriculum": {
+        "spear": 78,
+        "unarmed": 46,
+        "stealth_scouting": 49,
+        "command": 68,
+        "qi": 31,
+        "qi_control": 40
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 24,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 46,
+          "instruction_skill": 34
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 38,
+          "instruction_skill": 29
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 109,
+          "instruction_skill": 22
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 40,
+          "instruction_skill": 42
+        },
+        "qi": {
+          "coverage_milli": 625,
+          "facility_capacity": 15,
+          "instructor_skill": 56,
+          "instruction_skill": 20
+        },
+        "qi_control": {
+          "coverage_milli": 125,
+          "facility_capacity": 3,
+          "instructor_skill": 68,
+          "instruction_skill": 29
+        },
+        "instruction": {
+          "coverage_milli": 833,
+          "facility_capacity": 20,
+          "instructor_skill": 53,
+          "instruction_skill": 53
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -73,5 +147,9 @@
     "escort_service": {
       "simultaneous_contract_capacity": 2
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
   }
 }

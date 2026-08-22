@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 116
+      "owner_cursor": 120
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3227,6 +3227,26 @@
       "place_id": "kunming",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.moon_gate_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.moon_gate_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.moon_gate_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 5,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "changan",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:formal_challenge:faction.night_ferry_pirates:faction.iron_pine_sect:006109": {
+      "event_id": "operation_arrival:operation:formal_challenge:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
+      "kind": "faction_operation_arrival",
+      "due_at": "0061-09-15T21:15:00",
+      "owner_ref": "operation:formal_challenge:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
       "requires_player_decision": false
     }
   }

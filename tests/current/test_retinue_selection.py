@@ -149,21 +149,22 @@ def test_legacy_exact_two_member_selection_remains_readable_but_is_not_live_defa
     assert len(roles) == 2
 
 
-def test_permanent_team_blocks_instead_of_filling_a_role_with_an_incompetent_candidate():
+def test_lawful_cohort_generalist_can_fill_third_slot_when_house_has_no_young_master_specialist():
     people = [
         _leader(),
         _person("medic", birth_year=39, medicine=90),
         _person("guard", birth_year=38, sword=90),
-        _person("weak_third", birth_year=40, sword=5, scouting=5, command=5, medicine=5),
+        _person("generalist", birth_year=40, sword=5, scouting=5, command=5, medicine=5),
     ]
-    weak = people[-1]
-    weak["attributes"] = {key: 10 for key in weak["attributes"]}
+    generalist = people[-1]
+    generalist["attributes"] = {key: 10 for key in generalist["attributes"]}
     refs, roles = select_retinue_members(
         people[0], people, requested_count=0, year=61,
     )
-    assert len(refs) == 2
-    assert len(roles) == 2
-    assert "weak_third" not in refs
+    assert len(refs) == 3
+    assert len(roles) == 3
+    assert "generalist" in refs
+    assert roles["generalist"] == "scout"
 
 
 def test_mission_reinforcements_are_separate_from_permanent_team_and_can_use_older_veterans():

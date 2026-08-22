@@ -169,7 +169,7 @@ def test_real_campaign_retinue_request_preview_is_valid_zero_time_and_read_only(
         payload={
             "action": "request",
             "retinue_ref": "retinue.preview.regression",
-            "chooser_ref": "char.zhu",
+            "chooser_refs": ["char.zhu", "char.ling"],
             "requested_count": 3,
         },
     )

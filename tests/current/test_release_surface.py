@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 def test_command_surface_matches_current_specs_with_reducers():
     repo=RepositoryStore(ROOT); planner=RepositoryCommandPlanner(repo)
-    assert len(COMMAND_SPECS)==22
+    assert len(COMMAND_SPECS)==23
     assert set(planner.COMMAND_TYPES)==set(COMMAND_SPECS)
     assert all(callable(getattr(planner,'_'+name,None)) for name in COMMAND_SPECS)
     compact=compact_commands({'supported_command_types':sorted(planner.COMMAND_TYPES)})

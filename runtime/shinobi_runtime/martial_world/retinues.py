@@ -17,7 +17,7 @@ _DISCRETIONARY_THIRD_SCORE = 420
 
 def _office_keys(person: Mapping[str, Any]) -> set[str]:
     return {
-        str(x).split(": 1", 1)[0] if ": 1" in str(x) else str(x).split(":", 1)[0]
+        str(x).split(":", 1)[0]
         for x in person.get("standing_offices", [])
         if isinstance(x, str)
     }

@@ -37,6 +37,7 @@ from shinobi_runtime.api.operations import CampaignOperations
 from shinobi_runtime.commands import CommandEnvelope
 from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
 from shinobi_runtime.deployment_freshness import inspect_deployment_freshness
+from shinobi_runtime.maintenance import run_startup_maintenance
 from shinobi_runtime.people import RepositoryPersonSheetResolver
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.tx import (
@@ -324,6 +325,10 @@ def create_app_from_env() -> FastAPI:
         remote_durability=remote_durability,
     )
     coordinator.recover()
+    # Source migrations are executable mechanics, but their campaign correction
+    # is committed only through the same WAL/Git maintenance authority as every
+    # other durable write. Maintenance does not advance world time or revision.
+    run_startup_maintenance(repository, coordinator)
     app = create_app(
         repository=repository,
         coordinator=coordinator,

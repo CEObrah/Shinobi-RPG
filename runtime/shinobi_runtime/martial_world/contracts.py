@@ -10,12 +10,14 @@ def _data(): return json.loads((_MW/'contracts.json').read_text(encoding='utf-8'
 def escort_quote(*,distance_km_tenths:int,cargo_value_cash:int,threat_score:int,escort_count:int,normal_travel_hours:int,deadline_hours:int)->dict[str,int]:
     if min(distance_km_tenths,cargo_value_cash,threat_score,escort_count,normal_travel_hours,deadline_hours)<0 or escort_count<=0: raise ValueError('escort quote input invalid')
     s=_data()['finite_types']['escort']; km=(distance_km_tenths+9)//10
-    base=int(s['base_admin_cash']); distance=km*escort_count*int(s['distance_cash_per_km_per_escort'])
+    base=int(s['base_admin_cash'])
+    travel=normal_travel_hours*escort_count*int(s.get('travel_hour_cash_per_escort',0))
+    distance=km*escort_count*int(s['distance_cash_per_km_per_escort'])
     liability=cargo_value_cash*int(s['cargo_liability_milli'])//1000
     threat=threat_score*escort_count*int(s['threat_premium_cash_per_score_per_escort'])
     saved=max(0,normal_travel_hours-deadline_hours); deadline=saved*int(s['deadline_premium_per_hour_saved_cash'])
-    total=base+distance+liability+threat+deadline
-    return {'base_cash':base,'distance_cash':distance,'cargo_liability_cash':liability,'threat_premium_cash':threat,'deadline_premium_cash':deadline,'total_reward_cash':total}
+    total=base+travel+distance+liability+threat+deadline
+    return {'base_cash':base,'travel_labor_cash':travel,'distance_cash':distance,'cargo_liability_cash':liability,'threat_premium_cash':threat,'deadline_premium_cash':deadline,'total_reward_cash':total}
 
 def create_contract_owner(*,contract_type:str,issuer_ref:str,beneficiary_ref:str|None,offered_at:str,expires_at:str,reward_cash:int,funding_cash:int,objective:Mapping[str,Any],source_ref:str)->dict[str,Any]:
     if contract_type not in _data()['finite_types']: raise KeyError(contract_type)
@@ -28,7 +30,7 @@ def transition(contract:Mapping[str,Any],*,at:str,to_status:str,actor_ref:str|No
     allowed={
       'offered':{'accepted','expired'},'accepted':{'in_progress','expired'},'in_progress':{'objective_resolved','failed'},
       'objective_resolved':{'settled'},'settled':set(),'failed':set(),'expired':set()}
-    cur=str(contract.get('status')); 
+    cur=str(contract.get('status'))
     if to_status not in allowed.get(cur,set()): raise ValueError('invalid contract transition')
     out=copy.deepcopy(dict(contract)); out['status']=to_status
     if participants is not None:

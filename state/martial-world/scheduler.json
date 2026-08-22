@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 48
+      "owner_cursor": 52
     },
     "faction_annual": {
       "interval_days": 365,
@@ -533,6 +533,7 @@
       "owner_cursor": 0,
       "owner_refs": [
         "route.changan.zhongnan",
+        "route.chongqing.kunming",
         "route.wuhan.nanchang"
       ],
       "event_kinds": [
@@ -2794,6 +2795,19 @@
       "planted_mu": 13,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "xiangyang",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.frost_river_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.frost_river_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.frost_river_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 1,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "taian",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

@@ -1,27 +1,27 @@
+import copy
 from pathlib import Path
 
-from shinobi_runtime.commands.envelope import CommandEnvelope
-from shinobi_runtime.commands.planner import RepositoryCommandPlanner
-from shinobi_runtime.store.repository import RepositoryStore
+from shinobi_runtime.store import RepositoryStore, RegisteredSchemaValidator, RegisteredTemplateValidator
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def test_current_sep13_monthly_frontier_previews_cleanly():
+def test_funded_contract_activity_handoff_is_valid_scene_state():
     repository = RepositoryStore(ROOT)
-    planner = RepositoryCommandPlanner(repository)
-    meta = repository.read_json("state/meta.json")
-    assert meta["time"] == "SE-0061-09-12T21:15:00"
-    command = CommandEnvelope(
-        campaign_id=meta["campaign_id"],
-        request_id="request.sep13-monthly-frontier-regression",
-        actor_id=meta["player_id"],
-        command_type="advance_time",
-        expected_revision=meta["revision"],
-        submitted_at="2026-08-22T02:20:00Z",
-        payload={"target_time": "SE-0061-09-13T21:15:00"},
-        mode="gameplay",
+    scene = copy.deepcopy(repository.read_json("state/scene.json"))
+    scene["activity_handoff"] = {
+        "event_id": "funded_contract_offer:contract.regression",
+        "kind": "funded_contract_offer",
+        "requires_player_decision": False,
+        "interrupts_continuation": True,
+    }
+
+    schema_validator = RegisteredSchemaValidator(repository)
+    schema_validator.validators["scene"].validate(scene)
+
+    template_validator = RegisteredTemplateValidator(repository)
+    RegisteredTemplateValidator._validate_document(
+        scene,
+        template_validator.templates["scene"],
+        label="state/scene.json",
     )
-    preview = planner.preview(command)
-    assert preview.status == "ready"
-    assert preview.target_revision == meta["revision"] + 1

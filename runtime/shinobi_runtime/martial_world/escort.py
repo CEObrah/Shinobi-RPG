@@ -273,18 +273,23 @@ def _market_path(region: str) -> str:
 def _party_demand(
     *, geography: Mapping[str, Any], civilian_state: Mapping[str, Any], at: datetime,
 ) -> list[dict[str, Any]]:
-    """Create bounded aggregate civilian travel demand from real populations.
+    """Create aggregate paid-protection demand from real civilian populations.
 
-    This creates no named person and moves no population at offer time. A party
-    represents ordinary merchants, pilgrims, scholars or family travelers whose
-    individual identity is not mechanically relevant unless later promoted.
+    Most civilian travel does not hire martial escorts. The monthly incidence
+    rises with population but remains probabilistic and deterministic, preventing
+    every mapped route from turning into a paid contract board entry. No named
+    person or population is moved at offer time.
     """
     regions = _place_regions(geography)
     places = civilian_state.get("places", {}) if isinstance(civilian_state, Mapping) else {}
     routes = geography.get("routes", []) if isinstance(geography, Mapping) else []
     if not isinstance(places, Mapping) or not isinstance(routes, list):
         return []
-    kinds = ("merchant_and_family", "pilgrims", "scholars_and_attendants", "civilian_travelers")
+    kinds = (
+        "merchant_and_family", "pilgrims", "scholars_and_attendants",
+        "physician_and_attendants", "wedding_procession", "official_envoy_party",
+        "civilian_travelers",
+    )
     out: list[dict[str, Any]] = []
     for route in sorted((r for r in routes if isinstance(r, Mapping)), key=lambda r: str(r.get("id") or "")):
         a = str(route.get("from") or ""); b = str(route.get("to") or "")
@@ -295,9 +300,18 @@ def _party_demand(
             if pop < 500:
                 continue
             roll = _stable_int("escort-party", route.get("id"), source, destination, at.year, at.month)
-            # One monthly board offer is enough for ordinary party demand on a
-            # route; volume affects party size, not an unbounded list of offers.
-            party_size = 3 + min(17, max(0, pop // 25000)) + roll % 6
+            incidence_permille = min(220, max(20, pop // 500))
+            if roll % 1000 >= incidence_permille:
+                continue
+            party_kind = kinds[(roll // 7) % len(kinds)]
+            if party_kind == "wedding_procession":
+                party_size = 8 + roll % 13
+            elif party_kind == "pilgrims":
+                party_size = 6 + roll % 15
+            elif party_kind == "official_envoy_party":
+                party_size = 3 + roll % 6
+            else:
+                party_size = 3 + min(12, max(0, pop // 30000)) + roll % 6
             out.append({
                 "route_id": str(route.get("id") or ""),
                 "source_place": source,
@@ -305,7 +319,7 @@ def _party_demand(
                 "source_region": regions.get(source, ""),
                 "destination_region": regions.get(destination, ""),
                 "protected_people_count": party_size,
-                "civilian_party_kind": kinds[(roll // 7) % len(kinds)],
+                "civilian_party_kind": party_kind,
             })
     return out
 

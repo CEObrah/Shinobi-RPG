@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 76
+      "owner_cursor": 80
     },
     "faction_annual": {
       "interval_days": 365,
@@ -2884,6 +2884,32 @@
       "kind": "faction_operation_arrival",
       "due_at": "0061-09-15T16:15:00",
       "owner_ref": "operation:formal_challenge:faction.grey_river_band:faction.tiger_step_school:006109",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_cao:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_cao:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_cao",
+      "crop_ref": "vegetables",
+      "planted_mu": 10,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "kaifeng",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_cheng:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_cheng:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_cheng",
+      "crop_ref": "vegetables",
+      "planted_mu": 50,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "nanjing",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }
   }

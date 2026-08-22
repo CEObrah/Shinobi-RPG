@@ -43,14 +43,21 @@ class JianghuRetinueCommandsMixin:
 
         if action == "request":
             retinue_ref = str(command.payload.get("retinue_ref") or "")
-            chooser_ref = str(command.payload.get("chooser_ref") or "")
+            chooser_refs_raw = command.payload.get("chooser_refs")
+            if (
+                not isinstance(chooser_refs_raw, (list, tuple))
+                or not chooser_refs_raw
+                or any(not isinstance(ref, str) or not ref for ref in chooser_refs_raw)
+                or len(set(chooser_refs_raw)) != len(chooser_refs_raw)
+            ):
+                raise CommandRejectedError("retinue_chooser_refs_invalid")
+            chooser_refs = [str(ref) for ref in chooser_refs_raw]
             try:
                 requested_count = int(command.payload.get("requested_count"))
             except (TypeError, ValueError) as exc:
                 raise CommandRejectedError("retinue_requested_count_invalid") from exc
             if not retinue_ref or not retinue_ref.startswith("retinue."):
                 raise CommandRejectedError("retinue_ref_invalid")
-            # 0 means the authorized chooser may decide between two and three.
             if requested_count not in {0, 2, 3}:
                 raise CommandRejectedError("retinue_requested_count_invalid")
             if any(
@@ -64,15 +71,21 @@ class JianghuRetinueCommandsMixin:
 
             try:
                 _actor_path, actor_roster, _actor_ordinal, actor = roster_person(self.repository, command.actor_id)
-                _chooser_path, chooser_roster, _chooser_ordinal, chooser = roster_person(self.repository, chooser_ref)
             except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
                 raise CommandRejectedError("retinue_person_not_found") from exc
             faction_ref = str(actor.get("faction_ref") or actor_roster.get("faction_ref") or "")
-            chooser_faction = str(chooser.get("faction_ref") or chooser_roster.get("faction_ref") or "")
-            if not faction_ref or chooser_faction != faction_ref:
+            if not faction_ref:
                 raise CommandRejectedError("retinue_chooser_wrong_faction")
-            if not (_office_keys(chooser) & _AUTHORIZED_CHOOSER_OFFICES):
-                raise CommandRejectedError("retinue_chooser_not_authorized")
+            for chooser_ref in chooser_refs:
+                try:
+                    _path, chooser_roster, _ordinal, chooser = roster_person(self.repository, chooser_ref)
+                except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
+                    raise CommandRejectedError("retinue_person_not_found") from exc
+                chooser_faction = str(chooser.get("faction_ref") or chooser_roster.get("faction_ref") or "")
+                if chooser_faction != faction_ref:
+                    raise CommandRejectedError("retinue_chooser_wrong_faction")
+                if not (_office_keys(chooser) & _AUTHORIZED_CHOOSER_OFFICES):
+                    raise CommandRejectedError("retinue_chooser_not_authorized")
 
             requested_at = _dt(current_time)
             due_at = requested_at + timedelta(hours=12)
@@ -81,7 +94,7 @@ class JianghuRetinueCommandsMixin:
                 "operation_kind": "standing_retinue",
                 "faction_ref": faction_ref,
                 "leader_ref": command.actor_id,
-                "chooser_ref": chooser_ref,
+                "chooser_refs": chooser_refs,
                 "requested_count": requested_count,
                 "member_refs": [],
                 "member_roles": {},
@@ -97,7 +110,7 @@ class JianghuRetinueCommandsMixin:
                         "kind": "retinue_assignment_review",
                         "owner_ref": retinue_ref,
                         "retinue_ref": retinue_ref,
-                        "chooser_ref": chooser_ref,
+                        "chooser_refs": chooser_refs,
                         "due_at": due_at.isoformat(),
                         "requires_player_decision": False,
                     },
@@ -124,6 +137,8 @@ class JianghuRetinueCommandsMixin:
                 row = state.get("deployments", {}).get(retinue_ref) if isinstance(state, Mapping) else None
                 if not isinstance(row, Mapping) or row.get("status") != "assignment_pending":
                     raise ValueError("retinue request missing after planning")
+                if row.get("chooser_refs") != chooser_refs:
+                    raise ValueError("retinue joint chooser authority changed after planning")
                 schedule_after = overlay.read_json(_SCHEDULE)
                 event = schedule_after.get("one_off", {}).get(f"retinue_assignment_review:{retinue_ref}") if isinstance(schedule_after, Mapping) else None
                 if not isinstance(event, Mapping) or event.get("due_at") != due_at.isoformat():
@@ -137,7 +152,7 @@ class JianghuRetinueCommandsMixin:
                     "command_type": "jianghu_retinue_resolution",
                     "action": "request",
                     "retinue_ref": retinue_ref,
-                    "chooser_ref": chooser_ref,
+                    "chooser_refs": chooser_refs,
                     "requested_count": requested_count,
                     "chooser_discretion_2_to_3": requested_count == 0,
                     "assignment_review_at": due_at.isoformat(),

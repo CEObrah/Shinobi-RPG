@@ -4,7 +4,7 @@
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
-      "next_due_at": "0061-09-13T21:15:00",
+      "next_due_at": "0061-10-13T21:15:00",
       "owner_refs": [
         "beggars_society",
         "black_lance_company",
@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 236
+      "owner_cursor": 0
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3908,6 +3908,73 @@
       "kind": "autonomous_project_due",
       "due_at": "0061-09-23T21:15:00",
       "owner_ref": "project:auto:tea_horse_brotherhood:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:tiantai:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:tiantai:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:tiantai:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:tiantai:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:tiantai:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "tiantai",
+      "crop_ref": "vegetables",
+      "planted_mu": 64,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "tiantai",
+      "agriculture_level": 2,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:white_crane_school:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:white_crane_school:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:white_crane_school:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:wudang:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:wudang:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-28T21:15:00",
+      "owner_ref": "project:auto:wudang:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:wudang:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:wudang:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "wudang",
+      "crop_ref": "vegetables",
+      "planted_mu": 138,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "wudangshan",
+      "agriculture_level": 4,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "autonomous_project_due:project:auto:wuyi:006109:expand_building": {
+      "event_id": "autonomous_project_due:project:auto:wuyi:006109:expand_building",
+      "kind": "autonomous_project_due",
+      "due_at": "0061-09-19T21:15:00",
+      "owner_ref": "project:auto:wuyi:006109:expand_building",
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:wuyi:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:wuyi:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "wuyi",
+      "crop_ref": "vegetables",
+      "planted_mu": 67,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "wuyi",
+      "agriculture_level": 2,
+      "labor_coverage_milli": 1000,
       "requires_player_decision": false
     }
   }

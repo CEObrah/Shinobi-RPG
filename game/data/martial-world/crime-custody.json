@@ -1,0 +1,47 @@
+{
+  "offenses": {
+    "assault": {
+      "attention": 12,
+      "bounty_base_cash": 2000
+    },
+    "theft": {
+      "attention": 14,
+      "bounty_base_cash": 3000
+    },
+    "robbery": {
+      "attention": 22,
+      "bounty_base_cash": 5000
+    },
+    "kidnapping": {
+      "attention": 35,
+      "bounty_base_cash": 12000
+    },
+    "murder": {
+      "attention": 55,
+      "bounty_base_cash": 25000
+    },
+    "mass_killing": {
+      "attention": 90,
+      "bounty_base_cash": 80000
+    },
+    "smuggling": {
+      "attention": 15,
+      "bounty_base_cash": 3500
+    },
+    "prisoner_escape": {
+      "attention": 20,
+      "bounty_base_cash": 6000
+    }
+  },
+  "custody_actions": [
+    "restrain",
+    "release",
+    "escape_attempt"
+  ],
+  "rules": [
+    "Government attention requires delivered evidence with jurisdiction and confidence; hidden crimes are not telepathically known.",
+    "A delivered evidence reference may be consumed only once by government attention; compact hashes are retained solely to prevent replay.",
+    "Capture creates a conserved custody record for an existing person. It never creates, teleports, or removes a body.",
+    "Custody escape succeeds directly only when the current custodian is absent or physically unable to maintain custody; otherwise the prisoner must first create a physical opening through combat or injury. Release and escape change only current custody authority."
+  ]
+}

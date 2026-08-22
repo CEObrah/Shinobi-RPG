@@ -1,0 +1,31 @@
+{
+  "salience_classes": {
+    "internal": {
+      "interrupts_event_seeking": false,
+      "requires_player_decision": false
+    },
+    "soft_player_facing": {
+      "interrupts_event_seeking": true,
+      "requires_player_decision": false
+    },
+    "hard_decision": {
+      "interrupts_event_seeking": true,
+      "requires_player_decision": true
+    }
+  },
+  "soft_examples": [
+    "delivered faction report",
+    "new funded contract offer",
+    "ranking publication",
+    "tournament registration opening",
+    "family check-in",
+    "completed commissioned work report"
+  ],
+  "hard_examples": [
+    "hostile contact involving Tang Wei",
+    "irreversible treatment choice",
+    "accept/refuse office or contract",
+    "immediate surrender/mercy decision"
+  ],
+  "rule": "Autonomous work does not automatically become player knowledge. A lawful delivery/observation route is required before a handoff is player-facing."
+}

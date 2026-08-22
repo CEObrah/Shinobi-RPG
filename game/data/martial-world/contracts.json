@@ -1,0 +1,23 @@
+{
+  "finite_types": {
+    "escort": {
+      "base_admin_cash": 400,
+      "distance_cash_per_km_per_escort": 6,
+      "cargo_liability_milli": 12,
+      "threat_premium_cash_per_score_per_escort": 4,
+      "deadline_premium_per_hour_saved_cash": 15
+    }
+  },
+  "lifecycle": [
+    "offered",
+    "accepted",
+    "in_progress",
+    "objective_resolved",
+    "settled",
+    "failed",
+    "expired"
+  ],
+  "funding_rule": "A contract offer escrows its maximum promised payment from the issuer or funding institution before acceptance. No unfunded rewards.",
+  "generation_rule": "Paid contracts are created only from conserved regional shipment demand. Government bounties remain warrant obligations rather than contract owners.",
+  "assignment_rule": "Accepted escort contracts bind exact participant references, conserved cargo, route ownership, funded escrow and current objective state. Delegation never duplicates people."
+}

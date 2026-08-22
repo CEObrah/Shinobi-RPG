@@ -1,0 +1,114 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-social-state-1.0",
+  "target_schema": "jianghu-social-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "relationships",
+        "courtships"
+      ],
+      "canonical_order": [
+        "schema",
+        "relationships",
+        "courtships"
+      ]
+    },
+    "/relationships": {
+      "mode": "open_map"
+    },
+    "/relationships/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "trust",
+        "affection",
+        "respect",
+        "familiarity"
+      ],
+      "canonical_order": [
+        "trust",
+        "affection",
+        "respect",
+        "familiarity"
+      ]
+    },
+    "/courtships": {
+      "mode": "open_map"
+    },
+    "/courtships/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_refs",
+        "status",
+        "started_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/relationships": [
+      "object"
+    ],
+    "/relationships/*": [
+      "object"
+    ],
+    "/relationships/*/trust": [
+      "integer"
+    ],
+    "/relationships/*/affection": [
+      "integer"
+    ],
+    "/relationships/*/respect": [
+      "integer"
+    ],
+    "/relationships/*/familiarity": [
+      "integer"
+    ],
+    "/courtships": [
+      "object"
+    ],
+    "/courtships/*": [
+      "object"
+    ],
+    "/courtships/*/person_refs": [
+      "array"
+    ],
+    "/courtships/*/person_refs/*": [
+      "string"
+    ],
+    "/courtships/*/status": [
+      "string"
+    ],
+    "/courtships/*/started_at": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/courtships/*/person_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Relationship rows store only current mechanical scores; explanation history and empty evidence arrays are not state.",
+    "Empty relationships/courtships maps are omitted.",
+    "Courtship start time persists because it is current relationship-stage chronology consumed by family state."
+  ]
+}

@@ -1,0 +1,546 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-combat-state-1.0",
+  "target_schema": "jianghu-combat-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "combats"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "combats"
+      ]
+    },
+    "/combats": {
+      "mode": "open_map"
+    },
+    "/combats/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "combat_id",
+        "status",
+        "started_at",
+        "elapsed_ms",
+        "zone_ref",
+        "sides",
+        "objective",
+        "positions",
+        "obstacles",
+        "combatants",
+        "team_plans",
+        "awareness_mode",
+        "winner_side"
+      ]
+    },
+    "/combats/*/sides": {
+      "mode": "closed",
+      "allowed_keys": [
+        "side_a",
+        "side_b"
+      ]
+    },
+    "/combats/*/objective": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "target_refs",
+        "required_successes",
+        "progress",
+        "status",
+        "movement_ref",
+        "tournament_ref"
+      ]
+    },
+    "/combats/*/positions": {
+      "mode": "open_map"
+    },
+    "/combats/*/positions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "zone_ref",
+        "elevation_mm",
+        "cover_milli",
+        "x_mm",
+        "y_mm",
+        "facing_mdeg",
+        "body_radius_mm",
+        "vx_mmps",
+        "vy_mmps",
+        "stance"
+      ]
+    },
+    "/combats/*/obstacles/*": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "defense_state",
+        "balance_milli",
+        "limb_commitment_milli",
+        "weapon_position",
+        "status_families",
+        "surprise_milli",
+        "recovery_until_ms",
+        "ready_weapon_ref",
+        "ready_hands_required",
+        "observed_refs",
+        "awareness_confidence_milli",
+        "concealment_milli",
+        "qi_allocation_milli",
+        "incapacitated_at_ms",
+        "mount"
+      ]
+    },
+    "/combats/*/combatants/*/defense_state": {
+      "mode": "closed",
+      "allowed_keys": [
+        "load_milli",
+        "last_at_ms",
+        "recent_attackers"
+      ]
+    },
+    "/combats/*/team_plans": {
+      "mode": "open_map"
+    },
+    "/combats/*/team_plans/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "plan_id",
+        "side_ref",
+        "generated_at_ms",
+        "objective_kind",
+        "primary_threat_ref",
+        "primary_threat_score",
+        "primary_position_snapshot",
+        "tactical_problem",
+        "desired_states",
+        "known_enemy_refs",
+        "coordination_latency_ms",
+        "assignments",
+        "replan_reasons"
+      ]
+    },
+    "/combats/*/team_plans/*/*": {
+      "mode": "open_map"
+    },
+    "/combats/*/team_plans/*/primary_position_snapshot": {
+      "mode": "closed",
+      "allowed_keys": [
+        "x_mm",
+        "y_mm"
+      ]
+    },
+    "/combats/*/team_plans/*/assignments": {
+      "mode": "open_map"
+    },
+    "/combats/*/team_plans/*/assignments/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "role",
+        "target_ref",
+        "preferred_action",
+        "role_score",
+        "communication_delay_ms",
+        "setup_for_roles",
+        "requires_line_of_sight"
+      ]
+    },
+    "/combats/*/combatants/*/defense_state/recent_attackers": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants/*/defense_state/recent_attackers/*": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants/*/qi_allocation_milli": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants/*/mount": {
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "owner_faction_ref",
+        "condition_milli",
+        "status",
+        "active",
+        "inventory_debited",
+        "service_loss_pending",
+        "disabled_at_ms"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/combats": [
+      "object"
+    ],
+    "/combats/*": [
+      "object"
+    ],
+    "/combats/*/combat_id": [
+      "string"
+    ],
+    "/combats/*/status": [
+      "string"
+    ],
+    "/combats/*/started_at": [
+      "string"
+    ],
+    "/combats/*/elapsed_ms": [
+      "integer"
+    ],
+    "/combats/*/zone_ref": [
+      "string"
+    ],
+    "/combats/*/sides": [
+      "object"
+    ],
+    "/combats/*/sides/side_a": [
+      "array"
+    ],
+    "/combats/*/sides/side_a/*": [
+      "string"
+    ],
+    "/combats/*/sides/side_b": [
+      "array"
+    ],
+    "/combats/*/sides/side_b/*": [
+      "string"
+    ],
+    "/combats/*/objective": [
+      "object"
+    ],
+    "/combats/*/objective/kind": [
+      "string"
+    ],
+    "/combats/*/objective/target_refs": [
+      "array"
+    ],
+    "/combats/*/objective/target_refs/*": [
+      "string"
+    ],
+    "/combats/*/objective/required_successes": [
+      "integer"
+    ],
+    "/combats/*/objective/progress": [
+      "integer"
+    ],
+    "/combats/*/objective/status": [
+      "string"
+    ],
+    "/combats/*/positions": [
+      "object"
+    ],
+    "/combats/*/positions/*": [
+      "object"
+    ],
+    "/combats/*/positions/*/zone_ref": [
+      "string"
+    ],
+    "/combats/*/positions/*/elevation_mm": [
+      "integer"
+    ],
+    "/combats/*/positions/*/cover_milli": [
+      "integer"
+    ],
+    "/combats/*/positions/*/x_mm": [
+      "integer"
+    ],
+    "/combats/*/positions/*/y_mm": [
+      "integer"
+    ],
+    "/combats/*/positions/*/facing_mdeg": [
+      "integer"
+    ],
+    "/combats/*/positions/*/body_radius_mm": [
+      "integer"
+    ],
+    "/combats/*/positions/*/vx_mmps": [
+      "integer"
+    ],
+    "/combats/*/positions/*/vy_mmps": [
+      "integer"
+    ],
+    "/combats/*/positions/*/stance": [
+      "string"
+    ],
+    "/combats/*/obstacles": [
+      "array"
+    ],
+    "/combats/*/obstacles/*": [
+      "object"
+    ],
+    "/combats/*/combatants": [
+      "object"
+    ],
+    "/combats/*/combatants/*": [
+      "object"
+    ],
+    "/combats/*/combatants/*/defense_state": [
+      "object"
+    ],
+    "/combats/*/combatants/*/defense_state/load_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/defense_state/last_at_ms": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/balance_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/limb_commitment_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/weapon_position": [
+      "string"
+    ],
+    "/combats/*/combatants/*/status_families": [
+      "array"
+    ],
+    "/combats/*/combatants/*/status_families/*": [
+      "string"
+    ],
+    "/combats/*/combatants/*/surprise_milli": [
+      "integer"
+    ],
+    "/combats/*/team_plans": [
+      "object"
+    ],
+    "/combats/*/team_plans/*": [
+      "object"
+    ],
+    "/combats/*/awareness_mode": [
+      "string"
+    ],
+    "/combats/*/winner_side": [
+      "null",
+      "string"
+    ],
+    "/combats/*/team_plans/*/plan_id": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/side_ref": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/generated_at_ms": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/objective_kind": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/primary_threat_ref": [
+      "null",
+      "string"
+    ],
+    "/combats/*/team_plans/*/primary_threat_score": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/primary_position_snapshot": [
+      "object"
+    ],
+    "/combats/*/team_plans/*/primary_position_snapshot/x_mm": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/primary_position_snapshot/y_mm": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/tactical_problem": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/desired_states": [
+      "array"
+    ],
+    "/combats/*/team_plans/*/desired_states/*": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/known_enemy_refs": [
+      "array"
+    ],
+    "/combats/*/team_plans/*/known_enemy_refs/*": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/coordination_latency_ms": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/assignments": [
+      "object"
+    ],
+    "/combats/*/team_plans/*/assignments/*": [
+      "object"
+    ],
+    "/combats/*/team_plans/*/assignments/*/role": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/assignments/*/target_ref": [
+      "null",
+      "string"
+    ],
+    "/combats/*/team_plans/*/assignments/*/preferred_action": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/assignments/*/role_score": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/assignments/*/communication_delay_ms": [
+      "integer"
+    ],
+    "/combats/*/team_plans/*/assignments/*/setup_for_roles": [
+      "array"
+    ],
+    "/combats/*/team_plans/*/assignments/*/setup_for_roles/*": [
+      "string"
+    ],
+    "/combats/*/team_plans/*/assignments/*/requires_line_of_sight": [
+      "boolean"
+    ],
+    "/combats/*/team_plans/*/replan_reasons": [
+      "array"
+    ],
+    "/combats/*/team_plans/*/replan_reasons/*": [
+      "string"
+    ],
+    "/combats/*/combatants/*/defense_state/recent_attackers": [
+      "object"
+    ],
+    "/combats/*/combatants/*/defense_state/recent_attackers/*": [
+      "integer"
+    ],
+    "/combats/*/objective/movement_ref": [
+      "string"
+    ],
+    "/combats/*/objective/tournament_ref": [
+      "string"
+    ],
+    "/combats/*/combatants/*/recovery_until_ms": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/ready_weapon_ref": [
+      "null",
+      "string"
+    ],
+    "/combats/*/combatants/*/ready_hands_required": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/observed_refs": [
+      "array"
+    ],
+    "/combats/*/combatants/*/observed_refs/*": [
+      "string"
+    ],
+    "/combats/*/combatants/*/awareness_confidence_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/concealment_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/qi_allocation_milli": [
+      "object"
+    ],
+    "/combats/*/combatants/*/qi_allocation_milli/*": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/incapacitated_at_ms": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/mount": [
+      "object"
+    ],
+    "/combats/*/combatants/*/mount/kind": [
+      "string"
+    ],
+    "/combats/*/combatants/*/mount/owner_faction_ref": [
+      "string"
+    ],
+    "/combats/*/combatants/*/mount/condition_milli": [
+      "integer"
+    ],
+    "/combats/*/combatants/*/mount/status": [
+      "string"
+    ],
+    "/combats/*/combatants/*/mount/active": [
+      "boolean"
+    ],
+    "/combats/*/combatants/*/mount/inventory_debited": [
+      "boolean"
+    ],
+    "/combats/*/combatants/*/mount/service_loss_pending": [
+      "boolean"
+    ],
+    "/combats/*/combatants/*/mount/disabled_at_ms": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/combats/*/sides/side_a": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/sides/side_b": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/objective/target_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/obstacles": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/combats/*/combatants/*/status_families": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/team_plans/*/desired_states": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/team_plans/*/known_enemy_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/team_plans/*/assignments/*/setup_for_roles": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/team_plans/*/replan_reasons": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/combatants/*/observed_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Exact combat contact is geometry-owned; side membership never selects physical victims.",
+    "Exchange event traces are returned ephemerally and are not persisted in combat state."
+  ]
+}

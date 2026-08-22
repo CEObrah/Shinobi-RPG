@@ -1,0 +1,62 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-person-route-shard-1.0",
+  "target_schema": "jianghu-person-route-shard-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world/person-routes"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "people"
+      ],
+      "canonical_order": [
+        "schema",
+        "people"
+      ]
+    },
+    "/people": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/people": [
+      "object"
+    ],
+    "/people/*": [
+      "array"
+    ],
+    "/people/*/*": [
+      "string",
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/people/*": {
+      "item_types": [
+        "string",
+        "integer"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Each route value is [faction_ref, ordinal]. Roster path derives from faction_ref; person_id is already the map key.",
+    "The route bucket derives from the shard filename/hash and is never repeated inside state.",
+    "Routes are authority:false deterministic pointers to conserved roster bodies."
+  ]
+}

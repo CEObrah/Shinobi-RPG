@@ -1,0 +1,71 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-library-holdings-1.0",
+  "target_schema": "jianghu-library-holdings-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "factions"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "factions"
+      ],
+      "canonical_order": [
+        "schema",
+        "factions"
+      ]
+    },
+    "/factions": {
+      "mode": "open_map"
+    },
+    "/factions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "record_refs"
+      ],
+      "canonical_order": [
+        "record_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/factions": [
+      "object"
+    ],
+    "/factions/*": [
+      "object"
+    ],
+    "/factions/*/record_refs": [
+      "array"
+    ],
+    "/factions/*/record_refs/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/factions/*/record_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Store only the record references currently possessed by each faction.",
+    "Static record contents remain in game data."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "wear_milli": {
+    "ordinary_travel_per_100km": 2,
+    "training_day": 1,
+    "weapon_contact_light": 3,
+    "weapon_contact_heavy": 10
+  },
+  "repair": {
+    "general_integrity_milli_per_crafting_hour": 25,
+    "minimum_crafting_skill": 30,
+    "material_rule": "Consume the damaged fraction of the item recipe from faction raw-material stock; no repair may mint materials from cash."
+  },
+  "rules": [
+    "Ammunition is decremented on launch, not on hit.",
+    "Destroyed or lost items leave available inventory until physically recovered or replaced.",
+    "Repair consumes labor, physical materials and elapsed time; integrity cannot exceed the registered maximum."
+  ]
+}

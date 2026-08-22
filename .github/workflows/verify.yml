@@ -1,0 +1,66 @@
+name: Verify Shinobi Jianghu
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shinobi-verify-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+
+      - name: Fast structure and command-surface gate
+        run: python tools/quick_check.py
+
+      - name: Jianghu world semantic invariants
+        run: python tools/verify_jianghu_semantics.py
+
+      - name: Hot-state bloat and authority separation
+        run: python tools/audit_state_bloat.py
+
+      - name: Deterministic no-op round trip
+        run: python tools/verify_noop_roundtrip.py
+
+      - name: Changed-system regressions
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            base="${{ github.event.before }}"
+          else
+            base=""
+          fi
+          if [ -n "$base" ] && [ "$base" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$base^{commit}" 2>/dev/null; then
+            mapfile -t changed < <(git diff --name-only "$base" "$GITHUB_SHA")
+          elif [ -n "${GITHUB_SHA:-}" ]; then
+            mapfile -t changed < <(git show --pretty='' --name-only "$GITHUB_SHA")
+          else
+            changed=()
+          fi
+          python tools/test_changed.py "${changed[@]}"

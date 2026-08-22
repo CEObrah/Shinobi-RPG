@@ -1,0 +1,43 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-person-route-index-1.0",
+  "target_schema": "jianghu-person-route-index-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "person_count"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "person_count"
+      ],
+      "canonical_order": [
+        "schema",
+        "person_count"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/person_count": [
+      "integer"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "This authority:false root stores only routed persistent-person cardinality. Hash/shard policy lives in runtime, not campaign state."
+  ]
+}

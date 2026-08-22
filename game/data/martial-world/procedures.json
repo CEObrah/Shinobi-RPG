@@ -1,0 +1,35 @@
+{
+  "procedures": {
+    "medical_examination": {
+      "duration_minutes": 45
+    },
+    "wound_treatment_minor": {
+      "duration_minutes": 30
+    },
+    "wound_treatment_major": {
+      "duration_minutes": 120
+    },
+    "training_assessment": {
+      "duration_minutes": 60
+    },
+    "recruitment_examination_single": {
+      "duration_minutes": 20
+    },
+    "faction_council": {
+      "duration_minutes": 90
+    },
+    "contract_briefing": {
+      "duration_minutes": 30
+    },
+    "escort_inspection": {
+      "duration_minutes": 45
+    },
+    "tournament_registration": {
+      "duration_minutes": 20
+    },
+    "martial_duel_formalities": {
+      "duration_minutes": 10
+    }
+  },
+  "rule": "Procedure kind selects one closed registered duration. Caller never supplies arbitrary elapsed time."
+}

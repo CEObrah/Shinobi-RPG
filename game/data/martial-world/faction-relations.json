@@ -1,0 +1,142 @@
+{
+  "axes": {
+    "trust": [
+      -100,
+      100
+    ],
+    "respect": [
+      -100,
+      100
+    ],
+    "hostility": [
+      0,
+      100
+    ],
+    "obligation": [
+      -100,
+      100
+    ]
+  },
+  "proposal_kinds": [
+    "silver_exchange"
+  ],
+  "event_deltas": {
+    "honored_contract": {
+      "trust": 8,
+      "respect": 4,
+      "hostility": -3,
+      "obligation": 0
+    },
+    "rescued_members": {
+      "trust": 12,
+      "respect": 8,
+      "hostility": -8,
+      "obligation": 12
+    },
+    "public_insult": {
+      "trust": -8,
+      "respect": -5,
+      "hostility": 10,
+      "obligation": 0
+    },
+    "member_killed": {
+      "trust": -20,
+      "respect": 0,
+      "hostility": 30,
+      "obligation": 0
+    },
+    "debt_repaid": {
+      "trust": 6,
+      "respect": 3,
+      "hostility": -2,
+      "obligation": -15
+    },
+    "treaty_breached": {
+      "trust": -35,
+      "respect": -15,
+      "hostility": 35,
+      "obligation": 0
+    },
+    "marriage_tie": {
+      "trust": 15,
+      "respect": 5,
+      "hostility": -10,
+      "obligation": 8
+    },
+    "tournament_sportsmanship": {
+      "trust": 3,
+      "respect": 6,
+      "hostility": -2,
+      "obligation": 0
+    },
+    "tournament_rivalry": {
+      "trust": -1,
+      "respect": 5,
+      "hostility": 3,
+      "obligation": 0
+    },
+    "armed_raid": {
+      "trust": -12,
+      "respect": -2,
+      "hostility": 18,
+      "obligation": 0
+    },
+    "property_seized": {
+      "trust": -10,
+      "respect": -2,
+      "hostility": 14,
+      "obligation": 0
+    },
+    "property_recovered": {
+      "trust": 3,
+      "respect": 1,
+      "hostility": -4,
+      "obligation": 0
+    },
+    "silver_aid_given": {
+      "trust": 2,
+      "respect": 2,
+      "hostility": -1,
+      "obligation": 1
+    },
+    "silver_aid_received": {
+      "trust": 8,
+      "respect": 3,
+      "hostility": -4,
+      "obligation": 12
+    },
+    "tournament_contact": {
+      "trust": 1,
+      "respect": 2,
+      "hostility": 0,
+      "obligation": 0
+    },
+    "tournament_tension": {
+      "trust": -2,
+      "respect": 1,
+      "hostility": 2,
+      "obligation": 0
+    },
+    "war_battle": {
+      "trust": -18,
+      "respect": 0,
+      "hostility": 12,
+      "obligation": 0
+    },
+    "tournament_mediation": {
+      "trust": 2,
+      "respect": 3,
+      "hostility": -5,
+      "obligation": 0
+    }
+  },
+  "rules": [
+    "Faction relations are directed edges because one institution may trust/respect another asymmetrically.",
+    "Relationship values move only from committed events known to the relevant institution.",
+    "The active diplomacy command supports only a one-off conserved silver exchange; treaties are not advertised without production consumers.",
+    "No global ally/enemy flag grants free knowledge, resources, office or combat bonuses.",
+    "Rivalry, feud and war are derived from current directed hostility thresholds. Political camp can modify willingness to act but never creates hostility or war by itself.",
+    "Great Tournament mediation can reduce an existing rivalry or war only through a real senior-delegation contact under safe-conduct; political camp alone never triggers reconciliation.",
+    "A real public tournament match can create bounded martial rivalry when prior hostility or cross-camp pressure colors the encounter. Rivalry still raises respect and cannot jump directly to feud or war from one match."
+  ]
+}

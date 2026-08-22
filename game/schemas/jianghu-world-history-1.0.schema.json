@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "jianghu-world-history-1.0",
+  "type": "object",
+  "properties": {
+    "schema": {"const": "jianghu-world-history-1.0"},
+    "recent": {"type": "array", "items": {"type": "object"}},
+    "counters": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "totals": {"type": "object", "additionalProperties": {"type": "object", "additionalProperties": {"type": "integer"}}}
+  },
+  "required": ["schema", "recent", "counters", "totals"],
+  "additionalProperties": false
+}

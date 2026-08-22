@@ -1,0 +1,239 @@
+{
+  "saturation": {
+    "tracked_per_person_per_category_0_100": true,
+    "decay_per_day": 10,
+    "effect_multiplier": "max(0, 100 - current_saturation) / 100 before the new dose is applied",
+    "dose_saturation_gain": 40,
+    "overdose_rule": "If saturation after dose exceeds 100, excess becomes deterministic toxicity burden of the same amount.",
+    "decay_per_hour_milli": 417,
+    "toxicity_decay_per_hour_milli": 125,
+    "maximum_safe_toxicity": 100,
+    "severe_toxicity_threshold": 150,
+    "toxicity_consequence_formula": {
+      "fatigue_burden_per_1000_toxicity_milli": 1,
+      "coordination_penalty_milli_per_1000_toxicity_milli": 2,
+      "shock_begins_at_toxicity_milli": 50000,
+      "shock_per_1000_excess_toxicity_milli": 1,
+      "organ_stress_begins_at_toxicity_milli": 100000,
+      "organ_stress_per_1000_excess_toxicity_milli": 1,
+      "maximum_coordination_penalty_milli": 600
+    }
+  },
+  "recipes": {
+    "stamina_tonic": {
+      "ingredients": {
+        "astragalus": 1,
+        "ginger": 1
+      },
+      "batch_size": 10,
+      "active_hours": 4,
+      "effect": {
+        "fatigue_recovery_rate_milli": 1250,
+        "duration_hours": 8
+      },
+      "category": "stamina",
+      "minimum_apothecary_level": 1,
+      "minimum_medicine_skill": 35,
+      "labor_hours": 4,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "blood_tonic": {
+      "ingredients": {
+        "angelica": 1,
+        "safflower": 1,
+        "ginseng": 1
+      },
+      "batch_size": 10,
+      "active_hours": 6,
+      "effect": {
+        "blood_regeneration_rate_milli": 1500,
+        "duration_hours": 48
+      },
+      "category": "blood_recovery",
+      "minimum_apothecary_level": 2,
+      "minimum_medicine_skill": 55,
+      "labor_hours": 6,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "wound_salve": {
+      "ingredients": {
+        "coptis": 1,
+        "safflower": 1,
+        "licorice": 1
+      },
+      "batch_size": 10,
+      "active_hours": 5,
+      "effect": {
+        "external_wound_healing_rate_milli": 1250,
+        "duration_hours": 48
+      },
+      "category": "wound",
+      "minimum_apothecary_level": 2,
+      "minimum_medicine_skill": 55,
+      "labor_hours": 5,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "bone_medicine": {
+      "ingredients": {
+        "notoginseng": 1,
+        "angelica": 1,
+        "astragalus": 1
+      },
+      "batch_size": 8,
+      "active_hours": 8,
+      "effect": {
+        "fracture_healing_rate_milli": 1250,
+        "duration_hours": 168
+      },
+      "category": "bone",
+      "minimum_apothecary_level": 3,
+      "minimum_medicine_skill": 80,
+      "labor_hours": 8,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "internal_injury_medicine": {
+      "ingredients": {
+        "ginseng": 1,
+        "notoginseng": 1,
+        "angelica": 1
+      },
+      "batch_size": 8,
+      "active_hours": 8,
+      "effect": {
+        "soft_tissue_and_organ_healing_rate_milli": 1250,
+        "duration_hours": 48
+      },
+      "category": "internal",
+      "minimum_apothecary_level": 3,
+      "minimum_medicine_skill": 80,
+      "labor_hours": 8,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "pain_tonic": {
+      "ingredients": {
+        "corydalis": 1,
+        "licorice": 1
+      },
+      "batch_size": 10,
+      "active_hours": 4,
+      "effect": {
+        "pain_severity_reduction": 20,
+        "duration_hours": 6
+      },
+      "category": "pain",
+      "minimum_apothecary_level": 1,
+      "minimum_medicine_skill": 35,
+      "labor_hours": 4,
+      "production_cost_rule": "ingredient cultivation value + skilled apothecary labor; no quality roll"
+    },
+    "detox_medicine": {
+      "batch_size": 10,
+      "active_hours": 6,
+      "category": "antidote",
+      "minimum_apothecary_level": 2,
+      "minimum_medicine_skill": 55,
+      "labor_hours": 6,
+      "production_cost_rule": "abstract fictional herb inputs + skilled apothecary labor; no real-world formulation instructions",
+      "ingredients": {
+        "coptis": 1,
+        "licorice": 1,
+        "ginger": 1
+      },
+      "effect": {
+        "toxin_clearance_rate_milli": 1350,
+        "duration_hours": 12
+      },
+      "toxin_affinity": {
+        "sedative": 1050,
+        "paralytic": 1050,
+        "anticoagulant": 1050,
+        "cardiotoxic": 1050,
+        "neurotoxic": 1050
+      }
+    },
+    "nerve_antidote": {
+      "batch_size": 10,
+      "active_hours": 6,
+      "category": "antidote",
+      "minimum_apothecary_level": 3,
+      "minimum_medicine_skill": 80,
+      "labor_hours": 6,
+      "production_cost_rule": "abstract fictional herb inputs + skilled apothecary labor; no real-world formulation instructions",
+      "ingredients": {
+        "coptis": 1,
+        "ginseng": 1,
+        "licorice": 1
+      },
+      "effect": {
+        "toxin_clearance_rate_milli": 1600,
+        "duration_hours": 12
+      },
+      "toxin_affinity": {
+        "sedative": 1450,
+        "paralytic": 1600,
+        "neurotoxic": 1550,
+        "anticoagulant": 700,
+        "cardiotoxic": 700
+      }
+    },
+    "blood_cardiac_antidote": {
+      "batch_size": 10,
+      "active_hours": 6,
+      "category": "antidote",
+      "minimum_apothecary_level": 3,
+      "minimum_medicine_skill": 80,
+      "labor_hours": 6,
+      "production_cost_rule": "abstract fictional herb inputs + skilled apothecary labor; no real-world formulation instructions",
+      "ingredients": {
+        "notoginseng": 1,
+        "angelica": 1,
+        "ginseng": 1
+      },
+      "effect": {
+        "toxin_clearance_rate_milli": 1600,
+        "duration_hours": 12
+      },
+      "toxin_affinity": {
+        "anticoagulant": 1600,
+        "cardiotoxic": 1600,
+        "sedative": 700,
+        "paralytic": 700,
+        "neurotoxic": 750
+      }
+    }
+  },
+  "rules": [
+    "No recipe is generated at runtime. Pills and medicines never erase anatomical damage; they modify registered recovery/resource processes only.",
+    "Production has no random quality roll. Sufficient registered inputs, facility, professional skill, labor and time produce the fixed batch.",
+    "Facility level, Medicine skill, conserved ingredients and labor hours are mandatory inputs to every batch.",
+    "No medicine recipe directly restores Qi or grants cultivation progress. Qi is developed only by cultivation/training and recovered only by elapsed-time physiology/Qi-Control rules."
+  ],
+  "administration": {
+    "inventory_rule": "One dose is removed from the exact holder before effect application. A missing dose rejects the administration.",
+    "person_state_fields": [
+      "category_saturation_milli",
+      "toxicity_milli",
+      "active_effects",
+      "last_settled_at"
+    ],
+    "settlement_rule": "Saturation and toxicity decay by exact elapsed minutes before every new dose and time boundary. Active effects expire at registered timestamps.",
+    "healing_rule": "Medicines create registered recovery modifiers only. Anatomy, bleeding, fracture, tendon, nerve and organ state remain health-system authority.",
+    "toxicity_rule": "Medicine toxicity is a persisted physiological burden. It deterministically adds fatigue/coordination burden, then shock and organ stress above registered thresholds; it is never only a descriptive label.",
+    "qi_rule": "No medicine restores Current Qi, increases Maximum Qi, grants Qi training credit, or substitutes for cultivation. Qi recovery is owned by elapsed rest/health/Qi-Control settlement."
+  },
+  "procedure_equipment": {
+    "physicians_kit": {
+      "reusable": true,
+      "rule": "Enables advanced diagnosis/stabilization procedures; it does not add flat Medicine skill."
+    },
+    "medical_supply_bundle": {
+      "consumable": true,
+      "rule": "Aggregate routine dressings, splinting and treatment expendables; one bundle is consumed by qualifying treatment."
+    }
+  },
+  "deterministic_formulas": {
+    "diagnosis": "60% Medicine + 25% Intelligence + 15% Perception, then observation/time/tool/environment modifiers",
+    "wound_treatment": "55% Medicine + 20% Dexterity + 15% Intelligence + 10% Perception, then injury/tool/supply/environment/time modifiers",
+    "poison_treatment": "65% Medicine + 25% Intelligence + 10% Perception, then toxin/burden/antidote/patient cultivation/facility modifiers"
+  }
+}

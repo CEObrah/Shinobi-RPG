@@ -1,0 +1,87 @@
+{
+  "schema": "file-template",
+  "template_id": "template.scene",
+  "target_schema": "scene",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "scene_id",
+    "location_id",
+    "present_person_ids",
+    "visible_person_ids"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "scene_id",
+        "location_id",
+        "active_combat_ref",
+        "decision_required",
+        "present_person_ids",
+        "visible_person_ids"
+      ],
+      "canonical_order": [
+        "schema",
+        "scene_id",
+        "location_id",
+        "active_combat_ref",
+        "decision_required",
+        "present_person_ids",
+        "visible_person_ids"
+      ]
+    }
+  },
+  "type_contracts": {
+    "/schema": [
+      "string"
+    ],
+    "/scene_id": [
+      "string"
+    ],
+    "/location_id": [
+      "string"
+    ],
+    "/active_combat_ref": [
+      "string"
+    ],
+    "/decision_required": [
+      "string"
+    ],
+    "/present_person_ids": [
+      "array"
+    ],
+    "/present_person_ids/*": [
+      "string"
+    ],
+    "/visible_person_ids": [
+      "array"
+    ],
+    "/visible_person_ids/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/present_person_ids": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/visible_person_ids": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Scene stores only current player-facing spatial/decision facts that are not derived from other authority.",
+    "World time derives from state/meta.json. Active-combat and time-passage booleans derive from active_combat_ref.",
+    "Narration summaries, choice-generation policy, caches and empty presentation arrays are not campaign state."
+  ]
+}

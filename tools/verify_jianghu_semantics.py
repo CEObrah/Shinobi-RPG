@@ -244,35 +244,70 @@ def main() -> int:
         # House succession is owned by the family succession-claim authority,
         # not by giving every child an adult ``heir`` standing office.
 
+    # Exact martial identities that leave a faction move into the sparse
+    # independent owner. They remain mechanically real and must stay inside
+    # conservation/semantic checks even though they no longer have a membership grade.
+    independent_doc = load("state/martial-world/independent-people.json")
+    independent_rows = independent_doc.get("people", []) if isinstance(independent_doc, dict) else []
+    independent_people: dict[str, dict] = {}
+    if not isinstance(independent_rows, list):
+        errors.append("independent people owner has invalid people array")
+        independent_rows = []
+    for person in independent_rows:
+        if not isinstance(person, dict):
+            errors.append("independent people owner contains a non-object person")
+            continue
+        pid = person.get("person_id")
+        if not isinstance(pid, str) or not pid:
+            errors.append("independent person without stable ID")
+            continue
+        if pid in people or pid in independent_people:
+            errors.append(f"duplicate persistent martial identity {pid}")
+            continue
+        if person.get("membership_grade") is not None or person.get("faction_ref") is not None:
+            errors.append(f"{pid}: independent person still carries active faction membership")
+        independent_people[pid] = person
+        name = person.get("name")
+        if not isinstance(name, str) or not name.strip():
+            errors.append(f"{pid}: independent person has invalid display name {name!r}")
+        else:
+            names[name] += 1
+
+    persistent_people = {**people, **independent_people}
     metrics.update({
         "factions": len(factions),
-        "people": len(people),
-        "martial_people": sum(count for grade, count in grade_counts.items() if grade in MARTIAL_GRADES),
+        "faction_people": len(people),
+        "independent_people": len(independent_people),
+        "people": len(persistent_people),
+        "martial_people": len(persistent_people),
         "unique_names": len(names),
         "maximum_name_collision": max(names.values(), default=0),
         "grade_counts": dict(sorted(grade_counts.items())),
         "faction_type_counts": dict(sorted(type_counts.items())),
     })
-    if len(people) != 11691:
-        errors.append(f"canonical campaign should contain 11691 persistent people, found {len(people)}")
-    if metrics["martial_people"] != len(people):
-        errors.append(f"every persistent faction person must be a martial member, found {metrics['martial_people']} of {len(people)}")
+    if len(persistent_people) < 11691:
+        errors.append(f"persistent martial identity loss: bootstrap=11691 current={len(persistent_people)}")
+    rostered_martial = sum(count for grade, count in grade_counts.items() if grade in MARTIAL_GRADES)
+    if rostered_martial != len(people):
+        errors.append(f"every rostered faction person must be a martial member, found {rostered_martial} of {len(people)}")
     if len(names) < 9000 or metrics["maximum_name_collision"] > 8:
         errors.append(f"generated name diversity remains too low: unique={len(names)} max_collision={metrics['maximum_name_collision']}")
 
     # Child physical/current capability validity. Authored adolescents may be
     # exceptional; the hard defects are infants and young children with adult bodies.
+    # Mass ceilings mirror deterministic_body_mass_kg's actual maximum male
+    # growth envelope (adult seed maximum 82 kg) rather than the bootstrap sample maxima.
     child_bands = {
-        "0_3": {"ages": range(0, 4), "mass": 18, "physical_attribute": 24, "martial": 10, "professional": 0},
-        "4_7": {"ages": range(4, 8), "mass": 27, "physical_attribute": 55, "martial": 16, "professional": 3},
-        "8_12": {"ages": range(8, 13), "mass": 45, "physical_attribute": 50, "martial": 18, "professional": 6},
+        "0_3": {"ages": range(0, 4), "mass": 20, "physical_attribute": 24, "martial": 10, "professional": 0},
+        "4_7": {"ages": range(4, 8), "mass": 36, "physical_attribute": 55, "martial": 16, "professional": 3},
+        "8_12": {"ages": range(8, 13), "mass": 56, "physical_attribute": 50, "martial": 18, "professional": 6},
     }
     child_metrics: dict[str, dict[str, int]] = {}
     authored_tang = set(TANG_TARGETS)
     physical_keys = ("strength", "speed", "dexterity", "endurance")
     for label, band in child_bands.items():
         rows = [
-            p for p in people.values()
+            p for p in persistent_people.values()
             if current_year - int(p.get("birth_year", current_year)) in band["ages"]
             and str(p.get("person_id", "")) not in authored_tang
         ]
@@ -398,7 +433,7 @@ def main() -> int:
     for cadence, rows in recurring.items():
         if isinstance(rows, dict):
             for owner_ref in rows:
-                if owner_ref in people or str(owner_ref).startswith("mw.person."):
+                if owner_ref in persistent_people or str(owner_ref).startswith("mw.person."):
                     errors.append(f"per-person scheduler host survives: {cadence}/{owner_ref}")
     metrics["scheduler_recurring_domains"] = sorted(recurring)
 
@@ -427,20 +462,20 @@ def main() -> int:
             if isinstance(last_evidence_ref, str) and last_evidence_ref and last_evidence_ref != evidence_ref:
                 errors.append(f"{warrant_ref}: warrant evidence disagrees with subject attention")
 
-    # Route operations can only reference exact people and conserved commitments.
+    # Route operations can only reference exact persistent people and conserved commitments.
     route_ops = load("state/martial-world/route-operations.json")
     for collection in ("movements",):
         for op_ref, operation in (route_ops.get(collection) or {}).items():
             refs = operation.get("participant_refs") or operation.get("escort_refs") or []
             for pid in refs:
-                if pid not in people:
+                if pid not in persistent_people:
                     errors.append(f"{op_ref}: route operation references missing person {pid}")
             for commitment_ref in operation.get("commitment_refs") or []:
                 if commitment_ref not in commitments:
                     errors.append(f"{op_ref}: route operation lacks live reservation {commitment_ref}")
     for contact_ref, contact in (route_ops.get("contacts") or {}).items():
         for pid in list(contact.get("outlaw_refs") or []) + list(contact.get("escort_refs") or []):
-            if pid not in people:
+            if pid not in persistent_people:
                 errors.append(f"{contact_ref}: contact references missing participant {pid}")
 
     # Current hot state should not carry implementation history or version trees.

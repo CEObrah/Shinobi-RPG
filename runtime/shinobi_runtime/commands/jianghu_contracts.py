@@ -247,12 +247,19 @@ class JianghuContractCommandsMixin:
             people = actor_roster.get("people", []) if isinstance(actor_roster, Mapping) else []
             if not isinstance(people, list):
                 raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
-            origin_people = [
-                person for person in people
-                if isinstance(person, Mapping)
-                and isinstance(person.get("person_id"), str)
-                and _person_location_matches(person, source_place=source_place, sites=sites)
-            ]
+            origin_people: list[Mapping[str, Any]] = []
+            for raw_person in people:
+                if not isinstance(raw_person, Mapping):
+                    continue
+                ref = raw_person.get("person_id")
+                if not isinstance(ref, str) or not ref:
+                    continue
+                try:
+                    _person_path, _person_roster, _person_ordinal, person = self._resolve_contract_person(ref)
+                except CommandRejectedError:
+                    continue
+                if _person_location_matches(person, source_place=source_place, sites=sites):
+                    origin_people.append(person)
             temporary_escort_refs = select_mission_escort_reinforcements(
                 actor,
                 origin_people,

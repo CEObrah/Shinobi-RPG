@@ -4,8 +4,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, FrozenSet, Mapping, Optional, Sequence
+
 from shinobi_runtime.martial_world.faction_state import read_faction, roster_path as faction_roster_path
 from shinobi_runtime.martial_world.inventory_state import hydrate_inventory_state
+from shinobi_runtime.martial_world.person_state import hydrate_roster_state
+from shinobi_runtime.martial_world.exact_combat import capability_from_person
+from shinobi_runtime.martial_world.money import format_copper
 
 from shinobi_runtime.api.contracts import (
     CommandPlan, CommandPlanner, CommandPreview, CommandRejectedError,
@@ -28,6 +32,7 @@ from shinobi_runtime.tx.canonical import thaw_json
 from shinobi_runtime.tx.errors import DirtyRepositoryError, IdempotencyConflictError, LockUnavailableError, RecoveryError, StaleRevisionError, TransactionError
 from shinobi_runtime.tx.locking import SingleWriterLock
 
+
 @dataclass(frozen=True)
 class OperationError(RuntimeError):
     status_code:int
@@ -36,12 +41,31 @@ class OperationError(RuntimeError):
         if self.status_code<400 or not self.code: raise ValueError('operation errors require HTTP failure status and code')
         RuntimeError.__init__(self,self.code)
 
+
 class PlanStateChangedError(RuntimeError): pass
+
 
 def _campaign_year(value: Any) -> int | None:
     text=str(value or '').removeprefix('SE-')
     try:return int(text.split('-',1)[0])
     except (TypeError,ValueError):return None
+
+
+def _combat_score(person: Mapping[str, Any]) -> int:
+    martial = person.get('martial_skills', {}) if isinstance(person.get('martial_skills'), Mapping) else {}
+    disciplines = [str(k) for k, v in martial.items() if isinstance(v, int) and not isinstance(v, bool) and int(v) > 0]
+    if not disciplines:
+        disciplines = ['unarmed']
+    best = 0
+    for discipline in disciplines:
+        try:
+            profile = capability_from_person(person, action_skill=discipline)
+        except (KeyError, TypeError, ValueError):
+            continue
+        score = (int(profile.offense) + int(profile.defense) + int(profile.control) + int(profile.mobility) + int(profile.reaction)) // 5
+        best = max(best, score)
+    return best
+
 
 class CampaignOperations:
     def __init__(self,*,repository:RepositoryStore,coordinator:TransactionCoordinator,command_planner:CommandPlanner,sheet_resolver:PersonSheetResolver,audit_provider:OocAuditProvider,allowed_actor_ids:FrozenSet[str],lock_timeout_seconds:float)->None:
@@ -70,12 +94,12 @@ class CampaignOperations:
 
     def _present_ids(self,scene:Mapping[str,Any])->list[str]:
         out=[]
-        for field in ('present_person_ids','visible_person_ids'):
+        for field in ('present_person_ids','visible_person_ids','derived_present_person_ids'):
             rows=scene.get(field,[])
             if isinstance(rows,list):
                 for ref in rows:
                     if isinstance(ref,str) and ref not in out: out.append(ref)
-        return out[:64]
+        return out
 
     def _derived_public_presence(self, meta: Mapping[str,Any], scene: Mapping[str,Any]) -> list[str]:
         site_ref=str(scene.get('location_id') or '')
@@ -115,7 +139,7 @@ class CampaignOperations:
             for fid in sorted(str(x) for x in faction_refs if isinstance(x,str)):
                 try:
                     _fp,faction=read_faction(self.repository,fid)
-                    roster=self.repository.read_json(faction_roster_path(fid))
+                    roster=hydrate_roster_state(self.repository.read_json(faction_roster_path(fid)), faction=faction)
                 except (FileNotFoundError,KeyError,ValueError):
                     continue
                 people=roster.get('people',[]) if isinstance(roster,Mapping) else []
@@ -124,7 +148,7 @@ class CampaignOperations:
             text=str(meta.get('time') or '').removeprefix('SE-')
             at=datetime.fromisoformat(text)
             exclude=set(self._present_ids(scene))
-            return derived_site_attendance(site_ref=site_ref,site=site,faction_people=faction_people,faction_headquarters=headquarters,sites=sites,at=at,unavailable_refs=unavailable,exclude_refs=exclude,limit=16,civic_people=civic_people(self.repository))
+            return derived_site_attendance(site_ref=site_ref,site=site,faction_people=faction_people,faction_headquarters=headquarters,sites=sites,at=at,unavailable_refs=unavailable,exclude_refs=exclude,limit=None,civic_people=civic_people(self.repository))
         except (FileNotFoundError,KeyError,TypeError,ValueError):
             return []
 
@@ -143,9 +167,10 @@ class CampaignOperations:
             merged=[]
             for ref in list(scene_view.get('present_person_ids',[]))+derived_present:
                 if isinstance(ref,str) and ref not in merged:merged.append(ref)
-            scene_view['present_person_ids']=merged[:64]
+            scene_view['present_person_ids']=merged
         player=player_view_from_person(player_sheet)
         player['appearance_profile']=appearance_profile(player_sheet,current_year=_campaign_year(meta.get('time')),health=player_sheet.get('health'))
+        player['personal_cash_display']=format_copper(player_sheet.get('personal_cash',0))
         visible_contracts=player_visible_contract_rows(
             contract_index,
             player_id=str(meta.get('player_id') or ''),
@@ -158,12 +183,12 @@ class CampaignOperations:
           'campaign':{'campaign_id':meta.get('campaign_id'),'revision':meta.get('revision'),'world_time':meta.get('time'),'state_root':before[1],'player_id':meta.get('player_id'),'game':'jianghu'},
           'scene':scene_view,
           'player':player,
-          'person_reads':{'suggested_owner_ids':self._present_ids(scene_view),'use':'Load one person sheet when a person materially affects the current scene.'},
+          'person_reads':{'suggested_owner_ids':self._present_ids(scene_view),'roster_query_available':True,'use':'Use list_people for bounded pageable roster discovery, then load exact person sheets when capability matters.'},
           'object_reads':{'supported_ref_prefixes':['faction:','inventory:','contract:','deployment:','project:','tournament:','market:','site:','relations','government'],'use':'Inspect one exact Jianghu owner when its current state matters.'},
           'contract_reads':{'available_contracts':visible_contracts,'use':'Inspect an advertised contract object_ref for exact current terms before accepting it.'},
           'commands':{'supported_command_types':supported,'command_types':commands,'limits':{'one_semantic_command_per_write':True,'preview_before_execute':True,'unsupported_intent_fails_closed':True}},
           'narration':{'setting':'Chinese Jianghu/Murim','rule':'Narrate only committed/player-visible truth; physical mechanics determine consequential outcomes.'},
-          'context_policy':{'bounded_reads':True,'direct_person_routes':True,'aggregate_civilians':True,'no_omniscient_hidden_state':True},
+          'context_policy':{'bounded_reads':True,'pageable_rosters':True,'direct_person_routes':True,'aggregate_civilians':True,'no_omniscient_hidden_state':True},
           'causal_freshness':{'settled_through':self.repository.read_json('state/martial-world/scheduler.json').get('settled_through')},
         }
         try: validate_bounded_json(result,label='play context',allow_float=True)
@@ -175,6 +200,90 @@ class CampaignOperations:
         if spec is None or command_type not in getattr(self.command_planner,'COMMAND_TYPES',()): raise OperationError(404,'command_contract_not_found')
         return {'command_type':command_type,**spec.public_descriptor()}
 
+    def list_people(
+        self, *, faction_ref: str | None = None, site_ref: str | None = None,
+        sort_by: str = 'combat', limit: int = 25, cursor: str | None = None,
+    ) -> Mapping[str, Any]:
+        """Page through player-authorized persistent people without inventing IDs.
+
+        Page size is a transport concern only. Total roster size and simulation
+        participation are never truncated by this read API.
+        """
+        if isinstance(limit,bool) or not isinstance(limit,int) or limit < 1 or limit > 1000:
+            raise OperationError(422,'people_limit_invalid')
+        try:
+            offset = 0 if cursor in (None,'') else int(str(cursor))
+        except ValueError as exc:
+            raise OperationError(422,'people_cursor_invalid') from exc
+        if offset < 0:
+            raise OperationError(422,'people_cursor_invalid')
+        allowed_sorts={'combat','name','age','grade','sword','medicine','administration','commerce','crafting','instruction'}
+        if sort_by not in allowed_sorts:
+            raise OperationError(422,'people_sort_invalid')
+        try:
+            with self._locked():
+                self.coordinator.git.assert_pristine(); before=self._read_fingerprint()
+                meta=self.repository.read_json('state/meta.json')
+                player=self.sheet_resolver(str(meta.get('player_id') or ''))
+                if not isinstance(player,Mapping): raise OperationError(503,'campaign_state_invalid')
+                player_faction=str(player.get('faction_ref') or '')
+                target_faction=str(faction_ref or player_faction)
+                if not target_faction or target_faction != player_faction:
+                    raise OperationError(404,'people_roster_not_player_visible')
+                _fpath,faction=read_faction(self.repository,target_faction)
+                roster=hydrate_roster_state(self.repository.read_json(faction_roster_path(target_faction)), faction=faction)
+                sites_data=self.repository.read_json('game/data/martial-world/local-sites.json')
+                self._require_read_only(before,'people_list_mutated_campaign')
+        except OperationError: raise
+        except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
+        except (FileNotFoundError,KeyError,TypeError,ValueError) as exc: raise OperationError(404,'people_roster_not_found') from exc
+        people=[dict(p) for p in roster.get('people',[]) if isinstance(p,Mapping)] if isinstance(roster.get('people'),list) else []
+        if site_ref:
+            sites=sites_data.get('sites',{}) if isinstance(sites_data,Mapping) else {}
+            site=sites.get(site_ref) if isinstance(sites,Mapping) else None
+            if not isinstance(site,Mapping): raise OperationError(404,'people_site_not_found')
+            people=[p for p in people if str(p.get('location_ref') or '')==site_ref]
+        year=_campaign_year(meta.get('time')) or 0
+        grade_order={'elder':6,'elite':5,'senior':4,'full':3,'junior':2,'probationary':1}
+        def key(p:Mapping[str,Any]):
+            pid=str(p.get('person_id') or '')
+            age=max(0,year-int(p.get('birth_year',year)))
+            if sort_by=='combat': return (-_combat_score(p),pid)
+            if sort_by=='name': return (str(p.get('name') or ''),pid)
+            if sort_by=='age': return (-age,pid)
+            if sort_by=='grade': return (-grade_order.get(str(p.get('membership_grade') or ''),0),pid)
+            if sort_by in {'sword'}:
+                skills=p.get('martial_skills',{}) if isinstance(p.get('martial_skills'),Mapping) else {}
+                return (-max(0,int(skills.get(sort_by,0))),pid)
+            skills=p.get('professional_skills',{}) if isinstance(p.get('professional_skills'),Mapping) else {}
+            return (-max(0,int(skills.get(sort_by,0))),pid)
+        people.sort(key=key)
+        page=people[offset:offset+limit]
+        rows=[]
+        for p in page:
+            martial=p.get('martial_skills',{}) if isinstance(p.get('martial_skills'),Mapping) else {}
+            rows.append({
+                'person_id':str(p.get('person_id') or ''),
+                'name':str(p.get('name') or ''),
+                'age':max(0,year-int(p.get('birth_year',year))),
+                'sex':p.get('sex'),
+                'membership_grade':p.get('membership_grade'),
+                'standing_offices':[str(x) for x in p.get('standing_offices',[]) if isinstance(x,str)] if isinstance(p.get('standing_offices'),list) else [],
+                'location_ref':p.get('location_ref'),
+                'combat_capability_score':_combat_score(p),
+                'peak_martial_skill':max([max(0,int(v)) for v in martial.values() if isinstance(v,int) and not isinstance(v,bool)] or [0]),
+                'qi':max(0,int(p.get('qi',0))),
+                'qi_control':max(0,int(p.get('qi_control',0))),
+            })
+        next_offset=offset+len(page)
+        return {
+            'faction_ref':target_faction,'site_ref':site_ref,'sort_by':sort_by,
+            'total_matching':len(people),'offset':offset,'page_size':len(rows),
+            'next_cursor':str(next_offset) if next_offset < len(people) else None,
+            'people':rows,
+            'causal_freshness':{'settled_through':self.repository.read_json('state/martial-world/scheduler.json').get('settled_through')},
+        }
+
     def person_sheet(self,person_id:str)->Mapping[str,Any]:
         try:
             with self._locked():
@@ -185,9 +294,9 @@ class CampaignOperations:
         if person_id!=player_id and not same_faction and not visible: raise OperationError(404,'person_not_player_visible')
         view='player_full_logical_sheet' if person_id==player_id else 'player_visible_identity'
         safe=dict(sheet)
-        # Private behavioral/hidden-knowledge fields are never exposed even if later added.
         for key in ('secret_notes','hidden_goals','private_knowledge','autonomy_private'): safe.pop(key,None)
         safe['appearance_profile']=appearance_profile(sheet,current_year=_campaign_year(meta.get('time')),health=sheet.get('health'))
+        safe['personal_cash_display']=format_copper(sheet.get('personal_cash',0))
         recognition=None; social_titles=[]; familiarity=0
         if visible and person_id!=player_id:
             try:
@@ -200,9 +309,6 @@ class CampaignOperations:
                 recognition=recognition_assessment(observer=player,target=sheet,target_items=loadout.get('items',{}),equipment_catalog=equipment,familiarity=familiarity)
             except (FileNotFoundError,KeyError,TypeError,ValueError):
                 recognition=None
-        # Contextual titles are derived only after lawful identity knowledge.
-        # Merely seeing House Tang clothing is not enough to call a stranger
-        # Young Master Tang, because clothing provenance is not membership.
         try:
             faction_ref=str(sheet.get('faction_ref') or '')
             identities=self.repository.read_json('game/data/martial-world/faction-identities.json').get('identities',{})
@@ -235,6 +341,8 @@ class CampaignOperations:
         except OperationError: raise
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
         except (FileNotFoundError,KeyError,TypeError,ValueError) as exc: raise OperationError(404,'object_not_found') from exc
+        if object_ref.startswith('contract:') and isinstance(obj,Mapping):
+            obj=dict(obj); obj['reward_display']=format_copper(obj.get('reward_cash',0)); obj['escrow_display']=format_copper(obj.get('escrow_cash',0))
         return {'object_ref':object_ref,'view':view,'object':obj,'causal_freshness':{'settled_through':self.repository.read_json('state/martial-world/scheduler.json').get('settled_through')}}
 
     def _object(self,ref:str):
@@ -310,5 +418,6 @@ class CampaignOperations:
         except (LockUnavailableError,DirtyRepositoryError) as exc: raise OperationError(503,'campaign_unavailable') from exc
         if not isinstance(report,OocAuditResult) or report.write_plan is not None: raise OperationError(503,'ooc_audit_invalid')
         return {'diagnostics':list(report.diagnostics),'suggestions':list(report.suggestions)}
+
 
 __all__=['CampaignOperations','OperationError','PlanStateChangedError']

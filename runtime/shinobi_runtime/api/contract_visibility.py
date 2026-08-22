@@ -4,6 +4,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Mapping
 
+from shinobi_runtime.martial_world.money import format_copper
+
 
 def _dt(value: Any) -> datetime | None:
     if not isinstance(value, str) or not value:
@@ -42,9 +44,13 @@ def contract_is_player_visible(
 
 def player_visible_contract_rows(
     index: Mapping[str, Any], *, player_id: str, faction_ref: str, world_time: str,
-    limit: int = 32,
+    limit: int | None = None,
 ) -> list[dict[str, Any]]:
-    """Return bounded discoverable contract summaries for play context."""
+    """Return discoverable contract summaries.
+
+    ``limit`` is optional transport pagination only. It is never interpreted as
+    a fictional cap on the number of contracts that exist.
+    """
     active = index.get("active", {}) if isinstance(index, Mapping) else {}
     if not isinstance(active, Mapping):
         return []
@@ -56,20 +62,41 @@ def player_visible_contract_rows(
         ):
             continue
         objective = contract.get("objective", {})
-        objective_kind = str(objective.get("kind") or "") if isinstance(objective, Mapping) else ""
-        rows.append({
+        objective = objective if isinstance(objective, Mapping) else {}
+        reward = max(0, int(contract.get("reward_cash", 0)))
+        row = {
             "object_ref": f"contract:{contract_ref}",
             "contract_ref": contract_ref,
             "contract_type": str(contract.get("contract_type") or ""),
             "status": str(contract.get("status") or ""),
             "issuer_ref": str(contract.get("issuer_ref") or ""),
             "beneficiary_ref": contract.get("beneficiary_ref"),
-            "reward_cash": max(0, int(contract.get("reward_cash", 0))),
+            "reward_cash": reward,
+            "reward_display": format_copper(reward),
             "expires_at": contract.get("expires_at"),
-            "objective_kind": objective_kind,
-            "minimum_escort_count": max(0, int(objective.get("minimum_escort_count", 0))) if isinstance(objective, Mapping) else 0,
-        })
-        if len(rows) >= max(1, min(64, int(limit))):
+            "objective_kind": str(objective.get("kind") or ""),
+            "escort_kind": str(objective.get("escort_kind") or ("cargo" if objective.get("kind") == "escort_shipment" else "")),
+            "route_ref": objective.get("route_ref"),
+            "distance_km_tenths": max(0, int(objective.get("distance_km_tenths", 0))),
+            "expected_travel_hours": max(0, int(objective.get("expected_travel_hours", 0))),
+            "terrain": objective.get("terrain"),
+            "road_quality": objective.get("road_quality"),
+            "item_ref": objective.get("item_ref"),
+            "quantity": max(0, int(objective.get("quantity", 0))),
+            "cargo_mass_kg": max(0, int(objective.get("cargo_mass_kg", 0))),
+            "cargo_value_cash": max(0, int(objective.get("cargo_value_cash", 0))),
+            "transport_mode": objective.get("transport_mode"),
+            "wagon_count": max(0, int(objective.get("wagon_count", 0))),
+            "pack_animal_count": max(0, int(objective.get("pack_animal_count", 0))),
+            "draft_animal_count": max(0, int(objective.get("draft_animal_count", 0))),
+            "civilian_crew_count": max(0, int(objective.get("civilian_crew_count", 0))),
+            "protected_person_refs": [str(x) for x in objective.get("protected_person_refs", []) if isinstance(x, str)] if isinstance(objective.get("protected_person_refs"), list) else [],
+            "protected_people_count": max(0, int(objective.get("protected_people_count", 0))),
+            "minimum_escort_count": max(0, int(objective.get("minimum_escort_count", 0))),
+            "threat_score": max(0, int(objective.get("threat_score", 0))),
+        }
+        rows.append(row)
+        if limit is not None and len(rows) >= max(1, int(limit)):
             break
     return rows
 

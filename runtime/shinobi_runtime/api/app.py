@@ -95,9 +95,6 @@ class ServiceSettings:
 
     @classmethod
     def from_env(cls, repository: RepositoryStore) -> "ServiceSettings":
-        # ChatGPT authenticates the MCP surface through OAuth. The private REST
-        # token is optional; when absent, an unreported per-process value keeps
-        # those non-MCP routes inaccessible.
         token = os.environ.get("SHINOBI_API_TOKEN") or secrets.token_urlsafe(48)
         player_id = repository.read_json("state/meta.json").get("player_id")
         if not isinstance(player_id, str) or not player_id:
@@ -213,9 +210,6 @@ def create_app(
     @app.get("/health", operation_id="health")
     def health() -> Any:
         freshness = inspect_deployment_freshness(repository.root)
-        # Preserve the existing compact local/core health contract. Railway
-        # processes additionally prove that the immutable build image covers all
-        # non-state source/config changes in the persistent campaign checkout.
         if not freshness.production:
             return {"status": "ok"}
         payload = {
@@ -329,10 +323,6 @@ def create_app_from_env() -> FastAPI:
         lock_timeout=settings.lock_timeout_seconds,
         remote_durability=remote_durability,
     )
-    # Railway bootstrap deliberately preserves a clean local-ahead checkout
-    # when a process died after committing but before pushing/receipting.  Do
-    # not serve even the health endpoint until WAL recovery has either safely
-    # finalized that transaction or failed startup closed.
     coordinator.recover()
     app = create_app(
         repository=repository,
@@ -351,18 +341,19 @@ def create_app_from_env() -> FastAPI:
         "SHINOBI_MCP_PREVIEW_SECRET",
     )
     if any(os.environ.get(name) for name in mcp_environment):
-        # Keep local/core installations importable without the optional MCP
-        # dependency.  A partial remote configuration still fails startup.
         from shinobi_runtime.api.mcp import (
             McpOAuthSettings,
             create_mcp_server,
             mount_mcp,
         )
+        from shinobi_runtime.api.mcp_people import register_people_tool
 
         oauth = McpOAuthSettings.from_env()
+        mcp_server = create_mcp_server(app.state.campaign_operations, oauth)
+        register_people_tool(mcp_server, app.state.campaign_operations, oauth.read_scope)
         mount_mcp(
             app,
-            create_mcp_server(app.state.campaign_operations, oauth),
+            mcp_server,
             oauth,
             max_request_body_size=settings.max_body_bytes,
         )

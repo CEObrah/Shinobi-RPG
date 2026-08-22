@@ -5,7 +5,9 @@ from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.commands.specs import COMMAND_SPECS
 from shinobi_runtime.api.command_discovery import compact_commands
 from shinobi_runtime.store import RepositoryStore
+from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.people.repository import RepositoryPersonSheetResolver
+from shinobi_runtime.tx.manifest import TransactionPlanner
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -50,6 +52,27 @@ def test_live_planner_previews_current_training_and_time_commands():
     assert planner.preview(training).status=='ready'
     advancing=CommandEnvelope(request_id='test-time',command_type='advance_time',payload={'target_time':'SE-0061-08-14T22:15:00'},**base)
     assert planner.preview(advancing).status=='ready'
+
+
+def test_current_month_timeskip_builds_and_validates_the_exact_transaction_overlay():
+    from shinobi_runtime.commands.envelope import CommandEnvelope
+    repo=RepositoryStore(ROOT); planner=RepositoryCommandPlanner(repo); meta=repo.read_json('state/meta.json')
+    command=CommandEnvelope(
+        campaign_id=meta['campaign_id'],request_id='test-month-timeskip-overlay',
+        actor_id=meta['player_id'],command_type='advance_time',
+        expected_revision=meta['revision'],submitted_at='2026-08-20T04:00:00Z',
+        payload={'target_time':'SE-0061-09-14T21:15:00'},mode='gameplay',
+    )
+    preview=planner.preview(command)
+    assert preview.status=='ready'
+    plan=planner.plan(command)
+    manifest=TransactionPlanner(repo).plan(
+        command,plan.transaction_id,plan.created_at,plan.writes,
+    )
+    overlay=StagedOverlay(repo,manifest)
+    plan.validator(overlay,manifest)
+    assert plan.result['world_time']=='SE-0061-08-31T23:59:59'
+    assert plan.result['continuation_required'] is True
 
 
 def test_combat_state_does_not_persist_exchange_trace_history():

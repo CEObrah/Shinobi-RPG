@@ -34,8 +34,6 @@ def _travel():
 
 
 def test_aggregate_shortage_becomes_one_normal_physical_public_lot_not_a_mega_convoy():
-    # The broken Sep-13 offer represented 7,322,985 ration-days. One ordinary
-    # public board commission now takes a normal physical lot from that demand.
     assert ordinary_public_lot_quantity("food_ration_day", 7_322_985) == 12_000
     objective = plan_escort_objective(
         kind="escort_shipment",
@@ -48,9 +46,6 @@ def test_aggregate_shortage_becomes_one_normal_physical_public_lot_not_a_mega_co
     assert objective["draft_animal_count"] == 20
     assert objective["civilian_crew_count"] > 0
     assert objective["minimum_escort_count"] >= 2
-    # Institutional payment is thousands of copper for a roughly six-day job,
-    # not millions of copper because a whole regional shortage was mistaken for
-    # one cargo owner.
     assert quote_escort_objective(objective)["total_reward_cash"] < 50_000
 
 
@@ -101,8 +96,6 @@ def test_local_exact_frontage_scales_with_physical_site_and_is_not_the_force_siz
     open_ground = local_frontage_count({"capacity": 10_000, "site_type": "tournament_ground"})
     assert cramped < open_ground
     assert open_ground > 24
-    # Frontage is derived from local spatial scale and can grow beyond historical
-    # fixed actor caps; deployment population is tracked separately by warfare.
 
 
 def test_existing_commitment_can_expand_to_a_large_exact_muster_without_second_owner():
@@ -134,5 +127,5 @@ def test_existing_commitment_can_expand_to_a_large_exact_muster_without_second_o
 
 def test_player_facing_money_uses_copper_and_taels():
     assert format_copper(25) == "25 copper"
-    assert format_copper(1000) == "1 taels"
+    assert format_copper(1000) == "1 tael"
     assert format_copper(3118) == "3 taels, 118 copper"

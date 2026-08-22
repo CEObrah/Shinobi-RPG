@@ -1,8 +1,9 @@
-"""Persistent zero-time Jianghu retinue selection.
+"""Persistent travel-team and temporary escort staffing selection.
 
-A retinue is an identity/coordination owner, not an activity. Membership never
-reserves a person's hours. Actual escort, travel, combat and other commitments
-remain responsible for finite time and for pausing institutional training.
+A standing retinue is Wei's persistent three-person field team. Membership is an
+identity/coordination relationship, not an activity, so it never reserves a
+person's hours by itself. Temporary contract manpower is selected separately and
+exists only inside the mission commitment that actually consumes time.
 """
 from __future__ import annotations
 
@@ -12,7 +13,6 @@ _CRITICAL_OFFICES = {
     "leader", "deputy_leader", "chief_instructor", "chief_martial_instructor",
     "chief_physician", "master_weaponsmith",
 }
-_DISCRETIONARY_THIRD_SCORE = 420
 
 
 def _office_keys(person: Mapping[str, Any]) -> set[str]:
@@ -26,9 +26,9 @@ def _office_keys(person: Mapping[str, Any]) -> set[str]:
 def _ready(person: Mapping[str, Any], *, year: int) -> bool:
     if bool(person.get("retired_from_field", False)):
         return False
-    # Permanent attachment to Wei must not hollow out the House's standing
-    # command, medical or instruction backbone merely because an office-holder
-    # is individually excellent at the role.
+    # Permanent attachment or routine mission staffing must not hollow out the
+    # House's standing command, medical or instruction backbone merely because
+    # an office-holder is individually excellent in the field.
     if _office_keys(person) & _CRITICAL_OFFICES:
         return False
     birth = person.get("birth_year")
@@ -77,9 +77,9 @@ def _scores(person: Mapping[str, Any]) -> dict[str, int]:
 def _leader_need_order(leader: Mapping[str, Any]) -> list[str]:
     martial = leader.get("martial_skills", {}) if isinstance(leader.get("martial_skills"), Mapping) else {}
     prof = leader.get("professional_skills", {}) if isinstance(leader.get("professional_skills"), Mapping) else {}
-    # Lower leader capability means greater complement need. Keep one direct
-    # protector in the mix, but do not waste the entire retinue duplicating the
-    # leader's strongest weapon skill.
+    # The permanent trio should complement Wei instead of duplicating his
+    # strongest weapon skill: medicine, scouting/awareness and field command are
+    # weighted by his own gaps, with direct protection always remaining useful.
     needs = {
         "field_medic": max(0, 120 - int(prof.get("medicine", 0))) * 5,
         "scout": max(0, 110 - int(martial.get("stealth_scouting", 0))) * 4,
@@ -97,18 +97,18 @@ def select_retinue_members(
     year: int,
     unavailable_refs: Sequence[str] = (),
 ) -> tuple[list[str], dict[str, str]]:
-    """Select a complementary field retinue from conserved current people.
+    """Select Wei's persistent complementary travel team.
 
-    ``requested_count`` may be any exact count of at least two. Zero retains the
-    ordinary delegated two-versus-three choice. Mission-aware callers may turn a
-    delegated request into an exact larger minimum derived from a real contract;
-    this function contains no fictional maximum headcount.
+    Zero means the authorized chooser owns the identities but not the headcount:
+    the standing travel team is still exactly three people. Exact two/three
+    remains readable for backward-compatible tests/state, but the live retinue
+    command now requests three for new assignments. This helper never expands a
+    standing retinue to satisfy a caravan's escort minimum.
     """
     raw_count = int(requested_count)
-    if raw_count == 1 or raw_count < 0:
+    if raw_count not in {0, 2, 3}:
         raise ValueError("retinue requested count invalid")
-    discretionary = raw_count == 0
-    target_count = 3 if discretionary else raw_count
+    target_count = 3 if raw_count == 0 else raw_count
     leader_ref = str(leader.get("person_id") or "")
     faction_ref = str(leader.get("faction_ref") or "")
     unavailable = {str(x) for x in unavailable_refs if isinstance(x, str)}
@@ -129,7 +129,7 @@ def select_retinue_members(
             break
         ranked = sorted(
             (
-                (_scores(person)[role], str(person["person_id"]), person)
+                (_scores(person)[role], str(person["person_id"]))
                 for person in candidates
                 if str(person["person_id"]) not in chosen
             ),
@@ -137,30 +137,55 @@ def select_retinue_members(
         )
         if not ranked:
             continue
-        score, person_ref, _person = ranked[0]
-        if discretionary and len(chosen) >= 2 and score < _DISCRETIONARY_THIRD_SCORE:
-            break
+        _score, person_ref = ranked[0]
         chosen.append(person_ref)
         assigned[person_ref] = role
-
-    # Large mission-sized details still preserve the complementary core above.
-    # Additional members are selected by protective capability and serve as
-    # protective guards rather than inventing more one-off specialist roles.
-    if not discretionary and len(chosen) < target_count:
-        ranked_guards = sorted(
-            (
-                (_scores(person)["protective_guard"], str(person["person_id"]))
-                for person in candidates
-                if str(person["person_id"]) not in chosen
-            ),
-            key=lambda row: (-row[0], row[1]),
-        )
-        for _score, person_ref in ranked_guards:
-            if len(chosen) >= target_count:
-                break
-            chosen.append(person_ref)
-            assigned[person_ref] = "protective_guard"
     return chosen, assigned
 
 
-__all__ = ["select_retinue_members"]
+def select_mission_escort_reinforcements(
+    leader: Mapping[str, Any],
+    people: Sequence[Mapping[str, Any]],
+    *,
+    needed_count: int,
+    year: int,
+    unavailable_refs: Sequence[str] = (),
+    exclude_refs: Sequence[str] = (),
+) -> list[str]:
+    """Select temporary House manpower for one escort mission.
+
+    These people are not added to the standing retinue. The contract commitment
+    owns their time only for that mission, after which they return to ordinary
+    House duties. Selection is deterministic, same-faction, readiness-gated and
+    biased toward protective capability because the permanent trio already
+    carries specialist travel roles.
+    """
+    needed = int(needed_count)
+    if needed < 0:
+        raise ValueError("mission escort reinforcement count invalid")
+    if needed == 0:
+        return []
+    leader_ref = str(leader.get("person_id") or "")
+    faction_ref = str(leader.get("faction_ref") or "")
+    blocked = {
+        str(x)
+        for x in (*unavailable_refs, *exclude_refs)
+        if isinstance(x, str) and x
+    }
+    blocked.add(leader_ref)
+    ranked = sorted(
+        (
+            (_scores(person)["protective_guard"], str(person["person_id"]))
+            for person in people
+            if isinstance(person, Mapping)
+            and isinstance(person.get("person_id"), str)
+            and str(person.get("person_id")) not in blocked
+            and str(person.get("faction_ref") or faction_ref) == faction_ref
+            and _ready(person, year=year)
+        ),
+        key=lambda row: (-row[0], row[1]),
+    )
+    return [person_ref for _score, person_ref in ranked[:needed]]
+
+
+__all__ = ["select_mission_escort_reinforcements", "select_retinue_members"]

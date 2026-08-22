@@ -22,7 +22,9 @@ _POLICY_NAME = "permanent_travel_team_cohort_v2"
 
 
 def _world_year(meta: Mapping[str, Any]) -> int:
-    raw = str(meta.get("world_time") or "")
+    # ``time`` is the canonical persisted meta field. ``world_time`` is accepted
+    # only for bounded test/adapter compatibility with read projections.
+    raw = str(meta.get("time") or meta.get("world_time") or "")
     match = re.match(r"(?:SE-)?(\d+)-", raw)
     if not match:
         raise ValueError("permanent-team migration cannot resolve world year")

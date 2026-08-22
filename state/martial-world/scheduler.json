@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 96
+      "owner_cursor": 100
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3113,6 +3113,40 @@
       "place_id": "taian",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.iron_cypress_sect:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.iron_cypress_sect:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.iron_cypress_sect",
+      "crop_ref": "vegetables",
+      "planted_mu": 2,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "dengfeng",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:formal_challenge:faction.iron_gate_band:beggars_society:006109": {
+      "event_id": "operation_arrival:operation:formal_challenge:faction.iron_gate_band:beggars_society:006109",
+      "kind": "faction_operation_arrival",
+      "due_at": "0061-11-19T18:54:55.800000",
+      "owner_ref": "operation:formal_challenge:faction.iron_gate_band:beggars_society:006109",
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:formal_challenge:faction.iron_hook_band:faction.red_maple_sect:006109": {
+      "event_id": "operation_arrival:operation:formal_challenge:faction.iron_hook_band:faction.red_maple_sect:006109",
+      "kind": "faction_operation_arrival",
+      "due_at": "0061-09-16T01:15:00",
+      "owner_ref": "operation:formal_challenge:faction.iron_hook_band:faction.red_maple_sect:006109",
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:formal_challenge:faction.iron_knife_band:faction.iron_pot_brotherhood:006109": {
+      "event_id": "operation_arrival:operation:formal_challenge:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
+      "kind": "faction_operation_arrival",
+      "due_at": "0061-09-15T23:15:00",
+      "owner_ref": "operation:formal_challenge:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
       "requires_player_decision": false
     }
   }

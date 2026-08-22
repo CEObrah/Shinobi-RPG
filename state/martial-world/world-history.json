@@ -877,6 +877,80 @@
       "person_refs": [
         "mw.recruit.39996eb0d751a231f4552104"
       ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "independent_recruitment",
+      "faction_ref": "faction.iron_cypress_sect",
+      "count": 1,
+      "transfer_count": 1,
+      "readmission_count": 0,
+      "person_refs": [
+        "mw.person.faction.safe_passage_escort_agency.0017"
+      ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "faction_transfer",
+      "target_faction_ref": "faction.iron_cypress_sect",
+      "count": 1,
+      "person_refs": [
+        "mw.person.faction.safe_passage_escort_agency.0017"
+      ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "faction_recruitment",
+      "faction_ref": "faction.iron_cypress_sect",
+      "independent_count": 1,
+      "civilian_count": 1,
+      "person_refs": [
+        "mw.person.faction.safe_passage_escort_agency.0017",
+        "mw.recruit.25c2adc5156755c6d19e23c9"
+      ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "formal_challenge_mobilized",
+      "faction_ref": "faction.iron_gate_band",
+      "target_faction_ref": "beggars_society",
+      "participant_count": 1,
+      "source_camp": "outlaw",
+      "target_camp": "unorthodox",
+      "departure_at": "0061-09-14T22:15:00",
+      "arrival_at": "0061-11-19T18:54:55.800000"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "formal_challenge_mobilized",
+      "faction_ref": "faction.iron_hook_band",
+      "target_faction_ref": "faction.red_maple_sect",
+      "participant_count": 1,
+      "source_camp": "outlaw",
+      "target_camp": "unorthodox",
+      "departure_at": "0061-09-15T01:15:00",
+      "arrival_at": "0061-09-16T01:15:00"
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "faction_recruitment",
+      "faction_ref": "faction.iron_hook_band",
+      "independent_count": 0,
+      "civilian_count": 1,
+      "person_refs": [
+        "mw.recruit.7f542af46b9fe8a4d23fed54"
+      ]
+    },
+    {
+      "at": "0061-09-13T21:15:00",
+      "kind": "formal_challenge_mobilized",
+      "faction_ref": "faction.iron_knife_band",
+      "target_faction_ref": "faction.iron_pot_brotherhood",
+      "participant_count": 1,
+      "source_camp": "outlaw",
+      "target_camp": "unorthodox",
+      "departure_at": "0061-09-14T23:15:00",
+      "arrival_at": "0061-09-15T23:15:00"
     }
   ],
   "counters": {
@@ -884,11 +958,13 @@
     "faction_departure": 3,
     "natural_death": 8,
     "infrastructure_project_started": 5,
-    "formal_challenge_mobilized": 7,
+    "formal_challenge_mobilized": 10,
     "merchant_trade_departed": 7,
-    "faction_recruitment": 28,
+    "faction_recruitment": 30,
     "faction_raid_mobilized": 1,
-    "strategic_mobilization_expanded": 1
+    "strategic_mobilization_expanded": 1,
+    "independent_recruitment": 1,
+    "faction_transfer": 1
   },
   "totals": {
     "field_retirement": {
@@ -902,7 +978,7 @@
     },
     "infrastructure_project_started": {},
     "formal_challenge_mobilized": {
-      "participant_count": 7
+      "participant_count": 10
     },
     "merchant_trade_departed": {
       "quantity": 2400,
@@ -910,8 +986,8 @@
       "toll_cash": 300
     },
     "faction_recruitment": {
-      "independent_count": 0,
-      "civilian_count": 29
+      "independent_count": 1,
+      "civilian_count": 31
     },
     "faction_raid_mobilized": {
       "participant_count": 3
@@ -920,6 +996,14 @@
       "seed_count": 3,
       "added_count": 4,
       "mobilized_count": 7
+    },
+    "independent_recruitment": {
+      "count": 1,
+      "transfer_count": 1,
+      "readmission_count": 0
+    },
+    "faction_transfer": {
+      "count": 1
     }
   }
 }

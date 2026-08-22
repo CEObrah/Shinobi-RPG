@@ -27,6 +27,7 @@ def _person(ref, *, medicine=10, scout=20, sword=40):
         "person_id": ref,
         "birth_year": 30,
         "faction_ref": "house_tang",
+        "membership_grade": "full",
         "standing_offices": [],
         "attributes": {
             "strength": 60, "speed": 60, "dexterity": 60, "endurance": 60,

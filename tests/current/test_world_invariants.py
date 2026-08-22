@@ -22,20 +22,29 @@ def test_world_counts_and_no_mercenary_or_branch_type():
     assert sum(1 for f in factions.values() if f['type']=='outlaw_faction')==70
 
 
-def test_every_persistent_person_has_exact_direct_route():
+def test_every_current_faction_person_has_exact_direct_route_and_independents_do_not():
     index=load('state/martial-world/person-routes.json')
-    assert index=={'schema':'jianghu-person-route-index-1.0','person_count':11691}
+    assert index['schema']=='jianghu-person-route-index-1.0'
     checked=0
+    faction_ids=set()
     for roster_file in (ROOT/'state/martial-world/people').glob('*.json'):
         roster=json.loads(roster_file.read_text())
         fid=roster['faction_ref']
         assert roster_file.name==f'{fid}.json'
         for ordinal,p in enumerate(roster['people']):
-            pid=p['person_id']; bucket=hashlib.sha256(pid.encode()).hexdigest()[:2]
+            pid=p['person_id']; faction_ids.add(pid)
+            bucket=hashlib.sha256(pid.encode()).hexdigest()[:2]
             shard=load(f'state/martial-world/person-routes/{bucket}.json')
             assert shard['people'][pid]==[fid,ordinal]
             checked+=1
-    assert checked==11691
+    assert checked==index['person_count']==len(faction_ids)
+    independent=load('state/martial-world/independent-people.json')['people']
+    assert not (faction_ids & {p['person_id'] for p in independent})
+    for person in independent:
+        pid=person['person_id']; bucket=hashlib.sha256(pid.encode()).hexdigest()[:2]
+        shard=load(f'state/martial-world/person-routes/{bucket}.json')
+        assert pid not in shard['people']
+    assert checked+len(independent)>=11691
 
 
 def test_no_hot_state_debug_provenance_fields():

@@ -1,5 +1,6 @@
 import hashlib
 import json
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -86,6 +87,11 @@ def _built(validator):
     )
 
 
+def _future_campaign_time(meta, *, days=31):
+    current = datetime.fromisoformat(str(meta["time"]).removeprefix("SE-"))
+    return "SE-" + (current + timedelta(days=days)).isoformat()
+
+
 def test_preview_runs_staged_transaction_validator_and_fails_closed():
     repository = _FakeRepository()
     planner = RepositoryCommandPlanner(repository)
@@ -132,7 +138,7 @@ def test_real_campaign_monthly_advance_preview_is_transaction_valid_and_read_onl
         command_type="advance_time",
         expected_revision=meta["revision"],
         submitted_at="2026-08-22T00:00:00Z",
-        payload={"target_time": "SE-0061-09-13T21:15:00"},
+        payload={"target_time": _future_campaign_time(meta)},
     )
 
     preview = planner.preview(command)

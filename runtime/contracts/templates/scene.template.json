@@ -24,6 +24,7 @@
         "location_id",
         "active_combat_ref",
         "decision_required",
+        "activity_handoff",
         "present_person_ids",
         "visible_person_ids"
       ],
@@ -33,8 +34,24 @@
         "location_id",
         "active_combat_ref",
         "decision_required",
+        "activity_handoff",
         "present_person_ids",
         "visible_person_ids"
+      ]
+    },
+    "/activity_handoff": {
+      "mode": "closed",
+      "allowed_keys": [
+        "event_id",
+        "kind",
+        "requires_player_decision",
+        "interrupts_continuation"
+      ],
+      "canonical_order": [
+        "event_id",
+        "kind",
+        "requires_player_decision",
+        "interrupts_continuation"
       ]
     }
   },
@@ -53,6 +70,21 @@
     ],
     "/decision_required": [
       "string"
+    ],
+    "/activity_handoff": [
+      "object"
+    ],
+    "/activity_handoff/event_id": [
+      "string"
+    ],
+    "/activity_handoff/kind": [
+      "string"
+    ],
+    "/activity_handoff/requires_player_decision": [
+      "boolean"
+    ],
+    "/activity_handoff/interrupts_continuation": [
+      "boolean"
     ],
     "/present_person_ids": [
       "array"
@@ -81,6 +113,7 @@
   },
   "writing_rules": [
     "Scene stores only current player-facing spatial/decision facts that are not derived from other authority.",
+    "A bounded activity_handoff may persist the current player-facing wake emitted by a committed causal frontier so the next play-context read cannot lose it.",
     "World time derives from state/meta.json. Active-combat and time-passage booleans derive from active_combat_ref.",
     "Narration summaries, choice-generation policy, caches and empty presentation arrays are not campaign state."
   ]

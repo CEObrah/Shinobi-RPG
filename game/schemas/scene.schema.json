@@ -25,6 +25,22 @@
     "decision_required": {
       "type": "string"
     },
+    "activity_handoff": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "kind",
+        "requires_player_decision",
+        "interrupts_continuation"
+      ],
+      "properties": {
+        "event_id": {"type": "string"},
+        "kind": {"type": "string"},
+        "requires_player_decision": {"type": "boolean"},
+        "interrupts_continuation": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
     "present_person_ids": {
       "type": "array",
       "items": {
@@ -41,5 +57,5 @@
     }
   },
   "additionalProperties": false,
-  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted."
+  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted. A bounded activity_handoff persists only the current player-facing wake that must survive the committing frontier."
 }

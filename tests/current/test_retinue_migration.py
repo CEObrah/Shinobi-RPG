@@ -28,44 +28,69 @@ def _roster_map():
     return {row["person_id"]: row for row in roster["people"]}
 
 
-def test_current_bad_team_is_recomputed_from_same_conserved_roster_under_cohort_policy():
-    before = load(DEPLOYMENTS)
-    current = before["deployments"][RETINUE]
-    assert current["status"] == "active"
-    assert set(current["member_refs"]) == OLD_BAD_TEAM
+def _bad_assignment_read():
+    deployments = copy.deepcopy(load(DEPLOYMENTS))
+    row = deployments["deployments"][RETINUE]
+    row["member_refs"] = [
+        "mw.person.house_tang.5000",
+        "mw.person.house_tang.1037",
+        "mw.person.house_tang.1001",
+    ]
+    row["member_roles"] = {
+        "mw.person.house_tang.5000": "field_medic",
+        "mw.person.house_tang.1037": "protective_guard",
+        "mw.person.house_tang.1001": "scout",
+    }
+    row["status"] = "active"
 
-    result = plan_permanent_team_cohort_v2_migration(load)
-    assert result["reason"] == "selector_policy_corrected"
-    assert set(result["writes"]) == {DEPLOYMENTS}
-    after = result["writes"][DEPLOYMENTS]["deployments"][RETINUE]
+    def read(rel: str):
+        if rel == DEPLOYMENTS:
+            return copy.deepcopy(deployments)
+        return load(rel)
 
-    assert after["leader_ref"] == current["leader_ref"] == "pc_wei_tang"
-    assert after["chooser_refs"] == current["chooser_refs"] == ["char.zhu", "char.ling"]
-    assert after["requested_at"] == current["requested_at"]
-    assert after["assigned_at"] == current["assigned_at"]
-    assert after["status"] == "active"
-    assert len(after["member_refs"]) == 3
-    assert len(set(after["member_refs"])) == 3
-    assert not OLD_BAD_TEAM & set(after["member_refs"])
-    assert set(after["member_roles"].values()) == {"field_medic", "protective_guard", "scout"}
+    return read, deployments
+
+
+def _assert_corrected_team(row):
+    assert row["leader_ref"] == "pc_wei_tang"
+    assert row["chooser_refs"] == ["char.zhu", "char.ling"]
+    assert row["status"] == "active"
+    assert len(row["member_refs"]) == 3
+    assert len(set(row["member_refs"])) == 3
+    assert not OLD_BAD_TEAM & set(row["member_refs"])
+    assert set(row["member_roles"].values()) == {"field_medic", "protective_guard", "scout"}
 
     people = _roster_map()
     leader = people["pc_wei_tang"]
-    for ref in after["member_refs"]:
+    for ref in row["member_refs"]:
         assert ref in people
         assert permanent_team_member_eligible(leader, people[ref], year=61)
         age = 61 - people[ref]["birth_year"]
         assert 16 <= age <= 35
 
 
+def test_bad_multi_generation_team_is_recomputed_from_same_conserved_roster():
+    read, before = _bad_assignment_read()
+    current = before["deployments"][RETINUE]
+    result = plan_permanent_team_cohort_v2_migration(read)
+    assert result["reason"] == "selector_policy_corrected"
+    assert set(result["writes"]) == {DEPLOYMENTS}
+    after = result["writes"][DEPLOYMENTS]["deployments"][RETINUE]
+
+    assert after["requested_at"] == current["requested_at"]
+    assert after["assigned_at"] == current["assigned_at"]
+    _assert_corrected_team(after)
+
+
 def test_permanent_team_migration_is_idempotent_after_corrected_after_image():
-    first = plan_permanent_team_cohort_v2_migration(load)
+    read, _before = _bad_assignment_read()
+    first = plan_permanent_team_cohort_v2_migration(read)
     assert first["writes"]
 
     def read_after(rel: str):
         if rel in first["writes"]:
             return copy.deepcopy(first["writes"][rel])
-        return load(rel)
+        return read(rel)
 
     second = plan_permanent_team_cohort_v2_migration(read_after)
     assert second["writes"] == {}
@@ -74,10 +99,22 @@ def test_permanent_team_migration_is_idempotent_after_corrected_after_image():
     assert second["member_roles"] == first["member_roles"]
 
 
+def test_current_save_is_either_repairable_now_or_already_repaired():
+    result = plan_permanent_team_cohort_v2_migration(load)
+    if result["writes"]:
+        row = result["writes"][DEPLOYMENTS]["deployments"][RETINUE]
+    else:
+        assert result["reason"] == "already_current"
+        row = load(DEPLOYMENTS)["deployments"][RETINUE]
+    _assert_corrected_team(row)
+
+
 def test_retinue_migration_after_image_passes_registered_deployment_contracts():
     repository = RepositoryStore(ROOT)
     result = plan_permanent_team_cohort_v2_migration(repository.read_json)
-    assert result["writes"]
+    if not result["writes"]:
+        assert result["reason"] == "already_current"
+        return
     meta = repository.read_json("state/meta.json")
     command = CommandEnvelope(
         campaign_id=meta["campaign_id"],

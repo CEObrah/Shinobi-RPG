@@ -3,8 +3,8 @@
   "faction_id": "faction.salt_road_brotherhood",
   "headquarters": "changan",
   "local_site_ref": "site.salt_road_brotherhood",
-  "population": 31,
-  "treasury_cash": 98983,
+  "population": 32,
+  "treasury_cash": 89008,
   "buildings": {
     "main_hall": 2,
     "residential_compound": 2,
@@ -27,10 +27,84 @@
     "school_tuition": 0
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.salt_road_brotherhood.0.6ca823a82135",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "6ca823a82135bdc3d29eaa30",
+      "curriculum": {
+        "unarmed": 70,
+        "stealth_scouting": 53,
+        "command": 50,
+        "qi": 26,
+        "qi_control": 41,
+        "spear": 38
+      },
+      "facilities": {
+        "armory_workshop": 0,
+        "infirmary_apothecary": 0,
+        "library_records": 0,
+        "main_hall": 2,
+        "qi_hall": 1,
+        "training_grounds": 2,
+        "training_hall": 1
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 32,
+      "instruction_profiles": {
+        "spear": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 12,
+          "instruction_skill": 36
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 105,
+          "instructor_skill": 23,
+          "instruction_skill": 20
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 67,
+          "instruction_skill": 23
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 85,
+          "instructor_skill": 74,
+          "instruction_skill": 46
+        },
+        "qi": {
+          "coverage_milli": 468,
+          "facility_capacity": 15,
+          "instructor_skill": 63,
+          "instruction_skill": 12
+        },
+        "qi_control": {
+          "coverage_milli": 93,
+          "facility_capacity": 3,
+          "instructor_skill": 76,
+          "instruction_skill": 13
+        },
+        "instruction": {
+          "coverage_milli": 625,
+          "facility_capacity": 20,
+          "instructor_skill": 54,
+          "instruction_skill": 54
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 19500,
@@ -66,5 +140,9 @@
   "holdings": {
     "urban_estate_area_m2": 19500
   },
-  "enterprise_scale": {}
+  "enterprise_scale": {},
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 1
+  }
 }

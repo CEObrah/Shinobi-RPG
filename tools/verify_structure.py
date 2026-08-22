@@ -278,10 +278,11 @@ def main() -> int:
     if any(isinstance(p, dict) and p.get("sex") != "male" for p in shaolin.get("people", [])):
         fail(errors, "Shaolin monastic roster contains non-male identity")
 
-    # House Tang locked start configuration.
+    # House Tang bootstrap configuration. Population may lawfully grow through
+    # conserved recruitment, so 100 is a floor rather than a frozen save value.
     ht = load("state/martial-world/factions/house_tang.json")
-    if ht.get("population") != 100:
-        fail(errors, "House Tang must start at 100 living faction members")
+    if int(ht.get("population", 0)) < 100:
+        fail(errors, f"House Tang population fell below bootstrap floor: {ht.get('population')}")
     if set(ht.get("buildings", {}).values()) != {5} or set(ht.get("enterprises", {}).values()) != {5}:
         fail(errors, "House Tang buildings and enterprises must all be Level 5")
 

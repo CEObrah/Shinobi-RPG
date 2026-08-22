@@ -13,6 +13,7 @@ from shinobi_runtime.api.contracts import CommandPlan, CommandPreview, CommandRe
 from shinobi_runtime.commands.core import _BuiltPlan
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.jianghu import JianghuCommandsMixin
+from shinobi_runtime.commands.jianghu_contracts import JianghuContractCommandsMixin
 from shinobi_runtime.commands.jianghu_development import JianghuDevelopmentCommandsMixin
 from shinobi_runtime.commands.jianghu_extended import JianghuExtendedCommandsMixin
 from shinobi_runtime.commands.jianghu_retinue import JianghuRetinueCommandsMixin
@@ -29,7 +30,7 @@ class _ExpandedCommand:
     def __init__(self, base: CommandEnvelope, payload: Mapping[str,Any]):
         self.campaign_id=base.campaign_id; self.request_id=base.request_id; self.actor_id=base.actor_id; self.command_type=base.command_type; self.expected_revision=base.expected_revision; self.submitted_at=base.submitted_at; self.payload=payload; self.mode=base.mode; self.digest=base.digest
 
-class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCommandsMixin,JianghuExtendedCommandsMixin,JianghuCommandsMixin,JianghuTimeCommandsMixin):
+class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCommandsMixin,JianghuExtendedCommandsMixin,JianghuContractCommandsMixin,JianghuCommandsMixin,JianghuTimeCommandsMixin):
     COMMAND_TYPES=frozenset(COMMAND_SPECS)
     def __init__(self, repository: RepositoryStore, *, meta_path="state/meta.json", scene_path="state/scene.json", **_ignored):
         self.repository=repository; self.meta_path=meta_path; self.scene_path=scene_path
@@ -61,11 +62,6 @@ class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCom
             raise ValueError("planned meta does not preserve campaign transaction law")
     def _build(self,command:CommandEnvelope)->_BuiltPlan:
         meta,now=self._base(command); spec=COMMAND_SPECS[command.command_type]
-        # A live exact-combat owner is a hard causal boundary.  No travel,
-        # training, economy or time-skip command may silently advance around it.
-        # The combat resolver itself clears scene.active_combat_ref when the
-        # fight resolves, after which dependent route/tournament commands can
-        # consume the result normally.
         scene=self.repository.read_json(self.scene_path)
         active_combat=scene.get("active_combat_ref") if isinstance(scene,Mapping) else None
         if isinstance(active_combat,str) and active_combat and command.command_type!="jianghu_combat_resolution":
@@ -73,7 +69,6 @@ class RepositoryCommandPlanner(JianghuDevelopmentCommandsMixin,JianghuRetinueCom
         if spec.variants:
             expanded=spec.expand_variant_payload(command.payload)
             if expanded is None: raise CommandRejectedError(command.command_type+"_payload_fields_invalid")
-            # Reducers expect only variant fields, not null union fields.
             action=expanded.get("action"); variant=spec.variants.get(action)
             payload={k:command.payload[k] for k in (*variant.required_fields,*variant.optional_fields) if k in command.payload}
             command=_ExpandedCommand(command,payload)

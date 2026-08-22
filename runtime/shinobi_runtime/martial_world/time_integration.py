@@ -16,11 +16,11 @@ from datetime import datetime
 from typing import Any, Callable, Mapping, Sequence
 
 from .escort import settle_monthly_escort_demand
-from .scheduler import settle_schedule
 from .time_integration_legacy import settle_martial_world_frontier as _legacy_settle
 
 _SCHEDULER = "state/martial-world/scheduler.json"
 _EXTRACTED_EVENT_KINDS = frozenset({"trade_demand_review"})
+_EXTRACTED_PLACEHOLDER_PREFIX = "__extracted__:"
 
 
 class _OverlayRead:
@@ -34,6 +34,31 @@ class _OverlayRead:
         return copy.deepcopy(self._read_json(path))
 
 
+def _legacy_placeholder(event: Mapping[str, Any]) -> dict[str, Any]:
+    """Keep extracted recurring owners visible to scheduler settlement.
+
+    ``settle_schedule`` advances owners, not event kinds. Removing one kind from
+    a multi-kind recurring owner chunk would make legacy advance the chunk and a
+    second domain settlement try to advance it again. A harmless unknown kind
+    preserves the exact owner/timestamp/schedule_class while bypassing the old
+    domain reducer. Its internal calendar-review artifact is removed below.
+    """
+    row = copy.deepcopy(dict(event))
+    row["kind"] = _EXTRACTED_PLACEHOLDER_PREFIX + str(event.get("kind") or "")
+    return row
+
+
+def _is_placeholder_review(row: Mapping[str, Any]) -> bool:
+    if row.get("kind") != "calendar_event":
+        return False
+    event = row.get("event")
+    return isinstance(event, Mapping) and str(event.get("kind") or "").startswith(_EXTRACTED_PLACEHOLDER_PREFIX)
+
+
+def _is_placeholder_handoff(row: Mapping[str, Any]) -> bool:
+    return str(row.get("kind") or "").startswith(_EXTRACTED_PLACEHOLDER_PREFIX)
+
+
 def settle_martial_world_frontier(
     *,
     read_json: Callable[[str], Mapping[str, Any]],
@@ -44,8 +69,14 @@ def settle_martial_world_frontier(
     """Settle one exact frontier through legacy and extracted domain owners."""
     normalized = [dict(row) for row in events if isinstance(row, Mapping)]
     extracted = [row for row in normalized if str(row.get("kind") or "") in _EXTRACTED_EVENT_KINDS]
-    legacy_events = [row for row in normalized if str(row.get("kind") or "") not in _EXTRACTED_EVENT_KINDS]
+    legacy_events = [
+        _legacy_placeholder(row) if str(row.get("kind") or "") in _EXTRACTED_EVENT_KINDS else row
+        for row in normalized
+    ]
 
+    # Legacy still receives every owner in the recurring chunk, so it advances
+    # the compact scheduler exactly once. Only the extracted domain mechanics
+    # are replaced.
     legacy = _legacy_settle(
         read_json=read_json,
         schedule=schedule,
@@ -57,15 +88,17 @@ def settle_martial_world_frontier(
         for path, record in dict(legacy.get("writes", {})).items()
         if isinstance(path, str)
     }
-    reviews = [copy.deepcopy(dict(row)) for row in legacy.get("reviews", []) if isinstance(row, Mapping)]
-    handoffs = [copy.deepcopy(dict(row)) for row in legacy.get("handoffs", []) if isinstance(row, Mapping)]
+    reviews = [
+        copy.deepcopy(dict(row)) for row in legacy.get("reviews", [])
+        if isinstance(row, Mapping) and not _is_placeholder_review(row)
+    ]
+    handoffs = [
+        copy.deepcopy(dict(row)) for row in legacy.get("handoffs", [])
+        if isinstance(row, Mapping) and not _is_placeholder_handoff(row)
+    ]
     schedule_after = copy.deepcopy(dict(legacy.get("schedule_after", writes.get(_SCHEDULER, schedule))))
 
     if extracted:
-        # Legacy did not see this recurring owner chunk, so advance precisely
-        # those scheduler owners now. through==settled_through is lawful.
-        schedule_after = settle_schedule(schedule_after, through=at, processed_events=extracted)
-        writes[_SCHEDULER] = schedule_after
         overlay = _OverlayRead(read_json, writes)
         escort = settle_monthly_escort_demand(
             read_json=overlay,

@@ -3,8 +3,8 @@
   "faction_id": "faction.house_luo",
   "headquarters": "changan",
   "local_site_ref": "site.house_luo",
-  "population": 55,
-  "treasury_cash": 161810,
+  "population": 57,
+  "treasury_cash": 85975,
   "buildings": {
     "main_hall": 3,
     "residential_compound": 3,
@@ -27,10 +27,108 @@
     "school_tuition": 0
   },
   "training_epoch": {
-    "started_at": "0061-08-14T21:15:00",
-    "settled_through": "0061-08-14T21:15:00",
+    "started_at": "0061-09-13T21:15:00",
+    "settled_through": "0061-09-13T21:15:00",
     "elapsed_training_days": 0,
-    "intensity_milli": 1000
+    "intensity_milli": 1000,
+    "history": [],
+    "current_environment": {
+      "segment_id": "training.faction.house_luo.0.0c7546c2470e",
+      "start_day": 0,
+      "end_day": 0,
+      "started_at": "0061-09-13T21:15:00",
+      "settled_through": "0061-09-13T21:15:00",
+      "environment_fingerprint": "0c7546c2470e658f91de2c59",
+      "curriculum": {
+        "sword": 70,
+        "unarmed": 53,
+        "stealth_scouting": 41,
+        "command": 57,
+        "qi": 67,
+        "qi_control": 73
+      },
+      "facilities": {
+        "armory_workshop": 2,
+        "infirmary_apothecary": 2,
+        "library_records": 2,
+        "main_hall": 3,
+        "qi_hall": 2,
+        "training_grounds": 3,
+        "training_hall": 2
+      },
+      "intensity_milli": 1000,
+      "eligible_student_count": 57,
+      "instruction_profiles": {
+        "sword": {
+          "coverage_milli": 1000,
+          "facility_capacity": 174,
+          "instructor_skill": 88,
+          "instruction_skill": 23
+        },
+        "unarmed": {
+          "coverage_milli": 1000,
+          "facility_capacity": 174,
+          "instructor_skill": 65,
+          "instruction_skill": 45
+        },
+        "stealth_scouting": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 70,
+          "instruction_skill": 30
+        },
+        "command": {
+          "coverage_milli": 1000,
+          "facility_capacity": 140,
+          "instructor_skill": 71,
+          "instruction_skill": 20
+        },
+        "qi": {
+          "coverage_milli": 456,
+          "facility_capacity": 26,
+          "instructor_skill": 111,
+          "instruction_skill": 31
+        },
+        "qi_control": {
+          "coverage_milli": 105,
+          "facility_capacity": 6,
+          "instructor_skill": 122,
+          "instruction_skill": 28
+        },
+        "medicine": {
+          "coverage_milli": 210,
+          "facility_capacity": 12,
+          "instructor_skill": 67,
+          "instruction_skill": 25
+        },
+        "administration": {
+          "coverage_milli": 228,
+          "facility_capacity": 13,
+          "instructor_skill": 68,
+          "instruction_skill": 36
+        },
+        "commerce": {
+          "coverage_milli": 228,
+          "facility_capacity": 13,
+          "instructor_skill": 74,
+          "instruction_skill": 36
+        },
+        "crafting": {
+          "coverage_milli": 140,
+          "facility_capacity": 8,
+          "instructor_skill": 55,
+          "instruction_skill": 51
+        },
+        "instruction": {
+          "coverage_milli": 596,
+          "facility_capacity": 34,
+          "instructor_skill": 54,
+          "instruction_skill": 54
+        }
+      },
+      "guard_duty_milli": 0,
+      "external_teaching_duty_milli": {}
+    }
   },
   "infrastructure": {
     "estate_area_m2": 35200,
@@ -81,5 +179,9 @@
     "agriculture_landholding": {
       "managed_land_mu": 50
     }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 2
   }
 }

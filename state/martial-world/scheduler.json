@@ -253,7 +253,7 @@
         "faction_member_cycle",
         "equipment_maintenance_review"
       ],
-      "owner_cursor": 88
+      "owner_cursor": 92
     },
     "faction_annual": {
       "interval_days": 365,
@@ -3007,6 +3007,58 @@
       "planted_mu": 50,
       "planted_at": "0061-09-13T21:15:00",
       "place_id": "hangzhou",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_luo:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_luo:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_luo",
+      "crop_ref": "vegetables",
+      "planted_mu": 9,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "changan",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_ma:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_ma:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_ma",
+      "crop_ref": "vegetables",
+      "planted_mu": 18,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "golmud",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_pei:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_pei:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_pei",
+      "crop_ref": "vegetables",
+      "planted_mu": 26,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "dali",
+      "agriculture_level": 1,
+      "labor_coverage_milli": 1000,
+      "requires_player_decision": false
+    },
+    "agriculture_harvest:faction.house_qiao:vegetables:0061-09-13": {
+      "event_id": "agriculture_harvest:faction.house_qiao:vegetables:0061-09-13",
+      "kind": "agriculture_harvest_due",
+      "due_at": "0061-11-12T21:15:00",
+      "faction_ref": "faction.house_qiao",
+      "crop_ref": "vegetables",
+      "planted_mu": 16,
+      "planted_at": "0061-09-13T21:15:00",
+      "place_id": "hefei",
       "agriculture_level": 1,
       "labor_coverage_milli": 1000,
       "requires_player_decision": false

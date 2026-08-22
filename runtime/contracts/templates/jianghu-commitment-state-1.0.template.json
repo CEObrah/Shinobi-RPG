@@ -26,97 +26,68 @@
       "mode": "open_map"
     },
     "/commitments/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "commitment_ref",
+        "activity_ref",
+        "activity_kind",
+        "kind",
+        "actor_ref",
+        "owner_ref",
+        "resources",
+        "person_refs",
+        "started_at",
+        "status",
+        "location_ref"
+      ]
     },
     "/commitments/*/resources/*": {
-      "mode": "open_map"
+      "mode": "closed",
+      "allowed_keys": [
+        "kind",
+        "ref",
+        "owner_ref"
+      ]
     },
     "/person_index": {
       "mode": "open_map"
     }
   },
   "type_contracts": {
-    "": [
-      "object"
-    ],
-    "/schema": [
-      "string"
-    ],
-    "/commitments": [
-      "object"
-    ],
-    "/commitments/*": [
-      "object"
-    ],
-    "/commitments/*/commitment_ref": [
-      "string"
-    ],
-    "/commitments/*/activity_ref": [
-      "string"
-    ],
-    "/commitments/*/activity_kind": [
-      "string"
-    ],
-    "/commitments/*/kind": [
-      "string"
-    ],
-    "/commitments/*/actor_ref": [
-      "string"
-    ],
-    "/commitments/*/owner_ref": [
-      "string"
-    ],
-    "/commitments/*/resources": [
-      "array"
-    ],
-    "/commitments/*/resources/*": [
-      "object"
-    ],
-    "/commitments/*/resources/*/kind": [
-      "string"
-    ],
-    "/commitments/*/resources/*/ref": [
-      "string"
-    ],
-    "/commitments/*/resources/*/owner_ref": [
-      "string"
-    ],
-    "/commitments/*/person_refs": [
-      "array"
-    ],
-    "/commitments/*/person_refs/*": [
-      "string"
-    ],
-    "/commitments/*/started_at": [
-      "string"
-    ],
-    "/commitments/*/status": [
-      "string"
-    ],
-    "/commitments/*/location_ref": [
-      "string"
-    ],
-    "/person_index": [
-      "object"
-    ],
-    "/person_index/*": [
-      "string"
-    ]
+    "": ["object"],
+    "/schema": ["string"],
+    "/commitments": ["object"],
+    "/commitments/*": ["object"],
+    "/commitments/*/commitment_ref": ["string"],
+    "/commitments/*/activity_ref": ["string"],
+    "/commitments/*/activity_kind": ["string"],
+    "/commitments/*/kind": ["string"],
+    "/commitments/*/actor_ref": ["string"],
+    "/commitments/*/owner_ref": ["string"],
+    "/commitments/*/resources": ["array"],
+    "/commitments/*/resources/*": ["object"],
+    "/commitments/*/resources/*/kind": ["string"],
+    "/commitments/*/resources/*/ref": ["string"],
+    "/commitments/*/resources/*/owner_ref": ["string"],
+    "/commitments/*/person_refs": ["array"],
+    "/commitments/*/person_refs/*": ["string"],
+    "/commitments/*/started_at": ["string"],
+    "/commitments/*/status": ["string"],
+    "/commitments/*/location_ref": ["string"],
+    "/person_index": ["object"],
+    "/person_index/*": ["string"]
   },
   "array_contracts": {
     "/commitments/*/resources": {
-      "item_types": [
-        "object"
-      ]
+      "item_types": ["object"]
     },
     "/commitments/*/person_refs": {
-      "item_types": [
-        "string"
-      ]
+      "item_types": ["string"]
     }
   },
   "writing_rules": [
     "Only unresolved current reservations belong here.",
+    "Commitment rows are closed so named arrays retain their semantic pointers during structural validation.",
     "Resources are exact conserved reservations. Person arrays are current membership in the activity, never a fictional population cap."
   ]
 }

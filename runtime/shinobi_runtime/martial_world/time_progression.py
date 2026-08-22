@@ -2,7 +2,7 @@
 
 The production frontier remains the sole world scheduler. This module only
 post-processes a frontier that has already been deterministically settled:
-route hours become bounded field development, newly player-visible funded
+route hours become bounded field/rest development, newly player-visible funded
 contracts become soft handoffs, and requested standing retinues are assigned
 from conserved current faction people at their scheduled review.
 """
@@ -16,6 +16,12 @@ from shinobi_runtime.api.contract_visibility import contract_is_player_visible
 from .field_development import apply_field_activity
 from .handoffs import classify_handoff
 from .live_state import roster_person, set_roster_person
+from .rest_practice import (
+    apply_rest_practice,
+    journey_hour_budget,
+    practice_domain,
+    practice_pressure_milli,
+)
 from .retinues import select_retinue_members
 from .time_integration import settle_martial_world_frontier as _settle_martial_world_frontier
 
@@ -71,6 +77,23 @@ def _commitment_actor(commitments: Mapping[str, Any], movement_ref: str, contrac
     return None
 
 
+def _active_retinue_roles(state: Mapping[str, Any]) -> dict[str, str]:
+    rows = state.get("deployments", {}) if isinstance(state, Mapping) else {}
+    if not isinstance(rows, Mapping):
+        return {}
+    out: dict[str, str] = {}
+    for retinue_ref in sorted(str(ref) for ref in rows if isinstance(ref, str)):
+        row = rows.get(retinue_ref)
+        if not isinstance(row, Mapping) or row.get("operation_kind") != "standing_retinue" or row.get("status") != "active":
+            continue
+        roles = row.get("member_roles", {}) if isinstance(row.get("member_roles"), Mapping) else {}
+        members = row.get("member_refs", []) if isinstance(row.get("member_refs"), list) else []
+        for ref in members:
+            if isinstance(ref, str) and ref:
+                out.setdefault(ref, str(roles.get(ref) or ""))
+    return out
+
+
 def _apply_route_field_development(
     *, read_json: Callable[[str], Mapping[str, Any]], writes: dict[str, Any]
 ) -> list[dict[str, Any]]:
@@ -84,6 +107,11 @@ def _apply_route_field_development(
 
     commitments_raw = writes.get(_COMMITMENTS)
     commitments = copy.deepcopy(dict(commitments_raw)) if isinstance(commitments_raw, Mapping) else _read_or(read_json, _COMMITMENTS, {"commitments": {}})
+    deployments_raw = writes.get(_DEPLOYMENTS)
+    deployments = copy.deepcopy(dict(deployments_raw)) if isinstance(deployments_raw, Mapping) else _read_or(
+        read_json, _DEPLOYMENTS, {"deployments": {}}
+    )
+    retinue_roles = _active_retinue_roles(deployments)
     view = _FrontierReadView(read_json, writes)
     summaries: list[dict[str, Any]] = []
     for movement_ref in sorted(set(str(x) for x in before_moves) | set(str(x) for x in after_moves)):
@@ -101,8 +129,12 @@ def _apply_route_field_development(
         contract_ref = str(source.get("contract_ref") or "")
         leader_ref = _commitment_actor(commitments, movement_ref, contract_ref)
         activity_kind = "escort_travel" if contract_ref else "road_travel"
+        budget = journey_hour_budget(delta_hours * 1000)
+        active_hours = int(budget["active_route_hours_milli"])
+        practice_hours = int(budget["rest_practice_hours_milli"])
         developed = 0
         points = 0
+        practice_points = 0
         for person_ref in participants:
             try:
                 path, roster, ordinal, person = roster_person(view, person_ref)
@@ -110,7 +142,7 @@ def _apply_route_field_development(
                 continue
             person_after, summary = apply_field_activity(
                 person,
-                duration_hours_milli=delta_hours * 1000,
+                duration_hours_milli=active_hours,
                 activity_kind=activity_kind,
                 leader=person_ref == leader_ref,
                 pressure_milli=800 if contract_ref else 650,
@@ -118,6 +150,14 @@ def _apply_route_field_development(
             domain_rows = summary.get("domains", []) if isinstance(summary, Mapping) else []
             if isinstance(domain_rows, list):
                 points += sum(max(0, int(row.get("points", 0))) for row in domain_rows if isinstance(row, Mapping))
+            domain = practice_domain(person_after, retinue_role=retinue_roles.get(person_ref))
+            person_after, rest_summary = apply_rest_practice(
+                person_after,
+                duration_hours_milli=practice_hours,
+                domain=domain,
+                pressure_milli=practice_pressure_milli(journey=True),
+            )
+            practice_points += max(0, int(rest_summary.get("points", 0)))
             writes[path] = set_roster_person(roster, ordinal, person_after)
             developed += 1
         if developed:
@@ -125,8 +165,11 @@ def _apply_route_field_development(
                 "movement_ref": movement_ref,
                 "activity_kind": activity_kind,
                 "hours_settled": delta_hours,
+                "active_route_hours_milli": active_hours,
+                "rest_practice_hours_milli": practice_hours,
                 "people_developed": developed,
                 "capability_points": points,
+                "rest_practice_points": practice_points,
             })
     return summaries
 
@@ -222,6 +265,17 @@ def _settle_retinue_assignments(
             continue
         leader_ref = str(current.get("leader_ref") or "")
         chooser_ref = str(current.get("chooser_ref") or "")
+        reserved_elsewhere = {
+            str(member_ref)
+            for other_ref, other in rows.items()
+            if str(other_ref) != retinue_ref
+            and isinstance(other, Mapping)
+            and other.get("operation_kind") == "standing_retinue"
+            and other.get("status") == "active"
+            and isinstance(other.get("member_refs"), list)
+            for member_ref in other.get("member_refs", [])
+            if isinstance(member_ref, str)
+        }
         try:
             _path, roster, _ordinal, leader = roster_person(view, leader_ref)
         except (FileNotFoundError, KeyError, TypeError, ValueError):
@@ -235,7 +289,7 @@ def _settle_retinue_assignments(
                 [row for row in people if isinstance(row, Mapping)],
                 requested_count=requested,
                 year=at.year,
-                unavailable_refs=[*base_unavailable, chooser_ref],
+                unavailable_refs=[*base_unavailable, *sorted(reserved_elsewhere), chooser_ref],
             )
         except ValueError:
             member_refs, roles = [], {}

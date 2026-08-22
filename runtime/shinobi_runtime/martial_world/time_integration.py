@@ -16,6 +16,7 @@ from datetime import datetime
 from typing import Any, Callable, Mapping, Sequence
 
 from .escort import settle_monthly_escort_demand
+from .escort_route import reconcile_escort_route_settlement
 from .time_integration_legacy import settle_martial_world_frontier as _legacy_settle
 
 _SCHEDULER = "state/martial-world/scheduler.json"
@@ -112,6 +113,17 @@ def settle_martial_world_frontier(
         reviews.extend(copy.deepcopy(dict(row)) for row in escort.get("reviews", []) if isinstance(row, Mapping))
         schedule_after = copy.deepcopy(dict(escort.get("schedule_after", writes.get(_SCHEDULER, schedule_after))))
         writes[_SCHEDULER] = schedule_after
+
+    # Route exposure/contact remains in the mature reducer while objective
+    # settlement is generalized. This post-pass operates only on escort-tagged
+    # movements that actually closed at this frontier.
+    route_reviews = reconcile_escort_route_settlement(
+        read_json=read_json,
+        writes=writes,
+        events=normalized,
+        at=at,
+    )
+    reviews.extend(route_reviews)
 
     return {
         "writes": writes,

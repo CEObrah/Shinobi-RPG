@@ -16,6 +16,7 @@ from shinobi_runtime.martial_world.faction_state import (
     compact_faction_state, hydrate_faction_state, inventory_path, roster_path, faction_profile,
 )
 from shinobi_runtime.martial_world.inventory_state import compact_inventory_state
+from shinobi_runtime.martial_world.independent_people import compact_independent_person
 from shinobi_runtime.martial_world.person_state import (
     compact_roster_state, hydrate_roster_state, martial_member_from_grade,
 )
@@ -195,10 +196,42 @@ def main() -> int:
                     fail(errors, f"{pid}: zero-valued {section} entry must be omitted")
             people_by_id[pid] = (roster_rel, ordinal, person, fid)
 
-    if total_people != 11691:
-        fail(errors, f"expected 11691 persistent faction people, found {total_people}")
+    # Faction exits conserve exact martial identities in the sparse independent
+    # owner. Recruitment may later increase the persistent martial population,
+    # so the bootstrap count is a floor, not a forever-fixed faction-roster count.
+    independent_owner = load("state/martial-world/independent-people.json")
+    independent_people = independent_owner.get("people", []) if isinstance(independent_owner, dict) else []
+    independent_ids: set[str] = set()
+    if not isinstance(independent_people, list):
+        fail(errors, "independent people owner has invalid people array")
+        independent_people = []
+    for ordinal, person in enumerate(independent_people):
+        if not isinstance(person, dict):
+            fail(errors, f"independent person ordinal {ordinal} is not an object")
+            continue
+        pid = person.get("person_id")
+        if not isinstance(pid, str) or not pid:
+            fail(errors, f"independent person ordinal {ordinal} has invalid ID")
+            continue
+        if pid in people_by_id or pid in independent_ids:
+            fail(errors, f"duplicate persistent martial identity {pid}")
+        independent_ids.add(pid)
+        if person.get("faction_ref") is not None or person.get("membership_grade") is not None:
+            fail(errors, f"{pid}: independent person still carries active faction membership")
+        if compact_independent_person(person) != person:
+            fail(errors, f"{pid}: independent person is not canonical sparse state")
+        former = person.get("former_faction_ref")
+        since = person.get("independent_since")
+        if not isinstance(former, str) or not former:
+            fail(errors, f"{pid}: independent person missing former_faction_ref provenance")
+        if not isinstance(since, str) or not since:
+            fail(errors, f"{pid}: independent person missing independent_since provenance")
+
+    total_persistent_martial = total_people + len(independent_ids)
+    if total_persistent_martial < 11691:
+        fail(errors, f"persistent martial identity loss: bootstrap=11691 current={total_persistent_martial}")
     if total_martial != total_people:
-        fail(errors, f"every persistent faction person must be a martial member: members={total_martial} people={total_people}")
+        fail(errors, f"every rostered faction person must be a martial member: members={total_martial} people={total_people}")
     expected_types = {
         "martial_house": 24, "sect": 60, "martial_school": 35,
         "escort_agency": 30, "brotherhood_society": 16,
@@ -209,8 +242,9 @@ def main() -> int:
     if any("mercenary" in str(x).lower() for x in faction_types):
         fail(errors, "mercenary faction type survived cleanup")
 
-    # Direct route shards store only [faction_ref, ordinal]. Person ID is already
-    # the map key and roster path derives from faction_ref.
+    # Direct route shards store only current faction people as [faction_ref,
+    # ordinal]. Independent/civic identities intentionally fall back to their
+    # sparse owners rather than acquiring a second mutable routing authority.
     route_index = load("state/martial-world/person-routes.json")
     if set(route_index) != {"schema", "person_count"}:
         fail(errors, "person route root contains derivable routing policy fields")
@@ -228,7 +262,7 @@ def main() -> int:
             routed.add(pid)
             truth = people_by_id.get(pid)
             if truth is None:
-                fail(errors, f"{pid}: route points to nonexistent person"); continue
+                fail(errors, f"{pid}: route points to nonexistent faction person"); continue
             _roster_rel, ordinal, _person, fid = truth
             if not isinstance(row, list) or len(row) != 2 or row[0] != fid or row[1] != ordinal:
                 fail(errors, f"{pid}: stale/noncompact direct route")
@@ -312,7 +346,11 @@ def main() -> int:
         for error in errors[:200]: print(" -", error)
         if len(errors) > 200: print(f" ... {len(errors)-200} more")
         return 1
-    print(f"STRUCTURE OK: {len(state_paths)} state owners, {len(faction_files)} factions, {total_people} people, {total_martial} martial, {len(local)} local sites")
+    print(
+        f"STRUCTURE OK: {len(state_paths)} state owners, {len(faction_files)} factions, "
+        f"{total_people} faction people, {len(independent_ids)} independent people, "
+        f"{total_persistent_martial} persistent martial identities, {len(local)} local sites"
+    )
     return 0
 
 

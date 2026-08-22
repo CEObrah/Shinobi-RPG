@@ -18,12 +18,6 @@ _CRITICAL_OFFICES = {
 _PERMANENT_TEAM_MIN_AGE = 16
 _PERMANENT_TEAM_MAX_AGE_GAP = 18
 _PERMANENT_TEAM_GRADES = {"junior", "full", "senior", "elite"}
-_PERMANENT_ROLE_FLOORS = {
-    "protective_guard": 45,
-    "scout": 45,
-    "field_medic": 45,
-    "field_deputy": 40,
-}
 
 
 def _office_keys(person: Mapping[str, Any]) -> set[str]:
@@ -128,22 +122,6 @@ def _scores(person: Mapping[str, Any]) -> dict[str, int]:
     }
 
 
-def _role_primary_capability(person: Mapping[str, Any], role: str) -> int:
-    martial = person.get("martial_skills", {}) if isinstance(person.get("martial_skills"), Mapping) else {}
-    prof = person.get("professional_skills", {}) if isinstance(person.get("professional_skills"), Mapping) else {}
-    if role == "field_medic":
-        return int(prof.get("medicine", 0))
-    if role == "scout":
-        return int(martial.get("stealth_scouting", 0))
-    if role == "field_deputy":
-        return int(martial.get("command", 0))
-    return max(int(martial.get("sword", 0)), int(martial.get("unarmed", 0)))
-
-
-def _meets_permanent_role_floor(person: Mapping[str, Any], role: str) -> bool:
-    return _role_primary_capability(person, role) >= _PERMANENT_ROLE_FLOORS[role]
-
-
 def _leader_need_order(leader: Mapping[str, Any]) -> list[str]:
     martial = leader.get("martial_skills", {}) if isinstance(leader.get("martial_skills"), Mapping) else {}
     prof = leader.get("professional_skills", {}) if isinstance(leader.get("professional_skills"), Mapping) else {}
@@ -171,10 +149,12 @@ def select_retinue_members(
 
     Zero means the authorized chooser owns the identities but not the headcount:
     the standing travel team is still exactly three people. Permanent members
-    must be trusted standing personnel, fall within a plausible long-term cohort
-    for the leader, and meet the primary competence floor of the role for which
-    they are chosen. If the House cannot field three suitable companions, the
-    assignment blocks instead of filling a slot with an implausible candidate.
+    must be trusted standing personnel within a plausible long-term cohort for
+    the leader. Specialist labels are relative assignments inside that lawful
+    cohort, not artificial mastery thresholds: the parents choose the best medic,
+    scout and protector the actual House can field among plausible companions.
+    If fewer than the requested number of lawful cohort members exist, selection
+    blocks rather than reaching across generations merely to fill a slot.
 
     Exact two/three remains readable for backward-compatible tests/state, but the
     live retinue command requests three for new assignments. This helper never
@@ -214,7 +194,6 @@ def select_retinue_members(
                 )
                 for person in candidates
                 if str(person["person_id"]) not in chosen
-                and _meets_permanent_role_floor(person, role)
             ),
             key=lambda row: (-row[0], row[1]),
         )

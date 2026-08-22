@@ -1,5 +1,6 @@
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -7,6 +8,9 @@ from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
+from shinobi_runtime.store.repository import RepositoryStore
+
+ROOT = Path(__file__).resolve().parents[2]
 
 
 class _FakeRepository:
@@ -111,3 +115,32 @@ def test_preview_staged_validation_is_read_only():
     assert preview.status == "ready"
     assert preview.target_revision == 2
     assert repository.files == before
+
+
+def test_real_campaign_monthly_advance_preview_is_transaction_valid_and_read_only():
+    repository = RepositoryStore(ROOT)
+    planner = RepositoryCommandPlanner(repository)
+    meta = repository.read_json("state/meta.json")
+    before = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in (ROOT / "state").rglob("*.json")
+    }
+    command = CommandEnvelope(
+        campaign_id=meta["campaign_id"],
+        request_id="request.monthly-preview-regression",
+        actor_id=meta["player_id"],
+        command_type="advance_time",
+        expected_revision=meta["revision"],
+        submitted_at="2026-08-22T00:00:00Z",
+        payload={"target_time": "SE-0061-09-13T21:15:00"},
+    )
+
+    preview = planner.preview(command)
+
+    after = {
+        str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in (ROOT / "state").rglob("*.json")
+    }
+    assert preview.status == "ready"
+    assert preview.target_revision == meta["revision"] + 1
+    assert after == before

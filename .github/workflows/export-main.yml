@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - audit/retinue-doctrine-poison-2026-08-26
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read

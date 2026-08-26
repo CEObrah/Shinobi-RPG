@@ -1,0 +1,66 @@
+name: Apply Aug 26 Jianghu Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/apply-aug26-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Check out audited patch payload
+        uses: actions/checkout@v4
+        with:
+          ref: audit/retinue-doctrine-poison-2026-08-26
+          path: _sync_payload
+          sparse-checkout: |
+            .sync-patch
+          sparse-checkout-cone-mode: false
+
+      - name: Reconstruct and verify patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat _sync_payload/.sync-patch/part-* | base64 -d > /tmp/update.patch.xz
+          echo '1dfa1585f6050952e7a3f4259120c828bb0438299cadf7465d870bc18e44c200  /tmp/update.patch.xz' | sha256sum -c -
+          xz -dc /tmp/update.patch.xz > /tmp/update.patch
+          echo 'd969ac2501f4a4ac69af83e0ac2c9042b285e3ce5df7f485ab4d0c47dfe44463  /tmp/update.patch' | sha256sum -c -
+
+      - name: Apply audited Aug 26 delta
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _sync_payload
+          if git apply --check /tmp/update.patch; then
+            git apply --whitespace=nowarn /tmp/update.patch
+          else
+            patch --batch --forward --fuzz=3 -p1 < /tmp/update.patch
+          fi
+          git diff --check
+          rm -f .github/workflows/apply-aug26-sync.yml
+          git status --short
+
+      - name: Commit directly to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'CEObrah'
+          git config user.email '107764892+CEObrah@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No source delta remained after applying the audited patch.'
+            exit 0
+          fi
+          git commit -m 'Sync Aug 26 retinue doctrine poison and Qi repair'
+          git push origin HEAD:main

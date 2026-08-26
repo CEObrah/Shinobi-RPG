@@ -1,0 +1,27 @@
+name: Export Main Snapshot
+
+on:
+  push:
+    branches:
+      - audit/retinue-doctrine-poison-2026-08-26
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Pack main
+        run: git archive --format=tar.gz --output=/tmp/shinobi-main.tar.gz HEAD
+      - name: Upload snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: shinobi-main-snapshot
+          path: /tmp/shinobi-main.tar.gz
+          if-no-files-found: error
+          retention-days: 1

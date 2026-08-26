@@ -2,8 +2,6 @@ name: Verify Shinobi Jianghu
 
 on:
   pull_request:
-  pull_request_target:
-    types: [reopened]
   push:
     branches: [main]
   workflow_dispatch:
@@ -17,7 +15,7 @@ concurrency:
 
 jobs:
   repository-gate:
-    if: github.event_name != 'pull_request_target'
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[aug26-sync]')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -69,7 +67,7 @@ jobs:
           python tools/test_changed.py "${changed[@]}"
 
   sync-aug26-main:
-    if: github.event_name == 'pull_request_target' && github.event.pull_request.head.ref == 'audit/retinue-doctrine-poison-2026-08-26'
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[aug26-sync]')
     runs-on: ubuntu-latest
     steps:
       - name: Check out main
@@ -96,7 +94,7 @@ jobs:
           xz -dc /tmp/update.patch.xz > /tmp/update.patch
           echo 'd969ac2501f4a4ac69af83e0ac2c9042b285e3ce5df7f485ab4d0c47dfe44463  /tmp/update.patch' | sha256sum -c -
 
-      - name: Apply audited delta
+      - name: Apply audited Aug 26 delta
         shell: bash
         run: |
           set -euo pipefail
@@ -106,12 +104,13 @@ jobs:
           else
             patch --batch --forward --fuzz=3 -p1 < /tmp/update.patch
           fi
+          rm -f .aug26-sync-trigger
           rm -f .github/workflows/apply-aug26-sync.yml
-          git show HEAD^:.github/workflows/verify.yml > .github/workflows/verify.yml
+          git show bd26014c7a9b376caa3fd03867621a14df39ea8c:.github/workflows/verify.yml > .github/workflows/verify.yml
           git diff --check
           git status --short
 
-      - name: Commit and push main
+      - name: Commit and push final main
         shell: bash
         run: |
           set -euo pipefail

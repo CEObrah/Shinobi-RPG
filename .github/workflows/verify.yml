@@ -64,3 +64,20 @@ jobs:
             changed=()
           fi
           python tools/test_changed.py "${changed[@]}"
+
+  export-main-for-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Pack main snapshot
+        run: git archive --format=tar.gz --output=/tmp/shinobi-main.tar.gz HEAD
+      - name: Upload main snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: shinobi-main-snapshot
+          path: /tmp/shinobi-main.tar.gz
+          if-no-files-found: error
+          retention-days: 1

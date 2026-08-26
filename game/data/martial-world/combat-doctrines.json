@@ -1,68 +1,111 @@
 {
-  "schema": "jianghu-combat-doctrines-1.0",
-  "doctrines": {
-    "doctrine.tang_wei.precision_function_denial": {
-      "principle": "precision_function_denial",
-      "selection_rule": "Prefer a still-functional high-value structure that is physically reachable; explicit player target and lethality intent always override this standing preference.",
-      "disable_priority": [
-        {
-          "target": "weapon-side wrist/hand when identifiable",
-          "structure_selector": "wrist",
-          "purpose": "disable_weapon_control"
-        },
-        {
-          "target": "eye",
-          "structure_selector": "eye",
-          "purpose": "destroy_or_disrupt_vision"
-        },
-        {
-          "target": "ankle",
-          "structure_selector": "ankle",
-          "purpose": "collapse_footing_and_mobility"
-        },
-        {
-          "target": "knee",
-          "structure_selector": "knee",
-          "purpose": "collapse_weight_bearing_and_mobility"
-        },
-        {
-          "target": "armpit/axilla",
-          "structure_selector": "axilla",
-          "purpose": "attack_soft_tissue_and_arm_control"
-        },
-        {
-          "target": "elbow/weapon arm",
-          "structure_selector": "elbow",
-          "purpose": "disable_weapon_or_guarding_limb"
-        },
-        {
-          "target": "neck opening",
-          "structure_selector": "neck_vital",
-          "purpose": "threaten_vital_line_within_authorized_nonlethal_intent"
-        }
-      ],
-      "lethal_priority": [
-        {
-          "target": "neck/throat",
-          "structure_selector": "neck_vital",
-          "purpose": "rapid_lethal_incapacitation"
-        },
-        {
-          "target": "armpit/axilla",
-          "structure_selector": "axilla",
-          "purpose": "attack_major_vessel_and_soft_tissue_line"
-        },
-        {
-          "target": "eye/head opening",
-          "structure_selector": "eye",
-          "purpose": "catastrophic_incapacitation"
-        },
-        {
-          "target": "upper torso vital opening",
-          "structure_selector": "upper_torso_vital",
-          "purpose": "rapid_lethal_incapacitation"
-        }
-      ]
+  "schema": "jianghu-combat-doctrines-3.0",
+  "player_retinue_templates": {
+    "doctrine.player_retinue.tang_wei.personal_guard": {
+      "principal": {
+        "protection_priority": 100,
+        "engagement_policy": "reserve_until_threat_overflow",
+        "strongest_enemy_policy": "never_forced"
+      },
+      "allocation": {
+        "guards_first": true,
+        "equal_threat_policy": "one_threat_per_available_member",
+        "numerical_superiority_policy": "defeat_in_detail",
+        "outnumbered_policy": "compact_sector_defense"
+      },
+      "formation": {
+        "encirclement_response": "back_to_back_outward_sectors",
+        "rear_exposure_priority": 100,
+        "cohesion": 95,
+        "break_for_pursuit": false
+      },
+      "temporary_members": {
+        "inherit_retinue_coordination": false
+      }
     }
+  },
+  "individual_templates": {
+    "doctrine.tang_wei.precision_function_denial": {
+      "engagement": {
+        "range_preference": "adaptive",
+        "initiative_posture": "reactive",
+        "commitment_posture": "measured",
+        "pursuit_posture": "restrained",
+        "movement_economy": "minimal_required",
+        "finishing_window": "commit_decisively"
+      },
+      "defense": {
+        "primary_response": "adaptive",
+        "counterattack_posture": "selective"
+      },
+      "resource_discipline": {
+        "qi_conservation": 88,
+        "fatigue_reserve": 85
+      },
+      "force_policy": {
+        "default": "disable",
+        "formal_spar": "disable",
+        "tournament_nonlethal": "disable",
+        "capture_objective": "disable",
+        "lethal_attack": "lethal",
+        "ambush": "lethal",
+        "battlefield": "lethal"
+      },
+      "targeting": {
+        "disable_priority": [
+          "wrist",
+          "ankle",
+          "knee",
+          "elbow"
+        ],
+        "lethal_priority": [
+          "neck_vital",
+          "axilla",
+          "eye",
+          "upper_torso_vital"
+        ]
+      }
+    }
+  },
+  "generic_intent_priorities": {
+    "disable": {
+      "sword": [
+        "wrist",
+        "elbow",
+        "knee",
+        "ankle"
+      ],
+      "spear": [
+        "knee",
+        "ankle",
+        "wrist",
+        "elbow"
+      ],
+      "unarmed": [
+        "elbow",
+        "wrist",
+        "knee",
+        "ankle"
+      ],
+      "bow": [
+        "ankle",
+        "knee",
+        "wrist",
+        "elbow"
+      ],
+      "hidden_weapons": [
+        "wrist",
+        "ankle",
+        "knee",
+        "elbow"
+      ],
+      "default": [
+        "knee",
+        "wrist",
+        "ankle",
+        "elbow"
+      ]
+    },
+    "lethal": []
   }
 }

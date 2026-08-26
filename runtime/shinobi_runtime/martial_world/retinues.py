@@ -1,9 +1,9 @@
 """Persistent travel-team and temporary escort staffing selection.
 
-A standing retinue is Wei's persistent three-person field team. Membership is an
-identity/coordination relationship, not an activity, so it never reserves a
-person's hours by itself. Permanent companions are selected for long-term field
-compatibility as well as raw capability. Temporary contract manpower is selected
+A standing retinue is Wei's persistent personal field team. Membership is an
+identity/coordination relationship, not a fixed set of slots or an activity, so
+it never reserves a person's hours by itself. Permanent companions are selected
+for long-term field compatibility as well as raw capability. Temporary contract manpower is selected
 separately and exists only inside the mission commitment that actually consumes
 time.
 """
@@ -12,8 +12,8 @@ from __future__ import annotations
 from typing import Any, Mapping, Sequence
 
 _CRITICAL_OFFICES = {
-    "leader", "deputy_leader", "chief_instructor", "chief_martial_instructor",
-    "chief_physician", "master_weaponsmith",
+    "leader", "deputy_leader", "chief_martial_instructor",
+    "chief_physician",
 }
 _PERMANENT_TEAM_MIN_AGE = 16
 _PERMANENT_TEAM_MAX_AGE_GAP = 18
@@ -114,6 +114,30 @@ def _scores(person: Mapping[str, Any]) -> dict[str, int]:
     }
 
 
+def _potential_bonus(person: Mapping[str, Any], role: str) -> int:
+    """Bounded long-horizon aptitude value for permanent-companion selection.
+
+    Permanent retinues are developmental relationships, so potential matters.
+    Temporary mission staffing deliberately does not use this bonus because a
+    one-mission escort needs whoever can perform the job now.
+    """
+    apt = person.get("aptitudes", {}) if isinstance(person.get("aptitudes"), Mapping) else {}
+    physical = max(0, int(apt.get("physical", 0)))
+    martial = max(0, int(apt.get("martial", 0)))
+    qi = max(0, int(apt.get("qi", 0)))
+    cognitive = max(0, int(apt.get("cognitive", 0)))
+    leadership = max(0, int(apt.get("leadership", 0)))
+    weighted = {
+        "protective_guard": (physical * 3 + martial * 4 + qi + cognitive) // 9,
+        "scout": (physical * 2 + martial * 3 + qi + cognitive * 3) // 9,
+        "field_medic": (physical + martial + qi * 2 + cognitive * 5) // 9,
+        "field_deputy": (martial + qi + cognitive * 3 + leadership * 4) // 9,
+    }.get(role, 0)
+    # At max ordinary/prodigy aptitude this contributes materially, but current
+    # competence still dominates the appointment decision.
+    return weighted * 2
+
+
 def _leader_need_order(leader: Mapping[str, Any]) -> list[str]:
     martial = leader.get("martial_skills", {}) if isinstance(leader.get("martial_skills"), Mapping) else {}
     prof = leader.get("professional_skills", {}) if isinstance(leader.get("professional_skills"), Mapping) else {}
@@ -130,24 +154,23 @@ def select_retinue_members(
     leader: Mapping[str, Any],
     people: Sequence[Mapping[str, Any]],
     *,
-    requested_count: int,
     year: int,
     unavailable_refs: Sequence[str] = (),
+    target_count: int = 3,
 ) -> tuple[list[str], dict[str, str]]:
     """Select Wei's persistent complementary travel team.
 
     Permanent members must be established trusted personnel within a plausible
     long-term cohort for the leader. Once a person is inside that lawful cohort,
-    capability determines selection; a weaker 18-year-old does not outrank a
-    stronger 30-year-old just for being closer to Wei's age. Specialist labels
+    current capability plus role-relevant aptitude determines selection; age
+    only establishes the lawful cohort and does not itself add score. Specialist labels
     are relative assignments, not artificial mastery thresholds. If fewer than
     the requested number of lawful cohort members exist, selection blocks rather
     than reaching across generations or taking an unproven new recruit.
     """
-    raw_count = int(requested_count)
-    if raw_count not in {0, 2, 3}:
-        raise ValueError("retinue requested count invalid")
-    target_count = 3 if raw_count == 0 else raw_count
+    target_count = int(target_count)
+    if target_count < 0:
+        raise ValueError("permanent team target count invalid")
     leader_ref = str(leader.get("person_id") or "")
     faction_ref = str(leader.get("faction_ref") or "")
     if _person_age(leader, year=year) is None:
@@ -170,7 +193,7 @@ def select_retinue_members(
             break
         ranked = sorted(
             (
-                (_scores(person)[role], str(person["person_id"]))
+                (_scores(person)[role] + _potential_bonus(person, role), str(person["person_id"]))
                 for person in candidates
                 if str(person["person_id"]) not in chosen
             ),

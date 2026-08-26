@@ -1,7 +1,9 @@
 {
   "poisons": {
     "sedative": {
-      "onset_minutes": 20,
+      "onset_seconds": 120,
+      "peak_seconds": 480,
+      "onset_fraction_milli": 250,
       "burden_per_dose": 30,
       "effects_per_100_burden": {
         "perception_penalty": 20,
@@ -11,7 +13,9 @@
       "potency": 65
     },
     "paralytic": {
-      "onset_minutes": 10,
+      "onset_seconds": 30,
+      "peak_seconds": 150,
+      "onset_fraction_milli": 300,
       "burden_per_dose": 35,
       "effects_per_100_burden": {
         "dexterity_penalty": 25,
@@ -21,7 +25,9 @@
       "potency": 78
     },
     "anticoagulant": {
-      "onset_minutes": 15,
+      "onset_seconds": 180,
+      "peak_seconds": 600,
+      "onset_fraction_milli": 200,
       "burden_per_dose": 30,
       "effects_per_100_burden": {
         "bleeding_rate_multiplier_milli": 1500
@@ -29,7 +35,9 @@
       "potency": 72
     },
     "cardiotoxic": {
-      "onset_minutes": 8,
+      "onset_seconds": 25,
+      "peak_seconds": 120,
+      "onset_fraction_milli": 300,
       "burden_per_dose": 40,
       "effects_per_100_burden": {
         "endurance_penalty": 30,
@@ -38,7 +46,9 @@
       "potency": 92
     },
     "neurotoxic": {
-      "onset_minutes": 12,
+      "onset_seconds": 45,
+      "peak_seconds": 180,
+      "onset_fraction_milli": 250,
       "burden_per_dose": 40,
       "effects_per_100_burden": {
         "dexterity_penalty": 20,
@@ -49,7 +59,7 @@
     }
   },
   "natural_clearance_per_hour": 2,
-  "rule": "Poison effects are deterministic functions of registered dose, elapsed time, current burden, Endurance/Qi resistance and treatment. No random status-effect roll.",
+  "rule": "Poison effects are deterministic functions of registered dose, elapsed time, current burden, Endurance/Qi resistance and treatment. Exposure activates an initial registered tranche at onset_seconds and the remaining burden at peak_seconds; there is no random status-effect roll.",
   "resistance_rule": "Deterministic resistance uses Endurance + effective Qi/Qi Control against poison potency and delivered dose. Resistance has no percentage ceiling; sufficiently weak exposure can establish zero burden.",
   "active_qi_purge": {
     "qi_cost_per_burden": 4,

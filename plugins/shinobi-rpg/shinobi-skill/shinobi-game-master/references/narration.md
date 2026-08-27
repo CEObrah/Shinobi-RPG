@@ -30,6 +30,8 @@ Do not upgrade `attempt made; response pending` into institutional success.
 
 Normal IC prose must not mention runtime, engine, command, schema, API, code, deployment, migration, bug, fix, revision, validator, state file, or developer work. Put implementation limitations in a separate OOC note after carrying the lived scene as far as truth permits.
 
+Do not smuggle OOC rationale into otherwise in-world prose. Never explain a scene beat by citing player-agency protection, office/permission requirements, command legality, implementation constraints, or what the GM is avoiding. If a mechanical or authority rule determines what happens, show only the lawful in-world act and its observable consequence. For example, prefer `Your father sets his seal beneath the approved roster` over `Because you hold no House office, your father authorizes the plan rather than making you pretend to possess a title.`
+
 Never alter Wei's in-world motive or make him choose a worse action solely to accommodate software limitations.
 
 ## Translate mechanics into lived evidence

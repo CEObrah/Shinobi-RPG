@@ -9,9 +9,9 @@
       "mission_kind": "escort",
       "objective": "Escort 12000 food_ration_day from huashan to changan under funded contract contract.3d229e0d9f89e6e306088a4d.",
       "linked_contract_ref": "contract.3d229e0d9f89e6e306088a4d",
-      "phase": "accepted",
+      "phase": "briefed",
       "created_at": "0061-09-13T21:15:00",
-      "updated_at": "0061-09-14T09:15:00",
+      "updated_at": "0061-09-14T10:15:00",
       "participant_refs": [
         "pc_wei_tang"
       ],
@@ -28,7 +28,42 @@
         "expires_at": "0061-10-13T21:15:00"
       },
       "migration_note": "Backfilled from a pre-institutional-layer accepted contract without changing contract terms or campaign outcome.",
-      "mission_source": "public_contract"
+      "mission_source": "public_contract",
+      "council": {
+        "convened_at": "0061-09-14T10:15:00",
+        "location_ref": "site.house_tang",
+        "place_ref": "luoyang",
+        "attendee_refs": [
+          "pc_wei_tang",
+          "char.zhu",
+          "char.ling"
+        ],
+        "attendee_names": {
+          "pc_wei_tang": "Tang Wei",
+          "char.zhu": "Tang Zhu",
+          "char.ling": "Tang Ling"
+        },
+        "views": [
+          {
+            "person_ref": "pc_wei_tang",
+            "stance": "neutral",
+            "concerns": []
+          },
+          {
+            "person_ref": "char.zhu",
+            "stance": "neutral",
+            "concerns": [
+              "provisions_and_equipment"
+            ]
+          },
+          {
+            "person_ref": "char.ling",
+            "stance": "neutral",
+            "concerns": []
+          }
+        ],
+        "approval_authority_ref": "char.zhu"
+      }
     }
   },
   "archive": {}

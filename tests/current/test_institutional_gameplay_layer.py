@@ -150,6 +150,25 @@ def _write_plan(root, plan):
             path.write_text(str(payload), encoding="utf-8")
 
 
+def _remove_live_player_route_commitment_from_fixture(root, player_ref="pc_wei_tang"):
+    """Keep synthetic institutional workflows independent of the mutable live save."""
+    path = root / "state/martial-world/route-operations.json"
+    state = json.loads(path.read_text())
+    movements = state.get("movements", {})
+    if isinstance(movements, dict):
+        state["movements"] = {
+            ref: row for ref, row in movements.items()
+            if not (
+                isinstance(row, dict)
+                and player_ref in [
+                    str(member_ref) for member_ref in row.get("participant_refs", [])
+                    if isinstance(member_ref, str)
+                ]
+            )
+        }
+    path.write_text(json.dumps(state), encoding="utf-8")
+
+
 def test_house_assignment_offer_is_a_protected_player_decision():
     from shinobi_runtime.martial_world.institutional_progression import stage_house_assignment_offers
 
@@ -287,6 +306,7 @@ def test_council_can_delegate_exact_diplomacy_terms_to_wei(tmp_path):
     root = tmp_path / "campaign"
     shutil.copytree(ROOT / "state", root / "state")
     shutil.copytree(ROOT / "game", root / "game")
+    _remove_live_player_route_commitment_from_fixture(root)
 
     def command(command_type, payload, request_id):
         repo = RepositoryStore(root)
@@ -395,6 +415,7 @@ def test_delegated_prisoner_exchange_releases_only_exact_authorized_captives(tmp
     root = tmp_path / "campaign"
     shutil.copytree(ROOT / "state", root / "state")
     shutil.copytree(ROOT / "game", root / "game")
+    _remove_live_player_route_commitment_from_fixture(root)
     house_captive = "mw.person.house_tang.1000"
     shaolin_captive = "mw.person.shaolin.0001"
 

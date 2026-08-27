@@ -9,7 +9,10 @@ from __future__ import annotations
 import copy
 from typing import Any, Callable, Mapping, Sequence
 
+from shinobi_runtime.martial_world.escort import active_retinue_party
+
 OPERATIONS_PATH = "state/martial-world/institutional-operations.json"
+_DEPLOYMENTS_PATH = "state/martial-world/deployments.json"
 
 
 def _state(read_json: Callable[[str], Any], writes: Mapping[str, Any] | None = None) -> dict[str, Any]:
@@ -185,7 +188,26 @@ def ensure_contract_dossier(
         }
     row["phase"] = str(phase); row["updated_at"] = str(at_iso)
     if participant_refs is not None:
-        row["participant_refs"] = list(dict.fromkeys(str(x) for x in participant_refs if isinstance(x, str) and x))
+        participants = list(dict.fromkeys(str(x) for x in participant_refs if isinstance(x, str) and x))
+        # Accepted House escort assignments project the active standing retinue
+        # into the mutable mission roster. The funded contract's accepted
+        # principals remain owned by the contract record, while departure later
+        # replaces this projection with the actual available field party.
+        if (
+            str(phase) == "accepted"
+            and str(row.get("mission_source") or "") == "house_assignment"
+            and str(row.get("mission_kind") or "") == "escort"
+        ):
+            try:
+                deployments = read_json(_DEPLOYMENTS_PATH)
+            except FileNotFoundError:
+                deployments = {}
+            participants = active_retinue_party(
+                deployments if isinstance(deployments, Mapping) else {},
+                leader_ref=str(actor_ref),
+                principals=participants,
+            )
+        row["participant_refs"] = participants
     if commander_ref:
         row["commander_ref"] = str(commander_ref)
     state["active"][ref] = row

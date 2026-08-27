@@ -301,6 +301,24 @@ class JianghuInstitutionalEscortCommandsMixin:
             pause_rpath: paused_roster,
             **staged_markets,
         }
+
+        scene = None
+        player_ref = str(meta.get("player_id") or "")
+        if player_ref and player_ref in member_refs:
+            try:
+                raw_scene = self.repository.read_json(self.scene_path)
+            except (AttributeError, FileNotFoundError) as exc:
+                raise CommandRejectedError("jianghu_institutional_player_scene_unresolved") from exc
+            if not isinstance(raw_scene, Mapping):
+                raise CommandRejectedError("jianghu_institutional_player_scene_unresolved")
+            route_ref = str(movement.get("route_ref") or "")
+            if not route_ref:
+                raise CommandRejectedError("jianghu_route_operation_invalid")
+            scene = copy.deepcopy(dict(raw_scene))
+            scene["location_id"] = route_ref
+            scene["present_person_ids"] = list(member_refs)
+            scene["visible_person_ids"] = list(member_refs)
+
         return self._simple_plan(
             command, meta, current_time,
             writes_records=writes,
@@ -317,6 +335,7 @@ class JianghuInstitutionalEscortCommandsMixin:
                 "travel_hours": row["estimated_muster_hours"],
                 "toll_cash": toll,
             },
+            scene=scene,
         )
 
 

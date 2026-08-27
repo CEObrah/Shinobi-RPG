@@ -59,7 +59,14 @@ class JianghuInstitutionalEscortCommandsMixin:
             and str(row.get("mission_kind") or "") == "escort"
             and str(row.get("phase") or "") == "mustering"
         ):
-            raise CommandRejectedError("jianghu_institutional_in_field_cannot_paper_cancel")
+            movement_ref = str(row.get("muster_movement_ref") or "")
+            try:
+                route_state = self.repository.read_json(_ROUTE_OPERATIONS)
+            except FileNotFoundError:
+                route_state = {}
+            movements = route_state.get("movements", {}) if isinstance(route_state, Mapping) else {}
+            if movement_ref and isinstance(movements, Mapping) and movement_ref in movements:
+                raise CommandRejectedError("jianghu_institutional_in_field_cannot_paper_cancel")
 
         if not (
             action == "dispatch"
@@ -114,6 +121,15 @@ class JianghuInstitutionalEscortCommandsMixin:
         contract_origin = str(objective.get("source_place_ref") or "")
         if not contract_origin:
             raise CommandRejectedError("jianghu_institutional_route_unresolved")
+        accepted_refs = [str(ref) for ref in contract.get("participants", []) if isinstance(ref, str) and ref]
+        if (
+            not accepted_refs
+            or command.actor_id not in accepted_refs
+            or not set(accepted_refs).issubset(set(member_refs))
+        ):
+            raise CommandRejectedError("jianghu_institutional_escort_roster_missing_principal")
+        if len(member_refs) < max(1, int(objective.get("minimum_escort_count", 1))):
+            raise CommandRejectedError("jianghu_institutional_escort_roster_below_contract_minimum")
 
         faction_path, faction = read_faction(self.repository, actor_faction)
         sites_doc = self.repository.read_json(_LOCAL_SITES)

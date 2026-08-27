@@ -17,6 +17,7 @@ SITES = "game/data/martial-world/local-sites.json"
 FACTION = "state/martial-world/factions/house_tang.json"
 INVENTORY = "state/martial-world/inventories/house_tang.json"
 MARKET = "state/martial-world/markets/central_plain.json"
+SCENE = "state/scene.json"
 
 
 class _Repository:
@@ -35,6 +36,8 @@ class _Fallback:
 
 
 class _Harness(JianghuInstitutionalEscortCommandsMixin, _Fallback):
+    scene_path = SCENE
+
     def __init__(self, records, people):
         self.repository = _Repository(records)
         self.people = people
@@ -52,8 +55,13 @@ class _Harness(JianghuInstitutionalEscortCommandsMixin, _Fallback):
     def _pause_institutional_training_now(self, refs, current_time):
         return FACTION, copy.deepcopy(self.repository.records[FACTION]), "state/martial-world/people/house_tang.json", {"people": list(self.people.values())}
 
-    def _simple_plan(self, command, meta, current_time, *, writes_records, code, result, **_kwargs):
-        return {"code": code, "writes": writes_records, "result": result}
+    def _simple_plan(self, command, meta, current_time, *, writes_records, code, result, **kwargs):
+        return {
+            "code": code,
+            "writes": writes_records,
+            "result": result,
+            "scene": copy.deepcopy(kwargs.get("scene")),
+        }
 
 
 def _fixture(origin="luoyang"):
@@ -88,6 +96,11 @@ def _fixture(origin="luoyang"):
         FACTION: {"faction_id": "house_tang", "treasury_cash": 100},
         INVENTORY: {"faction_ref": "house_tang", "food_ration_days": 100},
         MARKET: {"region_id": "central_plain", "cash_pool": 20},
+        SCENE: {
+            "location_id": "site.house_tang",
+            "present_person_ids": ["pc_wei_tang"],
+            "visible_person_ids": ["pc_wei_tang"],
+        },
     }
     return refs, people, records
 
@@ -132,6 +145,7 @@ def _patch_physics(monkeypatch, captured):
             "movement_kind": kwargs["movement_kind"],
             "participant_refs": list(kwargs["participants"]),
             "leader_ref": kwargs["leader_ref"],
+            "route_ref": kwargs["plan"]["segments"][0]["edge_id"],
             "destination_place_ref": "huashan",
             **copy.deepcopy(kwargs.get("extra", {})),
         }
@@ -152,7 +166,7 @@ def test_approved_escort_dispatch_musters_exact_roster_to_contract_origin(monkey
     harness = _Harness(records, people)
 
     result = harness._jianghu_institutional_operation_resolution(
-        _command(), {"world_seed": "test"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
+        _command(), {"world_seed": "test", "player_id": "pc_wei_tang"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
     )
 
     assert result["code"] == "jianghu_institutional_escort_muster_dispatched"
@@ -167,6 +181,24 @@ def test_approved_escort_dispatch_musters_exact_roster_to_contract_origin(monkey
     assert result["writes"][FACTION]["treasury_cash"] == 95
     assert result["writes"][MARKET]["cash_pool"] == 25
     assert "state/martial-world/deployments.json" not in result["writes"]
+    assert result["scene"]["location_id"] == "route.luoyang.huashan"
+    assert result["scene"]["present_person_ids"] == refs
+    assert result["scene"]["visible_person_ids"] == refs
+
+
+def test_escort_muster_does_not_move_scene_when_campaign_player_is_not_in_party(monkeypatch):
+    refs, people, records = _fixture()
+    captured = {}
+    _patch_physics(monkeypatch, captured)
+    harness = _Harness(records, people)
+
+    result = harness._jianghu_institutional_operation_resolution(
+        _command(), {"world_seed": "test", "player_id": "pc.not_in_party"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
+    )
+
+    assert result["code"] == "jianghu_institutional_escort_muster_dispatched"
+    assert result["scene"] is None
+    assert records[SCENE]["location_id"] == "site.house_tang"
 
 
 def test_escort_dispatch_at_contract_origin_marks_muster_ready_without_travel(monkeypatch):
@@ -176,7 +208,7 @@ def test_escort_dispatch_at_contract_origin_marks_muster_ready_without_travel(mo
     harness = _Harness(records, people)
 
     result = harness._jianghu_institutional_operation_resolution(
-        _command(), {"world_seed": "test"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
+        _command(), {"world_seed": "test", "player_id": "pc_wei_tang"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
     )
 
     assert result["code"] == "jianghu_institutional_escort_muster_ready"
@@ -185,6 +217,7 @@ def test_escort_dispatch_at_contract_origin_marks_muster_ready_without_travel(mo
     assert row["phase"] == "mustering"
     assert row["mustered_at"] == "0061-09-14T09:15:00"
     assert ROUTES not in result["writes"]
+    assert result["scene"] is None
 
 
 def test_active_mustering_escort_cannot_be_paper_cancelled():

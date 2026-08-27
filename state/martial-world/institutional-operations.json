@@ -1,0 +1,35 @@
+{
+  "schema": "jianghu-institutional-operations-state-1.0",
+  "active": {
+    "mission:contract:contract.3d229e0d9f89e6e306088a4d": {
+      "operation_ref": "mission:contract:contract.3d229e0d9f89e6e306088a4d",
+      "faction_ref": "house_tang",
+      "issuer_ref": "market:temperate_mountain",
+      "assignee_ref": "pc_wei_tang",
+      "mission_kind": "escort",
+      "objective": "Escort 12000 food_ration_day from huashan to changan under funded contract contract.3d229e0d9f89e6e306088a4d.",
+      "linked_contract_ref": "contract.3d229e0d9f89e6e306088a4d",
+      "phase": "accepted",
+      "created_at": "0061-09-13T21:15:00",
+      "updated_at": "0061-09-14T09:15:00",
+      "participant_refs": [
+        "pc_wei_tang"
+      ],
+      "commander_ref": "pc_wei_tang",
+      "reward_cash": 0,
+      "reward_mode": "none",
+      "briefing": {
+        "knowledge_basis": "accepted_funded_contract",
+        "source_place_ref": "huashan",
+        "destination_place_ref": "changan",
+        "item_ref": "food_ration_day",
+        "quantity": 12000,
+        "contract_reward_cash": 9184,
+        "expires_at": "0061-10-13T21:15:00"
+      },
+      "migration_note": "Backfilled from a pre-institutional-layer accepted contract without changing contract terms or campaign outcome.",
+      "mission_source": "public_contract"
+    }
+  },
+  "archive": {}
+}

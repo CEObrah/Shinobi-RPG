@@ -1,0 +1,27 @@
+{
+  "schema": "repository-map",
+  "authority": false,
+  "layers": {
+    "runtime": "runtime/shinobi_runtime/",
+    "game": "game/data/martial-world/",
+    "state": "state/martial-world/",
+    "skill": "plugins/shinobi-rpg/skills/shinobi-game-master/"
+  },
+  "hot_owners": {
+    "meta": "state/meta.json",
+    "scene": "state/scene.json",
+    "scheduler": "state/martial-world/scheduler.json",
+    "contracts": "state/martial-world/contracts/index.json",
+    "combats": "state/martial-world/combats.json",
+    "deployments": "state/martial-world/deployments.json"
+  },
+  "player_routing": {
+    "player_id": "state/meta.json#player_id",
+    "person": "derived from authoritative faction/civic/independent people owners",
+    "view": "derived at runtime from authoritative person"
+  },
+  "person_lookup": {
+    "source": "state/martial-world/people/*.json",
+    "mode": "derived in memory from authoritative faction rosters"
+  }
+}

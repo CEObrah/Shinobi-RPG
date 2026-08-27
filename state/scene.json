@@ -1,0 +1,23 @@
+{
+  "schema": "scene",
+  "scene_id": "scene.jianghu.sword_manor",
+  "location_id": "site.house_tang",
+  "present_person_ids": [
+    "pc_wei_tang",
+    "char.zhu",
+    "char.ling",
+    "char.kai"
+  ],
+  "visible_person_ids": [
+    "pc_wei_tang",
+    "char.zhu",
+    "char.ling",
+    "char.kai"
+  ],
+  "activity_handoff": {
+    "event_id": "retinue_assigned:retinue.wei.permanent_travel_team:0061-09-14T09:15:00",
+    "kind": "retinue_assigned",
+    "requires_player_decision": false,
+    "interrupts_continuation": true
+  }
+}

@@ -1,0 +1,807 @@
+{
+  "schema": "jianghu-social-state-1.0",
+  "relationships": {
+    "pc_wei_tang|char.zhu": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "pc_wei_tang|char.ling": {
+      "trust": 90,
+      "affection": 85,
+      "respect": 92,
+      "familiarity": 95
+    },
+    "pc_wei_tang|char.kai": {
+      "trust": 86,
+      "affection": 78,
+      "respect": 88,
+      "familiarity": 92
+    },
+    "char.zhu|pc_wei_tang": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "char.zhu|char.ling": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "char.zhu|char.kai": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "char.ling|pc_wei_tang": {
+      "trust": 90,
+      "affection": 85,
+      "respect": 92,
+      "familiarity": 95
+    },
+    "char.ling|char.zhu": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "char.ling|char.kai": {
+      "trust": 86,
+      "affection": 78,
+      "respect": 88,
+      "familiarity": 92
+    },
+    "char.kai|pc_wei_tang": {
+      "trust": 86,
+      "affection": 78,
+      "respect": 88,
+      "familiarity": 92
+    },
+    "char.kai|char.zhu": {
+      "trust": 90,
+      "affection": 75,
+      "respect": 95,
+      "familiarity": 95
+    },
+    "char.kai|char.ling": {
+      "trust": 86,
+      "affection": 78,
+      "respect": 88,
+      "familiarity": 92
+    },
+    "mw.person.beggars_society.0001|mw.person.beggars_society.0119": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.beggars_society.0119|mw.person.beggars_society.0001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_lance_company.0014|mw.person.black_lance_company.5012": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_lance_company.5012|mw.person.black_lance_company.0014": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_pine_stockade.0005|mw.person.black_pine_stockade.0067": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_pine_stockade.0067|mw.person.black_pine_stockade.0005": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.diancang.0025|mw.person.diancang.0052": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.diancang.0052|mw.person.diancang.0025": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_bamboo_sect.1010|mw.person.black_bamboo_sect.1015": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_bamboo_sect.1015|mw.person.black_bamboo_sect.1010": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_net_smugglers.1001|mw.person.black_net_smugglers.1020": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.black_net_smugglers.1020|mw.person.black_net_smugglers.1001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.clear_wind_school.0006|mw.person.faction.clear_wind_school.0013": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.clear_wind_school.0013|mw.person.faction.clear_wind_school.0006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.cloud_gate_sect.1007|mw.person.cloud_gate_sect.1010": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.cloud_gate_sect.1010|mw.person.cloud_gate_sect.1007": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.cold_stream_sect.0008|mw.person.faction.cold_stream_sect.5007": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.cold_stream_sect.5007|mw.person.faction.cold_stream_sect.0008": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.east_lake_sect.0027|mw.person.faction.east_lake_sect.0034": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.east_lake_sect.0034|mw.person.faction.east_lake_sect.0027": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.eastern_spear_school.1021|mw.person.eastern_spear_school.1022": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.eastern_spear_school.1022|mw.person.eastern_spear_school.1021": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.falling_leaf_sect.0004|mw.person.faction.falling_leaf_sect.0011": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.falling_leaf_sect.0011|mw.person.faction.falling_leaf_sect.0004": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.ferry_masters_brotherhood.1001|mw.person.ferry_masters_brotherhood.1007": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.ferry_masters_brotherhood.1007|mw.person.ferry_masters_brotherhood.1001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.great_bridge_escort_agency.1006|mw.person.great_bridge_escort_agency.1013": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.great_bridge_escort_agency.1013|mw.person.great_bridge_escort_agency.1006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.green_reed_school.0003|mw.person.faction.green_reed_school.0012": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.green_reed_school.0012|mw.person.faction.green_reed_school.0003": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.green_snake_gang.1008|mw.person.green_snake_gang.1023": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.green_snake_gang.1023|mw.person.green_snake_gang.1008": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.grey_reed_band.0008|mw.person.faction.grey_reed_band.0019": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.grey_reed_band.0019|mw.person.faction.grey_reed_band.0008": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_cui.0030|mw.person.faction.house_cui.5012": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_cui.5012|mw.person.faction.house_cui.0030": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_fan.0013|mw.person.faction.house_fan.5006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_fan.5006|mw.person.faction.house_fan.0013": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_guo.0012|mw.person.faction.house_guo.5016": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_guo.5016|mw.person.faction.house_guo.0012": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_qiao.0001|mw.person.faction.house_qiao.0011": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.house_qiao.0011|mw.person.faction.house_qiao.0001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_xie.1006|mw.person.house_xie.1007": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_xie.1007|mw.person.house_xie.1006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.iron_hook_band.1006|mw.person.iron_hook_band.1009": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.iron_hook_band.1009|mw.person.iron_hook_band.1006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_knife_band.0014|mw.person.faction.iron_knife_band.0024": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_knife_band.0024|mw.person.faction.iron_knife_band.0014": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_palm_school.0002|mw.person.faction.iron_palm_school.5002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_palm_school.5002|mw.person.faction.iron_palm_school.0002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_pine_sect.0002|mw.person.faction.iron_pine_sect.5005": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_pine_sect.5005|mw.person.faction.iron_pine_sect.0002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_stone_band.0009|mw.person.faction.iron_stone_band.0030": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.iron_stone_band.0030|mw.person.faction.iron_stone_band.0009": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.jade_spring_sect.0028|mw.person.faction.jade_spring_sect.5014": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.jade_spring_sect.5014|mw.person.faction.jade_spring_sect.0028": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.misty_ridge_sect.1036|mw.person.misty_ridge_sect.1037": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.misty_ridge_sect.1037|mw.person.misty_ridge_sect.1036": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.mountain_woodcutters_brotherhood.0013|mw.person.faction.mountain_woodcutters_brotherhood.5005": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.mountain_woodcutters_brotherhood.5005|mw.person.faction.mountain_woodcutters_brotherhood.0013": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.nine_roads_escort_agency.1014|mw.person.nine_roads_escort_agency.1020": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.nine_roads_escort_agency.1020|mw.person.nine_roads_escort_agency.1014": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.north_ferry_school.5001|mw.person.faction.north_ferry_school.5002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.north_ferry_school.5002|mw.person.faction.north_ferry_school.5001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.northern_road_escort_agency.0007|mw.person.faction.northern_road_escort_agency.5003": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.northern_road_escort_agency.5003|mw.person.faction.northern_road_escort_agency.0007": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.phoenix_gate_school.1009|mw.person.phoenix_gate_school.1010": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.phoenix_gate_school.1010|mw.person.phoenix_gate_school.1009": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.pine_bridge_school.0014|mw.person.faction.pine_bridge_school.5002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.pine_bridge_school.5002|mw.person.faction.pine_bridge_school.0014": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.pine_needle_school.1021|mw.person.pine_needle_school.1026": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.pine_needle_school.1026|mw.person.pine_needle_school.1021": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.plum_blossom_school.0006|mw.person.faction.plum_blossom_school.0019": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.plum_blossom_school.0019|mw.person.faction.plum_blossom_school.0006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.purple_cloud_sect.0019|mw.person.faction.purple_cloud_sect.0040": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.purple_cloud_sect.0040|mw.person.faction.purple_cloud_sect.0019": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.red_ferry_band.0008|mw.person.faction.red_ferry_band.0009": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.red_ferry_band.0009|mw.person.faction.red_ferry_band.0008": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.red_plum_school.1004|mw.person.red_plum_school.1029": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.red_plum_school.1029|mw.person.red_plum_school.1004": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.red_reed_band.0005|mw.person.faction.red_reed_band.5003": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.red_reed_band.5003|mw.person.faction.red_reed_band.0005": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.red_sash_band.1000|mw.person.red_sash_band.1001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.red_sash_band.1001|mw.person.red_sash_band.1000": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.south_market_boxing_school.1002|mw.person.south_market_boxing_school.1027": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.south_market_boxing_school.1027|mw.person.south_market_boxing_school.1002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.spring_river_escort_agency.1018|mw.person.spring_river_escort_agency.1032": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.spring_river_escort_agency.1032|mw.person.spring_river_escort_agency.1018": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.three_peaks_sect.1001|mw.person.three_peaks_sect.1030": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.three_peaks_sect.1030|mw.person.three_peaks_sect.1001": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.twin_stream_sect.1025|mw.person.twin_stream_sect.1028": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.twin_stream_sect.1028|mw.person.twin_stream_sect.1025": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.white_crane_sect.0012|mw.person.faction.white_crane_sect.0039": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.faction.white_crane_sect.0039|mw.person.faction.white_crane_sect.0012": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.white_horse_martial_school.1010|mw.person.white_horse_martial_school.1011": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.white_horse_martial_school.1011|mw.person.white_horse_martial_school.1010": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_gu.0041|mw.person.house_gu.0042": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_gu.0042|mw.person.house_gu.0041": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_tang.1017|mw.person.house_tang.1052": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_tang.1052|mw.person.house_tang.1017": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_zhao.5004|mw.person.house_zhao.5038": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.house_zhao.5038|mw.person.house_zhao.5004": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.jade_bridge_school.0006|mw.person.jade_bridge_school.0019": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.jade_bridge_school.0019|mw.person.jade_bridge_school.0006": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.kongtong.5000|mw.person.kongtong.5013": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.kongtong.5013|mw.person.kongtong.5000": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.kunlun.0029|mw.person.kunlun.0107": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.kunlun.0107|mw.person.kunlun.0029": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.northern_hengshan.0010|mw.person.northern_hengshan.0076": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.northern_hengshan.0076|mw.person.northern_hengshan.0010": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.qingcheng.0002|mw.person.qingcheng.0025": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.qingcheng.0025|mw.person.qingcheng.0002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.southern_hengshan.0036|mw.person.southern_hengshan.0108": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.southern_hengshan.0108|mw.person.southern_hengshan.0036": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.taishan.0096|mw.person.taishan.5022": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.taishan.5022|mw.person.taishan.0096": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.white_crane_school.0002|mw.person.white_crane_school.5011": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.white_crane_school.5011|mw.person.white_crane_school.0002": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.wuyi.0035|mw.person.wuyi.0059": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    },
+    "mw.person.wuyi.0059|mw.person.wuyi.0035": {
+      "familiarity": 25,
+      "trust": 25,
+      "affection": 30,
+      "respect": 10
+    }
+  },
+  "courtships": {
+    "mw.person.wuyi.0035|mw.person.wuyi.0059": {
+      "person_refs": [
+        "mw.person.wuyi.0035",
+        "mw.person.wuyi.0059"
+      ],
+      "status": "active",
+      "started_at": "0061-09-13T21:15:00"
+    }
+  }
+}

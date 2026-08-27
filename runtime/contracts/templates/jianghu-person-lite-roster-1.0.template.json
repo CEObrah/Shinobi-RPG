@@ -1,0 +1,775 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-person-lite-roster-1.0",
+  "target_schema": "jianghu-person-lite-roster-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world/people"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "faction_ref",
+    "people"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "faction_ref",
+        "people"
+      ],
+      "canonical_order": [
+        "schema",
+        "faction_ref",
+        "people"
+      ]
+    },
+    "/people/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_id",
+        "name",
+        "birth_year",
+        "sex",
+        "body_mass_kg",
+        "appearance",
+        "aptitudes",
+        "attributes",
+        "martial_skills",
+        "professional_skills",
+        "qi",
+        "qi_control",
+        "current_qi",
+        "current_qi_milli",
+        "poison_burdens",
+        "pending_poison_burdens",
+        "membership_grade",
+        "retired_from_field",
+        "joined_year",
+        "health",
+        "standing_offices",
+        "location_ref",
+        "personal_cash",
+        "travel_ration_days",
+        "fatigue_milli",
+        "training_carry_milli",
+        "training_state",
+        "medicine_state",
+        "combat_doctrine_ref"
+      ],
+      "canonical_order": [
+        "person_id",
+        "name",
+        "birth_year",
+        "sex",
+        "body_mass_kg",
+        "appearance",
+        "aptitudes",
+        "attributes",
+        "martial_skills",
+        "professional_skills",
+        "qi",
+        "qi_control",
+        "current_qi",
+        "current_qi_milli",
+        "poison_burdens",
+        "pending_poison_burdens",
+        "membership_grade",
+        "retired_from_field",
+        "joined_year",
+        "health",
+        "standing_offices",
+        "location_ref",
+        "personal_cash",
+        "travel_ration_days",
+        "fatigue_milli",
+        "training_carry_milli",
+        "training_state",
+        "medicine_state",
+        "combat_doctrine_ref"
+      ]
+    },
+    "/people/*/aptitudes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "physical",
+        "martial",
+        "qi",
+        "cognitive",
+        "leadership"
+      ],
+      "canonical_order": [
+        "physical",
+        "martial",
+        "qi",
+        "cognitive",
+        "leadership"
+      ]
+    },
+    "/people/*/attributes": {
+      "mode": "closed",
+      "allowed_keys": [
+        "strength",
+        "speed",
+        "dexterity",
+        "endurance",
+        "perception",
+        "intelligence",
+        "willpower"
+      ],
+      "canonical_order": [
+        "strength",
+        "speed",
+        "dexterity",
+        "endurance",
+        "perception",
+        "intelligence",
+        "willpower"
+      ]
+    },
+    "/people/*/martial_skills": {
+      "mode": "closed",
+      "allowed_keys": [
+        "sword",
+        "spear",
+        "bow",
+        "hidden_weapons",
+        "unarmed",
+        "stealth_scouting",
+        "command"
+      ],
+      "canonical_order": [
+        "sword",
+        "spear",
+        "bow",
+        "hidden_weapons",
+        "unarmed",
+        "stealth_scouting",
+        "command"
+      ]
+    },
+    "/people/*/professional_skills": {
+      "mode": "closed",
+      "allowed_keys": [
+        "medicine",
+        "administration",
+        "commerce",
+        "crafting",
+        "instruction"
+      ],
+      "canonical_order": [
+        "medicine",
+        "administration",
+        "commerce",
+        "crafting",
+        "instruction"
+      ]
+    },
+    "/people/*/health": {
+      "mode": "closed",
+      "allowed_keys": [
+        "status",
+        "injuries",
+        "toxicity_milli",
+        "blood_lost_ml",
+        "shock",
+        "consciousness",
+        "dying_since"
+      ],
+      "canonical_order": [
+        "status",
+        "injuries",
+        "toxicity_milli",
+        "blood_lost_ml",
+        "shock",
+        "consciousness",
+        "dying_since"
+      ]
+    },
+    "/people/*/health/injuries/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "zone",
+        "created_at",
+        "cut",
+        "pierce",
+        "blunt",
+        "penetration",
+        "severity",
+        "bleeding_ml_per_min",
+        "hemostasis_blood_remainder",
+        "hemostasis_progress_units",
+        "hemostasis_initial_bleeding_ml_per_min",
+        "fracture",
+        "tendon_damage",
+        "nerve_damage",
+        "organ_trauma",
+        "pain",
+        "function_loss_pct",
+        "treated",
+        "healing_progress_milli",
+        "structure_ref",
+        "side",
+        "structure_damage",
+        "functional_effects",
+        "permanent",
+        "permanent_outcome",
+        "permanent_effects",
+        "stabilized",
+        "healed"
+      ],
+      "canonical_order": [
+        "zone",
+        "created_at",
+        "cut",
+        "pierce",
+        "blunt",
+        "penetration",
+        "severity",
+        "bleeding_ml_per_min",
+        "hemostasis_blood_remainder",
+        "hemostasis_progress_units",
+        "hemostasis_initial_bleeding_ml_per_min",
+        "fracture",
+        "tendon_damage",
+        "nerve_damage",
+        "organ_trauma",
+        "pain",
+        "function_loss_pct",
+        "treated",
+        "healing_progress_milli",
+        "structure_ref",
+        "side",
+        "structure_damage",
+        "functional_effects",
+        "permanent",
+        "permanent_outcome",
+        "permanent_effects",
+        "stabilized",
+        "healed"
+      ]
+    },
+    "/people/*/training_state": {
+      "mode": "closed",
+      "allowed_keys": [
+        "residual_milli",
+        "evidence_milli",
+        "focus",
+        "institutional_days_applied"
+      ],
+      "canonical_order": [
+        "residual_milli",
+        "evidence_milli",
+        "focus",
+        "institutional_days_applied"
+      ]
+    },
+    "/people/*/medicine_state": {
+      "mode": "closed",
+      "allowed_keys": [
+        "last_settled_at",
+        "category_saturation_milli",
+        "toxicity_milli",
+        "active_effects"
+      ],
+      "canonical_order": [
+        "last_settled_at",
+        "category_saturation_milli",
+        "toxicity_milli",
+        "active_effects"
+      ]
+    },
+    "/people/*/training_state/residual_milli": {
+      "mode": "open_map"
+    },
+    "/people/*/training_state/residual_milli/*": {
+      "mode": "open_map"
+    },
+    "/people/*/training_state/evidence_milli": {
+      "mode": "open_map"
+    },
+    "/people/*/training_state/evidence_milli/*": {
+      "mode": "open_map"
+    },
+    "/people/*/medicine_state/category_saturation_milli": {
+      "mode": "open_map"
+    },
+    "/people/*/medicine_state/category_saturation_milli/*": {
+      "mode": "open_map"
+    },
+    "/people/*/medicine_state/active_effects/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "recipe_ref",
+        "category",
+        "started_at",
+        "expires_at",
+        "modifiers"
+      ],
+      "canonical_order": [
+        "recipe_ref",
+        "category",
+        "started_at",
+        "expires_at",
+        "modifiers"
+      ]
+    },
+    "/people/*/health/injuries/*/functional_effects": {
+      "mode": "open_map"
+    },
+    "/people/*/health/injuries/*/permanent_effects": {
+      "mode": "open_map"
+    },
+    "/people/*/medicine_state/active_effects/*/modifiers": {
+      "mode": "open_map"
+    },
+    "/people/*/poison_burdens": {
+      "mode": "open_map"
+    },
+    "/people/*/pending_poison_burdens": {
+      "mode": "open_map"
+    },
+    "/people/*/pending_poison_burdens/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "poison_ref",
+        "burden",
+        "activates_at",
+        "peaks_at",
+        "stage"
+      ],
+      "canonical_order": [
+        "poison_ref",
+        "burden",
+        "activates_at",
+        "peaks_at",
+        "stage"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/faction_ref": [
+      "string"
+    ],
+    "/people": [
+      "array"
+    ],
+    "/people/*": [
+      "object"
+    ],
+    "/people/*/person_id": [
+      "string"
+    ],
+    "/people/*/name": [
+      "string"
+    ],
+    "/people/*/membership_grade": [
+      "string"
+    ],
+    "/people/*/birth_year": [
+      "integer",
+      "null"
+    ],
+    "/people/*/qi": [
+      "integer",
+      "null"
+    ],
+    "/people/*/qi_control": [
+      "integer",
+      "null"
+    ],
+    "/people/*/current_qi": [
+      "integer",
+      "null"
+    ],
+    "/people/*/sex": [
+      "string",
+      "null"
+    ],
+    "/people/*/appearance": [
+      "integer"
+    ],
+    "/people/*/standing_offices": [
+      "array"
+    ],
+    "/people/*/standing_offices/*": [
+      "string"
+    ],
+    "/people/*/aptitudes": [
+      "object"
+    ],
+    "/people/*/attributes": [
+      "object"
+    ],
+    "/people/*/martial_skills": [
+      "object"
+    ],
+    "/people/*/professional_skills": [
+      "object"
+    ],
+    "/people/*/health": [
+      "object"
+    ],
+    "/people/*/aptitudes/physical": [
+      "integer"
+    ],
+    "/people/*/aptitudes/martial": [
+      "integer"
+    ],
+    "/people/*/aptitudes/qi": [
+      "integer"
+    ],
+    "/people/*/aptitudes/cognitive": [
+      "integer"
+    ],
+    "/people/*/aptitudes/leadership": [
+      "integer"
+    ],
+    "/people/*/attributes/strength": [
+      "integer"
+    ],
+    "/people/*/attributes/speed": [
+      "integer"
+    ],
+    "/people/*/attributes/dexterity": [
+      "integer"
+    ],
+    "/people/*/attributes/endurance": [
+      "integer"
+    ],
+    "/people/*/attributes/perception": [
+      "integer"
+    ],
+    "/people/*/attributes/intelligence": [
+      "integer"
+    ],
+    "/people/*/attributes/willpower": [
+      "integer"
+    ],
+    "/people/*/martial_skills/sword": [
+      "integer"
+    ],
+    "/people/*/martial_skills/spear": [
+      "integer"
+    ],
+    "/people/*/martial_skills/bow": [
+      "integer"
+    ],
+    "/people/*/martial_skills/unarmed": [
+      "integer"
+    ],
+    "/people/*/martial_skills/stealth_scouting": [
+      "integer"
+    ],
+    "/people/*/martial_skills/command": [
+      "integer"
+    ],
+    "/people/*/professional_skills/medicine": [
+      "integer"
+    ],
+    "/people/*/professional_skills/administration": [
+      "integer"
+    ],
+    "/people/*/professional_skills/commerce": [
+      "integer"
+    ],
+    "/people/*/professional_skills/crafting": [
+      "integer"
+    ],
+    "/people/*/professional_skills/instruction": [
+      "integer"
+    ],
+    "/people/*/health/status": [
+      "string"
+    ],
+    "/people/*/health/injuries": [
+      "array"
+    ],
+    "/people/*/health/injuries/*": [
+      "object"
+    ],
+    "/people/*/health/toxicity_milli": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/zone": [
+      "string"
+    ],
+    "/people/*/health/injuries/*/created_at": [
+      "string"
+    ],
+    "/people/*/health/injuries/*/cut": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/pierce": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/blunt": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/penetration": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/severity": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/bleeding_ml_per_min": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/fracture": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/tendon_damage": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/nerve_damage": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/organ_trauma": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/pain": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/function_loss_pct": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/treated": [
+      "boolean"
+    ],
+    "/people/*/health/injuries/*/healing_progress_milli": [
+      "integer"
+    ],
+    "/people/*/location_ref": [
+      "string"
+    ],
+    "/people/*/personal_cash": [
+      "integer"
+    ],
+    "/people/*/fatigue_milli": [
+      "integer"
+    ],
+    "/people/*/training_state": [
+      "object"
+    ],
+    "/people/*/training_carry_milli": [
+      "string"
+    ],
+    "/people/*/training_state/residual_milli": [
+      "object"
+    ],
+    "/people/*/training_state/residual_milli/*": [
+      "integer"
+    ],
+    "/people/*/training_state/evidence_milli": [
+      "object"
+    ],
+    "/people/*/training_state/evidence_milli/*": [
+      "integer"
+    ],
+    "/people/*/medicine_state": [
+      "object"
+    ],
+    "/people/*/medicine_state/last_settled_at": [
+      "string"
+    ],
+    "/people/*/medicine_state/category_saturation_milli": [
+      "object"
+    ],
+    "/people/*/medicine_state/category_saturation_milli/*": [
+      "integer"
+    ],
+    "/people/*/medicine_state/toxicity_milli": [
+      "integer"
+    ],
+    "/people/*/medicine_state/active_effects": [
+      "array"
+    ],
+    "/people/*/medicine_state/active_effects/*": [
+      "object"
+    ],
+    "/people/*/health/blood_lost_ml": [
+      "integer"
+    ],
+    "/people/*/health/shock": [
+      "integer"
+    ],
+    "/people/*/health/consciousness": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/structure_ref": [
+      "string",
+      "null"
+    ],
+    "/people/*/health/injuries/*/side": [
+      "string",
+      "null"
+    ],
+    "/people/*/health/injuries/*/structure_damage": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/functional_effects": [
+      "object"
+    ],
+    "/people/*/body_mass_kg": [
+      "integer"
+    ],
+    "/people/*/combat_doctrine_ref": [
+      "string"
+    ],
+    "/people/*/training_state/focus": [
+      "string"
+    ],
+    "/people/*/martial_skills/hidden_weapons": [
+      "integer"
+    ],
+    "/people/*/joined_year": [
+      "integer"
+    ],
+    "/people/*/retired_from_field": [
+      "boolean"
+    ],
+    "/people/*/travel_ration_days": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/permanent": [
+      "boolean"
+    ],
+    "/people/*/health/injuries/*/permanent_outcome": [
+      "string",
+      "null"
+    ],
+    "/people/*/health/injuries/*/permanent_effects": [
+      "object"
+    ],
+    "/people/*/health/injuries/*/permanent_effects/*": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/stabilized": [
+      "boolean"
+    ],
+    "/people/*/health/injuries/*/healed": [
+      "boolean"
+    ],
+    "/people/*/medicine_state/active_effects/*/recipe_ref": [
+      "string"
+    ],
+    "/people/*/medicine_state/active_effects/*/category": [
+      "string"
+    ],
+    "/people/*/medicine_state/active_effects/*/started_at": [
+      "string"
+    ],
+    "/people/*/medicine_state/active_effects/*/expires_at": [
+      "string"
+    ],
+    "/people/*/medicine_state/active_effects/*/modifiers": [
+      "object"
+    ],
+    "/people/*/medicine_state/active_effects/*/modifiers/*": [
+      "integer"
+    ],
+    "/people/*/current_qi_milli": [
+      "integer"
+    ],
+    "/people/*/poison_burdens": [
+      "object"
+    ],
+    "/people/*/poison_burdens/*": [
+      "integer"
+    ],
+    "/people/*/pending_poison_burdens": [
+      "object"
+    ],
+    "/people/*/pending_poison_burdens/*": [
+      "object"
+    ],
+    "/people/*/pending_poison_burdens/*/poison_ref": [
+      "string"
+    ],
+    "/people/*/pending_poison_burdens/*/burden": [
+      "integer"
+    ],
+    "/people/*/pending_poison_burdens/*/activates_at": [
+      "string"
+    ],
+    "/people/*/health/dying_since": [
+      "string"
+    ],
+    "/people/*/health/injuries/*/hemostasis_initial_bleeding_ml_per_min": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/hemostasis_progress_units": [
+      "integer"
+    ],
+    "/people/*/health/injuries/*/hemostasis_blood_remainder": [
+      "integer"
+    ],
+    "/people/*/pending_poison_burdens/*/peaks_at": [
+      "string"
+    ],
+    "/people/*/pending_poison_burdens/*/stage": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/people": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/people/*/standing_offices": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/people/*/health/injuries": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/people/*/medicine_state/active_effects": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Persist deviations, not defaults: full Qi, zero fatigue, healthy physiology, home location and empty training/medicine state are omitted.",
+    "Roster faction is authoritative for membership; do not repeat faction/headquarters/representation on every person.",
+    "Body mass is a direct physical fact. Health exists only for current non-default injury/physiology state.",
+    "Static behavior is referenced by combat_doctrine_ref; never embed doctrine paragraphs in mutable person state.",
+    "Training stores only current residual/evidence/focus required by deterministic progression; scheduler chronology is not copied into every person.",
+    "Institutional training pause is a transient derived projection from current activity/location authority and is never persisted on a person."
+  ],
+  "numeric_constraints": {
+    "/people/*/current_qi_milli": {
+      "minimum": 0
+    },
+    "/people/*/poison_burdens/*": {
+      "minimum": 0
+    },
+    "/people/*/pending_poison_burdens/*/burden": {
+      "minimum": 0
+    },
+    "/people/*/health/injuries/*/hemostasis_initial_bleeding_ml_per_min": {
+      "minimum": 1
+    },
+    "/people/*/health/injuries/*/hemostasis_progress_units": {
+      "minimum": 1,
+      "maximum": 3599999
+    },
+    "/people/*/health/injuries/*/hemostasis_blood_remainder": {
+      "minimum": 1,
+      "maximum": 431999999999
+    }
+  }
+}

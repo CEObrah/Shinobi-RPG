@@ -267,17 +267,51 @@
       "target_place_ref": "songshan",
       "started_at": "0061-09-13T21:15:00",
       "departure_at": "0061-09-15T01:15:00",
-      "arrival_at": "0061-09-15T18:44:55.320000",
-      "travel_hours": 17.5,
+      "arrival_at": "0061-09-15T17:39:45.360000",
+      "travel_hours": 16.41,
       "route_refs": [
         "route.dengfeng.songshan"
       ],
-      "status": "mobilizing",
+      "status": "traveling_outbound",
       "targeting_intent": "disable",
       "operation_intent": "kidnapping",
       "arrival_event_kind": "faction_operation_arrival",
       "mobilized_force_count": 3,
-      "mobilization_basis": "stealth_coordination"
+      "mobilization_basis": "stealth_coordination",
+      "issued_equipment": {
+        "mw.person.faction.iron_road_band.5003": {
+          "weapon_short_spear": 1
+        },
+        "mw.person.faction.iron_road_band.0013": {
+          "weapon_jian": 1
+        },
+        "mw.person.faction.iron_road_band.5000": {
+          "weapon_jian": 1
+        }
+      },
+      "issued_equipment_baseline": {
+        "mw.person.faction.iron_road_band.5003": {
+          "weapon_short_spear": 0
+        },
+        "mw.person.faction.iron_road_band.0013": {
+          "weapon_jian": 0
+        },
+        "mw.person.faction.iron_road_band.5000": {
+          "weapon_jian": 0
+        }
+      },
+      "issued_equipment_claim_baseline": {
+        "mw.person.faction.iron_road_band.5003": {
+          "weapon_short_spear": 0
+        },
+        "mw.person.faction.iron_road_band.0013": {
+          "weapon_jian": 0
+        },
+        "mw.person.faction.iron_road_band.5000": {
+          "weapon_jian": 0
+        }
+      },
+      "physical_movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:outbound"
     },
     "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
       "faction_ref": "faction.marsh_reed_pirates",

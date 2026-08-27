@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-14T23:15:00",
+  "settled_through": "0061-09-15T01:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -536,6 +536,7 @@
         "route.changan.zhongnan",
         "route.chongqing.kunming",
         "route.dengfeng.shaolin_temple",
+        "route.dengfeng.songshan",
         "route.hangzhou.tiantai",
         "route.jingzhou.chongqing",
         "route.kunming.dali",
@@ -945,15 +946,6 @@
       "owner_ref": "project:auto:wuyi:006109:expand_building",
       "requires_player_decision": false
     },
-    "operation_departure:operation:faction_raid:faction.iron_road_band:songshan:006109": {
-      "event_id": "operation_departure:operation:faction_raid:faction.iron_road_band:songshan:006109",
-      "kind": "faction_operation_departure",
-      "due_at": "0061-09-15T01:15:00",
-      "owner_ref": "operation:faction_raid:faction.iron_road_band:songshan:006109",
-      "direction": "outbound",
-      "arrival_event_kind": "faction_operation_arrival",
-      "requires_player_decision": false
-    },
     "route_segment_due:route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound:0": {
       "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound:0",
       "kind": "route_activity_cycle",
@@ -978,6 +970,15 @@
       "due_at": "0061-09-15T14:29:56",
       "owner_ref": "route.dengfeng.shaolin_temple",
       "movement_ref": "route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:outbound",
+      "exact_segment_due": true,
+      "requires_player_decision": false
+    },
+    "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:outbound:0": {
+      "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:outbound:0",
+      "kind": "route_activity_cycle",
+      "due_at": "0061-09-15T17:39:45",
+      "owner_ref": "route.dengfeng.songshan",
+      "movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:outbound",
       "exact_segment_due": true,
       "requires_player_decision": false
     }

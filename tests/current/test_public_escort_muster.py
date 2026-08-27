@@ -79,7 +79,7 @@ def _fixture(origin="luoyang"):
     }
     records = {
         OPERATIONS_PATH: {"schema": "jianghu-institutional-operations-state-1.0", "active": {operation["operation_ref"]: operation}, "archive": {}},
-        CONTRACTS: {"active": {"contract.test": {"contract_type": "escort", "status": "accepted", "beneficiary_ref": "house_tang", "objective": {"source_place_ref": "huashan", "destination_place_ref": "changan"}}}},
+        CONTRACTS: {"active": {"contract.test": {"contract_type": "escort", "status": "accepted", "beneficiary_ref": "house_tang", "participants": ["pc_wei_tang"], "objective": {"source_place_ref": "huashan", "destination_place_ref": "changan"}}}},
         ROUTES: {"schema": "jianghu-route-operations-state-1.0", "movements": {}, "contacts": {}},
         SCHEDULE: {"schema": "jianghu-scheduler-1.0", "settled_through": "0061-09-14T09:15:00", "recurring": {}, "one_off": {}},
         GEOGRAPHY: {"places": {"luoyang": {"climate_profile": "central_plain"}, "huashan": {"climate_profile": "central_plain"}, "changan": {"climate_profile": "central_plain"}}},
@@ -105,7 +105,7 @@ def _patch_physics(monkeypatch, captured):
 
     monkeypatch.setattr(module, "read_faction", lambda repository, faction_ref: (FACTION, copy.deepcopy(repository.records[FACTION])))
     monkeypatch.setattr(module, "person_place", lambda person, **_kwargs: person["place_ref"])
-    monkeypatch.setattr(module, "hydrate_contract_escort_objective", lambda objective, **_kwargs: {"source_place_ref": "huashan"})
+    monkeypatch.setattr(module, "hydrate_contract_escort_objective", lambda objective, **_kwargs: {"source_place_ref": "huashan", "minimum_escort_count": 12})
     monkeypatch.setattr(module, "derived_commitment_state", lambda read_json: {})
     monkeypatch.setattr(module, "reserve_resources", lambda state, **_kwargs: state)
     monkeypatch.setattr(
@@ -187,15 +187,30 @@ def test_escort_dispatch_at_contract_origin_marks_muster_ready_without_travel(mo
     assert ROUTES not in result["writes"]
 
 
-def test_mustering_escort_cannot_be_paper_cancelled():
+def test_active_mustering_escort_cannot_be_paper_cancelled():
     refs, people, records = _fixture()
-    records[OPERATIONS_PATH]["active"]["mission:escort:test"]["phase"] = "mustering"
+    row = records[OPERATIONS_PATH]["active"]["mission:escort:test"]
+    row["phase"] = "mustering"
+    row["muster_movement_ref"] = "escort_muster:test"
+    records[ROUTES]["movements"]["escort_muster:test"] = {"movement_kind": "player_strategic_travel"}
     harness = _Harness(records, people)
     with pytest.raises(CommandRejectedError) as exc:
         harness._jianghu_institutional_operation_resolution(
             _command("cancel"), {"world_seed": "test"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
         )
     assert "jianghu_institutional_in_field_cannot_paper_cancel" in str(exc.value)
+
+
+def test_arrived_muster_can_delegate_to_normal_prestart_cancellation():
+    refs, people, records = _fixture(origin="huashan")
+    row = records[OPERATIONS_PATH]["active"]["mission:escort:test"]
+    row["phase"] = "mustering"
+    row["muster_movement_ref"] = "escort_muster:finished"
+    harness = _Harness(records, people)
+    result = harness._jianghu_institutional_operation_resolution(
+        _command("cancel"), {"world_seed": "test"}, CampaignTime.parse("SE-0061-09-14T09:15:00")
+    )
+    assert result == {"delegated": True, "action": "cancel"}
 
 
 def test_non_escort_institutional_actions_delegate_to_existing_owner():

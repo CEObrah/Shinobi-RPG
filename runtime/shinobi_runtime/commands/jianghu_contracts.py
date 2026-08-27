@@ -22,6 +22,7 @@ from shinobi_runtime.martial_world.civic import civic_person, hydrate_civic_pers
 from shinobi_runtime.martial_world.aggregate_transport import civilian_available_capacity, freight_crew_required, make_transport_reservation
 from shinobi_runtime.martial_world.commitments import derived_commitment_state, reserve_resources
 from shinobi_runtime.martial_world.contracts import transition as contract_transition
+from shinobi_runtime.martial_world.contract_escort_rosters import approved_contract_escort_roster
 from shinobi_runtime.martial_world.escort import (
     active_retinue_party, ordinary_public_lot_quantity,
     compact_started_escort_objective, hydrate_contract_escort_objective, materialize_civilian_identities,
@@ -261,66 +262,86 @@ class JianghuContractCommandsMixin:
             raise CommandRejectedError("jianghu_local_sites_invalid")
         unavailable = self._unavailable_person_refs()
 
-        # Explicitly accepted principals remain mandatory. Standing companions
-        # are the preferred core, but an injured, busy, unconscious, or absent
-        # companion is simply unavailable for this mission and temporary House
-        # manpower fills the resulting operational shortage. Permanent retinue
-        # membership is unchanged.
-        principal_set = {str(ref) for ref in accepted if isinstance(ref, str)}
-        core_escort_refs: list[str] = []
-        for ref in standing_party_refs:
-            if ref in principal_set:
-                core_escort_refs.append(ref)
-                continue
-            if ref in unavailable:
-                continue
-            try:
-                _path, _roster, _ordinal, member = self._resolve_contract_person(ref)
-            except CommandRejectedError:
-                continue
-            health = member.get("health", {}) if isinstance(member.get("health"), Mapping) else {}
-            if health.get("status") in {"dead", "incapacitated"} or int(health.get("consciousness", 100)) <= 0:
-                continue
-            if not _person_location_matches(member, source_place=source_place, sites=sites):
-                continue
-            core_escort_refs.append(ref)
+        try:
+            approved_roster = approved_contract_escort_roster(
+                self.repository.read_json,
+                contract_ref=contract_ref,
+                accepted_refs=accepted,
+                standing_party_refs=standing_party_refs,
+                minimum_escort_count=minimum,
+            )
+        except ValueError as exc:
+            if str(exc) == "approved_roster_below_minimum":
+                raise CommandRejectedError("jianghu_contract_escort_count_insufficient") from exc
+            raise CommandRejectedError("jianghu_contract_approved_roster_invalid") from exc
 
-        temporary_escort_refs: list[str] = []
-        needed = max(0, minimum - len(core_escort_refs))
-        if needed:
-            people = actor_roster.get("people", []) if isinstance(actor_roster, Mapping) else []
-            if not isinstance(people, list):
-                raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
-            origin_people: list[Mapping[str, Any]] = []
-            for raw_person in people:
-                if not isinstance(raw_person, Mapping):
+        if approved_roster is not None:
+            escort_refs = list(approved_roster["escort_refs"])
+            core_escort_refs = list(approved_roster["core_escort_refs"])
+            temporary_escort_refs = list(approved_roster["temporary_mission_escort_refs"])
+            escort_commander_ref = str(approved_roster["commander_ref"])
+        else:
+            # Explicitly accepted principals remain mandatory. Standing companions
+            # are the preferred core, but an injured, busy, unconscious, or absent
+            # companion is simply unavailable for this mission and temporary House
+            # manpower fills the resulting operational shortage. Permanent retinue
+            # membership is unchanged.
+            principal_set = {str(ref) for ref in accepted if isinstance(ref, str)}
+            core_escort_refs: list[str] = []
+            for ref in standing_party_refs:
+                if ref in principal_set:
+                    core_escort_refs.append(ref)
                     continue
-                ref = raw_person.get("person_id")
-                if not isinstance(ref, str) or not ref:
+                if ref in unavailable:
                     continue
                 try:
-                    _person_path, _person_roster, _person_ordinal, person = self._resolve_contract_person(ref)
+                    _path, _roster, _ordinal, member = self._resolve_contract_person(ref)
                 except CommandRejectedError:
                     continue
-                if _person_location_matches(person, source_place=source_place, sites=sites):
-                    origin_people.append(person)
-            temporary_escort_refs = select_mission_escort_reinforcements(
-                actor,
-                origin_people,
-                needed_count=needed,
-                year=current_time.year,
-                unavailable_refs=sorted(unavailable),
-                exclude_refs=core_escort_refs,
-            )
-            if len(temporary_escort_refs) < needed:
-                raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+                health = member.get("health", {}) if isinstance(member.get("health"), Mapping) else {}
+                if health.get("status") in {"dead", "incapacitated"} or int(health.get("consciousness", 100)) <= 0:
+                    continue
+                if not _person_location_matches(member, source_place=source_place, sites=sites):
+                    continue
+                core_escort_refs.append(ref)
 
-        escort_refs = list(core_escort_refs)
-        for ref in temporary_escort_refs:
-            if ref not in escort_refs:
-                escort_refs.append(ref)
-        if len(escort_refs) < minimum:
-            raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+            temporary_escort_refs: list[str] = []
+            needed = max(0, minimum - len(core_escort_refs))
+            if needed:
+                people = actor_roster.get("people", []) if isinstance(actor_roster, Mapping) else []
+                if not isinstance(people, list):
+                    raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+                origin_people: list[Mapping[str, Any]] = []
+                for raw_person in people:
+                    if not isinstance(raw_person, Mapping):
+                        continue
+                    ref = raw_person.get("person_id")
+                    if not isinstance(ref, str) or not ref:
+                        continue
+                    try:
+                        _person_path, _person_roster, _person_ordinal, person = self._resolve_contract_person(ref)
+                    except CommandRejectedError:
+                        continue
+                    if _person_location_matches(person, source_place=source_place, sites=sites):
+                        origin_people.append(person)
+                temporary_escort_refs = select_mission_escort_reinforcements(
+                    actor,
+                    origin_people,
+                    needed_count=needed,
+                    year=current_time.year,
+                    unavailable_refs=sorted(unavailable),
+                    exclude_refs=core_escort_refs,
+                )
+                if len(temporary_escort_refs) < needed:
+                    raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+
+            escort_refs = list(core_escort_refs)
+            for ref in temporary_escort_refs:
+                if ref not in escort_refs:
+                    escort_refs.append(ref)
+            if len(escort_refs) < minimum:
+                raise CommandRejectedError("jianghu_contract_escort_count_insufficient")
+            escort_commander_ref = escort_refs[0] if escort_refs else command.actor_id
 
         all_people = list(escort_refs)
         for ref in protected_refs:
@@ -403,7 +424,7 @@ class JianghuContractCommandsMixin:
             raise CommandRejectedError("jianghu_contract_travel_provisions_unavailable") from exc
         movement = build_route_journey(
             movement_ref=contract_ref, movement_kind="escort_contract", purpose_ref=contract_ref,
-            plan=route_plan, participants=all_people, leader_ref=escort_refs[0],
+            plan=route_plan, participants=all_people, leader_ref=escort_commander_ref,
             beneficiary_ref=faction_ref, started_at=now, mode="convoy",
             extra={
                 "contract_ref": contract_ref, "item_ref": item_ref, "quantity": quantity,
@@ -438,7 +459,7 @@ class JianghuContractCommandsMixin:
         ensure_contract_dossier(
             read_json=self.repository.read_json, writes=records, contract_ref=contract_ref,
             faction_ref=faction_ref, actor_ref=command.actor_id, at_iso=_at_iso(current_time), phase="in_field",
-            participant_refs=escort_refs, commander_ref=escort_refs[0] if escort_refs else command.actor_id,
+            participant_refs=escort_refs, commander_ref=escort_commander_ref,
             objective="Fulfill the funded escort commission", issuer_ref=str(contract.get("issuer_ref") or ""),
         )
         records.update({
@@ -451,7 +472,7 @@ class JianghuContractCommandsMixin:
             result={
                 "command_type":command.command_type,"action":"start","contract_ref":contract_ref,
                 "status":"in_progress","escort_refs":escort_refs,"core_escort_refs":core_escort_refs,
-                "temporary_mission_escort_refs":temporary_escort_refs,
+                "temporary_mission_escort_refs":temporary_escort_refs,"commander_ref":escort_commander_ref,
                 "protected_person_refs":protected_refs,
                 "protected_people_count":protected_count,"minimum_escort_count":minimum,
                 "reward_cash":funded_reward,

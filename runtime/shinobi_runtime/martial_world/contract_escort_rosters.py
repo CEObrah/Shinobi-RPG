@@ -23,8 +23,9 @@ def approved_contract_escort_roster(
 
     An approved institutional plan is an exact player/House staffing decision.
     Once present, departure must consume it as-is rather than replacing named
-    members with deterministic reinforcements. Current physical eligibility is
-    intentionally revalidated by the contract start command.
+    members with deterministic reinforcements. A physically dispatched muster
+    remains the same approved roster while it travels to the contract origin.
+    Current physical eligibility is intentionally revalidated by contract start.
     """
     try:
         owner = read_json(OPERATIONS_PATH)
@@ -37,7 +38,7 @@ def approved_contract_escort_roster(
         row for row in active.values()
         if isinstance(row, Mapping)
         and str(row.get("linked_contract_ref") or "") == str(contract_ref)
-        and str(row.get("phase") or "") == "approved"
+        and str(row.get("phase") or "") in {"approved", "mustering"}
         and str(row.get("mission_kind") or "") == "escort"
         and str(row.get("operation_kind") or "") == "escort_contract"
     ]

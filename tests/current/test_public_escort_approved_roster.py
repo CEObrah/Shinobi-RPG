@@ -33,20 +33,27 @@ def _owner(*, phase="approved", participants=None, commander="wei", operation_ki
     }
 
 
-def test_approved_public_escort_roster_is_exact_and_preserves_commander():
-    approved = approved_contract_escort_roster(
-        _reader(_owner()),
+def _exact_roster(phase="approved"):
+    return approved_contract_escort_roster(
+        _reader(_owner(phase=phase)),
         contract_ref="contract.test",
         accepted_refs=["wei"],
         standing_party_refs=["wei", "medic", "guard", "scout"],
         minimum_escort_count=6,
     )
-    assert approved == {
+
+
+def test_approved_public_escort_roster_is_exact_and_preserves_commander():
+    assert _exact_roster() == {
         "escort_refs": ["wei", "medic", "guard", "scout", "temp.a", "temp.b"],
         "core_escort_refs": ["wei", "medic", "guard", "scout"],
         "temporary_mission_escort_refs": ["temp.a", "temp.b"],
         "commander_ref": "wei",
     }
+
+
+def test_mustering_public_escort_keeps_same_approved_exact_roster():
+    assert _exact_roster("mustering") == _exact_roster("approved")
 
 
 def test_approved_public_escort_roster_must_keep_contract_principals():

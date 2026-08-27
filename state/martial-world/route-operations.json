@@ -904,6 +904,89 @@
         "ration_days_consumed": 12,
         "journey_elapsed_seconds": 39600
       }
+    },
+    "route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:outbound": {
+      "movement_kind": "faction_operation_travel",
+      "purpose_ref": "operation:faction_raid:faction.yellow_dust_band:shaolin:006109",
+      "route_ref": "route.dengfeng.shaolin_temple",
+      "route_refs": [
+        "route.dengfeng.shaolin_temple"
+      ],
+      "route_index": 0,
+      "journey_nodes": [
+        "dengfeng",
+        "shaolin_temple"
+      ],
+      "segment_required_seconds": [
+        54896
+      ],
+      "segment_provisioning_seconds": [
+        94696
+      ],
+      "provisioning_seconds": 94696,
+      "segment_edge_start_milli": [
+        0
+      ],
+      "segment_edge_end_milli": [
+        1000
+      ],
+      "origin_place_ref": "dengfeng",
+      "destination_place_ref": "shaolin_temple",
+      "segment_origin_place_ref": "dengfeng",
+      "segment_destination_place_ref": "shaolin_temple",
+      "participant_refs": [
+        "mw.person.yellow_dust_band.1009",
+        "mw.person.yellow_dust_band.1022",
+        "mw.person.yellow_dust_band.1004",
+        "mw.person.yellow_dust_band.1023",
+        "mw.person.yellow_dust_band.1016",
+        "mw.person.yellow_dust_band.1021",
+        "mw.person.yellow_dust_band.1000",
+        "mw.person.yellow_dust_band.1003",
+        "mw.person.yellow_dust_band.1006",
+        "mw.person.yellow_dust_band.1002",
+        "mw.person.yellow_dust_band.1013"
+      ],
+      "leader_ref": "mw.person.yellow_dust_band.1009",
+      "beneficiary_ref": "faction.yellow_dust_band",
+      "mode": "foot",
+      "started_at": "0061-09-14T23:15:00",
+      "last_progress_at": "0061-09-14T23:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 54896,
+      "edge_start_milli": 0,
+      "edge_end_milli": 1000,
+      "route_weather": {
+        "place_id": "dengfeng",
+        "at": "0061-09-14T23:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 182,
+        "temperature_c": 18.2,
+        "condition": "clear",
+        "precipitation_milli": 0,
+        "humidity_milli": 620,
+        "wind_mps_tenths": 49,
+        "wind_direction_degrees": 252,
+        "visibility_milli": 1000,
+        "sound_masking_milli": 245,
+        "ground": "dry"
+      },
+      "status": "active",
+      "faction_ref": "faction.yellow_dust_band",
+      "operation_kind": "faction_raid",
+      "operation_ref": "operation:faction_raid:faction.yellow_dust_band:shaolin:006109",
+      "journey_phase": "outbound",
+      "arrival_event_kind": "faction_operation_arrival",
+      "targeting_intent": "disable",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.yellow_dust_band",
+        "participant_count": 11,
+        "planned_travel_seconds": 94696,
+        "ration_days_reserved": 22,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      }
     }
   },
   "contacts": {}

@@ -538,6 +538,7 @@
         "route.hangzhou.tiantai",
         "route.jingzhou.chongqing",
         "route.kunming.dali",
+        "route.luoyang.changan",
         "route.luoyang.taiyuan",
         "route.wuhan.nanchang",
         "route.xining.golmud",
@@ -981,6 +982,15 @@
       "due_at": "0061-09-30T18:22:27",
       "owner_ref": "route.kunming.dali",
       "movement_ref": "route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound",
+      "exact_segment_due": true,
+      "requires_player_decision": false
+    },
+    "route_segment_due:escort_muster:0e52cfa45f5bbea72ba0:0": {
+      "event_id": "route_segment_due:escort_muster:0e52cfa45f5bbea72ba0:0",
+      "kind": "route_activity_cycle",
+      "due_at": "0061-09-26T23:21:27",
+      "owner_ref": "route.luoyang.changan",
+      "movement_ref": "escort_muster:0e52cfa45f5bbea72ba0",
       "exact_segment_due": true,
       "requires_player_decision": false
     }

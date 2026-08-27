@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-14T09:15:00",
+  "settled_through": "0061-09-14T10:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -537,6 +537,7 @@
         "route.chongqing.kunming",
         "route.hangzhou.tiantai",
         "route.jingzhou.chongqing",
+        "route.kunming.dali",
         "route.luoyang.taiyuan",
         "route.wuhan.nanchang",
         "route.xining.golmud",
@@ -965,15 +966,6 @@
       "arrival_event_kind": "faction_operation_arrival",
       "requires_player_decision": false
     },
-    "operation_departure:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109": {
-      "event_id": "operation_departure:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109",
-      "kind": "faction_operation_departure",
-      "due_at": "0061-09-14T10:15:00",
-      "owner_ref": "operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109",
-      "direction": "outbound",
-      "arrival_event_kind": "faction_operation_arrival",
-      "requires_player_decision": false
-    },
     "operation_departure:operation:faction_raid:faction.yellow_dust_band:shaolin:006109": {
       "event_id": "operation_departure:operation:faction_raid:faction.yellow_dust_band:shaolin:006109",
       "kind": "faction_operation_departure",
@@ -981,6 +973,15 @@
       "owner_ref": "operation:faction_raid:faction.yellow_dust_band:shaolin:006109",
       "direction": "outbound",
       "arrival_event_kind": "faction_operation_arrival",
+      "requires_player_decision": false
+    },
+    "route_segment_due:route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound:0": {
+      "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound:0",
+      "kind": "route_activity_cycle",
+      "due_at": "0061-09-30T18:22:27",
+      "owner_ref": "route.kunming.dali",
+      "movement_ref": "route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound",
+      "exact_segment_due": true,
       "requires_player_decision": false
     }
   }

@@ -734,6 +734,87 @@
         "provider_ref": "river_reed_society",
         "freight_capacity_kg": 440
       }
+    },
+    "route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound": {
+      "movement_kind": "faction_operation_travel",
+      "purpose_ref": "operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109",
+      "route_ref": "route.kunming.dali",
+      "route_refs": [
+        "route.kunming.dali"
+      ],
+      "route_index": 0,
+      "journey_nodes": [
+        "dali",
+        "kunming"
+      ],
+      "segment_required_seconds": [
+        1411647
+      ],
+      "segment_provisioning_seconds": [
+        2088414
+      ],
+      "provisioning_seconds": 2088414,
+      "segment_edge_start_milli": [
+        1000
+      ],
+      "segment_edge_end_milli": [
+        0
+      ],
+      "origin_place_ref": "dali",
+      "destination_place_ref": "kunming",
+      "segment_origin_place_ref": "dali",
+      "segment_destination_place_ref": "kunming",
+      "participant_refs": [
+        "mw.person.faction.red_road_band.0008",
+        "mw.person.faction.red_road_band.0007",
+        "mw.person.faction.red_road_band.0017",
+        "mw.person.faction.red_road_band.0001",
+        "mw.person.faction.red_road_band.0006",
+        "mw.person.faction.red_road_band.0003",
+        "mw.person.faction.red_road_band.0011",
+        "mw.person.faction.red_road_band.0016",
+        "mw.person.faction.red_road_band.0005"
+      ],
+      "leader_ref": "mw.person.faction.red_road_band.0008",
+      "beneficiary_ref": "faction.red_road_band",
+      "mode": "foot",
+      "started_at": "0061-09-14T10:15:00",
+      "last_progress_at": "0061-09-14T10:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 1411647,
+      "edge_start_milli": 1000,
+      "edge_end_milli": 0,
+      "route_weather": {
+        "place_id": "dali",
+        "at": "0061-09-14T10:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 131,
+        "temperature_c": 13.1,
+        "condition": "rain",
+        "precipitation_milli": 650,
+        "humidity_milli": 830,
+        "wind_mps_tenths": 0,
+        "wind_direction_degrees": 33,
+        "visibility_milli": 800,
+        "sound_masking_milli": 325,
+        "ground": "wet"
+      },
+      "status": "active",
+      "faction_ref": "faction.red_road_band",
+      "operation_kind": "faction_raid",
+      "operation_ref": "operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109",
+      "journey_phase": "outbound",
+      "arrival_event_kind": "faction_operation_arrival",
+      "targeting_intent": "disable",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.red_road_band",
+        "participant_count": 9,
+        "planned_travel_seconds": 2088414,
+        "ration_days_reserved": 225,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      }
     }
   },
   "contacts": {}

@@ -14,6 +14,7 @@ Watch for:
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;
 - combat geometry, fatigue, defense load, injury, Qi, poison, equipment, or ammunition behaving inconsistently;
 - normal interactive combat silently aggregating multiple exact exchanges instead of giving each committed player-facing combat turn its own chronological scene beat;
+- a standing combat order carrying forward mechanically while intermediate exchanges disappear from the prose, making the fight feel like a simulation report rather than played combat;
 - an open-ended combat policy being resolved across deaths, critical wounds, poison crises, formation collapse, or objective-changing developments without returning control at a material player-attention frontier;
 - committed combat `events` being discarded so a lethal fight is reconstructed only from final health totals, producing an after-action briefing instead of chronological lived combat;
 - named allies in active team combat becoming roster entries or health bars, with decisive deaths/incapacitations revealed as bullet points rather than experienced when they occur;

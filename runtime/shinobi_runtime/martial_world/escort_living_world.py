@@ -141,14 +141,16 @@ def interception_decision(
     observed_escort_count: int, observed_escort_combat_index: int,
     cargo_value_cash: int, ransom_value_cash: int, risk_tolerance: int,
     government_risk_milli: int = 0, minimum_attack_advantage_milli: int = 1100,
-    civilian_restraint: int = 0,
+    civilian_restraint: int = 0, recognized_target_motive_score: int = 0,
 ) -> dict[str, Any]:
-    """Decide whether a faction has enough motive and apparent advantage to act.
+    """Decide whether a faction has both a reason and enough apparent edge to act.
 
-    Ordinary institutions do not become opportunistic kidnappers merely because a
-    rich convoy exists.  Criminal factions may value loot/ransom directly; other
-    factions need a serious existing grievance/hostility before violent pursuit
-    is even eligible.  Exact combat still determines every physical outcome.
+    Opportunity and courage are not motives. Criminal factions may act for visible
+    loot, a recognized ransom target, a serious grievance, or a separately
+    established identity motive. Ordinary institutions still require a serious
+    grievance before violence is eligible. ``recognized_target_motive_score`` must
+    come from caller-owned recognition/public-knowledge evidence; this helper never
+    invents identity knowledge. Exact combat still determines physical outcomes.
     """
     count = max(0, int(own_available_martial))
     if count <= 0:
@@ -170,9 +172,24 @@ def interception_decision(
     advantage = own_power * 1000 // apparent_enemy
     loot_motive = min(260, max(0, int(cargo_value_cash)) // 4_000)
     ransom_motive = min(320, max(0, int(ransom_value_cash)) // 2_500)
+    identity_motive = min(320, max(0, int(recognized_target_motive_score)))
+    value_motive = loot_motive + ransom_motive if criminal else ransom_motive // 2
+    actionable_motive = grievance + value_motive + identity_motive
+    if actionable_motive <= 0:
+        return {
+            "attack": False,
+            "reason": "no_actionable_motive",
+            "advantage_milli": advantage,
+            "hostility": hostility,
+            "criminal": criminal,
+            "recognized_target_motive_score": identity_motive,
+        }
+
+    # Risk tolerance governs willingness to pay the cost of an existing motive.
+    # It must never manufacture a reason to start a lethal encounter by itself.
     risk = max(0, min(100, int(risk_tolerance))) * 2
     legal_pressure = max(0, min(1000, int(government_risk_milli))) // 3
-    motive = grievance + risk + (loot_motive + ransom_motive if criminal else ransom_motive // 2) - legal_pressure
+    motive = actionable_motive + risk - legal_pressure
 
     base = max(650, int(minimum_attack_advantage_milli))
     if not criminal:
@@ -186,21 +203,35 @@ def interception_decision(
     attack = advantage >= threshold
     if ransom_value_cash > cargo_value_cash and ransom_value_cash > 0:
         intent = "kidnap_principal"
+        motive_kind = "ransom"
     elif hostility >= 70 and not criminal:
         intent = "revenge"
+        motive_kind = "grievance"
     elif cargo_value_cash > 0:
         intent = "rob_cargo"
+        motive_kind = "loot"
+    elif identity_motive > 0:
+        # A caller that lawfully established recognition may supply a bounded
+        # motive for a notable target. The generic assault intent deliberately
+        # avoids pretending the helper knows whether the faction wants prestige,
+        # recruitment pressure, revenge, capture, or merely to test the target.
+        intent = "hostile_interception"
+        motive_kind = "recognized_notable_target"
     else:
         intent = "hostile_interception"
+        motive_kind = "grievance"
     return {
         "attack": bool(attack),
         "intent": intent,
+        "motive_kind": motive_kind,
         "advantage_milli": advantage,
         "required_advantage_milli": threshold,
         "motive_score": motive,
+        "actionable_motive_score": actionable_motive,
         "hostility": hostility,
         "criminal": criminal,
         "civilian_restraint": restraint,
+        "recognized_target_motive_score": identity_motive,
     }
 
 

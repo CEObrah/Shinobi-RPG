@@ -13,6 +13,9 @@ Watch for:
 - selected menu options being treated as invisible control input instead of visible Wei action/dialogue;
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;
 - combat geometry, fatigue, defense load, injury, Qi, poison, equipment, or ammunition behaving inconsistently;
+- an open-ended combat policy being resolved across deaths, critical wounds, poison crises, formation collapse, or objective-changing developments without returning control at a material player-attention frontier;
+- committed combat `events` being discarded so a lethal fight is reconstructed only from final health totals, producing an after-action briefing instead of chronological lived combat;
+- named allies in active team combat becoming roster entries or health bars, with decisive deaths/incapacitations revealed as bullet points rather than experienced when they occur;
 - House missions skipping acceptance, authority, commander, exact member assignment, equipment/provisions, causal travel, allied mobilization, return, settlement, or AAR;
 - factions becoming static, plot-protected, or player-serving rather than resource/goal/authority driven;
 - economy, recruitment, population, custody, treatment, travel, or production creating/destroying resources without the owning mechanic;

@@ -58,8 +58,14 @@ class CommandEnvelope:
             raise TypeError("payload must be a JSON object")
 
         # Freezing prevents a caller from changing the command after its digest
-        # has been used for an idempotency decision.
-        object.__setattr__(self, "payload", freeze_json(self.payload))
+        # has been used for an idempotency decision. Commands deliberately keep
+        # the stricter fixed-integer/string numeric contract even though durable
+        # result metadata may contain finite physical-simulation floats.
+        object.__setattr__(
+            self,
+            "payload",
+            freeze_json(self.payload, allow_float=False),
+        )
 
     def to_record(self) -> Mapping[str, Any]:
         return {
@@ -79,7 +85,7 @@ class CommandEnvelope:
     def digest(self) -> str:
         """SHA-256 of the canonical envelope bytes."""
 
-        return canonical_sha256(self.to_record())
+        return canonical_sha256(self.to_record(), allow_float=False)
 
     @classmethod
     def from_record(cls, record: Mapping[str, Any]) -> "CommandEnvelope":

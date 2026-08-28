@@ -2,7 +2,7 @@
   "schema": "jianghu-interaction-attempt-ledger-1.0",
   "authority": false,
   "mechanical_consequence_authority": false,
-  "total_recorded": 4,
+  "total_recorded": 5,
   "attempts": [
     {
       "attempt_ref": "interaction_attempt_1836590cfacb39b7335ffcb6",
@@ -79,6 +79,25 @@
       "thread_status": "answered",
       "resolved_at": "SE-0061-09-27T21:15:00",
       "response_ref": "scene_speech_413f71a040a9fa6ac65053d3"
+    },
+    {
+      "attempt_ref": "interaction_attempt_d98ad4e142f04c4a7a8f6fe3",
+      "at": "SE-0061-09-27T21:15:00",
+      "surface_digest": "d98ad4e142f04c4a7a8f6fe331e90aa45f858bb7575203481cef859a4104028b",
+      "actor_ref": "pc_wei_tang",
+      "target_ref": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+      "target_kind": "opposing_combat_side",
+      "action": "request",
+      "process_ref": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+      "player_statement": "Stand down. If you do not, I will kill every one of you.",
+      "posture": "parley",
+      "topic": "hostile_contact",
+      "scopes": [],
+      "world_response_status": "not_established_by_attempt",
+      "scene_session_ref": null,
+      "thread_status": "not_applicable",
+      "resolved_at": null,
+      "response_ref": null
     }
   ]
 }

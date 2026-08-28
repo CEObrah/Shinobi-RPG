@@ -25,8 +25,9 @@ For an open-ended standing intent such as **keep attacking**, **press them**, or
 1. retain the returned ordered combat events and elapsed-time change;
 2. refresh play context;
 3. inspect the events plus refreshed player-visible state for a material combat frontier;
-4. if nothing material changed, continue the same already-declared combat policy automatically with a fresh request ID rather than asking the player to repeat **continue**;
-5. if a material frontier occurred, stop further combat execution, narrate through that frontier, and return control when the new state creates a genuine choice.
+4. narrate that committed exchange as its own visible combat beat before folding it into any later exchange;
+5. if nothing material changed and the standing policy remains unambiguous, continue the same already-declared combat policy with a fresh request ID rather than asking the player to restate the order;
+6. if a material frontier occurred, stop further combat execution, narrate through that frontier, and return control when the new state creates a genuine choice.
 
 Each bounded window is one persisted continuation under the already-declared combat policy. Never use repeated previews to probe possible futures. Continue only from committed results and fresh context.
 
@@ -45,21 +46,54 @@ Do not stop merely because someone takes a trivial cut, spends ordinary Qi, accu
 
 If the player explicitly requests a compressed or fast-forwarded fight, the runtime may resolve a broader span. Even then, preserve chronology around irreversible or identity-changing events. Compression changes prose density, not causal truth.
 
+## Player-facing combat turns
+
+Treat one committed exact combat exchange as the default **player-facing combat turn**. This is a presentation unit only; it does not replace the runtime's millisecond timeline, simultaneous declarations, defenses, movement, recovery, projectile flight, or other physical mechanics.
+
+When the player gives one immediate combat action without delegating a longer span, resolve one exact exchange, refresh current state, and narrate that exchange before asking for another action. Do not skip several exchanges merely because the command could technically accept a larger scope.
+
+When the player gives a standing instruction such as **keep fighting**, **press them**, or **finish the fight**, the GM may carry that instruction through several committed exchanges without requiring repeated input. But the presentation must still be **exchange by exchange**. Each committed exchange gets a distinct chronological narrative beat. Never silently accumulate ten, fifty, or a hundred exchanges and reveal only the terminal state.
+
+A player-facing combat turn should normally make these things legible when they occurred:
+
+- where Wei is relative to the immediate threat and what pressure is on him;
+- what Wei actually attempts under the player's instruction and standing doctrine;
+- the most relevant defensive reaction, collision, miss, parry, reposition, or contact;
+- what nearby allies and enemies do when their actions materially affect Wei, the objective, a casualty, or the local geometry;
+- any wound, poison exposure, Qi use, fatigue shift, weapon problem, knockdown, incapacitation, death, or formation change that becomes visible in that exchange;
+- the ending pressure and geometry that carry into the next exchange.
+
+Do not turn this into a literal event log. A twelve-person exchange may contain many scheduled actions, and not every fighter needs a sentence. Select the actions that make the exchange causally understandable from Wei's lawful perspective. The rule is **every exchange gets a scene beat**, not **every raw event gets prose**.
+
+Vary the rhythm. One exchange may be two sharp paragraphs because everyone resets and nobody lands cleanly. Another may be much longer because a flank collapses, three weapons collide around Wei, an ally takes a mortal wound, and a poisoned blade changes the objective. Let prose density follow actual consequence.
+
+Combat should feel immediate. Use concrete physical cues supported by the committed state: feet slipping or planting, steel binding, a spear haft jarring, breath shortening, someone shouting a warning, blood changing a grip, a wounded fighter protecting one side, Qi sharpening a burst of movement, bodies constricting a lane, or a retreat corridor opening. Do not add unsupported flourish that changes mechanics, but do not strip mechanically rich events into sterile summaries either.
+
+If multiple committed exchanges are narrated in one assistant response under standing intent, preserve clear beat boundaries through paragraphing and time/pressure transitions. The player should be able to follow **what happened first, what changed, what happened next, and why the current battlefield now looks the way it does**.
+
+The default dramatic loop is therefore:
+
+`exchange resolves -> exchange is narrated -> state is refreshed -> standing intent either continues or a real decision interrupts`
+
+not:
+
+`many exchanges resolve -> final HP/casualty snapshot -> briefing`
+
 ## Narrating committed combat
 
 Do not present active combat as an after-action briefing. Lead with the physical exchange and keep the reader inside Wei's perception. A useful combat turn usually has this shape:
 
-`immediate geometry/pressure -> Wei's declared action -> defenses and collisions -> ally/enemy reactions -> decisive wound/status/tactical change -> brief bridge across low-change motion -> next material beat -> current decision`
+`immediate geometry/pressure -> Wei's declared action -> defenses and collisions -> ally/enemy reactions -> decisive wound/status/tactical change -> brief recovery/reset -> next exchange or current decision`
 
 Render the player's declared attack, movement, threat, order, or other supplied action on screen before the world reaction. Then synthesize the committed events in chronological order. Do not dump raw event JSON, event-by-event tables, or a roster-shaped casualty report as the primary presentation.
 
-Expand the events that materially change experience or tactics: closing distance, a defense that changes position, a clean hit, a serious wound, poison exposure or onset, a Qi burst with visible effect, weapon loss, incapacitation, death, rescue pressure, a broken line, a successful interception, a blocked escape, a target switch caused by availability, or combat resolution. Compress repetitive misses, ordinary guard work, repeated unchanged pressure, and long low-change stretches into short physical bridges.
+Expand the events that materially change experience or tactics: closing distance, a defense that changes position, a clean hit, a serious wound, poison exposure or onset, a Qi burst with visible effect, weapon loss, incapacitation, death, rescue pressure, a broken line, a successful interception, a blocked escape, a target switch caused by availability, or combat resolution. Compress repetitive misses and ordinary guard work **within that exchange**, but do not compress away the exchange itself during normal interactive combat.
 
 Never skip over the first player-visible onset of death, incapacitation, severe injury, dangerous poison, or formation collapse and reveal it later as a bullet point. If Lu Yunyun dies during the exchange, the scene reaches Lu Yunyun's death when it happens. If Ye Yongrong goes down and becomes an extraction problem, Wei experiences that loss of the line before the narration asks what to do next.
 
 Translate numbers into lived evidence first. Fatigue becomes slower recovery, rough breath, degraded footwork, shaking structure, or late reactions when supported. Blood loss becomes visible bleeding and functional decline. Qi expenditure becomes the concrete speed, force, control, defense, or recovery effect actually committed. Poison becomes the observable symptoms and capability effects Wei can lawfully perceive. Exact numbers may follow in a compact status block when they help the next decision, but the status block is secondary.
 
-Time should remain legible. When a fight spans minutes, use exact committed elapsed time and bridge quiet stretches naturally. Do not write **more than an hour passes beneath steel** as a substitute for the combat events that made that hour consequential.
+Time should remain legible. When a fight spans minutes, show the accumulating strain through the sequence of narrated exchanges and use exact committed elapsed time when useful. Do not write **more than an hour passes beneath steel** as a substitute for the combat events that made that hour consequential.
 
 ## Battlefield voices and human presence
 

@@ -97,9 +97,12 @@ class RepositoryCommandPlanner(JianghuSceneCommandsMixin,JianghuInstitutionalEsc
     def _build(self,command:CommandEnvelope)->_BuiltPlan:
         meta,now=self._base(command); spec=COMMAND_SPECS[command.command_type]
         # Mechanical combat gating comes from the exact combat owner, never
-        # from presentation-only scene JSON.
+        # from presentation-only scene JSON. Reversible interaction attempts are
+        # the sole non-combat exception: speaking does not pause, resolve, or
+        # otherwise alter exact combat and cannot establish a world response.
         active_combat=active_combat_for_person(self.repository.read_json,command.actor_id)
-        if active_combat is not None and command.command_type!="jianghu_combat_resolution":
+        combat_allowed={"jianghu_combat_resolution","jianghu_interaction_resolution"}
+        if active_combat is not None and command.command_type not in combat_allowed:
             raise CommandRejectedError("jianghu_active_combat_requires_resolution")
         if spec.variants:
             expanded=spec.expand_variant_payload(command.payload)

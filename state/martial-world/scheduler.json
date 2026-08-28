@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-15T01:15:00",
+  "settled_through": "0061-09-15T14:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -700,20 +700,6 @@
       "owner_ref": "operation:faction_raid:faction.black_oar_pirates:faction.jade_coin_escort_agency:006109",
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T14:15:00",
-      "owner_ref": "operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109",
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T12:15:00",
-      "owner_ref": "operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109",
-      "requires_player_decision": false
-    },
     "operation_arrival:operation:faction_raid:faction.grey_gate_band:faction.northern_bow_school:006109": {
       "event_id": "operation_arrival:operation:faction_raid:faction.grey_gate_band:faction.northern_bow_school:006109",
       "kind": "faction_operation_arrival",
@@ -980,6 +966,22 @@
       "owner_ref": "route.dengfeng.songshan",
       "movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:outbound",
       "exact_segment_due": true,
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109": {
+      "event_id": "operation_arrival:operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109",
+      "kind": "faction_operation_return",
+      "due_at": "0061-09-15T14:15:01",
+      "owner_ref": "operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109",
+      "requires_player_decision": false
+    },
+    "operation_departure:return:operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109": {
+      "event_id": "operation_departure:return:operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109",
+      "kind": "faction_operation_departure",
+      "due_at": "0061-09-15T14:15:01",
+      "owner_ref": "operation:faction_raid:faction.broken_bridge_band:faction.great_canal_escort_agency:006109",
+      "direction": "return",
+      "arrival_event_kind": "faction_operation_return",
       "requires_player_decision": false
     }
   }

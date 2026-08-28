@@ -32,7 +32,10 @@
       ],
       "properties": {
         "event_id": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "kind": {
           "type": "string"
@@ -62,5 +65,5 @@
     }
   },
   "additionalProperties": false,
-  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted. A bounded activity_handoff persists only the current player-facing wake that must survive the committing frontier."
+  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted. A bounded activity_handoff persists only the current player-facing wake that must survive the committing frontier. event_id may be null for a mechanically real synthetic boundary, such as a travel stop, that is not backed by a scheduler event identity."
 }

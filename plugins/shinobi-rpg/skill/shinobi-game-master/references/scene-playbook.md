@@ -30,7 +30,17 @@ Do not turn several attackers into independent one-on-one exchanges. Keep shared
 
 Travel is physical. Use current route, distance, time, weather, road/terrain condition, mounts, load, companions, fatigue, known threats, and stops only when established. An escort mission should feel like movement of real people and goods, not a teleport between mission flags.
 
-Routine travel under an already-chosen plan can continue without repeated menus. Stop for a real fork, material contact, route problem, resource issue, or consequential report.
+When a substantive multi-person journey forms or departs and fresh context establishes the co-located participants, normally play the human handoff before compressing the road. Demand-load only the key people who materially matter at that beat, such as the commander, deputy/watch lead, scout, medic, guard, specialist, or permanent retinue member. Let them report readiness, coordinate roles, ask practical questions, react to Wei's orders, and speak to one another. Do not dump an entire roster as introductions, and do not invent personalities merely to make every member speak.
+
+Treat exact movement participants exposed by the Runtime as the traveling cast for that physical movement. Sharing only a route name is never enough to establish co-presence. If movement participants are not exposed, do not manufacture companions from a mission roster or prior chat memory.
+
+Quiet travel is allowed to be genuinely quiet, but quiet is not the same as socially empty. On a long journey, compress routine hours and days aggressively while occasionally expanding a grounded human beat when established co-travelers and current state provide material for one. Useful beats include watch handoffs, scout coordination, medical or equipment checks, discussion of the coming job, training or professional routine, command clarification, ordinary conversation, NPC-to-NPC cross-talk, relationship-informed friction or rapport, and reactions to real changes in progress or conditions. These are sparse samples of lived travel, not mandatory daily events.
+
+Never manufacture bandits, accidents, rumors, weather, arguments, secrets, romance, or other drama merely because several quiet days passed. A journey may contain no hostile encounter at all. Human texture should arise from established people, roles, relationships, observations, routines, and mechanically real developments.
+
+Routine travel under an already-chosen plan can continue without repeated menus. Internal `quiet_frontier_chunk` boundaries are never individual story beats: consume them silently under the standing travel policy rather than narrating each scheduler increment. Expand again when there is a real fork, material contact, route/resource problem, consequential report, meaningful change in physical travel state, or a useful character scene supported by exact co-presence. Departure, a meaningful journey phase change, approach, and arrival are especially strong opportunities for interaction even when no crisis occurs.
+
+Companion dialogue remains reversible scene realization. NPCs may advise, coordinate, joke, object, ask questions, or talk among themselves from player-safe facts, but dialogue cannot invent a binding order, new secret fact, resource transfer, relationship change, or other durable consequence. Wei retains every protected consequential choice.
 
 ## Investigations
 

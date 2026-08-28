@@ -70,7 +70,8 @@
       "object"
     ],
     "/activity_handoff/event_id": [
-      "string"
+      "string",
+      "null"
     ],
     "/activity_handoff/kind": [
       "string"
@@ -108,7 +109,7 @@
   },
   "writing_rules": [
     "Scene stores only current player-facing spatial/decision facts that are not derived from other authority.",
-    "A bounded activity_handoff may persist the current player-facing wake emitted by a committed causal frontier so the next play-context read cannot lose it.",
+    "A bounded activity_handoff may persist the current player-facing wake emitted by a committed causal frontier so the next play-context read cannot lose it; synthetic route boundaries may have a null event_id when no scheduler event owns the wake.",
     "World time derives from state/meta.json. Active-combat and time-passage booleans derive from active_combat_ref.",
     "Narration summaries, choice-generation policy, caches and empty presentation arrays are not campaign state."
   ]

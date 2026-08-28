@@ -86,6 +86,9 @@ def test_combat_weapon_readiness_is_explicit_and_switching_consumes_time(monkeyp
     import shinobi_runtime.martial_world.exact_combat as exact
 
     monkeypatch.setattr(exact, "trace_attack_geometry", lambda *args, **kwargs: {"contacts": [], "blocked_by": None})
+    # This invariant is about weapon-ready transition timing, not whether an
+    # unrelated live-state defensive reaction cancels the synthetic attack.
+    monkeypatch.setattr(exact, "_record_defensive_interruption", lambda *args, **kwargs: None)
     combat = initialize_combat(
         combat_ref="readiness",
         side_a_refs=[attacker["person_id"]],

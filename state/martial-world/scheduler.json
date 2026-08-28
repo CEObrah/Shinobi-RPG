@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-15T21:15:00",
+  "settled_through": "0061-09-15T23:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -722,32 +722,11 @@
       "owner_ref": "operation:faction_raid:faction.iron_hook_band:faction.red_maple_sect:006109",
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T23:15:00",
-      "owner_ref": "operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
-      "requires_player_decision": false
-    },
     "operation_arrival:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
       "event_id": "operation_arrival:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
       "kind": "faction_operation_arrival",
       "due_at": "0061-09-16T06:15:00",
       "owner_ref": "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T21:15:00",
-      "owner_ref": "operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T23:15:00",
-      "owner_ref": "operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109",
       "requires_player_decision": false
     },
     "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109": {
@@ -947,18 +926,29 @@
       "exact_segment_due": true,
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
+    "operation_arrival:operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109": {
+      "event_id": "operation_arrival:operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
       "kind": "faction_operation_return",
-      "due_at": "0061-09-15T21:15:01",
-      "owner_ref": "operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
+      "due_at": "0061-09-15T23:15:01",
+      "owner_ref": "operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
-      "kind": "faction_operation_return",
-      "due_at": "0061-09-15T22:15:01",
-      "owner_ref": "operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
+    "operation_departure:return:operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109": {
+      "event_id": "operation_departure:return:operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
+      "kind": "faction_operation_departure",
+      "due_at": "0061-09-15T23:15:01",
+      "owner_ref": "operation:faction_raid:faction.iron_knife_band:faction.iron_pot_brotherhood:006109",
+      "direction": "return",
+      "arrival_event_kind": "faction_operation_return",
+      "requires_player_decision": false
+    },
+    "operation_departure:return:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109": {
+      "event_id": "operation_departure:return:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109",
+      "kind": "faction_operation_departure",
+      "due_at": "0061-09-15T23:15:01",
+      "owner_ref": "operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109",
+      "direction": "return",
+      "arrival_event_kind": "faction_operation_return",
       "requires_player_decision": false
     }
   }

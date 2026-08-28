@@ -199,7 +199,8 @@ def test_combat_side_parley_and_reply_are_transaction_valid_and_legacy_compatibl
     assert reply_plan.result["speaker_ref"] == combat_ref
     assert reply_plan.result["speaker_kind"] == "opposing_combat_side"
     assert reply_plan.result["mechanical_consequence_authority"] is False
-    assert reply_plan.result["world_time"] == world_time_before_reply
+    staged_meta = json.loads(reply_plan.writes["state/meta.json"].decode("utf-8"))
+    assert staged_meta["time"] == world_time_before_reply
 
     answered_ledger = json.loads(
         reply_plan.writes["state/martial-world/interaction-attempts.json"].decode("utf-8")

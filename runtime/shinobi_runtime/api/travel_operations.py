@@ -1,7 +1,7 @@
 """Player-safe travel-aware play-context projection.
 
 Mechanical physical presence remains owned by the exact route/custody/combat
-resolvers.  This module only enriches the read projection so people already
+resolvers. This module only enriches the read projection so people already
 owned by the same exact player route movement are not lost merely because the
 presentation scene did not previously list them.
 """
@@ -36,7 +36,7 @@ def movement_scene_projection(
 ) -> dict[str, Any] | None:
     """Project exact co-traveling participants for the player's route owner.
 
-    Sharing a route identifier is insufficient.  A person is returned only when
+    Sharing a route identifier is insufficient. A person is returned only when
     they are explicitly a participant in the same active route movement and the
     universal physical-presence resolver confirms the same exact movement space.
     """
@@ -105,7 +105,7 @@ class TravelAwareCampaignOperations(CampaignOperations):
     def play_context(self) -> Mapping[str, Any]:
         # Keep the existing authoritative assembly untouched, then enrich it
         # only when the campaign has not changed between the base snapshot and
-        # the exact movement read.  A moving revision fails closed rather than
+        # the exact movement read. A moving revision fails closed rather than
         # splicing two campaign moments into one player context.
         for _attempt in range(2):
             base = dict(super().play_context())
@@ -147,13 +147,15 @@ class TravelAwareCampaignOperations(CampaignOperations):
 
             ids = _unique_person_refs(movement.get("participant_person_ids"))
             scene = dict(base.get("scene", {})) if isinstance(base.get("scene"), Mapping) else {}
-            for key in ("present_person_ids", "visible_person_ids"):
-                merged: list[str] = []
-                existing = scene.get(key, [])
-                for ref in ([*existing] if isinstance(existing, list) else []) + ids:
-                    if isinstance(ref, str) and ref and ref not in merged:
-                        merged.append(ref)
-                scene[key] = merged
+            present: list[str] = []
+            existing_present = scene.get("present_person_ids", [])
+            for ref in ([*existing_present] if isinstance(existing_present, list) else []) + ids:
+                if isinstance(ref, str) and ref and ref not in present:
+                    present.append(ref)
+            scene["present_person_ids"] = present
+            # Exact movement ownership establishes co-presence, not line of
+            # sight. Keep the narrower existing visible projection unchanged;
+            # scouts or convoy elements may share a movement while out of view.
             scene["movement_present_person_ids"] = ids
             scene["movement_context"] = movement
             base["scene"] = scene

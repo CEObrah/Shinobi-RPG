@@ -988,6 +988,82 @@
         "ration_days_consumed": 0,
         "journey_elapsed_seconds": 0
       }
+    },
+    "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return": {
+      "movement_kind": "faction_operation_travel",
+      "purpose_ref": "operation:faction_raid:faction.iron_road_band:songshan:006109",
+      "route_ref": "route.dengfeng.songshan",
+      "route_refs": [
+        "route.dengfeng.songshan"
+      ],
+      "route_index": 0,
+      "journey_nodes": [
+        "songshan",
+        "dengfeng"
+      ],
+      "segment_required_seconds": [
+        50674
+      ],
+      "segment_provisioning_seconds": [
+        87412
+      ],
+      "provisioning_seconds": 87412,
+      "segment_edge_start_milli": [
+        1000
+      ],
+      "segment_edge_end_milli": [
+        0
+      ],
+      "origin_place_ref": "songshan",
+      "destination_place_ref": "dengfeng",
+      "segment_origin_place_ref": "songshan",
+      "segment_destination_place_ref": "dengfeng",
+      "participant_refs": [
+        "mw.person.faction.iron_road_band.5003",
+        "mw.person.faction.iron_road_band.0013",
+        "mw.person.faction.iron_road_band.5000"
+      ],
+      "leader_ref": "mw.person.faction.iron_road_band.5003",
+      "beneficiary_ref": "faction.iron_road_band",
+      "mode": "foot",
+      "started_at": "0061-09-15T17:39:47",
+      "last_progress_at": "0061-09-15T17:39:47",
+      "elapsed_seconds": 0,
+      "required_seconds": 50674,
+      "edge_start_milli": 1000,
+      "edge_end_milli": 0,
+      "route_weather": {
+        "place_id": "songshan",
+        "at": "0061-09-15T17:39:47",
+        "season": "autumn",
+        "temperature_c_tenths": 226,
+        "temperature_c": 22.6,
+        "condition": "clear",
+        "precipitation_milli": 0,
+        "humidity_milli": 620,
+        "wind_mps_tenths": 20,
+        "wind_direction_degrees": 66,
+        "visibility_milli": 1000,
+        "sound_masking_milli": 100,
+        "ground": "dry"
+      },
+      "status": "active",
+      "destination_site_ref": "site.iron_road_band",
+      "faction_ref": "faction.iron_road_band",
+      "operation_kind": "faction_raid",
+      "operation_ref": "operation:faction_raid:faction.iron_road_band:songshan:006109",
+      "journey_phase": "return",
+      "arrival_event_kind": "faction_operation_return",
+      "targeting_intent": "disable",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.iron_road_band",
+        "participant_count": 3,
+        "planned_travel_seconds": 87412,
+        "ration_days_reserved": 6,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      }
     }
   },
   "contacts": {},

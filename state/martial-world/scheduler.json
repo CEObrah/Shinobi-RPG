@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-15T17:39:46",
+  "settled_through": "0061-09-15T19:15:01",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -536,6 +536,7 @@
         "route.changan.zhongnan",
         "route.chongqing.kunming",
         "route.dengfeng.shaolin_temple",
+        "route.dengfeng.songshan",
         "route.hangzhou.tiantai",
         "route.jingzhou.chongqing",
         "route.kunming.dali",
@@ -749,13 +750,6 @@
       "owner_ref": "operation:faction_raid:faction.night_ferry_pirates:faction.iron_pine_sect:006109",
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T19:15:00",
-      "owner_ref": "operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
-      "requires_player_decision": false
-    },
     "operation_arrival:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109": {
       "event_id": "operation_arrival:operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109",
       "kind": "faction_operation_arrival",
@@ -951,20 +945,20 @@
       "exact_segment_due": true,
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.grey_river_band:faction.tiger_step_school:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.grey_river_band:faction.tiger_step_school:006109",
-      "kind": "faction_operation_return",
-      "due_at": "0061-09-15T18:15:01",
-      "owner_ref": "operation:faction_raid:faction.grey_river_band:faction.tiger_step_school:006109",
+    "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return:0": {
+      "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return:0",
+      "kind": "route_activity_cycle",
+      "due_at": "0061-09-16T07:44:21",
+      "owner_ref": "route.dengfeng.songshan",
+      "movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return",
+      "exact_segment_due": true,
       "requires_player_decision": false
     },
-    "operation_departure:return:operation:faction_raid:faction.iron_road_band:songshan:006109": {
-      "event_id": "operation_departure:return:operation:faction_raid:faction.iron_road_band:songshan:006109",
-      "kind": "faction_operation_departure",
-      "due_at": "0061-09-15T17:39:47",
-      "owner_ref": "operation:faction_raid:faction.iron_road_band:songshan:006109",
-      "direction": "return",
-      "arrival_event_kind": "faction_operation_return",
+    "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109": {
+      "event_id": "operation_arrival:operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
+      "kind": "faction_operation_return",
+      "due_at": "0061-09-15T21:15:01",
+      "owner_ref": "operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
       "requires_player_decision": false
     }
   }

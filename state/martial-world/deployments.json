@@ -119,41 +119,6 @@
       "mobilized_force_count": 10,
       "mobilization_basis": "stealth_coordination"
     },
-    "operation:faction_raid:faction.grey_river_band:faction.tiger_step_school:006109": {
-      "faction_ref": "faction.grey_river_band",
-      "target_faction_ref": "faction.tiger_step_school",
-      "operation_kind": "faction_raid",
-      "participant_refs": [
-        "mw.person.faction.grey_river_band.0004",
-        "mw.person.faction.grey_river_band.0019",
-        "mw.person.faction.grey_river_band.0006",
-        "mw.person.faction.grey_river_band.0002",
-        "mw.person.faction.grey_river_band.0014",
-        "mw.person.faction.grey_river_band.0001",
-        "mw.person.faction.grey_river_band.0009",
-        "mw.person.faction.grey_river_band.0010"
-      ],
-      "source_place_ref": "xuchang",
-      "target_place_ref": "xuchang",
-      "started_at": "0061-09-13T21:15:00",
-      "departure_at": "0061-09-14T16:15:00",
-      "arrival_at": "0061-09-15T18:15:01",
-      "travel_hours": 24.0,
-      "route_refs": [],
-      "status": "traveling_return",
-      "targeting_intent": "disable",
-      "operation_intent": "extortion",
-      "mobilized_force_count": 8,
-      "mobilization_basis": "stealth_coordination",
-      "pending_travel_direction": "return",
-      "battle_force_count": 8,
-      "battle_defender_force_count": 19,
-      "allied_defender_count": 0,
-      "local_frontage_count": 5,
-      "battle_outcome": "local_stalemate",
-      "battle_winner_side": null,
-      "casualty_refs": []
-    },
     "operation:faction_raid:faction.iron_hook_band:faction.red_maple_sect:006109": {
       "faction_ref": "faction.iron_hook_band",
       "target_faction_ref": "faction.red_maple_sect",
@@ -222,11 +187,11 @@
       "started_at": "0061-09-13T21:15:00",
       "departure_at": "0061-09-15T01:15:00",
       "arrival_at": "0061-09-15T17:39:45.360000",
-      "travel_hours": 16.41,
+      "travel_hours": 14.08,
       "route_refs": [
         "route.dengfeng.songshan"
       ],
-      "status": "return_preparing",
+      "status": "traveling_return",
       "targeting_intent": "disable",
       "operation_intent": "kidnapping",
       "arrival_event_kind": "faction_operation_arrival",
@@ -265,14 +230,15 @@
           "weapon_jian": 0
         }
       },
-      "pending_travel_direction": "return",
       "battle_force_count": 3,
       "battle_defender_force_count": 112,
       "allied_defender_count": 0,
       "local_frontage_count": 13,
       "battle_outcome": "local_stalemate",
       "battle_winner_side": null,
-      "casualty_refs": []
+      "casualty_refs": [],
+      "physical_movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return",
+      "return_arrival_at": "0061-09-16T07:44:20.600000"
     },
     "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
       "faction_ref": "faction.marsh_reed_pirates",
@@ -458,14 +424,22 @@
       "target_place_ref": "luoyang",
       "started_at": "0061-09-13T21:15:00",
       "departure_at": "0061-09-14T19:15:00",
-      "arrival_at": "0061-09-15T19:15:00",
+      "arrival_at": "0061-09-15T21:15:01",
       "travel_hours": 24.0,
       "route_refs": [],
-      "status": "traveling_outbound",
+      "status": "traveling_return",
       "targeting_intent": "disable",
       "operation_intent": "kidnapping",
       "mobilized_force_count": 4,
-      "mobilization_basis": "stealth_coordination"
+      "mobilization_basis": "stealth_coordination",
+      "pending_travel_direction": "return",
+      "battle_force_count": 4,
+      "battle_defender_force_count": 4,
+      "allied_defender_count": 0,
+      "local_frontage_count": 4,
+      "battle_outcome": "local_stalemate",
+      "battle_winner_side": null,
+      "casualty_refs": []
     },
     "operation:faction_raid:faction.stone_bowl_gang:faction.golden_summit_sect:006109": {
       "faction_ref": "faction.stone_bowl_gang",

@@ -44,16 +44,19 @@ WORLD = {
     "tests/current/test_membership_duties.py",
     "tests/current/test_family_simulation.py",
 }
-# Static route/geography edits need the systems that consume route topology,
-# not a far-future whole-world replay whose exact attendance depends on the
-# currently committed campaign's people and commitments. Global world semantic
-# invariants still run as their own CI job.
+# Static route/geography edits need the systems that actually consume route
+# topology, movement, escort travel, and route-facing world state. Do not drag
+# in unrelated player command tests or far-future whole-world attendance replays
+# whose exact result depends on the currently committed campaign. The global
+# world semantic invariant job remains an independent CI gate.
 ROUTE_WORLD = {
     "tests/current/test_public_escort_muster.py",
-    "tests/current/test_institutional_gameplay_layer.py",
+    "tests/current/test_escort_living_world.py",
+    "tests/current/test_route_intelligence.py",
+    "tests/current/test_outlaw_geography.py",
+    "tests/current/test_travel_team.py",
     "tests/current/test_scheduler_economy.py",
     "tests/current/test_semantic_wait_and_time_flow.py",
-    "tests/current/test_player_tournament_economy.py",
 }
 TOURNAMENT = {
     "tests/current/test_player_tournament_economy.py",

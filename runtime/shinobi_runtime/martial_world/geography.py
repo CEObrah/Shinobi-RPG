@@ -2,8 +2,8 @@
 
 ``geography.json`` remains the large authored base map. Small reviewed route
 additions live in ``geography-extensions.json`` so correcting one corridor does
-not require rewriting the generated-looking site catalog. All route planning and
-route-frontier settlement must consume this composed view.
+not require rewriting the generated-looking site catalog. Route planning and
+route-frontier settlement consume the same extension source.
 """
 from __future__ import annotations
 
@@ -74,11 +74,41 @@ def compose_geography(base: Mapping[str, Any], extensions: Mapping[str, Any] | N
 
 
 @lru_cache(maxsize=1)
+def load_static_extensions() -> Mapping[str, Any] | None:
+    path = _MW / "geography-extensions.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+
+
+@lru_cache(maxsize=1)
 def load_static_geography() -> Mapping[str, Any]:
     base = json.loads((_MW / "geography.json").read_text(encoding="utf-8"))
-    path = _MW / "geography-extensions.json"
-    extensions = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
-    return compose_geography(base, extensions)
+    return compose_geography(base, load_static_extensions())
+
+
+def applicable_route_extensions(base: Mapping[str, Any]) -> Mapping[str, Any] | None:
+    """Return extensions whose endpoints exist in this supplied geography view.
+
+    Frontier unit tests sometimes pass deliberately tiny geography fixtures. An
+    unrelated production corridor must not invalidate those fixtures, so only
+    additions applicable to the supplied place set are composed there.
+    """
+    extensions = load_static_extensions()
+    if not isinstance(extensions, Mapping):
+        return None
+    places = base.get("places", {}) if isinstance(base, Mapping) else {}
+    if not isinstance(places, Mapping):
+        return None
+    rows = extensions.get("routes", [])
+    if not isinstance(rows, list):
+        raise ValueError("jianghu geography extension routes invalid")
+    applicable = [
+        copy.deepcopy(dict(row))
+        for row in rows
+        if isinstance(row, Mapping)
+        and str(row.get("from") or "") in places
+        and str(row.get("to") or "") in places
+    ]
+    return {"routes": applicable} if applicable else None
 
 
 def read_geography(read_json: Callable[[str], Any]) -> dict[str, Any]:
@@ -90,4 +120,10 @@ def read_geography(read_json: Callable[[str], Any]) -> dict[str, Any]:
     return compose_geography(base, extensions)
 
 
-__all__ = ["compose_geography", "load_static_geography", "read_geography"]
+__all__ = [
+    "applicable_route_extensions",
+    "compose_geography",
+    "load_static_extensions",
+    "load_static_geography",
+    "read_geography",
+]

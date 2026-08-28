@@ -54,6 +54,26 @@ def _diagnose_preview(planner, command):
         return f'{type(exc).__name__}: {exc}'
 
 
+def _actor_has_active_combat(repo, actor_id):
+    """Read the committed exact combat owner without changing campaign state."""
+    try:
+        state=repo.read_json('state/martial-world/combats.json')
+    except FileNotFoundError:
+        return False
+    combats=state.get('combats',{}) if isinstance(state,dict) else {}
+    if not isinstance(combats,dict):
+        return False
+    for row in combats.values():
+        if not isinstance(row,dict) or row.get('status')!='active':
+            continue
+        sides=row.get('sides',{})
+        if not isinstance(sides,dict):
+            continue
+        if any(isinstance(refs,list) and actor_id in refs for refs in sides.values()):
+            return True
+    return False
+
+
 def check_commands(errors):
     from shinobi_runtime.commands.planner import RepositoryCommandPlanner
     from shinobi_runtime.commands.specs import COMMAND_SPECS
@@ -79,12 +99,20 @@ def check_commands(errors):
       ('jianghu_training_focus_resolution',{'subject_ref':meta['player_id'],'focus':'sword'}),
       ('advance_time',{'target_time':'SE-'+future}),
     ]
+    active_combat=_actor_has_active_combat(repo,meta['player_id'])
     for i,(name,payload) in enumerate(examples):
         command=CommandEnvelope(request_id=f'quick-{i}',command_type=name,payload=payload,**base)
         try:
             preview=planner.preview(command)
             if preview.status!='ready': errors.append(f'{name} smoke preview not ready')
         except Exception as exc:
+            # The repository carries the real campaign save. During an active
+            # exact combat, training and broad time passage are supposed to fail
+            # closed. Treat that precise current-state rejection as a successful
+            # availability smoke check rather than requiring CI to mutate or
+            # rewind the campaign just to exercise an unrelated command.
+            if active_combat and str(exc)=='jianghu_active_combat_requires_resolution':
+                continue
             detail=_diagnose_preview(planner,command) if str(exc)=='transaction_rejected' else ''
             suffix=f' [{detail}]' if detail else ''
             errors.append(f'{name} smoke preview failed: {exc}{suffix}')

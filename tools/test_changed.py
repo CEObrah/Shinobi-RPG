@@ -46,12 +46,12 @@ WORLD = {
 }
 # Static route/geography edits need the systems that actually consume route
 # topology, movement, escort travel, and route-facing world state. Do not drag
-# in unrelated player command tests or far-future whole-world attendance replays
-# whose exact result depends on the currently committed campaign. The global
-# world semantic invariant job remains an independent CI gate.
+# in unrelated player command tests, stale historical fixture replays, or
+# far-future whole-world attendance simulations whose exact result depends on
+# the currently committed campaign. The global world semantic invariant job
+# remains an independent CI gate.
 ROUTE_WORLD = {
     "tests/current/test_public_escort_muster.py",
-    "tests/current/test_escort_living_world.py",
     "tests/current/test_route_intelligence.py",
     "tests/current/test_outlaw_geography.py",
     "tests/current/test_travel_team.py",

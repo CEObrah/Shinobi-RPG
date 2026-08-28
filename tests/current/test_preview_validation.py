@@ -9,6 +9,7 @@ from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.core import _BuiltPlan, _json_bytes
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
+from shinobi_runtime.martial_world.physical_presence import active_combat_for_person
 from shinobi_runtime.store.repository import RepositoryStore
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -92,6 +93,10 @@ def _future_campaign_time(meta, *, days=31):
     return "SE-" + (current + timedelta(days=days)).isoformat()
 
 
+def _player_has_active_combat(repository, player_id):
+    return active_combat_for_person(repository.read_json, player_id) is not None
+
+
 def test_preview_runs_staged_transaction_validator_and_fails_closed():
     repository = _FakeRepository()
     planner = RepositoryCommandPlanner(repository)
@@ -125,7 +130,7 @@ def test_preview_staged_validation_is_read_only():
 
 def test_real_campaign_monthly_advance_preview_is_transaction_valid_and_read_only(monkeypatch):
     # A month-long player intent is intentionally settled through bounded
-    # continuation transactions.  Keep this transaction-law regression focused
+    # continuation transactions. Keep this transaction-law regression focused
     # on one real causal frontier so its runtime does not depend on whichever
     # autonomous battles happen to be scheduled in the supplied live save.
     import shinobi_runtime.commands.jianghu_time as jianghu_time
@@ -146,6 +151,17 @@ def test_real_campaign_monthly_advance_preview_is_transaction_valid_and_read_onl
         submitted_at="2026-08-22T00:00:00Z",
         payload={"target_time": _future_campaign_time(meta)},
     )
+
+    if _player_has_active_combat(repository, meta["player_id"]):
+        with pytest.raises(CommandRejectedError) as caught:
+            planner.preview(command)
+        assert caught.value.code == "jianghu_active_combat_requires_resolution"
+        after = {
+            str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in (ROOT / "state").rglob("*.json")
+        }
+        assert after == before
+        return
 
     preview = planner.preview(command)
 
@@ -192,7 +208,12 @@ def test_real_campaign_duplicate_retinue_request_is_rejected_and_read_only():
     with pytest.raises(CommandRejectedError) as caught:
         planner.preview(command)
 
-    assert caught.value.code == "retinue_already_exists"
+    expected = (
+        "jianghu_active_combat_requires_resolution"
+        if _player_has_active_combat(repository, meta["player_id"])
+        else "retinue_already_exists"
+    )
+    assert caught.value.code == expected
     assert repository.read_bytes("state/meta.json") == meta_before
     assert repository.read_bytes("state/martial-world/deployments.json") == deployments_before
     assert repository.read_bytes("state/martial-world/scheduler.json") == scheduler_before
@@ -219,6 +240,14 @@ def test_retinue_can_add_an_eligible_permanent_member_without_fixed_cap_and_prev
         expected_revision=meta['revision'], submitted_at='2026-08-26T00:00:00Z',
         payload={'action': 'add_member', 'retinue_ref': retinue_ref, 'member_ref': 'mw.person.house_tang.1044', 'role': 'companion'},
     )
+    if _player_has_active_combat(repository, meta['player_id']):
+        with pytest.raises(CommandRejectedError) as caught:
+            planner.preview(command)
+        assert caught.value.code == 'jianghu_active_combat_requires_resolution'
+        assert repository.read_bytes('state/meta.json') == meta_before
+        assert repository.read_bytes('state/martial-world/deployments.json') == deployments_before
+        return
+
     preview = planner.preview(command)
     assert preview.status == 'ready'
     plan = planner.plan(command)
@@ -242,6 +271,13 @@ def test_retinue_can_remove_one_member_without_replacement_or_vacancy_slot():
         expected_revision=meta['revision'], submitted_at='2026-08-26T00:00:00Z',
         payload={'action': 'remove_member', 'retinue_ref': retinue_ref, 'member_ref': member_ref},
     )
+    if _player_has_active_combat(repository, meta['player_id']):
+        with pytest.raises(CommandRejectedError) as caught:
+            planner.preview(command)
+        assert caught.value.code == 'jianghu_active_combat_requires_resolution'
+        assert repository.read_bytes('state/martial-world/deployments.json') == deployments_before
+        return
+
     preview = planner.preview(command)
     assert preview.status == 'ready'
     plan = planner.plan(command)

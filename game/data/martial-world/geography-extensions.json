@@ -1,0 +1,43 @@
+{
+  "schema": "jianghu-geography-extensions-1.0",
+  "purpose": "Small authored route additions composed with geography.json by the canonical geography loader. Extensions may add registered edges but may not replace an existing route id.",
+  "routes": [
+    {
+      "id": "route.luoyang.huashan",
+      "from": "luoyang",
+      "to": "huashan",
+      "straight_line_km": 217.6,
+      "distance_km": 267.9,
+      "detour_factor_milli": 1231,
+      "terrain": "hills",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 30,
+      "allowed_modes": [
+        "foot",
+        "horse",
+        "pack",
+        "convoy",
+        "courier"
+      ],
+      "status": "open",
+      "terrain_segments": [
+        {
+          "start_milli": 0,
+          "end_milli": 250,
+          "terrain": "hills"
+        },
+        {
+          "start_milli": 250,
+          "end_milli": 700,
+          "terrain": "plain"
+        },
+        {
+          "start_milli": 700,
+          "end_milli": 1000,
+          "terrain": "hills"
+        }
+      ]
+    }
+  ]
+}

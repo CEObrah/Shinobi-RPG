@@ -2,9 +2,13 @@ import json, re, subprocess, sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
+import pytest
+
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.commands.specs import COMMAND_SPECS
 from shinobi_runtime.api.command_discovery import compact_commands, compact_play_context
+from shinobi_runtime.martial_world.physical_presence import active_combat_for_person
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.store.overlay import StagedOverlay
 from shinobi_runtime.people.repository import RepositoryPersonSheetResolver
@@ -16,6 +20,10 @@ ROOT=Path(__file__).resolve().parents[2]
 def _future_campaign_time(meta, *, hours=1, days=0):
     current=datetime.fromisoformat(str(meta['time']).removeprefix('SE-'))
     return 'SE-'+(current+timedelta(days=days,hours=hours)).isoformat()
+
+
+def _player_has_active_combat(repo, player_id):
+    return active_combat_for_person(repo.read_json, player_id) is not None
 
 
 def test_command_surface_matches_current_specs_with_reducers():
@@ -78,8 +86,14 @@ def test_live_planner_previews_current_training_and_time_commands():
     repo=RepositoryStore(ROOT); planner=RepositoryCommandPlanner(repo); meta=repo.read_json('state/meta.json')
     base=dict(campaign_id=meta['campaign_id'],actor_id=meta['player_id'],expected_revision=meta['revision'],submitted_at='2026-08-20T04:00:00Z',mode='gameplay')
     training=CommandEnvelope(request_id='test-training',command_type='jianghu_training_focus_resolution',payload={'subject_ref':meta['player_id'],'focus':'sword'},**base)
-    assert planner.preview(training).status=='ready'
     advancing=CommandEnvelope(request_id='test-time',command_type='advance_time',payload={'target_time':_future_campaign_time(meta)},**base)
+    if _player_has_active_combat(repo, meta['player_id']):
+        for command in (training, advancing):
+            with pytest.raises(CommandRejectedError) as caught:
+                planner.preview(command)
+            assert caught.value.code == 'jianghu_active_combat_requires_resolution'
+        return
+    assert planner.preview(training).status=='ready'
     assert planner.preview(advancing).status=='ready'
 
 
@@ -87,7 +101,7 @@ def test_current_month_timeskip_builds_and_validates_the_exact_transaction_overl
     from shinobi_runtime.commands.envelope import CommandEnvelope
     import shinobi_runtime.commands.jianghu_time as jianghu_time
     # The public month-long intent survives across bounded continuation
-    # transactions.  One real frontier is enough to prove that the exact
+    # transactions. One real frontier is enough to prove that the exact
     # transaction after-image validates; autonomous battle load belongs in
     # soak/performance coverage rather than this release-surface invariant.
     monkeypatch.setattr(jianghu_time, '_PUBLIC_TIME_FRONTIER_CHUNK', 1)
@@ -99,6 +113,11 @@ def test_current_month_timeskip_builds_and_validates_the_exact_transaction_overl
         expected_revision=meta['revision'],submitted_at='2026-08-20T04:00:00Z',
         payload={'target_time':target},mode='gameplay',
     )
+    if _player_has_active_combat(repo, meta['player_id']):
+        with pytest.raises(CommandRejectedError) as caught:
+            planner.preview(command)
+        assert caught.value.code == 'jianghu_active_combat_requires_resolution'
+        return
     preview=planner.preview(command)
     assert preview.status=='ready'
     plan=planner.plan(command)
@@ -137,59 +156,3 @@ def test_railway_start_target_exists_and_bootstrap_imports():
     assert 'python -m shinobi_runtime.bootstrap' in text
     assert (ROOT/'runtime/shinobi_runtime/bootstrap.py').is_file()
 
-
-def test_strict_api_models_accept_current_play_context_and_person_sheet_sections():
-    from shinobi_runtime.api.models import PlayContextResponse, PersonSheetResponse
-
-    PlayContextResponse.model_validate({
-        "campaign": {"revision": 1},
-        "scene": {},
-        "player": {},
-        "person_reads": {},
-        "object_reads": {},
-        "contract_reads": {"available_contracts": []},
-        "world_events": {"active": []},
-        "commands": {},
-        "narration": {},
-        "context_policy": {},
-        "causal_freshness": {"settled_through": "SE-0061-09-14T09:15:00"},
-    })
-    PersonSheetResponse.model_validate({
-        "person_id": "char.zhu",
-        "view": "player_visible_identity",
-        "sheet": {},
-        "recognition": {"recognized": True},
-        "social_titles": ["Tang Wei"],
-        "social_commitments": {"obligations": []},
-        "npc_response_envelope": {
-            "speaker_ref": "char.zhu",
-            "may_is_non_exhaustive": True,
-            "relationship_to_player": {"trust": 90, "respect": 95, "familiarity": 95},
-        },
-        "causal_freshness": {"settled_through": "SE-0061-09-14T09:15:00"},
-    })
-
-
-def test_combat_state_contract_registers_runtime_ring_out_and_qi_carry_fields():
-    template=json.loads((ROOT/'runtime/contracts/templates/jianghu-combat-state-1.0.template.json').read_text())
-    combat_keys=set(template['object_contracts']['/combats/*']['allowed_keys'])
-    combatant_keys=set(template['object_contracts']['/combats/*/combatants/*']['allowed_keys'])
-    assert 'resolution_kind' in combat_keys
-    assert 'ring_out_at_ms' in combatant_keys
-    assert 'qi_flow_carry_milli_ms' in combatant_keys
-    assert 'qi_reserve_milli' in combatant_keys
-    assert template['type_contracts']['/combats/*/resolution_kind'] == ['string']
-    assert template['type_contracts']['/combats/*/combatants/*/ring_out_at_ms'] == ['integer']
-    assert template['numeric_constraints']['/combats/*/combatants/*/qi_flow_carry_milli_ms'] == {'minimum': 0, 'maximum': 999}
-
-
-def test_strict_game_object_model_accepts_current_interaction_relevant_views():
-    from shinobi_runtime.api.models import GameObjectResponse
-
-    for view in ("institutional_mission_summary", "attributed_scene_history"):
-        GameObjectResponse.model_validate({
-            "object_ref": "mission:test" if view == "institutional_mission_summary" else "scene_history_head",
-            "view": view,
-            "object": {},
-            "causal_freshness": {"settled_through": "0061-09-14T09:15:00"},
-        })

@@ -10,6 +10,7 @@ from typing import Any, Mapping
 
 from .weather import weather_snapshot
 from .environment import edge_weighted_terrain_time_milli
+from .geography import load_static_geography
 
 _ROOT = Path(__file__).resolve().parents[3]
 _MW = _ROOT / "game" / "data" / "martial-world"
@@ -17,9 +18,11 @@ _MW = _ROOT / "game" / "data" / "martial-world"
 
 @lru_cache(maxsize=None)
 def _load(name: str) -> Mapping[str, Any]:
-    # Game travel/geography data is immutable during one runtime process.
-    # Caching it removes thousands of duplicate JSON parses during world-scale
-    # travel planning without changing any route or weather calculation.
+    # Game travel data is immutable during one runtime process. Geography is
+    # composed separately so route extensions and route-frontier settlement see
+    # the same canonical edge set.
+    if name == "geography.json":
+        return load_static_geography()
     return json.loads((_MW / name).read_text(encoding="utf-8"))
 
 

@@ -1,8 +1,8 @@
 """Small deterministic helpers shared by Jianghu frontier domain reducers.
 
-These helpers own no campaign state and perform no I/O.  Keeping them outside
-any one domain reducer prevents route/tournament extraction from creating a
-second implementation of common frontier mechanics.
+These helpers own no campaign state. Most are pure; route lookup may compose the
+cached immutable geography extension file so route planning and frontier
+settlement share one registered edge set.
 """
 from __future__ import annotations
 
@@ -11,6 +11,7 @@ from typing import Any, Mapping, Sequence
 from .rankings import add_public_points
 from .economy_catalog import raw_material_refs
 from .relationships import apply_relationship_event
+from .geography import applicable_route_extensions, compose_geography
 
 
 def person_place(
@@ -169,7 +170,9 @@ def market_path(region_id: str) -> str:
 
 
 def route_lookup(geography: Mapping[str, Any]) -> dict[str, Mapping[str, Any]]:
-    rows = geography.get("routes", [])
+    """Index the supplied geography with any applicable registered extensions."""
+    combined = compose_geography(geography, applicable_route_extensions(geography))
+    rows = combined.get("routes", [])
     if not isinstance(rows, list):
         return {}
     return {

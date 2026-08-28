@@ -42,6 +42,22 @@ Routine travel under an already-chosen plan can continue without repeated menus.
 
 Companion dialogue remains reversible scene realization. NPCs may advise, coordinate, joke, object, ask questions, or talk among themselves from player-safe facts, but dialogue cannot invent a binding order, new secret fact, resource transfer, relationship change, or other durable consequence. Wei retains every protected consequential choice.
 
+## Inns, markets, and public travel stops
+
+Treat a public stop as inhabited scene space whenever fresh context exposes deterministic public attendance. If `public_site_context` is present, its attendee count is the scale of the current public venue and its sample IDs are progressive-read candidates, not a cast list. Establish the venue as occupied before collapsing attention inward to Wei's own party. Do not describe a busy inn, tea house, market, wine shop, yard, or similar public place as empty or private unless fresh exact context actually supports that.
+
+Do not dump raw attendee IDs or introduce a hundred strangers. Use ambient human presence first: bodies sharing the venue, conversation around Wei, people entering or leaving the immediate public flow, tables or service activity only where the site type and current facts support them. When a particular stranger becomes relevant, demand-load one to three exact sampled person sheets and let that person enter the scene for a reason. Most people in a living place should remain ordinary background life rather than instantly becoming quests, secrets, rivals, romance, or plot hooks.
+
+Public-site attendance establishes shared venue presence only. It does not prove arm's-reach adjacency, direct line of sight, recognition, overheard private speech, combat access, friendship, hostility, or willingness to talk. Use exact observation, interaction, relationship, or combat mechanics when those stronger claims matter. Never turn the attendance projection into omniscience.
+
+Let public life and companions coexist. A travel party need not monopolize every stop. Local escort hands, martial travelers, merchants, civic people, recruits, or other exact attendees may make a city feel socially distinct when their player-safe identities are actually exposed. Conversely, do not force strangers to speak merely to demonstrate that the world is populated. Sometimes the strongest scene is simply that Wei is one person inside a visibly functioning public place while his companions eat, rest, handle their own reversible routines, or speak only when there is something worth saying.
+
+Make registered local affordances discoverable through the scene rather than defaulting to a service menu. If lodging, food, drink, bathing, stabling, market trade, treatment, or another service is actually available, it can be naturally evident from the place and the player's lawful access. Do not invent stock, prices, staff identities, rumors, entertainment, disputes, or special services that the current world does not support.
+
+Dialogue at a public stop needs a reason. Prefer practical coordination, an actual observation, a live uncertainty, a social approach, a service exchange, disagreement, recognition that is mechanically supported, or an ongoing relationship beat. Do not make a deputy explain obvious shared logistics such as “we are stopped here and will keep traveling,” and do not inject generic quips merely to prove companions have personalities. If nobody has anything material to say, let the populated environment, a brief ordinary exchange, or silence carry the beat instead.
+
+When a stop interrupts a standing journey without requiring a protected decision, present the lived stop and then preserve the existing travel intent unless the player chooses to use the stop. Do not manufacture a menu merely because the party crossed a city boundary.
+
 ## Investigations
 
 Separate observation, testimony, rumor, inference, and verified evidence. Let witnesses be incomplete or mistaken for grounded reasons, not because the narrator needs mystery. Do not reveal hidden answers in suggestive narration.

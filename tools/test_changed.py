@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Run focused Jianghu regressions for changed repository owners.
 
-The fast development gate intentionally excludes long-horizon soak tests.  Those
-remain in the deliberate release/simulation tooling.  Every invocation still
+The fast development gate intentionally excludes long-horizon soak tests. Those
+remain in the deliberate release/simulation tooling. Every invocation still
 runs the small core contract/invariant slice, then adds subsystem tests based on
 changed paths.
 """
@@ -44,6 +44,20 @@ WORLD = {
     "tests/current/test_membership_duties.py",
     "tests/current/test_family_simulation.py",
 }
+# Static route/geography edits need the systems that actually consume route
+# topology, movement, escort travel, and route-facing world state. Do not drag
+# in unrelated player command tests, stale historical fixture replays, or
+# far-future whole-world attendance simulations whose exact result depends on
+# the currently committed campaign. The global world semantic invariant job
+# remains an independent CI gate.
+ROUTE_WORLD = {
+    "tests/current/test_public_escort_muster.py",
+    "tests/current/test_route_intelligence.py",
+    "tests/current/test_outlaw_geography.py",
+    "tests/current/test_travel_team.py",
+    "tests/current/test_scheduler_economy.py",
+    "tests/current/test_semantic_wait_and_time_flow.py",
+}
 TOURNAMENT = {
     "tests/current/test_player_tournament_economy.py",
 }
@@ -69,6 +83,16 @@ SCENE_FLOW = {
 }
 TIME_FLOW = {
     "tests/current/test_semantic_wait_and_time_flow.py",
+}
+
+ROUTE_GRAPH_PATHS = {
+    "runtime/shinobi_runtime/martial_world/travel.py",
+    "runtime/shinobi_runtime/martial_world/geography.py",
+    "runtime/shinobi_runtime/martial_world/frontier_support.py",
+}
+STATIC_GEOGRAPHY_PATHS = {
+    "game/data/martial-world/geography.json",
+    "game/data/martial-world/geography-extensions.json",
 }
 
 
@@ -131,7 +155,10 @@ def select(paths: list[str]) -> list[str]:
                 "world_", "route_", "local_travel", "travel.py", "upkeep", "compensation", "commitment",
             ))
         ):
-            selected.update(WORLD)
+            if path in ROUTE_GRAPH_PATHS:
+                selected.update(ROUTE_WORLD)
+            else:
+                selected.update(WORLD)
 
         if path.startswith("runtime/shinobi_runtime/sim/"):
             selected.update(WORLD)
@@ -165,13 +192,15 @@ def select(paths: list[str]) -> list[str]:
         }:
             selected.update(TIME_FLOW)
 
-
         if path.startswith("game/") or path.startswith("state/"):
             selected.update(RELEASE)
             # Current world/state changes deserve the bounded living-world slice;
             # pure schema/reference edits remain covered by quick_check + core.
             if not path.startswith("game/schemas/"):
-                selected.update(WORLD)
+                if path in STATIC_GEOGRAPHY_PATHS:
+                    selected.update(ROUTE_WORLD)
+                else:
+                    selected.update(WORLD)
 
         if path.startswith("plugins/shinobi-rpg/skill/") or path in {"pyproject.toml", "requirements.txt"} or path.startswith("runtime/contracts/"):
             selected.update(RELEASE)
@@ -187,7 +216,7 @@ def main(argv: list[str]) -> int:
     env["PYTHONPATH"] = str(ROOT / "runtime")
     # Running pytest in-process lets this release gate return its assertion
     # status before third-party interpreter-shutdown hooks can stall an
-    # otherwise complete test run.  The process is disposable verification
+    # otherwise complete test run. The process is disposable verification
     # tooling, so exit immediately after pytest has produced its final code.
     os.environ.update(env)
     import pytest

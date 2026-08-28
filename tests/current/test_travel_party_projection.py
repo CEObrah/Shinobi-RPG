@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from shinobi_runtime.api.travel_operations import movement_scene_projection
+from shinobi_runtime.api.travel_operations import (
+    movement_scene_projection,
+    public_site_scene_projection,
+)
 
 
 def _reader(state):
@@ -64,3 +67,58 @@ def test_route_projection_is_absent_when_player_has_no_active_movement():
         player_id="pc",
         player_sheet=player,
     ) is None
+
+
+def test_public_site_projection_exposes_exact_count_and_diverse_bounded_sample():
+    scene = {
+        "location_id": "site.changan.inn",
+        "derived_present_person_ids": [
+            "mw.person.jade_gate_escorts.0001",
+            "mw.person.jade_gate_escorts.0002",
+            "mw.person.black_lance_company.0001",
+            "mw.person.black_lance_company.0002",
+            "mw.person.seven_star_sect.0001",
+            "civic.changan.merchant_elite",
+        ],
+    }
+
+    result = public_site_scene_projection(scene, sample_limit=4)
+
+    assert result is not None
+    assert result["site_ref"] == "site.changan.inn"
+    assert result["derived_attendee_count"] == 6
+    assert result["presence_semantics"] == "shared_public_site_only"
+    assert result["sample_person_ids"] == [
+        "mw.person.jade_gate_escorts.0001",
+        "mw.person.black_lance_company.0001",
+        "mw.person.seven_star_sect.0001",
+        "civic.changan.merchant_elite",
+    ]
+
+
+def test_public_site_projection_zero_sample_keeps_scale_without_person_reads():
+    scene = {
+        "location_id": "site.changan.inn",
+        "derived_present_person_ids": ["person.a.1", "person.b.1"],
+    }
+    result = public_site_scene_projection(scene, sample_limit=0)
+    assert result is not None
+    assert result["derived_attendee_count"] == 2
+    assert result["sample_person_ids"] == []
+
+
+def test_public_site_projection_deduplicates_attendees_and_is_absent_on_route():
+    site_scene = {
+        "location_id": "site.changan.inn",
+        "derived_present_person_ids": ["person.a.1", "person.a.1", "person.b.1"],
+    }
+    site_result = public_site_scene_projection(site_scene, sample_limit=8)
+    assert site_result is not None
+    assert site_result["derived_attendee_count"] == 2
+    assert site_result["sample_person_ids"] == ["person.a.1", "person.b.1"]
+
+    route_scene = {
+        "location_id": "route.changan.huashan",
+        "derived_present_person_ids": ["person.a.1"],
+    }
+    assert public_site_scene_projection(route_scene) is None

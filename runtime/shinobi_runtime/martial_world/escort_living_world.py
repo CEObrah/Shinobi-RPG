@@ -90,8 +90,9 @@ def route_interception_opportunity_permille(
     """Chance that a geographically plausible faction gets an actionable contact window.
 
     Outlaws live off road pressure.  Ordinary factions need a serious grievance and
-    a plausible local observation opportunity.  This only decides whether the
-    faction can consider acting; motive/strength and exact combat remain separate.
+    a plausible local observation opportunity.  This decides whether the faction
+    gets a chance to consider acting; the later interception decision weighs the
+    apparent payoff and cost of actually starting violence.
     """
     threat = max(0, min(2000, int(route_threat_milli)))
     witness = max(0, min(1000, int(witness_milli)))
@@ -141,25 +142,32 @@ def interception_decision(
     observed_escort_count: int, observed_escort_combat_index: int,
     cargo_value_cash: int, ransom_value_cash: int, risk_tolerance: int,
     government_risk_milli: int = 0, minimum_attack_advantage_milli: int = 1100,
-    civilian_restraint: int = 0, recognized_target_motive_score: int = 0,
+    civilian_restraint: int = 0, recognized_target_reward_score: int = 0,
+    recognized_target_risk_score: int = 0,
 ) -> dict[str, Any]:
-    """Decide whether a faction has both a reason and enough apparent edge to act.
+    """Weight expected reward against expected cost before route violence.
 
-    Opportunity and courage are not motives. Criminal factions may act for visible
-    loot, a recognized ransom target, a serious grievance, or a separately
-    established identity motive. Ordinary institutions still require a serious
-    grievance before violence is eligible. ``recognized_target_motive_score`` must
-    come from caller-owned recognition/public-knowledge evidence; this helper never
-    invents identity knowledge. Exact combat still determines physical outcomes.
+    Route contact remains stochastic upstream. Once a contact opportunity exists,
+    an outlaw faction may still make a purely opportunistic attack even when no
+    formal grievance or manifest cargo is known: travelers can carry cash, gear,
+    mounts and other uncertain spoils. Visible cargo, ransom prospects, grievance
+    and a lawfully recognized notable target raise expected reward. Apparent combat
+    losses, government exposure, civilian restraint and the extra danger/reprisal
+    attached to a recognized target raise expected cost. Risk tolerance is a
+    budget for accepting worse expected value, not a substitute for perception.
+
+    Ordinary noncriminal institutions still require a serious grievance before
+    initiating route violence. Exact combat determines every physical outcome.
     """
     count = max(0, int(own_available_martial))
     if count <= 0:
         return {"attack": False, "reason": "no_available_force"}
+
     edge = relation if isinstance(relation, Mapping) else {}
     hostility = max(0, int(edge.get("hostility", 0)))
     trust = int(edge.get("trust", 0))
     criminal = str(attacker_faction_type) == "outlaw_faction"
-    grievance = hostility * 5 + max(0, -trust) * 2
+    grievance_reward = hostility * 5 + max(0, -trust) * 2
     if not criminal and hostility < 55:
         return {
             "attack": False,
@@ -168,39 +176,47 @@ def interception_decision(
         }
 
     own_power = max(1, count) * max(1, int(own_combat_index))
-    apparent_enemy = max(1, int(observed_escort_count)) * max(1, int(observed_escort_combat_index))
+    enemy_count = max(1, int(observed_escort_count))
+    apparent_enemy = enemy_count * max(1, int(observed_escort_combat_index))
     advantage = own_power * 1000 // apparent_enemy
-    loot_motive = min(260, max(0, int(cargo_value_cash)) // 4_000)
-    ransom_motive = min(320, max(0, int(ransom_value_cash)) // 2_500)
-    identity_motive = min(320, max(0, int(recognized_target_motive_score)))
-    value_motive = loot_motive + ransom_motive if criminal else ransom_motive // 2
-    actionable_motive = grievance + value_motive + identity_motive
-    if actionable_motive <= 0:
-        return {
-            "attack": False,
-            "reason": "no_actionable_motive",
-            "advantage_milli": advantage,
-            "hostility": hostility,
-            "criminal": criminal,
-            "recognized_target_motive_score": identity_motive,
-        }
 
-    # Risk tolerance governs willingness to pay the cost of an existing motive.
-    # It must never manufacture a reason to start a lethal encounter by itself.
-    risk = max(0, min(100, int(risk_tolerance))) * 2
-    legal_pressure = max(0, min(1000, int(government_risk_milli))) // 3
-    motive = actionable_motive + risk - legal_pressure
-
-    base = max(650, int(minimum_attack_advantage_milli))
+    # Cash values convert to bounded decision utility. The scale is intentionally
+    # diminishing relative to raw cash so wealth matters without guaranteeing an
+    # attack against obviously ruinous opposition.
+    loot_reward = min(420, max(0, int(cargo_value_cash)) // 250) if criminal else 0
+    ransom_reward = min(500, max(0, int(ransom_value_cash)) // 250)
     if not criminal:
-        base = max(base, 1250)
-    # Civilian restraint is institutional reluctance to initiate violence
-    # against a convoy whose protected principals/crew are civilian.  It never
-    # grants immunity: overwhelming grievance and force can still clear the
-    # higher physical-advantage requirement.
+        ransom_reward //= 2
+    identity_reward = min(400, max(0, int(recognized_target_reward_score)))
+
+    # Criminal parties can rationally prey on ordinary travelers even without a
+    # manifest cargo. More visible people imply more possible personal valuables,
+    # but those same bodies also increase combat risk below.
+    opportunistic_reward = 0
+    if criminal:
+        opportunistic_reward = 35 + min(145, enemy_count * 6)
+
+    reward_score = grievance_reward + loot_reward + ransom_reward + identity_reward + opportunistic_reward
+
+    # Expected combat cost uses the enemy share of observed total fighting power,
+    # so even a numerical favorite still prices in likely casualties. A faction's
+    # configured minimum advantage adds a caution premium when apparent odds are
+    # below doctrine, rather than acting as a hard deterministic wall.
+    combat_risk = min(700, apparent_enemy * 700 // max(1, own_power + apparent_enemy))
+    base_advantage = max(650, int(minimum_attack_advantage_milli))
+    if not criminal:
+        base_advantage = max(base_advantage, 1250)
+    tactical_caution = min(700, max(0, base_advantage - advantage) // 2)
+    legal_risk = max(0, min(1000, int(government_risk_milli))) // 2
     restraint = max(0, min(100, int(civilian_restraint)))
-    threshold = max(650, base - max(0, motive) * 2) + restraint * 3
-    attack = advantage >= threshold
+    restraint_risk = restraint * 3
+    identity_risk = min(400, max(0, int(recognized_target_risk_score)))
+    cost_score = combat_risk + tactical_caution + legal_risk + restraint_risk + identity_risk
+
+    risk_budget = max(0, min(100, int(risk_tolerance))) * 3
+    utility_score = reward_score + risk_budget - cost_score
+    attack = utility_score >= 0
+
     if ransom_value_cash > cargo_value_cash and ransom_value_cash > 0:
         intent = "kidnap_principal"
         motive_kind = "ransom"
@@ -210,31 +226,37 @@ def interception_decision(
     elif cargo_value_cash > 0:
         intent = "rob_cargo"
         motive_kind = "loot"
-    elif identity_motive > 0:
-        # A caller that lawfully established recognition may supply a bounded
-        # motive for a notable target. The generic assault intent deliberately
-        # avoids pretending the helper knows whether the faction wants prestige,
-        # recruitment pressure, revenge, capture, or merely to test the target.
+    elif identity_reward > opportunistic_reward and identity_reward > 0:
         intent = "hostile_interception"
         motive_kind = "recognized_notable_target"
+    elif criminal:
+        intent = "hostile_interception"
+        motive_kind = "opportunistic_predation"
     else:
         intent = "hostile_interception"
         motive_kind = "grievance"
-    return {
+
+    result = {
         "attack": bool(attack),
         "intent": intent,
         "motive_kind": motive_kind,
         "advantage_milli": advantage,
-        "required_advantage_milli": threshold,
-        "motive_score": motive,
-        "actionable_motive_score": actionable_motive,
+        "expected_reward_score": reward_score,
+        "expected_cost_score": cost_score,
+        "utility_score": utility_score,
+        "risk_budget_score": risk_budget,
+        "combat_risk_score": combat_risk,
+        "tactical_caution_score": tactical_caution,
+        "government_risk_score": legal_risk,
         "hostility": hostility,
         "criminal": criminal,
         "civilian_restraint": restraint,
-        "recognized_target_motive_score": identity_motive,
+        "recognized_target_reward_score": identity_reward,
+        "recognized_target_risk_score": identity_risk,
     }
-
-
+    if not attack:
+        result["reason"] = "expected_cost_exceeds_reward"
+    return result
 
 
 _OUTLAW_PUBLIC_RISKS = {
@@ -305,8 +327,6 @@ def apply_lodging_rest(person: Mapping[str, Any], *, elapsed_hours: int) -> dict
     return out
 
 
-
-
 def interception_force_size(
     *, available_count: int, observed_escort_count: int, hostility: int,
     criminal_scale: int, risk_tolerance: int, known_value_cash: int,
@@ -339,12 +359,14 @@ def interception_force_size(
         desired += int((value//25_000) ** 0.5)
     return min(available,desired)
 
+
 __all__ = [
     "apply_lodging_rest",
     "best_route_observer",
     "escort_can_resume_field_travel",
     "escort_rest_hours",
     "interception_decision",
+    "interception_force_size",
     "observed_escort_strength",
     "observer_fieldcraft_score",
     "person_combat_index",

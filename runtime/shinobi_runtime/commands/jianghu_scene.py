@@ -32,6 +32,26 @@ def _safe_list(values: Any, code: str, *, maximum_transport: int | None = None) 
     return rows
 
 
+def _combat_question_open(row: Mapping[str, Any], combat_ref: str, actor_ref: str) -> bool:
+    """Return whether one player question is still live against this combat side.
+
+    The ``not_applicable`` status is accepted only for the short-lived legacy
+    shape written before combat-side questions became first-class threads. New
+    combat questions are persisted as ``open``.
+    """
+    return (
+        row.get("actor_ref") == actor_ref
+        and row.get("target_ref") == combat_ref
+        and row.get("target_kind") == "opposing_combat_side"
+        and row.get("action") == "ask"
+        and isinstance(row.get("player_statement"), str)
+        and bool(row.get("player_statement"))
+        and row.get("resolved_at") is None
+        and row.get("response_ref") is None
+        and row.get("thread_status") in {"open", "not_applicable"}
+    )
+
+
 class JianghuSceneCommandsMixin:
     def _established_scene_person_refs(self) -> set[str]:
         """Return identities already exposed by the current presentation/session.
@@ -129,7 +149,7 @@ class JianghuSceneCommandsMixin:
             "process_ref": process_ref, "player_statement": statement, "posture": posture,
             "topic": topic, "scopes": scopes, "world_response_status": "not_established_by_attempt",
             "scene_session_ref": session_ref,
-            "thread_status": "open" if is_question and session_ref else "not_applicable",
+            "thread_status": "open" if is_question and (session_ref or target_kind == "opposing_combat_side") else "not_applicable",
             "resolved_at": None, "response_ref": None,
         }
         ledger["attempts"] = [*ledger.get("attempts", []), row]; ledger["total_recorded"] = int(ledger.get("total_recorded",0))+1
@@ -141,8 +161,86 @@ class JianghuSceneCommandsMixin:
             scene_after["open_question_refs"] = refs; scene_after["last_updated_at"] = str(current_time); writes[SESSION_PATH] = scene_after
         return self._simple_plan(command, meta, current_time, writes_records=writes, code="jianghu_interaction_recorded", result={"command_type":command.command_type,"attempt_ref":attempt_ref,"target_kind":target_kind,"scene_session_ref":session_ref,"world_response_status":"not_established_by_attempt"})
 
+    def _record_combat_side_speech(self, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime, combat_ref: str):
+        """Persist one reversible opposing-side line without exposing an enemy ID."""
+        session_ref = str(command.payload.get("session_ref") or "")
+        speaker_ref = str(command.payload.get("speaker_ref") or "")
+        if session_ref != combat_ref or speaker_ref != combat_ref:
+            raise CommandRejectedError("jianghu_combat_parley_speaker_invalid")
+        speech_kind = str(command.payload.get("speech_kind") or "")
+        if speech_kind not in SPEECH_KINDS:
+            raise CommandRejectedError("jianghu_scene_speech_kind_invalid")
+        try:
+            statement = bounded_text(command.payload.get("statement"), "jianghu_scene_statement_invalid", 2500)
+        except ValueError as exc:
+            raise CommandRejectedError(str(exc)) from exc
+        basis_refs = _safe_list(command.payload.get("basis_refs", []), "jianghu_scene_basis_invalid", maximum_transport=32)
+        ledger = interaction_ledger(self.repository.read_json)
+        open_question_refs = {
+            str(row.get("attempt_ref"))
+            for row in ledger.get("attempts", [])
+            if isinstance(row, Mapping) and _combat_question_open(row, combat_ref, command.actor_id)
+            and isinstance(row.get("attempt_ref"), str)
+        }
+        allowed_basis = {combat_ref, command.actor_id, *open_question_refs}
+        if any(ref not in allowed_basis for ref in basis_refs):
+            raise CommandRejectedError("jianghu_scene_basis_not_session_visible")
+        question_ref = command.payload.get("resolves_question_ref")
+        if question_ref is not None:
+            try:
+                question_ref = safe_ref(question_ref, "jianghu_scene_question_invalid")
+            except ValueError as exc:
+                raise CommandRejectedError(str(exc)) from exc
+            if question_ref not in open_question_refs:
+                raise CommandRejectedError("jianghu_scene_question_not_open")
+        speech_ref = f"scene_speech_{_digest(command.digest, speaker_ref, str(current_time), str(statement))}"
+        speech = {
+            "speech_ref": speech_ref, "at": str(current_time), "session_ref": combat_ref,
+            "speaker_ref": combat_ref, "speech_kind": speech_kind, "statement": statement,
+            "basis_refs": basis_refs, "resolves_question_ref": question_ref,
+            "truth_status": "attributed_statement", "authority": False,
+            "mechanical_consequence_authority": False,
+        }
+        writes = dict(append_attributed_speech(self.repository.read_json, row=speech))
+        if question_ref is not None:
+            resolved = False
+            rows = []
+            for raw in ledger.get("attempts", []):
+                if not isinstance(raw, Mapping):
+                    continue
+                row = copy.deepcopy(dict(raw))
+                if row.get("attempt_ref") == question_ref and _combat_question_open(row, combat_ref, command.actor_id):
+                    row["thread_status"] = "answered"
+                    row["resolved_at"] = str(current_time)
+                    row["response_ref"] = speech_ref
+                    resolved = True
+                rows.append(row)
+            if not resolved:
+                raise CommandRejectedError("jianghu_scene_question_not_open")
+            ledger["attempts"] = rows
+            writes[ATTEMPT_LEDGER_PATH] = trim_interaction_ledger(ledger)
+        return self._simple_plan(
+            command, meta, current_time, writes_records=writes,
+            code="jianghu_combat_parley_speech_recorded",
+            result={
+                "command_type": command.command_type, "session_ref": combat_ref,
+                "speaker_ref": combat_ref, "speaker_kind": "opposing_combat_side",
+                "speech_ref": speech_ref, "resolves_question_ref": question_ref,
+                "truth_status": "attributed_statement", "mechanical_consequence_authority": False,
+            },
+        )
+
     def _jianghu_scene_session_resolution(self, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime):
         action = str(command.payload.get("action") or "")
+        active_combat = active_combat_for_person(self.repository.read_json, command.actor_id)
+        if action == "record_speech" and active_combat is not None:
+            combat_ref = str(active_combat[0])
+            if (
+                str(command.payload.get("session_ref") or "") == combat_ref
+                and str(command.payload.get("speaker_ref") or "") == combat_ref
+            ):
+                return self._record_combat_side_speech(command, meta, current_time, combat_ref)
+
         current = active_scene_session(self.repository.read_json)
         if action == "open":
             kind = str(command.payload.get("kind") or "")

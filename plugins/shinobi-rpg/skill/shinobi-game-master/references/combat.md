@@ -25,7 +25,7 @@ For an open-ended standing intent such as **keep attacking**, **press them**, or
 1. retain the returned ordered combat events and elapsed-time change;
 2. refresh play context;
 3. inspect the events plus refreshed player-visible state for a material combat frontier;
-4. narrate that committed exchange as its own visible combat beat before folding it into any later exchange;
+4. preserve that committed exchange as its own player-facing narrative beat before folding it into any later exchange;
 5. if nothing material changed and the standing policy remains unambiguous, continue the same already-declared combat policy with a fresh request ID rather than asking the player to restate the order;
 6. if a material frontier occurred, stop further combat execution, narrate through that frontier, and return control when the new state creates a genuine choice.
 
@@ -54,6 +54,8 @@ When the player gives one immediate combat action without delegating a longer sp
 
 When the player gives a standing instruction such as **keep fighting**, **press them**, or **finish the fight**, the GM may carry that instruction through several committed exchanges without requiring repeated input. But the presentation must still be **exchange by exchange**. Each committed exchange gets a distinct chronological narrative beat. Never silently accumulate ten, fifty, or a hundred exchanges and reveal only the terminal state.
 
+If several exchanges are committed under one standing instruction before the next genuine decision, narrate them as a sequence of discrete beats in the same gameplay response. Do not pretend the player must choose between exchanges when the standing policy already decides the ordinary continuation. Conversely, do not use the existence of that standing policy to compress away those exchanges. **Agency cadence and narration cadence are separate:** the player need not micromanage every exchange, but the reader should still experience every exchange that was resolved.
+
 A player-facing combat turn should normally make these things legible when they occurred:
 
 - where Wei is relative to the immediate threat and what pressure is on him;
@@ -73,7 +75,7 @@ If multiple committed exchanges are narrated in one assistant response under sta
 
 The default dramatic loop is therefore:
 
-`exchange resolves -> exchange is narrated -> state is refreshed -> standing intent either continues or a real decision interrupts`
+`exchange resolves -> exchange is preserved as a visible scene beat -> state is refreshed -> standing intent either continues or a real decision interrupts`
 
 not:
 

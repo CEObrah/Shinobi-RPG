@@ -34,6 +34,29 @@ def _copy_runtime_repository(tmp_path: Path) -> Path:
             )
         }
     route_path.write_text(json.dumps(route_state))
+    # The copied live save may also contain a legitimate active exact combat.
+    # Strip only combats physically owning Wei so these standalone wrapper
+    # regressions can build their own synthetic fight without weakening the
+    # production invariant that one person cannot occupy two active combats.
+    combat_path = root / "state/martial-world/combats.json"
+    combat_state = json.loads(combat_path.read_text())
+    combats = combat_state.get("combats", {})
+    if isinstance(combats, dict):
+        combat_state["combats"] = {
+            ref: row for ref, row in combats.items()
+            if not (
+                isinstance(row, dict)
+                and row.get("status") == "active"
+                and "pc_wei_tang" in {
+                    str(member_ref)
+                    for members in row.get("sides", {}).values()
+                    if isinstance(members, list)
+                    for member_ref in members
+                    if isinstance(member_ref, str)
+                }
+            )
+        }
+    combat_path.write_text(json.dumps(combat_state))
     return root
 
 

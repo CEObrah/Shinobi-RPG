@@ -15,6 +15,7 @@ Watch for:
 - combat geometry, fatigue, defense load, injury, Qi, poison, equipment, or ammunition behaving inconsistently;
 - normal interactive combat silently aggregating multiple exact exchanges instead of giving each committed player-facing combat turn its own chronological scene beat;
 - a standing combat order carrying forward mechanically while intermediate exchanges disappear from the prose, making the fight feel like a simulation report rather than played combat;
+- combat narration confusing agency cadence with narration cadence: the player should not need to micromanage every exchange under standing intent, but every resolved exchange should still remain visible as a scene beat;
 - an open-ended combat policy being resolved across deaths, critical wounds, poison crises, formation collapse, or objective-changing developments without returning control at a material player-attention frontier;
 - committed combat `events` being discarded so a lethal fight is reconstructed only from final health totals, producing an after-action briefing instead of chronological lived combat;
 - named allies in active team combat becoming roster entries or health bars, with decisive deaths/incapacitations revealed as bullet points rather than experienced when they occur;

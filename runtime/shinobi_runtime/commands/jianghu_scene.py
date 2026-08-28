@@ -8,7 +8,7 @@ from typing import Any
 
 from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.envelope import CommandEnvelope
-from shinobi_runtime.martial_world.physical_presence import effective_person_presence, same_effective_location
+from shinobi_runtime.martial_world.physical_presence import active_combat_for_person, effective_person_presence, same_effective_location
 from shinobi_runtime.martial_world.scene_sessions import (
     ATTEMPT_LEDGER_PATH, CLOSE_REASONS, INTERACTION_ACTIONS, SESSION_PATH, SESSION_KINDS, SPEECH_KINDS,
     abandon_session_questions, active_scene_session, append_attributed_speech, bounded_text,
@@ -73,8 +73,36 @@ class JianghuSceneCommandsMixin:
         target_ref = str(command.payload.get("target_ref") or "")
         if action not in INTERACTION_ACTIONS or not target_ref:
             raise CommandRejectedError("jianghu_interaction_invalid")
-        self._require_established_scene_person(target_ref, command.actor_id)
-        self._colocated_person(command.actor_id, target_ref)
+
+        # During exact combat the active combat ref is a player-safe way to
+        # address the opposing side without exposing or requiring a hidden enemy
+        # person ID. This records only the player's reversible speech attempt.
+        # It does not pause combat, reveal the opposing roster, establish that a
+        # particular enemy heard or answered, or create surrender/truce terms.
+        active_combat = active_combat_for_person(self.repository.read_json, command.actor_id)
+        combat_side_target = active_combat is not None and target_ref == str(active_combat[0])
+        if combat_side_target:
+            combat = active_combat[1]
+            sides = combat.get("sides", {}) if isinstance(combat, Mapping) else {}
+            actor_side = None
+            if isinstance(sides, Mapping):
+                for side_ref, members in sides.items():
+                    if isinstance(members, list) and command.actor_id in members:
+                        actor_side = str(side_ref)
+                        break
+            opposing_members = [
+                ref for side_ref, members in sides.items()
+                if isinstance(sides, Mapping) and str(side_ref) != actor_side and isinstance(members, list)
+                for ref in members if isinstance(ref, str)
+            ] if isinstance(sides, Mapping) and actor_side is not None else []
+            if actor_side is None or not opposing_members:
+                raise CommandRejectedError("jianghu_interaction_combat_target_invalid")
+            target_kind = "opposing_combat_side"
+        else:
+            self._require_established_scene_person(target_ref, command.actor_id)
+            self._colocated_person(command.actor_id, target_ref)
+            target_kind = "person"
+
         process_ref = command.payload.get("process_ref")
         topic = command.payload.get("topic")
         statement = command.payload.get("player_statement")
@@ -92,12 +120,12 @@ class JianghuSceneCommandsMixin:
             return self._simple_plan(command, meta, current_time, writes_records={}, code="jianghu_interaction_duplicate", result={"command_type":command.command_type,"attempt_ref":attempt_ref})
         session = active_scene_session(self.repository.read_json)
         session_ref = None
-        if isinstance(session, Mapping) and target_ref in set(str(x) for x in session.get("participant_refs", []) if isinstance(x, str)):
+        if target_kind == "person" and isinstance(session, Mapping) and target_ref in set(str(x) for x in session.get("participant_refs", []) if isinstance(x, str)):
             session_ref = str(session.get("session_ref"))
         is_question = action == "ask" and bool(statement)
         row = {
             "attempt_ref": attempt_ref, "at": str(current_time), "surface_digest": command.digest,
-            "actor_ref": command.actor_id, "target_ref": target_ref, "action": action,
+            "actor_ref": command.actor_id, "target_ref": target_ref, "target_kind": target_kind, "action": action,
             "process_ref": process_ref, "player_statement": statement, "posture": posture,
             "topic": topic, "scopes": scopes, "world_response_status": "not_established_by_attempt",
             "scene_session_ref": session_ref,
@@ -111,7 +139,7 @@ class JianghuSceneCommandsMixin:
             scene_after = copy.deepcopy(dict(session)); refs=[str(x) for x in scene_after.get("open_question_refs",[]) if isinstance(x,str)]
             if attempt_ref not in refs: refs.append(attempt_ref)
             scene_after["open_question_refs"] = refs; scene_after["last_updated_at"] = str(current_time); writes[SESSION_PATH] = scene_after
-        return self._simple_plan(command, meta, current_time, writes_records=writes, code="jianghu_interaction_recorded", result={"command_type":command.command_type,"attempt_ref":attempt_ref,"scene_session_ref":session_ref,"world_response_status":"not_established_by_attempt"})
+        return self._simple_plan(command, meta, current_time, writes_records=writes, code="jianghu_interaction_recorded", result={"command_type":command.command_type,"attempt_ref":attempt_ref,"target_kind":target_kind,"scene_session_ref":session_ref,"world_response_status":"not_established_by_attempt"})
 
     def _jianghu_scene_session_resolution(self, command: CommandEnvelope, meta: Mapping[str, Any], current_time: CampaignTime):
         action = str(command.payload.get("action") or "")

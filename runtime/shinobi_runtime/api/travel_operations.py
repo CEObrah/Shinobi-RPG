@@ -1,9 +1,9 @@
-"""Player-safe travel and public-place play-context projection.
+"""Player-safe travel, combat-observation, and public-place play-context projection.
 
 Mechanical physical presence remains owned by the exact route/custody/combat
-resolvers. This module enriches the read projection so exact co-travelers and
-already-derived public attendance become usable scene handoffs without turning
-presentation state into mechanical authority.
+resolvers. This module enriches the read projection so exact co-travelers,
+observer-specific combat knowledge, and already-derived public attendance become
+usable scene handoffs without turning presentation state into mechanical authority.
 """
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from typing import Any, Callable, Mapping
 from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.api.operations import CampaignOperations, OperationError
 from shinobi_runtime.martial_world.physical_presence import (
+    active_combat_for_person,
     active_route_for_person,
     same_effective_location,
 )
@@ -69,6 +70,80 @@ def public_site_scene_projection(scene: Mapping[str, Any], *, sample_limit: int 
         "derived_attendee_count": len(attendees),
         "sample_person_ids": samples,
         "presence_semantics": "shared_public_site_only",
+    }
+
+
+def combat_observation_scene_projection(
+    *,
+    read_json: Callable[[str], Any],
+    player_id: str,
+    ally_limit: int = 16,
+) -> dict[str, Any] | None:
+    """Project observer-specific hostile counts without leaking hidden combat truth.
+
+    Exact combat already persists each combatant's ``observed_refs``.  This
+    projection counts only opposing refs present in that observer's stored set.
+    It never exposes hostile identities or the hidden opposing roster size, and
+    an ally's observation remains that ally's knowledge until communicated in
+    the scene.
+    """
+    active = active_combat_for_person(read_json, player_id)
+    if active is None:
+        return None
+    combat_ref, combat = active
+    if not isinstance(combat, Mapping):
+        return None
+
+    sides = combat.get("sides", {})
+    combatants = combat.get("combatants", {})
+    if not isinstance(sides, Mapping) or not isinstance(combatants, Mapping):
+        return None
+
+    player_side_ref: str | None = None
+    player_side_members: list[str] = []
+    enemy_refs: list[str] = []
+    for side_ref, raw_members in sides.items():
+        members = _unique_person_refs(raw_members)
+        if player_id in members:
+            player_side_ref = str(side_ref)
+            player_side_members = members
+            break
+    if player_side_ref is None:
+        return None
+    for side_ref, raw_members in sides.items():
+        if str(side_ref) == player_side_ref:
+            continue
+        for ref in _unique_person_refs(raw_members):
+            if ref not in enemy_refs:
+                enemy_refs.append(ref)
+    enemy_set = set(enemy_refs)
+
+    def observer_summary(observer_ref: str) -> dict[str, Any]:
+        state = combatants.get(observer_ref, {})
+        observed = _unique_person_refs(state.get("observed_refs")) if isinstance(state, Mapping) else []
+        confirmed_count = sum(1 for ref in observed if ref in enemy_set)
+        return {
+            "observer_person_id": observer_ref,
+            "confirmed_observed_hostile_count": confirmed_count,
+        }
+
+    player_observation = observer_summary(player_id)
+    limit = max(0, min(24, int(ally_limit)))
+    ally_observers: list[dict[str, Any]] = []
+    if limit:
+        for ref in player_side_members:
+            if ref == player_id:
+                continue
+            ally_observers.append(observer_summary(ref))
+            if len(ally_observers) >= limit:
+                break
+
+    return {
+        "combat_ref": combat_ref,
+        "player_observation": player_observation,
+        "ally_observer_summaries": ally_observers,
+        "knowledge_semantics": "observer_specific_not_automatically_shared",
+        "count_semantics": "confirmed_observed_hostiles_not_total_force",
     }
 
 
@@ -174,12 +249,12 @@ def _validate_play_context(base: dict[str, Any]) -> dict[str, Any]:
 
 
 class TravelAwareCampaignOperations(CampaignOperations):
-    """Campaign operations with route-party and public-place read context."""
+    """Campaign operations with route-party, combat-observation and public-place context."""
 
     def play_context(self) -> Mapping[str, Any]:
         # Public-site attendance is already part of the base snapshot, so it can
-        # be summarized without another state read. This works even when there
-        # is no active route movement.
+        # be summarized without another state read. Route and combat projections
+        # are read under the same revision/root check as the base context.
         for _attempt in range(2):
             base = dict(super().play_context())
             _enrich_public_site_context(base)
@@ -210,35 +285,52 @@ class TravelAwareCampaignOperations(CampaignOperations):
                         player_id=player_id,
                         player_sheet=player_sheet,
                     )
+                    combat_observation = combat_observation_scene_projection(
+                        read_json=self.repository.read_json,
+                        player_id=player_id,
+                    )
                     self._require_read_only(before, "play_context_travel_projection_mutated_campaign")
             except OperationError:
                 raise
             except (FileNotFoundError, KeyError, TypeError, ValueError):
                 return _validate_play_context(base)
 
-            if movement is None:
-                return _validate_play_context(base)
-
-            ids = _unique_person_refs(movement.get("participant_person_ids"))
             scene = dict(base.get("scene", {})) if isinstance(base.get("scene"), Mapping) else {}
-            present: list[str] = []
-            existing_present = scene.get("present_person_ids", [])
-            for ref in ([*existing_present] if isinstance(existing_present, list) else []) + ids:
-                if isinstance(ref, str) and ref and ref not in present:
-                    present.append(ref)
-            scene["present_person_ids"] = present
-            # Exact movement ownership establishes co-presence, not line of
-            # sight. Keep the narrower existing visible projection unchanged;
-            # scouts or convoy elements may share a movement while out of view.
-            scene["movement_present_person_ids"] = ids
-            scene["movement_context"] = movement
-            base["scene"] = scene
-
             person_reads = dict(base.get("person_reads", {})) if isinstance(base.get("person_reads"), Mapping) else {}
             suggested = _unique_person_refs(person_reads.get("suggested_owner_ids"))
-            for ref in ids:
-                if ref not in suggested:
-                    suggested.append(ref)
+
+            if combat_observation is not None:
+                scene["combat_observation_context"] = combat_observation
+                for row in combat_observation.get("ally_observer_summaries", []):
+                    if not isinstance(row, Mapping):
+                        continue
+                    ref = row.get("observer_person_id")
+                    if isinstance(ref, str) and ref and ref not in suggested:
+                        suggested.append(ref)
+                person_reads["combat_observer_use"] = (
+                    "Ally observer counts are that ally's exact stored combat observation, not automatically "
+                    "Wei's knowledge. If a co-present ally reports what they saw, use the confirmed observed count "
+                    "without treating it as the total hostile force."
+                )
+
+            if movement is not None:
+                ids = _unique_person_refs(movement.get("participant_person_ids"))
+                present: list[str] = []
+                existing_present = scene.get("present_person_ids", [])
+                for ref in ([*existing_present] if isinstance(existing_present, list) else []) + ids:
+                    if isinstance(ref, str) and ref and ref not in present:
+                        present.append(ref)
+                scene["present_person_ids"] = present
+                # Exact movement ownership establishes co-presence, not line of
+                # sight. Keep the narrower existing visible projection unchanged;
+                # scouts or convoy elements may share a movement while out of view.
+                scene["movement_present_person_ids"] = ids
+                scene["movement_context"] = movement
+                for ref in ids:
+                    if ref not in suggested:
+                        suggested.append(ref)
+
+            base["scene"] = scene
             person_reads["suggested_owner_ids"] = suggested
             base["person_reads"] = person_reads
             return _validate_play_context(base)
@@ -248,6 +340,7 @@ class TravelAwareCampaignOperations(CampaignOperations):
 
 __all__ = [
     "TravelAwareCampaignOperations",
+    "combat_observation_scene_projection",
     "movement_scene_projection",
     "public_site_scene_projection",
 ]

@@ -14,6 +14,16 @@ A player combat command does not need to enumerate every mechanical choice. A te
 
 Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand. A longer instruction such as **fight for thirty seconds** or **finish the fight** simply extends the same standing policy across the bounded simulated span.
 
+## Observer reports and enemy counts
+
+Treat combat observation as observer-specific knowledge. When `scene.combat_observation_context` exists, `player_observation` is Wei's own stored observation while each entry in `ally_observer_summaries` belongs to that ally and is not automatically Wei's knowledge.
+
+`confirmed_observed_hostile_count` means exactly what that observer has detected among the current hostile combatants. It is an observed count, not a guarantee that no additional enemy exists outside the observer's knowledge or outside the current combat space. Never expose hidden hostile IDs or substitute the hidden opposing roster size for an observer's count.
+
+If Wei asks an exactly co-present scout or ally how many enemies they saw, let that person report the concrete confirmed count through ordinary reversible dialogue. Prefer wording such as **I saw seven** or **I counted seven; there may be more** when total force remains uncertain. Do not collapse a stored positive observation to a generic **I don't know** merely because the observer cannot certify the entire hostile force.
+
+Do not union allied observations into Wei's knowledge merely because the handoff contains them. The observation becomes Wei's scene knowledge only through a lawful shared-information path such as the ally reporting it, Wei directly observing it, or another established communication path.
+
 ## Action sequence
 
 Resolve roughly:

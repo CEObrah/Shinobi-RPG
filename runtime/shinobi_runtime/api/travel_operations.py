@@ -1,9 +1,9 @@
-"""Player-safe travel-aware play-context projection.
+"""Player-safe travel and public-place play-context projection.
 
 Mechanical physical presence remains owned by the exact route/custody/combat
-resolvers. This module only enriches the read projection so people already
-owned by the same exact player route movement are not lost merely because the
-presentation scene did not previously list them.
+resolvers. This module enriches the read projection so exact co-travelers and
+already-derived public attendance become usable scene handoffs without turning
+presentation state into mechanical authority.
 """
 from __future__ import annotations
 
@@ -25,6 +25,50 @@ def _unique_person_refs(values: object) -> list[str]:
         if isinstance(value, str) and value and value not in out:
             out.append(value)
     return out
+
+
+def public_site_scene_projection(scene: Mapping[str, Any], *, sample_limit: int = 8) -> dict[str, Any] | None:
+    """Summarize deterministic public-site attendance into a bounded GM handoff.
+
+    ``derived_present_person_ids`` is already a player-safe read-time attendance
+    projection. It can be large, so expose its exact count plus a small,
+    deterministic, namespace-diverse sample for progressive person reads. Site
+    attendance proves shared public venue presence only; it does not establish
+    close adjacency, line of sight, conversation, private knowledge or combat
+    access.
+    """
+    site_ref = scene.get("location_id")
+    if not isinstance(site_ref, str) or not site_ref.startswith("site."):
+        return None
+    attendees = _unique_person_refs(scene.get("derived_present_person_ids"))
+    if not attendees:
+        return None
+
+    limit = max(0, min(16, int(sample_limit)))
+    samples: list[str] = []
+    seen_namespaces: set[str] = set()
+    for ref in attendees:
+        namespace = ref.rsplit(".", 1)[0] if "." in ref else ref
+        if namespace in seen_namespaces:
+            continue
+        seen_namespaces.add(namespace)
+        samples.append(ref)
+        if len(samples) >= limit:
+            break
+    if len(samples) < limit:
+        for ref in attendees:
+            if ref in samples:
+                continue
+            samples.append(ref)
+            if len(samples) >= limit:
+                break
+
+    return {
+        "site_ref": site_ref,
+        "derived_attendee_count": len(attendees),
+        "sample_person_ids": samples,
+        "presence_semantics": "shared_public_site_only",
+    }
 
 
 def movement_scene_projection(
@@ -99,22 +143,51 @@ def movement_scene_projection(
     return context
 
 
+def _enrich_public_site_context(base: dict[str, Any]) -> None:
+    scene = dict(base.get("scene", {})) if isinstance(base.get("scene"), Mapping) else {}
+    public_context = public_site_scene_projection(scene)
+    if public_context is None:
+        return
+    scene["public_site_context"] = public_context
+    base["scene"] = scene
+
+    person_reads = dict(base.get("person_reads", {})) if isinstance(base.get("person_reads"), Mapping) else {}
+    suggested = _unique_person_refs(person_reads.get("suggested_owner_ids"))
+    for ref in _unique_person_refs(public_context.get("sample_person_ids")):
+        if ref not in suggested:
+            suggested.append(ref)
+    person_reads["suggested_owner_ids"] = suggested
+    person_reads["public_site_sample_use"] = (
+        "Sample IDs are deterministic player-safe public attendees for progressive reads; "
+        "attendance does not imply direct interaction or combat adjacency."
+    )
+    base["person_reads"] = person_reads
+
+
+def _validate_play_context(base: dict[str, Any]) -> dict[str, Any]:
+    try:
+        validate_bounded_json(base, label="play context", allow_float=True)
+    except ValueError as exc:
+        raise OperationError(503, "play_context_out_of_bounds") from exc
+    return base
+
+
 class TravelAwareCampaignOperations(CampaignOperations):
-    """Campaign operations with exact route-party context added to play reads."""
+    """Campaign operations with route-party and public-place read context."""
 
     def play_context(self) -> Mapping[str, Any]:
-        # Keep the existing authoritative assembly untouched, then enrich it
-        # only when the campaign has not changed between the base snapshot and
-        # the exact movement read. A moving revision fails closed rather than
-        # splicing two campaign moments into one player context.
+        # Public-site attendance is already part of the base snapshot, so it can
+        # be summarized without another state read. This works even when there
+        # is no active route movement.
         for _attempt in range(2):
             base = dict(super().play_context())
+            _enrich_public_site_context(base)
             campaign = base.get("campaign")
             if not isinstance(campaign, Mapping):
-                return base
+                return _validate_play_context(base)
             player_id = str(campaign.get("player_id") or "")
             if not player_id:
-                return base
+                return _validate_play_context(base)
             try:
                 with self._locked():
                     self.coordinator.git.assert_pristine()
@@ -129,7 +202,7 @@ class TravelAwareCampaignOperations(CampaignOperations):
                         continue
                     player_sheet = self.sheet_resolver(player_id)
                     if not isinstance(player_sheet, Mapping):
-                        return base
+                        return _validate_play_context(base)
                     movement = movement_scene_projection(
                         read_json=self.repository.read_json,
                         sheet_resolver=self.sheet_resolver,
@@ -140,10 +213,10 @@ class TravelAwareCampaignOperations(CampaignOperations):
             except OperationError:
                 raise
             except (FileNotFoundError, KeyError, TypeError, ValueError):
-                return base
+                return _validate_play_context(base)
 
             if movement is None:
-                return base
+                return _validate_play_context(base)
 
             ids = _unique_person_refs(movement.get("participant_person_ids"))
             scene = dict(base.get("scene", {})) if isinstance(base.get("scene"), Mapping) else {}
@@ -161,20 +234,19 @@ class TravelAwareCampaignOperations(CampaignOperations):
             base["scene"] = scene
 
             person_reads = dict(base.get("person_reads", {})) if isinstance(base.get("person_reads"), Mapping) else {}
-            suggested: list[str] = []
-            existing_suggested = person_reads.get("suggested_owner_ids", [])
-            for ref in ([*existing_suggested] if isinstance(existing_suggested, list) else []) + ids:
-                if isinstance(ref, str) and ref and ref not in suggested:
+            suggested = _unique_person_refs(person_reads.get("suggested_owner_ids"))
+            for ref in ids:
+                if ref not in suggested:
                     suggested.append(ref)
             person_reads["suggested_owner_ids"] = suggested
             base["person_reads"] = person_reads
-            try:
-                validate_bounded_json(base, label="play context", allow_float=True)
-            except ValueError as exc:
-                raise OperationError(503, "play_context_out_of_bounds") from exc
-            return base
+            return _validate_play_context(base)
 
         raise OperationError(503, "play_context_state_changed_during_travel_projection")
 
 
-__all__ = ["TravelAwareCampaignOperations", "movement_scene_projection"]
+__all__ = [
+    "TravelAwareCampaignOperations",
+    "movement_scene_projection",
+    "public_site_scene_projection",
+]

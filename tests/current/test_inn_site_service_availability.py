@@ -1,6 +1,7 @@
 from pathlib import Path
 from types import SimpleNamespace
 
+from shinobi_runtime.commands.jianghu import JianghuCommandsMixin
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.martial_world.services import service_quote
 from shinobi_runtime.sim.events import CampaignTime
@@ -51,10 +52,9 @@ def test_site_service_override_releases_only_exact_site_available_people(monkeyp
     planner._allow_site_service_presence = True
     unavailable = {"person.rest", "person.road", "person.custody"}
     monkeypatch.setattr(
-        super(RepositoryCommandPlanner, planner).__class__,
+        JianghuCommandsMixin,
         "_physically_unavailable_person_refs",
         lambda self: set(unavailable),
-        raising=False,
     )
     monkeypatch.setattr(
         planner,

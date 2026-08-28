@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-15T19:15:01",
+  "settled_through": "0061-09-15T21:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -529,7 +529,7 @@
     },
     "route_daily": {
       "interval_days": 1,
-      "next_due_at": "0061-09-15T21:15:00",
+      "next_due_at": "0061-09-16T21:15:00",
       "owner_cursor": 0,
       "owner_refs": [
         "route.changan.huashan",
@@ -656,13 +656,6 @@
       "kind": "autonomous_project_due",
       "due_at": "0061-09-28T21:15:00",
       "owner_ref": "project:auto:beggars_society:006109:expand_building",
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-15T20:15:00",
-      "owner_ref": "operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
       "requires_player_decision": false
     },
     "autonomous_project_due:project:auto:black_lance_company:006109:expand_building": {
@@ -959,6 +952,13 @@
       "kind": "faction_operation_return",
       "due_at": "0061-09-15T21:15:01",
       "owner_ref": "operation:faction_raid:faction.red_willow_band:faction.southern_merchants_society:006109",
+      "requires_player_decision": false
+    },
+    "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109": {
+      "event_id": "operation_arrival:operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
+      "kind": "faction_operation_return",
+      "due_at": "0061-09-15T22:15:01",
+      "owner_ref": "operation:faction_raid:black_lance_company:faction.south_gate_martial_school:006109",
       "requires_player_decision": false
     }
   }

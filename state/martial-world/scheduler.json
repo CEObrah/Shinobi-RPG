@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-16T06:15:00",
+  "settled_through": "0061-09-16T12:59:30",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -535,8 +535,6 @@
         "route.changan.huashan",
         "route.changan.zhongnan",
         "route.chongqing.kunming",
-        "route.dengfeng.shaolin_temple",
-        "route.dengfeng.songshan",
         "route.hangzhou.tiantai",
         "route.jingzhou.chongqing",
         "route.kunming.dali",
@@ -866,47 +864,14 @@
       "exact_segment_due": true,
       "requires_player_decision": false
     },
-    "route_segment_due:route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:return:0": {
-      "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:return:0",
-      "kind": "route_activity_cycle",
-      "due_at": "0061-09-16T12:59:30",
-      "owner_ref": "route.dengfeng.shaolin_temple",
-      "movement_ref": "route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:return",
-      "exact_segment_due": true,
-      "requires_player_decision": false
-    },
-    "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return:0": {
-      "event_id": "route_segment_due:route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return:0",
-      "kind": "route_activity_cycle",
-      "due_at": "0061-09-16T07:44:21",
-      "owner_ref": "route.dengfeng.songshan",
-      "movement_ref": "route_operation:operation:faction_raid:faction.iron_road_band:songshan:006109:return",
-      "exact_segment_due": true,
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
-      "kind": "faction_operation_return",
-      "due_at": "0061-09-16T06:15:01",
-      "owner_ref": "operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
-      "requires_player_decision": false
-    },
-    "operation_departure:return:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109": {
-      "event_id": "operation_departure:return:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
-      "kind": "faction_operation_departure",
-      "due_at": "0061-09-16T06:15:01",
-      "owner_ref": "operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
-      "direction": "return",
-      "arrival_event_kind": "faction_operation_return",
-      "requires_player_decision": false
-    },
-    "operation_departure:return:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
-      "event_id": "operation_departure:return:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
-      "kind": "faction_operation_departure",
-      "due_at": "0061-09-16T06:15:01",
-      "owner_ref": "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
-      "direction": "return",
-      "arrival_event_kind": "faction_operation_return",
+    "person_physiology_due:mw.person.faction.iron_road_band.0013": {
+      "event_id": "person_physiology_due:mw.person.faction.iron_road_band.0013",
+      "kind": "person_physiology_due",
+      "due_at": "0061-09-17T07:44:21",
+      "owner_ref": "mw.person.faction.iron_road_band.0013",
+      "last_settled_at": "0061-09-16T07:44:21",
+      "recovery_carry_minutes": 0,
+      "poison_clearance_carry_minutes": 0,
       "requires_player_decision": false
     }
   }

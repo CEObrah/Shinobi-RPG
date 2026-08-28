@@ -1,6 +1,6 @@
 {
   "schema": "jianghu-scheduler-1.0",
-  "settled_through": "0061-09-16T03:15:01",
+  "settled_through": "0061-09-16T06:15:00",
   "recurring": {
     "faction_monthly": {
       "interval_days": 30,
@@ -686,13 +686,6 @@
       "owner_ref": "project:auto:emei:006109:expand_building",
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-16T06:15:00",
-      "owner_ref": "operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
-      "requires_player_decision": false
-    },
     "family_birth_due:mw.child.c30f657c285740c697e29c92": {
       "event_id": "family_birth_due:mw.child.c30f657c285740c697e29c92",
       "kind": "family_birth_due",
@@ -700,20 +693,6 @@
       "owner_ref": "faction.house_guo",
       "marriage_ref": "marriage.faction.house_guo.main",
       "child_ref": "mw.child.c30f657c285740c697e29c92"
-    },
-    "operation_arrival:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-16T06:15:00",
-      "owner_ref": "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
-      "requires_player_decision": false
-    },
-    "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
-      "kind": "faction_operation_arrival",
-      "due_at": "0061-09-16T04:15:00",
-      "owner_ref": "operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
-      "requires_player_decision": false
     },
     "autonomous_project_due:project:auto:house_gu:006109:expand_building": {
       "event_id": "autonomous_project_due:project:auto:house_gu:006109:expand_building",
@@ -905,11 +884,29 @@
       "exact_segment_due": true,
       "requires_player_decision": false
     },
-    "operation_arrival:operation:faction_raid:faction.black_oar_pirates:faction.jade_coin_escort_agency:006109": {
-      "event_id": "operation_arrival:operation:faction_raid:faction.black_oar_pirates:faction.jade_coin_escort_agency:006109",
+    "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109": {
+      "event_id": "operation_arrival:operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
       "kind": "faction_operation_return",
-      "due_at": "0061-09-16T05:15:01",
-      "owner_ref": "operation:faction_raid:faction.black_oar_pirates:faction.jade_coin_escort_agency:006109",
+      "due_at": "0061-09-16T06:15:01",
+      "owner_ref": "operation:faction_raid:faction.three_ravens_band:faction.falling_leaf_sect:006109",
+      "requires_player_decision": false
+    },
+    "operation_departure:return:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109": {
+      "event_id": "operation_departure:return:operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
+      "kind": "faction_operation_departure",
+      "due_at": "0061-09-16T06:15:01",
+      "owner_ref": "operation:faction_raid:faction.grey_pine_band:faction.old_bridge_martial_school:006109",
+      "direction": "return",
+      "arrival_event_kind": "faction_operation_return",
+      "requires_player_decision": false
+    },
+    "operation_departure:return:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109": {
+      "event_id": "operation_departure:return:operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
+      "kind": "faction_operation_departure",
+      "due_at": "0061-09-16T06:15:01",
+      "owner_ref": "operation:faction_raid:faction.marsh_reed_pirates:faction.blue_lotus_sect:006109",
+      "direction": "return",
+      "arrival_event_kind": "faction_operation_return",
       "requires_player_decision": false
     }
   }

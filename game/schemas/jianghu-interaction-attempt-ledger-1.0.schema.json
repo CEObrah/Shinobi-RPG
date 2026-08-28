@@ -67,6 +67,13 @@
             "type": "string",
             "minLength": 1
           },
+          "target_kind": {
+            "type": "string",
+            "enum": [
+              "person",
+              "opposing_combat_side"
+            ]
+          },
           "action": {
             "type": "string",
             "minLength": 1

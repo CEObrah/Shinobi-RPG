@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "jianghu-reputation-state-1.0",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "jianghu-reputation-state-1.0"
+    },
+    "audiences": {
+      "type": "object"
+    },
+    "rankings": {
+      "type": "object"
+    },
+    "faction_awareness": {
+      "type": "object"
+    },
+    "faction_reputation": {
+      "type": "object"
+    },
+    "personal_fame": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "audiences",
+    "rankings"
+  ],
+  "additionalProperties": false
+}

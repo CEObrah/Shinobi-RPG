@@ -1,0 +1,121 @@
+{
+  "schema": "jianghu-combat-doctrines-3.0",
+  "player_retinue_templates": {
+    "doctrine.player_retinue.tang_wei.personal_guard": {
+      "principal": {
+        "protection_priority": 100,
+        "engagement_policy": "reserve_until_threat_overflow",
+        "strongest_enemy_policy": "never_forced"
+      },
+      "allocation": {
+        "guards_first": true,
+        "equal_threat_policy": "one_threat_per_available_member",
+        "numerical_superiority_policy": "defeat_in_detail",
+        "outnumbered_policy": "compact_sector_defense"
+      },
+      "formation": {
+        "encirclement_response": "back_to_back_outward_sectors",
+        "rear_exposure_priority": 100,
+        "cohesion": 95,
+        "break_for_pursuit": false
+      },
+      "temporary_members": {
+        "inherit_retinue_coordination": false
+      },
+      "resource_discipline": {
+        "qi_conservation": 90,
+        "qi_trigger_threat_percent": 90,
+        "poison_trigger_threat_percent": 110,
+        "outnumbered_override": true,
+        "principal_overflow_override": true,
+        "formal_nonlethal_poison": false
+      }
+    }
+  },
+  "individual_templates": {
+    "doctrine.tang_wei.precision_function_denial": {
+      "engagement": {
+        "range_preference": "adaptive",
+        "initiative_posture": "reactive",
+        "commitment_posture": "measured",
+        "pursuit_posture": "restrained",
+        "movement_economy": "minimal_required",
+        "finishing_window": "commit_decisively"
+      },
+      "defense": {
+        "primary_response": "adaptive",
+        "counterattack_posture": "selective"
+      },
+      "resource_discipline": {
+        "qi_conservation": 92,
+        "fatigue_reserve": 85,
+        "qi_trigger_threat_percent": 90,
+        "poison_trigger_threat_percent": 110
+      },
+      "force_policy": {
+        "default": "disable",
+        "formal_spar": "disable",
+        "tournament_nonlethal": "disable",
+        "capture_objective": "disable",
+        "lethal_attack": "lethal",
+        "ambush": "lethal",
+        "battlefield": "lethal"
+      },
+      "targeting": {
+        "disable_priority": [
+          "wrist",
+          "ankle",
+          "knee",
+          "elbow"
+        ],
+        "lethal_priority": [
+          "neck_vital",
+          "axilla",
+          "eye",
+          "upper_torso_vital"
+        ]
+      }
+    }
+  },
+  "generic_intent_priorities": {
+    "disable": {
+      "sword": [
+        "wrist",
+        "elbow",
+        "knee",
+        "ankle"
+      ],
+      "spear": [
+        "knee",
+        "ankle",
+        "wrist",
+        "elbow"
+      ],
+      "unarmed": [
+        "elbow",
+        "wrist",
+        "knee",
+        "ankle"
+      ],
+      "bow": [
+        "ankle",
+        "knee",
+        "wrist",
+        "elbow"
+      ],
+      "hidden_weapons": [
+        "wrist",
+        "ankle",
+        "knee",
+        "elbow"
+      ],
+      "default": [
+        "knee",
+        "wrist",
+        "ankle",
+        "elbow"
+      ]
+    },
+    "lethal": []
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "authority",
+    "mechanical_consequence_authority",
+    "total_recorded",
+    "latest_shard_ref",
+    "recent"
+  ],
+  "properties": {
+    "schema": {
+      "const": "jianghu-scene-history-head-1.0"
+    },
+    "authority": {
+      "const": false
+    },
+    "mechanical_consequence_authority": {
+      "const": false
+    },
+    "total_recorded": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "latest_shard_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recent": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/speech"
+      },
+      "maxItems": 48
+    }
+  },
+  "$defs": {
+    "speech": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "speech_ref",
+        "at",
+        "session_ref",
+        "speaker_ref",
+        "speech_kind",
+        "statement",
+        "basis_refs",
+        "resolves_question_ref",
+        "truth_status",
+        "authority",
+        "mechanical_consequence_authority"
+      ],
+      "properties": {
+        "speech_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "session_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speaker_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "speech_kind": {
+          "enum": [
+            "clarification",
+            "opinion",
+            "inference",
+            "question",
+            "advice",
+            "objection",
+            "observation",
+            "nonbinding_proposal",
+            "nonbinding_response"
+          ]
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2500
+        },
+        "basis_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "resolves_question_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "truth_status": {
+          "const": "attributed_statement"
+        },
+        "authority": {
+          "const": false
+        },
+        "mechanical_consequence_authority": {
+          "const": false
+        }
+      }
+    }
+  }
+}

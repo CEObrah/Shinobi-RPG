@@ -1,0 +1,96 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-scene-history-head-1.0",
+  "target_schema": "jianghu-scene-history-head-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "total_recorded",
+        "latest_shard_ref",
+        "recent"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "total_recorded",
+        "latest_shard_ref",
+        "recent"
+      ]
+    },
+    "/recent/*": {
+      "mode": "open"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/mechanical_consequence_authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/total_recorded": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/latest_shard_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/recent": [
+      "array"
+    ],
+    "/recent/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/recent": {
+      "item_types": [
+        "object"
+      ]
+    }
+  }
+}

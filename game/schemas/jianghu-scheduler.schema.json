@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "jianghu-scheduler.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "settled_through",
+    "recurring",
+    "one_off"
+  ],
+  "properties": {
+    "schema": {
+      "const": "jianghu-scheduler-1.0"
+    },
+    "settled_through": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recurring": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "interval_days",
+          "next_due_at",
+          "owner_cursor",
+          "owner_refs",
+          "event_kinds"
+        ],
+        "properties": {
+          "interval_days": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "next_due_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "event_kinds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "owner_cursor": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "one_off": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "kind",
+          "due_at"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "due_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_ref": {
+            "type": "string"
+          },
+          "marriage_ref": {
+            "type": "string"
+          },
+          "subject_ref": {
+            "type": "string"
+          },
+          "region_ref": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

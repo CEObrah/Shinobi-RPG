@@ -1,0 +1,61 @@
+{
+  "procedures": {
+    "medical_examination": {
+      "duration_minutes": 45
+    },
+    "wound_treatment_minor": {
+      "duration_minutes": 30
+    },
+    "wound_treatment_major": {
+      "duration_minutes": 120
+    },
+    "training_assessment": {
+      "duration_minutes": 60
+    },
+    "recruitment_examination_single": {
+      "duration_minutes": 20
+    },
+    "faction_council": {
+      "duration_minutes": 90
+    },
+    "contract_briefing": {
+      "duration_minutes": 30
+    },
+    "escort_inspection": {
+      "duration_minutes": 45
+    },
+    "tournament_registration": {
+      "duration_minutes": 20
+    },
+    "martial_duel_formalities": {
+      "duration_minutes": 10
+    },
+    "medicine_administration": {
+      "duration_minutes": 1
+    },
+    "poison_treatment": {
+      "duration_minutes": 20
+    }
+  },
+  "rule": "Procedure kind selects one closed registered duration. Caller never supplies arbitrary elapsed time.",
+  "medical_selection": {
+    "diagnostic_categories": [
+      "wound",
+      "bone",
+      "internal",
+      "antidote"
+    ],
+    "major_categories": [
+      "bone",
+      "internal"
+    ],
+    "major_wound_severity_min": 60,
+    "major_bleeding_ml_per_min_min": 6,
+    "major_structure_fields": [
+      "fracture",
+      "tendon_damage",
+      "nerve_damage",
+      "organ_trauma"
+    ]
+  }
+}

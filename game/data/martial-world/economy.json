@@ -1,0 +1,141 @@
+{
+  "currency": {
+    "base_unit": "copper_cash",
+    "silver_tael_cash": 1000
+  },
+  "labor": {
+    "general_labor_cash_per_hour": 30,
+    "skilled_labor_cash_per_hour": 60,
+    "master_labor_cash_per_hour": 120,
+    "standard_workday_hours": 8
+  },
+  "materials": {
+    "timber_kg": {
+      "unit": "kg usable construction timber",
+      "base_value_cash": 3,
+      "mass_kg": 1
+    },
+    "stone_kg": {
+      "unit": "kg usable stone/aggregate",
+      "base_value_cash": 1,
+      "mass_kg": 1
+    },
+    "brick_tile_kg": {
+      "unit": "kg fired brick/tile",
+      "base_value_cash": 2,
+      "mass_kg": 1
+    },
+    "lime_kg": {
+      "unit": "kg lime/plaster",
+      "base_value_cash": 2,
+      "mass_kg": 1
+    },
+    "metal_kg": {
+      "unit": "kg usable iron/steel",
+      "base_value_cash": 20,
+      "mass_kg": 1
+    },
+    "hardwood_kg": {
+      "unit": "kg weapon/bow-grade hardwood",
+      "base_value_cash": 8,
+      "mass_kg": 1
+    },
+    "leather_kg": {
+      "unit": "kg worked leather/rawhide",
+      "base_value_cash": 30,
+      "mass_kg": 1
+    },
+    "cloth_m": {
+      "unit": "meter standard woven cloth",
+      "base_value_cash": 8,
+      "mass_kg": 0.4
+    },
+    "fletching_set_24": {
+      "unit": "shafts/feathers/points supply for 24 arrows excluding separately listed metal/wood",
+      "base_value_cash": 100,
+      "mass_kg": 1
+    },
+    "charcoal_kg": {
+      "unit": "kg charcoal/fuel",
+      "base_value_cash": 2,
+      "mass_kg": 1
+    },
+    "rope_m": {
+      "unit": "meter rope/cordage",
+      "base_value_cash": 1,
+      "mass_kg": 0.08
+    },
+    "toxin_reagent_unit": {
+      "unit": "abstract fictional toxin reagent unit",
+      "base_value_cash": 18,
+      "mass_kg": 0.05
+    },
+    "carrier_reagent_unit": {
+      "unit": "abstract fictional carrier reagent unit",
+      "base_value_cash": 6,
+      "mass_kg": 0.05
+    }
+  },
+  "consumables": {
+    "food_ration_day": {
+      "base_value_cash": 25
+    },
+    "lodging_common_person_night": {
+      "base_value_cash": 40
+    },
+    "lodging_stable_night": {
+      "base_value_cash": 20
+    }
+  },
+  "market_formulae": {
+    "buy_price_cash": "ceil(base_value_cash * location_price_milli * scarcity_milli / 1000000)",
+    "sell_price_cash": "floor(base_value_cash * location_price_milli * abundance_milli * 950 / 1000000000)",
+    "trade_profit_cash": "destination_sale - source_purchase - tolls - transport_cost - spoilage_loss",
+    "rule": "All prices resolve from the same base-value registry plus saved local market multipliers. Narration never invents a price."
+  },
+  "land": {
+    "base_rural_land_cash_per_mu": 1200,
+    "irrigated_multiplier_milli": 1400,
+    "near_major_city_multiplier_milli": 1800,
+    "mountain_multiplier_milli": 650,
+    "purchase_rule": "registered area * base value * saved location/quality multipliers; ownership changes only through a committed transfer",
+    "base_urban_land_cash_per_m2": 18,
+    "urban_tier_multiplier_milli": {
+      "imperial_capital": 1800,
+      "major_city": 1450,
+      "city": 1200,
+      "town": 900,
+      "village": 650,
+      "remote_site": 500
+    },
+    "adjacent_estate_purchase_friction_milli": 1250,
+    "urban_purchase_rule": "adjacent area m2 * urban base value * settlement-tier multiplier * purchase-friction multiplier; acquisition changes one existing estate boundary and never converts rural acreage into urban estate"
+  },
+  "material_rule": "All construction and crafting quantities use these physical kg/meter/count units. The base values are one canonical in-game calibration; saved local market multipliers change transaction price without changing physical quantity.",
+  "equipment_base_values_cash": {
+    "weapon_jian": 450,
+    "weapon_dao": 380,
+    "weapon_long_dao": 650,
+    "weapon_short_sword": 280,
+    "weapon_dagger": 160,
+    "weapon_spear": 220,
+    "weapon_short_spear": 170,
+    "weapon_staff": 80,
+    "weapon_glaive": 600,
+    "weapon_bow": 520,
+    "item_arrow": 5,
+    "weapon_throwing_knife": 65,
+    "weapon_needle": 12,
+    "clothing_traditional_martial": 120,
+    "concealment_cloth_face_wrap": 30,
+    "concealment_veiled_bamboo_hat": 55,
+    "concealment_plain_full_mask": 80,
+    "tool_physicians_kit": 900,
+    "supply_medical_bundle": 80,
+    "poison_sedative": 180,
+    "poison_paralytic": 230,
+    "poison_anticoagulant": 210,
+    "poison_cardiotoxic": 320,
+    "poison_neurotoxic": 300
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "membership_grades": [
+    {
+      "grade": 0,
+      "id": "probationary",
+      "minimum_service_days": 0,
+      "minimum_primary_discipline": 0,
+      "minimum_qi": 0,
+      "minimum_qi_control": 0
+    },
+    {
+      "grade": 1,
+      "id": "junior",
+      "minimum_service_days": 30,
+      "minimum_primary_discipline": 20,
+      "minimum_qi": 8,
+      "minimum_qi_control": 8
+    },
+    {
+      "grade": 2,
+      "id": "full",
+      "minimum_service_days": 365,
+      "minimum_primary_discipline": 35,
+      "minimum_qi": 20,
+      "minimum_qi_control": 20
+    },
+    {
+      "grade": 3,
+      "id": "senior",
+      "minimum_service_days": 1095,
+      "minimum_primary_discipline": 60,
+      "minimum_qi": 45,
+      "minimum_qi_control": 45
+    },
+    {
+      "grade": 4,
+      "id": "elite",
+      "minimum_service_days": 1825,
+      "minimum_primary_discipline": 75,
+      "minimum_qi": 55,
+      "minimum_qi_control": 55
+    },
+    {
+      "grade": 5,
+      "id": "elder",
+      "minimum_service_days": 3650,
+      "minimum_primary_discipline": 80,
+      "minimum_qi": 70,
+      "minimum_qi_control": 70,
+      "seat_limited": true
+    }
+  ],
+  "offices": {
+    "leader": {
+      "capacity": "1"
+    },
+    "deputy_leader": {
+      "capacity": "1"
+    },
+    "chief_martial_instructor": {
+      "capacity": "1"
+    },
+    "field_commander": {
+      "capacity": "1 standing office"
+    },
+    "deputy_field_commander": {
+      "capacity": "1 standing office"
+    },
+    "scout_leader": {
+      "capacity": "1"
+    },
+    "chief_steward": {
+      "capacity": "1"
+    },
+    "treasurer": {
+      "capacity": "1"
+    },
+    "quartermaster": {
+      "capacity": "1"
+    },
+    "chief_physician": {
+      "capacity": "1"
+    },
+    "archivist": {
+      "capacity": "1"
+    }
+  },
+  "rules": [
+    "Membership grade, institutional office and temporary field command are separate facts.",
+    "Promotion never grants stats. Stats and service make a person eligible; seat capacity and lawful appointment decide whether promotion occurs.",
+    "Small factions may assign multiple compatible offices to one person; the office itself never disappears or changes mechanics."
+  ]
+}

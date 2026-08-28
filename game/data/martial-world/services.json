@@ -1,0 +1,135 @@
+{
+  "currency": "copper_cash",
+  "menus": {
+    "inn": {
+      "simple_meal": {
+        "price_cash": 12,
+        "duration_minutes": 30
+      },
+      "simple_room": {
+        "price_cash": 40,
+        "duration_minutes": 480
+      },
+      "private_room": {
+        "price_cash": 90,
+        "duration_minutes": 480
+      },
+      "hot_water": {
+        "price_cash": 6,
+        "duration_minutes": 20
+      },
+      "animal_stall": {
+        "price_cash": 15,
+        "duration_minutes": 10
+      }
+    },
+    "tea_house": {
+      "tea": {
+        "price_cash": 5,
+        "duration_minutes": 30
+      },
+      "tea_and_snacks": {
+        "price_cash": 10,
+        "duration_minutes": 45
+      },
+      "private_booth": {
+        "price_cash": 25,
+        "duration_minutes": 60
+      }
+    },
+    "wine_shop": {
+      "wine_cup": {
+        "price_cash": 4,
+        "duration_minutes": 20
+      },
+      "wine_jar": {
+        "price_cash": 25,
+        "duration_minutes": 30
+      },
+      "meal": {
+        "price_cash": 12,
+        "duration_minutes": 30
+      }
+    },
+    "bathhouse": {
+      "bath": {
+        "price_cash": 20,
+        "duration_minutes": 45
+      },
+      "private_bath": {
+        "price_cash": 50,
+        "duration_minutes": 60
+      }
+    },
+    "gambling_house": {
+      "table_entry": {
+        "price_cash": 10,
+        "duration_minutes": 60
+      }
+    },
+    "flower_house": {
+      "tea_and_performance": {
+        "price_cash": 30,
+        "duration_minutes": 90
+      },
+      "private_adult_companionship": {
+        "price_cash": 160,
+        "duration_minutes": 120,
+        "minimum_age": 18
+      }
+    },
+    "market": {
+      "street_meal": {
+        "price_cash": 8,
+        "duration_minutes": 20
+      },
+      "packed_rations_day": {
+        "price_cash": 18,
+        "duration_minutes": 10,
+        "simulation_effect": "add_personal_travel_ration_day"
+      }
+    },
+    "clinic": {
+      "consultation": {
+        "price_cash": 35,
+        "duration_minutes": 30
+      },
+      "basic_dressings": {
+        "price_cash": 20,
+        "duration_minutes": 10,
+        "simulation_effect": "stabilize_current_wounds"
+      }
+    },
+    "temple": {
+      "meal_donation": {
+        "price_cash": 5,
+        "duration_minutes": 30
+      },
+      "pilgrim_lodging_donation": {
+        "price_cash": 10,
+        "duration_minutes": 480
+      }
+    },
+    "caravan_yard": {
+      "animal_stall": {
+        "price_cash": 12,
+        "duration_minutes": 10
+      }
+    },
+    "guild_hall": {
+      "visitor_fee": {
+        "price_cash": 8,
+        "duration_minutes": 60
+      }
+    },
+    "stable": {
+      "animal_stall": {
+        "price_cash": 15,
+        "duration_minutes": 10
+      }
+    },
+    "magistrate_office": {}
+  },
+  "pricing_rule": "actual_price = ceil(base_price * site_price_multiplier_milli / 1000); service purchases consume only the buyer's existing personal_cash. Ordinary civilian providers need no individual ledger.",
+  "information_rule": "Being present at a public venue can create lawful opportunities to receive information, but purchasing a service never fabricates a rumor or secret."
+}

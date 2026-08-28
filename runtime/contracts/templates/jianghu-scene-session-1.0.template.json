@@ -1,0 +1,209 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-scene-session-1.0",
+  "target_schema": "jianghu-scene-session-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "session_ref",
+        "kind",
+        "status",
+        "location_ref",
+        "process_ref",
+        "participant_refs",
+        "started_at",
+        "soft_end_at",
+        "purpose",
+        "agenda",
+        "open_question_refs",
+        "closed_at",
+        "close_reason",
+        "last_updated_at"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "session_ref",
+        "kind",
+        "status",
+        "location_ref",
+        "process_ref",
+        "participant_refs",
+        "started_at",
+        "soft_end_at",
+        "purpose",
+        "agenda",
+        "open_question_refs",
+        "closed_at",
+        "close_reason",
+        "last_updated_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/mechanical_consequence_authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/session_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/kind": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/status": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/location_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/process_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/participant_refs": [
+      "array"
+    ],
+    "/started_at": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/soft_end_at": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/purpose": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/agenda": [
+      "array"
+    ],
+    "/open_question_refs": [
+      "array"
+    ],
+    "/closed_at": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/close_reason": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/last_updated_at": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/participant_refs/*": [
+      "string"
+    ],
+    "/agenda/*": [
+      "string"
+    ],
+    "/open_question_refs/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/participant_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/agenda": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/open_question_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  }
+}

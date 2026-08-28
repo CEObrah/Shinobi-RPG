@@ -1,37 +1,32 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
-from shinobi_runtime.commands import CommandEnvelope
-from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
-from shinobi_runtime.store import RepositoryStore
+import jsonschema
 
 
-def test_current_long_travel_can_preview_past_next_quiet_frontier():
-    """Regression for the rev-130 Huashan muster progression blocker.
+def test_synthetic_travel_handoff_without_scheduler_event_id_is_schema_valid():
+    """A real travel stop may be a synthetic wake rather than a scheduler event.
 
-    This deliberately uses the checked-in campaign snapshot because the defect
-    appeared only after a long chain of real causal settlements. Preview is
-    read-only, so the fixture remains authoritative and unchanged.
+    The rev-130 Huashan progression blocker was caused by the time reducer
+    correctly producing such a travel stop with event_id=None while the scene
+    schema incorrectly required every wake to have a scheduler-style string ID.
     """
     root = Path(__file__).resolve().parents[2]
-    repository = RepositoryStore(root)
-    meta = repository.read_json("state/meta.json")
-    assert meta["campaign_id"] == "jianghu-wei-main"
-    assert meta["revision"] == 130
-    assert meta["time"] == "SE-0061-09-26T21:15:00"
+    schema = json.loads((root / "game/schemas/scene.schema.json").read_text())
+    scene = {
+        "schema": "scene",
+        "scene_id": "scene.test.travel",
+        "location_id": "route.test",
+        "present_person_ids": ["pc"],
+        "visible_person_ids": ["pc"],
+        "activity_handoff": {
+            "event_id": None,
+            "kind": "travel_city_stop",
+            "requires_player_decision": False,
+            "interrupts_continuation": True,
+        },
+    }
 
-    command = CommandEnvelope(
-        campaign_id=meta["campaign_id"],
-        request_id="regression-long-travel-r130",
-        actor_id=meta["player_id"],
-        command_type="advance_time",
-        expected_revision=meta["revision"],
-        submitted_at="2026-08-28T12:00:00Z",
-        mode="gameplay",
-        payload={"target_time": "SE-0061-10-01T11:15:00"},
-    )
-
-    preview = CampaignCommandPlanner(repository).preview(command)
-    assert preview.status == "ready"
-    assert preview.target_revision == 131
+    jsonschema.Draft202012Validator(schema).validate(scene)

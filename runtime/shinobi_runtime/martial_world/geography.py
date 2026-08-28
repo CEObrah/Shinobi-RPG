@@ -86,18 +86,25 @@ def load_static_geography() -> Mapping[str, Any]:
 
 
 def applicable_route_extensions(base: Mapping[str, Any]) -> Mapping[str, Any] | None:
-    """Return extensions whose endpoints exist in this supplied geography view.
+    """Return extensions not already present and valid for this geography view.
 
     Frontier unit tests sometimes pass deliberately tiny geography fixtures. An
-    unrelated production corridor must not invalidate those fixtures, so only
-    additions applicable to the supplied place set are composed there.
+    unrelated production corridor must not invalidate those fixtures. Production
+    callers may also pass an already-composed geography view, so existing route
+    IDs are filtered out to keep extension application idempotent.
     """
     extensions = load_static_extensions()
     if not isinstance(extensions, Mapping):
         return None
     places = base.get("places", {}) if isinstance(base, Mapping) else {}
-    if not isinstance(places, Mapping):
+    base_routes = base.get("routes", []) if isinstance(base, Mapping) else []
+    if not isinstance(places, Mapping) or not isinstance(base_routes, list):
         return None
+    existing_ids = {
+        str(row.get("id"))
+        for row in base_routes
+        if isinstance(row, Mapping) and isinstance(row.get("id"), str) and row.get("id")
+    }
     rows = extensions.get("routes", [])
     if not isinstance(rows, list):
         raise ValueError("jianghu geography extension routes invalid")
@@ -105,6 +112,8 @@ def applicable_route_extensions(base: Mapping[str, Any]) -> Mapping[str, Any] | 
         copy.deepcopy(dict(row))
         for row in rows
         if isinstance(row, Mapping)
+        and isinstance(row.get("id"), str)
+        and str(row.get("id")) not in existing_ids
         and str(row.get("from") or "") in places
         and str(row.get("to") or "") in places
     ]

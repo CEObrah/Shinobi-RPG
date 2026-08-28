@@ -12,7 +12,62 @@ Target identity expresses intent. Contact comes from geometry. A released projec
 
 A player combat command does not need to enumerate every mechanical choice. A terse intent such as **attack**, **press him**, or **keep fighting** authorizes the runtime to fill only the unspecified tactical details from Tang Wei's standing combat doctrine, lawful perception, current geometry, equipment, fatigue, Qi state, poison inventory, and active team doctrine. This can include target selection when the player did not name one, weapon/technique selection, anatomical aim, automatic defense, movement needed to make the attack physical, and conservative Qi/poison use.
 
-Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand. A longer instruction such as **fight for thirty seconds** or **finish the fight** simply extends the same standing policy across the bounded simulated span.
+Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand.
+
+A longer instruction such as **fight for thirty seconds** or **finish the fight** extends the same standing policy, but it is not permission to erase the fight as a scene. Treat open-ended combat intent as a standing policy carried through bounded committed combat windows. Unless the player explicitly asks to fast-forward or compress the battle, do not resolve an arbitrarily long lethal team fight in one opaque `until_resolution` span.
+
+## Combat scene cadence
+
+Exact combat is still a live scene. A command receipt that contains combat `events` is transition evidence, not disposable backend detail. Preserve the committed event sequence while refreshing play context. The refreshed context establishes current truth; the receipt establishes how the committed transition happened. Do not throw away the event sequence and then reconstruct the fight from final health totals.
+
+For an open-ended standing intent such as **keep attacking**, **press them**, or **finish the fight**, use short bounded combat windows, normally one exact exchange or only a few seconds at a time. After each committed window:
+
+1. retain the returned ordered combat events and elapsed-time change;
+2. refresh play context;
+3. inspect the events plus refreshed player-visible state for a material combat frontier;
+4. if nothing material changed, continue the same already-declared combat policy automatically with a fresh request ID rather than asking the player to repeat **continue**;
+5. if a material frontier occurred, stop further combat execution, narrate through that frontier, and return control when the new state creates a genuine choice.
+
+Each bounded window is one persisted continuation under the already-declared combat policy. Never use repeated previews to probe possible futures. Continue only from committed results and fresh context.
+
+Default player-attention frontiers include:
+
+- Wei being wounded, incapacitated, disarmed in a materially consequential way, poisoned, trapped, or otherwise suffering a major capability change;
+- an allied death;
+- an ally becoming incapacitated, critically wounded, badly poisoned, or an immediate rescue/extraction objective;
+- a material collapse or reorganization of the active team structure, screen, formation, escape route, or protected objective;
+- an unexpected hostile reinforcement, newly detected threat, major terrain change, or loss of a critical weapon, mount, or route;
+- surrender, a credible parley attempt, a binding-demand opportunity, or another development that changes the social objective of the fight;
+- the current explicit target becoming unavailable when that makes the player's declared objective ambiguous;
+- combat resolution itself.
+
+Do not stop merely because someone takes a trivial cut, spends ordinary Qi, accumulates expected fatigue, or because a routine attack misses. A standing policy exists specifically to carry Wei through ordinary exchanges. Conversely, do not let **finish the fight** silently carry through deaths, critical casualties, poison crises, or objective-changing developments unless the player explicitly delegated continuation through those kinds of events or an established doctrine clearly resolves the tradeoff.
+
+If the player explicitly requests a compressed or fast-forwarded fight, the runtime may resolve a broader span. Even then, preserve chronology around irreversible or identity-changing events. Compression changes prose density, not causal truth.
+
+## Narrating committed combat
+
+Do not present active combat as an after-action briefing. Lead with the physical exchange and keep the reader inside Wei's perception. A useful combat turn usually has this shape:
+
+`immediate geometry/pressure -> Wei's declared action -> defenses and collisions -> ally/enemy reactions -> decisive wound/status/tactical change -> brief bridge across low-change motion -> next material beat -> current decision`
+
+Render the player's declared attack, movement, threat, order, or other supplied action on screen before the world reaction. Then synthesize the committed events in chronological order. Do not dump raw event JSON, event-by-event tables, or a roster-shaped casualty report as the primary presentation.
+
+Expand the events that materially change experience or tactics: closing distance, a defense that changes position, a clean hit, a serious wound, poison exposure or onset, a Qi burst with visible effect, weapon loss, incapacitation, death, rescue pressure, a broken line, a successful interception, a blocked escape, a target switch caused by availability, or combat resolution. Compress repetitive misses, ordinary guard work, repeated unchanged pressure, and long low-change stretches into short physical bridges.
+
+Never skip over the first player-visible onset of death, incapacitation, severe injury, dangerous poison, or formation collapse and reveal it later as a bullet point. If Lu Yunyun dies during the exchange, the scene reaches Lu Yunyun's death when it happens. If Ye Yongrong goes down and becomes an extraction problem, Wei experiences that loss of the line before the narration asks what to do next.
+
+Translate numbers into lived evidence first. Fatigue becomes slower recovery, rough breath, degraded footwork, shaking structure, or late reactions when supported. Blood loss becomes visible bleeding and functional decline. Qi expenditure becomes the concrete speed, force, control, defense, or recovery effect actually committed. Poison becomes the observable symptoms and capability effects Wei can lawfully perceive. Exact numbers may follow in a compact status block when they help the next decision, but the status block is secondary.
+
+Time should remain legible. When a fight spans minutes, use exact committed elapsed time and bridge quiet stretches naturally. Do not write **more than an hour passes beneath steel** as a substitute for the combat events that made that hour consequential.
+
+## Battlefield voices and human presence
+
+Team combat is also a co-located people scene. Named allies are not health bars. When fresh player-safe facts support it, let combatants use brief reversible battlefield speech and reactions: warnings, calls for help, pain, confirmation, challenges, coordination, a medic shouting a visible casualty state, or an ally reacting to someone going down. Such lines should arise from what that speaker can observe and from their established role, relationship, and pressure.
+
+Do not force everyone to speak, do not rotate through the roster, and do not use dialogue to recite mechanics. One sharp warning can be enough. A fighter who is busy surviving may say nothing. A medic can call **he is still breathing** if that is directly supported; the medic cannot diagnose a hidden poison or wound detail the scene has not established.
+
+Ordinary nonbinding battlefield speech may be realized as scene performance under the normal scene contract. Persist only speech whose later attribution materially matters. A surrender, ceasefire, binding order, promise, ransom term, custody change, or other hard consequence still requires its mechanical authority before narration treats it as accomplished.
 
 ## Observer reports and enemy counts
 

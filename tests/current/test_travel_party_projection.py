@@ -96,6 +96,17 @@ def test_public_site_projection_exposes_exact_count_and_diverse_bounded_sample()
     ]
 
 
+def test_public_site_projection_zero_sample_keeps_scale_without_person_reads():
+    scene = {
+        "location_id": "site.changan.inn",
+        "derived_present_person_ids": ["person.a.1", "person.b.1"],
+    }
+    result = public_site_scene_projection(scene, sample_limit=0)
+    assert result is not None
+    assert result["derived_attendee_count"] == 2
+    assert result["sample_person_ids"] == []
+
+
 def test_public_site_projection_deduplicates_attendees_and_is_absent_on_route():
     site_scene = {
         "location_id": "site.changan.inn",

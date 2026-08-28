@@ -46,22 +46,23 @@ def public_site_scene_projection(scene: Mapping[str, Any], *, sample_limit: int 
 
     limit = max(0, min(16, int(sample_limit)))
     samples: list[str] = []
-    seen_namespaces: set[str] = set()
-    for ref in attendees:
-        namespace = ref.rsplit(".", 1)[0] if "." in ref else ref
-        if namespace in seen_namespaces:
-            continue
-        seen_namespaces.add(namespace)
-        samples.append(ref)
-        if len(samples) >= limit:
-            break
-    if len(samples) < limit:
+    if limit:
+        seen_namespaces: set[str] = set()
         for ref in attendees:
-            if ref in samples:
+            namespace = ref.rsplit(".", 1)[0] if "." in ref else ref
+            if namespace in seen_namespaces:
                 continue
+            seen_namespaces.add(namespace)
             samples.append(ref)
             if len(samples) >= limit:
                 break
+        if len(samples) < limit:
+            for ref in attendees:
+                if ref in samples:
+                    continue
+                samples.append(ref)
+                if len(samples) >= limit:
+                    break
 
     return {
         "site_ref": site_ref,

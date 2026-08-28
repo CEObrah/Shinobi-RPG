@@ -13,6 +13,7 @@ Watch for:
 - selected menu options being treated as invisible control input instead of visible Wei action/dialogue;
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;
 - combat geometry, fatigue, defense load, injury, Qi, poison, equipment, or ammunition behaving inconsistently;
+- normal interactive combat silently aggregating multiple exact exchanges instead of giving each committed player-facing combat turn its own chronological scene beat;
 - an open-ended combat policy being resolved across deaths, critical wounds, poison crises, formation collapse, or objective-changing developments without returning control at a material player-attention frontier;
 - committed combat `events` being discarded so a lethal fight is reconstructed only from final health totals, producing an after-action briefing instead of chronological lived combat;
 - named allies in active team combat becoming roster entries or health bars, with decisive deaths/incapacitations revealed as bullet points rather than experienced when they occur;

@@ -97,7 +97,11 @@ def _apply_plan(repo: RepositoryStore, plan) -> None:
         repo.replace_image(path, content)
 
 
-def test_combat_side_parley_is_transaction_valid_and_keeps_legacy_attempts_compatible(tmp_path):
+def _attempt_by_ref(ledger, attempt_ref):
+    return next(row for row in ledger["attempts"] if row.get("attempt_ref") == attempt_ref)
+
+
+def test_combat_side_parley_and_reply_are_transaction_valid_and_legacy_compatible(tmp_path):
     root = _copy_runtime_repository(tmp_path)
     repo = RepositoryStore(root)
     planner = RepositoryCommandPlanner(repo)
@@ -154,9 +158,60 @@ def test_combat_side_parley_is_transaction_valid_and_keeps_legacy_attempts_compa
     plan = planner.plan(parley)
     assert plan.result["target_kind"] == "opposing_combat_side"
     staged = json.loads(plan.writes["state/martial-world/interaction-attempts.json"].decode("utf-8"))
-    assert staged["attempts"][0].get("target_kind") is None
-    assert staged["attempts"][-1]["target_ref"] == combat_ref
-    assert staged["attempts"][-1]["target_kind"] == "opposing_combat_side"
-    assert staged["attempts"][-1]["world_response_status"] == "not_established_by_attempt"
+    legacy = _attempt_by_ref(staged, "interaction_attempt_legacy")
+    assert legacy.get("target_kind") is None
+    question = next(
+        row for row in staged["attempts"]
+        if row.get("target_ref") == combat_ref and row.get("target_kind") == "opposing_combat_side"
+    )
+    assert question["thread_status"] == "open"
+    assert question["world_response_status"] == "not_established_by_attempt"
     assert repo.read_bytes("state/meta.json") == meta_before
     assert repo.read_bytes("state/martial-world/interaction-attempts.json") == ledger_before
+
+    _apply_plan(repo, plan)
+    current = repo.read_json("state/meta.json")
+    question_ref = question["attempt_ref"]
+    world_time_before_reply = current["time"]
+    reply = CommandEnvelope(
+        campaign_id=current["campaign_id"],
+        request_id="test.parley-transaction.reply",
+        actor_id=current["player_id"],
+        command_type="jianghu_scene_session_resolution",
+        expected_revision=current["revision"],
+        submitted_at="2026-08-28T00:00:02Z",
+        payload={
+            "action": "record_speech",
+            "session_ref": combat_ref,
+            "speaker_ref": combat_ref,
+            "statement": "You are not owed an explanation. Turn back.",
+            "speech_kind": "nonbinding_response",
+            "basis_refs": [combat_ref, question_ref],
+            "resolves_question_ref": question_ref,
+        },
+        mode="gameplay",
+    )
+
+    reply_preview = planner.preview(reply)
+    assert reply_preview.status == "ready"
+    assert reply_preview.code == "jianghu_combat_parley_speech_recorded"
+    reply_plan = planner.plan(reply)
+    assert reply_plan.result["speaker_ref"] == combat_ref
+    assert reply_plan.result["speaker_kind"] == "opposing_combat_side"
+    assert reply_plan.result["mechanical_consequence_authority"] is False
+    staged_meta = json.loads(reply_plan.writes["state/meta.json"].decode("utf-8"))
+    assert staged_meta["time"] == world_time_before_reply
+
+    answered_ledger = json.loads(
+        reply_plan.writes["state/martial-world/interaction-attempts.json"].decode("utf-8")
+    )
+    answered = _attempt_by_ref(answered_ledger, question_ref)
+    assert answered["thread_status"] == "answered"
+    assert answered["response_ref"] == reply_plan.result["speech_ref"]
+    history = json.loads(
+        reply_plan.writes["state/martial-world/scene-history-head.json"].decode("utf-8")
+    )["recent"][-1]
+    assert history["session_ref"] == combat_ref
+    assert history["speaker_ref"] == combat_ref
+    assert history["resolves_question_ref"] == question_ref
+    assert history["mechanical_consequence_authority"] is False

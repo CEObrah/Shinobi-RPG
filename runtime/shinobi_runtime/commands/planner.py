@@ -50,6 +50,25 @@ class RepositoryCommandPlanner(JianghuSceneCommandsMixin,JianghuInstitutionalEsc
         # simulation and strengthens preview/execute identity. Any revision or
         # command change invalidates the cache.
         self._validated_preview_build: tuple[str,int,_BuiltPlan] | None = None
+        # A route owner normally makes its participants unavailable to unrelated
+        # activity. During a registered lodging stop, however, exact physical
+        # presence may explicitly expose the traveler for ordinary site service.
+        # This flag is scoped to the service reducer inside _build so deployments,
+        # training, recruitment and other commands remain blocked by route duty.
+        self._allow_site_service_presence = False
+    def _physically_unavailable_person_refs(self) -> set[str]:
+        refs = set(super()._physically_unavailable_person_refs())
+        if not self._allow_site_service_presence:
+            return refs
+        for ref in tuple(refs):
+            try:
+                _path, _roster, _ordinal, person = self._person(ref)
+                presence = self._effective_person_presence(ref, person)
+            except CommandRejectedError:
+                continue
+            if presence.get("available_for_site_activity") is True:
+                refs.discard(ref)
+        return refs
     def _base(self,command:CommandEnvelope)->Tuple[dict[str,Any],CampaignTime]:
         if command.mode not in {"gameplay","autonomous"}: raise CommandRejectedError("gameplay_mode_required")
         if command.command_type not in self.COMMAND_TYPES: raise CommandRejectedError("unsupported_command_type")
@@ -94,7 +113,12 @@ class RepositoryCommandPlanner(JianghuSceneCommandsMixin,JianghuInstitutionalEsc
                 raise CommandRejectedError(command.command_type+"_payload_fields_invalid")
         fn=getattr(self,"_"+command.command_type,None)
         if not callable(fn): raise RuntimeError("missing command reducer for "+command.command_type)
-        return fn(command,meta,now)
+        previous_site_service = self._allow_site_service_presence
+        self._allow_site_service_presence = command.command_type == "jianghu_service_purchase_resolution"
+        try:
+            return fn(command,meta,now)
+        finally:
+            self._allow_site_service_presence = previous_site_service
     def _validate_preview_plan(self,command:CommandEnvelope,built:_BuiltPlan)->None:
         """Dry-run the exact staged transaction validators without persistence."""
         transaction_id=("tx.autonomous." if command.mode=="autonomous" else "tx.gameplay.")+command.digest

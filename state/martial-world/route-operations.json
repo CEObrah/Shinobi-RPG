@@ -3,57 +3,8 @@
   "movements": {
     "merchant_trade:faction.eastern_caravan_escort_agency:route.wuhan.nanchang:006109": {
       "movement_kind": "merchant_trade",
+      "purpose_ref": "merchant_trade:faction.eastern_caravan_escort_agency:route.wuhan.nanchang:006109",
       "route_ref": "route.wuhan.nanchang",
-      "origin_place_ref": "wuhan",
-      "destination_place_ref": "nanchang",
-      "item_ref": "food_ration_day",
-      "quantity": 320,
-      "beneficiary_ref": "faction.eastern_caravan_escort_agency",
-      "participant_refs": [
-        "mw.person.faction.eastern_caravan_escort_agency.5004"
-      ],
-      "started_at": "0061-09-13T21:15:00",
-      "trade_leg": "outbound",
-      "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
-      "required_seconds": 1206000,
-      "route_refs": [
-        "route.wuhan.nanchang"
-      ],
-      "route_index": 0,
-      "journey_nodes": [
-        "wuhan",
-        "nanchang"
-      ],
-      "segment_required_seconds": [
-        1206000
-      ],
-      "segment_origin_place_ref": "wuhan",
-      "segment_destination_place_ref": "nanchang",
-      "transport_reservation": {
-        "provider_kind": "faction_pool",
-        "provider_ref": "faction.eastern_caravan_escort_agency",
-        "freight_capacity_kg": 320
-      }
-    },
-    "merchant_trade:faction.five_markets_society:route.wuhan.nanchang:006109": {
-      "movement_kind": "merchant_trade",
-      "route_ref": "route.wuhan.nanchang",
-      "origin_place_ref": "nanchang",
-      "destination_place_ref": "wuhan",
-      "item_ref": "metal_kg",
-      "quantity": 200,
-      "beneficiary_ref": "faction.five_markets_society",
-      "participant_refs": [
-        "mw.person.faction.five_markets_society.5011"
-      ],
-      "started_at": "0061-09-13T21:15:00",
-      "trade_leg": "outbound",
-      "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
-      "required_seconds": 1206000,
       "route_refs": [
         "route.wuhan.nanchang"
       ],
@@ -63,15 +14,144 @@
         "wuhan"
       ],
       "segment_required_seconds": [
-        1206000
+        2118739
       ],
+      "segment_provisioning_seconds": [
+        2477847
+      ],
+      "provisioning_seconds": 2477847,
+      "segment_edge_start_milli": [
+        1000
+      ],
+      "segment_edge_end_milli": [
+        0
+      ],
+      "origin_place_ref": "nanchang",
+      "destination_place_ref": "wuhan",
       "segment_origin_place_ref": "nanchang",
       "segment_destination_place_ref": "wuhan",
+      "participant_refs": [
+        "mw.person.faction.eastern_caravan_escort_agency.5004"
+      ],
+      "leader_ref": "mw.person.faction.eastern_caravan_escort_agency.5004",
+      "beneficiary_ref": "faction.eastern_caravan_escort_agency",
+      "mode": "convoy",
+      "started_at": "0061-09-27T21:15:00",
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 2118739,
+      "edge_start_milli": 1000,
+      "edge_end_milli": 0,
+      "route_weather": {
+        "place_id": "nanchang",
+        "at": "0061-09-27T21:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 267,
+        "temperature_c": 26.7,
+        "condition": "storm",
+        "precipitation_milli": 1000,
+        "humidity_milli": 940,
+        "wind_mps_tenths": 34,
+        "wind_direction_degrees": 6,
+        "visibility_milli": 500,
+        "sound_masking_milli": 670,
+        "ground": "muddy"
+      },
+      "status": "active",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.eastern_caravan_escort_agency",
+        "participant_count": 1,
+        "planned_travel_seconds": 2477847,
+        "ration_days_reserved": 29,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      },
+      "transport_reservation": {
+        "provider_kind": "faction_pool",
+        "provider_ref": "faction.eastern_caravan_escort_agency",
+        "freight_capacity_kg": 320
+      },
+      "trade_leg": "return",
+      "trade_outcome": "sold",
+      "item_ref": "food_ration_day",
+      "quantity": 0
+    },
+    "merchant_trade:faction.five_markets_society:route.wuhan.nanchang:006109": {
+      "movement_kind": "merchant_trade",
+      "purpose_ref": "merchant_trade:faction.five_markets_society:route.wuhan.nanchang:006109",
+      "route_ref": "route.wuhan.nanchang",
+      "route_refs": [
+        "route.wuhan.nanchang"
+      ],
+      "route_index": 0,
+      "journey_nodes": [
+        "wuhan",
+        "nanchang"
+      ],
+      "segment_required_seconds": [
+        1436433
+      ],
+      "segment_provisioning_seconds": [
+        2477847
+      ],
+      "provisioning_seconds": 2477847,
+      "segment_edge_start_milli": [
+        0
+      ],
+      "segment_edge_end_milli": [
+        1000
+      ],
+      "origin_place_ref": "wuhan",
+      "destination_place_ref": "nanchang",
+      "segment_origin_place_ref": "wuhan",
+      "segment_destination_place_ref": "nanchang",
+      "participant_refs": [
+        "mw.person.faction.five_markets_society.5011"
+      ],
+      "leader_ref": "mw.person.faction.five_markets_society.5011",
+      "beneficiary_ref": "faction.five_markets_society",
+      "mode": "convoy",
+      "started_at": "0061-09-27T21:15:00",
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 1436433,
+      "edge_start_milli": 0,
+      "edge_end_milli": 1000,
+      "route_weather": {
+        "place_id": "wuhan",
+        "at": "0061-09-27T21:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 271,
+        "temperature_c": 27.1,
+        "condition": "clear",
+        "precipitation_milli": 0,
+        "humidity_milli": 700,
+        "wind_mps_tenths": 13,
+        "wind_direction_degrees": 310,
+        "visibility_milli": 1000,
+        "sound_masking_milli": 65,
+        "ground": "dry"
+      },
+      "status": "active",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.five_markets_society",
+        "participant_count": 1,
+        "planned_travel_seconds": 2477847,
+        "ration_days_reserved": 29,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      },
       "transport_reservation": {
         "provider_kind": "faction_pool",
         "provider_ref": "faction.five_markets_society",
         "freight_capacity_kg": 200
-      }
+      },
+      "trade_leg": "return",
+      "trade_outcome": "sold",
+      "item_ref": "metal_kg",
+      "quantity": 0
     },
     "merchant_trade:faction.four_gates_escort_agency:route.chongqing.kunming:006109": {
       "movement_kind": "merchant_trade",
@@ -87,8 +167,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 4766400,
       "route_refs": [
         "route.chongqing.kunming"
@@ -111,57 +191,8 @@
     },
     "merchant_trade:faction.golden_grain_escort_agency:route.wuhan.nanchang:006109": {
       "movement_kind": "merchant_trade",
+      "purpose_ref": "merchant_trade:faction.golden_grain_escort_agency:route.wuhan.nanchang:006109",
       "route_ref": "route.wuhan.nanchang",
-      "origin_place_ref": "nanchang",
-      "destination_place_ref": "wuhan",
-      "item_ref": "metal_kg",
-      "quantity": 200,
-      "beneficiary_ref": "faction.golden_grain_escort_agency",
-      "participant_refs": [
-        "mw.person.golden_grain_escort_agency.1006"
-      ],
-      "started_at": "0061-09-13T21:15:00",
-      "trade_leg": "outbound",
-      "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
-      "required_seconds": 1206000,
-      "route_refs": [
-        "route.wuhan.nanchang"
-      ],
-      "route_index": 0,
-      "journey_nodes": [
-        "nanchang",
-        "wuhan"
-      ],
-      "segment_required_seconds": [
-        1206000
-      ],
-      "segment_origin_place_ref": "nanchang",
-      "segment_destination_place_ref": "wuhan",
-      "transport_reservation": {
-        "provider_kind": "faction_pool",
-        "provider_ref": "faction.golden_grain_escort_agency",
-        "freight_capacity_kg": 200
-      }
-    },
-    "merchant_trade:faction.great_bridge_escort_agency:route.wuhan.nanchang:006109": {
-      "movement_kind": "merchant_trade",
-      "route_ref": "route.wuhan.nanchang",
-      "origin_place_ref": "wuhan",
-      "destination_place_ref": "nanchang",
-      "item_ref": "food_ration_day",
-      "quantity": 360,
-      "beneficiary_ref": "faction.great_bridge_escort_agency",
-      "participant_refs": [
-        "mw.person.great_bridge_escort_agency.1029"
-      ],
-      "started_at": "0061-09-13T21:15:00",
-      "trade_leg": "outbound",
-      "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
-      "required_seconds": 1206000,
       "route_refs": [
         "route.wuhan.nanchang"
       ],
@@ -171,15 +202,144 @@
         "nanchang"
       ],
       "segment_required_seconds": [
-        1206000
+        1436433
       ],
+      "segment_provisioning_seconds": [
+        2477847
+      ],
+      "provisioning_seconds": 2477847,
+      "segment_edge_start_milli": [
+        0
+      ],
+      "segment_edge_end_milli": [
+        1000
+      ],
+      "origin_place_ref": "wuhan",
+      "destination_place_ref": "nanchang",
       "segment_origin_place_ref": "wuhan",
       "segment_destination_place_ref": "nanchang",
+      "participant_refs": [
+        "mw.person.golden_grain_escort_agency.1006"
+      ],
+      "leader_ref": "mw.person.golden_grain_escort_agency.1006",
+      "beneficiary_ref": "faction.golden_grain_escort_agency",
+      "mode": "convoy",
+      "started_at": "0061-09-27T21:15:00",
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 1436433,
+      "edge_start_milli": 0,
+      "edge_end_milli": 1000,
+      "route_weather": {
+        "place_id": "wuhan",
+        "at": "0061-09-27T21:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 271,
+        "temperature_c": 27.1,
+        "condition": "clear",
+        "precipitation_milli": 0,
+        "humidity_milli": 700,
+        "wind_mps_tenths": 13,
+        "wind_direction_degrees": 310,
+        "visibility_milli": 1000,
+        "sound_masking_milli": 65,
+        "ground": "dry"
+      },
+      "status": "active",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.golden_grain_escort_agency",
+        "participant_count": 1,
+        "planned_travel_seconds": 2477847,
+        "ration_days_reserved": 29,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      },
+      "transport_reservation": {
+        "provider_kind": "faction_pool",
+        "provider_ref": "faction.golden_grain_escort_agency",
+        "freight_capacity_kg": 200
+      },
+      "trade_leg": "return",
+      "trade_outcome": "sold",
+      "item_ref": "metal_kg",
+      "quantity": 0
+    },
+    "merchant_trade:faction.great_bridge_escort_agency:route.wuhan.nanchang:006109": {
+      "movement_kind": "merchant_trade",
+      "purpose_ref": "merchant_trade:faction.great_bridge_escort_agency:route.wuhan.nanchang:006109",
+      "route_ref": "route.wuhan.nanchang",
+      "route_refs": [
+        "route.wuhan.nanchang"
+      ],
+      "route_index": 0,
+      "journey_nodes": [
+        "nanchang",
+        "wuhan"
+      ],
+      "segment_required_seconds": [
+        2118739
+      ],
+      "segment_provisioning_seconds": [
+        2477847
+      ],
+      "provisioning_seconds": 2477847,
+      "segment_edge_start_milli": [
+        1000
+      ],
+      "segment_edge_end_milli": [
+        0
+      ],
+      "origin_place_ref": "nanchang",
+      "destination_place_ref": "wuhan",
+      "segment_origin_place_ref": "nanchang",
+      "segment_destination_place_ref": "wuhan",
+      "participant_refs": [
+        "mw.person.great_bridge_escort_agency.1029"
+      ],
+      "leader_ref": "mw.person.great_bridge_escort_agency.1029",
+      "beneficiary_ref": "faction.great_bridge_escort_agency",
+      "mode": "convoy",
+      "started_at": "0061-09-27T21:15:00",
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 2118739,
+      "edge_start_milli": 1000,
+      "edge_end_milli": 0,
+      "route_weather": {
+        "place_id": "nanchang",
+        "at": "0061-09-27T21:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 267,
+        "temperature_c": 26.7,
+        "condition": "storm",
+        "precipitation_milli": 1000,
+        "humidity_milli": 940,
+        "wind_mps_tenths": 34,
+        "wind_direction_degrees": 6,
+        "visibility_milli": 500,
+        "sound_masking_milli": 670,
+        "ground": "muddy"
+      },
+      "status": "active",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "faction.great_bridge_escort_agency",
+        "participant_count": 1,
+        "planned_travel_seconds": 2477847,
+        "ration_days_reserved": 29,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      },
       "transport_reservation": {
         "provider_kind": "faction_pool",
         "provider_ref": "faction.great_bridge_escort_agency",
         "freight_capacity_kg": 360
-      }
+      },
+      "trade_leg": "return",
+      "trade_outcome": "sold",
+      "item_ref": "food_ration_day",
+      "quantity": 0
     },
     "merchant_trade:faction.iron_lock_escort_agency:route.xining.golmud:006109": {
       "movement_kind": "merchant_trade",
@@ -195,8 +355,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 4784400,
       "route_refs": [
         "route.xining.golmud"
@@ -231,8 +391,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 4766400,
       "route_refs": [
         "route.chongqing.kunming"
@@ -289,8 +449,8 @@
       "beneficiary_ref": "house_lin",
       "mode": "convoy",
       "started_at": "0061-09-24T21:15:00",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 172800,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 259200,
       "required_seconds": 968068,
       "edge_start_milli": 1000,
       "edge_end_milli": 0,
@@ -316,8 +476,8 @@
         "participant_count": 1,
         "planned_travel_seconds": 1575393,
         "ration_days_reserved": 19,
-        "ration_days_consumed": 2,
-        "journey_elapsed_seconds": 172800
+        "ration_days_consumed": 3,
+        "journey_elapsed_seconds": 259200
       },
       "transport_reservation": {
         "provider_kind": "faction_pool",
@@ -343,8 +503,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 1216800,
       "route_refs": [
         "route.xuchang.xiangyang"
@@ -380,8 +540,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 2548800,
       "route_refs": [
         "route.luoyang.taiyuan"
@@ -417,8 +577,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 1216800,
       "route_refs": [
         "route.xuchang.xiangyang"
@@ -453,8 +613,8 @@
       "started_at": "0061-09-13T21:15:00",
       "trade_leg": "outbound",
       "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1209600,
       "required_seconds": 3146400,
       "route_refs": [
         "route.jingzhou.chongqing"
@@ -477,40 +637,80 @@
     },
     "merchant_trade:river_reed_society:route.wuhan.nanchang:006109": {
       "movement_kind": "merchant_trade",
+      "purpose_ref": "merchant_trade:river_reed_society:route.wuhan.nanchang:006109",
       "route_ref": "route.wuhan.nanchang",
-      "origin_place_ref": "wuhan",
-      "destination_place_ref": "nanchang",
-      "item_ref": "food_ration_day",
-      "quantity": 440,
-      "beneficiary_ref": "river_reed_society",
-      "participant_refs": [
-        "mw.person.river_reed_society.5011",
-        "mw.person.river_reed_society.5020"
-      ],
-      "started_at": "0061-09-13T21:15:00",
-      "trade_leg": "outbound",
-      "status": "active",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1123200,
-      "required_seconds": 1206000,
       "route_refs": [
         "route.wuhan.nanchang"
       ],
       "route_index": 0,
       "journey_nodes": [
-        "wuhan",
-        "nanchang"
+        "nanchang",
+        "wuhan"
       ],
       "segment_required_seconds": [
-        1206000
+        2118739
       ],
-      "segment_origin_place_ref": "wuhan",
-      "segment_destination_place_ref": "nanchang",
+      "segment_provisioning_seconds": [
+        2477847
+      ],
+      "provisioning_seconds": 2477847,
+      "segment_edge_start_milli": [
+        1000
+      ],
+      "segment_edge_end_milli": [
+        0
+      ],
+      "origin_place_ref": "nanchang",
+      "destination_place_ref": "wuhan",
+      "segment_origin_place_ref": "nanchang",
+      "segment_destination_place_ref": "wuhan",
+      "participant_refs": [
+        "mw.person.river_reed_society.5011",
+        "mw.person.river_reed_society.5020"
+      ],
+      "leader_ref": "mw.person.river_reed_society.5011",
+      "beneficiary_ref": "river_reed_society",
+      "mode": "convoy",
+      "started_at": "0061-09-27T21:15:00",
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 0,
+      "required_seconds": 2118739,
+      "edge_start_milli": 1000,
+      "edge_end_milli": 0,
+      "route_weather": {
+        "place_id": "nanchang",
+        "at": "0061-09-27T21:15:00",
+        "season": "autumn",
+        "temperature_c_tenths": 267,
+        "temperature_c": 26.7,
+        "condition": "storm",
+        "precipitation_milli": 1000,
+        "humidity_milli": 940,
+        "wind_mps_tenths": 34,
+        "wind_direction_degrees": 6,
+        "visibility_milli": 500,
+        "sound_masking_milli": 670,
+        "ground": "muddy"
+      },
+      "status": "active",
+      "provision_reservation": {
+        "source_kind": "faction",
+        "source_ref": "river_reed_society",
+        "participant_count": 2,
+        "planned_travel_seconds": 2477847,
+        "ration_days_reserved": 58,
+        "ration_days_consumed": 0,
+        "journey_elapsed_seconds": 0
+      },
       "transport_reservation": {
         "provider_kind": "faction_pool",
         "provider_ref": "river_reed_society",
         "freight_capacity_kg": 440
-      }
+      },
+      "trade_leg": "return",
+      "trade_outcome": "sold",
+      "item_ref": "food_ration_day",
+      "quantity": 0
     },
     "route_operation:operation:faction_raid:faction.red_road_band:faction.misty_ridge_sect:006109:outbound": {
       "movement_kind": "faction_operation_travel",
@@ -556,8 +756,8 @@
       "beneficiary_ref": "faction.red_road_band",
       "mode": "foot",
       "started_at": "0061-09-14T10:15:00",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 1076400,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 1162800,
       "required_seconds": 1411647,
       "edge_start_milli": 1000,
       "edge_end_milli": 0,
@@ -589,8 +789,8 @@
         "participant_count": 9,
         "planned_travel_seconds": 2088414,
         "ration_days_reserved": 225,
-        "ration_days_consumed": 117,
-        "journey_elapsed_seconds": 1076400
+        "ration_days_consumed": 126,
+        "journey_elapsed_seconds": 1162800
       }
     },
     "escort_muster:0e52cfa45f5bbea72ba0": {
@@ -646,8 +846,8 @@
       "beneficiary_ref": "house_tang",
       "mode": "foot",
       "started_at": "0061-09-14T10:15:00",
-      "last_progress_at": "0061-09-27T15:21:27",
-      "elapsed_seconds": 0,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 21213,
       "required_seconds": 387180,
       "edge_start_milli": 0,
       "edge_end_milli": 1000,
@@ -666,7 +866,7 @@
         "sound_masking_milli": 0,
         "ground": "dry"
       },
-      "status": "active",
+      "status": "contact_pending",
       "institutional_operation_ref": "mission:contract:contract.3d229e0d9f89e6e306088a4d",
       "linked_contract_ref": "contract.3d229e0d9f89e6e306088a4d",
       "escort_muster": true,
@@ -679,8 +879,57 @@
         "planned_travel_seconds": 2537762,
         "ration_days_reserved": 360,
         "ration_days_consumed": 156,
-        "journey_elapsed_seconds": 1083987
-      }
+        "journey_elapsed_seconds": 1105200
+      },
+      "contact_ref": "contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+      "combat_ref": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+      "contact_attacker_faction_ref": "black_lance_company",
+      "contact_attacker_refs": [
+        "mw.person.black_lance_company.0041",
+        "mw.person.black_lance_company.0035",
+        "mw.person.black_lance_company.0004",
+        "mw.person.black_lance_company.0048",
+        "mw.person.black_lance_company.0037",
+        "mw.person.black_lance_company.0066",
+        "mw.person.black_lance_company.0085",
+        "mw.person.black_lance_company.0092",
+        "mw.person.black_lance_company.0012",
+        "mw.person.black_lance_company.0026",
+        "mw.person.black_lance_company.0029",
+        "mw.person.black_lance_company.0077",
+        "mw.person.black_lance_company.0021",
+        "mw.person.black_lance_company.0031",
+        "mw.person.black_lance_company.0060",
+        "mw.person.black_lance_company.0079",
+        "mw.person.black_lance_company.0044",
+        "mw.person.black_lance_company.0050",
+        "mw.person.black_lance_company.0089",
+        "mw.person.black_lance_company.5017",
+        "mw.person.black_lance_company.0058",
+        "mw.person.black_lance_company.0075",
+        "mw.person.black_lance_company.5013",
+        "mw.person.black_lance_company.0018",
+        "mw.person.black_lance_company.0030",
+        "mw.person.black_lance_company.0032",
+        "mw.person.black_lance_company.0047",
+        "mw.person.black_lance_company.0053",
+        "mw.person.black_lance_company.0054",
+        "mw.person.black_lance_company.0059",
+        "mw.person.black_lance_company.0063",
+        "mw.person.black_lance_company.0084",
+        "mw.person.black_lance_company.0006",
+        "mw.person.black_lance_company.0007",
+        "mw.person.black_lance_company.0028",
+        "mw.person.black_lance_company.0033",
+        "mw.person.black_lance_company.0039",
+        "mw.person.black_lance_company.0043",
+        "mw.person.black_lance_company.0067",
+        "mw.person.black_lance_company.0071",
+        "mw.person.black_lance_company.0078",
+        "mw.person.black_lance_company.0001",
+        "mw.person.black_lance_company.0005"
+      ],
+      "contact_intent": "hostile_interception"
     },
     "raid_retreat:0061-09-21:9144e7316ca6e17ba3dc": {
       "movement_kind": "raid_return",
@@ -727,8 +976,8 @@
       "beneficiary_ref": "faction.black_stone_band",
       "mode": "foot",
       "started_at": "0061-09-21T21:15:00",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 432000,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 518400,
       "required_seconds": 2457339,
       "edge_start_milli": 219,
       "edge_end_milli": 1000,
@@ -754,8 +1003,8 @@
         "participant_count": 10,
         "planned_travel_seconds": 2457339,
         "ration_days_reserved": 290,
-        "ration_days_consumed": 50,
-        "journey_elapsed_seconds": 432000
+        "ration_days_consumed": 60,
+        "journey_elapsed_seconds": 518400
       },
       "protected_person_refs": [],
       "captive_refs": [],
@@ -808,8 +1057,8 @@
       "beneficiary_ref": "faction.grey_knife_band",
       "mode": "foot",
       "started_at": "0061-09-23T21:15:00",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 259200,
+      "last_progress_at": "0061-09-27T21:15:00",
+      "elapsed_seconds": 345600,
       "required_seconds": 2284287,
       "edge_start_milli": 274,
       "edge_end_milli": 1000,
@@ -835,181 +1084,14 @@
         "participant_count": 10,
         "planned_travel_seconds": 2284287,
         "ration_days_reserved": 270,
-        "ration_days_consumed": 30,
-        "journey_elapsed_seconds": 259200
+        "ration_days_consumed": 40,
+        "journey_elapsed_seconds": 345600
       },
       "protected_person_refs": [],
       "captive_refs": [],
       "rescued_refs": [],
       "item_ref": "",
       "quantity": 0
-    },
-    "raid_retreat:0061-09-24:1b92f09bb8f7a5035cc1": {
-      "movement_kind": "raid_return",
-      "purpose_ref": "raid_retreat:0061-09-21:9144e7316ca6e17ba3dc",
-      "route_ref": "route.jingzhou.chongqing",
-      "route_refs": [
-        "route.jingzhou.chongqing"
-      ],
-      "route_index": 0,
-      "journey_nodes": [
-        "chongqing",
-        "jingzhou"
-      ],
-      "segment_required_seconds": [
-        258005
-      ],
-      "segment_provisioning_seconds": [
-        258005
-      ],
-      "provisioning_seconds": 258005,
-      "segment_edge_start_milli": [
-        301
-      ],
-      "segment_edge_end_milli": [
-        219
-      ],
-      "origin_place_ref": "chongqing",
-      "destination_place_ref": "jingzhou",
-      "segment_origin_place_ref": "chongqing",
-      "segment_destination_place_ref": "jingzhou",
-      "participant_refs": [
-        "mw.person.red_tiger_stronghold.0021",
-        "mw.person.red_tiger_stronghold.0074",
-        "mw.person.red_tiger_stronghold.0118",
-        "mw.person.red_tiger_stronghold.0056",
-        "mw.person.red_tiger_stronghold.0047",
-        "mw.person.red_tiger_stronghold.0049",
-        "mw.person.red_tiger_stronghold.0030",
-        "mw.person.red_tiger_stronghold.0080",
-        "mw.person.red_tiger_stronghold.0116",
-        "mw.person.red_tiger_stronghold.0124",
-        "mw.person.red_tiger_stronghold.0093",
-        "mw.person.red_tiger_stronghold.0015",
-        "mw.person.red_tiger_stronghold.0052",
-        "mw.person.red_tiger_stronghold.0113",
-        "mw.person.red_tiger_stronghold.0012",
-        "mw.person.red_tiger_stronghold.0044",
-        "mw.person.red_tiger_stronghold.0067",
-        "mw.person.red_tiger_stronghold.0027",
-        "mw.person.red_tiger_stronghold.0031",
-        "mw.person.red_tiger_stronghold.0059",
-        "mw.person.red_tiger_stronghold.0068",
-        "mw.person.red_tiger_stronghold.0120",
-        "mw.person.red_tiger_stronghold.0001",
-        "mw.person.red_tiger_stronghold.0002",
-        "mw.person.red_tiger_stronghold.0020",
-        "mw.person.red_tiger_stronghold.0028",
-        "mw.person.red_tiger_stronghold.0063",
-        "mw.person.red_tiger_stronghold.0079",
-        "mw.person.red_tiger_stronghold.0086",
-        "mw.person.red_tiger_stronghold.0092",
-        "mw.person.red_tiger_stronghold.0017",
-        "mw.person.red_tiger_stronghold.0032",
-        "mw.person.red_tiger_stronghold.0034",
-        "mw.person.red_tiger_stronghold.0036",
-        "mw.person.red_tiger_stronghold.0069",
-        "mw.person.red_tiger_stronghold.0109",
-        "mw.person.red_tiger_stronghold.0117",
-        "mw.person.red_tiger_stronghold.0005",
-        "mw.person.red_tiger_stronghold.0033"
-      ],
-      "leader_ref": "mw.person.red_tiger_stronghold.0021",
-      "beneficiary_ref": "red_tiger_stronghold",
-      "mode": "foot",
-      "started_at": "0061-09-24T21:15:00",
-      "last_progress_at": "0061-09-26T21:15:00",
-      "elapsed_seconds": 172800,
-      "required_seconds": 258005,
-      "edge_start_milli": 301,
-      "edge_end_milli": 219,
-      "route_weather": {
-        "place_id": "jingzhou",
-        "at": "0061-09-24T21:15:00",
-        "season": "autumn",
-        "temperature_c_tenths": 225,
-        "temperature_c": 22.5,
-        "condition": "clear",
-        "precipitation_milli": 0,
-        "humidity_milli": 700,
-        "wind_mps_tenths": 9,
-        "wind_direction_degrees": 191,
-        "visibility_milli": 1000,
-        "sound_masking_milli": 45,
-        "ground": "dry"
-      },
-      "status": "active",
-      "provision_reservation": {
-        "source_kind": "faction",
-        "source_ref": "red_tiger_stronghold",
-        "participant_count": 39,
-        "planned_travel_seconds": 258005,
-        "ration_days_reserved": 117,
-        "ration_days_consumed": 78,
-        "journey_elapsed_seconds": 172800
-      },
-      "protected_person_refs": [],
-      "captive_refs": [],
-      "rescued_refs": [],
-      "item_ref": "",
-      "quantity": 0
-    },
-    "pursuit:escort_muster:0e52cfa45f5bbea72ba0:black_lance_company:610926232127": {
-      "movement_kind": "route_pursuit",
-      "target_movement_ref": "escort_muster:0e52cfa45f5bbea72ba0",
-      "route_ref": "route.changan.huashan",
-      "origin_place_ref": "changan",
-      "destination_place_ref": "huashan",
-      "beneficiary_ref": "black_lance_company",
-      "participant_refs": [
-        "mw.person.black_lance_company.0041",
-        "mw.person.black_lance_company.0035",
-        "mw.person.black_lance_company.0004",
-        "mw.person.black_lance_company.0048",
-        "mw.person.black_lance_company.0037",
-        "mw.person.black_lance_company.0066",
-        "mw.person.black_lance_company.0085",
-        "mw.person.black_lance_company.0092",
-        "mw.person.black_lance_company.0012",
-        "mw.person.black_lance_company.0026",
-        "mw.person.black_lance_company.0029",
-        "mw.person.black_lance_company.0077",
-        "mw.person.black_lance_company.0021",
-        "mw.person.black_lance_company.0031",
-        "mw.person.black_lance_company.0060",
-        "mw.person.black_lance_company.0079",
-        "mw.person.black_lance_company.0044",
-        "mw.person.black_lance_company.0050",
-        "mw.person.black_lance_company.0089",
-        "mw.person.black_lance_company.5017",
-        "mw.person.black_lance_company.0058",
-        "mw.person.black_lance_company.0075",
-        "mw.person.black_lance_company.5013",
-        "mw.person.black_lance_company.0018",
-        "mw.person.black_lance_company.0030",
-        "mw.person.black_lance_company.0032",
-        "mw.person.black_lance_company.0047",
-        "mw.person.black_lance_company.0053",
-        "mw.person.black_lance_company.0054",
-        "mw.person.black_lance_company.0059",
-        "mw.person.black_lance_company.0063",
-        "mw.person.black_lance_company.0084",
-        "mw.person.black_lance_company.0006",
-        "mw.person.black_lance_company.0007",
-        "mw.person.black_lance_company.0028",
-        "mw.person.black_lance_company.0033",
-        "mw.person.black_lance_company.0039",
-        "mw.person.black_lance_company.0043",
-        "mw.person.black_lance_company.0067",
-        "mw.person.black_lance_company.0071",
-        "mw.person.black_lance_company.0078",
-        "mw.person.black_lance_company.0001",
-        "mw.person.black_lance_company.0005"
-      ],
-      "started_at": "0061-09-26T23:21:27",
-      "ready_at": "0061-09-27T07:21:27",
-      "status": "pursuing",
-      "contact_intent": "hostile_interception"
     },
     "pursuit:escort_muster:0e52cfa45f5bbea72ba0:faction.broken_tooth_gang:610926232127": {
       "movement_kind": "route_pursuit",
@@ -1089,9 +1171,72 @@
       "contact_intent": "hostile_interception"
     }
   },
-  "contacts": {},
-  "daily_route_attack_budget": {
-    "date": "0061-09-27",
-    "counts": {}
+  "contacts": {
+    "contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company": {
+      "movement_ref": "escort_muster:0e52cfa45f5bbea72ba0",
+      "route_ref": "route.changan.huashan",
+      "attacker_faction_ref": "black_lance_company",
+      "escort_refs": [
+        "pc_wei_tang",
+        "mw.person.house_tang.1032",
+        "mw.person.house_tang.1050",
+        "mw.person.house_tang.1030",
+        "mw.person.house_tang.1006",
+        "mw.person.house_tang.1027",
+        "mw.person.house_tang.1037",
+        "mw.person.house_tang.1025",
+        "mw.person.house_tang.1045",
+        "mw.person.house_tang.1001",
+        "mw.person.house_tang.1017",
+        "mw.person.house_tang.1020"
+      ],
+      "attacker_refs": [
+        "mw.person.black_lance_company.0041",
+        "mw.person.black_lance_company.0035",
+        "mw.person.black_lance_company.0004",
+        "mw.person.black_lance_company.0048",
+        "mw.person.black_lance_company.0037",
+        "mw.person.black_lance_company.0066",
+        "mw.person.black_lance_company.0085",
+        "mw.person.black_lance_company.0092",
+        "mw.person.black_lance_company.0012",
+        "mw.person.black_lance_company.0026",
+        "mw.person.black_lance_company.0029",
+        "mw.person.black_lance_company.0077",
+        "mw.person.black_lance_company.0021",
+        "mw.person.black_lance_company.0031",
+        "mw.person.black_lance_company.0060",
+        "mw.person.black_lance_company.0079",
+        "mw.person.black_lance_company.0044",
+        "mw.person.black_lance_company.0050",
+        "mw.person.black_lance_company.0089",
+        "mw.person.black_lance_company.5017",
+        "mw.person.black_lance_company.0058",
+        "mw.person.black_lance_company.0075",
+        "mw.person.black_lance_company.5013",
+        "mw.person.black_lance_company.0018",
+        "mw.person.black_lance_company.0030",
+        "mw.person.black_lance_company.0032",
+        "mw.person.black_lance_company.0047",
+        "mw.person.black_lance_company.0053",
+        "mw.person.black_lance_company.0054",
+        "mw.person.black_lance_company.0059",
+        "mw.person.black_lance_company.0063",
+        "mw.person.black_lance_company.0084",
+        "mw.person.black_lance_company.0006",
+        "mw.person.black_lance_company.0007",
+        "mw.person.black_lance_company.0028",
+        "mw.person.black_lance_company.0033",
+        "mw.person.black_lance_company.0039",
+        "mw.person.black_lance_company.0043",
+        "mw.person.black_lance_company.0067",
+        "mw.person.black_lance_company.0071",
+        "mw.person.black_lance_company.0078",
+        "mw.person.black_lance_company.0001",
+        "mw.person.black_lance_company.0005"
+      ],
+      "combat_ref": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+      "status": "active"
+    }
   }
 }

@@ -30,7 +30,19 @@ Active exact combat does not make speech impossible. Wei may call out, question,
 
 When Wei is addressing the opposing side generally and no opposing individual ID is player-visible, use the exact active `combat_ref` as the interaction `target_ref`. That means **address the opposing combat side**. Never guess, retrieve, or expose a hidden hostile person ID just to make dialogue possible.
 
-A combat parley attempt does not pause the exact-combat timeline, create a safe zone, make attacks impossible, establish that anyone answered, or produce a ceasefire, surrender, truce, ransom, safe passage, custody transfer, retreat agreement, or other binding consequence. Those outcomes require their own mechanical authority. If the interaction result does not establish a response, narrate only Wei's attempt and whatever response is independently supported by fresh player-safe authority.
+A combat parley attempt does not pause the exact-combat timeline, create a safe zone, make attacks impossible, establish that anyone answered, or produce a ceasefire, surrender, truce, ransom, safe passage, custody transfer, retreat agreement, or other binding consequence. Those outcomes require their own mechanical authority.
+
+When fresh play context exposes `scene.combat_parley`, treat that handoff as the durable reversible conversation surface for the exact active opposing side. Its `open_questions` are player-authored questions still live against that combat side. The combat ref is a group address, not a hidden spokesman identity.
+
+When an ordinary response is natural and the player-safe scene supports one, do not default to sterile silence merely because no hostile person ID is visible. Realize one bounded opposing-side line, then persist it with `jianghu_scene_session_resolution` using `action: record_speech`, with both `session_ref` and `speaker_ref` set to the exact active combat ref. If the line actually answers one projected open question, set `resolves_question_ref` to that exact question ref. Refresh play context after the write before continuing the scene.
+
+That group-attributed line may acknowledge, refuse, object, warn, challenge, ask a question, speculate explicitly from player-safe evidence, or make a nonbinding proposal. It may use ordinary natural tone, hesitation, contempt, caution, or uncertainty when supported by the visible situation. It must not invent or expose a hidden hostile identity, secret employer, secret mission, private motive, concealed force fact, or other new secret factual information merely to make the exchange interesting.
+
+Persisted combat-side speech is only an **attributed statement from the opposing side**. It has no mechanical-consequence authority and is not automatically objective truth. A hostile speaker may refuse to explain, lie, bluff, threaten, misunderstand, or state an opinion, but the factual content still must stay within the player's lawful evidence unless another runtime authority independently establishes the fact.
+
+A reversible line such as **Turn back**, **You are not owed an explanation**, **Name your purpose**, or **Come no closer** does not itself move anyone, pause combat, establish that every combatant obeys, or create an agreement. If either side actually attacks, moves consequentially, surrenders, accepts terms, creates a ceasefire, changes custody, pays ransom, grants passage, or makes another hard commitment, use the relevant mechanical command before narrating that consequence.
+
+A new player combat-side question should remain open until answered or made irrelevant by a hard scene boundary. The read projection may also recover an unresolved legacy combat-side question that was written before combat questions became first-class threads. Never generalize that legacy compatibility to an old combat ref, a person target, or an already answered question.
 
 ## Action sequence
 

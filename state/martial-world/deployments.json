@@ -82,10 +82,10 @@
       "target_place_ref": "dali",
       "started_at": "0061-09-13T21:15:00",
       "departure_at": "0061-09-14T14:15:00",
-      "arrival_at": "0061-09-15T14:15:00",
+      "arrival_at": "0061-09-15T16:15:01",
       "travel_hours": 24.0,
       "route_refs": [],
-      "status": "return_preparing",
+      "status": "traveling_return",
       "targeting_intent": "disable",
       "operation_intent": "cargo_seizure",
       "mobilized_force_count": 9,
@@ -111,40 +111,6 @@
       "local_frontage_count": 4,
       "battle_outcome": "defense_broken",
       "battle_winner_side": "side_a",
-      "casualty_refs": []
-    },
-    "operation:faction_raid:faction.green_snake_gang:faction.river_reed_sect:006109": {
-      "faction_ref": "faction.green_snake_gang",
-      "target_faction_ref": "faction.river_reed_sect",
-      "operation_kind": "faction_raid",
-      "participant_refs": [
-        "mw.person.green_snake_gang.1013",
-        "mw.person.green_snake_gang.1001",
-        "mw.person.green_snake_gang.1003",
-        "mw.person.green_snake_gang.1012",
-        "mw.person.green_snake_gang.1000",
-        "mw.person.green_snake_gang.1015",
-        "mw.person.green_snake_gang.1017"
-      ],
-      "source_place_ref": "kunming",
-      "target_place_ref": "kunming",
-      "started_at": "0061-09-13T21:15:00",
-      "departure_at": "0061-09-14T12:15:00",
-      "arrival_at": "0061-09-15T14:15:01",
-      "travel_hours": 24.0,
-      "route_refs": [],
-      "status": "traveling_return",
-      "targeting_intent": "disable",
-      "operation_intent": "extortion",
-      "mobilized_force_count": 7,
-      "mobilization_basis": "stealth_coordination",
-      "pending_travel_direction": "return",
-      "battle_force_count": 7,
-      "battle_defender_force_count": 7,
-      "allied_defender_count": 0,
-      "local_frontage_count": 4,
-      "battle_outcome": "local_stalemate",
-      "battle_winner_side": null,
       "casualty_refs": []
     },
     "operation:faction_raid:faction.grey_gate_band:faction.northern_bow_school:006109": {
@@ -607,11 +573,11 @@
       "started_at": "0061-09-13T21:15:00",
       "departure_at": "0061-09-14T23:15:00",
       "arrival_at": "0061-09-15T14:29:56.400000",
-      "travel_hours": 15.25,
+      "travel_hours": 22.49,
       "route_refs": [
         "route.dengfeng.shaolin_temple"
       ],
-      "status": "traveling_outbound",
+      "status": "traveling_return",
       "targeting_intent": "disable",
       "operation_intent": "cargo_seizure",
       "arrival_event_kind": "faction_operation_arrival",
@@ -722,7 +688,15 @@
           "weapon_jian": 0
         }
       },
-      "physical_movement_ref": "route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:outbound"
+      "battle_force_count": 11,
+      "battle_defender_force_count": 141,
+      "allied_defender_count": 0,
+      "local_frontage_count": 17,
+      "battle_outcome": "local_stalemate",
+      "battle_winner_side": null,
+      "casualty_refs": [],
+      "physical_movement_ref": "route_operation:operation:faction_raid:faction.yellow_dust_band:shaolin:006109:return",
+      "return_arrival_at": "0061-09-16T12:59:30.280000"
     },
     "retinue.wei.permanent_travel_team": {
       "operation_kind": "standing_retinue",

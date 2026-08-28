@@ -41,6 +41,7 @@ _SCOPE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9:._/-]{0,127}$")
 _MAX_TOKEN_BYTES = 16 * 1024
 _PREVIEW_SECRET = re.compile(r"^[A-Za-z0-9_-]{43,256}$")
 _PREVIEW_ATTESTATION_TTL_SECONDS = 300
+_PREVIEW_ATTESTATION_CLOCK_SKEW_SECONDS = 60
 _MAX_PREVIEW_ATTESTATION_BYTES = 1024
 
 
@@ -520,12 +521,18 @@ def _verify_preview_attestation(
         return False
     expires_at = record.get("expires_at")
     current = int(time.time()) if now is None else now
+    earliest_valid_expiry = current - _PREVIEW_ATTESTATION_CLOCK_SKEW_SECONDS
+    latest_valid_expiry = (
+        current
+        + _PREVIEW_ATTESTATION_TTL_SECONDS
+        + _PREVIEW_ATTESTATION_CLOCK_SKEW_SECONDS
+    )
     return (
         record.get("version") == 1
         and record.get("command_sha256") == command.digest
         and isinstance(expires_at, int)
         and not isinstance(expires_at, bool)
-        and current <= expires_at <= current + _PREVIEW_ATTESTATION_TTL_SECONDS
+        and earliest_valid_expiry <= expires_at <= latest_valid_expiry
     )
 
 

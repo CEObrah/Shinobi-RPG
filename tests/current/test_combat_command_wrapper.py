@@ -57,6 +57,17 @@ def _copy_runtime_repository(tmp_path: Path) -> Path:
             )
         }
     combat_path.write_text(json.dumps(combat_state))
+    # Current-save location is also mutable campaign truth.  Normalize only the
+    # copied synthetic combat participants to one known site so wrapper tests do
+    # not depend on wherever the live campaign currently has Wei or Tang Zhu.
+    roster_path = root / "state/martial-world/people/house_tang.json"
+    roster_state = json.loads(roster_path.read_text())
+    people = roster_state.get("people", [])
+    if isinstance(people, list):
+        for person in people:
+            if isinstance(person, dict) and person.get("person_id") in {"pc_wei_tang", "char.zhu"}:
+                person["location_ref"] = "site.changan.inn"
+    roster_path.write_text(json.dumps(roster_state))
     return root
 
 

@@ -17,7 +17,7 @@ def test_player_interface_recovers_current_revision_transition_after_interruptio
     assert "next_object_ref" in interface
     assert "command_recoverable: false" in interface
     assert "Do not replay a transition that has already been shown" in interface
-    assert "terminal state digest" in review
+    assert "terminal state or casualty totals" in review
 
 
 def test_reentry_contract_does_not_turn_stale_handoff_into_repeat_menu():

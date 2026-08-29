@@ -110,15 +110,32 @@ Do not force everyone to speak, rotate through the roster, or use dialogue to re
 
 Ordinary nonbinding battlefield speech may be realized as scene performance under the normal scene contract. Persist only speech whose later attribution materially matters. A surrender, ceasefire, binding order, promise, ransom term, custody change, or other hard consequence still requires its mechanical authority before narration treats it as accomplished.
 
+Missing hostile identity, motive, employer, or complete force accounting does not require enemies to become mute. Opposing combatants may shout warnings, taunts, refusals, pain, confusion, tactical calls, or other reversible lines grounded in what Wei can actually observe. Narrow uncertain claims instead of suppressing the human scene.
+
 ## Observer reports and enemy counts
 
 Treat combat observation as observer-specific knowledge. When `scene.combat_observation_context` exists, `player_observation` is Wei's own stored observation while each entry in `ally_observer_summaries` belongs to that ally and is not automatically Wei's knowledge.
 
-When `scene.combat_present_person_ids` exists, treat it as the exact player-safe friendly cast that has actually reached the active combat space. Prefer it over stale `state/scene.json` cast memory, route membership, mission rosters, or `person_reads.suggested_owner_ids` when deciding which allies can physically speak, protect, be addressed, or otherwise participate in the immediate battle scene. A registered future reinforcement is reserved for the combat but is **not co-present** until its exact reinforcement clock arrives.
+Friendly presence has separate meanings. When these projections exist:
 
-`confirmed_observed_hostile_count` means exactly what that observer has detected among the current hostile combatants. It is an observed count, not a guarantee that no additional enemy exists outside the observer's knowledge or outside the current combat space. Never expose hidden hostile IDs or substitute the hidden opposing roster size for an observer's count.
+- `scene.combat_present_person_ids` is the player-safe friendly cast currently able to act in the exact combat space;
+- `scene.combat_body_person_ids` is the wider player-safe set of friendly bodies still physically present, including incapacitated or dead bodies;
+- `scene.combat_dead_person_ids` identifies friendly bodies currently projected dead;
+- `scene.combat_incapacitated_person_ids` identifies friendly bodies projected incapacitated or unconscious without also being dead.
 
-If Wei asks an exactly co-present scout or ally how many enemies they saw, let that person report the concrete confirmed count through ordinary reversible dialogue. Prefer wording such as **I saw seven** or **I counted seven; there may be more** when total force remains uncertain. Do not collapse a stored positive observation to a generic **I don't know** merely because the observer cannot certify the entire hostile force.
+Use the active cast when deciding who can speak, protect, attack, move under their own power, or otherwise take combat action. Use the body/casualty projections when narrating wounded retrieval, obstruction, protection, treatment pressure, or the physical presence of fallen allies. Do not let an incapacitated or dead body speak or act merely because it remains physically present.
+
+Prefer these exact-combat projections over stale `state/scene.json` cast memory, route membership, mission rosters, or `person_reads.suggested_owner_ids`. A registered future reinforcement is reserved for the combat but is **not co-present** until its exact reinforcement clock arrives.
+
+`confirmed_observed_hostile_count` is cumulative detection history for that observer in the active combat: the number of unique hostile combatants that observer has directly detected at some point in the fight. It is **not** current active hostile strength, not a casualty-adjusted headcount, and not proof that no additional enemy exists outside the observer's knowledge or outside the current combat space. Never expose hidden hostile IDs or substitute the hidden opposing roster size for this observed count.
+
+When available, use `player_hostile_status_observation` for Wei's last directly observed hostile condition accounting. Its active-unwounded, active-wounded, incapacitated, dead, and unknown counts are observer-safe snapshots of the last direct observation, not omniscient current state. `observed_status_unknown_count` means the observer has previously detected those hostiles but lacks a reliable stored condition snapshot for them.
+
+Do not derive current enemy strength by subtracting remembered casualties from `confirmed_observed_hostile_count`. Do not present all historically observed hostiles as currently standing merely because their latest condition is unknown. Describe only what Wei can presently support: bodies he can see, enemies he can still track, last-seen casualties, uncertainty created by terrain or movement, and any explicit last-observation status projection.
+
+Legacy combats may contain positive cumulative hostile observations whose condition snapshots are unknown because the fight began before status snapshots were recorded. Preserve that uncertainty. Future direct observation can refine the status projection; never invent retroactive enemy casualties or silently convert `unknown` into `active`.
+
+If Wei asks an exactly co-present scout or ally how many enemies they saw, let that person report their concrete cumulative confirmed count through ordinary reversible dialogue, with the temporal qualifier that fits the scene. Prefer wording such as **I counted seven on the road; I cannot tell how many are still up** when present status is uncertain. Do not collapse a stored positive observation to a generic **I don't know** merely because the observer cannot certify the entire hostile force.
 
 Do not union allied observations into Wei's knowledge merely because the handoff contains them. The observation becomes Wei's scene knowledge only through a lawful shared-information path such as the ally reporting it, Wei directly observing it, or another established communication path.
 

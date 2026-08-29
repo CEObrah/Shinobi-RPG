@@ -81,21 +81,13 @@ def combat_observation_scene_projection(
     player_id: str,
     ally_limit: int = 16,
 ) -> dict[str, Any] | None:
-    """Project arrived friendly cast and observer-specific hostile counts safely.
-
-    Exact combat persists each combatant's ``observed_refs`` and may register
-    future reinforcements before they reach the local geometry. The projection
-    exposes only friendly members whose reinforcement clock has arrived. Enemy
-    identities and hidden opposing roster size remain private, and an ally's
-    observations remain that ally's knowledge until communicated in-scene.
-    """
+    """Project active friendlies, casualty bodies, and observer-safe hostile status."""
     active = active_combat_for_person(read_json, player_id)
     if active is None:
         return None
     combat_ref, combat = active
     if not isinstance(combat, Mapping):
         return None
-
     sides = combat.get("sides", {})
     combatants = combat.get("combatants", {})
     if not isinstance(sides, Mapping) or not isinstance(combatants, Mapping):
@@ -119,13 +111,31 @@ def combat_observation_scene_projection(
             if ref not in enemy_refs:
                 enemy_refs.append(ref)
     enemy_set = set(enemy_refs)
-    friendly_present = [
-        ref for ref in player_side_members if combat_person_arrived(combat, ref)
+
+    def status_families(ref: str) -> set[str]:
+        state = combatants.get(ref, {})
+        if not isinstance(state, Mapping):
+            return set()
+        return {str(value) for value in state.get("status_families", []) if isinstance(value, str)}
+
+    def body_present(ref: str) -> bool:
+        return combat_person_arrived(combat, ref) and not ({"escaped", "ring_out"} & status_families(ref))
+
+    def can_act(ref: str) -> bool:
+        return body_present(ref) and not ({"dead", "incapacitated", "unconscious"} & status_families(ref))
+
+    friendly_bodies = [ref for ref in player_side_members if body_present(ref)]
+    friendly_active = [ref for ref in friendly_bodies if can_act(ref)]
+    friendly_dead = [ref for ref in friendly_bodies if "dead" in status_families(ref)]
+    friendly_incapacitated = [
+        ref for ref in friendly_bodies
+        if "dead" not in status_families(ref)
+        and bool({"incapacitated", "unconscious"} & status_families(ref))
     ]
-    if player_id not in friendly_present:
-        # The active-combat resolver itself requires the player to have arrived,
-        # so this is defensive against malformed legacy state only.
-        friendly_present.insert(0, player_id)
+    if player_id not in friendly_bodies:
+        friendly_bodies.insert(0, player_id)
+    if player_id not in friendly_active and not ({"dead", "incapacitated", "unconscious"} & status_families(player_id)):
+        friendly_active.insert(0, player_id)
 
     def observer_summary(observer_ref: str) -> dict[str, Any]:
         state = combatants.get(observer_ref, {})
@@ -136,11 +146,43 @@ def combat_observation_scene_projection(
             "confirmed_observed_hostile_count": confirmed_count,
         }
 
+    def hostile_status_summary(observer_ref: str) -> dict[str, Any]:
+        state = combatants.get(observer_ref, {})
+        observed = _unique_person_refs(state.get("observed_refs")) if isinstance(state, Mapping) else []
+        snapshots = state.get("observed_status_families", {}) if isinstance(state, Mapping) else {}
+        snapshots = snapshots if isinstance(snapshots, Mapping) else {}
+        active_unwounded = active_wounded = incapacitated = dead = unknown = 0
+        for ref in observed:
+            if ref not in enemy_set:
+                continue
+            raw = snapshots.get(ref)
+            if not isinstance(raw, list):
+                unknown += 1
+                continue
+            statuses = {str(value) for value in raw if isinstance(value, str)}
+            if "dead" in statuses:
+                dead += 1
+            elif {"incapacitated", "unconscious"} & statuses:
+                incapacitated += 1
+            elif "wounded" in statuses:
+                active_wounded += 1
+            else:
+                active_unwounded += 1
+        return {
+            "observer_person_id": observer_ref,
+            "last_observed_active_unwounded_count": active_unwounded,
+            "last_observed_active_wounded_count": active_wounded,
+            "last_observed_incapacitated_count": incapacitated,
+            "last_observed_dead_count": dead,
+            "observed_status_unknown_count": unknown,
+            "status_semantics": "last_direct_observation_not_omniscient_current_state",
+        }
+
     player_observation = observer_summary(player_id)
     limit = max(0, min(24, int(ally_limit)))
     ally_observers: list[dict[str, Any]] = []
     if limit:
-        for ref in friendly_present:
+        for ref in friendly_active:
             if ref == player_id:
                 continue
             ally_observers.append(observer_summary(ref))
@@ -149,13 +191,18 @@ def combat_observation_scene_projection(
 
     return {
         "combat_ref": combat_ref,
-        "friendly_participant_person_ids": friendly_present,
-        "friendly_participant_count": len(friendly_present),
+        "friendly_participant_person_ids": friendly_active,
+        "friendly_participant_count": len(friendly_active),
+        "friendly_body_person_ids": friendly_bodies,
+        "friendly_dead_person_ids": friendly_dead,
+        "friendly_incapacitated_person_ids": friendly_incapacitated,
         "friendly_presence_semantics": "arrived_exact_combat_participants_only",
+        "friendly_activity_semantics": "combat_present_person_ids_are_able_to_act_bodies_only",
         "player_observation": player_observation,
+        "player_hostile_status_observation": hostile_status_summary(player_id),
         "ally_observer_summaries": ally_observers,
         "knowledge_semantics": "observer_specific_not_automatically_shared",
-        "count_semantics": "confirmed_observed_hostiles_not_total_force",
+        "count_semantics": "confirmed_observed_hostiles_ever_detected_not_current_active_or_total_force",
     }
 
 
@@ -316,6 +363,15 @@ class TravelAwareCampaignOperations(CampaignOperations):
                 combat_present = _unique_person_refs(
                     combat_observation.get("friendly_participant_person_ids")
                 )
+                combat_bodies = _unique_person_refs(
+                    combat_observation.get("friendly_body_person_ids")
+                )
+                combat_dead = _unique_person_refs(
+                    combat_observation.get("friendly_dead_person_ids")
+                )
+                combat_incapacitated = _unique_person_refs(
+                    combat_observation.get("friendly_incapacitated_person_ids")
+                )
                 present: list[str] = []
                 existing_present = scene.get("present_person_ids", [])
                 for ref in ([*existing_present] if isinstance(existing_present, list) else []) + combat_present:
@@ -323,17 +379,20 @@ class TravelAwareCampaignOperations(CampaignOperations):
                         present.append(ref)
                 scene["present_person_ids"] = present
                 scene["combat_present_person_ids"] = combat_present
-                for ref in combat_present:
+                scene["combat_body_person_ids"] = combat_bodies
+                scene["combat_dead_person_ids"] = combat_dead
+                scene["combat_incapacitated_person_ids"] = combat_incapacitated
+                for ref in combat_bodies:
                     if ref not in suggested:
                         suggested.append(ref)
                 person_reads["combat_participant_use"] = (
-                    "combat_present_person_ids are exact friendly members whose combat-arrival clock has fired. "
-                    "Use them as the current friendly battle cast; registered future reinforcements are not co-present yet."
+                    "combat_present_person_ids are arrived friendly fighters still able to act. "
+                    "combat_body_person_ids are the wider physically present friendly bodies; dead or incapacitated IDs are separated explicitly and must not speak, protect, or act."
                 )
                 person_reads["combat_observer_use"] = (
-                    "Ally observer counts are that ally's exact stored combat observation, not automatically "
-                    "Wei's knowledge. If a co-present ally reports what they saw, use the confirmed observed count "
-                    "without treating it as the total hostile force."
+                    "confirmed_observed_hostile_count is a cumulative detected count for this combat, not the number still fighting. "
+                    "Use player_hostile_status_observation for Wei's last directly observed hostile condition counts; those snapshots are not omniscient current state. "
+                    "Ally observations remain that ally's knowledge until communicated in-scene."
                 )
 
             if movement is not None:

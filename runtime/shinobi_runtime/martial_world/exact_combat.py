@@ -652,6 +652,22 @@ def _npc_poison_for(
     return None
 
 
+def _observed_status_snapshot(person: Mapping[str, Any], state: Mapping[str, Any]) -> list[str]:
+    """Return one observer-safe snapshot of a combat body's visible condition."""
+    statuses = {str(x) for x in state.get("status_families", []) if isinstance(x, str)}
+    health = person.get("health", {}) if isinstance(person.get("health"), Mapping) else {}
+    health_status = str(health.get("status") or "")
+    if health_status == "dead":
+        statuses.add("dead")
+    elif health_status == "incapacitated":
+        statuses.add("incapacitated")
+    if int(health.get("consciousness", 100)) <= 0 and health_status != "dead":
+        statuses.add("unconscious")
+    if health_status == "injured" or _wounds(person):
+        statuses.add("wounded")
+    return sorted(statuses)
+
+
 def initialize_combat(*, combat_ref: str, side_a_refs: Sequence[str], side_b_refs: Sequence[str], people: Mapping[str, Mapping[str, Any]], zone_ref: str, started_at: str, objective: Mapping[str, Any], awareness_mode: str = "mutual", initial_range_band: int = 1, obstacles: Sequence[Mapping[str, Any]] = (), awareness_evidence: Mapping[str, Any] | None = None, equipment_ledger: Mapping[str, Any] | None = None, initial_ready_weapons: Mapping[str, str] | None = None, mount_assignments: Mapping[str, Mapping[str, Any]] | None = None, environment: Mapping[str, Any] | None = None, reinforcement_delays_ms: Mapping[str, int] | None = None) -> dict[str, Any]:
     a=tuple(dict.fromkeys(str(x) for x in side_a_refs)); b=tuple(dict.fromkeys(str(x) for x in side_b_refs))
     if not a or not b or set(a)&set(b): raise ValueError("combat sides invalid")
@@ -672,20 +688,20 @@ def initialize_combat(*, combat_ref: str, side_a_refs: Sequence[str], side_b_ref
     if any(str(ref) not in set(a+b) for ref in mounts): raise ValueError("mount assignment participant unresolved")
     if any(str(ref) not in set(a+b) for ref in reinforcements): raise ValueError("reinforcement participant unresolved")
     for ref in a+b:
-        enemy_refs=list(b if ref in a else a); observed=enemy_refs if awareness_mode=="mutual" else []
+        enemy_refs=list(b if ref in a else a); arrived_enemy_refs=[enemy for enemy in enemy_refs if max(0,int(reinforcements.get(enemy,0)))==0]; observed=arrived_enemy_refs if awareness_mode=="mutual" else []
         surprised=(awareness_mode=="side_a_ambush" and ref in b) or (awareness_mode=="side_b_ambush" and ref in a)
-        if not surprised and awareness_mode!="mutual": observed=enemy_refs
+        if not surprised and awareness_mode!="mutual": observed=arrived_enemy_refs
         ready_ref=None
         requested=explicit_ready.get(ref)
         if isinstance(requested,str) and isinstance(equipment_ledger,Mapping) and _weapon_owned(equipment_ledger,ref,requested):
             ready_ref=requested
         elif not surprised and isinstance(equipment_ledger,Mapping):
-            nearest=min((planar_distance_mm(positions[ref],positions[enemy]) for enemy in enemy_refs),default=0)
+            nearest=min((planar_distance_mm(positions[ref],positions[enemy]) for enemy in arrived_enemy_refs),default=0)
             _kind,candidate=_default_weapon_for(ref,people[ref],equipment_ledger,target_distance_mm=nearest)
             if candidate!="body_unarmed" and _weapon_owned(equipment_ledger,ref,candidate): ready_ref=candidate
         reinforce=max(0,int(reinforcements.get(ref,0)))
         status_families=["reinforcing"] if reinforce>0 else []
-        state[ref]={"defense_state":{"load_milli":0,"last_at_ms":-1_000_000_000,"recent_attackers":{}},"balance_milli":1000,"limb_commitment_milli":0,"recovery_until_ms":0,"weapon_position":"guard","ready_weapon_ref":ready_ref,"status_families":status_families,"reinforcement_at_ms":reinforce,"surprise_milli":700 if surprised else 0,"observed_refs":([] if reinforce>0 else observed),"awareness_confidence_milli":0 if reinforce>0 else (1000 if observed else 0),"qi_allocation_milli":{},"environment_movement_milli":max(250,int(env.get("movement_milli",1000))),"environment_mounted_milli":max(250,int(env.get("mounted_milli",1000))),"environment_visibility_milli":max(200,int(env.get("visibility_milli",1000))),"concealment_milli":max(0,int(env.get("concealment_milli",0)))}
+        state[ref]={"defense_state":{"load_milli":0,"last_at_ms":-1_000_000_000,"recent_attackers":{}},"balance_milli":1000,"limb_commitment_milli":0,"recovery_until_ms":0,"weapon_position":"guard","ready_weapon_ref":ready_ref,"status_families":status_families,"reinforcement_at_ms":reinforce,"surprise_milli":700 if surprised else 0,"observed_refs":([] if reinforce>0 else observed),"observed_status_families":({} if reinforce>0 else {enemy:_observed_status_snapshot(people[enemy],{}) for enemy in observed}),"awareness_confidence_milli":0 if reinforce>0 else (1000 if observed else 0),"qi_allocation_milli":{},"environment_movement_milli":max(250,int(env.get("movement_milli",1000))),"environment_mounted_milli":max(250,int(env.get("mounted_milli",1000))),"environment_visibility_milli":max(200,int(env.get("visibility_milli",1000))),"concealment_milli":max(0,int(env.get("concealment_milli",0)))}
         mount=mounts.get(ref)
         if isinstance(mount,Mapping):
             owner=str(mount.get("owner_faction_ref") or people[ref].get("faction_ref") or "")
@@ -710,23 +726,39 @@ def _side_of(combat: Mapping[str, Any], ref: str) -> str:
 
 def _observe_visible_enemies(combat: dict[str, Any], *, actor_ref: str, enemy_refs: Sequence[str], people: Mapping[str, Mapping[str, Any]], at_ms: int) -> list[str]:
     state=combat["combatants"][actor_ref]; known=set(str(x) for x in state.get("observed_refs",[]) if isinstance(x,str)); actor_cap=capability_from_person(people[actor_ref])
+    snapshots_raw=state.get("observed_status_families",{}); snapshots=dict(snapshots_raw) if isinstance(snapshots_raw,Mapping) else {}
     for enemy_ref in enemy_refs:
-        if enemy_ref in known: continue
+        if enemy_ref not in people or enemy_ref not in combat.get("positions",{}): continue
         if not line_of_sight_clear(combat["positions"],actor_ref=actor_ref,target_ref=enemy_ref,obstacles=combat.get("obstacles",[])): continue
+        enemy_state=combat["combatants"].get(enemy_ref,{})
         enemy_cap=capability_from_person(people[enemy_ref]); distance_m=planar_distance_mm(combat["positions"][actor_ref],combat["positions"][enemy_ref])/1000.0
-        concealment=max(0,int(combat["combatants"][enemy_ref].get("concealment_milli",0))+enemy_cap.stealth*3)
+        stealth_contribution=enemy_cap.stealth*3 if _active(people[enemy_ref],enemy_state) else 0
+        concealment=max(0,int(enemy_state.get("concealment_milli",0))+stealth_contribution)
         visibility=max(200,min(1200,int((combat.get("environment") or {}).get("visibility_milli",1000)))) if isinstance(combat.get("environment"),Mapping) else 1000
         detection=(actor_cap.perception*5+actor_cap.reaction*2-int(distance_m*5))*visibility//1000
-        if detection>=concealment: known.add(enemy_ref)
+        if detection>=concealment:
+            known.add(enemy_ref)
+            snapshots[enemy_ref]=_observed_status_snapshot(people[enemy_ref],enemy_state)
     state["observed_refs"]=sorted(known)
+    state["observed_status_families"]={ref:list(snapshots[ref]) for ref in sorted(snapshots) if ref in known and isinstance(snapshots.get(ref),list)}
     if known: state["awareness_confidence_milli"]=1000; state["surprise_milli"]=max(0,int(state.get("surprise_milli",0))-max(200,at_ms//5))
     return sorted(known & set(enemy_refs))
 
 
 def _refresh_team_plan(combat: dict[str, Any], *, side: str, people: Mapping[str, Mapping[str, Any]], doctrine: Mapping[str, Any] | None) -> dict[str, Any]:
-    members=[ref for ref in combat["sides"][side] if _active(people[ref],combat["combatants"][ref])]; other="side_b" if side=="side_a" else "side_a"; enemies=[ref for ref in combat["sides"][other] if _active(people[ref],combat["combatants"][ref])]
-    known:set[str]=set(); at_ms=int(combat.get("elapsed_ms",0))
-    for member in members: known.update(_observe_visible_enemies(combat,actor_ref=member,enemy_refs=enemies,people=people,at_ms=at_ms))
+    members=[ref for ref in combat["sides"][side] if _active(people[ref],combat["combatants"][ref])]; other="side_b" if side=="side_a" else "side_a"; at_ms=int(combat.get("elapsed_ms",0))
+    enemy_members=[ref for ref in combat["sides"][other] if ref in people and ref in combat.get("combatants",{})]
+    enemies=[ref for ref in enemy_members if _active(people[ref],combat["combatants"][ref])]
+    enemy_set=set(enemies); observable=[]
+    for ref in enemy_members:
+        state=combat["combatants"][ref]; statuses={str(x) for x in state.get("status_families",[]) if isinstance(x,str)}
+        if {"escaped","ring_out"}&statuses: continue
+        if "reinforcing" in statuses and at_ms<max(0,int(state.get("reinforcement_at_ms",0))): continue
+        if ref in combat.get("positions",{}): observable.append(ref)
+    known:set[str]=set()
+    for member in members:
+        seen=_observe_visible_enemies(combat,actor_ref=member,enemy_refs=observable,people=people,at_ms=at_ms)
+        known.update(ref for ref in seen if ref in enemy_set)
     previous=combat.get("team_plans",{}).get(side); reasons=replan_reasons(previous,active_member_refs=members,known_enemy_refs=sorted(known),positions=combat["positions"],objective_kind=str(combat.get("objective",{}).get("kind","eliminate")))
     if reasons:
         plan=plan_team_exchange(side_ref=side,member_refs=members,known_enemy_refs=sorted(known),records=people,positions=combat["positions"],obstacles=combat.get("obstacles",[]),objective_kind=str(combat.get("objective",{}).get("kind","eliminate")),doctrine=doctrine,at_ms=at_ms); plan["replan_reasons"]=list(reasons); combat.setdefault("team_plans",{})[side]=plan
@@ -1634,7 +1666,7 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
     if action.weapon_ref!="body_unarmed":
         actor_state["ready_weapon_ref"]=action.weapon_ref
         actor_state["ready_hands_required"]=max(1,int((action.weapon or {}).get("hands_required",1)))
-    positions=combat["positions"]; start_actor=copy.deepcopy(positions[actor_ref]); start_target=copy.deepcopy(positions[target_ref]); profile=action.profile; approach_distance_mm=0; body_refs=[ref for refs in combat["sides"].values() for ref in refs]
+    positions=combat["positions"]; start_actor=copy.deepcopy(positions[actor_ref]); start_target=copy.deepcopy(positions[target_ref]); profile=action.profile; approach_distance_mm=0; body_refs=_present_body_refs(combat)
     qi_preview=_qi_preview(person=people[actor_ref],combatant_state=actor_state,duration_ms=max(1,action.release_at_ms-action.start_at_ms))
     actor_cap=_qi_enhanced_capability(_combat_capability_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,action_skill=_discipline_for_action(action.action_kind,action.weapon)),qi_preview)
     if profile.delivery not in {"projectile","ranged","thrown"}:
@@ -1809,6 +1841,7 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
         _refresh_structural_statuses(defender_state, defender)
         if defender["health"].get("status") in {"dead","incapacitated"}:
             statuses=set(defender_state.get("status_families",[])); status="dead" if defender["health"].get("status")=="dead" else "incapacitated"; statuses.add(status); defender_state["status_families"]=sorted(statuses); defender_state.setdefault("incapacitated_at_ms",at_ms)
+        snapshots=actor_state.get("observed_status_families",{}); snapshots=dict(snapshots) if isinstance(snapshots,Mapping) else {}; snapshots[actual_ref]=_observed_status_snapshot(defender,defender_state); actor_state["observed_status_families"]=snapshots
     if isinstance(mount_result,Mapping):
         result_kind="mount_disabled" if str(mount_result.get("status")) in {"disabled","dead"} else "mount_contact"
     else:
@@ -2014,7 +2047,15 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
         if "reinforcing" in statuses and now_ms>=max(0,int(state.get("reinforcement_at_ms",0))):
             state["status_families"]=[x for x in statuses if x!="reinforcing"]
             enemy_side="side_b" if _side_of(out,str(ref))=="side_a" else "side_a"
-            state["observed_refs"]=[str(x) for x in out.get("sides",{}).get(enemy_side,[])]
+            arrived_enemies=[]
+            for enemy_ref in out.get("sides",{}).get(enemy_side,[]):
+                enemy_state=out.get("combatants",{}).get(enemy_ref,{})
+                enemy_statuses={str(x) for x in enemy_state.get("status_families",[]) if isinstance(x,str)} if isinstance(enemy_state,Mapping) else set()
+                if {"escaped","ring_out"}&enemy_statuses: continue
+                if "reinforcing" in enemy_statuses and now_ms<max(0,int(enemy_state.get("reinforcement_at_ms",0))): continue
+                arrived_enemies.append(str(enemy_ref))
+            state["observed_refs"]=arrived_enemies
+            state["observed_status_families"]={enemy_ref:_observed_status_snapshot(persons[enemy_ref],out["combatants"].get(enemy_ref,{})) for enemy_ref in arrived_enemies if enemy_ref in persons}
             state["awareness_confidence_milli"]=1000
     for side in ("side_a","side_b"):
         members=out.get("sides",{}).get(side,[]); faction_ref=persons[members[0]].get("faction_ref") if members else None; _refresh_team_plan(out,side=side,people=persons,doctrine=doctrines.get(str(faction_ref),{}))

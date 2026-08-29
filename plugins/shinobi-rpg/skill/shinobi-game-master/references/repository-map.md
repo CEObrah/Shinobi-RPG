@@ -12,6 +12,7 @@ runtime/shinobi_runtime/commands/jianghu_time.py           full-horizon public t
 runtime/shinobi_runtime/combat/         exact local geometry/defense/team tactics
 runtime/shinobi_runtime/people/         direct persistent person reads
 runtime/shinobi_runtime/tx/             transaction/WAL/receipt durability
+runtime/shinobi_runtime/api/transition_operations.py       bounded current-revision receipt/transition re-entry projection
 runtime/contracts/                      current closed structural templates
 
 game/data/martial-world/                static Jianghu rules/world data
@@ -30,3 +31,5 @@ state/martial-world/institutional-operations.json  active/archive House mission 
 For source work, find the smallest owner. For live gameplay, use Runtime reads rather than repository browsing.
 
 Scene authority rule: mechanics asking where a person is must use `physical_presence.py`; `state/scene.json` can only supply presentation candidates that are revalidated against exact presence. NPC attributed speech records what was said, not whether the statement was objectively true.
+
+Transition evidence rule: immutable transaction receipts live outside mutable campaign owners. They may preserve the exact committed command plus result chronology for idempotency/re-entry, but they never override the refreshed campaign state. Player-facing recovery is limited to the receipt that produced the current campaign revision; it is not an arbitrary history interface.

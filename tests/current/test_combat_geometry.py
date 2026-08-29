@@ -8,7 +8,21 @@ from shinobi_runtime.martial_world.equipment_state import effective_person_loado
 from shinobi_runtime.martial_world.health import wound_from_contact
 
 ROOT=Path(__file__).resolve().parents[2]
-def load(rel): return json.loads((ROOT/rel).read_text())
+
+def _clean_combat_person(row):
+    person=copy.deepcopy(row)
+    person['fatigue_milli']=0
+    person['health']={'status':'ready','injuries':[],'blood_lost_ml':0,'shock':0,'consciousness':100}
+    person['poison_burdens']={}
+    person['pending_poison_burdens']={}
+    return person
+
+def load(rel):
+    payload=json.loads((ROOT/rel).read_text())
+    if rel=='state/martial-world/people/house_tang.json':
+        payload=copy.deepcopy(payload)
+        payload['people']=[_clean_combat_person(row) for row in payload.get('people',[])]
+    return payload
 
 
 def _pos(x,y,z=0): return {'x_mm':x,'y_mm':y,'elevation_mm':z,'facing_mdeg':0,'body_radius_mm':300,'zone_ref':'test'}
@@ -55,7 +69,7 @@ def test_invalid_targeting_intent_is_rejected():
         resolve_exchange(combat=combat,people=people,equipment_ledger=ledger,doctrines={},player_ref=roster[0]['person_id'],player_action_kind='thrust',player_target_ref=roster[3]['person_id'],player_weapon_ref='weapon_jian',player_hit_zone='auto',player_targeting_intent='whatever')
 
 
-def test_bilateral_blindness_blocks_visually_aimed_bow():
+def test_bilateral_blindness_blocks_visually_aimed_bow(monkeypatch):
     roster=load('state/martial-world/people/house_tang.json')['people']
     archer=copy.deepcopy(roster[0]); target=copy.deepcopy(roster[3])
     archer['health']={'status':'ready','injuries':[
@@ -66,6 +80,9 @@ def test_bilateral_blindness_blocks_visually_aimed_bow():
     ledger=load('state/martial-world/equipment-ledger.json')
     ledger.setdefault('person_loadouts', {})[archer['person_id']]={'items':{'weapon_bow':1,'item_arrow':6}}
     combat=initialize_combat(combat_ref='t',side_a_refs=[archer['person_id']],side_b_refs=[target['person_id']],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate','target_refs':[target['person_id']]},initial_range_band=2)
+    import shinobi_runtime.martial_world.exact_combat as exact
+    original_observe=exact._observe_visible_enemies
+    monkeypatch.setattr(exact,'_observe_visible_enemies',lambda combat,actor_ref,enemy_refs,people,at_ms: [] if actor_ref==target['person_id'] else original_observe(combat,actor_ref=actor_ref,enemy_refs=enemy_refs,people=people,at_ms=at_ms))
     result=resolve_exchange(combat=combat,people=people,equipment_ledger=ledger,doctrines={},player_ref=archer['person_id'],player_action_kind='bow_shot',player_target_ref=target['person_id'],player_weapon_ref='weapon_bow',player_hit_zone='chest',player_targeting_intent='disable')
     player_event=next(e for e in result['events'] if e['actor_ref']==archer['person_id'])
     assert player_event['result']=='visual_targeting_unavailable'
@@ -279,6 +296,8 @@ def test_failed_projectile_interception_does_not_reduce_impact_by_invisible_bloc
         return PhysicalDefenseDecision(detected=True,detection_margin=500,response='block',before_position=pos,after_position=pos,displacement_mm=0,reaction_delay_ms=40,recovery_ms=200,defense_factor_milli=100,reaction_availability_milli=1000,balance_after_milli=900,limb_commitment_after_milli=500,weapon_position_after='committed_guard',attack_angle_mdeg=0,tracking_milli=1000,force_transmission_milli=100,control_disruption=0,displacement_resistance_milli=700,interrupts_attacker=False,contact_surface='body_guard',reason='test')
     monkeypatch.setattr(exact,'select_physical_defense',fake_defense)
     monkeypatch.setattr(exact,'_projectile_interception',lambda **kwargs:{'outcome':'failed','trajectory':dict(kwargs['trajectory']),'speed_factor_milli':1000})
+    original_observe=exact._observe_visible_enemies
+    monkeypatch.setattr(exact,'_observe_visible_enemies',lambda combat,actor_ref,enemy_refs,people,at_ms: [] if actor_ref==defender['person_id'] else original_observe(combat,actor_ref=actor_ref,enemy_refs=enemy_refs,people=people,at_ms=at_ms))
     result=resolve_exchange(combat=combat,people=people,equipment_ledger=ledger,doctrines={},player_ref=archer['person_id'],player_action_kind='bow_shot',player_target_ref=defender['person_id'],player_weapon_ref='weapon_bow',player_hit_zone='chest',player_targeting_intent='disable')
     event=next(e for e in result['events'] if e['actor_ref']==archer['person_id'])
     assert event['interception']['outcome']=='failed'

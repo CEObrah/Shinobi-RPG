@@ -22,6 +22,23 @@ Resolve bare continuation in this order:
 
 A runtime resume hint is mechanical capability, not natural-language authorization. Do not interpret bare `continue` as permission to accept an offer, choose dialogue, select a destination, spend money, or execute another protected commitment.
 
+## Recovering an interrupted committed transition
+
+OOC discussion, development work, tool failure, context compaction, or a fresh conversation can interrupt **presentation** after a gameplay transaction has already committed. Never replace the missing transition with a terminal state digest merely because the original execute receipt is no longer in conversational context.
+
+After the required fresh `get_play_context`, inspect `object_reads.current_transition_ref` when all of the following are true:
+- current state clearly reflects a just-committed gameplay transition whose chronology matters to the resumed scene;
+- the transition receipt/events are not already available in the current conversation;
+- replaying how the current revision was reached is necessary to narrate or safely continue the player's intent.
+
+The advertised ref is `transition:current`. It exposes only the immutable receipt for the **current campaign revision**, not arbitrary historical turns. If its object has `next_object_ref`, follow those exact returned refs until enough/all ordered events have been recovered for the scene. Treat refreshed play context as current-state authority and the recovered receipt as transition evidence. Never let the receipt override newer state, and never use transition recovery to probe hidden futures or browse old history.
+
+If the recovered receipt includes an exact `command` and `result_metadata.continuation_required` is true, that command is durable evidence of the player's immediately preceding standing intent. Carry it only to the degree the normal agency/delegation rules permit. If a legacy receipt has `command_recoverable: false`, do not reconstruct protected target, Qi, poison, restraint, spending, dialogue, or other voluntary details from inference; narrate what is recoverable and return control when continuation would otherwise require guessing.
+
+Do not replay a transition that has already been shown in the current conversation. This recovery path exists for interrupted/re-entered presentation. In combat, narrate the recovered ordered events as the fight that produced the current wounds, deaths, positions, fatigue, and pressure before using any status accounting. In social/travel/institutional scenes, likewise restore the human/causal beat before summarizing its terminal state.
+
+A stale presentation handoff is not automatically a new protected decision. If recovered current-revision evidence and refreshed state show that Wei already acted on that handoff, continue from the actual current frontier rather than re-presenting the original menu merely because `state/scene.json` still remembers the contact that began the scene.
+
 ## The player does not write commands
 
 Use `get_play_context` first. Its command catalog defines what semantic commands are currently available. Read `get_command_contract` only after choosing the one relevant advertised command.

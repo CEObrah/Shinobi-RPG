@@ -26,6 +26,7 @@ class IdempotencyReceipt:
     committed_revision: int
     committed_at: str
     result: Mapping[str, Any]
+    command: Optional[Mapping[str, Any]] = None
 
     SCHEMA = "shinobi.idempotency-receipt"
     VERSION = 1
@@ -57,6 +58,24 @@ class IdempotencyReceipt:
             raise TypeError("receipt result must be an object")
         object.__setattr__(self, "result", freeze_json(self.result))
 
+        if self.command is not None:
+            if not isinstance(self.command, Mapping):
+                raise TypeError("receipt command must be an object")
+            command_record = thaw_json(freeze_json(self.command))
+            try:
+                envelope = CommandEnvelope.from_record(command_record)
+            except (TypeError, ValueError) as exc:
+                raise ValueError("receipt command is invalid") from exc
+            if envelope.to_record() != command_record:
+                raise ValueError("receipt command is not canonical")
+            if envelope.request_id != self.request_id:
+                raise ValueError("receipt command request identity mismatch")
+            if envelope.campaign_id != self.campaign_id:
+                raise ValueError("receipt command campaign identity mismatch")
+            if envelope.digest != self.request_digest:
+                raise ValueError("receipt command digest mismatch")
+            object.__setattr__(self, "command", freeze_json(command_record))
+
     @classmethod
     def for_command(
         cls,
@@ -74,10 +93,11 @@ class IdempotencyReceipt:
             committed_revision=committed_revision,
             committed_at=committed_at,
             result=result,
+            command=command.to_record(),
         )
 
     def to_record(self) -> Mapping[str, Any]:
-        return {
+        record: dict[str, Any] = {
             "schema": self.SCHEMA,
             "version": self.VERSION,
             "request_id": self.request_id,
@@ -88,6 +108,9 @@ class IdempotencyReceipt:
             "committed_at": self.committed_at,
             "result": thaw_json(self.result),
         }
+        if self.command is not None:
+            record["command"] = thaw_json(self.command)
+        return record
 
     @classmethod
     def from_record(cls, record: Mapping[str, Any]) -> "IdempotencyReceipt":
@@ -101,6 +124,7 @@ class IdempotencyReceipt:
             committed_revision=record.get("committed_revision"),
             committed_at=record.get("committed_at"),
             result=record.get("result"),
+            command=record.get("command"),
         )
 
 
@@ -121,7 +145,6 @@ class ReceiptStore:
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.index_path = self.directory / self.INDEX_NAME
-
 
     @staticmethod
     def _is_receipt_path(path: Path) -> bool:
@@ -225,6 +248,32 @@ class ReceiptStore:
         index = self._ensure_index()
         value = index["campaigns"].get(campaign_id)
         return value if isinstance(value, int) else None
+
+    def get_campaign_revision(
+        self, campaign_id: str, revision: int
+    ) -> Optional[IdempotencyReceipt]:
+        """Return the unique receipt for one exact campaign revision.
+
+        This deliberately scans immutable receipt metadata only for explicit
+        transition-recovery reads.  Normal gameplay execution remains request-ID
+        addressed and never enumerates history.  A duplicate revision fails
+        closed because choosing one receipt would make transition chronology
+        ambiguous.
+        """
+
+        if not isinstance(campaign_id, str) or not campaign_id:
+            raise ValueError("campaign_id must be non-empty")
+        if isinstance(revision, bool) or not isinstance(revision, int) or revision < 0:
+            raise ValueError("revision must be a non-negative integer")
+        match: Optional[IdempotencyReceipt] = None
+        for path in self._receipt_paths():
+            receipt = self._read(path)
+            if receipt.campaign_id != campaign_id or receipt.committed_revision != revision:
+                continue
+            if match is not None:
+                raise ValueError("multiple receipts claim one campaign revision")
+            match = receipt
+        return match
 
     def _note_campaign_revision(self, receipt: IdempotencyReceipt) -> None:
         index = self._ensure_index()
@@ -346,4 +395,3 @@ class ReceiptStore:
             except FileNotFoundError:
                 pass
             raise
-

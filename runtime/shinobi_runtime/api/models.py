@@ -182,7 +182,7 @@ class GameObjectResponse(StrictModel):
         "promotion_exam_results_page",
         "faction_summary", "deployment_summary", "tournament_summary", "market_summary",
         "institutional_mission_summary", "attributed_scene_history",
-        "relations_summary", "government_summary",
+        "relations_summary", "government_summary", "current_committed_transition",
     ]
     object: Dict[str, Any]
 

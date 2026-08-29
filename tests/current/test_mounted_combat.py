@@ -19,7 +19,10 @@ def person(ref, *, level=100):
     base['faction_ref'] = 'house_tang'
     base['attributes'] = {k: level for k in base['attributes']}
     base['martial_skills'] = {'spear': level, 'sword': level, 'bow': level, 'unarmed': level}
-    base['health'] = {'status': 'ready', 'consciousness': 100, 'injuries': []}
+    base['health'] = {'status': 'ready', 'consciousness': 100, 'injuries': [], 'blood_lost_ml': 0, 'shock': 0}
+    base['fatigue_milli'] = 0
+    base['poison_burdens'] = {}
+    base['pending_poison_burdens'] = {}
     return base
 
 

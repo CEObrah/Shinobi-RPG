@@ -29,7 +29,14 @@ def _eye(ref):
 
 
 def _person():
-    return copy.deepcopy(RepositoryPersonSheetResolver(RepositoryStore(ROOT))('pc_wei_tang'))
+    person=copy.deepcopy(RepositoryPersonSheetResolver(RepositoryStore(ROOT))('pc_wei_tang'))
+    # Mechanics tests need a stable synthetic baseline, not the live campaign's
+    # current fatigue/injuries/poison state. The save is allowed to progress.
+    person['fatigue_milli']=0
+    person['health']={'status':'ready','injuries':[],'blood_lost_ml':0,'shock':0,'consciousness':100}
+    person['poison_burdens']={}
+    person['pending_poison_burdens']={}
+    return person
 
 def _set_wounds(person, wounds):
     person['health']=copy.deepcopy(person.get('health',{}))

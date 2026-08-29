@@ -127,18 +127,15 @@ def test_live_combat_start_and_bare_attack_exchange_preview_and_plan_end_to_end(
     assert plan.result["world_time"] > current["time"]
 
 
-def test_gameplay_combat_scope_fields_are_rejected_to_preserve_exchange_frontiers(tmp_path):
-    import pytest
-    from shinobi_runtime.api.contracts import CommandRejectedError
-
+def test_high_level_attack_scope_runs_multiple_doctrine_exchanges_in_one_command(tmp_path):
     root = _copy_runtime_repository(tmp_path)
     repo = RepositoryStore(root)
     planner = RepositoryCommandPlanner(repo)
     meta = repo.read_json("state/meta.json")
-    combat_ref = "combat.test.single-exchange-surface"
+    combat_ref = "combat.test.scoped-attack"
 
     start = CommandEnvelope(
-        campaign_id=meta["campaign_id"], request_id="test.single-exchange.start",
+        campaign_id=meta["campaign_id"], request_id="test.scoped.start",
         actor_id=meta["player_id"], command_type="jianghu_combat_resolution",
         expected_revision=meta["revision"], submitted_at="2026-08-27T00:01:00Z",
         payload={
@@ -148,23 +145,25 @@ def test_gameplay_combat_scope_fields_are_rejected_to_preserve_exchange_frontier
             "awareness_mode": "mutual", "initial_range_band": 2,
         }, mode="gameplay",
     )
-    _apply_plan(repo, planner.plan(start))
-    current = repo.read_json("state/meta.json")
+    start_plan = planner.plan(start)
+    _apply_plan(repo, start_plan)
 
-    for index, extra in enumerate((
-        {"exchange_count": 3},
-        {"duration_seconds": 1},
-        {"until_resolution": True},
-    )):
-        command = CommandEnvelope(
-            campaign_id=current["campaign_id"], request_id=f"test.single-exchange.reject.{index}",
-            actor_id=current["player_id"], command_type="jianghu_combat_resolution",
-            expected_revision=current["revision"], submitted_at="2026-08-27T00:01:01Z",
-            payload={"action": "exchange", "combat_ref": combat_ref, **extra},
-            mode="gameplay",
-        )
-        with pytest.raises(CommandRejectedError, match="jianghu_combat_resolution_payload_fields_invalid"):
-            planner.preview(command)
+    current = repo.read_json("state/meta.json")
+    attack = CommandEnvelope(
+        campaign_id=current["campaign_id"], request_id="test.scoped.attack",
+        actor_id=current["player_id"], command_type="jianghu_combat_resolution",
+        expected_revision=current["revision"], submitted_at="2026-08-27T00:01:01Z",
+        payload={"action": "exchange", "combat_ref": combat_ref, "exchange_count": 3},
+        mode="gameplay",
+    )
+    preview = planner.preview(attack)
+    assert preview.status == "ready"
+    plan = planner.plan(attack)
+    assert plan.result["exchanges_resolved"] == 3
+    assert plan.result["scope_stop_reason"] == "scope_complete"
+    assert plan.result["continuation_required"] is False
+    assert len([row for row in plan.result["events"] if row.get("actor_ref") == current["player_id"]]) >= 3
+    assert plan.result["world_time"] > current["time"]
 
 
 def test_bare_attack_respects_nonlethal_vow_but_explicit_lethal_intent_can_break_it(tmp_path):
@@ -222,6 +221,60 @@ def test_bare_attack_respects_nonlethal_vow_but_explicit_lethal_intent_can_break
     assert lethal_events
     assert all(row.get("targeting_intent")=="lethal" for row in lethal_events)
     assert lethal_plan.result["broken_vow_refs"]
+
+
+def test_duration_scoped_attack_advances_until_requested_combat_time_budget(tmp_path):
+    root=_copy_runtime_repository(tmp_path / "duration")
+    repo=RepositoryStore(root); planner=RepositoryCommandPlanner(repo); meta=repo.read_json("state/meta.json")
+    combat_ref="combat.test.duration-scope"
+    start=CommandEnvelope(
+        campaign_id=meta["campaign_id"],request_id="test.duration.start",actor_id=meta["player_id"],
+        command_type="jianghu_combat_resolution",expected_revision=meta["revision"],submitted_at="2026-08-27T00:03:00Z",
+        payload={"action":"start","combat_ref":combat_ref,"side_a_refs":[meta["player_id"]],"side_b_refs":["char.zhu"],
+                 "objective":{"kind":"eliminate","target_refs":["char.zhu"]},"awareness_mode":"mutual","initial_range_band":2},
+        mode="gameplay",
+    )
+    _apply_plan(repo,planner.plan(start)); current=repo.read_json("state/meta.json")
+    combats_before=repo.read_json("state/martial-world/combats.json")
+    elapsed_before=int(combats_before["combats"][combat_ref].get("elapsed_ms",0))
+    cmd=CommandEnvelope(
+        campaign_id=current["campaign_id"],request_id="test.duration.attack",actor_id=current["player_id"],
+        command_type="jianghu_combat_resolution",expected_revision=current["revision"],submitted_at="2026-08-27T00:03:01Z",
+        payload={"action":"exchange","combat_ref":combat_ref,"duration_seconds":1},mode="gameplay",
+    )
+    plan=planner.plan(cmd)
+    combat_after=json.loads(plan.writes["state/martial-world/combats.json"].decode("utf-8"))["combats"][combat_ref]
+    assert int(combat_after["elapsed_ms"])-elapsed_before >= 1000
+    assert plan.result["exchanges_resolved"] >= 1
+    assert plan.result["scope_stop_reason"] in {"scope_complete","combat_resolved"}
+    assert plan.result["continuation_required"] is False
+
+
+def test_until_resolution_scope_finishes_or_returns_explicit_continuation_frontier(tmp_path):
+    root=_copy_runtime_repository(tmp_path / "until")
+    repo=RepositoryStore(root); planner=RepositoryCommandPlanner(repo); meta=repo.read_json("state/meta.json")
+    combat_ref="combat.test.until-resolution"
+    start=CommandEnvelope(
+        campaign_id=meta["campaign_id"],request_id="test.until.start",actor_id=meta["player_id"],
+        command_type="jianghu_combat_resolution",expected_revision=meta["revision"],submitted_at="2026-08-27T00:04:00Z",
+        payload={"action":"start","combat_ref":combat_ref,"side_a_refs":[meta["player_id"]],"side_b_refs":["char.zhu"],
+                 "objective":{"kind":"eliminate","target_refs":["char.zhu"]},"awareness_mode":"mutual","initial_range_band":2},
+        mode="gameplay",
+    )
+    _apply_plan(repo,planner.plan(start)); current=repo.read_json("state/meta.json")
+    cmd=CommandEnvelope(
+        campaign_id=current["campaign_id"],request_id="test.until.attack",actor_id=current["player_id"],
+        command_type="jianghu_combat_resolution",expected_revision=current["revision"],submitted_at="2026-08-27T00:04:01Z",
+        payload={"action":"exchange","combat_ref":combat_ref,"until_resolution":True},mode="gameplay",
+    )
+    plan=planner.plan(cmd)
+    assert plan.result["exchanges_resolved"] >= 1
+    if plan.result["combat_status"] == "resolved":
+        assert plan.result["scope_stop_reason"] == "combat_resolved"
+        assert plan.result["continuation_required"] is False
+    else:
+        assert plan.result["scope_stop_reason"] == "execution_frontier"
+        assert plan.result["continuation_required"] is True
 
 
 def test_bounded_combat_does_not_convert_internal_type_errors_into_partial_success(monkeypatch):

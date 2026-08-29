@@ -12,7 +12,103 @@ Target identity expresses intent. Contact comes from geometry. A released projec
 
 A player combat command does not need to enumerate every mechanical choice. A terse intent such as **attack**, **press him**, or **keep fighting** authorizes the runtime to fill only the unspecified tactical details from Tang Wei's standing combat doctrine, lawful perception, current geometry, equipment, fatigue, Qi state, poison inventory, and active team doctrine. This can include target selection when the player did not name one, weapon/technique selection, anatomical aim, automatic defense, movement needed to make the attack physical, and conservative Qi/poison use.
 
-Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand. A longer instruction such as **fight for thirty seconds** or **finish the fight** simply extends the same standing policy across the bounded simulated span.
+Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand.
+
+A longer instruction such as **fight for thirty seconds**, **keep attacking**, or **finish the fight** may carry the same standing policy through many exact exchanges. This is valid player delegation. Do not force Tang Wei to micromanage every swing merely to keep the fight moving.
+
+A long standing combat span is never permission to erase the fight as a scene. The runtime may resolve many exchanges under one declared policy, but the GM must preserve and narrate the committed chronology rather than replacing it with terminal HP, injury, or casualty accounting.
+
+## Combat narration contract
+
+Active combat is a lived scene, not an after-action report.
+
+A combat command receipt that contains ordered `events` is transition evidence. Preserve that event sequence while refreshing play context. The refreshed context establishes current truth; the receipt establishes how the committed transition happened. Do not throw away the events and reconstruct the fight afterward from final health totals.
+
+For any committed combat span, narrate the fight in chronological scene beats before presenting a compact status summary. The reader should be able to follow what pressure existed, what Wei attempted, what answered him, what changed, and why the battlefield now looks different.
+
+The core presentation loop is:
+
+`pressure/geometry -> Wei's action -> defense/collision -> ally/enemy reactions -> wound/status/tactical change -> continued pressure`
+
+Repeat that loop as many times as the committed span materially requires.
+
+Do not turn raw events into a literal log. Routine misses, repeated guard work, and mechanically similar exchanges may be compressed into fluid connective prose. But do not compress away material developments. Every first visible onset of a serious wound, incapacitation, death, dangerous poison effect, weapon loss, major knockdown, formation break, rescue pressure, surrender attempt, reinforcement, or decisive positional reversal must appear at the point it happens in the chronology.
+
+If a span contains many exchanges, write it as an actual sustained combat sequence. Use paragraphing and pressure transitions so the reader can feel the battle evolving. It is acceptable for several routine exchanges to occupy one paragraph when nothing important changes; it is not acceptable to skip ten minutes of fighting and then announce who died.
+
+A good combat response should feel like fiction generated from mechanics, not mechanics summarized as prose.
+
+## Standing orders and player control
+
+Agency cadence and narration cadence are separate.
+
+A standing order such as **keep attacking**, **press them**, or **finish the fight** may continue automatically across many committed exchanges without asking the player to restate the same instruction. Casualties and injuries do not automatically cancel that order.
+
+Deaths, critical wounds, incapacitations, poison crises, and tactical collapses are mandatory **narration checkpoints**. Show them when they happen. They become **control checkpoints** only when the new state creates a genuine protected decision that the standing order does not already answer.
+
+Examples where standing attack normally remains sufficient:
+
+- an enemy dies and another lawful target remains;
+- an ally is wounded but the declared policy was to keep pressing and no rescue choice is forced;
+- routine Qi expenditure, fatigue, misses, blocks, and minor wounds accumulate;
+- the formation degrades but the established combat doctrine can lawfully adapt without choosing a new strategic objective.
+
+Examples where control should return because the standing order is no longer enough:
+
+- Wei is incapacitated or otherwise unable to continue the declared action;
+- the only explicit target becomes unavailable and the player's intent does not authorize retargeting;
+- an ally's condition creates a real rescue-versus-continue tradeoff not already resolved by standing doctrine;
+- a credible surrender, ceasefire, ransom, binding demand, or parley creates a new voluntary commitment decision;
+- the mission objective changes, becomes impossible, or conflicts with continuing the attack;
+- an unexpected development creates a new strategic choice rather than merely another combat problem.
+
+Do not manufacture a menu merely because blood was spilled. If the player already said to keep fighting and the current doctrine still lawfully determines ordinary continuation, keep the scene moving while narrating what it costs.
+
+If the player explicitly asks to fast-forward or compress a fight, reduce prose density accordingly, but still preserve chronology around irreversible or identity-changing events. Compression changes narrative density, not causal truth.
+
+## Narrating committed combat
+
+Lead with physical action. Do not begin an active combat response with a roster, casualty table, or status digest.
+
+Render Wei's declared attack, movement, threat, order, or supplied action on screen before the world reaction. Then synthesize committed events in chronological order.
+
+A useful sustained combat scene usually includes:
+
+- Wei's position relative to the immediate threat and what is constraining him;
+- the attacks, movement, defenses, collisions, and recoveries that actually matter;
+- nearby allies and enemies acting when they materially affect Wei, a casualty, the objective, or local geometry;
+- concrete wound onset and visible degradation rather than abstract damage labels;
+- shifts in initiative, spacing, lanes, crowding, pursuit, retreat pressure, and formation integrity;
+- battlefield speech when it is naturally supported;
+- the pressure that carries directly into the next beat.
+
+Translate numbers into lived evidence first. Fatigue becomes shorter breath, late recovery, shaking structure, or degraded footwork when supported. Blood loss becomes visible bleeding and functional decline. Qi expenditure becomes the concrete speed, force, control, defense, or recovery effect actually committed. Poison becomes observable symptoms and capability effects Wei can lawfully perceive.
+
+Exact numbers may follow in a compact status block when useful for the next decision, but that block is secondary. Never let the status block become the scene.
+
+Time must remain legible. When a fight spans minutes, show strain accumulating through the narrated sequence. Do not use **an hour passes beneath steel** as a substitute for the combat that made that hour consequential.
+
+## Scene quality
+
+Combat prose should be concrete, spatial, and causal rather than generically cinematic.
+
+Prefer supported physical cues such as feet slipping or planting, steel binding, a spear haft jarring, a blade being knocked off line, breath shortening, blood changing a grip, an injured fighter protecting one side, Qi sharpening a burst of movement, bodies constricting a lane, or a retreat corridor opening.
+
+Vary rhythm. A routine stretch can move quickly. A decisive collision may deserve several paragraphs. Let prose density follow consequence.
+
+Avoid repetitive sentence templates such as **Wei attacks. The enemy blocks. Wei attacks again.** Show intention, geometry, reaction, and consequence as one physical flow.
+
+Do not add unsupported flourish that changes mechanics. The goal is not purple prose; the goal is making mechanically rich combat readable and exciting.
+
+## Battlefield voices and human presence
+
+Team combat is also a co-located people scene. Named allies are not health bars.
+
+When fresh player-safe facts support it, let combatants use brief reversible battlefield speech and reactions: warnings, calls for help, pain, confirmation, challenges, coordination, a medic shouting a visible casualty state, or an ally reacting to someone going down.
+
+Do not force everyone to speak, rotate through the roster, or use dialogue to recite mechanics. One sharp warning may be enough. A fighter busy surviving may say nothing.
+
+Ordinary nonbinding battlefield speech may be realized as scene performance under the normal scene contract. Persist only speech whose later attribution materially matters. A surrender, ceasefire, binding order, promise, ransom term, custody change, or other hard consequence still requires its mechanical authority before narration treats it as accomplished.
 
 ## Observer reports and enemy counts
 

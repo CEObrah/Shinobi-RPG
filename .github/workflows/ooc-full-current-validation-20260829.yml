@@ -102,7 +102,7 @@ jobs:
                   return True
               monkeypatch.setattr(exact,'open_retreat_corridors',corridors); monkeypatch.setattr(exact,'path_clear',clear)
               result=attempt_disengage(combat=combat,actor_ref=actor['person_id'],people=people,equipment_ledger=gear)
-              assert result['moved'] is True
+              assert result['movement']['duration_ms']==1000
               assert future['person_id'] not in seen['corridors']
               assert future['person_id'] not in seen['path']
               assert actor['person_id'] in seen['corridors'] and enemy['person_id'] in seen['corridors']

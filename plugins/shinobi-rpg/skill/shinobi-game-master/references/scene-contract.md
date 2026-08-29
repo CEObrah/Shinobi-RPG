@@ -27,6 +27,22 @@ This boundary is intentionally one-way for truth but flexible for authorship: th
 
 Important reversible speech may also be **promoted to durable attribution** after the GM realizes it. A scene-history write can preserve that the person said the line. It still does not prove the line's factual content is objectively true. This is how narration can become durable conversational fact without turning dialogue into a second rules engine.
 
+## Questions and requests default to human response
+
+A player asking an established co-present NPC a question or making an ordinary request is first a **scene interaction**, not a request for permission from a dialogue mechanic. Do not make a present NPC mute merely because no interaction command has yet produced a response field.
+
+Use this response ladder:
+
+1. **Answer immediately from bounded scene truth** when the NPC can respond from established player-safe facts, shared premises, direct observation, public role, prior attributed speech, or ordinary nonbinding judgment. Advice, opinion, refusal to explain, uncertainty, humor, irritation, clarification, tactical warning, and ordinary questions back to Wei normally live here.
+2. **Demand-load the smallest player-safe read** when the answer depends on an already-existing fact that is lawful for the NPC to know but absent from compact context. Retrieve the relevant person, mission, faction, site, report, relationship, injury, or other exact owner, then let the NPC answer naturally from that material.
+3. **Invoke mechanical authority only when the reply itself would create or reveal hard truth.** This includes accepting or refusing a mechanically consequential commitment, granting access or office, joining a mission, transferring resources, moving or deploying, changing custody or relationship state, revealing a new protected secret fact, agreeing to surrender/ceasefire/contract terms, or another persistent consequence.
+
+The interaction command is therefore a persistence/consequence tool, not a speaking license. Do not call or wait on a mechanical interaction merely to make an NPC say an ordinary line that the GM can already lawfully realize.
+
+If a request mixes ordinary dialogue and a hard commitment, let the NPC respond naturally up to the commitment boundary, then resolve the consequential portion mechanically. For example, an ally may say **I can go, if the House releases me from gate duty** as bounded scene truth; actually assigning that ally to a mission requires the owning mechanic. Likewise, someone may say **No, I will not explain myself** without a special refusal mechanic, while formally refusing a contract or surrender term still requires the relevant authority.
+
+If the NPC genuinely lacks the information, let them say so, speculate explicitly, ask another person, or point Wei toward a lawful source. Unknown information should create conversation and investigation, not silence.
+
 ## Active scene sessions
 
 Treat an active scene session as presentation and continuity state, not a second mechanics engine. In Shinobi, `state/scene.json` is presentation-only; mechanical co-presence must come from the single physical-presence resolver over the exact person plus active custody, exact combat, and route movement owners. It may identify the exact established participants, location, process, purpose, agenda, open conversational threads, and a soft scheduling boundary. It never moves bodies, creates access, grants authority, spends resources, changes relationships, or proves hidden facts.
@@ -81,7 +97,9 @@ Examples that cross into hard world truth and require the relevant runtime mecha
 
 ## Question lifecycle
 
-A player `ask` inside an active person session creates an open conversational thread only when the runtime records it as such. An important persisted answer may resolve that exact thread. Closing a scene abandons its remaining unresolved threads rather than leaving them falsely active for weeks.
+A player question does **not** need to become a runtime thread before the NPC may answer it. Ordinary question-and-answer may be fully realized in bounded scene truth. Create/persist an open conversational thread only when multi-turn continuity materially benefits from tracking it.
+
+When a player `ask` is persisted inside an active person session, an important persisted answer may resolve that exact thread. Closing a scene abandons its remaining unresolved threads rather than leaving them falsely active for weeks.
 
 A player `ask` directed at the exact active opposing combat side may likewise create an open combat-parley thread without a person scene session. Resolve it only with a persisted opposing-side answer or a hard boundary that genuinely makes it irrelevant. Fresh context may recover the narrow pre-thread legacy shape for the exact current combat only; never treat arbitrary historical `not_applicable` questions as active.
 

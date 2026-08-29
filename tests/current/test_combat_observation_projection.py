@@ -59,7 +59,7 @@ def test_player_observation_counts_only_observed_hostiles():
         "observer_person_id": "pc",
         "confirmed_observed_hostile_count": 1,
     }
-    assert result["count_semantics"] == "confirmed_observed_hostiles_not_total_force"
+    assert result["count_semantics"] == "confirmed_observed_hostiles_ever_detected_not_current_active_or_total_force"
 
 
 def test_ally_observation_remains_separate_from_player_knowledge():

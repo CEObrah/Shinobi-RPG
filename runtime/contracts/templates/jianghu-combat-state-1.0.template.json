@@ -101,6 +101,7 @@
         "ready_weapon_ref",
         "ready_hands_required",
         "observed_refs",
+        "observed_status_families",
         "awareness_confidence_milli",
         "concealment_milli",
         "qi_allocation_milli",
@@ -178,6 +179,9 @@
       "mode": "open_map"
     },
     "/combats/*/combatants/*/defense_state/recent_attackers/*": {
+      "mode": "open_map"
+    },
+    "/combats/*/combatants/*/observed_status_families": {
       "mode": "open_map"
     },
     "/combats/*/combatants/*/qi_allocation_milli": {
@@ -477,6 +481,15 @@
     "/combats/*/combatants/*/observed_refs/*": [
       "string"
     ],
+    "/combats/*/combatants/*/observed_status_families": [
+      "object"
+    ],
+    "/combats/*/combatants/*/observed_status_families/*": [
+      "array"
+    ],
+    "/combats/*/combatants/*/observed_status_families/*/*": [
+      "string"
+    ],
     "/combats/*/combatants/*/awareness_confidence_milli": [
       "integer"
     ],
@@ -645,6 +658,11 @@
       ]
     },
     "/combats/*/combatants/*/observed_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/combats/*/combatants/*/observed_status_families/*": {
       "item_types": [
         "string"
       ]

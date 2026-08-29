@@ -10,6 +10,20 @@ Martial-faction people are persistent identities. Aggregate civilians are consum
 
 Exact combat is a bounded local geometry patch. Strategic/formation abstractions remain separate and reconcile consequences once.
 
+## Intent-first orchestration boundary
+
+The runtime is a mechanics and persistence authority, not the player's action menu and not the story planner. The player speaks natural language to the GM. The GM interprets that action, then consults the minimum runtime mechanics needed to resolve any persistent consequences.
+
+The runtime may expose semantic commands, contracts, availability information, and read hints so the GM can route a consequential action safely. Those surfaces describe implementation capabilities. They do not define the full ontology of what a person can attempt in fiction, and they must not be surfaced as a command-first player interface.
+
+The orchestration direction is:
+
+`player natural-language intent -> GM scene/action interpretation -> required mechanical domains -> runtime validation/resolution/commit -> refreshed truth -> lived narration`
+
+Reversible human performance may remain entirely in the GM layer when fresh player-safe context supports it. If a candidate narrated beat would create a lasting consequence, the GM converts only that consequence into a typed mechanical intent before treating it as accomplished. The runtime may accept, reject, constrain, or resolve that proposal according to authoritative mechanics.
+
+This preserves one writable authority while allowing the AI to be generative. The AI decides what mechanics are relevant to the player's declared action and how committed results become a scene. The runtime decides whether persistent consequences are legal and what truth is committed.
+
 ## Transaction evidence and re-entry
 
 Immutable idempotency receipts live outside mutable campaign owners. They are transaction evidence, not a fourth mechanical authority. A new receipt records the exact committed command together with its result; legacy receipts without embedded command bytes remain valid and readable.

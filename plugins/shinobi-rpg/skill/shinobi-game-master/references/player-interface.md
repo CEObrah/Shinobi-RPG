@@ -1,6 +1,25 @@
 # Player Interface
 
-Natural language is the player interface. The player describes what Tang Wei wants to do normally, and ChatGPT translates clear intent into the current Shinobi Runtime's advertised semantic command surface. Do not make the player write backend commands, payloads, IDs, revisions, or phase transitions.
+Natural language is the player interface. The player describes what Tang Wei wants to do normally, and ChatGPT translates clear intent into the current Shinobi Runtime's mechanics. Do not make the player write backend commands, payloads, IDs, revisions, or phase transitions.
+
+## Intent-first orchestration
+
+Interpret the player's action before consulting the backend command surface. The player's natural-language intent is the primary control input; `supported_command_types` is an internal capability index for implementation, not a whitelist of fictional actions Wei is allowed to attempt.
+
+For each player declaration:
+1. identify what Wei is actually trying to do in the world;
+2. separate reversible scene performance from persistent mechanical consequences;
+3. identify only the mechanics needed to resolve those consequences;
+4. route each consequential part through the smallest lawful runtime authority;
+5. realize the resulting scene naturally after commitment.
+
+Do not reverse this order by scanning commands first and forcing the player's action into whichever canned option is easiest. If the player says **I attack him and tell the others to stay quiet**, the attack should invoke combat mechanics because the declared action requires them. The others' immediate silence, hesitation, glance, or nonbinding reaction may be ordinary scene performance when fresh context supports it. The player should not need a separate backend action for every human beat.
+
+A single natural-language action may span several internal mechanics. Carry the already-declared intent through the necessary sequential commands, refreshing context after writes, unless a new protected decision appears. Do not make the player decompose one coherent action into engine-sized steps.
+
+If an action is not represented by one named semantic command but can be faithfully composed from existing authoritative mechanics, compose it internally rather than treating the fiction as impossible. Only classify an action as implementation-blocked when no lawful mechanical path can represent the persistent consequence the player is attempting.
+
+The runtime remains authoritative about whether a consequential attempt is legal and what actually happens. Intent-first orchestration changes who chooses the mechanics, not who owns the outcome.
 
 ## Interaction modes
 
@@ -41,7 +60,7 @@ A stale presentation handoff is not automatically a new protected decision. If r
 
 ## The player does not write commands
 
-Use `get_play_context` first. Its command catalog defines what semantic commands are currently available. Read `get_command_contract` only after choosing the one relevant advertised command.
+Use `get_play_context` first. Its command catalog tells the GM which current mechanical authorities are available after the player intent has been interpreted. Read `get_command_contract` only for the one authority selected to resolve the consequential part of that intent.
 
 Use `get_person_sheet` and `inspect_game_object` only for exact player-permitted people/owners when compact context is insufficient. Never guess hidden IDs or repository paths.
 
@@ -51,8 +70,7 @@ For a consequential write, use preview -> exact immutable command/attestation ->
 
 A committed player interaction proves Wei acted. It does not by itself prove the target accepted, refused, granted access, committed resources, changed a relationship, or answered.
 
-Narrate only the world response separately established by refreshed runtime state. If the result is `attempt made; response pending`, keep it lean and move naturally toward waiting, continued life, or the next distinct decision.
-
+Narrate only the world response separately established by refreshed runtime state or lawfully realized as reversible scene performance. If the result is `attempt made; response pending`, do not fabricate a binding response, but ordinary present-person reactions may still occur when fresh scene truth supports them.
 
 ## Live scene sessions and attributed speech
 

@@ -11,6 +11,8 @@ Watch for:
 - `continue` accidentally becoming a time skip or protected choice;
 - repeated menus for a standing policy, or the opposite problem: a genuine decision left with no useful options;
 - selected menu options being treated as invisible control input instead of visible Wei action/dialogue;
+- a committed transition becoming unavailable to narration after OOC/tool/context interruption, causing re-entry to reconstruct from terminal state or casualty totals instead of recoverable receipt chronology;
+- a stale scene/activity handoff being treated as a fresh unresolved decision after current-revision evidence already proves Wei acted on it;
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;
 - combat geometry, fatigue, defense load, injury, Qi, poison, equipment, or ammunition behaving inconsistently;
 - House missions skipping acceptance, authority, commander, exact member assignment, equipment/provisions, causal travel, allied mobilization, return, settlement, or AAR;
@@ -34,4 +36,4 @@ In explicit QA mode, report only the strongest reusable finding: observed sympto
 
 ## Immediate escalation
 
-Flag immediately when an issue risks false campaign truth, breaks agency/knowledge boundaries, blocks declared intent, creates a serious exploit, makes a consequential choice misleading, or threatens transaction durability.
+Flag immediately when an issue risks false campaign truth, breaks agency/knowledge boundaries, blocks declared intent, creates a serious exploit, makes a consequential choice misleading, loses a committed transition needed to explain current state, or threatens transaction durability.

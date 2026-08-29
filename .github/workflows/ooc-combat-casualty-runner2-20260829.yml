@@ -32,7 +32,7 @@ jobs:
           PY
           python /tmp/patch_combat_casualty.py
       - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements.txt pytest
       - name: Fast repository gate
         run: python tools/quick_check.py
       - name: Changed-system regression selection

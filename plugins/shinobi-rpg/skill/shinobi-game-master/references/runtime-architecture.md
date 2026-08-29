@@ -10,6 +10,14 @@ Martial-faction people are persistent identities. Aggregate civilians are consum
 
 Exact combat is a bounded local geometry patch. Strategic/formation abstractions remain separate and reconcile consequences once.
 
+## Transaction evidence and re-entry
+
+Immutable idempotency receipts live outside mutable campaign owners. They are transaction evidence, not a fourth mechanical authority. A new receipt records the exact committed command together with its result; legacy receipts without embedded command bytes remain valid and readable.
+
+The production read projection may recover only the receipt whose `committed_revision` equals the campaign's current revision. `transition:current` exposes that evidence in bounded ordered event pages so interrupted narration can be reconstructed from the actual committed transition rather than guessed from terminal state. It never accepts an arbitrary revision and never changes campaign time or state.
+
+On re-entry, refreshed play context establishes current truth. The current-revision receipt establishes how that truth was reached. If the two disagree, fail closed rather than allowing receipt evidence to override state. An embedded prior command may recover standing intent only under the normal player-agency/delegation rules.
+
 ## Physical presence and scene authority
 
 Exact physical presence has one mechanical resolver: `runtime/shinobi_runtime/martial_world/physical_presence.py`. Resolve custody first, then active exact combat, then active route movement, then the sparse person owner location. Use that resolver or its derived physical-unavailability set whenever legality depends on where a person actually is. A stored home/default location must never make a traveler, captive, or active combatant simultaneously available at home.

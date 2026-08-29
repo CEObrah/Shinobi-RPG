@@ -1589,6 +1589,15 @@ def _defensive_action_interruption(combat: Mapping[str, Any], action: _Scheduled
 def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledAction, people: dict[str, dict[str, Any]], equipment_ledger: dict[str, Any]) -> dict[str, Any]:
     actor_ref=action.actor_ref; target_ref=action.target_ref; event_base={"actor_ref":actor_ref,"intended_ref":target_ref,"action_kind":action.action_kind,"weapon_ref":action.weapon_ref,"poison_ref":action.poison_ref,"decision_origin":action.decision_origin,"declared_at_ms":action.declared_at_ms,"start_at_ms":action.start_at_ms,"ready_delay_ms":action.ready_delay_ms,"previous_ready_weapon_ref":action.previous_ready_weapon_ref,"commit_at_ms":action.commit_at_ms,"release_at_ms":action.release_at_ms,"contact_at_ms":action.contact_at_ms,"recovery_end_ms":action.recovery_end_ms}
     if actor_ref not in people or target_ref not in people: return {**event_base,"result":"invalid_target"}
+    target_state_pre=combat.get("combatants",{}).get(target_ref,{})
+    escaped_at=target_state_pre.get("escaped_at_ms") if isinstance(target_state_pre,Mapping) else None
+    # A target that physically cleared the fight before this attack committed
+    # ends the uncommitted chase at that frontier. Already-committed/released
+    # attacks remain on the shared timeline and resolve against moved geometry.
+    if isinstance(escaped_at,int) and escaped_at<int(action.commit_at_ms):
+        if int(combat.get("elapsed_ms",0))<escaped_at:
+            _settle_combat_physiology_until(combat,people,target_ms=escaped_at,equipment_ledger=equipment_ledger)
+        return {**event_base,"result":"target_escaped_before_commitment","escaped_at_ms":escaped_at}
     _settle_combat_physiology_until(combat,people,target_ms=action.contact_at_ms,equipment_ledger=equipment_ledger)
     actor_state=combat["combatants"][actor_ref]; target_state=combat["combatants"][target_ref]; disabled_at=actor_state.get("incapacitated_at_ms")
     declared_mounted=bool(action.profile.effect_parameters.get("mounted_at_declaration",False))
@@ -1920,7 +1929,25 @@ def _disengage_step(*, combat: dict[str, Any], actor_ref: str, people: Mapping[s
     nearest=min([planar_distance_mm(row,combat["positions"][ref]) for ref in enemies],default=999_999); escaped=nearest>=6000
     if escaped:
         statuses={str(x) for x in state.get("status_families",[]) if isinstance(x,str)}; statuses.add("escaped"); state["status_families"]=sorted(statuses)
+        state["escaped_at_ms"]=int(start_ms)+duration
     return {"moved":True,"escaped":escaped,"reason":"cleared_opponent_reach" if escaped else "retreat_in_progress","corridor":chosen,"movement":{"start_x_mm":start_x,"start_y_mm":start_y,"end_x_mm":end_x,"end_y_mm":end_y,"duration_ms":duration,"nearest_enemy_mm":nearest}}
+
+
+def _resolve_withdrawal_batch(*, combat: dict[str, Any], withdrawer_refs: Sequence[str], people: dict[str, dict[str, Any]], equipment_ledger: Mapping[str, Any], start_ms: int, end_ms: int) -> list[dict[str, Any]]:
+    """Settle concurrent autonomous withdrawals at one shared timeline boundary."""
+    end=max(int(start_ms),int(end_ms))
+    _settle_combat_physiology_until(combat,people,target_ms=max(int(combat.get("elapsed_ms",0)),end),equipment_ledger=equipment_ledger)
+    events=[]
+    for ref in withdrawer_refs:
+        state=combat.get("combatants",{}).get(ref)
+        if ref not in people or not isinstance(state,dict) or not _active(people[ref],state):
+            interrupted_at=state.get("incapacitated_at_ms") if isinstance(state,Mapping) else None
+            at=max(int(start_ms),min(end,int(interrupted_at))) if isinstance(interrupted_at,int) else end
+            events.append({"actor_ref":ref,"result":"withdrawal_interrupted","decision_origin":"actor_ai","started_at_ms":int(start_ms),"ended_at_ms":at})
+            continue
+        step=_disengage_step(combat=combat,actor_ref=ref,people=people,equipment_ledger=equipment_ledger,duration_ms=max(1,end-int(start_ms)),start_ms=int(start_ms))
+        events.append({"actor_ref":ref,"result":("withdrew_from_combat" if step.get("escaped") else "withdrawal_in_progress" if step.get("moved") else "withdrawal_blocked"),"decision_origin":"actor_ai","started_at_ms":int(start_ms),"ended_at_ms":end,"withdrawal":step})
+    return events
 
 
 def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[str, Any]], equipment_ledger: Mapping[str, Any], doctrines: Mapping[str, Mapping[str, Any]], player_ref: str, player_action_kind: str, player_target_ref: str, player_weapon_ref: str, player_hit_zone: str = "chest", player_target_structure_ref: str | None = None, player_targeting_intent: str = "disable", player_poison_ref: str | None = None, player_qi_allocation_milli: Mapping[str, int] | None = None, player_qi_reserve_milli: int | None = None, player_auto_qi: bool = False, player_auto_poison: bool = False, npc_targeting_intent: str | None = None, martial_familiarity: Mapping[str, Any] | None = None, player_retinue_context: Mapping[str, Any] | None = None, equipment_ledger_hydrated: bool = False, compact_equipment_result: bool = True, mutate_equipment_ledger: bool = False, mutate_state: bool = False) -> dict[str, Any]:
@@ -2066,13 +2093,21 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
             out["combatants"][player_ref]["qi_reserve_milli"]=max(0,int(player_resource_policy.get("qi_reserve_milli",0)))
         if player_auto_poison:
             player_poison_ref=player_resource_policy.get("poison_ref")
+    declared_exchange_ms=int(out.get("elapsed_ms",0))
     active_at_declaration=[ref for refs in out["sides"].values() for ref in refs if _active(persons[ref],out["combatants"][ref])]; scheduled=[]; declaration_events=[]; withdrawing=[]
+    # Withdrawal is a declaration-time intent. Mark every withdrawing actor
+    # before scheduling anyone else's action so pursuit doctrine sees the same
+    # physical posture regardless of side/list iteration order.
     for actor_ref in active_at_declaration:
+        if actor_ref==player_ref: continue
+        withdrawal=_npc_withdrawal_decision(combat=out,actor_ref=actor_ref,people=persons,faction_doctrine=doctrines.get(str(persons[actor_ref].get("faction_ref") or ""),{}))
+        if withdrawal is None: continue
+        withdrawing.append(actor_ref)
+        out["positions"][actor_ref]["stance"]="disengaging"
+        declaration_events.append({"actor_ref":actor_ref,"result":"withdrawal_declared","decision_origin":"actor_ai","declared_at_ms":declared_exchange_ms,"withdrawal":withdrawal})
+    for actor_ref in active_at_declaration:
+        if actor_ref in withdrawing: continue
         side=_side_of(out,actor_ref); enemy_side="side_b" if side=="side_a" else "side_a"; enemies=[ref for ref in out["sides"][enemy_side] if _active(persons[ref],out["combatants"][ref])]
-        if actor_ref!=player_ref:
-            withdrawal=_npc_withdrawal_decision(combat=out,actor_ref=actor_ref,people=persons,faction_doctrine=doctrines.get(str(persons[actor_ref].get("faction_ref") or ""),{}))
-            if withdrawal is not None:
-                withdrawing.append(actor_ref); declaration_events.append({"actor_ref":actor_ref,"result":"withdrawal_declared","decision_origin":"actor_ai","declared_at_ms":int(out.get("elapsed_ms",0)),"withdrawal":withdrawal}); continue
         known=_observe_visible_enemies(out,actor_ref=actor_ref,enemy_refs=enemies,people=persons,at_ms=int(out.get("elapsed_ms",0)))
         if not known: declaration_events.append({"actor_ref":actor_ref,"result":"no_lawfully_known_target","decision_origin":"awareness"}); continue
         if actor_ref==player_ref:
@@ -2165,34 +2200,33 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
         if target not in enemies: declaration_events.append({"actor_ref":actor_ref,"result":"target_unavailable","decision_origin":provenance}); continue
         try: scheduled.append(_schedule_action(combat=out,actor_ref=actor_ref,target_ref=target,action_kind=kind,weapon_ref=weapon_ref,poison_ref=poison_ref,hit_zone=hit_zone,target_structure_ref=target_structure,decision_origin=provenance,people=persons,equipment_ledger=ledger))
         except ValueError as exc: declaration_events.append({"actor_ref":actor_ref,"result":"action_rejected","reason":str(exc),"decision_origin":provenance})
-    scheduled.sort(key=lambda row:(row.contact_at_ms,row.commit_at_ms,-_combat_capability_for_state(row.actor_ref,persons[row.actor_ref],ledger,out["combatants"].get(row.actor_ref,{})).reaction,row.actor_ref)); events=list(declaration_events); exchange_end=int(out.get("elapsed_ms",0))
-    out["_exchange_declared_at_ms"] = int(out.get("elapsed_ms", 0))
+    scheduled.sort(key=lambda row:(row.contact_at_ms,row.commit_at_ms,-_combat_capability_for_state(row.actor_ref,persons[row.actor_ref],ledger,out["combatants"].get(row.actor_ref,{})).reaction,row.actor_ref)); events=list(declaration_events); exchange_end=declared_exchange_ms
+    out["_exchange_declared_at_ms"] = declared_exchange_ms
     out["_pending_actions"] = {action.actor_ref: _pending_action_record(action) for action in scheduled}
     out["_defense_interruptions"] = {}
+    withdrawal_end=declared_exchange_ms+1000 if withdrawing else None
+    withdrawal_pending=bool(withdrawing)
     for action in scheduled:
-        event=_resolve_scheduled_action(combat=out,action=action,people=persons,equipment_ledger=ledger); events.append(event); exchange_end=max(exchange_end,action.contact_at_ms)
+        # Retreat completes at its own one-second frontier. Contacts at the exact
+        # same millisecond resolve first; contacts strictly later see the moved
+        # target and may be cancelled if they had not yet committed.
+        if withdrawal_pending and isinstance(withdrawal_end,int) and withdrawal_end<int(action.contact_at_ms):
+            events.extend(_resolve_withdrawal_batch(combat=out,withdrawer_refs=withdrawing,people=persons,equipment_ledger=ledger,start_ms=declared_exchange_ms,end_ms=withdrawal_end))
+            exchange_end=max(exchange_end,withdrawal_end); withdrawal_pending=False
+        event=_resolve_scheduled_action(combat=out,action=action,people=persons,equipment_ledger=ledger); events.append(event)
+        exchange_end=max(exchange_end,int(out.get("elapsed_ms",0)))
         pending = out.get("_pending_actions", {})
         if isinstance(pending, dict):
             pending.pop(action.actor_ref, None)
-    declared_exchange_ms=int(combat.get("elapsed_ms",0))
+    if withdrawal_pending and isinstance(withdrawal_end,int):
+        events.extend(_resolve_withdrawal_batch(combat=out,withdrawer_refs=withdrawing,people=persons,equipment_ledger=ledger,start_ms=declared_exchange_ms,end_ms=withdrawal_end))
+        exchange_end=max(exchange_end,withdrawal_end)
     if exchange_end<=declared_exchange_ms:
         exchange_end=declared_exchange_ms+max(1,int(_combat_rules().get("minimum_exchange_advance_ms",250)))
     _settle_combat_physiology_until(out,persons,target_ms=max(int(out.get("elapsed_ms",0)),exchange_end),equipment_ledger=ledger)
     out.pop("_pending_actions", None)
     out.pop("_defense_interruptions", None)
     out.pop("_exchange_declared_at_ms", None)
-    surviving_withdrawers=[ref for ref in withdrawing if ref in persons and ref in out.get("combatants",{}) and _active(persons[ref],out["combatants"][ref])]
-    if surviving_withdrawers:
-        withdrawal_start=int(out.get("elapsed_ms",0)); withdrawal_end=withdrawal_start+1000
-        for ref in withdrawing:
-            if ref not in surviving_withdrawers:
-                events.append({"actor_ref":ref,"result":"withdrawal_interrupted","decision_origin":"actor_ai","started_at_ms":withdrawal_start,"ended_at_ms":withdrawal_start}); continue
-            step=_disengage_step(combat=out,actor_ref=ref,people=persons,equipment_ledger=ledger,duration_ms=1000,start_ms=withdrawal_start)
-            events.append({"actor_ref":ref,"result":("withdrew_from_combat" if step.get("escaped") else "withdrawal_in_progress" if step.get("moved") else "withdrawal_blocked"),"decision_origin":"actor_ai","started_at_ms":withdrawal_start,"ended_at_ms":withdrawal_end,"withdrawal":step})
-        _settle_combat_physiology_until(out,persons,target_ms=withdrawal_end,equipment_ledger=ledger)
-    elif withdrawing:
-        withdrawal_start=int(out.get("elapsed_ms",0))
-        for ref in withdrawing: events.append({"actor_ref":ref,"result":"withdrawal_interrupted","decision_origin":"actor_ai","started_at_ms":withdrawal_start,"ended_at_ms":withdrawal_start})
     # Exchange events are returned to the caller for narration/effects but are
     # deliberately not persisted. Current combat geometry, injuries, readiness,
     # recovery and objective state are sufficient authority for the next exchange.

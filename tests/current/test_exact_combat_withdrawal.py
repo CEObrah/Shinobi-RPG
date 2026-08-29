@@ -46,11 +46,11 @@ def test_multiple_withdrawers_share_one_second_slice(monkeypatch):
     combat=initialize_combat(combat_ref='withdraw-shared',side_a_refs=[player['person_id']],side_b_refs=[row['person_id'] for row in rows],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate'},equipment_ledger=gear)
     monkeypatch.setattr(exact,'_observe_visible_enemies',lambda *args,**kwargs:[])
     result=resolve_exchange(combat=combat,people=people,equipment_ledger=gear,doctrines={'faction.withdraw':doctrine()},player_ref=player['person_id'],player_action_kind='unarmed_strike',player_target_ref=rows[0]['person_id'],player_weapon_ref='body_unarmed',player_hit_zone='chest',player_targeting_intent='disable')
-    assert result['combat_after']['elapsed_ms']==1250
+    assert result['combat_after']['elapsed_ms']==1000
     moved=[event for event in result['events'] if event.get('actor_ref') in {rows[0]['person_id'],rows[1]['person_id']} and event.get('result') in {'withdrawal_in_progress','withdrew_from_combat'}]
     assert len(moved)==2
-    assert {event['started_at_ms'] for event in moved}=={250}
-    assert {event['ended_at_ms'] for event in moved}=={1250}
+    assert {event['started_at_ms'] for event in moved}=={0}
+    assert {event['ended_at_ms'] for event in moved}=={1000}
 
 
 def test_future_reinforcement_is_not_counted_as_arrived_strength():
@@ -85,4 +85,22 @@ def test_dead_enemy_does_not_block_disengagement_clearance():
     result=attempt_disengage(combat=combat,actor_ref=actor['person_id'],people=people,equipment_ledger=gear)
     assert result['escaped'] is True
     assert result['movement']['nearest_enemy_mm']==999_999
+    assert result['combat_after']['elapsed_ms']==1000
+
+
+def test_withdrawal_completion_cancels_late_uncommitted_chase_on_shared_clock():
+    base=load('state/martial-world/people/house_tang.json')['people'][0]
+    player=person(base,'timeline.player','faction.player'); survivor=person(base,'timeline.survivor','faction.withdraw'); casualty=person(base,'timeline.casualty','faction.withdraw')
+    casualty['health'].update(status='dead',consciousness=0)
+    people={row['person_id']:row for row in (player,survivor,casualty)}; gear=ledger(*people)
+    combat=initialize_combat(combat_ref='withdraw-timeline',side_a_refs=[player['person_id']],side_b_refs=[survivor['person_id'],casualty['person_id']],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate'},equipment_ledger=gear)
+    combat['positions'][player['person_id']].update(x_mm=0,y_mm=0)
+    combat['positions'][survivor['person_id']].update(x_mm=20000,y_mm=0)
+    result=resolve_exchange(combat=combat,people=people,equipment_ledger=gear,doctrines={'faction.withdraw':doctrine()},player_ref=player['person_id'],player_action_kind='unarmed_strike',player_target_ref=survivor['person_id'],player_weapon_ref='body_unarmed',player_hit_zone='chest',player_targeting_intent='disable')
+    withdrawal=next(event for event in result['events'] if event.get('actor_ref')==survivor['person_id'] and event.get('result')=='withdrew_from_combat')
+    attack=next(event for event in result['events'] if event.get('actor_ref')==player['person_id'])
+    assert withdrawal['started_at_ms']==0 and withdrawal['ended_at_ms']==1000
+    assert attack['commit_at_ms']>1000
+    assert attack['result']=='target_escaped_before_commitment'
+    assert attack['escaped_at_ms']==1000
     assert result['combat_after']['elapsed_ms']==1000

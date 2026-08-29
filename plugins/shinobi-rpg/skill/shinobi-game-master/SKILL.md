@@ -1,6 +1,6 @@
 ---
 name: shinobi-game-master
-description: Run, referee, narrate, inspect, and safely operate the persistent Tang Wei Jianghu campaign through the connected Shinobi RPG Runtime. Use for live campaign play, continuation, personal/team combat, Qi and poison use, travel, training, House missions, factions, relationships, diplomacy, economy, family, planning, status questions, OOC audits, story-flow diagnosis, OOC development, and campaign/runtime maintenance. Treat fresh runtime context and its advertised command catalog as mechanical authority, preserve player agency and knowledge boundaries, keep lawful world pressure causally alive, and provide grounded decision scaffolding whenever a genuine unresolved player choice lands.
+description: Run, referee, narrate, inspect, and safely operate the persistent Tang Wei Jianghu campaign through the connected Shinobi RPG Runtime. Use for live campaign play, continuation, personal/team combat, Qi and poison use, travel, training, House missions, factions, relationships, diplomacy, economy, family, planning, status questions, OOC audits, story-flow diagnosis, OOC development, and campaign/runtime maintenance. Treat fresh runtime context and committed runtime mechanics as mechanical authority, preserve player agency and knowledge boundaries, keep lawful world pressure causally alive, and provide grounded decision scaffolding whenever a genuine unresolved player choice lands.
 ---
 
 # Shinobi Game Master — Jianghu Campaign
@@ -23,7 +23,7 @@ Keep this game self-contained. Shared GM craft concepts may be independently mir
 
 1. Classify the request as gameplay/IC, read-only OOC, `OOC DEV:`, or ordered mixed intent.
 2. For every live gameplay turn, bare `continue`, or current-state OOC question, call `get_play_context` first.
-3. Treat the returned revision, world time, scene, player projection, causal freshness, player-visible information, read hints, and advertised command catalog as the live contract.
+3. Treat the returned revision, world time, scene, player projection, causal freshness, player-visible information, read hints, and mechanical availability as the live contract. Treat the advertised command catalog as an internal capability map, not a whitelist of actions the player may attempt.
 4. Demand-load only the one exact person/object needed when compact context is insufficient.
 5. If the Runtime unexpectedly fails, retry exactly once. If it fails again, stop consequential resolution rather than reconstructing state from chat/project memory or prior narration.
 
@@ -33,7 +33,7 @@ Use `get_person_sheet` for a person whose exact capability, health, office, rela
 
 For a substantive interaction, treat compact context as a handoff rather than the scene's content ceiling. If the exchange materially depends on already-stored player-permitted facts missing from the compact handoff, demand-load the smallest sufficient exact reads before writing the interaction. Retrieve sequentially and stop when the scene has enough grounded material. Preserve genuine uncertainty; never substitute generic exposition or invented precision for missing facts.
 
-Use the command catalog returned by fresh play context rather than assuming commands from memory. After choosing one advertised semantic command, read only that command's `get_command_contract` when needed.
+Interpret the player's natural-language intent before choosing mechanics. Then use the command catalog returned by fresh play context to identify the smallest runtime authority needed for the consequential part of that intent. Read only that command's `get_command_contract` when needed. If one coherent player action spans several internal mechanics, carry the already-declared intent across sequential writes unless a new protected decision appears.
 
 Treat truncation, pages, shards, projections, compact windows, and context limits as transport mechanisms, never fictional population or world limits. Retrieve the exact permitted owner when omitted detail matters. Never guess hidden IDs or repository paths.
 
@@ -60,6 +60,8 @@ Do not load engineering references during ordinary IC play.
 Keep hard consequences strict while letting ordinary Jianghu interaction stay fluid. The runtime owns mechanical truth; ChatGPT owns reversible scene realization inside fresh player-safe context and any `npc_response_envelope`. `state/scene.json` is presentation-only and never grants mechanical location, co-presence, combat access, training access, or social access. Exact physical presence derives from the authoritative person plus active route, custody, and exact-combat owners.
 
 Present NPCs may acknowledge, clarify, advise, object, disagree, speculate from lawful evidence, ask follow-up questions, and speak with each other without a bespoke command for every sentence. An `npc_response_envelope` is optional performance guidance, not permission to speak; its absence does not suppress ordinary reversible dialogue when fresh lawful context establishes the interaction. Persist only important attributed speech when later continuity benefits from it. A binding order, acceptance/refusal, new secret fact, movement, money/resource transfer, office, oath/contract, relationship change, or other persistent consequence still requires its mechanical authority.
+
+Treat narration as a proposal layer, not a second save file. The GM may author the natural human beat first, but if any candidate beat would create persistent truth, translate that consequence into the relevant runtime mechanic before presenting it as accomplished. Reversible silence, interruption, warning, objection, hesitation, pain reaction, tactical call, or similar scene performance may be realized directly when fresh player-safe context supports it. Important reversible speech may later be persisted as attributed speech, which establishes that it was said rather than proving its factual content true.
 
 An active session protects conversational continuity across command boundaries. If a substantive co-located conversation begins without one and continuity/question tracking will matter, establish a lightweight conversation session without making the player request it. Open questions remain live only in that session; persisted answers can resolve them; closing the scene abandons unresolved threads. Bare `continue` resumes the scene at the current timestamp and never authorizes broad time passage. Read `references/scene-contract.md` for the full contract.
 
@@ -135,16 +137,18 @@ Keep one personal cash balance per person and one treasury per faction. Move act
 
 For one persistent player action:
 
-1. select one advertised semantic command;
-2. load its command contract when needed;
-3. translate only the player's stated/delegated intent into the closed payload;
-4. preview at the exact current revision with a unique request ID;
-5. preserve the exact planned command and attestation;
-6. execute that exact command once;
-7. accept only a committed or valid duplicate receipt as persistence success;
-8. refresh `get_play_context` before narrating aftermath.
+1. interpret the player's natural-language intent and identify only the parts that would create persistent consequences;
+2. select the smallest advertised semantic command needed for the first consequential part, treating the catalog as an internal mechanics map rather than the player's option list;
+3. load that command contract when needed;
+4. translate only the player's stated/delegated intent into the closed payload;
+5. preview at the exact current revision with a unique request ID;
+6. preserve the exact planned command and attestation;
+7. execute that exact command once;
+8. accept only a committed or valid duplicate receipt as persistence success;
+9. refresh `get_play_context` before narrating the committed consequence;
+10. if the same already-declared action still requires another mechanical domain and no new protected choice appears, repeat this process for the next consequential part without making the player restate the action.
 
-Never narrate an uncommitted outcome. Never probe hidden futures through repeated previews.
+Never narrate an uncommitted persistent outcome. Reversible GM-owned scene performance does not require a write merely because it appears in the same paragraph as a consequential action. Never probe hidden futures through repeated previews.
 
 ## Decisions
 
@@ -196,4 +200,4 @@ Read `references/live-play-review.md` when a concrete issue appears.
 
 ## Core invariant
 
-Interpret intent, protect agency/knowledge boundaries, and narrate through this Skill. Let the Shinobi Runtime resolve mechanics and transactions. Treat committed state as the save game. Treat project/chat memory as continuity only.
+Interpret player intent first, protect agency/knowledge boundaries, select mechanics from that intent, and narrate through this Skill. Let the Shinobi Runtime resolve and commit persistent mechanics and transactions. Treat committed state as the save game. Treat project/chat memory as continuity only.

@@ -63,6 +63,19 @@ def _receipt(
     )
 
 
+def _project(receipt: IdempotencyReceipt, *, object_ref: str, event_offset: int):
+    return current_transition_projection(
+        receipt=receipt,
+        campaign_id="campaign.test",
+        revision=8,
+        object_ref=object_ref,
+        event_offset=event_offset,
+        # These fixtures contain no opposing exact refs. Production derives this
+        # set from exact combat sides before calling the projection.
+        combat_opposing_person_refs=frozenset(),
+    )
+
+
 def test_new_receipt_round_trip_preserves_exact_committed_command():
     receipt = _receipt()
     restored = IdempotencyReceipt.from_record(receipt.to_record())
@@ -104,30 +117,14 @@ def test_duplicate_receipts_for_one_campaign_revision_fail_closed(tmp_path):
 def test_current_transition_projection_pages_events_without_losing_order():
     receipt = _receipt(event_count=40)
 
-    first = current_transition_projection(
-        receipt=receipt,
-        campaign_id="campaign.test",
-        revision=8,
-        object_ref="transition:current",
-        event_offset=0,
-    )["object"]
-    second = current_transition_projection(
-        receipt=receipt,
-        campaign_id="campaign.test",
-        revision=8,
-        object_ref="transition:current:16",
-        event_offset=16,
-    )["object"]
-    third = current_transition_projection(
-        receipt=receipt,
-        campaign_id="campaign.test",
-        revision=8,
-        object_ref="transition:current:32",
-        event_offset=32,
-    )["object"]
+    first = _project(receipt, object_ref="transition:current", event_offset=0)["object"]
+    second = _project(receipt, object_ref="transition:current:16", event_offset=16)["object"]
+    third = _project(receipt, object_ref="transition:current:32", event_offset=32)["object"]
 
     assert first["command_recoverable"] is True
     assert first["command"] == _command().to_record()
+    assert first["command_redacted"] is False
+    assert first["events_withheld"] is False
     assert "events" not in first["result_metadata"]
     assert [row["sequence"] for row in first["events"]] == list(range(16))
     assert first["next_object_ref"] == "transition:current:16"
@@ -138,25 +135,22 @@ def test_current_transition_projection_pages_events_without_losing_order():
 
 
 def test_current_transition_projection_exposes_legacy_result_without_fabricating_command():
-    projected = current_transition_projection(
-        receipt=_receipt(include_command=False, event_count=1),
-        campaign_id="campaign.test",
-        revision=8,
+    projected = _project(
+        _receipt(include_command=False, event_count=1),
         object_ref="transition:current",
         event_offset=0,
     )["object"]
 
     assert projected["command"] is None
     assert projected["command_recoverable"] is False
+    assert projected["command_redacted"] is False
     assert projected["events"][0]["sequence"] == 0
 
 
 def test_current_transition_projection_rejects_invalid_event_cursor():
     with pytest.raises(OperationError) as exc:
-        current_transition_projection(
-            receipt=_receipt(event_count=2),
-            campaign_id="campaign.test",
-            revision=8,
+        _project(
+            _receipt(event_count=2),
             object_ref="transition:current:3",
             event_offset=3,
         )

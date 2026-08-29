@@ -11,6 +11,9 @@ Watch for:
 - `continue` accidentally becoming a time skip or protected choice;
 - repeated menus for a standing policy, or the opposite problem: a genuine decision left with no useful options;
 - selected menu options being treated as invisible control input instead of visible Wei action/dialogue;
+- command-surface-first UX where the GM scans available commands first, rewrites the player's natural action around them, or treats the command catalog as a whitelist instead of selecting mechanics from the declared intent;
+- a coherent player action being unnecessarily split into multiple player prompts even though the GM could carry standing intent across sequential internal mechanics;
+- a candidate narrated persistent consequence being treated as fact before runtime validation/commit, or the opposite problem: reversible human performance being suppressed because it has no bespoke mechanic;
 - a committed transition becoming unavailable to narration after OOC/tool/context interruption, causing re-entry to reconstruct from terminal state or casualty totals instead of recoverable receipt chronology;
 - a stale scene/activity handoff being treated as a fresh unresolved decision after current-revision evidence already proves Wei acted on it;
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;
@@ -18,7 +21,7 @@ Watch for:
 - House missions skipping acceptance, authority, commander, exact member assignment, equipment/provisions, causal travel, allied mobilization, return, settlement, or AAR;
 - factions becoming static, plot-protected, or player-serving rather than resource/goal/authority driven;
 - economy, recruitment, population, custody, treatment, travel, or production creating/destroying resources without the owning mechanic;
-- interaction attempts being narrated as responses or institutional acceptance;
+- interaction attempts being narrated as binding responses or institutional acceptance;
 - substantive interaction flattened into a status digest, exposition block, or one generic quote when real participants should respond to one another;
 - multiple NPCs speaking as interchangeable exposition channels instead of from distinct lawful roles, knowledge, relationships, and stakes;
 - vague interaction caused by stopping at compact context when one small exact player-permitted read would supply the material participants are actually discussing;

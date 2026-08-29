@@ -1863,6 +1863,23 @@ def combat_default_targeting_intent(
     return resolve_faction_force_intent(faction_doctrine, context)
 
 
+def _present_body_refs(combat: Mapping[str, Any]) -> list[str]:
+    """Return bodies that are physically present on the combat field."""
+    states = combat.get("combatants", {}) if isinstance(combat.get("combatants"), Mapping) else {}
+    positions = combat.get("positions", {}) if isinstance(combat.get("positions"), Mapping) else {}
+    body: list[str] = []
+    for refs in combat.get("sides", {}).values():
+        for ref in refs:
+            if not isinstance(ref, str) or ref not in positions:
+                continue
+            state = states.get(ref)
+            statuses = {str(x) for x in state.get("status_families", []) if isinstance(x, str)} if isinstance(state, Mapping) else set()
+            if "reinforcing" in statuses:
+                continue
+            body.append(ref)
+    return body
+
+
 def _npc_withdrawal_decision(*, combat: Mapping[str, Any], actor_ref: str, people: Mapping[str, Mapping[str, Any]], faction_doctrine: Mapping[str, Any] | None) -> dict[str, Any] | None:
     """Return a deterministic autonomous withdrawal declaration, if warranted."""
     states=combat.get("combatants",{}) if isinstance(combat.get("combatants"),Mapping) else {}
@@ -1892,7 +1909,7 @@ def _npc_withdrawal_decision(*, combat: Mapping[str, Any], actor_ref: str, peopl
     preservation_trigger=preservation>=70 and impaired
     formal=combat_force_context(combat) in {"formal_spar","tournament_nonlethal"}
     if not (critical if formal else (critical or side_collapse or preservation_trigger)): return None
-    body=[str(ref) for refs in combat.get("sides",{}).values() for ref in refs if isinstance(ref,str) and ref in combat.get("positions",{})]
+    body=_present_body_refs(combat)
     if not list(open_retreat_corridors(combat.get("positions",{}),actor_ref=actor_ref,body_refs=body,obstacles=combat.get("obstacles",[]))): return None
     reason="critical_condition" if critical else "side_collapse" if side_collapse else "casualty_preservation"
     return {"reason":reason,"casualty_preservation":preservation,"withdrawal_discipline":discipline,"arrived_side_count":len(arrived),"active_arrived_count":len(active_arrived),"loss_percent":loss_percent,"collapse_threshold_percent":collapse_threshold,"condition":{"consciousness":consciousness,"shock":shock,"blood_lost_ml":blood_lost,"functional_floor_milli":function_floor}}
@@ -1903,7 +1920,7 @@ def _disengage_step(*, combat: dict[str, Any], actor_ref: str, people: Mapping[s
     if actor_ref not in combat.get("combatants",{}) or actor_ref not in combat.get("positions",{}): raise ValueError("combat actor unresolved")
     state=combat["combatants"][actor_ref]
     if not status_action_allowed(state.get("status_families",[]),"disengage"): return {"moved":False,"escaped":False,"reason":"status_blocks_disengagement"}
-    body=[str(ref) for refs in combat.get("sides",{}).values() for ref in refs if isinstance(ref,str) and ref in combat.get("positions",{})]
+    body=_present_body_refs(combat)
     corridors=list(open_retreat_corridors(combat["positions"],actor_ref=actor_ref,body_refs=body,obstacles=combat.get("obstacles",[])))
     if not corridors: return {"moved":False,"escaped":False,"reason":"no_open_retreat_corridor"}
     chosen=sorted(corridors,key=lambda row:int(row.get("angle_mdeg",0)))[0]; row=combat["positions"][actor_ref]

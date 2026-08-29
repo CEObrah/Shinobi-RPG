@@ -104,3 +104,24 @@ def test_withdrawal_completion_cancels_late_uncommitted_chase_on_shared_clock():
     assert attack['result']=='target_escaped_before_commitment'
     assert attack['escaped_at_ms']==1000
     assert result['combat_after']['elapsed_ms']==1000
+
+
+def test_future_reinforcement_is_not_a_physical_retreat_obstacle(monkeypatch):
+    base=load('state/martial-world/people/house_tang.json')['people'][0]
+    actor=person(base,'reinforce-geometry.actor','faction.actor'); enemy=person(base,'reinforce-geometry.enemy','faction.enemy'); future=person(base,'reinforce-geometry.future','faction.enemy')
+    people={row['person_id']:row for row in (actor,enemy,future)}; gear=ledger(*people)
+    combat=initialize_combat(combat_ref='withdraw-reinforce-geometry',side_a_refs=[actor['person_id']],side_b_refs=[enemy['person_id'],future['person_id']],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate'},equipment_ledger=gear,reinforcement_delays_ms={future['person_id']:60_000})
+    combat['positions'][actor['person_id']].update(x_mm=0,y_mm=0); combat['positions'][enemy['person_id']].update(x_mm=1200,y_mm=0); combat['positions'][future['person_id']].update(x_mm=-1000,y_mm=0)
+    seen={}
+    def corridors(positions,*,actor_ref,body_refs,obstacles):
+        seen['corridors']=list(body_refs)
+        return [{'angle_mdeg':180000,'end_x_mm':-8000,'end_y_mm':0}]
+    def clear(positions,*,actor_ref,end_x_mm,end_y_mm,body_refs,obstacles):
+        seen['path']=list(body_refs)
+        return True
+    monkeypatch.setattr(exact,'open_retreat_corridors',corridors); monkeypatch.setattr(exact,'path_clear',clear)
+    result=attempt_disengage(combat=combat,actor_ref=actor['person_id'],people=people,equipment_ledger=gear)
+    assert result['movement']['duration_ms']==1000
+    assert future['person_id'] not in seen['corridors']
+    assert future['person_id'] not in seen['path']
+    assert actor['person_id'] in seen['corridors'] and enemy['person_id'] in seen['corridors']

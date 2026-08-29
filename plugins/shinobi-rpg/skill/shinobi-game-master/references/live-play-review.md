@@ -14,6 +14,8 @@ Watch for:
 - command-surface-first UX where the GM scans available commands first, rewrites the player's natural action around them, or treats the command catalog as a whitelist instead of selecting mechanics from the declared intent;
 - a coherent player action being unnecessarily split into multiple player prompts even though the GM could carry standing intent across sequential internal mechanics;
 - a candidate narrated persistent consequence being treated as fact before runtime validation/commit, or the opposite problem: reversible human performance being suppressed because it has no bespoke mechanic;
+- a co-present NPC becoming mute, returning a sterile `response pending`, or failing to answer an ordinary question/request merely because no dialogue mechanic explicitly authorized a reply;
+- an interaction command being treated as a speaking license rather than a persistence/consequence tool;
 - a committed transition becoming unavailable to narration after OOC/tool/context interruption, causing re-entry to reconstruct from terminal state or casualty totals instead of recoverable receipt chronology;
 - a stale scene/activity handoff being treated as a fresh unresolved decision after current-revision evidence already proves Wei acted on it;
 - coarse combat intent being over-constrained, or doctrine silently overriding explicit player target/weapon/Qi/poison/restraint instructions;

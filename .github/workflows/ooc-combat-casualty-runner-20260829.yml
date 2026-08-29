@@ -22,7 +22,7 @@ jobs:
       - name: Apply casualty projection repair
         run: python tools/ooc_patch_combat_casualty.py
       - name: Install dependencies
-        run: python -m pip install -r requirements.txt
+        run: python -m pip install -r requirements.txt pytest
       - name: Fast repository gate
         run: python tools/quick_check.py
       - name: Changed-system regression selection
@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add runtime/shinobi_runtime/martial_world/exact_combat.py runtime/shinobi_runtime/api/travel_operations.py tests/current/test_combat_casualty_projection.py plugins/shinobi-rpg/skill/shinobi-game-master/references/combat.md
+          git add runtime/shinobi_runtime/martial_world/exact_combat.py runtime/shinobi_runtime/api/travel_operations.py tests/current/test_combat_casualty_projection.py
           git diff --cached --quiet && exit 0
           git commit -m "Fix exact-combat casualty projection"
           git push origin HEAD:${GITHUB_REF_NAME}

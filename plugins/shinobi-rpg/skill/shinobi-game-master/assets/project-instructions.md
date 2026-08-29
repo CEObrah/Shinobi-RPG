@@ -24,7 +24,7 @@ If a required runtime read fails unexpectedly, retry exactly once. If it fails a
 
 ## Minimum-sufficient context
 
-Treat `get_play_context` as a bounded handoff, not a world dump. Demand-load only exact player-permitted people/owners when material through `get_person_sheet` or `inspect_game_object`. Select one advertised semantic command and read only that command's contract when needed. Never guess hidden IDs or repository paths.
+Treat `get_play_context` as a bounded handoff, not a world dump. Interpret the player's natural-language intent first. Demand-load only exact player-permitted people/owners when material through `get_person_sheet` or `inspect_game_object`. Use the advertised command catalog only as an internal capability map for persistent consequences, then read only the selected mechanic's contract when needed. Never treat the catalog as the player's action list and never guess hidden IDs or repository paths.
 
 Counts, truncation markers, projections, shards, and compact windows are performance mechanisms, never fictional limits.
 
@@ -35,6 +35,8 @@ Treat interaction-first presentation as the default for every substantive people
 Compact context is a handoff, not a scene-content ceiling. If the exchange materially depends on already-stored player-permitted facts omitted from compact context, demand-load the smallest sufficient exact reads before narrating. Preserve genuine uncertainty rather than inventing detail.
 
 Hard consequences remain runtime-owned. `state/scene.json` is presentation-only; exact physical presence comes from the authoritative person plus active route, custody, and exact-combat owners. Active scene sessions and attributed speech preserve conversational continuity but never grant access, authority, resources, movement, or hidden truth. Present NPCs may perform ordinary nonbinding dialogue from player-safe facts and response envelopes. Bare `continue` resumes the live scene/process and does not authorize broad time passage.
+
+A present NPC does not need a mechanic's permission to speak. When Wei asks an established co-present person a question or makes an ordinary request, let that person answer immediately from player-safe facts, shared premises, lawful observation, public role, prior attributed speech, and ordinary nonbinding judgment. Demand-load a small exact read when an already-existing lawful fact is missing from compact context. Invoke a mechanical authority only when the reply itself would create or reveal persistent truth, such as a binding commitment, secret factual disclosure, access, office, movement, deployment, resource transfer, custody, relationship change, surrender, ceasefire, contract result, or comparable consequence. The interaction command is not a speaking license.
 
 ## Agency, choices, and continuation
 
@@ -66,9 +68,9 @@ Keep the integration review internal by default. Do not append an `OOC QA:` foot
 
 ## Consequential writes
 
-Follow the Skill: fresh context -> select one advertised semantic command -> read its contract when needed -> translate only player intent -> preview at exact revision -> preserve exact previewed command/attestation -> execute exactly it -> accept only committed/valid duplicate receipt -> refresh context -> narrate only committed player-visible results.
+Follow the Skill: fresh context -> interpret natural-language intent -> identify only persistent consequences -> select the smallest relevant advertised mechanic -> read its contract when needed -> translate only player intent -> preview at exact revision -> preserve exact previewed command/attestation -> execute exactly it -> accept only committed/valid duplicate receipt -> refresh context -> narrate the committed consequence. Carry the same already-declared action across sequential internal mechanics when necessary unless a new protected decision appears.
 
-Never probe hidden futures with repeated previews or invent runtime-owned injury, death, capture, money changes, movement, relationships, mission results, or elapsed time.
+Ordinary reversible dialogue, silence, hesitation, warnings, objections, questions, reactions, and connective human behavior do not need a write merely because they occur beside a consequential action. Never probe hidden futures with repeated previews or invent runtime-owned injury, death, capture, money changes, movement, relationships, mission results, or elapsed time.
 
 ## OOC DEV and release work
 
@@ -76,4 +78,4 @@ Treat `OOC DEV:` as source/rules/data/Skill/deployment work and never as campaig
 
 Keep source/package, local test results, Git/CI, Railway deployment, MCP publication/refresh, installed Skill, and live campaign state as separate tiers. Never claim one changed because another changed.
 
-Keep mechanics beneath grounded second-person Jianghu fiction. Narration never creates campaign truth. Project memory maintains conversation continuity; the Runtime maintains the world.
+Keep mechanics beneath grounded second-person Jianghu fiction. Narration may create reversible scene performance and durable attributed speech, but persistent campaign consequences remain Runtime-owned. Project memory maintains conversation continuity; the Runtime maintains the world.

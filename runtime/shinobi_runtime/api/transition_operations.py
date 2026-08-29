@@ -23,6 +23,43 @@ _TRANSITION_EVENT_PAGE = 16
 _MAX_EVENT_OFFSET = 1_000_000
 
 
+def _normalize_superseded_activity_handoff(context: Mapping[str, Any]) -> dict[str, Any]:
+    """Retire only the initial hostile-contact choice once its combat is active.
+
+    ``state/scene.json`` is presentation continuity and may retain the route
+    frontier that originally woke the player.  Once exact combat owns that same
+    contact, the old question ("what do you do about this contact?") is no
+    longer the current decision.  Keep the handoff for provenance and keep its
+    interruption flag, but stop advertising the superseded choice as unresolved.
+    """
+
+    out = dict(context)
+    scene = out.get("scene")
+    if not isinstance(scene, Mapping):
+        return out
+    handoff = scene.get("activity_handoff")
+    if not isinstance(handoff, Mapping):
+        return out
+    if str(handoff.get("kind") or "") != "hostile_contact":
+        return out
+
+    event_id = str(handoff.get("event_id") or "")
+    active_combat_ref = str(scene.get("active_combat_ref") or "")
+    if not event_id or not active_combat_ref:
+        return out
+    if active_combat_ref != f"combat:{event_id}":
+        return out
+
+    updated_handoff = dict(handoff)
+    updated_handoff["requires_player_decision"] = False
+    updated_handoff["handoff_status"] = "superseded_by_active_combat"
+    updated_handoff["superseded_by_ref"] = active_combat_ref
+    updated_scene = dict(scene)
+    updated_scene["activity_handoff"] = updated_handoff
+    out["scene"] = updated_scene
+    return out
+
+
 def current_transition_projection(
     *,
     receipt: IdempotencyReceipt | None,
@@ -99,7 +136,7 @@ class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):
     """Production operations plus bounded current-transition re-entry evidence."""
 
     def play_context(self) -> Mapping[str, Any]:
-        base = dict(super().play_context())
+        base = _normalize_superseded_activity_handoff(super().play_context())
         object_reads = (
             dict(base.get("object_reads", {}))
             if isinstance(base.get("object_reads"), Mapping)
@@ -174,4 +211,8 @@ class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):
         return projection
 
 
-__all__ = ["TransitionAwareCampaignOperations", "current_transition_projection"]
+__all__ = [
+    "TransitionAwareCampaignOperations",
+    "_normalize_superseded_activity_handoff",
+    "current_transition_projection",
+]

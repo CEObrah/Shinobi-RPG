@@ -115,6 +115,13 @@ def test_current_transition_projection_pages_events_without_losing_order():
         receipt=receipt,
         campaign_id="campaign.test",
         revision=8,
+        object_ref="transition:current:16",
+        event_offset=16,
+    )["object"]
+    third = current_transition_projection(
+        receipt=receipt,
+        campaign_id="campaign.test",
+        revision=8,
         object_ref="transition:current:32",
         event_offset=32,
     )["object"]
@@ -122,10 +129,12 @@ def test_current_transition_projection_pages_events_without_losing_order():
     assert first["command_recoverable"] is True
     assert first["command"] == _command().to_record()
     assert "events" not in first["result_metadata"]
-    assert [row["sequence"] for row in first["events"]] == list(range(32))
-    assert first["next_object_ref"] == "transition:current:32"
-    assert [row["sequence"] for row in second["events"]] == list(range(32, 40))
-    assert second["next_object_ref"] is None
+    assert [row["sequence"] for row in first["events"]] == list(range(16))
+    assert first["next_object_ref"] == "transition:current:16"
+    assert [row["sequence"] for row in second["events"]] == list(range(16, 32))
+    assert second["next_object_ref"] == "transition:current:32"
+    assert [row["sequence"] for row in third["events"]] == list(range(32, 40))
+    assert third["next_object_ref"] is None
 
 
 def test_current_transition_projection_exposes_legacy_result_without_fabricating_command():

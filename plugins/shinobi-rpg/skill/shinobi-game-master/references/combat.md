@@ -114,6 +114,8 @@ Ordinary nonbinding battlefield speech may be realized as scene performance unde
 
 Treat combat observation as observer-specific knowledge. When `scene.combat_observation_context` exists, `player_observation` is Wei's own stored observation while each entry in `ally_observer_summaries` belongs to that ally and is not automatically Wei's knowledge.
 
+When `scene.combat_present_person_ids` exists, treat it as the exact player-safe friendly cast that has actually reached the active combat space. Prefer it over stale `state/scene.json` cast memory, route membership, mission rosters, or `person_reads.suggested_owner_ids` when deciding which allies can physically speak, protect, be addressed, or otherwise participate in the immediate battle scene. A registered future reinforcement is reserved for the combat but is **not co-present** until its exact reinforcement clock arrives.
+
 `confirmed_observed_hostile_count` means exactly what that observer has detected among the current hostile combatants. It is an observed count, not a guarantee that no additional enemy exists outside the observer's knowledge or outside the current combat space. Never expose hidden hostile IDs or substitute the hidden opposing roster size for an observer's count.
 
 If Wei asks an exactly co-present scout or ally how many enemies they saw, let that person report the concrete confirmed count through ordinary reversible dialogue. Prefer wording such as **I saw seven** or **I counted seven; there may be more** when total force remains uncertain. Do not collapse a stored positive observation to a generic **I don't know** merely because the observer cannot certify the entire hostile force.

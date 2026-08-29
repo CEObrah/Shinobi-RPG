@@ -29,6 +29,37 @@ def _read_optional(read_json: Callable[[str], Any], path: str) -> Any:
         return None
 
 
+def combat_person_arrived(combat: Mapping[str, Any], person_ref: str) -> bool:
+    """Return whether one registered combat member has reached the exact combat space.
+
+    A side member may be registered ahead of time as a reinforcement. Membership
+    reserves that person for the combat but must not teleport them into its exact
+    geometry before ``reinforcement_at_ms``. Invalid reinforcing timing fails
+    closed as not-yet-arrived.
+    """
+    combatants = combat.get("combatants") if isinstance(combat.get("combatants"), Mapping) else {}
+    state = combatants.get(person_ref) if isinstance(combatants, Mapping) else None
+    if not isinstance(state, Mapping):
+        return True
+    statuses = {
+        str(value)
+        for value in state.get("status_families", [])
+        if isinstance(value, str)
+    } if isinstance(state.get("status_families"), list) else set()
+    if "reinforcing" not in statuses:
+        return True
+    elapsed = combat.get("elapsed_ms", 0)
+    due = state.get("reinforcement_at_ms")
+    if (
+        isinstance(elapsed, bool)
+        or not isinstance(elapsed, int)
+        or isinstance(due, bool)
+        or not isinstance(due, int)
+    ):
+        return False
+    return max(0, elapsed) >= max(0, due)
+
+
 def active_custody_for_person(read_json: Callable[[str], Any], person_ref: str) -> tuple[str, Mapping[str, Any]] | None:
     state = _read_optional(read_json, _CUSTODY)
     rows = state.get("records", []) if isinstance(state, Mapping) else []
@@ -55,12 +86,15 @@ def active_combat_for_person(read_json: Callable[[str], Any], person_ref: str) -
         if not isinstance(combat_ref, str) or not isinstance(combat, Mapping) or combat.get("status") != "active":
             continue
         combatants = combat.get("combatants") if isinstance(combat.get("combatants"), Mapping) else {}
-        if person_ref in combatants:
-            return combat_ref, combat
         sides = combat.get("sides") if isinstance(combat.get("sides"), Mapping) else {}
-        for members in sides.values():
-            if isinstance(members, list) and person_ref in members:
-                return combat_ref, combat
+        registered = person_ref in combatants
+        if not registered:
+            for members in sides.values():
+                if isinstance(members, list) and person_ref in members:
+                    registered = True
+                    break
+        if registered and combat_person_arrived(combat, person_ref):
+            return combat_ref, combat
     return None
 
 
@@ -95,9 +129,11 @@ def effective_person_presence(
 ) -> dict[str, Any]:
     """Resolve the single mechanical physical owner of one exact person.
 
-    Precedence is custody > exact combat > route > stored person location.
-    Combat may itself occur on a route.  Its exact `zone_ref` is therefore the
-    most specific live physical location while combat is active.
+    Precedence is custody > arrived exact combat > route > stored person
+    location. Combat may itself occur on a route. Its exact ``zone_ref`` is the
+    most specific live physical location once that person has actually reached
+    the combat timeline. A future registered reinforcement remains in its prior
+    physical owner until the reinforcement clock arrives.
     """
     ref = str(person_ref)
     custody = active_custody_for_person(read_json, ref)
@@ -176,7 +212,12 @@ def effective_person_presence(
 
 
 def physical_unavailable_person_refs(read_json: Callable[[str], Any]) -> set[str]:
-    """Return exact people whose bodies are owned away from ordinary site life."""
+    """Return exact people whose bodies are owned away from ordinary site life.
+
+    Registered future combat reinforcements remain unavailable for unrelated
+    activities even before arrival. Their *location*, however, remains owned by
+    route/person state until ``combat_person_arrived`` becomes true.
+    """
     refs: set[str] = set()
     custody = _read_optional(read_json, _CUSTODY)
     for row in custody.get("records", []) if isinstance(custody, Mapping) and isinstance(custody.get("records"), list) else []:
@@ -222,5 +263,6 @@ def same_effective_location(
 
 __all__ = [
     "active_combat_for_person", "active_custody_for_person", "active_route_for_person",
-    "effective_person_presence", "physical_unavailable_person_refs", "same_effective_location",
+    "combat_person_arrived", "effective_person_presence", "physical_unavailable_person_refs",
+    "same_effective_location",
 ]

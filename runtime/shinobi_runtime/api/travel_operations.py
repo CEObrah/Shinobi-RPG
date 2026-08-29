@@ -2,8 +2,9 @@
 
 Mechanical physical presence remains owned by the exact route/custody/combat
 resolvers. This module enriches the read projection so exact co-travelers,
-observer-specific combat knowledge, and already-derived public attendance become
-usable scene handoffs without turning presentation state into mechanical authority.
+arrived friendly combatants, observer-specific combat knowledge, and
+already-derived public attendance become usable scene handoffs without turning
+presentation state into mechanical authority.
 """
 from __future__ import annotations
 
@@ -14,6 +15,7 @@ from shinobi_runtime.api.operations import CampaignOperations, OperationError
 from shinobi_runtime.martial_world.physical_presence import (
     active_combat_for_person,
     active_route_for_person,
+    combat_person_arrived,
     same_effective_location,
 )
 
@@ -79,13 +81,13 @@ def combat_observation_scene_projection(
     player_id: str,
     ally_limit: int = 16,
 ) -> dict[str, Any] | None:
-    """Project observer-specific hostile counts without leaking hidden combat truth.
+    """Project arrived friendly cast and observer-specific hostile counts safely.
 
-    Exact combat already persists each combatant's ``observed_refs``.  This
-    projection counts only opposing refs present in that observer's stored set.
-    It never exposes hostile identities or the hidden opposing roster size, and
-    an ally's observation remains that ally's knowledge until communicated in
-    the scene.
+    Exact combat persists each combatant's ``observed_refs`` and may register
+    future reinforcements before they reach the local geometry. The projection
+    exposes only friendly members whose reinforcement clock has arrived. Enemy
+    identities and hidden opposing roster size remain private, and an ally's
+    observations remain that ally's knowledge until communicated in-scene.
     """
     active = active_combat_for_person(read_json, player_id)
     if active is None:
@@ -117,6 +119,13 @@ def combat_observation_scene_projection(
             if ref not in enemy_refs:
                 enemy_refs.append(ref)
     enemy_set = set(enemy_refs)
+    friendly_present = [
+        ref for ref in player_side_members if combat_person_arrived(combat, ref)
+    ]
+    if player_id not in friendly_present:
+        # The active-combat resolver itself requires the player to have arrived,
+        # so this is defensive against malformed legacy state only.
+        friendly_present.insert(0, player_id)
 
     def observer_summary(observer_ref: str) -> dict[str, Any]:
         state = combatants.get(observer_ref, {})
@@ -131,7 +140,7 @@ def combat_observation_scene_projection(
     limit = max(0, min(24, int(ally_limit)))
     ally_observers: list[dict[str, Any]] = []
     if limit:
-        for ref in player_side_members:
+        for ref in friendly_present:
             if ref == player_id:
                 continue
             ally_observers.append(observer_summary(ref))
@@ -140,6 +149,9 @@ def combat_observation_scene_projection(
 
     return {
         "combat_ref": combat_ref,
+        "friendly_participant_person_ids": friendly_present,
+        "friendly_participant_count": len(friendly_present),
+        "friendly_presence_semantics": "arrived_exact_combat_participants_only",
         "player_observation": player_observation,
         "ally_observer_summaries": ally_observers,
         "knowledge_semantics": "observer_specific_not_automatically_shared",
@@ -249,7 +261,7 @@ def _validate_play_context(base: dict[str, Any]) -> dict[str, Any]:
 
 
 class TravelAwareCampaignOperations(CampaignOperations):
-    """Campaign operations with route-party, combat-observation and public-place context."""
+    """Campaign operations with route-party, combat-presence and public-place context."""
 
     def play_context(self) -> Mapping[str, Any]:
         # Public-site attendance is already part of the base snapshot, so it can
@@ -301,12 +313,23 @@ class TravelAwareCampaignOperations(CampaignOperations):
 
             if combat_observation is not None:
                 scene["combat_observation_context"] = combat_observation
-                for row in combat_observation.get("ally_observer_summaries", []):
-                    if not isinstance(row, Mapping):
-                        continue
-                    ref = row.get("observer_person_id")
-                    if isinstance(ref, str) and ref and ref not in suggested:
+                combat_present = _unique_person_refs(
+                    combat_observation.get("friendly_participant_person_ids")
+                )
+                present: list[str] = []
+                existing_present = scene.get("present_person_ids", [])
+                for ref in ([*existing_present] if isinstance(existing_present, list) else []) + combat_present:
+                    if isinstance(ref, str) and ref and ref not in present:
+                        present.append(ref)
+                scene["present_person_ids"] = present
+                scene["combat_present_person_ids"] = combat_present
+                for ref in combat_present:
+                    if ref not in suggested:
                         suggested.append(ref)
+                person_reads["combat_participant_use"] = (
+                    "combat_present_person_ids are exact friendly members whose combat-arrival clock has fired. "
+                    "Use them as the current friendly battle cast; registered future reinforcements are not co-present yet."
+                )
                 person_reads["combat_observer_use"] = (
                     "Ally observer counts are that ally's exact stored combat observation, not automatically "
                     "Wei's knowledge. If a co-present ally reports what they saw, use the confirmed observed count "
@@ -315,7 +338,7 @@ class TravelAwareCampaignOperations(CampaignOperations):
 
             if movement is not None:
                 ids = _unique_person_refs(movement.get("participant_person_ids"))
-                present: list[str] = []
+                present = []
                 existing_present = scene.get("present_person_ids", [])
                 for ref in ([*existing_present] if isinstance(existing_present, list) else []) + ids:
                     if isinstance(ref, str) and ref and ref not in present:

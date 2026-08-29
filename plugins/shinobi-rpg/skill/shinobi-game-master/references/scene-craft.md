@@ -20,6 +20,16 @@ Compact play context is a handoff, not the maximum amount of material allowed in
 
 Retrieve only what materially changes the exchange and stop when sufficient. If the world genuinely lacks detail, preserve that uncertainty in-character. Let people ask for missing information, disagree about estimates, or admit what is unknown. Never manufacture scout reports, motives, terrain, stock, witnesses, prices, injuries, or other precision just to make dialogue richer.
 
+## Factual floor, not prose ceiling
+
+Runtime projection is the factual boundary for what may be claimed, not the granularity at which every sentence must be authorized. Once fresh player-safe context establishes who is present, what has happened, what is observable, and which hard consequences are committed, the GM should realize a full human scene inside those facts.
+
+Missing hidden precision restricts claims, not scene vitality. If an enemy identity, motive, employer, exact strength, private opinion, or future decision is unknown, do not invent it. That uncertainty does not require silence. Present people may still react to visible danger, exchange warnings, argue about what they can infer, refuse to answer, curse, joke, hesitate, call for help, coordinate around established facts, or speak to one another in ordinary reversible ways.
+
+Do not demand a bespoke command, projection field, or persistence write for every glance, interruption, question, pain reaction, shouted warning, tactical call, refusal to explain, or other nonbinding beat. Use the runtime for truth and lasting consequences. Use scene craft for the reversible human realization of that truth.
+
+When a scene lacks enough factual support for a particular line, narrow the line rather than flattening the scene. Prefer `I cannot see past the bend` over inventing who waits there, or `Stay close` over inventing an unseen ambush. Uncertainty should change what people can assert, not make established people behave like silent placeholders.
+
 ## Information follows the interaction
 
 Do not treat every runtime fact as a line that must be assigned to a speaker. Route information according to social cause. Let a person deliver the report, opinion, objection, question, warning, joke, correction, or decision they would naturally own. Let the narrator handle neutral physical grounding and concise compression of already-understood facts when speaking them aloud would make people sound like a briefing interface.
@@ -88,7 +98,7 @@ Before ending a substantive IC scene, ask:
 5. If a direct consequential question or fork exists, did I provide grounded choices?
 
 Do not end a scene simply because one command returned success.
+
 ## Bounded NPC performance
 
 When a present NPC has a runtime `npc_response_envelope`, use it as private performance guidance rather than exposing it to the player. Let the NPC speak naturally from player-safe facts, preserve uncertainty, and distinguish advice/opinion from fact. Ordinary nonbinding exchanges do not need a write every sentence. Persist only the lines whose later attribution materially matters, and use the mechanical runtime when speech itself would create a binding consequence.
-

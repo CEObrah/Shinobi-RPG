@@ -10,6 +10,23 @@ This reference defines the boundary between hard simulation truth and fluid huma
 
 Be permissive about reversible fiction and strict about persistent consequence. **Do not mistake mechanical strictness for presentation strictness.** The absence of a bespoke command for ordinary speech is not a reason to collapse a lawful interaction into a narrator digest. Use bounded scene truth for human exchange and reserve runtime writes for actual consequences.
 
+## Narrative proposal and promotion
+
+The GM may author a candidate scene beat first and then determine whether any part of it crosses into hard world truth. This makes narration an intent/proposal layer without making prose itself a second writable authority.
+
+Use this order:
+1. realize the ordinary human beat that follows from fresh player-safe context and the player's declared intent;
+2. identify any part of that candidate beat that would create a persistent consequence;
+3. translate only that consequential part into the relevant typed runtime intent;
+4. let the runtime validate, resolve and commit it;
+5. narrate the committed result, replacing or narrowing the candidate if the runtime outcome differs.
+
+A reversible beat may be rendered directly. A persistent beat may become fact only through its runtime authority. Never let a sentence silently mutate the save merely because it was plausible enough to narrate.
+
+This boundary is intentionally one-way for truth but flexible for authorship: the AI may propose, the runtime decides. For example, an ally going quiet, flinching, objecting, warning someone, or refusing to answer may be ordinary scene performance. If the same beat would establish surrender, obedience to a binding order, injury, movement, custody, loss of equipment, acceptance of terms, or another durable consequence, promote that consequence through the appropriate mechanic before treating it as accomplished.
+
+Important reversible speech may also be **promoted to durable attribution** after the GM realizes it. A scene-history write can preserve that the person said the line. It still does not prove the line's factual content is objectively true. This is how narration can become durable conversational fact without turning dialogue into a second rules engine.
+
 ## Active scene sessions
 
 Treat an active scene session as presentation and continuity state, not a second mechanics engine. In Shinobi, `state/scene.json` is presentation-only; mechanical co-presence must come from the single physical-presence resolver over the exact person plus active custody, exact combat, and route movement owners. It may identify the exact established participants, location, process, purpose, agenda, open conversational threads, and a soft scheduling boundary. It never moves bodies, creates access, grants authority, spends resources, changes relationships, or proves hidden facts.

@@ -19,7 +19,7 @@ from shinobi_runtime.tx.receipts import IdempotencyReceipt
 
 
 _CURRENT_TRANSITION_RE = re.compile(r"^transition:current(?::(?P<offset>[0-9]+))?$")
-_TRANSITION_EVENT_PAGE = 32
+_TRANSITION_EVENT_PAGE = 16
 _MAX_EVENT_OFFSET = 1_000_000
 
 
@@ -148,6 +148,12 @@ class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):
                 receipt = self.coordinator.receipts.get_campaign_revision(
                     campaign_id, revision
                 )
+                scheduler = self.repository.read_json("state/martial-world/scheduler.json")
+                freshness = (
+                    {"settled_through": scheduler.get("settled_through")}
+                    if isinstance(scheduler, Mapping)
+                    else None
+                )
                 self._require_read_only(before, "current_transition_read_mutated_campaign")
         except OperationError:
             raise
@@ -163,14 +169,8 @@ class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):
             object_ref=object_ref,
             event_offset=event_offset,
         )
-        try:
-            scheduler = self.repository.read_json("state/martial-world/scheduler.json")
-            if isinstance(scheduler, Mapping):
-                projection["causal_freshness"] = {
-                    "settled_through": scheduler.get("settled_through")
-                }
-        except (FileNotFoundError, KeyError, TypeError, ValueError):
-            pass
+        if freshness is not None:
+            projection["causal_freshness"] = freshness
         return projection
 
 

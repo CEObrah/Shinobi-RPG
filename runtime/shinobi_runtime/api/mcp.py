@@ -735,6 +735,7 @@ def create_mcp_server(
             campaign = _command_identity(operations)
             if expected_revision != campaign["revision"]:
                 raise OperationError(409, "stale_revision")
+            is_repair = command_type == REPAIR_COMMAND_TYPE
             command = CommandEnvelope(
                 campaign_id=campaign["campaign_id"],
                 request_id=request_id,
@@ -743,9 +744,13 @@ def create_mcp_server(
                 expected_revision=expected_revision,
                 submitted_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                 payload=payload,
-                mode="gameplay",
+                mode=REPAIR_MODE if is_repair else "gameplay",
             )
-            preview = operations.preview_command(command)
+            preview = (
+                repair_service.preview(command)
+                if is_repair
+                else operations.preview_command(command)
+            )
         except OperationError as exc:
             return _failure(exc)
         except (TypeError, ValueError):
@@ -792,7 +797,17 @@ def create_mcp_server(
             envelope = CommandEnvelope.from_record(command)
             if envelope.to_record() != command:
                 raise ValueError("command is not its canonical complete record")
-            existing = operations.lookup_command_receipt(envelope)
+            is_repair = (
+                envelope.mode == REPAIR_MODE
+                and envelope.command_type == REPAIR_COMMAND_TYPE
+            )
+            if envelope.mode == REPAIR_MODE and not is_repair:
+                raise ValueError("unsupported repair command")
+            existing = (
+                repair_service.lookup_receipt(envelope)
+                if is_repair
+                else operations.lookup_command_receipt(envelope)
+            )
             if existing is not None:
                 return _success(receipt=existing)
             if not _verify_preview_attestation(
@@ -804,7 +819,11 @@ def create_mcp_server(
                     409,
                     "preview_attestation_invalid_or_expired",
                 )
-            receipt = operations.execute_command(envelope)
+            receipt = (
+                repair_service.execute(envelope)
+                if is_repair
+                else operations.execute_command(envelope)
+            )
         except OperationError as exc:
             return _failure(exc)
         except (TypeError, ValueError):

@@ -31,6 +31,7 @@ from pydantic import BaseModel, ConfigDict
 from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.api.command_discovery import compact_play_context
 from shinobi_runtime.api.operations import CampaignOperations, OperationError
+from shinobi_runtime.api.repair import CampaignRepairService, REPAIR_COMMAND_TYPE, REPAIR_MODE
 from shinobi_runtime.commands import CommandEnvelope
 
 
@@ -584,6 +585,8 @@ def create_mcp_server(
         ]
     }
 
+    repair_service = CampaignRepairService(operations)
+
     read_annotations = ToolAnnotations(
         readOnlyHint=True,
         destructiveHint=False,
@@ -808,6 +811,113 @@ def create_mcp_server(
             return _failure(OperationError(422, "invalid_command_envelope"))
         except Exception:
             return _internal_failure("execute_command")
+        return _success(receipt=receipt)
+
+    @server.tool(
+        name="preview_campaign_repair",
+        title="Preview one forward campaign repair",
+        description=(
+            "Privileged OOC DEV read-only preview for repairing exactly one already-committed "
+            "damaged transaction. The restore snapshot is derived internally from immutable "
+            "transaction Git provenance; callers cannot choose repository paths or restore commits."
+        ),
+        annotations=read_annotations,
+        meta=read_security_meta,
+        structured_output=True,
+    )
+    def preview_campaign_repair(
+        request_id: str,
+        expected_revision: int,
+        damaged_transaction_id: str,
+    ) -> PreviewToolOutput:
+        if (
+            not isinstance(request_id, str)
+            or len(request_id) > 128
+            or not _SAFE_ID.fullmatch(request_id)
+            or isinstance(expected_revision, bool)
+            or not isinstance(expected_revision, int)
+            or expected_revision < 1
+            or not isinstance(damaged_transaction_id, str)
+            or len(damaged_transaction_id) > 160
+            or not _SAFE_ID.fullmatch(damaged_transaction_id)
+        ):
+            return _failure(OperationError(422, "repair_preview_input_invalid"))
+        try:
+            campaign = _command_identity(operations)
+            if expected_revision != campaign["revision"]:
+                raise OperationError(409, "stale_revision")
+            command = CommandEnvelope(
+                campaign_id=campaign["campaign_id"],
+                request_id=request_id,
+                actor_id=campaign["player_id"],
+                command_type=REPAIR_COMMAND_TYPE,
+                expected_revision=expected_revision,
+                submitted_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                payload={"damaged_transaction_id": damaged_transaction_id},
+                mode=REPAIR_MODE,
+            )
+            preview = repair_service.preview(command)
+        except OperationError as exc:
+            return _failure(exc)
+        except (TypeError, ValueError):
+            return _failure(OperationError(422, "repair_preview_input_invalid"))
+        except Exception:
+            return _internal_failure("preview_campaign_repair")
+        return _success(
+            preview=preview,
+            command=command.to_record(),
+            preview_attestation=_preview_attestation(command, oauth),
+        )
+
+    @server.tool(
+        name="execute_campaign_repair",
+        title="Execute an exact previewed campaign repair",
+        description=(
+            "Privileged OOC DEV write tool. Requires the exact repair command and short-lived "
+            "attestation returned by preview_campaign_repair. The repair is forward-only, "
+            "revision-advancing, and preserves the damaged commit as immutable evidence."
+        ),
+        annotations=ToolAnnotations(
+            readOnlyHint=False,
+            destructiveHint=True,
+            idempotentHint=True,
+            openWorldHint=False,
+        ),
+        meta=write_security_meta,
+        structured_output=True,
+    )
+    def execute_campaign_repair(
+        command: dict[str, Any],
+        preview_attestation: Optional[str] = None,
+    ) -> ExecuteToolOutput:
+        scope_failure = _require_write_scope(oauth.write_scope)
+        if scope_failure is not None:
+            return _scope_challenge(oauth)  # type: ignore[return-value]
+        try:
+            validate_bounded_json(command, label="repair command envelope")
+            envelope = CommandEnvelope.from_record(command)
+            if (
+                envelope.to_record() != command
+                or envelope.mode != REPAIR_MODE
+                or envelope.command_type != REPAIR_COMMAND_TYPE
+            ):
+                raise ValueError("command is not an exact canonical repair record")
+            existing = repair_service.lookup_receipt(envelope)
+            if existing is not None:
+                return _success(receipt=existing)
+            if not _verify_preview_attestation(
+                envelope,
+                preview_attestation,
+                oauth,
+            ):
+                raise OperationError(409, "preview_attestation_invalid_or_expired")
+            receipt = repair_service.execute(envelope)
+        except OperationError as exc:
+            return _failure(exc)
+        except (TypeError, ValueError):
+            return _failure(OperationError(422, "invalid_repair_command_envelope"))
+        except Exception:
+            return _internal_failure("execute_campaign_repair")
         return _success(receipt=receipt)
 
     @server.tool(

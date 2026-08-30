@@ -54,7 +54,7 @@ class CampaignRepairService:
         self.repository = operations.repository
         self.coordinator = operations.coordinator
 
-    def _require_base(self, command: CommandEnvelope) -> str:
+    def _require_base(self, command: CommandEnvelope, *, require_revision: bool = True) -> str:
         if command.mode != REPAIR_MODE or command.command_type != REPAIR_COMMAND_TYPE:
             raise OperationError(403, "repair_mode_required")
         if command.actor_id not in self.operations.allowed_actor_ids:
@@ -70,10 +70,11 @@ class CampaignRepairService:
             raise OperationError(422, "repair_payload_invalid")
         try:
             self.repository.require_campaign(command.campaign_id, _META_PATH)
-            self.repository.require_revision(command.expected_revision, _META_PATH)
-        except ValueError as exc:
-            if "revision" in str(exc).lower():
-                raise OperationError(409, "stale_revision") from exc
+            if require_revision:
+                self.repository.require_revision(command.expected_revision, _META_PATH)
+        except StaleRevisionError as exc:
+            raise OperationError(409, "stale_revision") from exc
+        except (TypeError, ValueError) as exc:
             raise OperationError(409, "repair_campaign_mismatch") from exc
         return damaged_transaction_id
 
@@ -200,7 +201,7 @@ class CampaignRepairService:
         }
 
     def lookup_receipt(self, command: CommandEnvelope) -> Optional[Mapping[str, Any]]:
-        self._require_base(command)
+        self._require_base(command, require_revision=False)
         try:
             existing = self.coordinator.lookup_receipt(command)
         except IdempotencyConflictError as exc:
@@ -208,12 +209,12 @@ class CampaignRepairService:
         return None if existing is None else self._receipt_response("duplicate", existing)
 
     def execute(self, command: CommandEnvelope) -> Mapping[str, Any]:
-        self._require_base(command)
-        self._require_fresh_deployment()
+        self._require_base(command, require_revision=False)
         try:
             existing = self.coordinator.lookup_receipt(command)
             if existing is not None:
                 return self._receipt_response("duplicate", existing)
+            self._require_fresh_deployment()
             with self.operations._locked():
                 self.coordinator.git.assert_pristine()
                 before = self.operations._read_fingerprint()

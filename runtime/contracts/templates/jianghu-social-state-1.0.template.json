@@ -1,0 +1,321 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-social-state-1.0",
+  "target_schema": "jianghu-social-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "relationships",
+        "courtships",
+        "obligations",
+        "beliefs",
+        "vows",
+        "martial_familiarity"
+      ],
+      "canonical_order": [
+        "schema",
+        "relationships",
+        "courtships",
+        "obligations",
+        "beliefs",
+        "vows",
+        "martial_familiarity"
+      ]
+    },
+    "/relationships": {
+      "mode": "open_map"
+    },
+    "/relationships/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "trust",
+        "affection",
+        "respect",
+        "familiarity"
+      ],
+      "canonical_order": [
+        "trust",
+        "affection",
+        "respect",
+        "familiarity"
+      ]
+    },
+    "/courtships": {
+      "mode": "open_map"
+    },
+    "/courtships/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_refs",
+        "status",
+        "started_at"
+      ]
+    },
+    "/obligations": {
+      "mode": "open_map"
+    },
+    "/beliefs": {
+      "mode": "open_map"
+    },
+    "/vows": {
+      "mode": "open_map"
+    },
+    "/martial_familiarity": {
+      "mode": "open_map"
+    },
+    "/obligations/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "actor_ref",
+        "counterparty_ref",
+        "kind",
+        "strength",
+        "created_at"
+      ],
+      "canonical_order": [
+        "actor_ref",
+        "counterparty_ref",
+        "kind",
+        "strength",
+        "created_at"
+      ]
+    },
+    "/beliefs/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observer_ref",
+        "claim_ref",
+        "subject_ref",
+        "claim_kind",
+        "confidence_milli",
+        "stance",
+        "source_ref",
+        "value_cash",
+        "evidence_ref"
+      ],
+      "canonical_order": [
+        "observer_ref",
+        "claim_ref",
+        "subject_ref",
+        "claim_kind",
+        "confidence_milli",
+        "stance",
+        "source_ref",
+        "value_cash",
+        "evidence_ref"
+      ]
+    },
+    "/vows/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_ref",
+        "kind",
+        "strength",
+        "declared_at",
+        "subject_ref",
+        "faction_ref"
+      ],
+      "canonical_order": [
+        "person_ref",
+        "kind",
+        "strength",
+        "declared_at",
+        "subject_ref",
+        "faction_ref"
+      ]
+    },
+    "/martial_familiarity/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "observer_ref",
+        "opponent_ref",
+        "exposure",
+        "melee_pressure",
+        "ranged_pressure",
+        "control_pressure"
+      ],
+      "canonical_order": [
+        "observer_ref",
+        "opponent_ref",
+        "exposure",
+        "melee_pressure",
+        "ranged_pressure",
+        "control_pressure"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/relationships": [
+      "object"
+    ],
+    "/relationships/*": [
+      "object"
+    ],
+    "/relationships/*/trust": [
+      "integer"
+    ],
+    "/relationships/*/affection": [
+      "integer"
+    ],
+    "/relationships/*/respect": [
+      "integer"
+    ],
+    "/relationships/*/familiarity": [
+      "integer"
+    ],
+    "/courtships": [
+      "object"
+    ],
+    "/courtships/*": [
+      "object"
+    ],
+    "/courtships/*/person_refs": [
+      "array"
+    ],
+    "/courtships/*/person_refs/*": [
+      "string"
+    ],
+    "/courtships/*/status": [
+      "string"
+    ],
+    "/courtships/*/started_at": [
+      "string"
+    ],
+    "/obligations": [
+      "object"
+    ],
+    "/obligations/*": [
+      "object"
+    ],
+    "/beliefs": [
+      "object"
+    ],
+    "/beliefs/*": [
+      "object"
+    ],
+    "/vows": [
+      "object"
+    ],
+    "/vows/*": [
+      "object"
+    ],
+    "/martial_familiarity": [
+      "object"
+    ],
+    "/martial_familiarity/*": [
+      "object"
+    ],
+    "/obligations/*/actor_ref": [
+      "string"
+    ],
+    "/obligations/*/counterparty_ref": [
+      "string"
+    ],
+    "/obligations/*/kind": [
+      "string"
+    ],
+    "/obligations/*/created_at": [
+      "string"
+    ],
+    "/beliefs/*/observer_ref": [
+      "string"
+    ],
+    "/beliefs/*/claim_ref": [
+      "string"
+    ],
+    "/beliefs/*/subject_ref": [
+      "string"
+    ],
+    "/beliefs/*/claim_kind": [
+      "string"
+    ],
+    "/beliefs/*/stance": [
+      "string"
+    ],
+    "/beliefs/*/source_ref": [
+      "string"
+    ],
+    "/beliefs/*/evidence_ref": [
+      "string"
+    ],
+    "/vows/*/person_ref": [
+      "string"
+    ],
+    "/vows/*/kind": [
+      "string"
+    ],
+    "/vows/*/declared_at": [
+      "string"
+    ],
+    "/vows/*/subject_ref": [
+      "string"
+    ],
+    "/vows/*/faction_ref": [
+      "string"
+    ],
+    "/martial_familiarity/*/observer_ref": [
+      "string"
+    ],
+    "/martial_familiarity/*/opponent_ref": [
+      "string"
+    ],
+    "/obligations/*/strength": [
+      "integer"
+    ],
+    "/beliefs/*/confidence_milli": [
+      "integer"
+    ],
+    "/beliefs/*/value_cash": [
+      "integer"
+    ],
+    "/vows/*/strength": [
+      "integer"
+    ],
+    "/martial_familiarity/*/exposure": [
+      "integer"
+    ],
+    "/martial_familiarity/*/melee_pressure": [
+      "integer"
+    ],
+    "/martial_familiarity/*/ranged_pressure": [
+      "integer"
+    ],
+    "/martial_familiarity/*/control_pressure": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/courtships/*/person_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Relationship rows store only current mechanical scores; explanation history and empty evidence arrays are not state.",
+    "Personal obligations are sparse unresolved current duties only; resolving or forgiving one removes its row instead of appending history.",
+    "Beliefs exist only for exact people whose current belief is causally relevant; newer evidence replaces or revises the current row and closed subjects are pruned.",
+    "Belief rows are perception only; authoritative truth stays in the owning family, property, contract, custody, faction, movement, or other domain record and is never duplicated into a generic social fact ledger.",
+    "Vows persist only unusual explicit personal commitments that can affect current decisions; faction culture remains canonical institutional data.",
+    "Martial familiarity stores bounded current opponent adaptation summaries from meaningful small exact-combat exchanges; incidental impressions are pruned and mass battle does not materialize a pairwise participant matrix.",
+    "Empty relationships/courtships/obligations/beliefs/vows/martial_familiarity maps are omitted.",
+    "Courtship start time persists because it is current relationship-stage chronology consumed by family state."
+  ]
+}

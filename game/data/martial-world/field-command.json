@@ -1,0 +1,53 @@
+{
+  "ownership_rule": "Temporary field formations own no people. They reference exact existing deployed faction members and cannot duplicate them.",
+  "headcount_rule": "Every commander and deputy is one of the deployed people and is included in deployed headcount.",
+  "scale_rule": "Use the smallest lawful top-level formation for the actual deployment. Do not wrap a Team, Section or Wing in a redundant Field Force headquarters.",
+  "standing_office_rule": "A faction's standing field_commander and deputy_field_commander are preferred top-command candidates for Wing/Field Force deployments only when those exact office-holders are actually deployed. Temporary field command and standing institutional office remain separate facts.",
+  "deputy_rule": "Top-level Sections, Wings and Field Forces use a deputy when headcount permits. Nested child formations normally use one commander because the parent headquarters already provides command redundancy. A child detached to operate independently is rebuilt as its own top-level formation and then gains the lawful deputy slot.",
+  "formations": {
+    "party": {
+      "minimum": 1,
+      "target": 2,
+      "maximum": 2,
+      "formal_formation": false,
+      "command": "one lead person for coordination when needed; no deputy"
+    },
+    "team": {
+      "minimum": 3,
+      "target": 5,
+      "maximum": 8,
+      "command": "team leader; no deputy"
+    },
+    "section": {
+      "minimum": 9,
+      "target": 25,
+      "maximum": 30,
+      "command": "section leader; top-level section also uses a deputy",
+      "forced_child_formations": false
+    },
+    "wing": {
+      "minimum": 31,
+      "target": 100,
+      "maximum": 120,
+      "command": "wing commander plus deputy at top level",
+      "child_kind": "section",
+      "nested_child_deputies": false
+    },
+    "field_force": {
+      "minimum": 121,
+      "maximum": null,
+      "command": "field commander plus deputy",
+      "recursive": true,
+      "child_kind": "wing",
+      "nested_child_deputies": false
+    }
+  },
+  "examples": {
+    "5_people": "one Team led by one of the five; no higher headquarters",
+    "24_people": "one Section with Section Leader and Deputy; no Field Force wrapper",
+    "80_people": "one Wing with Wing Commander and Deputy plus subordinate Sections led by Section Leaders",
+    "180_people": "one Field Force with Field Commander and Deputy plus multiple subordinate Wings; no separate Sword-style Unit Commander layer"
+  },
+  "command_rule": "Command changes coordination, order latency, synchronization, reserve employment, pursuit, protection, extraction and withdrawal. It never directly increases physical attributes, martial skills, Qi or damage.",
+  "team_tactics_rule": "Formal field command sets objective, priorities and coordination. The exact-combat team tactical planner may create temporary exchange roles such as screen, intercept, pressure, protect and exploit without creating a second permanent command hierarchy."
+}

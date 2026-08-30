@@ -1,0 +1,131 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-faction-relations-state-1.0",
+  "target_schema": "jianghu-faction-relations-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "edges"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "edges",
+        "coalitions"
+      ],
+      "canonical_order": [
+        "schema",
+        "edges",
+        "coalitions"
+      ]
+    },
+    "/edges/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "from_faction",
+        "to_faction",
+        "trust",
+        "respect",
+        "hostility",
+        "obligation"
+      ],
+      "canonical_order": [
+        "from_faction",
+        "to_faction",
+        "trust",
+        "respect",
+        "hostility",
+        "obligation"
+      ]
+    },
+    "/coalitions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "member_faction_refs",
+        "target_faction_ref",
+        "purpose",
+        "formed_at"
+      ],
+      "canonical_order": [
+        "member_faction_refs",
+        "target_faction_ref",
+        "purpose",
+        "formed_at"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/edges": [
+      "array"
+    ],
+    "/edges/*": [
+      "object"
+    ],
+    "/edges/*/from_faction": [
+      "string"
+    ],
+    "/edges/*/to_faction": [
+      "string"
+    ],
+    "/edges/*/trust": [
+      "integer"
+    ],
+    "/edges/*/respect": [
+      "integer"
+    ],
+    "/edges/*/hostility": [
+      "integer"
+    ],
+    "/edges/*/obligation": [
+      "integer"
+    ],
+    "/coalitions": [
+      "object"
+    ],
+    "/coalitions/*": [
+      "object"
+    ],
+    "/coalitions/*/member_faction_refs": [
+      "array"
+    ],
+    "/coalitions/*/target_faction_ref": [
+      "string"
+    ],
+    "/coalitions/*/purpose": [
+      "string"
+    ],
+    "/coalitions/*/formed_at": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/edges": {
+      "item_types": [
+        "object"
+      ]
+    },
+    "/coalitions/*/member_faction_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Store only the directed faction pair and nonzero current relationship dimensions.",
+    "Relationship evidence and event chronology belong to their own authorities, not this hot current-state edge.",
+    "Coalitions store only current shared-war coordination among existing factions and are recomputed/removed when the causal war basis changes; do not append coalition history."
+  ]
+}

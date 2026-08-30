@@ -1,0 +1,23 @@
+{
+  "schema": "scene",
+  "scene_id": "scene.jianghu.sword_manor",
+  "location_id": "site.house_tang",
+  "present_person_ids": [
+    "pc_wei_tang",
+    "char.zhu",
+    "char.ling",
+    "char.kai"
+  ],
+  "visible_person_ids": [
+    "pc_wei_tang",
+    "char.zhu",
+    "char.ling",
+    "char.kai"
+  ],
+  "activity_handoff": {
+    "event_id": "contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
+    "kind": "hostile_contact",
+    "requires_player_decision": true,
+    "interrupts_continuation": true
+  }
+}

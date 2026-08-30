@@ -1,0 +1,28 @@
+{
+  "annual_max_transitions": 1,
+  "foundation": {
+    "minimum_members": 2,
+    "mutual_trust_minimum": 60,
+    "startup_cash_per_member": 500,
+    "eligible_site_types": ["guild_hall", "caravan_yard"],
+    "faction_type": "society",
+    "jianghu_camp": "independent"
+  },
+  "merge": {
+    "mutual_faction_trust_minimum": 80
+  },
+  "split": {
+    "minimum_living_members": 6,
+    "minimum_departing_members": 2,
+    "splinter_leader_trust_to_current_leader_maximum": -50,
+    "follower_trust_to_splinter_leader_minimum": 40,
+    "follower_trust_to_current_leader_maximum": -30
+  },
+  "dissolution": {
+    "maximum_living_members": 1,
+    "maximum_treasury_cash": 0,
+    "maximum_food_ration_days": 0,
+    "requires_no_enterprise": true
+  },
+  "rule": "Institutional change is causal and conserved. The annual frontier may complete at most one transition. It never spawns people, cash, inventory, land, buildings, or sites, and it never moves the player or an already committed exact person without a player command."
+}

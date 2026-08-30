@@ -1,0 +1,1413 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-faction-state-1.0",
+  "target_schema": "jianghu-faction-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world/factions"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "faction_id",
+    "headquarters",
+    "local_site_ref",
+    "treasury_cash",
+    "buildings",
+    "enterprises"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "faction_id",
+        "status",
+        "name",
+        "type",
+        "headquarters",
+        "local_site_ref",
+        "treasury_cash",
+        "buildings",
+        "enterprises",
+        "training",
+        "doctrine",
+        "recruitment_policy",
+        "admission_policy",
+        "autonomy_policy",
+        "active_projects",
+        "active_contracts",
+        "outlaw_subtype",
+        "operating_routes",
+        "outlaw_policy",
+        "training_epoch",
+        "recruitment_season",
+        "infrastructure",
+        "holdings",
+        "enterprise_scale",
+        "membership_tenure",
+        "jianghu_camp",
+        "controlled_estates",
+        "site_conditions"
+      ],
+      "canonical_order": [
+        "schema",
+        "faction_id",
+        "status",
+        "name",
+        "type",
+        "headquarters",
+        "local_site_ref",
+        "treasury_cash",
+        "buildings",
+        "enterprises",
+        "training",
+        "doctrine",
+        "recruitment_policy",
+        "admission_policy",
+        "autonomy_policy",
+        "active_projects",
+        "active_contracts",
+        "outlaw_subtype",
+        "operating_routes",
+        "outlaw_policy",
+        "training_epoch",
+        "recruitment_season",
+        "infrastructure",
+        "holdings",
+        "enterprise_scale",
+        "membership_tenure",
+        "jianghu_camp",
+        "controlled_estates",
+        "site_conditions"
+      ]
+    },
+    "/buildings": {
+      "mode": "closed",
+      "allowed_keys": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ],
+      "canonical_order": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ]
+    },
+    "/enterprises": {
+      "mode": "closed",
+      "allowed_keys": [
+        "agriculture_landholding",
+        "trade_merchant_business",
+        "crafting_workshop",
+        "medicine_apothecary",
+        "escort_service",
+        "property_rent",
+        "school_tuition",
+        "criminal_enterprise"
+      ],
+      "canonical_order": [
+        "agriculture_landholding",
+        "trade_merchant_business",
+        "crafting_workshop",
+        "medicine_apothecary",
+        "escort_service",
+        "property_rent",
+        "school_tuition",
+        "criminal_enterprise"
+      ]
+    },
+    "/training": {
+      "mode": "closed",
+      "allowed_keys": [
+        "sword",
+        "spear",
+        "bow",
+        "hidden_weapons",
+        "unarmed",
+        "stealth_scouting",
+        "command",
+        "medicine",
+        "qi",
+        "qi_control",
+        "administration",
+        "commerce",
+        "crafting",
+        "instruction"
+      ],
+      "canonical_order": [
+        "sword",
+        "spear",
+        "bow",
+        "hidden_weapons",
+        "unarmed",
+        "stealth_scouting",
+        "command",
+        "medicine",
+        "qi",
+        "qi_control",
+        "administration",
+        "commerce",
+        "crafting",
+        "instruction"
+      ]
+    },
+    "/doctrine": {
+      "mode": "closed",
+      "allowed_keys": [
+        "offensive_pressure",
+        "defensive_caution",
+        "qi_conservation",
+        "formation_cohesion",
+        "mutual_support",
+        "individual_initiative",
+        "scouting_emphasis",
+        "ambush_emphasis",
+        "ranged_emphasis",
+        "close_combat_emphasis",
+        "reserve_preference",
+        "concentration_of_force",
+        "pursuit",
+        "withdrawal_discipline",
+        "casualty_preservation",
+        "civilian_restraint",
+        "prisoner_preference",
+        "lethality_threshold"
+      ],
+      "canonical_order": [
+        "offensive_pressure",
+        "defensive_caution",
+        "qi_conservation",
+        "formation_cohesion",
+        "mutual_support",
+        "individual_initiative",
+        "scouting_emphasis",
+        "ambush_emphasis",
+        "ranged_emphasis",
+        "close_combat_emphasis",
+        "reserve_preference",
+        "concentration_of_force",
+        "pursuit",
+        "withdrawal_discipline",
+        "casualty_preservation",
+        "civilian_restraint",
+        "prisoner_preference",
+        "lethality_threshold"
+      ]
+    },
+    "/recruitment_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "target_martial_share_milli",
+        "minimum_martial_aptitude",
+        "minimum_qi_aptitude",
+        "maximum_intake_per_season",
+        "target_membership"
+      ],
+      "canonical_order": [
+        "target_martial_share_milli",
+        "minimum_martial_aptitude",
+        "minimum_qi_aptitude",
+        "maximum_intake_per_season",
+        "target_membership"
+      ]
+    },
+    "/autonomy_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "recruitment_priority",
+        "training_priority",
+        "financial_caution",
+        "external_aggression",
+        "risk_tolerance",
+        "reserve_cash_months"
+      ],
+      "canonical_order": [
+        "recruitment_priority",
+        "training_priority",
+        "financial_caution",
+        "external_aggression",
+        "risk_tolerance",
+        "reserve_cash_months"
+      ]
+    },
+    "/outlaw_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "loot_need_threshold",
+        "minimum_attack_advantage_milli",
+        "retreat_loss_threshold_pct",
+        "risk_tolerance"
+      ],
+      "canonical_order": [
+        "loot_need_threshold",
+        "minimum_attack_advantage_milli",
+        "retreat_loss_threshold_pct",
+        "risk_tolerance"
+      ]
+    },
+    "/training_epoch": {
+      "mode": "closed",
+      "allowed_keys": [
+        "started_at",
+        "settled_through",
+        "elapsed_training_days",
+        "intensity_milli"
+      ],
+      "canonical_order": [
+        "started_at",
+        "settled_through",
+        "elapsed_training_days",
+        "intensity_milli"
+      ]
+    },
+    "/recruitment_season": {
+      "mode": "closed",
+      "allowed_keys": [
+        "season_id",
+        "intake_used"
+      ],
+      "canonical_order": [
+        "season_id",
+        "intake_used"
+      ]
+    },
+    "/infrastructure": {
+      "mode": "closed",
+      "allowed_keys": [
+        "estate_area_m2",
+        "facilities"
+      ],
+      "canonical_order": [
+        "estate_area_m2",
+        "facilities"
+      ]
+    },
+    "/infrastructure/facilities": {
+      "mode": "closed",
+      "allowed_keys": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ],
+      "canonical_order": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ]
+    },
+    "/infrastructure/facilities/main_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/residential_compound": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/training_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/training_grounds": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/qi_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/armory_workshop": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/infirmary_apothecary": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/storehouse": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/library_records": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/infrastructure/facilities/walls_gate": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2",
+        "defended_perimeter_m",
+        "wall_height_m"
+      ],
+      "canonical_order": [
+        "footprint_m2",
+        "defended_perimeter_m",
+        "wall_height_m"
+      ]
+    },
+    "/infrastructure/facilities/transport_yard": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/holdings": {
+      "mode": "closed",
+      "allowed_keys": [
+        "rural_land_mu",
+        "record_refs"
+      ],
+      "canonical_order": [
+        "rural_land_mu",
+        "record_refs"
+      ]
+    },
+    "/enterprise_scale": {
+      "mode": "closed",
+      "allowed_keys": [
+        "agriculture_landholding",
+        "trade_merchant_business",
+        "crafting_workshop",
+        "medicine_apothecary",
+        "escort_service",
+        "property_rent",
+        "school_tuition",
+        "criminal_enterprise"
+      ],
+      "canonical_order": [
+        "agriculture_landholding",
+        "trade_merchant_business",
+        "crafting_workshop",
+        "medicine_apothecary",
+        "escort_service",
+        "property_rent",
+        "school_tuition",
+        "criminal_enterprise"
+      ]
+    },
+    "/enterprise_scale/agriculture_landholding": {
+      "mode": "closed",
+      "allowed_keys": [
+        "managed_land_mu"
+      ],
+      "canonical_order": [
+        "managed_land_mu"
+      ]
+    },
+    "/enterprise_scale/trade_merchant_business": {
+      "mode": "closed",
+      "allowed_keys": [
+        "monthly_trade_capital_cash"
+      ],
+      "canonical_order": [
+        "monthly_trade_capital_cash"
+      ]
+    },
+    "/enterprise_scale/crafting_workshop": {
+      "mode": "closed",
+      "allowed_keys": [
+        "productive_workstations"
+      ],
+      "canonical_order": [
+        "productive_workstations"
+      ]
+    },
+    "/enterprise_scale/medicine_apothecary": {
+      "mode": "closed",
+      "allowed_keys": [
+        "medicine_workstations"
+      ],
+      "canonical_order": [
+        "medicine_workstations"
+      ]
+    },
+    "/enterprise_scale/escort_service": {
+      "mode": "closed",
+      "allowed_keys": [
+        "simultaneous_contract_capacity"
+      ],
+      "canonical_order": [
+        "simultaneous_contract_capacity"
+      ]
+    },
+    "/enterprise_scale/property_rent": {
+      "mode": "closed",
+      "allowed_keys": [
+        "registered_property_units"
+      ],
+      "canonical_order": [
+        "registered_property_units"
+      ]
+    },
+    "/enterprise_scale/school_tuition": {
+      "mode": "closed",
+      "allowed_keys": [
+        "paying_student_slots"
+      ],
+      "canonical_order": [
+        "paying_student_slots"
+      ]
+    },
+    "/enterprise_scale/criminal_enterprise": {
+      "mode": "closed",
+      "allowed_keys": [
+        "registered_cells_or_ventures"
+      ],
+      "canonical_order": [
+        "registered_cells_or_ventures"
+      ]
+    },
+    "/controlled_estates": {
+      "mode": "open_map"
+    },
+    "/controlled_estates/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "source_faction_ref",
+        "acquired_at",
+        "status",
+        "headquarters_place_ref",
+        "buildings",
+        "infrastructure",
+        "enterprises"
+      ]
+    },
+    "/controlled_estates/*/buildings": {
+      "mode": "closed",
+      "allowed_keys": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ]
+    },
+    "/controlled_estates/*/infrastructure": {
+      "mode": "closed",
+      "allowed_keys": [
+        "estate_area_m2",
+        "facilities"
+      ],
+      "canonical_order": [
+        "estate_area_m2",
+        "facilities"
+      ]
+    },
+    "/controlled_estates/*/enterprises": {
+      "mode": "closed",
+      "allowed_keys": [
+        "agriculture_landholding",
+        "trade_merchant_business",
+        "crafting_workshop",
+        "medicine_apothecary",
+        "escort_service",
+        "property_rent",
+        "school_tuition",
+        "criminal_enterprise"
+      ]
+    },
+    "/site_conditions": {
+      "mode": "open_map"
+    },
+    "/site_conditions/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "walls_gate_integrity_milli",
+        "walls_gate_breached",
+        "last_damage_at"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities": {
+      "mode": "closed",
+      "allowed_keys": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ],
+      "canonical_order": [
+        "main_hall",
+        "residential_compound",
+        "training_hall",
+        "training_grounds",
+        "qi_hall",
+        "armory_workshop",
+        "infirmary_apothecary",
+        "storehouse",
+        "library_records",
+        "walls_gate",
+        "transport_yard"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/main_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/residential_compound": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/training_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/training_grounds": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/qi_hall": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/armory_workshop": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/infirmary_apothecary": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/storehouse": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/library_records": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/walls_gate": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2",
+        "defended_perimeter_m",
+        "wall_height_m"
+      ],
+      "canonical_order": [
+        "footprint_m2",
+        "defended_perimeter_m",
+        "wall_height_m"
+      ]
+    },
+    "/controlled_estates/*/infrastructure/facilities/transport_yard": {
+      "mode": "closed",
+      "allowed_keys": [
+        "footprint_m2"
+      ],
+      "canonical_order": [
+        "footprint_m2"
+      ]
+    },
+    "/admission_policy": {
+      "mode": "closed",
+      "allowed_keys": [
+        "model",
+        "allowed_sexes",
+        "minimum_entry_age"
+      ],
+      "canonical_order": [
+        "model",
+        "allowed_sexes",
+        "minimum_entry_age"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/faction_id": [
+      "string"
+    ],
+    "/name": [
+      "string"
+    ],
+    "/type": [
+      "string"
+    ],
+    "/headquarters": [
+      "string"
+    ],
+    "/local_site_ref": [
+      "string"
+    ],
+    "/treasury_cash": [
+      "integer"
+    ],
+    "/buildings": [
+      "object"
+    ],
+    "/enterprises": [
+      "object"
+    ],
+    "/training": [
+      "object"
+    ],
+    "/doctrine": [
+      "object"
+    ],
+    "/recruitment_policy": [
+      "object"
+    ],
+    "/autonomy_policy": [
+      "object"
+    ],
+    "/active_projects": [
+      "array"
+    ],
+    "/active_projects/*": [
+      "string"
+    ],
+    "/active_contracts": [
+      "array"
+    ],
+    "/active_contracts/*": [
+      "string"
+    ],
+    "/outlaw_subtype": [
+      "string"
+    ],
+    "/operating_routes": [
+      "array"
+    ],
+    "/operating_routes/*": [
+      "string"
+    ],
+    "/outlaw_policy": [
+      "object"
+    ],
+    "/buildings/main_hall": [
+      "integer"
+    ],
+    "/buildings/residential_compound": [
+      "integer"
+    ],
+    "/buildings/training_hall": [
+      "integer"
+    ],
+    "/buildings/training_grounds": [
+      "integer"
+    ],
+    "/buildings/qi_hall": [
+      "integer"
+    ],
+    "/buildings/armory_workshop": [
+      "integer"
+    ],
+    "/buildings/infirmary_apothecary": [
+      "integer"
+    ],
+    "/buildings/storehouse": [
+      "integer"
+    ],
+    "/buildings/library_records": [
+      "integer"
+    ],
+    "/buildings/walls_gate": [
+      "integer"
+    ],
+    "/buildings/transport_yard": [
+      "integer"
+    ],
+    "/enterprises/agriculture_landholding": [
+      "integer"
+    ],
+    "/enterprises/trade_merchant_business": [
+      "integer"
+    ],
+    "/enterprises/crafting_workshop": [
+      "integer"
+    ],
+    "/enterprises/medicine_apothecary": [
+      "integer"
+    ],
+    "/enterprises/escort_service": [
+      "integer"
+    ],
+    "/enterprises/property_rent": [
+      "integer"
+    ],
+    "/enterprises/school_tuition": [
+      "integer"
+    ],
+    "/enterprises/criminal_enterprise": [
+      "integer"
+    ],
+    "/training/sword": [
+      "integer"
+    ],
+    "/training/spear": [
+      "integer"
+    ],
+    "/training/bow": [
+      "integer"
+    ],
+    "/training/unarmed": [
+      "integer"
+    ],
+    "/training/stealth_scouting": [
+      "integer"
+    ],
+    "/training/command": [
+      "integer"
+    ],
+    "/training/medicine": [
+      "integer"
+    ],
+    "/training/qi": [
+      "integer"
+    ],
+    "/training/qi_control": [
+      "integer"
+    ],
+    "/doctrine/offensive_pressure": [
+      "integer"
+    ],
+    "/doctrine/defensive_caution": [
+      "integer"
+    ],
+    "/doctrine/qi_conservation": [
+      "integer"
+    ],
+    "/doctrine/formation_cohesion": [
+      "integer"
+    ],
+    "/doctrine/mutual_support": [
+      "integer"
+    ],
+    "/doctrine/individual_initiative": [
+      "integer"
+    ],
+    "/doctrine/scouting_emphasis": [
+      "integer"
+    ],
+    "/doctrine/ambush_emphasis": [
+      "integer"
+    ],
+    "/doctrine/ranged_emphasis": [
+      "integer"
+    ],
+    "/doctrine/close_combat_emphasis": [
+      "integer"
+    ],
+    "/doctrine/reserve_preference": [
+      "integer"
+    ],
+    "/doctrine/concentration_of_force": [
+      "integer"
+    ],
+    "/doctrine/pursuit": [
+      "integer"
+    ],
+    "/doctrine/withdrawal_discipline": [
+      "integer"
+    ],
+    "/doctrine/casualty_preservation": [
+      "integer"
+    ],
+    "/doctrine/civilian_restraint": [
+      "integer"
+    ],
+    "/doctrine/prisoner_preference": [
+      "integer"
+    ],
+    "/doctrine/lethality_threshold": [
+      "integer"
+    ],
+    "/recruitment_policy/target_martial_share_milli": [
+      "integer"
+    ],
+    "/recruitment_policy/minimum_martial_aptitude": [
+      "integer"
+    ],
+    "/recruitment_policy/minimum_qi_aptitude": [
+      "integer"
+    ],
+    "/recruitment_policy/maximum_intake_per_season": [
+      "integer"
+    ],
+    "/autonomy_policy/recruitment_priority": [
+      "integer"
+    ],
+    "/autonomy_policy/training_priority": [
+      "integer"
+    ],
+    "/autonomy_policy/financial_caution": [
+      "integer"
+    ],
+    "/autonomy_policy/external_aggression": [
+      "integer"
+    ],
+    "/autonomy_policy/risk_tolerance": [
+      "integer"
+    ],
+    "/autonomy_policy/reserve_cash_months": [
+      "integer"
+    ],
+    "/outlaw_policy/loot_need_threshold": [
+      "integer"
+    ],
+    "/outlaw_policy/minimum_attack_advantage_milli": [
+      "integer"
+    ],
+    "/outlaw_policy/retreat_loss_threshold_pct": [
+      "integer"
+    ],
+    "/outlaw_policy/risk_tolerance": [
+      "integer"
+    ],
+    "/training_epoch": [
+      "object"
+    ],
+    "/training_epoch/started_at": [
+      "string"
+    ],
+    "/training_epoch/settled_through": [
+      "string"
+    ],
+    "/training_epoch/elapsed_training_days": [
+      "integer"
+    ],
+    "/training_epoch/intensity_milli": [
+      "integer"
+    ],
+    "/training/hidden_weapons": [
+      "integer"
+    ],
+    "/infrastructure": [
+      "object"
+    ],
+    "/infrastructure/estate_area_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities": [
+      "object"
+    ],
+    "/infrastructure/facilities/main_hall": [
+      "object"
+    ],
+    "/infrastructure/facilities/main_hall/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/residential_compound": [
+      "object"
+    ],
+    "/infrastructure/facilities/residential_compound/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/training_hall": [
+      "object"
+    ],
+    "/infrastructure/facilities/training_hall/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/training_grounds": [
+      "object"
+    ],
+    "/infrastructure/facilities/training_grounds/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/qi_hall": [
+      "object"
+    ],
+    "/infrastructure/facilities/qi_hall/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/armory_workshop": [
+      "object"
+    ],
+    "/infrastructure/facilities/armory_workshop/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/infirmary_apothecary": [
+      "object"
+    ],
+    "/infrastructure/facilities/infirmary_apothecary/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/storehouse": [
+      "object"
+    ],
+    "/infrastructure/facilities/storehouse/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/library_records": [
+      "object"
+    ],
+    "/infrastructure/facilities/library_records/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/walls_gate": [
+      "object"
+    ],
+    "/infrastructure/facilities/walls_gate/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/transport_yard": [
+      "object"
+    ],
+    "/infrastructure/facilities/transport_yard/footprint_m2": [
+      "integer"
+    ],
+    "/infrastructure/facilities/walls_gate/defended_perimeter_m": [
+      "integer"
+    ],
+    "/infrastructure/facilities/walls_gate/wall_height_m": [
+      "integer"
+    ],
+    "/holdings": [
+      "object"
+    ],
+    "/holdings/rural_land_mu": [
+      "integer"
+    ],
+    "/enterprise_scale": [
+      "object"
+    ],
+    "/enterprise_scale/agriculture_landholding": [
+      "object"
+    ],
+    "/enterprise_scale/agriculture_landholding/managed_land_mu": [
+      "integer"
+    ],
+    "/enterprise_scale/trade_merchant_business": [
+      "object"
+    ],
+    "/enterprise_scale/trade_merchant_business/monthly_trade_capital_cash": [
+      "integer"
+    ],
+    "/enterprise_scale/crafting_workshop": [
+      "object"
+    ],
+    "/enterprise_scale/crafting_workshop/productive_workstations": [
+      "integer"
+    ],
+    "/enterprise_scale/medicine_apothecary": [
+      "object"
+    ],
+    "/enterprise_scale/medicine_apothecary/medicine_workstations": [
+      "integer"
+    ],
+    "/enterprise_scale/escort_service": [
+      "object"
+    ],
+    "/enterprise_scale/escort_service/simultaneous_contract_capacity": [
+      "integer"
+    ],
+    "/enterprise_scale/property_rent": [
+      "object"
+    ],
+    "/enterprise_scale/property_rent/registered_property_units": [
+      "integer"
+    ],
+    "/enterprise_scale/school_tuition": [
+      "object"
+    ],
+    "/enterprise_scale/school_tuition/paying_student_slots": [
+      "integer"
+    ],
+    "/enterprise_scale/criminal_enterprise": [
+      "object"
+    ],
+    "/enterprise_scale/criminal_enterprise/registered_cells_or_ventures": [
+      "integer"
+    ],
+    "/holdings/record_refs": [
+      "array"
+    ],
+    "/holdings/record_refs/*": [
+      "string"
+    ],
+    "/status": [
+      "string"
+    ],
+    "/membership_tenure": [
+      "string"
+    ],
+    "/jianghu_camp": [
+      "string"
+    ],
+    "/controlled_estates": [
+      "object"
+    ],
+    "/controlled_estates/*": [
+      "object"
+    ],
+    "/controlled_estates/*/source_faction_ref": [
+      "string"
+    ],
+    "/controlled_estates/*/acquired_at": [
+      "string"
+    ],
+    "/controlled_estates/*/status": [
+      "string"
+    ],
+    "/controlled_estates/*/headquarters_place_ref": [
+      "string"
+    ],
+    "/controlled_estates/*/buildings": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure": [
+      "object"
+    ],
+    "/controlled_estates/*/enterprises": [
+      "object"
+    ],
+    "/site_conditions": [
+      "object"
+    ],
+    "/site_conditions/*": [
+      "object"
+    ],
+    "/site_conditions/*/walls_gate_integrity_milli": [
+      "integer"
+    ],
+    "/site_conditions/*/walls_gate_breached": [
+      "boolean"
+    ],
+    "/site_conditions/*/last_damage_at": [
+      "string"
+    ],
+    "/controlled_estates/*/buildings/main_hall": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/residential_compound": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/training_hall": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/training_grounds": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/qi_hall": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/armory_workshop": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/infirmary_apothecary": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/storehouse": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/library_records": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/walls_gate": [
+      "integer"
+    ],
+    "/controlled_estates/*/buildings/transport_yard": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/agriculture_landholding": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/trade_merchant_business": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/crafting_workshop": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/medicine_apothecary": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/escort_service": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/property_rent": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/school_tuition": [
+      "integer"
+    ],
+    "/controlled_estates/*/enterprises/criminal_enterprise": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/estate_area_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/main_hall": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/main_hall/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/residential_compound": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/residential_compound/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/training_hall": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/training_hall/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/training_grounds": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/training_grounds/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/qi_hall": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/qi_hall/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/armory_workshop": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/armory_workshop/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/infirmary_apothecary": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/infirmary_apothecary/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/storehouse": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/storehouse/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/library_records": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/library_records/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/walls_gate": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/walls_gate/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/transport_yard": [
+      "object"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/transport_yard/footprint_m2": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/walls_gate/defended_perimeter_m": [
+      "integer"
+    ],
+    "/controlled_estates/*/infrastructure/facilities/walls_gate/wall_height_m": [
+      "integer"
+    ],
+    "/admission_policy": [
+      "object"
+    ],
+    "/admission_policy/model": [
+      "string"
+    ],
+    "/admission_policy/allowed_sexes": [
+      "array"
+    ],
+    "/admission_policy/allowed_sexes/*": [
+      "string"
+    ],
+    "/admission_policy/minimum_entry_age": [
+      "integer"
+    ],
+    "/training/administration": [
+      "integer"
+    ],
+    "/training/commerce": [
+      "integer"
+    ],
+    "/training/crafting": [
+      "integer"
+    ],
+    "/training/instruction": [
+      "integer"
+    ],
+    "/recruitment_policy/target_membership": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/active_projects": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/active_contracts": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/operating_routes": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/holdings/record_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/admission_policy/allowed_sexes": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Persist current faction facts only. Static identity, curriculum, doctrine and policy resolve from game data by faction_id unless a campaign override differs.",
+    "Roster and inventory paths are deterministically derived from faction_id and are never stored here.",
+    "Empty active_projects and active_contracts are omitted.",
+    "Do not add an unregistered field. A new field requires maintenance-time template/schema revision first."
+  ]
+}

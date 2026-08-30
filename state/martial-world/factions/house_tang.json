@@ -1,0 +1,103 @@
+{
+  "schema": "jianghu-faction-state-1.0",
+  "faction_id": "house_tang",
+  "headquarters": "luoyang",
+  "local_site_ref": "site.house_tang",
+  "treasury_cash": 423302,
+  "buildings": {
+    "main_hall": 5,
+    "residential_compound": 5,
+    "training_hall": 5,
+    "training_grounds": 5,
+    "qi_hall": 5,
+    "armory_workshop": 5,
+    "infirmary_apothecary": 5,
+    "storehouse": 5,
+    "library_records": 5,
+    "walls_gate": 5,
+    "transport_yard": 5
+  },
+  "enterprises": {
+    "agriculture_landholding": 5,
+    "trade_merchant_business": 5,
+    "crafting_workshop": 5,
+    "medicine_apothecary": 5,
+    "escort_service": 5
+  },
+  "training_epoch": {
+    "started_at": "0061-09-14T10:15:00",
+    "settled_through": "0061-09-14T10:15:00",
+    "intensity_milli": 1000
+  },
+  "infrastructure": {
+    "estate_area_m2": 108000,
+    "facilities": {
+      "main_hall": {
+        "footprint_m2": 4000
+      },
+      "residential_compound": {
+        "footprint_m2": 9000
+      },
+      "training_hall": {
+        "footprint_m2": 3400
+      },
+      "training_grounds": {
+        "footprint_m2": 34000
+      },
+      "qi_hall": {
+        "footprint_m2": 2800
+      },
+      "armory_workshop": {
+        "footprint_m2": 2800
+      },
+      "infirmary_apothecary": {
+        "footprint_m2": 3300
+      },
+      "storehouse": {
+        "footprint_m2": 5000
+      },
+      "library_records": {
+        "footprint_m2": 2700
+      },
+      "walls_gate": {
+        "footprint_m2": 2720,
+        "defended_perimeter_m": 1360,
+        "wall_height_m": 7
+      },
+      "transport_yard": {
+        "footprint_m2": 6800
+      }
+    }
+  },
+  "holdings": {
+    "rural_land_mu": 1200,
+    "record_refs": [
+      "record.house_tang.genealogy",
+      "record.house_tang.land_deeds",
+      "record.house_tang.accounts",
+      "record.central_plain.route_maps",
+      "record.house_tang.medical_reference"
+    ]
+  },
+  "enterprise_scale": {
+    "agriculture_landholding": {
+      "managed_land_mu": 350
+    },
+    "trade_merchant_business": {
+      "monthly_trade_capital_cash": 680000
+    },
+    "crafting_workshop": {
+      "productive_workstations": 34
+    },
+    "medicine_apothecary": {
+      "medicine_workstations": 27
+    },
+    "escort_service": {
+      "simultaneous_contract_capacity": 14
+    }
+  },
+  "recruitment_season": {
+    "season_id": "0061-Q3",
+    "intake_used": 4
+  }
+}

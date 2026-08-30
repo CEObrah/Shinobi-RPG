@@ -1,0 +1,44 @@
+{
+  "schema": "repository-map",
+  "authority": false,
+  "layers": {
+    "runtime": "runtime/shinobi_runtime/",
+    "game": "game/data/martial-world/",
+    "state": "state/martial-world/",
+    "skill": "plugins/shinobi-rpg/skill/shinobi-game-master/"
+  },
+  "hot_owners": {
+    "meta": "state/meta.json",
+    "scene": "state/scene.json",
+    "scheduler": "state/martial-world/scheduler.json",
+    "contracts": "state/martial-world/contracts/index.json",
+    "combats": "state/martial-world/combats.json",
+    "deployments": "state/martial-world/deployments.json",
+    "scene_session": "state/martial-world/scene-session.json",
+    "interaction_attempts": "state/martial-world/interaction-attempts.json",
+    "scene_history_head": "state/martial-world/scene-history-head.json"
+  },
+  "player_routing": {
+    "player_id": "state/meta.json#player_id",
+    "person": "derived from authoritative faction/civic/independent people owners",
+    "view": "derived at runtime from authoritative person",
+    "physical_presence": "runtime/shinobi_runtime/martial_world/physical_presence.py -> exact person + active custody/combat/route owners; state/scene.json never grants mechanical presence"
+  },
+  "person_lookup": {
+    "source": "state/martial-world/people/*.json",
+    "mode": "derived in memory from authoritative faction rosters"
+  },
+  "scene_contract": {
+    "runtime": "runtime/shinobi_runtime/martial_world/scene_sessions.py + runtime/shinobi_runtime/commands/jianghu_scene.py",
+    "presentation_projection": "state/scene.json (authority:false; continuity/candidate projection only)",
+    "durable_attributed_speech": "state/martial-world/scene-history-head.json + state/martial-world/scene-history/*.json (authority:false)",
+    "rule": "runtime owns hard consequences; active scene sessions own reversible conversational continuity only"
+  },
+  "causal_time": "runtime/shinobi_runtime/commands/jianghu_time.py -> full-horizon public settlement, semantic wait criteria, explicit active-scene time policy",
+  "scene_projection_rule": "state/scene.json is presentation and continuity only; mechanical physical location and co-presence route through runtime/shinobi_runtime/martial_world/physical_presence.py using exact person, route movement, combat, and custody owners.",
+  "physical_presence_runtime": "runtime/shinobi_runtime/martial_world/physical_presence.py",
+  "scene_session_runtime": "runtime/shinobi_runtime/martial_world/scene_sessions.py + runtime/shinobi_runtime/commands/jianghu_scene.py + runtime/shinobi_runtime/api/operations.py; reversible session, generic open conversational-thread lifecycle, safe NPC response envelopes, non-mechanical attributed speech, and salient authority-false reversible scene facts.",
+  "time_and_wait_runtime": "runtime/shinobi_runtime/commands/jianghu_time.py + runtime/shinobi_runtime/commands/jianghu.py + runtime/shinobi_runtime/martial_world/frontier_bridge.py; public quiet-frontier settlement, semantic waits, and explicit scene-time policy.",
+  "interaction_history_runtime": "runtime/shinobi_runtime/martial_world/scene_sessions.py; bounded recent head plus lossless period-sharded attributed-speech archive with authority=false.",
+  "house_council_runtime": "runtime/shinobi_runtime/commands/jianghu_institutional.py + runtime/shinobi_runtime/commands/jianghu_scene.py; institutional authority remains hard runtime truth while the live council is a reversible scene session."
+}

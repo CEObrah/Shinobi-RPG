@@ -1,0 +1,53 @@
+name: Apply forward repair patch
+
+on:
+  push:
+    branches: [fix/forward-campaign-repair]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/forward-campaign-repair
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Apply bounded repair patch
+        run: python tools/dev_apply_forward_repair_patch.py
+
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+
+      - name: Focused repair regressions
+        run: python -m pytest -q tests/current/test_forward_campaign_repair.py tests/current/test_mcp_preview_attestation.py
+
+      - name: Quick repository gate
+        run: python tools/quick_check.py
+
+      - name: Diff hygiene
+        run: git diff --check
+
+      - name: Commit repaired source
+        shell: bash
+        run: |
+          git config user.name "Shinobi Runtime Dev"
+          git config user.email "runtime-dev@invalid"
+          git add runtime/shinobi_runtime/api/mcp.py runtime/shinobi_runtime/api/repair.py runtime/shinobi_runtime/tx/git.py
+          if git diff --cached --quiet; then
+            echo "No patch changes to commit"
+            exit 0
+          fi
+          git commit -m "Wire provenance-bound forward campaign repair"
+          git push origin HEAD:fix/forward-campaign-repair

@@ -113,6 +113,7 @@
         "physiology_recovery_carry_minutes",
         "poison_clearance_carry_minutes",
         "incapacitated_at_ms",
+        "escaped_at_ms",
         "ring_out_at_ms",
         "mount",
         "environment_movement_milli",
@@ -496,6 +497,9 @@
     "/combats/*/combatants/*/incapacitated_at_ms": [
       "integer"
     ],
+    "/combats/*/combatants/*/escaped_at_ms": [
+      "integer"
+    ],
     "/combats/*/combatants/*/mount": [
       "object"
     ],
@@ -682,6 +686,9 @@
     "/combats/*/combatants/*/qi_flow_carry_milli_ms": {
       "minimum": 0,
       "maximum": 999
+    },
+    "/combats/*/combatants/*/escaped_at_ms": {
+      "minimum": 0
     },
     "/combats/*/combatants/*/ring_out_at_ms": {
       "minimum": 0

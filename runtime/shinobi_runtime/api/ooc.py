@@ -2,6 +2,7 @@
 from __future__ import annotations
 from typing import Optional, Tuple
 from shinobi_runtime.api.contracts import OocAuditResult
+from shinobi_runtime.deployment_freshness import inspect_deployment_freshness
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.martial_world.civilian_state import civilian_population_total
 from shinobi_runtime.martial_world.live_state import _derived_person_routes
@@ -30,4 +31,12 @@ class RepositoryOocAudit:
             diagnostics.append(f"civilian_population:aggregate={civilian_population_total(civ)}")
         except Exception:
             diagnostics.append('civilian_population:invalid'); suggestions.append('repair_civilian_population_authority')
+        try:
+            deployment=inspect_deployment_freshness(self.repository.root)
+            diagnostics.append(deployment.diagnostic())
+            if not deployment.healthy:
+                suggestions.append('redeploy_runtime_source')
+        except Exception:
+            diagnostics.append('deployment_source:summary status=unverified reason=diagnostic_failed')
+            suggestions.append('inspect_runtime_deployment_source')
         return OocAuditResult(tuple(diagnostics[:48]),tuple(suggestions[:48]),None)

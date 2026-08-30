@@ -188,7 +188,7 @@ def test_withheld_combat_transition_rejects_nonzero_event_cursor():
     assert exc.value.code == "current_transition_event_cursor_invalid"
 
 
-def test_mapping_key_collision_from_hidden_ids_fails_closed_without_leak():
+def test_mapping_key_collision_from_hidden_ids_uses_local_aliases_without_leak():
     command = _combat_command()
     receipt = IdempotencyReceipt.for_command(
         command,
@@ -224,9 +224,66 @@ def test_mapping_key_collision_from_hidden_ids_fails_closed_without_leak():
     encoded = json.dumps(projected, sort_keys=True)
     assert "enemy.1" not in encoded
     assert "enemy.2" not in encoded
-    assert projected["events"] == []
-    assert projected["events_withheld"] is True
-    assert projected["event_identity_semantics"] == "combat_identity_redaction_failed_closed"
+    assert projected["events_withheld"] is False
+    assert projected["events"][0]["by_person"] == {
+        "opposing_combatant": {"value": 1},
+        "opposing_combatant_2": {"value": 2},
+    }
+    assert projected["event_identity_semantics"] == "opposing_exact_person_refs_redacted"
+
+
+def test_hidden_key_collision_on_later_page_does_not_invalidate_advertised_cursor():
+    command = _combat_command()
+    events = [{"sequence": index, "result": "miss"} for index in range(16)]
+    events.append(
+        {
+            "sequence": 16,
+            "result": "contact",
+            "pressure_by_person": {
+                "enemy.1": 10,
+                "enemy.2": 20,
+            },
+        }
+    )
+    receipt = IdempotencyReceipt.for_command(
+        command,
+        transaction_id="tx:later-page-key-collision",
+        committed_revision=8,
+        committed_at="2026-08-28T00:00:01Z",
+        result={
+            "command_type": "jianghu_combat_resolution",
+            "combat_ref": "combat:test",
+            "events": events,
+        },
+    )
+    refs = frozenset({"enemy.1", "enemy.2"})
+
+    first = current_transition_projection(
+        receipt=receipt,
+        campaign_id="campaign.test",
+        revision=8,
+        object_ref="transition:current",
+        event_offset=0,
+        combat_opposing_person_refs=refs,
+    )["object"]
+    assert first["next_object_ref"] == "transition:current:16"
+
+    second = current_transition_projection(
+        receipt=receipt,
+        campaign_id="campaign.test",
+        revision=8,
+        object_ref=first["next_object_ref"],
+        event_offset=16,
+        combat_opposing_person_refs=refs,
+    )["object"]
+    encoded = json.dumps(second, sort_keys=True)
+    assert "enemy.1" not in encoded
+    assert "enemy.2" not in encoded
+    assert second["events"][0]["pressure_by_person"] == {
+        "opposing_combatant": 10,
+        "opposing_combatant_2": 20,
+    }
+    assert second["next_object_ref"] is None
 
 
 def test_noncombat_transition_keeps_existing_projection_semantics():

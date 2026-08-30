@@ -17,6 +17,7 @@ from typing import Any, Callable, Mapping
 from shinobi_runtime.api.models import validate_bounded_json
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.api.parley_operations import ParleyAwareCampaignOperations
+from shinobi_runtime.deployment_freshness import inspect_deployment_freshness
 from shinobi_runtime.tx.canonical import thaw_json
 from shinobi_runtime.tx.errors import DirtyRepositoryError, LockUnavailableError
 from shinobi_runtime.tx.receipts import IdempotencyReceipt
@@ -129,8 +130,9 @@ def _combat_opposing_person_refs(
 def _sanitize_opposing_refs(value: Any, opposing_refs: frozenset[str]) -> Any:
     """Recursively replace exact opposing person refs in player-facing evidence.
 
-    Mapping keys are sanitized too. If two hidden exact IDs would collapse onto
-    the same public key, fail closed rather than silently discard one value.
+    Mapping keys are sanitized too. Multiple hidden IDs in one mapping receive
+    local, non-stable public aliases so pagination can preserve every value
+    without exposing identity or collapsing keys.
     """
 
     if isinstance(value, str):
@@ -141,9 +143,16 @@ def _sanitize_opposing_refs(value: Any, opposing_refs: frozenset[str]) -> Any:
         out: dict[str, Any] = {}
         for raw_key, item in value.items():
             key = str(raw_key)
-            public_key = _REDACTED_OPPOSING_REF if key in opposing_refs else key
-            if public_key in out:
-                raise ValueError("opposing identity redaction would collapse mapping keys")
+            if key in opposing_refs:
+                public_key = _REDACTED_OPPOSING_REF
+                alias_index = 2
+                while public_key in out:
+                    public_key = f"{_REDACTED_OPPOSING_REF}_{alias_index}"
+                    alias_index += 1
+            else:
+                public_key = key
+                if public_key in out:
+                    raise ValueError("mapping keys collide after safe string projection")
             out[public_key] = _sanitize_opposing_refs(item, opposing_refs)
         return out
     return value
@@ -340,6 +349,19 @@ def current_transition_projection(
 
 class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):
     """Production operations plus bounded current-transition re-entry evidence."""
+
+    def _require_fresh_deployment_for_write(self) -> None:
+        freshness = inspect_deployment_freshness(self.repository.root)
+        if not freshness.healthy:
+            raise OperationError(503, "deployment_source_stale")
+
+    def preview_command(self, command):
+        self._require_fresh_deployment_for_write()
+        return super().preview_command(command)
+
+    def execute_command(self, command):
+        self._require_fresh_deployment_for_write()
+        return super().execute_command(command)
 
     def play_context(self) -> Mapping[str, Any]:
         base = _normalize_superseded_activity_handoff(super().play_context())

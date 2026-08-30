@@ -27,3 +27,15 @@ def test_observed_hostile_count_is_not_presented_as_current_strength_census():
         "`confirmed_observed_hostile_count` means exactly what that observer has detected "
         "among the current hostile combatants"
     ) not in text
+
+def test_player_facing_combat_prose_translates_resolver_primitives_into_lived_action():
+    text = COMBAT_REFERENCE.read_text(encoding="utf-8")
+
+    assert "Player-facing combat prose must not name resolver primitives" in text
+    assert "attack line" in text
+    assert "movement lane" in text
+    assert "contact geometry" in text
+    assert "Translate mechanics into embodied cause and effect" in text
+    assert "continuity of an action scene in a strong novel or film" in text
+    assert "The receipt is evidence for the GM, not dialogue for the player" in text
+

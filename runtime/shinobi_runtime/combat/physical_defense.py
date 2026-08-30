@@ -190,6 +190,28 @@ def detect_attack(
     return detected, margin, delay, bearing
 
 
+def _defense_displacement_window_ms(profile: ActionProfile | None) -> int:
+    """Return movement time still available after the attacker has closed.
+
+    Melee ``approach_time_ms`` is already consumed by the attacker's tracked
+    closing movement. It remains valid warning for detection/orientation, but
+    counting it again here would let a defender spend the same seconds twice: once
+    while being tracked by the approach and again as a full post-close dodge.
+    Projectiles still grant their real post-release flight time.
+    """
+    if profile is None:
+        return 150
+    params = profile.effect_parameters if isinstance(profile.effect_parameters, Mapping) else {}
+    startup = max(0, int(profile.startup_ms))
+    if profile.delivery in {"projectile", "ranged", "thrown"}:
+        projectile = params.get("projectile")
+        flight = projectile.get("flight_time_ms", 0) if isinstance(projectile, Mapping) else 0
+        if isinstance(flight, bool) or not isinstance(flight, int):
+            flight = 0
+        return max(40, startup + max(0, flight))
+    return max(40, startup)
+
+
 def _preference_bonus(participant: Participant, response: str) -> int:
     prefs = participant.physical_defense_preferences
     if response not in prefs:
@@ -319,6 +341,7 @@ def select_physical_defense(
         profile=profile, line_of_sight=line_of_sight,
     )
     warning = _attack_warning_ms(profile, distance_mm=planar_distance_mm(attacker_position.to_record(), defender_position.to_record()))
+    movement_warning = _defense_displacement_window_ms(profile)
     active_load=max(0,min(1000,int(defender.active_defense_load_milli)))
     reaction_availability=max(60,1000-active_load)
     # Shared commitment is not just a trace number: a saturated defender reacts
@@ -353,7 +376,7 @@ def select_physical_defense(
                 response=response, attacker_ref=attacker.participant_ref, defender_ref=defender.participant_ref,
                 participant_positions=participant_positions, defender_position=defender_position,
                 incoming_bearing_mdeg=attack_angle, defender_capability=defender_capability,
-                reaction_delay_ms=reaction_delay, warning_ms=warning, body_refs=body_refs, obstacles=obstacles,
+                reaction_delay_ms=reaction_delay, warning_ms=movement_warning, body_refs=body_refs, obstacles=obstacles,
             )
             if moved is not None:
                 mobility_axis = int(defender_capability.mobility) * 4 + int(defender_capability.reaction) * 3 + int(defender_capability.perception) * 2
@@ -392,7 +415,7 @@ def select_physical_defense(
         # already prepared to act and the attacker is physically close enough.
         d = planar_distance_mm(attacker_position.to_record(), defender_position.to_record())
         own_reach = physical_reach_mm(defender.action_profile)
-        if own_reach > 0 and d <= own_reach + defender_position.body_radius_mm + attacker_position.body_radius_mm + 800:
+        if own_reach > 0 and d <= own_reach:
             score = int(defender_capability.offense) * 3 + int(defender_capability.reaction) * 3 + int(defender_capability.control) * 2
             posture_bias={"rare":-220,"selective":0,"active":220}.get(defender.counterattack_posture,0)
             options.append(((score + posture_bias + _preference_bonus(defender, "counter_intercept")) * reaction_availability // 1000, "counter_intercept", None))
@@ -506,8 +529,7 @@ def close_attacker_into_reach(
         return attacker_position, {"moved": False, "reason": "no_physical_reach"}
     start = attacker_position.to_record(); target = defender_position.to_record()
     d = planar_distance_mm(start, target)
-    body_allowance = attacker_position.body_radius_mm + defender_position.body_radius_mm
-    required = max(0, d - reach - body_allowance)
+    required = max(0, d - reach)
     if required <= 0:
         return attacker_position, {"moved": False, "reason": "already_in_reach", "required_mm": 0}
     params = profile.effect_parameters if isinstance(profile.effect_parameters, Mapping) else {}
@@ -515,7 +537,7 @@ def close_attacker_into_reach(
     if isinstance(allowed, bool) or not isinstance(allowed, int):
         allowed = required
     allowed = max(0, allowed)
-    if required > allowed:
+    if allowed <= 0:
         return attacker_position, {"moved": False, "reason": "target_moved_beyond_committed_approach", "required_mm": required, "allowed_mm": allowed}
     dx = defender_position.x_mm - attacker_position.x_mm
     dy = defender_position.y_mm - attacker_position.y_mm
@@ -536,7 +558,13 @@ def close_attacker_into_reach(
         vy_mmps=(ey-attacker_position.y_mm)*1000//max(1,approach_ms),
         stance="approaching",
     )
-    return moved, {"moved": True, "reason": "closed_into_melee_reach", "distance_mm": move, "approach_time_ms": approach_ms}
+    reason = "closed_into_melee_reach" if required <= allowed else "partial_committed_approach"
+    result = {"moved": True, "reason": reason, "distance_mm": move, "approach_time_ms": approach_ms}
+    if required > allowed:
+        result["required_mm"] = required
+        result["allowed_mm"] = allowed
+        result["remaining_mm"] = required - allowed
+    return moved, result
 
 def contact_after_defense(
     *,
@@ -571,8 +599,7 @@ def contact_after_defense(
 
     reach = physical_reach_mm(profile)
     distance = planar_distance_mm(actor, target)
-    body_allowance = int(actor.get("body_radius_mm", DEFAULT_BODY_RADIUS_MM)) + int(target.get("body_radius_mm", DEFAULT_BODY_RADIUS_MM))
-    if reach > 0 and distance > reach + body_allowance:
+    if reach > 0 and distance > reach:
         return {"contact": False, "reason": "moved_out_of_reach", "distance_mm": distance, "reach_mm": reach}
     committed_trajectory = params.get("committed_melee_trajectory") if isinstance(params.get("committed_melee_trajectory"), Mapping) else None
     committed_displacement = 0
@@ -597,8 +624,8 @@ def contact_after_defense(
     blocker = trace_attack_geometry(
         positions, actor_ref=attacker_ref, aim_ref=intended_ref,
         body_refs=tuple(body_refs) or (defender_ref,),
-        geometry={"shape":"direct","width_m":0.35,"length_m":max(0.2, (reach + body_allowance)/1000.0)},
-        obstacles=obstacles, target_limit=1, maximum_range_m=max(0.2, (reach + body_allowance)/1000.0), channel="melee",
+        geometry={"shape":"direct","width_m":0.35,"length_m":max(0.2, reach/1000.0)},
+        obstacles=obstacles, target_limit=1, maximum_range_m=max(0.2, reach/1000.0), channel="melee",
         trajectory=committed_trajectory if use_committed_lane else None,
     )
     moved = planar_distance_mm(original_defender_position.to_record(), target)

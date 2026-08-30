@@ -719,7 +719,7 @@ def _hold_position_weapon_for(
     reachable=[]
     for ref in melee:
         reach=max(0,int(round(float(weapons[ref].get("reach_m",0))*1000)))
-        if target_distance_mm<=reach+600:
+        if target_distance_mm<=reach:
             reachable.append(ref)
     if reachable:
         ref=max(reachable,key=lambda item_ref:(int(_skills(person).get(str(weapons[item_ref].get("discipline")),0)),int(weapons[item_ref].get("control",0)),item_ref))
@@ -1574,8 +1574,11 @@ def _schedule_action(*, combat: Mapping[str, Any], actor_ref: str, target_ref: s
     approach_distance_mm = 0
     if profile.delivery not in {"projectile", "ranged", "thrown"}:
         distance = planar_distance_mm(actor_position, target_position)
-        body_allowance = int(actor_position.get("body_radius_mm", 300)) + int(target_position.get("body_radius_mm", 300))
-        required = max(0, distance - physical_reach_mm(profile) - body_allowance)
+        # ``physical_reach_mm`` is the same center-to-center contact envelope
+        # consumed by exact melee geometry and weapon contact. Do not add body
+        # radii here or the approach stops outside the distance at which the
+        # strike can actually intersect and transmit damage.
+        required = max(0, distance - physical_reach_mm(profile))
         approach_distance_mm = required
         base_speed=max(1,_movement_speed_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,cap))
         base_approach_ms=required*1000//base_speed
@@ -1630,7 +1633,7 @@ def _interception_damage(*, defender_ref: str, attacker_ref: str, people: dict[s
     if weapon_ref is None: action_kind="unarmed_strike"; weapon_ref="body_unarmed"
     else: action_kind="thrust" if int(weapon.get("pierce",0))>=int(weapon.get("cut",0)) else "cut"
     distance_m=planar_distance_mm(combat["positions"][defender_ref],combat["positions"][attacker_ref])/1000.0
-    if weapon is not None and distance_m>float(weapon.get("reach_m",0))+0.6: return None
+    if weapon is not None and distance_m>float(weapon.get("reach_m",0)): return None
     result=_contact_damage(actor=people[defender_ref],defender=people[attacker_ref],weapon=weapon,weapon_ref=weapon_ref,action_kind=action_kind,range_m=distance_m,defense_force_milli=620,hit_zone="forearm",target_structure_ref=None,created_at=str(at_ms),precision_margin=0); wound=result.get("wound")
     if isinstance(wound,Mapping):
         health=copy.deepcopy(people[attacker_ref].get("health",{})); health["injuries"]=record_current_wound(health.get("injuries",[]) if isinstance(health.get("injuries"),list) else [],wound); people[attacker_ref]["health"]=health; _apply_physiology(people[attacker_ref],elapsed_seconds=0,at_iso=_combat_timestamp(combat,at_ms))
@@ -1752,8 +1755,44 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
     qi_preview=_qi_preview(person=people[actor_ref],combatant_state=actor_state,duration_ms=max(1,action.release_at_ms-action.start_at_ms))
     actor_cap=_qi_enhanced_capability(_combat_capability_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,action_skill=_discipline_for_action(action.action_kind,action.weapon)),qi_preview)
     if profile.delivery not in {"projectile","ranged","thrown"}:
-        params=dict(profile.effect_parameters); params["committed_melee_trajectory"]=copy.deepcopy(dict(action.trajectory)); params["intended_target_ref"]=target_ref; profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params}); moved,approach=close_attacker_into_reach(attacker_ref=actor_ref,defender_ref=target_ref,positions=positions,attacker_position=_pos(start_actor),defender_position=_pos(start_target),attacker_capability=actor_cap,profile=profile,body_refs=body_refs,obstacles=combat.get("obstacles",[]))
-        if approach.get("moved"): positions[actor_ref]=moved.to_record(); positions[actor_ref]["elevation_mm"]=int(start_actor.get("elevation_mm",0)); approach_distance_mm=max(0,int(approach.get("distance_mm",0))); params=dict(profile.effect_parameters); params["approach_time_ms"]=int(approach.get("approach_time_ms",0)); params["approach_distance_mm"]=approach_distance_mm; profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params})
+        params=dict(profile.effect_parameters)
+        params["committed_melee_trajectory"]=copy.deepcopy(dict(action.trajectory))
+        params["intended_target_ref"]=target_ref
+        profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params})
+        moved,approach=close_attacker_into_reach(
+            attacker_ref=actor_ref,defender_ref=target_ref,positions=positions,
+            attacker_position=_pos(start_actor),defender_position=_pos(start_target),
+            attacker_capability=actor_cap,profile=profile,body_refs=body_refs,
+            obstacles=combat.get("obstacles",[]),
+        )
+        if approach.get("moved"):
+            positions[actor_ref]=moved.to_record()
+            positions[actor_ref]["elevation_mm"]=int(start_actor.get("elevation_mm",0))
+            approach_distance_mm=max(0,int(approach.get("distance_mm",0)))
+            params=dict(profile.effect_parameters)
+            params["approach_time_ms"]=int(approach.get("approach_time_ms",0))
+            params["approach_distance_mm"]=approach_distance_mm
+            profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params})
+        melee_distance_mm=planar_distance_mm(positions[actor_ref],positions[target_ref])
+        melee_reach_mm=physical_reach_mm(profile)
+        if melee_reach_mm>0 and melee_distance_mm>melee_reach_mm:
+            chase_exertion=_combat_exertion(
+                person_ref=actor_ref,person=people[actor_ref],equipment_ledger=equipment_ledger,
+                commitment_milli=int(action.profile.effect_parameters.get("commitment_milli",400)),
+                movement_mm=approach_distance_mm,action_kind=None,weapon=action.weapon,
+                mounted=bool(isinstance(actor_state.get("mount"),Mapping) and actor_state.get("mount",{}).get("active")),
+            )
+            approach_reason=str(approach.get("reason") or "")
+            result_kind=(
+                "target_outpaced_committed_approach"
+                if approach_reason in {"partial_committed_approach","target_moved_beyond_committed_approach"}
+                else "melee_approach_blocked"
+            )
+            return {
+                **event_base,"result":result_kind,"approach":approach,
+                "distance_mm":melee_distance_mm,"reach_mm":melee_reach_mm,
+                "fatigue":chase_exertion,"qi":qi_preview,
+            }
     distance_m=planar_distance_mm(positions[actor_ref],positions[target_ref])/1000.0; visibility=1000-cover_milli_between(positions,actor_ref=actor_ref,target_ref=target_ref,obstacles=combat.get("obstacles",[])); bow_profile=None; trajectory=copy.deepcopy(dict(action.trajectory))
     if action.action_kind=="bow_shot":
         fatigue_output=fatigue_performance_milli(int(people[actor_ref].get("fatigue_milli",0)))
@@ -2057,11 +2096,43 @@ def _disengage_step(*, combat: dict[str, Any], actor_ref: str, people: Mapping[s
             if not _active(people[ref],enemy_state): continue
         elif statuses & {"dead","unconscious","incapacitated","escaped","reinforcing"}: continue
         enemies.append(ref)
-    nearest=min([planar_distance_mm(row,combat["positions"][ref]) for ref in enemies],default=999_999); escaped=nearest>=6000
+    nearest=min([planar_distance_mm(row,combat["positions"][ref]) for ref in enemies],default=999_999)
+    escape_at=int(start_ms)+duration
+    pending=combat.get("_pending_actions",{}) if isinstance(combat.get("_pending_actions"),Mapping) else {}
+    committed_melee_pursuit=False
+    if nearest>=6000:
+        for attacker_ref,pending_action in pending.items():
+            if not isinstance(attacker_ref,str) or not isinstance(pending_action,Mapping):
+                continue
+            if str(pending_action.get("target_ref") or "")!=actor_ref:
+                continue
+            try:
+                if _side_of(combat,attacker_ref)==side:
+                    continue
+            except KeyError:
+                continue
+            if str(pending_action.get("delivery") or "direct") in {"projectile","ranged","thrown"}:
+                continue
+            if int(pending_action.get("commit_at_ms",10**18))>escape_at:
+                continue
+            if int(pending_action.get("contact_at_ms",-1))<escape_at:
+                continue
+            attacker_state=combat.get("combatants",{}).get(attacker_ref)
+            if isinstance(people,Mapping) and attacker_ref in people and isinstance(attacker_state,Mapping):
+                if not _active(people[attacker_ref],attacker_state):
+                    continue
+            committed_melee_pursuit=True
+            break
+    escaped=nearest>=6000 and not committed_melee_pursuit
     if escaped:
         statuses={str(x) for x in state.get("status_families",[]) if isinstance(x,str)}; statuses.add("escaped"); state["status_families"]=sorted(statuses)
-        state["escaped_at_ms"]=int(start_ms)+duration
-    return {"moved":True,"escaped":escaped,"reason":"cleared_opponent_reach" if escaped else "retreat_in_progress","corridor":chosen,"movement":{"start_x_mm":start_x,"start_y_mm":start_y,"end_x_mm":end_x,"end_y_mm":end_y,"duration_ms":duration,"nearest_enemy_mm":nearest}}
+        state["escaped_at_ms"]=escape_at
+    reason=(
+        "cleared_opponent_reach" if escaped
+        else "retreat_contested_by_committed_melee" if nearest>=6000 and committed_melee_pursuit
+        else "retreat_in_progress"
+    )
+    return {"moved":True,"escaped":escaped,"reason":reason,"corridor":chosen,"movement":{"start_x_mm":start_x,"start_y_mm":start_y,"end_x_mm":end_x,"end_y_mm":end_y,"duration_ms":duration,"nearest_enemy_mm":nearest}}
 
 
 def _resolve_withdrawal_batch(*, combat: dict[str, Any], withdrawer_refs: Sequence[str], people: dict[str, dict[str, Any]], equipment_ledger: Mapping[str, Any], start_ms: int, end_ms: int) -> list[dict[str, Any]]:

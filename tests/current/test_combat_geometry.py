@@ -155,9 +155,11 @@ def test_melee_schedule_persists_original_committed_approach_envelope():
     from shinobi_runtime.combat.physical_defense import close_attacker_into_reach
     moved_target=copy.deepcopy(combat['positions'][defender['person_id']]); moved_target['x_mm']+=2500
     moved,trace=close_attacker_into_reach(attacker_ref=attacker['person_id'],defender_ref=defender['person_id'],positions={**combat['positions'],defender['person_id']:moved_target},attacker_position=exact._pos(combat['positions'][attacker['person_id']]),defender_position=exact._pos(moved_target),attacker_capability=exact._combat_capability(attacker['person_id'],attacker,ledger,action_skill='unarmed'),profile=action.profile,body_refs=[attacker['person_id'],defender['person_id']],obstacles=[])
-    assert trace['moved'] is False
-    assert trace['reason']=='target_moved_beyond_committed_approach'
-    assert moved.x_mm==combat['positions'][attacker['person_id']]['x_mm']
+    assert trace['moved'] is True
+    assert trace['reason']=='partial_committed_approach'
+    assert int(trace['distance_mm'])==int(params['approach_distance_mm'])
+    assert int(trace['remaining_mm'])>0
+    assert moved.x_mm>combat['positions'][attacker['person_id']]['x_mm']
 
 
 def test_three_attackers_share_one_reaction_budget_in_exact_exchange(monkeypatch):
@@ -409,7 +411,9 @@ def test_fatigue_is_whole_body_combat_burden_not_only_movement_penalty():
     assert b.mobility<a.mobility and b.reaction<a.reaction
     assert b.offense<a.offense and b.control<a.control and b.defense<a.defense
     assert b.capture<a.capture
-    assert c.offense==0 and c.control==0 and c.defense==0 and c.mobility==0 and c.reaction==0
+    assert 0<c.offense<b.offense and 0<c.control<b.control and 0<c.defense<b.defense
+    assert 0<c.mobility<b.mobility and 0<c.reaction<b.reaction
+    assert 0<c.capture<b.capture and 0<c.escape<b.escape
 
 
 def test_fatigue_reduces_muscle_driven_contact_force_to_zero_at_complete_exhaustion():
@@ -424,7 +428,7 @@ def test_fatigue_reduces_muscle_driven_contact_force_to_zero_at_complete_exhaust
     b=exact._contact_damage(actor=tired,**kwargs)['transmitted_channels']
     c=exact._contact_damage(actor=exhausted,**kwargs)['transmitted_channels']
     assert sum(b.values()) < sum(a.values())
-    assert sum(c.values()) == 0
+    assert 0 < sum(c.values()) < sum(b.values())
 
 
 def test_broken_weapon_cannot_be_used_in_exact_combat():

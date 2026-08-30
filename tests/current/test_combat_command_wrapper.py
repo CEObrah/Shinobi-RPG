@@ -6,6 +6,7 @@ from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.martial_world.social_causality import add_vow
+from shinobi_runtime.martial_world.equipment_state import effective_person_loadout
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -459,5 +460,18 @@ def test_scene_prop_promotes_through_real_command_wrapper_without_inventory_mint
         row.get("actor_ref") == player_ref and row.get("action_kind") == "improvised_strike"
         for row in plan.result["events"]
     )
+    # Planning the exchange must not mutate the repository before commit.
     assert repo.read_json("state/martial-world/equipment-ledger.json") == before_equipment
-    assert "state/martial-world/equipment-ledger.json" not in plan.writes or json.loads(plan.writes["state/martial-world/equipment-ledger.json"].decode("utf-8")) == before_equipment
+    # The improvised scene prop is combat-local and must never become durable
+    # inventory. The exchange may still legitimately wear real weapons carried
+    # by either participant, so do not require the entire equipment ledger to
+    # remain byte-for-byte unchanged.
+    planned_equipment = (
+        json.loads(plan.writes["state/martial-world/equipment-ledger.json"].decode("utf-8"))
+        if "state/martial-world/equipment-ledger.json" in plan.writes
+        else before_equipment
+    )
+    before_player_items = effective_person_loadout(before_equipment, player_ref).get("items", {})
+    after_player_items = effective_person_loadout(planned_equipment, player_ref).get("items", {})
+    assert after_player_items == before_player_items
+    assert prop_ref not in json.dumps(planned_equipment, sort_keys=True)

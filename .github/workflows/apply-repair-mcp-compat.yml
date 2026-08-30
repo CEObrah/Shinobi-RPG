@@ -1,0 +1,53 @@
+name: Apply repair MCP compatibility
+
+on:
+  push:
+    branches: [fix/repair-mcp-compat]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out compatibility branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/repair-mcp-compat
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Apply bounded MCP patch
+        run: python tools/dev_apply_repair_mcp_compat_patch.py
+
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+
+      - name: Focused compatibility regressions
+        run: python -m pytest -q tests/current/test_forward_campaign_repair.py tests/current/test_repair_mcp_compat.py tests/current/test_mcp_preview_attestation.py
+
+      - name: Quick repository gate
+        run: python tools/quick_check.py
+
+      - name: Diff hygiene
+        run: git diff --check
+
+      - name: Commit compatibility source
+        shell: bash
+        run: |
+          git config user.name "Shinobi Runtime Dev"
+          git config user.email "runtime-dev@invalid"
+          git add runtime/shinobi_runtime/api/mcp.py
+          if git diff --cached --quiet; then
+            echo "No MCP patch changes to commit"
+            exit 0
+          fi
+          git commit -m "Route campaign repair through generic MCP commands"
+          git push origin HEAD:fix/repair-mcp-compat

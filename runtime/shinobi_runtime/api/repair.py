@@ -1,10 +1,12 @@
-"""Privileged forward-only repair of one committed campaign transaction.
+"""Privileged forward-only repair of committed campaign transactions.
 
 A repair never rewrites Git history and never accepts arbitrary repository refs
-or paths from a caller.  The damaged transaction id is resolved through its
-immutable Shinobi commit trailers; only that commit's exact ``state/`` paths are
-restored from its first parent, while ``state/meta.json`` advances to a new
-revision.  Current source files are therefore preserved.
+or paths from a caller. A caller may identify either one damaged transaction or
+a bounded, contiguous first-parent chain ending at the current state revision.
+Every transaction is resolved through immutable Shinobi commit trailers; only
+the union of that chain's exact ``state/`` paths is restored from the first
+parent of the oldest damaged transaction, while ``state/meta.json`` advances to
+a new revision. Current source files are therefore preserved.
 """
 from __future__ import annotations
 
@@ -35,6 +37,7 @@ from shinobi_runtime.tx.git import (
 REPAIR_COMMAND_TYPE = "campaign_forward_repair"
 REPAIR_MODE = "repair"
 _META_PATH = "state/meta.json"
+_MAX_REPAIR_CHAIN = 32
 
 
 @dataclass(frozen=True)
@@ -47,27 +50,44 @@ class _RepairPlan:
 
 
 class CampaignRepairService:
-    """Execute one bounded forward repair through the normal transaction coordinator."""
+    """Execute one bounded provenance repair through the normal coordinator."""
 
     def __init__(self, operations: CampaignOperations) -> None:
         self.operations = operations
         self.repository = operations.repository
         self.coordinator = operations.coordinator
 
-    def _require_base(self, command: CommandEnvelope, *, require_revision: bool = True) -> str:
+    def _require_base(self, command: CommandEnvelope, *, require_revision: bool = True) -> tuple[str, ...]:
         if command.mode != REPAIR_MODE or command.command_type != REPAIR_COMMAND_TYPE:
             raise OperationError(403, "repair_mode_required")
         if command.actor_id not in self.operations.allowed_actor_ids:
             raise OperationError(403, "actor_not_allowed")
-        if set(command.payload) != {"damaged_transaction_id"}:
+
+        keys = set(command.payload)
+        if keys == {"damaged_transaction_id"}:
+            raw_ids: Any = [command.payload.get("damaged_transaction_id")]
+        elif keys == {"damaged_transaction_ids"}:
+            raw_ids = command.payload.get("damaged_transaction_ids")
+            if not isinstance(raw_ids, (list, tuple)) or not 1 <= len(raw_ids) <= _MAX_REPAIR_CHAIN:
+                raise OperationError(422, "repair_payload_invalid")
+        else:
             raise OperationError(422, "repair_payload_invalid")
-        damaged_transaction_id = command.payload.get("damaged_transaction_id")
-        if (
-            not isinstance(damaged_transaction_id, str)
-            or not damaged_transaction_id.startswith("tx.")
-            or len(damaged_transaction_id) > 160
-        ):
+
+        transaction_ids: list[str] = []
+        seen: set[str] = set()
+        for raw in raw_ids:
+            if (
+                not isinstance(raw, str)
+                or not raw.startswith("tx.")
+                or len(raw) > 160
+                or raw in seen
+            ):
+                raise OperationError(422, "repair_payload_invalid")
+            seen.add(raw)
+            transaction_ids.append(raw)
+        if not transaction_ids:
             raise OperationError(422, "repair_payload_invalid")
+
         try:
             self.repository.require_campaign(command.campaign_id, _META_PATH)
             if require_revision:
@@ -76,7 +96,7 @@ class CampaignRepairService:
             raise OperationError(409, "stale_revision") from exc
         except (TypeError, ValueError) as exc:
             raise OperationError(409, "repair_campaign_mismatch") from exc
-        return damaged_transaction_id
+        return tuple(transaction_ids)
 
     def _require_fresh_deployment(self) -> None:
         freshness = inspect_deployment_freshness(self.repository.root)
@@ -95,48 +115,92 @@ class CampaignRepairService:
         return value
 
     def _build(self, command: CommandEnvelope) -> _RepairPlan:
-        damaged_transaction_id = self._require_base(command)
+        damaged_transaction_ids = self._require_base(command)
         self._require_fresh_deployment()
         git = self.coordinator.git
         head = git.head()
-        damaged = git.find_transaction_commit(damaged_transaction_id)
-        if damaged is None:
-            raise OperationError(404, "repair_transaction_not_found")
-        if (
-            damaged.trailers.get(TRANSACTION_TRAILER) != damaged_transaction_id
-            or damaged.trailers.get(CAMPAIGN_TRAILER) != command.campaign_id
-            or damaged.trailers.get(MODE_TRAILER) not in {"gameplay", "autonomous"}
-            or self._revision_trailer(damaged) != command.expected_revision
-        ):
+
+        damaged_records: list[Any] = []
+        revisions: list[int] = []
+        for transaction_id in damaged_transaction_ids:
+            damaged = git.find_transaction_commit(transaction_id)
+            if damaged is None:
+                raise OperationError(404, "repair_transaction_not_found")
+            revision = self._revision_trailer(damaged)
+            if (
+                damaged.trailers.get(TRANSACTION_TRAILER) != transaction_id
+                or damaged.trailers.get(CAMPAIGN_TRAILER) != command.campaign_id
+                or damaged.trailers.get(MODE_TRAILER) not in {"gameplay", "autonomous"}
+                or _META_PATH not in damaged.paths
+                or any(not path.startswith("state/") for path in damaged.paths)
+                or not git.is_ancestor(damaged.commit_hash, head)
+            ):
+                raise OperationError(409, "repair_provenance_invalid")
+            damaged_records.append(damaged)
+            revisions.append(revision)
+
+        first_revision = command.expected_revision - len(damaged_records) + 1
+        expected_revisions = list(range(first_revision, command.expected_revision + 1))
+        if revisions != expected_revisions:
             raise OperationError(409, "repair_provenance_invalid")
-        if not git.is_ancestor(damaged.commit_hash, head):
-            raise OperationError(409, "repair_provenance_invalid")
-        if git.tree_oid(head, "state") != git.tree_oid(damaged.commit_hash, "state"):
+
+        # A chain repair is intentionally stricter than general ancestry: the
+        # damaged state transactions themselves must be an exact first-parent
+        # sequence. This prevents a caller from skipping an intervening state
+        # mutation or selecting unrelated historical commits. Source-only commits
+        # may exist after the newest damaged transaction because state-tree
+        # equality below proves they did not mutate campaign truth.
+        for older, newer in zip(damaged_records, damaged_records[1:]):
+            if git.first_parent(newer.commit_hash) != older.commit_hash:
+                raise OperationError(409, "repair_provenance_invalid")
+
+        newest = damaged_records[-1]
+        if git.tree_oid(head, "state") != git.tree_oid(newest.commit_hash, "state"):
             raise OperationError(409, "repair_base_changed")
-        restore_commit = git.first_parent(damaged.commit_hash)
+
+        restore_commit = git.first_parent(damaged_records[0].commit_hash)
         restore_meta_raw = git.read_path_at(restore_commit, _META_PATH)
-        damaged_meta_raw = git.read_path_at(damaged.commit_hash, _META_PATH)
-        if restore_meta_raw is None or damaged_meta_raw is None:
+        newest_meta_raw = git.read_path_at(newest.commit_hash, _META_PATH)
+        if restore_meta_raw is None or newest_meta_raw is None:
             raise OperationError(409, "repair_provenance_invalid")
         try:
             restore_meta = json.loads(restore_meta_raw.decode("utf-8"))
-            damaged_meta = json.loads(damaged_meta_raw.decode("utf-8"))
+            newest_meta = json.loads(newest_meta_raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise OperationError(409, "repair_provenance_invalid") from exc
         if (
             not isinstance(restore_meta, dict)
-            or not isinstance(damaged_meta, dict)
+            or not isinstance(newest_meta, dict)
             or restore_meta.get("campaign_id") != command.campaign_id
-            or damaged_meta.get("campaign_id") != command.campaign_id
-            or restore_meta.get("revision") != command.expected_revision - 1
-            or damaged_meta.get("revision") != command.expected_revision
-            or _META_PATH not in damaged.paths
-            or any(not path.startswith("state/") for path in damaged.paths)
+            or newest_meta.get("campaign_id") != command.campaign_id
+            or restore_meta.get("revision") != first_revision - 1
+            or newest_meta.get("revision") != command.expected_revision
         ):
             raise OperationError(409, "repair_provenance_invalid")
 
+        # Verify every intermediate transaction's own meta after-image matches
+        # its immutable revision trailer. The first-parent check alone proves
+        # commit order, while this proves world-revision continuity.
+        for damaged, revision in zip(damaged_records, revisions):
+            meta_raw = git.read_path_at(damaged.commit_hash, _META_PATH)
+            if meta_raw is None:
+                raise OperationError(409, "repair_provenance_invalid")
+            try:
+                meta = json.loads(meta_raw.decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise OperationError(409, "repair_provenance_invalid") from exc
+            if (
+                not isinstance(meta, dict)
+                or meta.get("campaign_id") != command.campaign_id
+                or meta.get("revision") != revision
+            ):
+                raise OperationError(409, "repair_provenance_invalid")
+
+        affected_paths = tuple(sorted({
+            path for damaged in damaged_records for path in damaged.paths
+        }))
         writes: dict[str, Optional[bytes]] = {}
-        for path in damaged.paths:
+        for path in affected_paths:
             desired = git.read_path_at(restore_commit, path)
             if path == _META_PATH:
                 repaired_meta = dict(restore_meta)
@@ -150,17 +214,32 @@ class CampaignRepairService:
         if _META_PATH not in writes:
             raise OperationError(409, "repair_provenance_invalid")
 
-        result = {
-            "repair_kind": "forward_transaction_repair",
-            "damaged_revision": command.expected_revision,
-            "restored_state_revision": command.expected_revision - 1,
+        result: dict[str, Any] = {
+            "repair_kind": (
+                "forward_transaction_repair"
+                if len(damaged_records) == 1
+                else "forward_transaction_chain_repair"
+            ),
+            "restored_state_revision": first_revision - 1,
             "committed_revision": command.expected_revision + 1,
             "restored_world_time": restore_meta.get("time"),
-            "damaged_transaction_id": damaged_transaction_id,
-            "damaged_commit": damaged.commit_hash,
             "restore_commit": restore_commit,
             "repaired_path_count": len(writes),
         }
+        if len(damaged_records) == 1:
+            result.update({
+                "damaged_revision": command.expected_revision,
+                "damaged_transaction_id": damaged_transaction_ids[0],
+                "damaged_commit": newest.commit_hash,
+            })
+        else:
+            result.update({
+                "damaged_revision_start": first_revision,
+                "damaged_revision_end": command.expected_revision,
+                "damaged_transaction_ids": list(damaged_transaction_ids),
+                "damaged_commits": [record.commit_hash for record in damaged_records],
+            })
+
         return _RepairPlan(
             transaction_id="tx.repair." + command.digest,
             created_at=command.submitted_at,

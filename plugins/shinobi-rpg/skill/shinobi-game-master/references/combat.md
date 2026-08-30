@@ -16,6 +16,8 @@ Concrete player details always override doctrine for that detail. For example, *
 
 A longer instruction such as **fight for thirty seconds**, **keep attacking**, or **finish the fight** may carry the same standing policy through many exact exchanges. This is valid player delegation. Do not force Tang Wei to micromanage every swing merely to keep the fight moving.
 
+Preserve compound engagement intent, not only force intent. **Kill as many as possible as quickly as possible**, **run them down**, or another explicit relentless lethal-until-resolution declaration must not be reduced to `targeting_intent: lethal` while silently restoring a restrained pursuit posture for the omitted tempo. The registered lethal-until-resolution combat span supplies a temporary assertive, committed, persistent, mobile engagement override while retaining Wei's standing resource discipline and targeting policy; it must never overwrite his saved doctrine.
+
 A long standing combat span is never permission to erase the fight as a scene. The runtime may resolve many exchanges under one declared policy, but the GM must preserve and narrate the committed chronology rather than replacing it with terminal HP, injury, or casualty accounting.
 
 ## Combat narration contract
@@ -23,6 +25,8 @@ A long standing combat span is never permission to erase the fight as a scene. T
 Active combat is a lived scene, not an after-action report.
 
 A combat command receipt that contains ordered `events` is transition evidence. Preserve that event sequence while refreshing play context. The refreshed context establishes current truth; the receipt establishes how the committed transition happened. Do not throw away the events and reconstruct the fight afterward from final health totals.
+
+When current-transition recovery is paginated, follow `next_object_ref` sequentially from the first page until it is null before making any negative claim about the span. Never sample arbitrary event offsets and infer an absence. Claims such as **no kill**, **no wound**, **no Qi use**, **no casualty**, or **nothing material happened** require complete receipt coverage or an authoritative bounded summary that explicitly establishes that absence. If complete chronology cannot be recovered, narrate only what the recovered evidence positively establishes and say the omitted outcome is unresolved rather than inventing certainty.
 
 For any committed combat span, narrate the fight in chronological scene beats before presenting a compact status summary. The reader should be able to follow what pressure existed, what Wei attempted, what answered him, what changed, and why the battlefield now looks different.
 

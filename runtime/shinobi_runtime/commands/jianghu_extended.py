@@ -158,6 +158,14 @@ def _resolve_player_combat_span(
         if isinstance(people_cursor.get(player_ref),Mapping) and people_cursor[player_ref].get('combat_doctrine_ref')
         else None
     )
+    explicit_lethal_pursuit=(
+        bool(until_resolution) and str(targeting_intent or '')=='lethal'
+    )
+    if explicit_lethal_pursuit and isinstance(people_cursor.get(player_ref),dict):
+        # This is an immediate command-span override, not a saved doctrine edit.
+        # Keep Wei's force/resource/targeting policy, but do not reinterpret an
+        # explicit relentless lethal order through a restrained pursuit posture.
+        people_cursor[player_ref]['combat_doctrine_ref']='doctrine.tang_wei.precision_function_denial.lethal_pursuit'
     side_by_ref={
         str(ref):str(side)
         for side,refs in (combat_cursor.get('sides',{}) if isinstance(combat_cursor.get('sides'),Mapping) else {}).items()
@@ -302,6 +310,12 @@ def _resolve_player_combat_span(
     elif requested_scope_complete():
         stop_reason='scope_complete'
     continuation_required=(stop_reason=='execution_frontier' and str(combat_cursor.get('status') or '')=='active')
+    if explicit_lethal_pursuit and isinstance(people_cursor.get(player_ref),dict):
+        # Never persist the command-span override as Tang Wei's standing policy.
+        if doctrine_ref:
+            people_cursor[player_ref]['combat_doctrine_ref']=doctrine_ref
+        else:
+            people_cursor[player_ref].pop('combat_doctrine_ref',None)
     return {
         **last_resolved,
         'combat_after':combat_cursor,'people_after':people_cursor,

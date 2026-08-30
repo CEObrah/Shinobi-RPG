@@ -1,0 +1,55 @@
+name: OOC Dev Forward Repair Chain
+
+on:
+  push:
+    branches: [fix/forward-repair-transaction-chain]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Apply provenance-chain repair patch
+        run: python tools/ooc_dev_patch_forward_repair_chain.py
+
+      - name: Remove temporary patch scaffolding
+        run: rm tools/ooc_dev_patch_forward_repair_chain.py .github/workflows/ooc-dev-forward-repair-chain.yml
+
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+
+      - name: Focused repair regressions
+        run: python -m pytest -q tests/current/test_forward_campaign_repair.py tests/current/test_forward_campaign_repair_chain.py tests/current/test_repair_mcp_compat.py tests/current/test_mcp_preview_attestation.py
+
+      - name: Fast repository gate
+        run: python tools/quick_check.py
+
+      - name: Changed-owner regressions
+        run: >-
+          python tools/test_changed.py
+          runtime/shinobi_runtime/api/repair.py
+          tests/current/test_forward_campaign_repair.py
+          tests/current/test_forward_campaign_repair_chain.py
+          tests/current/test_repair_mcp_compat.py
+
+      - name: Commit verified repair
+        run: |
+          git config user.name 'OpenAI OOC Dev'
+          git config user.email 'ooc-dev@invalid'
+          git add -A
+          git commit -m 'Support contiguous forward repair chains'
+          git push origin HEAD:${GITHUB_REF_NAME}

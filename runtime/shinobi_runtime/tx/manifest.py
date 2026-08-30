@@ -92,8 +92,8 @@ class TransactionManifest:
                 or any(character in value for character in ("\x00", "\r", "\n"))
             ):
                 raise ValueError("%s must be a non-empty string" % field)
-        if self.mode not in ("gameplay", "autonomous", "maintenance"):
-            raise ValueError("transaction mode must be gameplay or maintenance")
+        if self.mode not in ("gameplay", "autonomous", "repair", "maintenance"):
+            raise ValueError("transaction mode must be gameplay, autonomous, repair, or maintenance")
         _validate_digest(self.command_digest, "command_digest")
         if self.command_digest is None:
             raise ValueError("command_digest is required")
@@ -102,7 +102,9 @@ class TransactionManifest:
             if isinstance(value, bool) or not isinstance(value, int) or value < 0:
                 raise ValueError("%s must be a non-negative integer" % field)
         expected_target = (
-            self.base_revision + 1 if self.mode in ("gameplay", "autonomous") else self.base_revision
+            self.base_revision + 1
+            if self.mode in ("gameplay", "autonomous", "repair")
+            else self.base_revision
         )
         if self.target_revision != expected_target:
             raise ValueError(
@@ -169,9 +171,10 @@ class TransactionPlanner:
         if not isinstance(writes, Mapping) or not writes:
             raise ValueError("writes must be a non-empty explicit path map")
 
+        revision_advancing_modes = ("gameplay", "autonomous", "repair")
         required_revision = (
             command.expected_revision + 1
-            if command.mode in ("gameplay", "autonomous")
+            if command.mode in revision_advancing_modes
             else command.expected_revision
         )
         final_revision = required_revision if target_revision is None else target_revision
@@ -181,7 +184,7 @@ class TransactionPlanner:
                 % (command.mode, required_revision)
             )
 
-        if command.mode in ("gameplay", "autonomous"):
+        if command.mode in revision_advancing_modes:
             if self.meta_path not in writes:
                 raise ValueError(
                     "%s manifest must explicitly update %s" % (command.mode, self.meta_path)

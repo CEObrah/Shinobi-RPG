@@ -263,6 +263,48 @@ class GitStager:
             )
         return completed.stdout.decode("ascii").strip()
 
+    def is_ancestor(self, ancestor_commit: str, descendant_commit: str) -> bool:
+        completed = self._run_bytes(
+            ("merge-base", "--is-ancestor", ancestor_commit, descendant_commit)
+        )
+        if completed.returncode == 0:
+            return True
+        if completed.returncode == 1:
+            return False
+        raise GitStageError(
+            completed.returncode,
+            completed.stderr.decode("utf-8", errors="replace"),
+        )
+
+    def first_parent(self, commit_hash: str) -> str:
+        completed = self._run_bytes(("rev-list", "--parents", "-n", "1", commit_hash))
+        if completed.returncode:
+            raise GitStageError(
+                completed.returncode,
+                completed.stderr.decode("utf-8", errors="replace"),
+            )
+        parts = completed.stdout.decode("ascii", errors="strict").strip().split()
+        if len(parts) != 2 or parts[0] != commit_hash:
+            raise GitStageError(1, "transaction commit must have exactly one parent")
+        return parts[1]
+
+    def tree_oid(self, commit_hash: str, relative_path: str) -> str:
+        normalized = normalize_relative_path(relative_path)
+        completed = self._run_bytes(("rev-parse", f"{commit_hash}:{normalized}"))
+        if completed.returncode:
+            raise GitStageError(
+                completed.returncode,
+                completed.stderr.decode("utf-8", errors="replace"),
+            )
+        return completed.stdout.decode("ascii", errors="strict").strip()
+
+    def read_path_at(self, commit_hash: str, relative_path: str) -> Optional[bytes]:
+        normalized = normalize_relative_path(relative_path)
+        completed = self._run_bytes(("show", f"{commit_hash}:{normalized}"))
+        if completed.returncode:
+            return None
+        return completed.stdout
+
     def commit(self, manifest: TransactionManifest) -> GitCommitRecord:
         self.assert_staged_exact(manifest.paths)
         completed = self._run_bytes(

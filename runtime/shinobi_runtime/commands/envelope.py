@@ -34,7 +34,7 @@ class CommandEnvelope:
 
     SCHEMA = "shinobi.command"
     VERSION = 1
-    MODES = frozenset(("gameplay", "autonomous", "ooc", "maintenance"))
+    MODES = frozenset(("gameplay", "autonomous", "ooc", "maintenance", "repair"))
 
     def __post_init__(self) -> None:
         for name in (

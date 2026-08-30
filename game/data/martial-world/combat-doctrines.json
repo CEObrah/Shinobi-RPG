@@ -75,6 +75,49 @@
           "upper_torso_vital"
         ]
       }
+    },
+    "doctrine.tang_wei.precision_function_denial.lethal_pursuit": {
+      "engagement": {
+        "range_preference": "adaptive",
+        "initiative_posture": "assertive",
+        "commitment_posture": "committed",
+        "pursuit_posture": "persistent",
+        "movement_economy": "mobile",
+        "finishing_window": "commit_decisively"
+      },
+      "defense": {
+        "primary_response": "adaptive",
+        "counterattack_posture": "selective"
+      },
+      "resource_discipline": {
+        "qi_conservation": 92,
+        "fatigue_reserve": 85,
+        "qi_trigger_threat_percent": 90,
+        "poison_trigger_threat_percent": 110
+      },
+      "force_policy": {
+        "default": "disable",
+        "formal_spar": "disable",
+        "tournament_nonlethal": "disable",
+        "capture_objective": "disable",
+        "lethal_attack": "lethal",
+        "ambush": "lethal",
+        "battlefield": "lethal"
+      },
+      "targeting": {
+        "disable_priority": [
+          "wrist",
+          "ankle",
+          "knee",
+          "elbow"
+        ],
+        "lethal_priority": [
+          "neck_vital",
+          "axilla",
+          "eye",
+          "upper_torso_vital"
+        ]
+      }
     }
   },
   "generic_intent_priorities": {

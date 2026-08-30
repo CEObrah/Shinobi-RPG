@@ -14,18 +14,28 @@ import math
 from typing import Any, Mapping
 
 _REFERENCE_ENDURANCE = 80
+_FATIGUE_MAX_PENALTY_MILLI = 3000
+_FATIGUE_PERFORMANCE_FLOOR_MILLI = 250
 
 
 def fatigue_performance_milli(fatigue_milli: int) -> int:
     """Whole-body combat performance remaining under current fatigue.
 
     ``fatigue_milli`` is normalized physiological burden: 0 is fresh and 3000
-    is complete combat exhaustion. Burden may exceed 3000 as recovery debt, but
-    it cannot produce negative capability. Endurance changes how quickly burden
-    accumulates; it does not create a second hidden fatigue scale.
+    reaches the maximum combat-performance penalty. Burden may exceed 3000 as
+    recovery debt, but severe exhaustion must not erase every difference in
+    skill, speed, perception, strength, or dexterity. A 250-milli floor keeps
+    exhausted fighters badly degraded while preserving relative capability so
+    elite and ordinary combatants do not collapse to the same zero-stat actor.
+    Endurance changes how quickly burden accumulates; it does not create a
+    second hidden fatigue scale.
     """
-    fatigue = max(0, min(3000, int(fatigue_milli)))
-    return max(0, 1000 - fatigue // 3)
+    fatigue = max(0, int(fatigue_milli))
+    if fatigue >= _FATIGUE_MAX_PENALTY_MILLI:
+        return _FATIGUE_PERFORMANCE_FLOOR_MILLI
+    usable = 1000 - _FATIGUE_PERFORMANCE_FLOOR_MILLI
+    penalty = fatigue * usable // _FATIGUE_MAX_PENALTY_MILLI
+    return max(_FATIGUE_PERFORMANCE_FLOOR_MILLI, 1000 - penalty)
 
 
 def _ceil_div(num: int, den: int) -> int:

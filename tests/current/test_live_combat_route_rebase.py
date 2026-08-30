@@ -1,6 +1,9 @@
 import shutil
 from pathlib import Path
 
+import pytest
+
+from shinobi_runtime.api.contracts import CommandRejectedError
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.store import RepositoryStore
@@ -60,7 +63,11 @@ def test_live_contact_pending_combat_bare_exchange_previews_without_route_progre
         mode="gameplay",
     )
 
-    preview = planner.preview(command)
+    try:
+        preview = planner.preview(command)
+    except CommandRejectedError as exc:
+        cause = exc.__cause__
+        pytest.fail(f"live combat preview rejected: {exc}; wrapped cause: {cause!r}")
     assert preview.status == "ready"
     plan = planner.plan(command)
 

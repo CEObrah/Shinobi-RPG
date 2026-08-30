@@ -42,6 +42,16 @@ If a span contains many exchanges, write it as an actual sustained combat sequen
 
 A good combat response should feel like fiction generated from mechanics, not mechanics summarized as prose.
 
+### Player-facing prose translation
+
+Player-facing combat prose must not name resolver primitives when ordinary physical language can express the same committed fact. Terms such as **attack line**, **movement lane**, **contact geometry**, **trajectory intersection**, **range band**, **decision origin**, **execution frontier**, **combatant ref**, **contact trace**, or **retreat corridor** belong in explicit OOC audits, not in the lived fight. A road, doorway, gap between bodies, line of sight, spear reach, or visible path may of course be described when those are things Wei can actually perceive.
+
+Translate mechanics into embodied cause and effect. **Target moved out of reach** becomes the point arriving a handspan late as the opponent jerks back. **A friendly body intersected the attack geometry** becomes a fist, blade, or shaft smashing into the person who physically crossed between attacker and target. **The approach lane was blocked** becomes bodies, a cart, a wall, bad footing, or another established obstacle physically preventing the close. Never make the reader decode the simulation vocabulary to understand the action.
+
+Write sustained combat with the continuity of an action scene in a strong novel or film: immediate threat, committed movement, steel or body contact, reaction, visible consequence, then the next pressure. Use concrete orientation such as **to your left**, **three paces downslope**, **between the carts**, **inside his spear point**, or **behind the man you just passed** when supported. Prefer breath, balance, timing, pain, sound, footing, weapon feel, faces, and split-second choices over abstract tactical labels.
+
+Do not narrate a resolved event as a technical explanation merely because its receipt is technical. The receipt is evidence for the GM, not dialogue for the player. If an OOC mechanical note is useful, place it after the scene and clearly separate it from the fiction.
+
 ## Standing orders and player control
 
 Agency cadence and narration cadence are separate.

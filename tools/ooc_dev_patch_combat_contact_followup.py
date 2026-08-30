@@ -21,7 +21,7 @@ replace_once(
 )
 
 replace_once(
-    '''    assert c.offense==0 and c.control==0 and c.defense==0 and c.mobility==0 and c.reaction==0\n    assert c.capture==0 and c.escape==0\n''',
+    '''    assert c.offense==0 and c.control==0 and c.defense==0 and c.mobility==0 and c.reaction==0\n''',
     '''    assert 0<c.offense<b.offense and 0<c.control<b.control and 0<c.defense<b.defense\n    assert 0<c.mobility<b.mobility and 0<c.reaction<b.reaction\n    assert 0<c.capture<b.capture and 0<c.escape<b.escape\n''',
 )
 

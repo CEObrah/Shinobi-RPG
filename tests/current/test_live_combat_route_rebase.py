@@ -37,5 +37,6 @@ def test_live_contact_pending_combat_bare_exchange_previews_without_route_progre
         assert cause.__class__.__name__ == "TemplateValidationError"
         assert getattr(cause, "schema_id", None) == "jianghu-combat-state-1.0"
         assert getattr(cause, "reason", None) == "unregistered_keys"
+        assert "/team_plans/" in str(cause)
         return
     pytest.fail(f"diagnostic expected current live preview rejection, got {preview.status}")

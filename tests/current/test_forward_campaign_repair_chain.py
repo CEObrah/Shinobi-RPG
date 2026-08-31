@@ -27,11 +27,13 @@ def _meta(revision: int, time: str):
 
 
 TX148 = "tx.gameplay." + "a" * 64
-TX149 = "tx.gameplay." + "b" * 64
+TX149 = "tx.repair." + "b" * 64
 TX150 = "tx.gameplay." + "c" * 64
 BASE147 = "1" * 40
 COMMIT148 = "2" * 40
+SOURCE_AFTER_148 = "a" * 40
 COMMIT149 = "3" * 40
+SOURCE_AFTER_149 = "b" * 40
 COMMIT150 = "4" * 40
 HEAD = "5" * 40
 
@@ -78,7 +80,7 @@ class _Repository:
 
 
 class _Git:
-    def __init__(self):
+    def __init__(self, *, skipped_state_mutation: bool = False):
         self.records = {
             TX148: GitCommitRecord(
                 commit_hash=COMMIT148, paths=("state/a.json", "state/meta.json"),
@@ -86,14 +88,28 @@ class _Git:
             ),
             TX149: GitCommitRecord(
                 commit_hash=COMMIT149, paths=("state/b.json", "state/meta.json"),
-                trailers={TRANSACTION_TRAILER: TX149, CAMPAIGN_TRAILER: "test-campaign", REVISION_TRAILER: "149", MODE_TRAILER: "gameplay"},
+                trailers={TRANSACTION_TRAILER: TX149, CAMPAIGN_TRAILER: "test-campaign", REVISION_TRAILER: "149", MODE_TRAILER: "repair"},
             ),
             TX150: GitCommitRecord(
                 commit_hash=COMMIT150, paths=("state/c.json", "state/meta.json"),
                 trailers={TRANSACTION_TRAILER: TX150, CAMPAIGN_TRAILER: "test-campaign", REVISION_TRAILER: "150", MODE_TRAILER: "gameplay"},
             ),
         }
-        self.parents = {COMMIT148: BASE147, COMMIT149: COMMIT148, COMMIT150: COMMIT149}
+        # Source commits sit between world revisions without changing state.
+        self.parents = {
+            COMMIT148: BASE147,
+            COMMIT149: SOURCE_AFTER_148,
+            COMMIT150: SOURCE_AFTER_149,
+        }
+        self.state_trees = {
+            BASE147: "tree-147",
+            COMMIT148: "tree-148",
+            SOURCE_AFTER_148: "tree-skipped" if skipped_state_mutation else "tree-148",
+            COMMIT149: "tree-149",
+            SOURCE_AFTER_149: "tree-149",
+            COMMIT150: "tree-150",
+            HEAD: "tree-150",
+        }
         self.files = {
             BASE147: {
                 "state/meta.json": _meta(147, "SE-0061-09-28T00:53:58"),
@@ -120,9 +136,7 @@ class _Git:
 
     def tree_oid(self, commit, path):
         assert path == "state"
-        if commit in {HEAD, COMMIT150}:
-            return "state-tree-150"
-        raise AssertionError(commit)
+        return self.state_trees[commit]
 
     def first_parent(self, commit):
         return self.parents[commit]
@@ -162,7 +176,7 @@ def _command(ids=None):
     )
 
 
-def test_chain_repair_restores_union_from_parent_of_oldest_and_advances_once(tmp_path):
+def test_world_revision_chain_allows_source_commits_and_repair_revision(tmp_path):
     repository = _Repository(tmp_path)
     service = CampaignRepairService(_Operations(repository, _Git()))
 
@@ -175,13 +189,20 @@ def test_chain_repair_restores_union_from_parent_of_oldest_and_advances_once(tmp
     repaired_meta = json.loads(plan.writes["state/meta.json"].decode())
     assert repaired_meta["revision"] == 151
     assert repaired_meta["time"] == "SE-0061-09-28T00:53:58"
-    assert plan.result["repair_kind"] == "forward_transaction_chain_repair"
+    assert plan.result["repair_kind"] == "forward_world_revision_chain_repair"
     assert plan.result["damaged_revision_start"] == 148
     assert plan.result["damaged_revision_end"] == 150
     assert plan.result["restored_state_revision"] == 147
     assert plan.result["damaged_transaction_ids"] == [TX148, TX149, TX150]
     assert plan.result["restore_commit"] == BASE147
     assert "state/untouched.json" not in plan.writes
+
+
+def test_world_revision_chain_rejects_an_unlisted_intervening_state_change(tmp_path):
+    service = CampaignRepairService(_Operations(_Repository(tmp_path), _Git(skipped_state_mutation=True)))
+    with pytest.raises(OperationError) as caught:
+        service._build(_command())
+    assert caught.value.code == "repair_provenance_invalid"
 
 
 def test_chain_repair_rejects_skipping_an_intermediate_revision(tmp_path):

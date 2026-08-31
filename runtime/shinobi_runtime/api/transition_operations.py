@@ -186,6 +186,142 @@ def _safe_combat_metadata(result: Mapping[str, Any]) -> dict[str, Any]:
     return out
 
 
+
+def _compact_mapping(value: object, keys: tuple[str, ...]) -> dict[str, Any]:
+    if not isinstance(value, Mapping):
+        return {}
+    return {
+        key: value.get(key)
+        for key in keys
+        if value.get(key) not in (None, "", [], {})
+    }
+
+
+def _combat_narrative_beat(event: Mapping[str, Any]) -> dict[str, Any] | None:
+    result = str(event.get("result") or "")
+    resource = event.get("resource_commit") if isinstance(event.get("resource_commit"), Mapping) else {}
+    qi = event.get("qi") if isinstance(event.get("qi"), Mapping) else {}
+    damage = event.get("damage") if isinstance(event.get("damage"), Mapping) else {}
+    wound = damage.get("wound") if isinstance(damage.get("wound"), Mapping) else {}
+    physiology = event.get("physiology") if isinstance(event.get("physiology"), Mapping) else {}
+    actual_ref = event.get("actual_ref")
+    intended_ref = event.get("intended_ref")
+    material = bool(
+        result in {
+            "contact", "mount_contact", "mount_disabled", "escaped", "dead", "incapacitated",
+            "action_interrupted_before_commitment", "action_disrupted_after_commitment_before_release",
+            "action_interrupted_by_defense_before_commitment", "action_disrupted_by_defense_after_commitment",
+        }
+        or wound
+        or bool(resource.get("poison_dose_consumed"))
+        or (isinstance(actual_ref, str) and isinstance(intended_ref, str) and actual_ref != intended_ref)
+        or str(physiology.get("status") or "") in {"dead", "incapacitated", "unconscious"}
+    )
+    if not material:
+        return None
+    beat: dict[str, Any] = {}
+    for key in (
+        "actor_ref", "intended_ref", "actual_ref", "action_kind", "weapon_ref", "poison_ref",
+        "hit_zone", "target_structure_ref", "result",
+    ):
+        value = event.get(key)
+        if value not in (None, "", [], {}):
+            beat[key] = value
+    for time_key in ("contact_at_ms", "release_at_ms", "commit_at_ms", "start_at_ms"):
+        value = event.get(time_key)
+        if isinstance(value, int) and not isinstance(value, bool):
+            beat["at_ms"] = value
+            break
+    approach = _compact_mapping(event.get("approach"), ("reason", "moved", "distance_mm", "remaining_mm", "required_mm"))
+    if approach:
+        beat["approach"] = approach
+    defense = _compact_mapping(event.get("defense"), ("response", "detected", "reason", "reaction_delay_ms", "recovery_ms"))
+    if defense:
+        beat["defense"] = defense
+    if wound:
+        beat["wound"] = _compact_mapping(
+            wound,
+            (
+                "zone", "structure_ref", "side", "severity", "bleeding_ml_per_min", "fracture",
+                "tendon_damage", "nerve_damage", "organ_trauma", "function_loss_pct", "pain",
+            ),
+        )
+    contact = _compact_mapping(event.get("contact"), ("channel", "zone", "structure_ref", "contact_kind", "penetration", "impact"))
+    if contact:
+        beat["contact"] = contact
+    if resource:
+        compact_resource = _compact_mapping(resource, ("ok", "projectile_ref", "poison_ref", "poison_dose_consumed"))
+        if compact_resource:
+            beat["resource_commit"] = compact_resource
+    qi_spent = qi.get("current_qi_milli_spent")
+    if isinstance(qi_spent, int) and not isinstance(qi_spent, bool) and qi_spent > 0:
+        beat["qi_milli_spent"] = qi_spent
+    fatigue = event.get("fatigue") if isinstance(event.get("fatigue"), Mapping) else {}
+    fatigue_added = fatigue.get("added_milli")
+    if isinstance(fatigue_added, int) and not isinstance(fatigue_added, bool) and fatigue_added > 0:
+        beat["fatigue_milli_added"] = fatigue_added
+    poison = _compact_mapping(event.get("poison"), ("poison_ref", "burden_added", "current_burden", "burden_after"))
+    if poison:
+        beat["poison_effect"] = poison
+    return beat
+
+
+def _combat_narrative_summary(raw_events: list[Any], opposing_refs: frozenset[str]) -> dict[str, Any]:
+    material: list[dict[str, Any]] = []
+    routine_counts: dict[str, int] = {}
+    resource_summary = {
+        "projectiles_committed": 0,
+        "poison_doses_consumed": 0,
+        "qi_milli_spent": 0,
+        "fatigue_milli_added": 0,
+    }
+    for raw in raw_events:
+        if not isinstance(raw, Mapping):
+            continue
+        action_kind = str(raw.get("action_kind") or "unknown")
+        result = str(raw.get("result") or "unknown")
+        routine_key = f"{action_kind}:{result}"
+        routine_counts[routine_key] = routine_counts.get(routine_key, 0) + 1
+        resource = raw.get("resource_commit") if isinstance(raw.get("resource_commit"), Mapping) else {}
+        if resource.get("ok") is True and isinstance(resource.get("projectile_ref"), str):
+            resource_summary["projectiles_committed"] += 1
+        if resource.get("poison_dose_consumed") is True:
+            resource_summary["poison_doses_consumed"] += 1
+        qi = raw.get("qi") if isinstance(raw.get("qi"), Mapping) else {}
+        spent = qi.get("current_qi_milli_spent")
+        if isinstance(spent, int) and not isinstance(spent, bool) and spent > 0:
+            resource_summary["qi_milli_spent"] += spent
+        fatigue = raw.get("fatigue") if isinstance(raw.get("fatigue"), Mapping) else {}
+        added = fatigue.get("added_milli")
+        if isinstance(added, int) and not isinstance(added, bool) and added > 0:
+            resource_summary["fatigue_milli_added"] += added
+        beat = _combat_narrative_beat(raw)
+        if beat is not None:
+            material.append(beat)
+
+    material_limit = 96
+    safe_beats = _sanitize_opposing_refs(material[:material_limit], opposing_refs)
+    if not isinstance(safe_beats, list):
+        safe_beats = []
+    counts = [
+        {"event_kind": key, "count": count}
+        for key, count in sorted(routine_counts.items())
+    ]
+    return {
+        "source": "complete_current_transition_receipt",
+        "event_count": len(raw_events),
+        "material_event_count": len(material),
+        "material_beats": safe_beats,
+        "material_beats_truncated": len(material) > material_limit,
+        "omitted_material_beat_count": max(0, len(material) - material_limit),
+        "event_kind_counts": counts,
+        "resource_summary": resource_summary,
+        "narration_rule": (
+            "Use material_beats as the primary chronological scene spine. Routine counts summarize repeated no-change work. "
+            "Raw event pages remain exact evidence for audit, negative claims, or detail that the compact spine does not establish."
+        ),
+    }
+
 def current_transition_projection(
     *,
     receipt: IdempotencyReceipt | None,
@@ -313,6 +449,7 @@ def current_transition_projection(
         raise OperationError(503, "current_transition_redaction_invalid")
 
     command_redacted = original_command is not None and command_record != original_command
+    combat_narrative = _combat_narrative_summary(raw_events, opposing_refs) if is_combat and event_offset == 0 else None
     payload = {
         "available": True,
         "campaign_id": receipt.campaign_id,
@@ -328,6 +465,7 @@ def current_transition_projection(
         "event_offset": event_offset,
         "events": events,
         "events_withheld": False,
+        "combat_narrative": combat_narrative,
         "next_object_ref": next_ref,
         "event_identity_semantics": (
             "opposing_exact_person_refs_redacted"

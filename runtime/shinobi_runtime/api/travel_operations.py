@@ -194,16 +194,14 @@ def gm_private_combat_director_projection(
     read_json: Callable[[str], Any],
     sheet_resolver: Callable[[str], Mapping[str, Any]],
     player_id: str,
-    participant_limit: int = 96,
+    participant_limit: int = 128,
+    focus_limit: int = 8,
 ) -> dict[str, Any] | None:
-    """Return bounded omniscient current-combat truth for the AI GM only.
+    """Return exact-combat director truth without turning a large fight into a world dump.
 
-    The public observation projection remains the authority for what Wei knows.
-    This packet exists because a narrator/director needs more than the player
-    character's perception in order to stage simultaneous actors coherently. It
-    may therefore contain hidden identities, exact positions, private tactical
-    state, real wounds, objectives and team plans. Nothing in this packet becomes
-    player knowledge merely because the GM can read it.
+    The resolver continues to use full exact person/combat state for every body.
+    This is narration transport only: every admitted participant remains indexed,
+    while full character sheets are concentrated on the current focal actors.
     """
     active = active_combat_for_person(read_json, player_id)
     if active is None:
@@ -214,6 +212,7 @@ def gm_private_combat_director_projection(
     sides = combat.get("sides", {}) if isinstance(combat.get("sides"), Mapping) else {}
     combatants = combat.get("combatants", {}) if isinstance(combat.get("combatants"), Mapping) else {}
     positions = combat.get("positions", {}) if isinstance(combat.get("positions"), Mapping) else {}
+    team_plans = combat.get("team_plans", {}) if isinstance(combat.get("team_plans"), Mapping) else {}
     player_side_ref = next((str(side) for side, refs in sides.items() if isinstance(refs, list) and player_id in refs), None)
     player_state = combatants.get(player_id, {}) if isinstance(combatants.get(player_id), Mapping) else {}
     player_observed = {str(x) for x in player_state.get("observed_refs", []) if isinstance(x, str)}
@@ -226,12 +225,49 @@ def gm_private_combat_director_projection(
             if isinstance(ref, str) and ref and all(existing_ref != ref for _side, existing_ref in refs):
                 refs.append((str(side_ref), ref))
     limit = max(1, min(128, int(participant_limit)))
+    admitted = refs[:limit]
     try:
         equipment_ledger = read_json("state/martial-world/equipment-ledger.json")
     except (FileNotFoundError, KeyError, TypeError, ValueError):
         equipment_ledger = {}
-    rows: list[dict[str, Any]] = []
-    for side_ref, ref in refs[:limit]:
+
+    assignments: dict[str, dict[str, Any]] = {}
+    plan_summaries: dict[str, dict[str, Any]] = {}
+    primary_threats: set[str] = set()
+    targeting_player: set[str] = set()
+    for side_ref, raw_plan in team_plans.items():
+        if not isinstance(raw_plan, Mapping):
+            continue
+        primary = raw_plan.get("primary_threat_ref")
+        if isinstance(primary, str) and primary:
+            primary_threats.add(primary)
+        raw_assignments = raw_plan.get("assignments", {}) if isinstance(raw_plan.get("assignments"), Mapping) else {}
+        role_counts: dict[str, int] = {}
+        for actor_ref, raw_assignment in raw_assignments.items():
+            if not isinstance(actor_ref, str) or not isinstance(raw_assignment, Mapping):
+                continue
+            assignment = {
+                key: raw_assignment.get(key)
+                for key in ("role", "target_ref", "preferred_action", "requires_line_of_sight")
+                if raw_assignment.get(key) not in (None, "", [], {})
+            }
+            assignments[actor_ref] = assignment
+            role = str(raw_assignment.get("role") or "unassigned")
+            role_counts[role] = role_counts.get(role, 0) + 1
+            if raw_assignment.get("target_ref") == player_id:
+                targeting_player.add(actor_ref)
+        plan_summaries[str(side_ref)] = {
+            key: raw_plan.get(key)
+            for key in (
+                "plan_id", "objective_kind", "primary_threat_ref", "tactical_problem",
+                "desired_states", "coordination_latency_ms", "replan_reasons",
+            )
+            if raw_plan.get(key) not in (None, "", [], {})
+        }
+        plan_summaries[str(side_ref)]["assignment_role_counts"] = role_counts
+
+    records: dict[str, dict[str, Any]] = {}
+    for side_ref, ref in admitted:
         state = combatants.get(ref, {}) if isinstance(combatants.get(ref), Mapping) else {}
         position = positions.get(ref, {}) if isinstance(positions.get(ref), Mapping) else {}
         try:
@@ -244,7 +280,86 @@ def gm_private_combat_director_projection(
             loadout = effective_person_loadout(equipment_ledger, ref) if isinstance(equipment_ledger, Mapping) else {}
         except (KeyError, TypeError, ValueError):
             loadout = {}
-        row: dict[str, Any] = {
+        records[ref] = {
+            "side_ref": side_ref,
+            "state": state,
+            "position": position,
+            "person": person,
+            "loadout": loadout,
+        }
+
+    player_position = positions.get(player_id, {}) if isinstance(positions.get(player_id), Mapping) else {}
+    px = int(player_position.get("x_mm", 0)); py = int(player_position.get("y_mm", 0))
+    def distance_key(ref: str) -> tuple[int, str]:
+        row = records.get(ref, {}).get("position", {})
+        if not isinstance(row, Mapping):
+            return (10**30, ref)
+        dx = int(row.get("x_mm", 0)) - px; dy = int(row.get("y_mm", 0)) - py
+        return (dx * dx + dy * dy, ref)
+
+    focus_max = max(1, min(16, int(focus_limit)))
+    focus: list[str] = []
+    def add_focus(ref: str) -> None:
+        if ref in records and ref not in focus and len(focus) < focus_max:
+            focus.append(ref)
+    add_focus(player_id)
+    same_side = sorted(
+        (ref for side, ref in admitted if side == player_side_ref and ref != player_id),
+        key=distance_key,
+    )
+    for ref in same_side[:2]:
+        add_focus(ref)
+    hostile_priority = sorted(
+        (ref for side, ref in admitted if side != player_side_ref and (ref in targeting_player or ref in primary_threats)),
+        key=lambda ref: (0 if ref in targeting_player else 1, *distance_key(ref)),
+    )
+    for ref in hostile_priority:
+        add_focus(ref)
+    nearest = sorted((ref for _side, ref in admitted if ref != player_id), key=distance_key)
+    for ref in nearest:
+        add_focus(ref)
+    detailed_refs = [ref for _side, ref in admitted] if len(admitted) <= 12 else focus
+
+    participant_index: list[dict[str, Any]] = []
+    detail_rows: list[dict[str, Any]] = []
+    for side_ref, ref in admitted:
+        record = records[ref]
+        state = record["state"] if isinstance(record["state"], Mapping) else {}
+        position = record["position"] if isinstance(record["position"], Mapping) else {}
+        person = record["person"] if isinstance(record["person"], Mapping) else {}
+        loadout = record["loadout"] if isinstance(record["loadout"], Mapping) else {}
+        injury = _injury_director_summary(person)
+        compact_health = {
+            key: injury.get(key)
+            for key in ("status", "shock", "injury_count")
+            if injury.get(key) not in (None, "", [], {})
+        }
+        compact_state = {
+            key: state.get(key)
+            for key in ("status_families", "ready_weapon_ref", "weapon_position")
+            if state.get(key) not in (None, "", [], {})
+        }
+        compact_position = {
+            key: position.get(key)
+            for key in ("x_mm", "y_mm", "elevation_mm", "stance")
+            if position.get(key) is not None
+        }
+        index_row: dict[str, Any] = {
+            "person_ref": ref,
+            "name": person.get("name"),
+            "side_ref": side_ref,
+            "relation_to_player": "same_side" if side_ref == player_side_ref else "opposing_side",
+            "arrived": bool(combat_person_arrived(combat, ref)),
+            "player_has_observed_person": bool(ref == player_id or side_ref == player_side_ref or ref in player_observed),
+            "health": compact_health,
+            "position": compact_position,
+            "combat_state": compact_state,
+            "team_assignment": assignments.get(ref),
+        }
+        participant_index.append({key: value for key, value in index_row.items() if value not in (None, {}, [])})
+        if ref not in detailed_refs:
+            continue
+        detail: dict[str, Any] = {
             "person_ref": ref,
             "name": person.get("name"),
             "faction_ref": person.get("faction_ref"),
@@ -259,7 +374,7 @@ def gm_private_combat_director_projection(
             "qi": person.get("qi"),
             "qi_control": person.get("qi_control"),
             "current_qi_milli": person.get("current_qi_milli"),
-            "health": _injury_director_summary(person),
+            "health": injury,
             "equipment": {
                 "items": dict(loadout.get("items", {})) if isinstance(loadout.get("items"), Mapping) else {},
                 "condition_milli": dict(loadout.get("condition_milli", {})) if isinstance(loadout.get("condition_milli"), Mapping) else {},
@@ -272,17 +387,22 @@ def gm_private_combat_director_projection(
             "combat_state": {
                 key: state.get(key)
                 for key in (
-                    "status_families", "balance_milli", "limb_commitment_milli",
-                    "recovery_until_ms", "weapon_position", "ready_weapon_ref",
-                    "surprise_milli", "awareness_confidence_milli", "concealment_milli",
-                    "qi_allocation_milli",
+                    "status_families", "balance_milli", "limb_commitment_milli", "recovery_until_ms",
+                    "weapon_position", "ready_weapon_ref", "surprise_milli", "awareness_confidence_milli",
+                    "concealment_milli", "qi_allocation_milli",
                 )
                 if state.get(key) not in (None, [], {})
             },
+            "team_assignment": assignments.get(ref),
         }
-        rows.append({key: value for key, value in row.items() if value not in (None, {}, [])})
+        cognition = _gm_private_person_cognition(person, {})
+        if cognition:
+            detail["gm_private_cognition"] = cognition
+        detail_rows.append({key: value for key, value in detail.items() if value not in (None, {}, [])})
 
     obstacle_rows = combat.get("obstacles", []) if isinstance(combat.get("obstacles"), list) else []
+    environment = dict(combat.get("environment", {})) if isinstance(combat.get("environment"), Mapping) else {}
+    environment.pop("obstacles", None)
     encounter_causality: dict[str, Any] = {}
     try:
         route_ops = read_json("state/martial-world/route-operations.json")
@@ -292,46 +412,38 @@ def gm_private_combat_director_projection(
     if isinstance(contacts, Mapping):
         active_contact = next(
             (
-                row
-                for row in contacts.values()
-                if isinstance(row, Mapping)
-                and row.get("status") == "active"
-                and row.get("combat_ref") == combat_ref
+                row for row in contacts.values()
+                if isinstance(row, Mapping) and row.get("status") == "active" and row.get("combat_ref") == combat_ref
             ),
             None,
         )
         if isinstance(active_contact, Mapping):
             causal, causal_source = resolved_contact_causality(active_contact, route_ops, read_json=read_json)
+            attacker_refs = [str(ref) for ref in causal.get("attacker_refs", []) if isinstance(ref, str)] if isinstance(causal.get("attacker_refs"), list) else []
             encounter_causality = {
                 key: causal.get(key)
                 for key in (
-                    "movement_ref",
-                    "route_ref",
-                    "attacker_faction_ref",
-                    "attacker_refs",
-                    "attacker_intent",
-                    "motive_kind",
+                    "movement_ref", "route_ref", "attacker_faction_ref", "attacker_intent", "motive_kind",
                     "gm_private_decision_context",
                 )
                 if causal.get(key) not in (None, "", [], {})
             }
+            if attacker_refs:
+                encounter_causality["attacker_count"] = len(attacker_refs)
+                if len(admitted) <= 12:
+                    encounter_causality["attacker_refs"] = attacker_refs
             if encounter_causality:
                 encounter_causality["source"] = causal_source
 
-    for row in rows:
-        ref = row.get("person_ref")
-        if not isinstance(ref, str) or not ref:
-            continue
-        try:
-            person = sheet_resolver(ref)
-        except (FileNotFoundError, KeyError, TypeError, ValueError):
-            continue
-        if not isinstance(person, Mapping):
-            continue
-        cognition = _gm_private_person_cognition(person, {})
-        if cognition:
-            row["gm_private_cognition"] = cognition
+    observed_hostile = sorted(ref for ref in player_observed if any(side != player_side_ref and r == ref for side, r in refs))
+    observation_boundary: dict[str, Any] = {
+        "observed_hostile_person_count": len(observed_hostile),
+        "rule": "Use the private packet to direct coherent action, but narrate hidden identities, positions, motives, injuries, plans, or capabilities only after Wei can perceive/infer them or another lawful source communicates them.",
+    }
+    if len(admitted) <= 12:
+        observation_boundary["observed_hostile_person_refs"] = observed_hostile
 
+    large = len(admitted) > 12
     packet: dict[str, Any] = {
         "privacy": "gm_private_scene_bounded_omniscient_truth_not_player_knowledge",
         "combat_ref": combat_ref,
@@ -339,24 +451,25 @@ def gm_private_combat_director_projection(
         "elapsed_ms": combat.get("elapsed_ms"),
         "zone_ref": combat.get("zone_ref"),
         "objective": dict(combat.get("objective", {})) if isinstance(combat.get("objective"), Mapping) else combat.get("objective"),
-        "environment": dict(combat.get("environment", {})) if isinstance(combat.get("environment"), Mapping) else None,
-        "team_plans": dict(combat.get("team_plans", {})) if isinstance(combat.get("team_plans"), Mapping) else {},
-        "participants": rows,
+        "environment": environment,
+        "team_plans": dict(team_plans) if not large else plan_summaries,
+        "team_plan_projection_mode": "full_small_combat" if not large else "compact_large_combat",
+        "participants": detail_rows if not large else participant_index,
+        "focus_participants": detail_rows,
+        "focus_participant_refs": detailed_refs,
+        "participant_projection_mode": "full_small_combat" if not large else "compact_large_combat_with_focal_full_sheets",
         "participant_count": len(refs),
+        "participant_index_count": len(admitted),
         "participants_truncated": len(refs) > limit,
         "omitted_participant_count": max(0, len(refs) - limit),
         "obstacles": [dict(row) for row in obstacle_rows[:32] if isinstance(row, Mapping)],
         "obstacle_count": len(obstacle_rows),
         "encounter_causality": encounter_causality,
-        "player_observation_boundary": {
-            "observed_hostile_person_refs": sorted(ref for ref in player_observed if any(side != player_side_ref and r == ref for side, r in refs)),
-            "rule": "Use the private packet to direct coherent action, but narrate hidden identities, positions, motives, injuries, plans, or capabilities only after Wei can perceive/infer them or another lawful source communicates them.",
-        },
+        "player_observation_boundary": observation_boundary,
         "director_rule": (
-            "This is omniscient scene-direction context, not prose and not player knowledge. "
-            "Use it to keep simultaneous movement, tactics, wounds, motives, private character priorities and NPC behavior causally coherent. "
-            "The public narration must remain limited to what Wei can perceive, reasonably infer, remember, or lawfully learn. "
-            "Mechanical outcomes still come only from the combat resolver; the GM may not alter them in narration."
+            "The exact resolver still uses full sheets and exact combat state for every participant. This packet is narration transport only. "
+            "In large fights, participants is a complete compact tactical index for the bounded combat roster and focus_participants contains richer sheets for the immediate focal actors. "
+            "Use current-transition combat_narrative material beats as the primary causal chronology when available. Hidden truth remains director context, not Wei knowledge."
         ),
     }
     return {key: value for key, value in packet.items() if value not in (None, [], {})}

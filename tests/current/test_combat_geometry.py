@@ -164,33 +164,43 @@ def test_melee_schedule_persists_original_committed_approach_envelope():
     assert moved.x_mm>combat['positions'][attacker['person_id']]['x_mm']
 
 
-def test_three_attackers_share_one_reaction_budget_in_exact_exchange(monkeypatch):
-    base=load('state/martial-world/people/house_tang.json')['people'][0]
-    defender=copy.deepcopy(base); defender['person_id']='defender'
-    defender['attributes']={k:300 for k in defender['attributes']}; defender['martial_skills']={k:300 for k in defender['martial_skills']}
-    attackers=[]
-    for idx in range(3):
-        row=copy.deepcopy(base); row['person_id']=f'attacker.{idx}'; row['attributes']={k:5 for k in row['attributes']}; row['martial_skills']={k:5 for k in row['martial_skills']}; attackers.append(row)
-    people={row['person_id']:row for row in attackers+[defender]}
-    ledger={'schema':'jianghu-equipment-ledger-1.0','policy_assignments':{},'person_loadouts':{}}
-    combat=initialize_combat(combat_ref='reaction-saturation',side_a_refs=[row['person_id'] for row in attackers],side_b_refs=[defender['person_id']],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate','target_refs':[defender['person_id']]},equipment_ledger=ledger)
-    # Put all three attackers at equal contact distance but different angles.
-    combat['positions']['defender'].update(x_mm=0,y_mm=0,facing_mdeg=0)
-    combat['positions']['attacker.0'].update(x_mm=900,y_mm=0)
-    combat['positions']['attacker.1'].update(x_mm=0,y_mm=900)
-    combat['positions']['attacker.2'].update(x_mm=-900,y_mm=0)
-    import shinobi_runtime.martial_world.exact_combat as exact
-    original_observe=exact._observe_visible_enemies
-    monkeypatch.setattr(exact,'_observe_visible_enemies',lambda combat,actor_ref,enemy_refs,people,at_ms: [] if actor_ref=='defender' else original_observe(combat,actor_ref=actor_ref,enemy_refs=enemy_refs,people=people,at_ms=at_ms))
-    result=resolve_exchange(combat=combat,people=people,equipment_ledger=ledger,doctrines={},player_ref='attacker.0',player_action_kind='unarmed_strike',player_target_ref='defender',player_weapon_ref='body_unarmed',player_hit_zone='chest',player_targeting_intent='disable')
-    pressures=[event['defense_pressure'] for event in result['events'] if event.get('intended_ref')=='defender' and 'defense_pressure' in event]
-    assert len(pressures)==3
+def test_three_attackers_share_one_reaction_budget_in_exact_exchange():
+    from shinobi_runtime.martial_world.combat import active_defense_available, commit_active_defense
+
+    # This regression owns only the shared active-defense state machine.
+    # Planner roles, approach lanes, targeting and contact geometry have
+    # separate tests and must not decide whether this test gets three
+    # committed threats to measure.
+    state={}
+    pressures=[]
+    for idx,angle in enumerate((0,90,180)):
+        attacker_ref=f'attacker.{idx}'
+        pressure=active_defense_available(
+            state,
+            attacker_ref=attacker_ref,
+            at_ms=1000,
+            reaction_score=300,
+            angle_deg=angle,
+            balance_milli=1000,
+            limb_commitment_milli=0,
+        )
+        pressures.append(pressure)
+        committed=commit_active_defense(
+            pressure['state_after_decay'],
+            attacker_ref=attacker_ref,
+            at_ms=1000,
+            threat_speed=100,
+            reaction_score=300,
+            body_commitment_milli=200,
+        )
+        state=committed['state_after']
+
     distinct=[int(row['distinct_attackers']) for row in pressures]
     available=[int(row['available_milli']) for row in pressures]
-    assert distinct==sorted(distinct) and distinct[-1]>=3
-    assert min(available[1:])<available[0]
-    traces=[event['defense'] for event in result['events'] if event.get('intended_ref')=='defender' and 'defense' in event]
-    assert min(int(row['reaction_availability_milli']) for row in traces[1:])<int(traces[0]['reaction_availability_milli'])
+    assert distinct == [1,2,3]
+    assert available[1] < available[0]
+    assert available[2] <= available[1]
+    assert set(state['recent_attackers']) == {'attacker.0','attacker.1','attacker.2'}
 
 
 def test_three_vs_three_teammates_create_real_defensive_interruptions(monkeypatch):

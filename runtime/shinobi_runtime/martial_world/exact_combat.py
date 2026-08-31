@@ -686,9 +686,17 @@ def _default_weapon_for(person_ref: str, person: Mapping[str, Any], equipment_le
     def effective_skill(ref: str) -> int:
         discipline=str(weapons[ref].get("discipline") or "")
         return int(_skills(person).get(discipline,0))*_weapon_condition_milli(equipment_ledger,person_ref,ref)//1000
+    def projectile_reaches(ref: str) -> bool:
+        row=conditioned(ref)
+        try:
+            maximum_range_mm=max(0,int(round(float(row.get("maximum_range_m",0))*1000)))
+        except (TypeError,ValueError):
+            return False
+        return maximum_range_mm>0 and target_distance_mm<=maximum_range_mm
+    bows=[ref for ref in bows if projectile_reaches(ref)]
     if target_distance_mm>bow_threshold and bows and int(items.get("item_arrow",0))>0:
         return "bow_shot", max(bows,key=lambda ref:(effective_skill(ref),int(conditioned(ref).get("precision",0)),ref))
-    thrown=[str(ref) for ref,q in items.items() if int(q)>0 and isinstance(weapons.get(ref),Mapping) and weapons[ref].get("discipline")=="hidden_weapons" and _weapon_condition_milli(equipment_ledger,person_ref,str(ref))>0]
+    thrown=[str(ref) for ref,q in items.items() if int(q)>0 and isinstance(weapons.get(ref),Mapping) and weapons[ref].get("discipline")=="hidden_weapons" and _weapon_condition_milli(equipment_ledger,person_ref,str(ref))>0 and projectile_reaches(str(ref))]
     if target_distance_mm>thrown_threshold and thrown:
         return "hidden_weapon_throw", max(thrown,key=lambda ref:(effective_skill(ref),int(conditioned(ref).get("precision",0)),ref))
     melee=[str(ref) for ref,q in items.items() if int(q)>0 and isinstance(weapons.get(ref),Mapping) and weapons[ref].get("discipline") in {"sword","spear"} and _weapon_condition_milli(equipment_ledger,person_ref,str(ref))>0]
@@ -1707,7 +1715,7 @@ def _defensive_action_interruption(combat: Mapping[str, Any], action: _Scheduled
 
 
 def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledAction, people: dict[str, dict[str, Any]], equipment_ledger: dict[str, Any]) -> dict[str, Any]:
-    actor_ref=action.actor_ref; target_ref=action.target_ref; event_base={"actor_ref":actor_ref,"intended_ref":target_ref,"action_kind":action.action_kind,"weapon_ref":action.weapon_ref,"poison_ref":action.poison_ref,"decision_origin":action.decision_origin,"declared_at_ms":action.declared_at_ms,"start_at_ms":action.start_at_ms,"ready_delay_ms":action.ready_delay_ms,"previous_ready_weapon_ref":action.previous_ready_weapon_ref,"commit_at_ms":action.commit_at_ms,"release_at_ms":action.release_at_ms,"contact_at_ms":action.contact_at_ms,"recovery_end_ms":action.recovery_end_ms}
+    actor_ref=action.actor_ref; target_ref=action.target_ref; event_base={"actor_ref":actor_ref,"intended_ref":target_ref,"action_kind":action.action_kind,"weapon_ref":action.weapon_ref,"poison_ref":action.poison_ref,"hit_zone":action.hit_zone,"target_structure_ref":action.target_structure_ref,"decision_origin":action.decision_origin,"declared_at_ms":action.declared_at_ms,"start_at_ms":action.start_at_ms,"ready_delay_ms":action.ready_delay_ms,"previous_ready_weapon_ref":action.previous_ready_weapon_ref,"commit_at_ms":action.commit_at_ms,"release_at_ms":action.release_at_ms,"contact_at_ms":action.contact_at_ms,"recovery_end_ms":action.recovery_end_ms}
     if actor_ref not in people or target_ref not in people: return {**event_base,"result":"invalid_target"}
     target_state_pre=combat.get("combatants",{}).get(target_ref,{})
     escaped_at=target_state_pre.get("escaped_at_ms") if isinstance(target_state_pre,Mapping) else None

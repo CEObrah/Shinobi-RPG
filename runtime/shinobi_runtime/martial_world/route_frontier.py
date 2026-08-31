@@ -35,7 +35,7 @@ from .government_finance import fund_bounty_escrow
 from .handoffs import classify_handoff
 from .infrastructure import enterprise_scale_value
 from .manpower import combat_ready_count
-from .operational_equipment import detach_operation_issue_holders, reclaim_operation_equipment
+from .operational_equipment import detach_operation_issue_holders, materialize_faction_field_equipment, reclaim_operation_equipment
 from .physical_travel import (
     advance_movement_progress, begin_next_segment, build_route_journey, exact_segment_due_event, movement_complete,
     movement_required_seconds, refresh_current_segment,
@@ -228,6 +228,33 @@ def settle_route_frontier(
             writes[_DEPLOYMENTS_PATH] = deployments_state
             writes[_EQUIPMENT_LEDGER_PATH] = equipment_ledger
             return max(0, int(detached.get("detached_holder_count", 0)))
+
+        def _materialize_route_attack_field_equipment(
+            faction_ref: str, participant_refs: Sequence[str], people_by_ref: Mapping[str, Mapping[str, Any]],
+        ) -> int:
+            """Cross aggregate armory stock into exact holder custody before contact."""
+            nonlocal equipment_ledger
+            refs = [str(ref) for ref in participant_refs if isinstance(ref, str) and ref]
+            if not faction_ref or not refs:
+                return 0
+            ipath, inventory = load_inventory(faction_ref)
+            materialized = materialize_faction_field_equipment(
+                faction_ref=faction_ref,
+                participant_refs=refs,
+                people_by_ref=people_by_ref,
+                inventory=inventory,
+                equipment_ledger=equipment_ledger,
+                status="route_attack_field_issue",
+            )
+            count = max(0, int(materialized.get("materialized_person_count", 0)))
+            if count <= 0:
+                return 0
+            inventory_after = copy.deepcopy(dict(materialized["inventory_after"]))
+            equipment_ledger = copy.deepcopy(dict(materialized["equipment_ledger_after"]))
+            writes[ipath] = inventory_after
+            inventory_cache[faction_ref] = (ipath, inventory_after)
+            writes[_EQUIPMENT_LEDGER_PATH] = equipment_ledger
+            return count
 
         def _update_roster_people(fid: str, people_after: Mapping[str, Mapping[str, Any]]) -> None:
             rpath, roster = load_roster(fid)
@@ -2957,6 +2984,9 @@ def settle_route_frontier(
                     attacker_refs = [str(p["person_id"]) for p in attackers]
                     people.update({str(p["person_id"]): p for p in attackers})
                     contact_ref = f"contact:{movement_ref}:{at.date().isoformat()}:{attacker_fid}"
+                    field_equipment_materialized_count = _materialize_route_attack_field_equipment(
+                        attacker_fid, attacker_refs, people
+                    )
                     if beneficiary:
                         apply_directed_relation_event(beneficiary, attacker_fid, "armed_raid")
                         apply_directed_relation_event(attacker_fid, beneficiary, "armed_raid")
@@ -3046,6 +3076,7 @@ def settle_route_frontier(
                             "attacker_intent": str(decision.get("intent") or "hostile_interception"),
                             "motive_kind": str(decision.get("motive_kind") or ""),
                             "gm_private_decision_context": private_interception_decision_context(decision),
+                            "field_equipment_materialized_count": field_equipment_materialized_count,
                         }
                         movement["status"] = "contact_pending"; movement["contact_ref"] = contact_ref
                         movement["combat_ref"] = combat_ref; movement["contact_attacker_faction_ref"] = attacker_fid
@@ -3067,6 +3098,7 @@ def settle_route_frontier(
                             "kind": "hostile_contact", "event_id": contact_ref, "route_ref": rid,
                             "combat_ref": combat_ref, "movement_ref": movement_ref,
                             "attacker_faction_ref": attacker_fid, "requires_player_decision": True,
+                            "field_equipment_materialized_count": field_equipment_materialized_count,
                             "delivered_to_player": True,
                         }
                         handoff = classify_handoff(row); handoffs.append({**row, "handoff": handoff})

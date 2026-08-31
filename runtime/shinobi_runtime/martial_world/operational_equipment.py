@@ -22,7 +22,7 @@ _ROOT = Path(__file__).resolve().parents[3]
 _EQUIPMENT = _ROOT / "game" / "data" / "martial-world" / "equipment.json"
 _IDENTITIES = _ROOT / "game" / "data" / "martial-world" / "faction-identities.json"
 
-_OPERATIONAL_KINDS = frozenset({"faction_raid", "faction_war_strike", "custody_rescue", "faction_reconnaissance", "allied_defense_reinforcement"})
+_OPERATIONAL_KINDS = frozenset({"faction_raid", "faction_war_strike", "custody_rescue", "faction_reconnaissance", "allied_defense_reinforcement", "route_attack"})
 _RANGED_AMMO_PER_BOW = 12
 
 
@@ -213,6 +213,65 @@ def issue_operation_equipment(
         "equipment_ledger_after": compact_equipment_ledger(ledger),
         "issued_person_count": len(issued),
         "issued_item_count": sum(sum(items.values()) for items in issued.values()),
+    }
+
+
+def materialize_faction_field_equipment(
+    *,
+    faction_ref: str,
+    participant_refs: Sequence[str],
+    people_by_ref: Mapping[str, Mapping[str, Any]],
+    inventory: Mapping[str, Any],
+    equipment_ledger: Mapping[str, Any],
+    status: str = "field_issue_in_custody",
+) -> dict[str, Any]:
+    """Conservatively materialize aggregate armory stock onto exact field holders.
+
+    This is for bounded contacts that do not own a long-lived deployment row,
+    such as a spontaneous route interception. It reuses the same finite issue
+    policy as strategic operations, then immediately detaches the short-lived
+    return obligation into explicit source-faction title. Physical items remain
+    on the exact people who carry them; nothing teleports back when the contact
+    ends and nothing is created from skill or faction identity alone.
+
+    Re-entry is naturally idempotent: already armed people are skipped by
+    ``issue_operation_equipment`` and aggregate stock is debited only for newly
+    materialized exact items.
+    """
+    synthetic_owner = {"operation_kind": "route_attack"}
+    issued = issue_operation_equipment(
+        operation=synthetic_owner,
+        faction_ref=faction_ref,
+        participant_refs=participant_refs,
+        people_by_ref=people_by_ref,
+        inventory=inventory,
+        equipment_ledger=equipment_ledger,
+    )
+    issued_count = max(0, int(issued.get("issued_person_count", 0)))
+    issued_item_count = max(0, int(issued.get("issued_item_count", 0)))
+    ledger_after = issued["equipment_ledger_after"]
+    if issued_count <= 0:
+        return {
+            "inventory_after": copy.deepcopy(dict(issued["inventory_after"])),
+            "equipment_ledger_after": copy.deepcopy(dict(ledger_after)),
+            "materialized_person_count": 0,
+            "materialized_item_count": 0,
+        }
+    detached = detach_operation_issue_holders(
+        operation=issued["operation_after"],
+        source_faction_ref=faction_ref,
+        holder_refs=participant_refs,
+        equipment_ledger=ledger_after,
+        status=status,
+    )
+    operation_after = detached.get("operation_after", {})
+    if isinstance(operation_after, Mapping) and operation_after.get("issued_equipment"):
+        raise ValueError("field issue retained transient return obligation")
+    return {
+        "inventory_after": copy.deepcopy(dict(issued["inventory_after"])),
+        "equipment_ledger_after": copy.deepcopy(dict(detached["equipment_ledger_after"])),
+        "materialized_person_count": issued_count,
+        "materialized_item_count": issued_item_count,
     }
 
 

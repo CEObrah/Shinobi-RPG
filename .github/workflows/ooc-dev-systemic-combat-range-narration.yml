@@ -28,10 +28,29 @@ jobs:
         run: python -m pip install -e '.[service,service-test]'
 
       - name: Apply systemic OOC DEV patch
-        run: python tools/_ooc_dev_systemic_combat_range_narration.py
+        id: patch
+        shell: bash
+        run: |
+          set +e
+          python tools/_ooc_dev_systemic_combat_range_narration.py > /tmp/systemic-patch.log 2>&1
+          rc=$?
+          cat /tmp/systemic-patch.log
+          if [ "$rc" -ne 0 ]; then
+            cp /tmp/systemic-patch.log ooc-dev-systemic-patch-failure.log
+            exit "$rc"
+          fi
+
+      - name: Persist patch failure diagnostics
+        if: failure() && steps.patch.conclusion == 'failure'
+        shell: bash
+        run: |
+          git config user.name 'Shinobi OOC DEV'
+          git config user.email 'ooc-dev@invalid'
+          git add ooc-dev-systemic-patch-failure.log
+          git commit -m 'debug: capture systemic patch failure [skip ci]'
+          git push origin HEAD:fix/systemic-combat-range-narration-20260831
 
       - name: Prove no campaign state edits
-        shell: bash
         run: |
           if git diff --name-only | grep -q '^state/'; then
             echo 'Refusing source repair with state edits.' >&2
@@ -68,7 +87,8 @@ jobs:
         run: |
           rm -f \
             tools/_ooc_dev_systemic_combat_range_narration.py \
-            .github/workflows/ooc-dev-systemic-combat-range-narration.yml
+            .github/workflows/ooc-dev-systemic-combat-range-narration.yml \
+            ooc-dev-systemic-patch-failure.log
           git diff --check
           if git diff --name-only | grep -q '^state/'; then
             echo 'State edit appeared before commit.' >&2

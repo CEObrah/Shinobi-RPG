@@ -48,11 +48,17 @@
         "evidence_milli": {
           "attribute:endurance": 178,
           "stealth_scouting": 192,
-          "attribute:perception": 123,
-          "command": 123
+          "attribute:perception": 137,
+          "command": 123,
+          "hidden_weapons": 314,
+          "attribute:dexterity": 14,
+          "sword": 579
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 141731,
+      "current_qi": 141,
+      "fatigue_milli": 187,
       "training_carry_milli": "64,72,42,59,13,55,134,285,0,0,0,273,27,14,229,311"
     },
     {
@@ -280,11 +286,16 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 159,
+          "sword": 734,
+          "attribute:dexterity": 8
         }
       },
       "location_ref": "site.changan.inn",
-      "training_carry_milli": "81,78,50,61,0,51,114,410,0,0,0,308,27,0,456,307"
+      "current_qi_milli": 37491,
+      "current_qi": 37,
+      "fatigue_milli": 99,
+      "training_carry_milli": "81,78,50,61,0,51,114,411,0,0,0,308,27,0,456,307"
     },
     {
       "person_id": "mw.person.house_tang.1002",
@@ -495,10 +506,15 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 163,
+          "sword": 462,
+          "attribute:dexterity": 12
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 47424,
+      "current_qi": 47,
+      "fatigue_milli": 123,
       "training_carry_milli": "61,65,38,61,14,53,113,344,0,0,0,240,27,0,413,282"
     },
     {
@@ -961,11 +977,15 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 151,
+          "sword": 2223
         }
       },
       "location_ref": "site.changan.inn",
-      "training_carry_milli": "65,75,38,57,13,51,120,460,0,0,0,309,27,0,482,328"
+      "current_qi_milli": 46531,
+      "current_qi": 46,
+      "fatigue_milli": 245,
+      "training_carry_milli": "65,75,38,57,13,51,120,470,0,0,0,309,27,0,482,328"
     },
     {
       "person_id": "mw.person.house_tang.1018",
@@ -1093,11 +1113,15 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 151,
+          "sword": 2582
         }
       },
       "location_ref": "site.changan.inn",
-      "training_carry_milli": "68,69,44,61,13,47,109,447,0,0,0,312,28,0,528,343"
+      "current_qi_milli": 11746,
+      "current_qi": 11,
+      "fatigue_milli": 227,
+      "training_carry_milli": "68,69,44,61,13,47,109,459,0,0,0,312,28,0,528,343"
     },
     {
       "person_id": "mw.person.house_tang.1021",
@@ -1309,10 +1333,15 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 158,
+          "sword": 2194,
+          "attribute:dexterity": 7
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 31185,
+      "current_qi": 31,
+      "fatigue_milli": 252,
       "training_carry_milli": "64,67,35,59,14,63,122,441,0,0,0,357,28,0,463,308"
     },
     {
@@ -1399,10 +1428,59 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 175,
+          "sword": 1341,
+          "attribute:dexterity": 24
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 32972,
+      "current_qi": 32,
+      "fatigue_milli": 185,
+      "health": {
+        "status": "injured",
+        "injuries": [
+          {
+            "zone": "chest",
+            "structure_ref": null,
+            "side": null,
+            "created_at": "46242",
+            "cut": 31,
+            "pierce": 48,
+            "blunt": 45,
+            "penetration": 32,
+            "severity": 61,
+            "bleeding_ml_per_min": 13,
+            "fracture": 0,
+            "tendon_damage": 8,
+            "nerve_damage": 23,
+            "organ_trauma": 61,
+            "structure_damage": 0,
+            "functional_effects": {},
+            "pain": 77,
+            "function_loss_pct": 0,
+            "treated": false,
+            "healing_progress_milli": 0,
+            "hemostasis_initial_bleeding_ml_per_min": 13,
+            "hemostasis_progress_units": 840,
+            "hemostasis_blood_remainder": 223123560000
+          }
+        ],
+        "blood_lost_ml": 7,
+        "shock": 42
+      },
+      "pending_poison_burdens": {
+        "cardiotoxic": {
+          "burden": 14,
+          "activates_at": "0061-09-27T21:17:06.271000",
+          "poison_ref": "cardiotoxic",
+          "peaks_at": "0061-09-27T21:17:06.271000",
+          "stage": "peak"
+        }
+      },
+      "poison_burdens": {
+        "cardiotoxic": 6
+      },
       "training_carry_milli": "67,78,41,59,13,59,112,346,0,0,0,318,28,0,413,276"
     },
     {
@@ -1532,10 +1610,13 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 455,
-          "attribute:perception": 151
+          "attribute:perception": 151,
+          "hidden_weapons": 604
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi": 3,
+      "fatigue_milli": 72,
       "training_carry_milli": "66,68,40,80,14,53,142,581,0,0,0,262,67,0,738,474"
     },
     {
@@ -1625,11 +1706,15 @@
           "attribute:endurance": 219,
           "stealth_scouting": 247,
           "attribute:perception": 151,
-          "medicine": 208
+          "medicine": 208,
+          "hidden_weapons": 2003
         }
       },
       "location_ref": "site.changan.inn",
-      "training_carry_milli": "64,75,52,52,13,50,112,651,0,0,0,431,27,0,717,461,39"
+      "current_qi_milli": 6062,
+      "current_qi": 6,
+      "fatigue_milli": 123,
+      "training_carry_milli": "64,75,52,52,13,50,112,651,0,0,9,431,27,0,717,461,39"
     },
     {
       "person_id": "mw.person.house_tang.1033",
@@ -1842,10 +1927,15 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 157,
+          "sword": 1877,
+          "attribute:dexterity": 6
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 37491,
+      "current_qi": 37,
+      "fatigue_milli": 225,
       "training_carry_milli": "60,72,48,55,13,58,116,297,0,0,0,268,27,0,423,285"
     },
     {
@@ -2185,11 +2275,60 @@
         "evidence_milli": {
           "attribute:endurance": 219,
           "stealth_scouting": 247,
-          "attribute:perception": 151
+          "attribute:perception": 187,
+          "sword": 438,
+          "attribute:dexterity": 36
         }
       },
       "location_ref": "site.changan.inn",
-      "training_carry_milli": "45,59,33,44,13,46,119,463,0,0,0,249,27,0,494,320"
+      "current_qi_milli": 9119,
+      "current_qi": 9,
+      "fatigue_milli": 85,
+      "health": {
+        "status": "injured",
+        "injuries": [
+          {
+            "zone": "chest",
+            "structure_ref": null,
+            "side": null,
+            "created_at": "47209",
+            "cut": 28,
+            "pierce": 44,
+            "blunt": 54,
+            "penetration": 28,
+            "severity": 59,
+            "bleeding_ml_per_min": 21,
+            "fracture": 0,
+            "tendon_damage": 7,
+            "nerve_damage": 22,
+            "organ_trauma": 59,
+            "structure_damage": 0,
+            "functional_effects": {},
+            "pain": 76,
+            "function_loss_pct": 0,
+            "treated": false,
+            "healing_progress_milli": 0,
+            "hemostasis_initial_bleeding_ml_per_min": 21,
+            "hemostasis_progress_units": 180,
+            "hemostasis_blood_remainder": 43177320000
+          }
+        ],
+        "blood_lost_ml": 2,
+        "shock": 38
+      },
+      "pending_poison_burdens": {
+        "cardiotoxic": {
+          "burden": 18,
+          "activates_at": "0061-09-27T21:17:06.270000",
+          "poison_ref": "cardiotoxic",
+          "peaks_at": "0061-09-27T21:17:06.270000",
+          "stage": "peak"
+        }
+      },
+      "poison_burdens": {
+        "cardiotoxic": 7
+      },
+      "training_carry_milli": "45,59,33,44,13,46,119,464,0,0,0,249,27,0,494,320"
     },
     {
       "person_id": "mw.person.house_tang.1046",
@@ -2404,10 +2543,14 @@
           "attribute:endurance": 219,
           "stealth_scouting": 247,
           "attribute:perception": 151,
-          "sword": 208
+          "sword": 324,
+          "hidden_weapons": 490
         }
       },
       "location_ref": "site.changan.inn",
+      "current_qi_milli": 14022,
+      "current_qi": 14,
+      "fatigue_milli": 63,
       "training_carry_milli": "53,80,41,54,14,64,106,424,0,0,0,295,28,0,667,434"
     },
     {

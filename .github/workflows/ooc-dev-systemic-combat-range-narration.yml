@@ -79,13 +79,33 @@ jobs:
           python tools/verify_noop_roundtrip.py
 
       - name: Changed-owner regression gate
+        id: changed
+        shell: bash
         run: |
+          set +e
           python tools/test_changed.py \
             runtime/shinobi_runtime/martial_world/exact_combat.py \
             runtime/shinobi_runtime/api/transition_operations.py \
             runtime/shinobi_runtime/api/travel_operations.py \
             plugins/shinobi-rpg/skill/shinobi-game-master/references/combat.md \
-            tests/current/test_systemic_combat_range_narration.py
+            tests/current/test_systemic_combat_range_narration.py \
+            > /tmp/test-changed.log 2>&1
+          rc=$?
+          cat /tmp/test-changed.log
+          if [ "$rc" -ne 0 ]; then
+            cp /tmp/test-changed.log ooc-dev-test-changed-failure.log
+            exit "$rc"
+          fi
+
+      - name: Persist changed-owner diagnostics
+        if: failure() && steps.changed.conclusion == 'failure'
+        shell: bash
+        run: |
+          git config user.name 'Shinobi OOC DEV'
+          git config user.email 'ooc-dev@invalid'
+          git add ooc-dev-test-changed-failure.log
+          git commit -m 'debug: capture test-changed failure [skip ci]' || true
+          git push origin HEAD:fix/systemic-combat-range-narration-20260831
 
       - name: Commit only tested product changes
         shell: bash
@@ -93,7 +113,8 @@ jobs:
           rm -f \
             tools/_ooc_dev_systemic_combat_range_narration.py \
             .github/workflows/ooc-dev-systemic-combat-range-narration.yml \
-            ooc-dev-systemic-patch-failure.log
+            ooc-dev-systemic-patch-failure.log \
+            ooc-dev-test-changed-failure.log
           git diff --check
           if git diff --name-only | grep -q '^state/'; then
             echo 'State edit appeared before commit.' >&2

@@ -10,8 +10,14 @@ intent remain safe and recoverable from Runtime authority.
 
 def create_app_from_env():
     from shinobi_runtime.api import app as app_module
+    from shinobi_runtime.api.historical_repair_anchor import install_historical_repair_anchor
     from shinobi_runtime.api.transition_operations import TransitionAwareCampaignOperations
     from shinobi_runtime.commands.combat_span_safety import install_production_combat_span_safety
+
+    # The historical repair identity is campaign-specific and closed: it binds
+    # the severed rev143 combat transaction to its exact rev142 parent plus the
+    # committed WAL chain. It is installed before MCP repair services are built.
+    install_historical_repair_anchor()
 
     # Campaign-specific standing combat intent is composed before the service
     # starts accepting commands.  The exact reducer remains deterministic; the

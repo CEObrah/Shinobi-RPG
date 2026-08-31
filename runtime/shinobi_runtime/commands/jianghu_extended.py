@@ -268,7 +268,7 @@ def _resolve_player_combat_span(
             player_poison_ref=explicit_poison_ref,
             player_qi_allocation_milli=explicit_qi_allocation_milli,
             player_auto_qi=bool(qi_auto),player_auto_poison=bool(poison_auto),
-            player_rally_allies=bool(rally_allies),
+            player_rally_allies=bool(rally_allies and exchanges==0),
             martial_familiarity=social_cursor,player_retinue_context=player_retinue_context,
             player_improvised_weapon_state=(player_improvised_weapon_state if exchanges==0 else None),
             equipment_ledger_hydrated=True,compact_equipment_result=False,mutate_equipment_ledger=True,

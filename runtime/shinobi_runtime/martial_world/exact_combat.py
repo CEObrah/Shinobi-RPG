@@ -2099,15 +2099,14 @@ def _rally_withdrawal_attempt(
     """
     leader=people.get(leader_ref,{}) if isinstance(people.get(leader_ref,{}),Mapping) else {}
     ally=people.get(ally_ref,{}) if isinstance(people.get(ally_ref,{}),Mapping) else {}
-    leader_prof=leader.get("professional_skills",{}) if isinstance(leader.get("professional_skills"),Mapping) else {}
-    ally_prof=ally.get("professional_skills",{}) if isinstance(ally.get("professional_skills"),Mapping) else {}
+    leader_skills=_skills(leader); ally_skills=_skills(ally)
     leader_attrs=_attrs(leader); ally_attrs=_attrs(ally)
     leadership=(
-        max(0,int(leader_prof.get("command",0)))*4
+        max(0,int(leader_skills.get("command",0)))*4
         + max(0,int(leader_attrs.get("willpower",0)))*2
         + max(0,int(leader_attrs.get("intelligence",0)))
         + max(0,int(ally_attrs.get("willpower",0)))
-        + max(0,int(ally_prof.get("command",0)))
+        + max(0,int(ally_skills.get("command",0)))
     )
     condition=withdrawal.get("condition",{}) if isinstance(withdrawal.get("condition"),Mapping) else {}
     reason=str(withdrawal.get("reason") or "")
@@ -2610,13 +2609,10 @@ def default_target_for(*, combat: Mapping[str, Any], people: Mapping[str, Mappin
         disengaging=str(position.get("stance") or "")=="disengaging"
         pursuit_rank=(1 if disengaging else 0) if pursuit=="restrained" else (-1 if disengaging else 0) if pursuit=="persistent" else 0
         finish_rank=0 if finishing=="commit_decisively" and _target_has_finishing_opening(people[ref]) else 1
-        return (
-            -pressure.get(ref, 0),
-            pursuit_rank,
-            finish_rank,
-            planar_distance_mm(actor_position, position) if position else 10**12,
-            ref,
-        )
+        distance_rank=planar_distance_mm(actor_position, position) if position else 10**12
+        if finishing=="commit_decisively":
+            return (-pressure.get(ref,0),finish_rank,distance_rank,pursuit_rank,ref)
+        return (-pressure.get(ref,0),pursuit_rank,finish_rank,distance_rank,ref)
     return min(known,key=target_key)
 
 

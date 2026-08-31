@@ -114,6 +114,8 @@ def test_defended_or_missed_melee_exchange_advances_combat_clock(monkeypatch):
     defender['martial_skills']={k:500 for k in defender['martial_skills']}
     people={attacker['person_id']:attacker,defender['person_id']:defender}
     combat=initialize_combat(combat_ref='defense-clock',side_a_refs=[attacker['person_id']],side_b_refs=[defender['person_id']],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate','target_refs':[defender['person_id']]})
+    combat['positions'][attacker['person_id']].update(x_mm=0,y_mm=0)
+    combat['positions'][defender['person_id']].update(x_mm=900,y_mm=0)
     import shinobi_runtime.martial_world.exact_combat as exact
     original_observe=exact._observe_visible_enemies
     monkeypatch.setattr(exact,'_observe_visible_enemies',lambda combat,actor_ref,enemy_refs,people,at_ms: [] if actor_ref==defender['person_id'] else original_observe(combat,actor_ref=actor_ref,enemy_refs=enemy_refs,people=people,at_ms=at_ms))

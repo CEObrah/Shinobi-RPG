@@ -18,6 +18,8 @@ A longer instruction such as **fight for thirty seconds**, **keep attacking**, o
 
 Preserve compound engagement intent, not only force intent. **Kill as many as possible as quickly as possible**, **run them down**, or another explicit relentless lethal-until-resolution declaration must not be reduced to `targeting_intent: lethal` while silently restoring a restrained pursuit posture for the omitted tempo. The registered lethal-until-resolution combat span supplies a temporary assertive, committed, persistent, mobile engagement override while retaining Wei's standing resource discipline and targeting policy; it must never overwrite his saved doctrine.
 
+Preserve independent components of a compound combat declaration. If Wei says **rally them and attack**, **cover the withdrawal while killing pursuers**, or otherwise combines leadership/team intent with personal violence, do not silently execute only the attack. Route each hard consequence through its registered authority in the same declared intent where supported; if one required consequence is unsupported, fail closed on that unsupported component rather than pretending it was never said. A rally is an attempt against real allied withdrawal pressure, not automatic obedience.
+
 A long standing combat span is never permission to erase the fight as a scene. The runtime may resolve many exchanges under one declared policy, but the GM must preserve and narrate the committed chronology rather than replacing it with terminal HP, injury, or casualty accounting.
 
 ## Combat narration contract

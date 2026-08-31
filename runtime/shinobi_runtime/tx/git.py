@@ -263,6 +263,39 @@ class GitStager:
             )
         return completed.stdout.decode("ascii").strip()
 
+    def root_commits(self) -> Tuple[str, ...]:
+        """Return reachable root commits for bounded provenance diagnostics."""
+        completed = self._run_bytes(("rev-list", "--max-parents=0", "HEAD"))
+        if completed.returncode:
+            raise GitStageError(
+                completed.returncode,
+                completed.stderr.decode("utf-8", errors="replace"),
+            )
+        return tuple(
+            commit
+            for commit in completed.stdout.decode("ascii", errors="strict").splitlines()
+            if commit
+        )
+
+    def unreachable_commits(self, max_count: int = 512) -> Tuple[str, ...]:
+        """Return bounded local unreachable commit objects without changing refs."""
+        if isinstance(max_count, bool) or not isinstance(max_count, int) or max_count <= 0:
+            raise ValueError("max_count must be a positive integer")
+        completed = self._run_bytes(("fsck", "--unreachable", "--no-reflogs", "--no-progress"))
+        if completed.returncode:
+            raise GitStageError(
+                completed.returncode,
+                completed.stderr.decode("utf-8", errors="replace"),
+            )
+        commits = []
+        for raw_line in completed.stdout.decode("ascii", errors="strict").splitlines():
+            parts = raw_line.split()
+            if len(parts) == 3 and parts[0] in {"unreachable", "dangling"} and parts[1] == "commit":
+                commits.append(parts[2])
+                if len(commits) >= max_count:
+                    break
+        return tuple(commits)
+
     def is_ancestor(self, ancestor_commit: str, descendant_commit: str) -> bool:
         completed = self._run_bytes(
             ("merge-base", "--is-ancestor", ancestor_commit, descendant_commit)

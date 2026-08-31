@@ -31,10 +31,10 @@ jobs:
           cache: pip
 
       - name: Apply rally and approach repair
-        run: python tools/ooc_dev_patch_combat_rally.py
+        run: python tools/ooc_dev_patch_combat_rally_fix.py
 
       - name: Remove temporary patch scaffolding
-        run: rm tools/ooc_dev_patch_combat_rally.py .github/workflows/ooc-dev-combat-rally.yml
+        run: rm tools/ooc_dev_patch_combat_rally.py tools/ooc_dev_patch_combat_rally_fix.py .github/workflows/ooc-dev-combat-rally.yml
 
       - name: Install runtime and test dependencies
         run: python -m pip install -e '.[service,service-test]'

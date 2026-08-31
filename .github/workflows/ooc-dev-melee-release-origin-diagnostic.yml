@@ -1,0 +1,25 @@
+name: OOC Dev Melee Release Origin Diagnostic
+
+on:
+  push:
+    branches: [fix/melee-release-origin-provenance]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: |
+          python tools/ooc_dev_patch_melee_release_origin.py
+          python tools/ooc_dev_patch_melee_release_origin_followup.py
+          python tools/ooc_dev_patch_melee_release_origin_diagnostic.py
+      - run: python -m pip install -e '.[service,service-test]'
+      - run: python -m pytest -q tests/current/test_combat_contact_pursuit_repair.py::test_melee_strike_lane_launches_from_post_approach_position

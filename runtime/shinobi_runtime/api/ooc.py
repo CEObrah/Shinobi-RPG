@@ -12,7 +12,8 @@ from shinobi_runtime.store import RepositoryStore
 from shinobi_runtime.martial_world.civilian_state import civilian_population_total
 from shinobi_runtime.martial_world.live_state import _derived_person_routes
 from shinobi_runtime.tx import WriteAheadLog
-from shinobi_runtime.tx.errors import WalError
+from shinobi_runtime.tx.errors import GitStageError, WalError
+from shinobi_runtime.tx.git import CAMPAIGN_TRAILER, REVISION_TRAILER, GitStager
 
 
 def _wal_image(value: Any) -> bytes | None:
@@ -70,10 +71,107 @@ def _combat_ref_from_images(entry: Mapping[str, Any]) -> str | None:
     return None
 
 
+
+
+def _git_json(git: GitStager, commit: str, path: str) -> Mapping[str, Any] | None:
+    raw = git.read_path_at(commit, path)
+    if raw is None:
+        return None
+    try:
+        value = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return value if isinstance(value, Mapping) else None
+
+
+def _combat_elapsed_from_git(git: GitStager, commit: str) -> int | None:
+    state = _git_json(git, commit, "state/martial-world/combats.json")
+    combats = state.get("combats", {}) if state is not None else {}
+    if not isinstance(combats, Mapping):
+        return None
+    active = [row for row in combats.values() if isinstance(row, Mapping) and row.get("status") == "active"]
+    if len(active) != 1:
+        return None
+    value = active[0].get("elapsed_ms")
+    return int(value) if isinstance(value, int) and not isinstance(value, bool) else None
+
+
+def _wei_fatigue_from_git(git: GitStager, commit: str, player_id: str) -> int | None:
+    state = _git_json(git, commit, "state/martial-world/people/house_tang.json")
+    rows = state.get("people", []) if state is not None else []
+    if not isinstance(rows, list):
+        return None
+    for row in rows:
+        if isinstance(row, Mapping) and row.get("person_id") == player_id:
+            value = row.get("fatigue_milli")
+            return int(value) if isinstance(value, int) and not isinstance(value, bool) else None
+    return None
+
 class RepositoryOocAudit:
     def __init__(self, repository: RepositoryStore, runtime_root: object = None, **_kw):
         self.repository = repository
         self.runtime_root = None if runtime_root is None else Path(runtime_root)
+
+    def _legacy_lineage_diagnostics(self, campaign_id: str, player_id: str) -> list[str]:
+        """Inspect a severed local first-parent lineage without promoting arbitrary dangling Git."""
+        try:
+            git = GitStager(self.repository.root)
+            roots = git.root_commits()
+            if len(roots) != 1:
+                return [f"legacy_lineage:unavailable reason=reachable_root_count count={len(roots)}"]
+            release_root = roots[0]
+            root_meta = _git_json(git, release_root, "state/meta.json")
+            if root_meta is None or root_meta.get("campaign_id") != campaign_id:
+                return ["legacy_lineage:unavailable reason=release_root_meta_invalid"]
+            root_revision = root_meta.get("revision")
+            if isinstance(root_revision, bool) or not isinstance(root_revision, int):
+                return ["legacy_lineage:unavailable reason=release_root_revision_invalid"]
+            root_state_tree = git.tree_oid(release_root, "state")
+            anchors = []
+            for candidate in git.unreachable_commits(max_count=512):
+                meta = _git_json(git, candidate, "state/meta.json")
+                if meta is None or meta.get("campaign_id") != campaign_id or meta.get("revision") != root_revision:
+                    continue
+                try:
+                    record = git.get_commit(candidate)
+                    if (
+                        record.trailers.get(CAMPAIGN_TRAILER) != campaign_id
+                        or record.trailers.get(REVISION_TRAILER) != str(root_revision)
+                        or git.tree_oid(candidate, "state") != root_state_tree
+                    ):
+                        continue
+                except GitStageError:
+                    continue
+                anchors.append(candidate)
+            if not anchors:
+                return [f"legacy_lineage:none release_root_revision={root_revision}"]
+            anchor = sorted(anchors)[0]
+            diagnostics = [
+                f"legacy_lineage_anchor:release_root={release_root} revision={root_revision} severed_commit={anchor} state_tree_match=true"
+            ]
+            cursor = anchor
+            seen_revisions: set[int] = set()
+            for _index in range(128):
+                meta = _git_json(git, cursor, "state/meta.json")
+                if meta is not None and meta.get("campaign_id") == campaign_id:
+                    revision = meta.get("revision")
+                    if isinstance(revision, int) and not isinstance(revision, bool) and revision not in seen_revisions:
+                        seen_revisions.add(revision)
+                        diagnostics.append(
+                            "legacy_world:"
+                            f"rev={revision} commit={cursor} time={meta.get('time')} "
+                            f"combat_elapsed_ms={_combat_elapsed_from_git(git, cursor)} "
+                            f"player_fatigue_milli={_wei_fatigue_from_git(git, cursor, player_id)}"
+                        )
+                        if len(diagnostics) >= 33:
+                            break
+                try:
+                    cursor = git.first_parent(cursor)
+                except GitStageError:
+                    break
+            return diagnostics
+        except (OSError, GitStageError, ValueError):
+            return ["legacy_lineage:unavailable reason=git_object_probe_failed"]
 
     def _wal_combat_diagnostics(self, campaign_id: str) -> list[str]:
         if self.runtime_root is None:
@@ -158,6 +256,8 @@ class RepositoryOocAudit:
         normalized_focus = str(focus or '').lower()
         if meta is not None and any(token in normalized_focus for token in ('wal provenance','repair provenance','combat provenance')):
             diagnostics.extend(self._wal_combat_diagnostics(str(meta.get('campaign_id') or '')))
+        if meta is not None and any(token in normalized_focus for token in ('legacy lineage','pre-root','severed lineage')):
+            diagnostics.extend(self._legacy_lineage_diagnostics(str(meta.get('campaign_id') or ''), str(meta.get('player_id') or '')))
         try:
             deployment=inspect_deployment_freshness(self.repository.root)
             diagnostics.append(deployment.diagnostic())

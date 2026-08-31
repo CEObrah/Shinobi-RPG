@@ -10,6 +10,7 @@ a new revision. Current source files are therefore preserved.
 """
 from __future__ import annotations
 
+import base64
 import json
 from dataclasses import dataclass
 from typing import Any, Mapping, Optional
@@ -26,6 +27,7 @@ from shinobi_runtime.tx.errors import (
     RecoveryError,
     StaleRevisionError,
     TransactionError,
+    WalError,
 )
 from shinobi_runtime.tx.git import (
     CAMPAIGN_TRAILER,
@@ -38,6 +40,13 @@ REPAIR_COMMAND_TYPE = "campaign_forward_repair"
 REPAIR_MODE = "repair"
 _META_PATH = "state/meta.json"
 _MAX_REPAIR_CHAIN = 32
+_MAX_WAL_REPAIR_CHAIN = 256
+
+
+@dataclass(frozen=True)
+class _RepairRequest:
+    transaction_ids: tuple[str, ...] = ()
+    wal_revision_start: Optional[int] = None
 
 
 @dataclass(frozen=True)
@@ -57,36 +66,50 @@ class CampaignRepairService:
         self.repository = operations.repository
         self.coordinator = operations.coordinator
 
-    def _require_base(self, command: CommandEnvelope, *, require_revision: bool = True) -> tuple[str, ...]:
+    def _require_base(self, command: CommandEnvelope, *, require_revision: bool = True) -> _RepairRequest:
         if command.mode != REPAIR_MODE or command.command_type != REPAIR_COMMAND_TYPE:
             raise OperationError(403, "repair_mode_required")
         if command.actor_id not in self.operations.allowed_actor_ids:
             raise OperationError(403, "actor_not_allowed")
 
         keys = set(command.payload)
-        if keys == {"damaged_transaction_id"}:
-            raw_ids: Any = [command.payload.get("damaged_transaction_id")]
-        elif keys == {"damaged_transaction_ids"}:
-            raw_ids = command.payload.get("damaged_transaction_ids")
-            if not isinstance(raw_ids, (list, tuple)) or not 1 <= len(raw_ids) <= _MAX_REPAIR_CHAIN:
-                raise OperationError(422, "repair_payload_invalid")
-        else:
-            raise OperationError(422, "repair_payload_invalid")
-
-        transaction_ids: list[str] = []
-        seen: set[str] = set()
-        for raw in raw_ids:
+        request: _RepairRequest
+        if keys == {"damaged_wal_revision_start"}:
+            raw_start = command.payload.get("damaged_wal_revision_start")
             if (
-                not isinstance(raw, str)
-                or not raw.startswith("tx.")
-                or len(raw) > 160
-                or raw in seen
+                isinstance(raw_start, bool)
+                or not isinstance(raw_start, int)
+                or raw_start < 1
+                or raw_start > command.expected_revision
+                or command.expected_revision - raw_start + 1 > _MAX_WAL_REPAIR_CHAIN
             ):
                 raise OperationError(422, "repair_payload_invalid")
-            seen.add(raw)
-            transaction_ids.append(raw)
-        if not transaction_ids:
-            raise OperationError(422, "repair_payload_invalid")
+            request = _RepairRequest(wal_revision_start=raw_start)
+        else:
+            if keys == {"damaged_transaction_id"}:
+                raw_ids: Any = [command.payload.get("damaged_transaction_id")]
+            elif keys == {"damaged_transaction_ids"}:
+                raw_ids = command.payload.get("damaged_transaction_ids")
+                if not isinstance(raw_ids, (list, tuple)) or not 1 <= len(raw_ids) <= _MAX_REPAIR_CHAIN:
+                    raise OperationError(422, "repair_payload_invalid")
+            else:
+                raise OperationError(422, "repair_payload_invalid")
+
+            transaction_ids: list[str] = []
+            seen: set[str] = set()
+            for raw in raw_ids:
+                if (
+                    not isinstance(raw, str)
+                    or not raw.startswith("tx.")
+                    or len(raw) > 160
+                    or raw in seen
+                ):
+                    raise OperationError(422, "repair_payload_invalid")
+                seen.add(raw)
+                transaction_ids.append(raw)
+            if not transaction_ids:
+                raise OperationError(422, "repair_payload_invalid")
+            request = _RepairRequest(transaction_ids=tuple(transaction_ids))
 
         try:
             self.repository.require_campaign(command.campaign_id, _META_PATH)
@@ -96,7 +119,7 @@ class CampaignRepairService:
             raise OperationError(409, "stale_revision") from exc
         except (TypeError, ValueError) as exc:
             raise OperationError(409, "repair_campaign_mismatch") from exc
-        return tuple(transaction_ids)
+        return request
 
     def _require_fresh_deployment(self) -> None:
         freshness = inspect_deployment_freshness(self.repository.root)
@@ -114,9 +137,131 @@ class CampaignRepairService:
             raise OperationError(409, "repair_provenance_invalid")
         return value
 
+
+    @staticmethod
+    def _decode_wal_image(value: Any) -> Optional[bytes]:
+        if value is None:
+            return None
+        if not isinstance(value, str):
+            raise OperationError(409, "repair_wal_provenance_invalid")
+        try:
+            return base64.b64decode(value.encode("ascii"), validate=True)
+        except (ValueError, UnicodeEncodeError) as exc:
+            raise OperationError(409, "repair_wal_provenance_invalid") from exc
+
+    def _build_wal_chain(self, command: CommandEnvelope, start_revision: int) -> _RepairPlan:
+        try:
+            records = self.coordinator.wal.records(("committed",))
+        except (OSError, WalError) as exc:
+            raise OperationError(409, "repair_wal_provenance_invalid") from exc
+
+        by_revision: dict[int, Mapping[str, Any]] = {}
+        for record in records:
+            manifest = record.get("manifest", {}) if isinstance(record, Mapping) else {}
+            if not isinstance(manifest, Mapping) or manifest.get("campaign_id") != command.campaign_id:
+                continue
+            target_revision = manifest.get("target_revision")
+            if isinstance(target_revision, bool) or not isinstance(target_revision, int):
+                continue
+            if not start_revision <= target_revision <= command.expected_revision:
+                continue
+            if target_revision in by_revision:
+                raise OperationError(409, "repair_wal_provenance_invalid")
+            by_revision[target_revision] = record
+
+        expected_revisions = list(range(start_revision, command.expected_revision + 1))
+        if sorted(by_revision) != expected_revisions:
+            raise OperationError(409, "repair_wal_provenance_incomplete")
+        ordered = [by_revision[revision] for revision in expected_revisions]
+
+        histories: dict[str, list[Mapping[str, Any]]] = {}
+        transaction_ids: list[str] = []
+        for revision, record in zip(expected_revisions, ordered):
+            manifest = record.get("manifest", {})
+            transaction_id = record.get("transaction_id")
+            if (
+                manifest.get("base_revision") != revision - 1
+                or manifest.get("target_revision") != revision
+                or manifest.get("mode") not in {"gameplay", "autonomous", "repair"}
+                or not isinstance(transaction_id, str)
+                or manifest.get("transaction_id") != transaction_id
+            ):
+                raise OperationError(409, "repair_wal_provenance_invalid")
+            entries = record.get("entries")
+            if not isinstance(entries, list) or not entries:
+                raise OperationError(409, "repair_wal_provenance_invalid")
+            seen_paths: set[str] = set()
+            for entry in entries:
+                if not isinstance(entry, Mapping) or not isinstance(entry.get("path"), str):
+                    raise OperationError(409, "repair_wal_provenance_invalid")
+                path = str(entry["path"])
+                if not path.startswith("state/") or path in seen_paths:
+                    raise OperationError(409, "repair_wal_provenance_invalid")
+                seen_paths.add(path)
+                history = histories.setdefault(path, [])
+                if history and history[-1].get("after_sha256") != entry.get("before_sha256"):
+                    raise OperationError(409, "repair_wal_provenance_invalid")
+                history.append(entry)
+            if _META_PATH not in seen_paths:
+                raise OperationError(409, "repair_wal_provenance_invalid")
+            transaction_ids.append(transaction_id)
+
+        meta_history = histories.get(_META_PATH, [])
+        if len(meta_history) != len(expected_revisions):
+            raise OperationError(409, "repair_wal_provenance_invalid")
+        baseline_meta_raw = self._decode_wal_image(meta_history[0].get("before_b64"))
+        if baseline_meta_raw is None:
+            raise OperationError(409, "repair_wal_provenance_invalid")
+        try:
+            baseline_meta = json.loads(baseline_meta_raw.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise OperationError(409, "repair_wal_provenance_invalid") from exc
+        if (
+            not isinstance(baseline_meta, dict)
+            or baseline_meta.get("campaign_id") != command.campaign_id
+            or baseline_meta.get("revision") != start_revision - 1
+        ):
+            raise OperationError(409, "repair_wal_provenance_invalid")
+
+        writes: dict[str, Optional[bytes]] = {}
+        for path, history in sorted(histories.items()):
+            if self.repository.digest(path) != history[-1].get("after_sha256"):
+                raise OperationError(409, "repair_wal_base_changed")
+            desired = self._decode_wal_image(history[0].get("before_b64"))
+            if path == _META_PATH:
+                repaired_meta = dict(baseline_meta)
+                repaired_meta["revision"] = command.expected_revision + 1
+                desired = (json.dumps(repaired_meta, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            if self.repository.read_optional_bytes(path) != desired:
+                writes[path] = desired
+        if _META_PATH not in writes:
+            raise OperationError(409, "repair_wal_provenance_invalid")
+
+        result = {
+            "repair_kind": "forward_wal_revision_chain_repair",
+            "restored_state_revision": start_revision - 1,
+            "committed_revision": command.expected_revision + 1,
+            "restored_world_time": baseline_meta.get("time"),
+            "damaged_revision_start": start_revision,
+            "damaged_revision_end": command.expected_revision,
+            "damaged_transaction_ids": transaction_ids,
+            "repaired_path_count": len(writes),
+            "provenance_source": "committed_wal_before_images",
+        }
+        return _RepairPlan(
+            transaction_id="tx.repair." + command.digest,
+            created_at=command.submitted_at,
+            writes=writes,
+            result=result,
+            affected_refs=tuple(sorted(writes)),
+        )
+
     def _build(self, command: CommandEnvelope) -> _RepairPlan:
-        damaged_transaction_ids = self._require_base(command)
+        repair_request = self._require_base(command)
         self._require_fresh_deployment()
+        if repair_request.wal_revision_start is not None:
+            return self._build_wal_chain(command, repair_request.wal_revision_start)
+        damaged_transaction_ids = repair_request.transaction_ids
         git = self.coordinator.git
         head = git.head()
 

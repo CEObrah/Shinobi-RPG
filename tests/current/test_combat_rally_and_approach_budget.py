@@ -18,8 +18,8 @@ def _person(ref: str, faction: str, *, command: int = 20, will: int = 60, intell
             "strength": 60, "speed": 60, "dexterity": 60, "endurance": 60,
             "perception": 60, "intelligence": intelligence, "willpower": will,
         },
-        "martial_skills": {"unarmed": 60, "sword": 0, "spear": 0, "bow": 0, "hidden_weapons": 0},
-        "professional_skills": {"command": command},
+        "martial_skills": {"unarmed": 60, "sword": 0, "spear": 0, "bow": 0, "hidden_weapons": 0, "command": command},
+        "professional_skills": {},
         "qi": 0,
         "qi_control": 0,
         "fatigue_milli": 0,
@@ -165,3 +165,49 @@ def test_skill_preserves_rally_plus_attack_and_bans_solver_jargon_in_ic_prose():
     assert "rally them and attack" in text
     assert "Player-facing combat prose must not name resolver primitives" in text
     assert "strong novel or film" in text
+
+
+
+def test_rally_reads_martial_command_and_ignores_professional_command_shadow():
+    low_people = {
+        "leader": _person("leader", "a", command=0, will=92, intelligence=100),
+        "ally": _person("ally", "a", command=0, will=70, intelligence=60),
+    }
+    high_people = copy.deepcopy(low_people)
+    high_people["leader"]["martial_skills"]["command"] = 55
+    high_people["leader"]["professional_skills"]["command"] = 999
+    low = exact._rally_withdrawal_attempt(
+        leader_ref="leader", ally_ref="ally", people=low_people, withdrawal=_withdrawal("side_collapse")
+    )
+    high = exact._rally_withdrawal_attempt(
+        leader_ref="leader", ally_ref="ally", people=high_people, withdrawal=_withdrawal("side_collapse")
+    )
+    assert high["leadership_score"] - low["leadership_score"] == 220
+
+
+def test_one_semantic_rally_command_is_not_rerolled_every_exchange():
+    source = (ROOT / "runtime/shinobi_runtime/commands/jianghu_extended.py").read_text(encoding="utf-8")
+    assert "player_rally_allies=bool(rally_allies and exchanges==0)" in source
+
+
+def test_decisive_lethal_targeting_finishes_near_vulnerable_target_before_far_runner(monkeypatch):
+    leader = _person("leader", "a", command=55, will=92, intelligence=100)
+    vulnerable = _person("vulnerable", "b")
+    runner = _person("runner", "b")
+    vulnerable["health"]["blood_lost_ml"] = 500
+    people = {row["person_id"]: row for row in (leader, vulnerable, runner)}
+    combat = exact.initialize_combat(
+        combat_ref="kill-efficient-targeting", side_a_refs=["leader"], side_b_refs=["vulnerable", "runner"],
+        people=people, zone_ref="test", started_at="SE-0061-01-01T00:00:00",
+        objective={"kind": "eliminate", "target_refs": ["vulnerable", "runner"]}, equipment_ledger=_ledger(),
+    )
+    combat["positions"]["leader"].update(x_mm=0, y_mm=0)
+    combat["positions"]["vulnerable"].update(x_mm=2_000, y_mm=0, stance="braced")
+    combat["positions"]["runner"].update(x_mm=12_000, y_mm=0, stance="disengaging")
+    combat["combatants"]["leader"]["observed_refs"] = ["vulnerable", "runner"]
+    monkeypatch.setattr(
+        exact,
+        "_engagement_doctrine_for",
+        lambda _person: {"pursuit_posture": "persistent", "finishing_window": "commit_decisively"},
+    )
+    assert exact.default_target_for(combat=combat, people=people, actor_ref="leader") == "vulnerable"

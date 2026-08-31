@@ -171,3 +171,62 @@ def test_hold_position_does_not_hide_an_extra_body_radius_of_melee_chase():
     ledger = _jian_ledger(attacker["person_id"])
     assert exact._hold_position_weapon_for(attacker["person_id"], attacker, ledger, target_distance_mm=1150) is not None
     assert exact._hold_position_weapon_for(attacker["person_id"], attacker, ledger, target_distance_mm=1151) is None
+
+
+def test_melee_strike_lane_launches_from_post_approach_position(monkeypatch):
+    attacker, defender = _people_pair()
+    people = {attacker["person_id"]: attacker, defender["person_id"]: defender}
+    ledger = _jian_ledger(attacker["person_id"])
+    combat = exact.initialize_combat(
+        combat_ref="post-approach-release", side_a_refs=[attacker["person_id"]], side_b_refs=[defender["person_id"]],
+        people=people, zone_ref="test", started_at="SE-0061-01-01T00:00:00",
+        objective={"kind": "eliminate", "target_refs": [defender["person_id"]]}, equipment_ledger=ledger,
+    )
+    combat["positions"][attacker["person_id"]].update(x_mm=0, y_mm=0, elevation_mm=0)
+    combat["positions"][defender["person_id"]].update(x_mm=1750, y_mm=0, elevation_mm=0)
+    action = exact._schedule_action(
+        combat=combat, actor_ref=attacker["person_id"], target_ref=defender["person_id"],
+        action_kind="thrust", weapon_ref="weapon_jian", poison_ref=None, hit_zone="chest",
+        target_structure_ref=None, decision_origin="test", people=people, equipment_ledger=ledger,
+    )
+    original_trace = exact.trace_attack_geometry
+    captured = []
+    def spy_trace(*args, **kwargs):
+        captured.append(dict(kwargs))
+        return original_trace(*args, **kwargs)
+    monkeypatch.setattr(exact, "trace_attack_geometry", spy_trace)
+    event = exact._resolve_scheduled_action(
+        combat=combat, action=action, people=people, equipment_ledger=ledger,
+    )
+    assert combat["positions"][attacker["person_id"]]["x_mm"] == 600
+    assert captured
+    trajectory = captured[0]["trajectory"]
+    assert trajectory["launch_x_mm"] == 600
+    assert trajectory["launch_y_mm"] == 0
+    assert trajectory["aim_x_mm"] == 1750
+    assert event["actual_ref"] == defender["person_id"]
+
+
+def test_enemy_team_hold_assignment_is_not_mislabeled_as_player_retinue_ai(monkeypatch):
+    player, enemy = _people_pair()
+    people = {player["person_id"]: player, enemy["person_id"]: enemy}
+    ledger = _jian_ledger(player["person_id"])
+    combat = exact.initialize_combat(
+        combat_ref="team-provenance", side_a_refs=[player["person_id"]], side_b_refs=[enemy["person_id"]],
+        people=people, zone_ref="test", started_at="SE-0061-01-01T00:00:00",
+        objective={"kind": "eliminate", "target_refs": [enemy["person_id"]]}, equipment_ledger=ledger,
+    )
+    monkeypatch.setattr(
+        exact, "_ready_team_assignment",
+        lambda plan, actor_ref, at_ms: {"target_ref": player["person_id"], "preferred_action": "hold", "role": "reserve"}
+        if actor_ref == enemy["person_id"] else {},
+    )
+    monkeypatch.setattr(exact, "_hold_position_weapon_for", lambda *args, **kwargs: None)
+    result = exact.resolve_exchange(
+        combat=combat, people=people, equipment_ledger=ledger, doctrines={},
+        player_ref=player["person_id"], player_action_kind="thrust", player_target_ref=enemy["person_id"],
+        player_weapon_ref="weapon_jian", player_hit_zone="chest", player_targeting_intent="lethal",
+    )
+    hold = next(row for row in result["events"] if row.get("actor_ref") == enemy["person_id"] and row.get("result") == "holding_guard_position")
+    assert hold["decision_origin"] == "team_ai"
+

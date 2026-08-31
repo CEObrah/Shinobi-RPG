@@ -41,9 +41,10 @@ jobs:
         run: |
           pytest -q \
             tests/current/test_ooc_wal_combat_provenance.py \
-            tests/current/test_transaction_git.py \
             tests/current/test_forward_campaign_repair.py \
-            tests/current/test_wal_campaign_repair.py
+            tests/current/test_wal_campaign_repair.py \
+            tests/current/test_deployment_write_safety.py \
+            tests/current/test_runtime_invariants.py
 
       - name: Repository gates
         run: |

@@ -1,0 +1,45 @@
+name: OOC Dev World Revision Repair
+
+on:
+  push:
+    branches: [fix/world-revision-chain-repair]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Apply world-revision repair patch
+        run: python tools/ooc_dev_patch_world_revision_repair.py
+      - name: Remove temporary OOC DEV scaffolding
+        run: rm tools/ooc_dev_patch_world_revision_repair.py .github/workflows/ooc-dev-world-revision-repair.yml
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+      - name: Focused repair regressions
+        run: python -m pytest -q tests/current/test_forward_campaign_repair.py tests/current/test_forward_campaign_repair_chain.py tests/current/test_repair_mcp_compat.py tests/current/test_mcp_preview_attestation.py
+      - name: Fast repository gate
+        run: python tools/quick_check.py
+      - name: Changed-owner regressions
+        run: >-
+          python tools/test_changed.py
+          runtime/shinobi_runtime/api/repair.py
+          tests/current/test_forward_campaign_repair.py
+          tests/current/test_forward_campaign_repair_chain.py
+          tests/current/test_repair_mcp_compat.py
+      - name: Commit verified repair
+        run: |
+          git config user.name 'OpenAI OOC Dev'
+          git config user.email 'ooc-dev@invalid'
+          git add -A
+          git commit -m 'Repair contiguous world revision chains'
+          git push origin HEAD:${GITHUB_REF_NAME}

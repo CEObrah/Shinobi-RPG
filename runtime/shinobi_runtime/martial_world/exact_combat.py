@@ -1579,18 +1579,21 @@ def _schedule_action(*, combat: Mapping[str, Any], actor_ref: str, target_ref: s
         # radii here or the approach stops outside the distance at which the
         # strike can actually intersect and transmit damage.
         required = max(0, distance - physical_reach_mm(profile))
-        approach_distance_mm = required
+        maximum_approach_ms=max(250,int(_combat_rules().get("maximum_melee_approach_ms",2000)))
         base_speed=max(1,_movement_speed_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,cap))
-        base_approach_ms=required*1000//base_speed
+        base_approach_ms=min(maximum_approach_ms,required*1000//base_speed)
         qi_preview=_qi_preview(
             person=people[actor_ref],combatant_state=actor_state,
             duration_ms=max(1,decision_ms+ready_delay_ms+base_approach_ms+int(profile.startup_ms)),
         )
         movement_cap=_qi_enhanced_capability(cap,qi_preview)
-        approach_ms = required * 1000 // max(1, _movement_speed_for_state(actor_ref, people[actor_ref], equipment_ledger, actor_state, movement_cap))
+        movement_speed=max(1,_movement_speed_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,movement_cap))
+        approach_distance_mm=min(required,movement_speed*maximum_approach_ms//1000)
+        approach_ms=approach_distance_mm*1000//movement_speed if approach_distance_mm>0 else 0
         params = dict(profile.effect_parameters)
         params["approach_distance_mm"] = approach_distance_mm
         params["approach_time_ms"] = approach_ms
+        params["approach_budget_limited"] = bool(required>approach_distance_mm)
         params["committed_melee_trajectory"] = {
             "launch_x_mm": int(actor_position["x_mm"]),
             "launch_y_mm": int(actor_position["y_mm"]),
@@ -1782,8 +1785,11 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
                 mounted=bool(isinstance(actor_state.get("mount"),Mapping) and actor_state.get("mount",{}).get("active")),
             )
             approach_reason=str(approach.get("reason") or "")
+            budget_limited=bool(action.profile.effect_parameters.get("approach_budget_limited",False))
             result_kind=(
-                "target_outpaced_committed_approach"
+                "melee_approach_in_progress"
+                if budget_limited and approach_reason=="partial_committed_approach"
+                else "target_outpaced_committed_approach"
                 if approach_reason in {"partial_committed_approach","target_moved_beyond_committed_approach"}
                 else "melee_approach_blocked"
             )
@@ -2080,6 +2086,64 @@ def _npc_withdrawal_decision(*, combat: Mapping[str, Any], actor_ref: str, peopl
     return {"reason":reason,"casualty_preservation":preservation,"withdrawal_discipline":discipline,"arrived_side_count":len(arrived),"active_arrived_count":len(active_arrived),"loss_percent":loss_percent,"collapse_threshold_percent":collapse_threshold,"condition":{"consciousness":consciousness,"shock":shock,"blood_lost_ml":blood_lost,"functional_floor_milli":function_floor}}
 
 
+def _rally_withdrawal_attempt(
+    *, leader_ref: str, ally_ref: str, people: Mapping[str, Mapping[str, Any]],
+    withdrawal: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Contest one noncritical allied withdrawal with existing human capability.
+
+    This is deliberately not a morale subsystem. It derives one immediate
+    leadership contest from the leader's real Command/Willpower/Intelligence,
+    the ally's own resolve, and the already-authoritative withdrawal pressure.
+    Critical medical/functional withdrawal remains non-negotiable.
+    """
+    leader=people.get(leader_ref,{}) if isinstance(people.get(leader_ref,{}),Mapping) else {}
+    ally=people.get(ally_ref,{}) if isinstance(people.get(ally_ref,{}),Mapping) else {}
+    leader_prof=leader.get("professional_skills",{}) if isinstance(leader.get("professional_skills"),Mapping) else {}
+    ally_prof=ally.get("professional_skills",{}) if isinstance(ally.get("professional_skills"),Mapping) else {}
+    leader_attrs=_attrs(leader); ally_attrs=_attrs(ally)
+    leadership=(
+        max(0,int(leader_prof.get("command",0)))*4
+        + max(0,int(leader_attrs.get("willpower",0)))*2
+        + max(0,int(leader_attrs.get("intelligence",0)))
+        + max(0,int(ally_attrs.get("willpower",0)))
+        + max(0,int(ally_prof.get("command",0)))
+    )
+    condition=withdrawal.get("condition",{}) if isinstance(withdrawal.get("condition"),Mapping) else {}
+    reason=str(withdrawal.get("reason") or "")
+    consciousness=max(0,min(100,int(condition.get("consciousness",100))))
+    shock=max(0,int(condition.get("shock",0)))
+    blood_lost=max(0,int(condition.get("blood_lost_ml",0)))
+    functional_floor=max(0,min(1000,int(condition.get("functional_floor_milli",1000))))
+    collapse_over=max(
+        0,
+        int(withdrawal.get("loss_percent",0))-int(withdrawal.get("collapse_threshold_percent",0)),
+    )
+    pressure=(
+        260
+        + collapse_over*5
+        + shock*3
+        + max(0,100-consciousness)*4
+        + blood_lost//5
+        + max(0,1000-functional_floor)//3
+        + max(0,int(withdrawal.get("casualty_preservation",0))-50)
+        + max(0,int(withdrawal.get("withdrawal_discipline",0))-50)//2
+    )
+    if reason=="casualty_preservation":
+        pressure+=80
+    if reason=="critical_condition":
+        return {
+            "attempted":True,"success":False,"reason":"critical_condition_not_overridable",
+            "leadership_score":leadership,"withdrawal_pressure_score":max(pressure,1000),
+        }
+    success=leadership>=pressure
+    return {
+        "attempted":True,"success":success,
+        "reason":"rally_strength_met_withdrawal_pressure" if success else "withdrawal_pressure_held",
+        "leadership_score":leadership,"withdrawal_pressure_score":pressure,
+    }
+
+
 def _disengage_step(*, combat: dict[str, Any], actor_ref: str, people: Mapping[str, Mapping[str, Any]] | None, equipment_ledger: Mapping[str, Any] | None, duration_ms: int, start_ms: int) -> dict[str, Any]:
     """Move one fighter through a disengagement slice without advancing the clock."""
     if actor_ref not in combat.get("combatants",{}) or actor_ref not in combat.get("positions",{}): raise ValueError("combat actor unresolved")
@@ -2164,7 +2228,7 @@ def _resolve_withdrawal_batch(*, combat: dict[str, Any], withdrawer_refs: Sequen
     return events
 
 
-def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[str, Any]], equipment_ledger: Mapping[str, Any], doctrines: Mapping[str, Mapping[str, Any]], player_ref: str, player_action_kind: str, player_target_ref: str, player_weapon_ref: str, player_hit_zone: str = "chest", player_target_structure_ref: str | None = None, player_targeting_intent: str = "disable", player_poison_ref: str | None = None, player_qi_allocation_milli: Mapping[str, int] | None = None, player_qi_reserve_milli: int | None = None, player_auto_qi: bool = False, player_auto_poison: bool = False, npc_targeting_intent: str | None = None, martial_familiarity: Mapping[str, Any] | None = None, player_retinue_context: Mapping[str, Any] | None = None, player_improvised_weapon_state: Mapping[str, Any] | None = None, equipment_ledger_hydrated: bool = False, compact_equipment_result: bool = True, mutate_equipment_ledger: bool = False, mutate_state: bool = False) -> dict[str, Any]:
+def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[str, Any]], equipment_ledger: Mapping[str, Any], doctrines: Mapping[str, Mapping[str, Any]], player_ref: str, player_action_kind: str, player_target_ref: str, player_weapon_ref: str, player_hit_zone: str = "chest", player_target_structure_ref: str | None = None, player_targeting_intent: str = "disable", player_poison_ref: str | None = None, player_qi_allocation_milli: Mapping[str, int] | None = None, player_qi_reserve_milli: int | None = None, player_auto_qi: bool = False, player_auto_poison: bool = False, npc_targeting_intent: str | None = None, martial_familiarity: Mapping[str, Any] | None = None, player_retinue_context: Mapping[str, Any] | None = None, player_improvised_weapon_state: Mapping[str, Any] | None = None, player_rally_allies: bool = False, equipment_ledger_hydrated: bool = False, compact_equipment_result: bool = True, mutate_equipment_ledger: bool = False, mutate_state: bool = False) -> dict[str, Any]:
     # Interactive/public callers keep copy-on-resolve semantics. Autonomous
     # bounded combat already owns private combat/person copies, so it may reuse
     # those objects across exchanges instead of cloning the whole local fight
@@ -2324,10 +2388,25 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
     # Withdrawal is a declaration-time intent. Mark every withdrawing actor
     # before scheduling anyone else's action so pursuit doctrine sees the same
     # physical posture regardless of side/list iteration order.
+    player_side=_side_of(out,player_ref)
     for actor_ref in active_at_declaration:
         if actor_ref==player_ref: continue
         withdrawal=_npc_withdrawal_decision(combat=out,actor_ref=actor_ref,people=persons,faction_doctrine=doctrines.get(str(persons[actor_ref].get("faction_ref") or ""),{}))
         if withdrawal is None: continue
+        if bool(player_rally_allies) and _side_of(out,actor_ref)==player_side:
+            rally=_rally_withdrawal_attempt(leader_ref=player_ref,ally_ref=actor_ref,people=persons,withdrawal=withdrawal)
+            rally_success=bool(rally.get("success"))
+            declaration_events.append({
+                "actor_ref":actor_ref,"leader_ref":player_ref,
+                "result":"rally_held_position" if rally_success else "rally_failed",
+                "decision_origin":"player_command","declared_at_ms":declared_exchange_ms,
+                "rally":rally,"withdrawal":withdrawal,
+            })
+            if rally_success:
+                out["positions"][actor_ref]["stance"]="ready"
+                out["positions"][actor_ref]["vx_mmps"]=0
+                out["positions"][actor_ref]["vy_mmps"]=0
+                continue
         withdrawing.append(actor_ref)
         out["positions"][actor_ref]["stance"]="disengaging"
         declaration_events.append({"actor_ref":actor_ref,"result":"withdrawal_declared","decision_origin":"actor_ai","declared_at_ms":declared_exchange_ms,"withdrawal":withdrawal})

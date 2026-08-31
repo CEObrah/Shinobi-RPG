@@ -134,6 +134,7 @@ def _resolve_player_combat_span(
     explicit_poison_ref: str | None, poison_auto: bool,
     explicit_qi_allocation_milli: Mapping[str, Any] | None, qi_auto: bool,
     exchange_count: int | None, duration_seconds: int | None, until_resolution: bool,
+    rally_allies: bool = False,
     player_improvised_weapon_state: Mapping[str, Any] | None = None,
     frontier_exchanges: int = 160,
 ) -> dict[str, Any]:
@@ -267,6 +268,7 @@ def _resolve_player_combat_span(
             player_poison_ref=explicit_poison_ref,
             player_qi_allocation_milli=explicit_qi_allocation_milli,
             player_auto_qi=bool(qi_auto),player_auto_poison=bool(poison_auto),
+            player_rally_allies=bool(rally_allies),
             martial_familiarity=social_cursor,player_retinue_context=player_retinue_context,
             player_improvised_weapon_state=(player_improvised_weapon_state if exchanges==0 else None),
             equipment_ledger_hydrated=True,compact_equipment_result=False,mutate_equipment_ledger=True,
@@ -2229,6 +2231,12 @@ class JianghuExtendedCommandsMixin:
                 if not isinstance(raw_until,bool):
                     raise CommandRejectedError('jianghu_combat_until_resolution_invalid')
                 until_resolution=bool(raw_until)
+            rally_allies=False
+            if 'rally_allies' in command.payload:
+                raw_rally=command.payload.get('rally_allies')
+                if not isinstance(raw_rally,bool):
+                    raise CommandRejectedError('jianghu_combat_rally_allies_invalid')
+                rally_allies=bool(raw_rally)
             if sum((exchange_count is not None,duration_seconds is not None,until_resolution))>1:
                 raise CommandRejectedError('jianghu_combat_scope_conflict')
 
@@ -2243,7 +2251,7 @@ class JianghuExtendedCommandsMixin:
                     explicit_poison_ref=explicit_poison,poison_auto=poison_auto,
                     explicit_qi_allocation_milli=(explicit_qi if qi_supplied else None),qi_auto=not qi_supplied,
                     exchange_count=exchange_count,duration_seconds=duration_seconds,until_resolution=until_resolution,
-                    player_improvised_weapon_state=improvised_prop_state,
+                    rally_allies=rally_allies,player_improvised_weapon_state=improvised_prop_state,
                 )
             except ValueError as exc:
                 raise CommandRejectedError('jianghu_combat_exchange_invalid') from exc

@@ -29,6 +29,7 @@ jobs:
 
       - name: Normalize patch to maintained test tree
         run: |
+          mkdir -p tests/current
           sed -i 's#tests/runtime/test_systemic_combat_range_narration.py#tests/current/test_systemic_combat_range_narration.py#g' tools/_ooc_dev_systemic_combat_range_narration.py
 
       - name: Apply systemic OOC DEV patch
@@ -51,7 +52,7 @@ jobs:
           git config user.name 'Shinobi OOC DEV'
           git config user.email 'ooc-dev@invalid'
           git add ooc-dev-systemic-patch-failure.log
-          git commit -m 'debug: capture systemic patch failure [skip ci]'
+          git commit -m 'debug: capture systemic patch failure [skip ci]' || true
           git push origin HEAD:fix/systemic-combat-range-narration-20260831
 
       - name: Prove no campaign state edits

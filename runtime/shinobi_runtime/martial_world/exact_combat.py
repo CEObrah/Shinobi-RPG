@@ -1756,7 +1756,6 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
     actor_cap=_qi_enhanced_capability(_combat_capability_for_state(actor_ref,people[actor_ref],equipment_ledger,actor_state,action_skill=_discipline_for_action(action.action_kind,action.weapon)),qi_preview)
     if profile.delivery not in {"projectile","ranged","thrown"}:
         params=dict(profile.effect_parameters)
-        params["committed_melee_trajectory"]=copy.deepcopy(dict(action.trajectory))
         params["intended_target_ref"]=target_ref
         profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params})
         moved,approach=close_attacker_into_reach(
@@ -1793,6 +1792,19 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
                 "distance_mm":melee_distance_mm,"reach_mm":melee_reach_mm,
                 "fatigue":chase_exertion,"qi":qi_preview,
             }
+        actor_release=positions[actor_ref]
+        target_release=positions[target_ref]
+        params=dict(profile.effect_parameters)
+        params["committed_melee_trajectory"]={
+            "launch_x_mm":int(actor_release["x_mm"]),
+            "launch_y_mm":int(actor_release["y_mm"]),
+            "launch_elevation_mm":int(actor_release.get("elevation_mm",0)),
+            "aim_x_mm":int(target_release["x_mm"]),
+            "aim_y_mm":int(target_release["y_mm"]),
+            "aim_elevation_mm":int(target_release.get("elevation_mm",0)),
+        }
+        params["intended_target_ref"]=target_ref
+        profile=ActionProfile(**{**profile.__dict__,"effect_parameters":params})
     distance_m=planar_distance_mm(positions[actor_ref],positions[target_ref])/1000.0; visibility=1000-cover_milli_between(positions,actor_ref=actor_ref,target_ref=target_ref,obstacles=combat.get("obstacles",[])); bow_profile=None; trajectory=copy.deepcopy(dict(action.trajectory))
     if action.action_kind=="bow_shot":
         fatigue_output=fatigue_performance_milli(int(people[actor_ref].get("fatigue_milli",0)))
@@ -1823,7 +1835,7 @@ def _resolve_scheduled_action(*, combat: dict[str, Any], action: _ScheduledActio
     action_exertion=_combat_exertion(person_ref=actor_ref,person=people[actor_ref],equipment_ledger=equipment_ledger,
         commitment_milli=int(action.profile.effect_parameters.get("commitment_milli",400)),movement_mm=approach_distance_mm,
         action_kind=action.action_kind,weapon=action.weapon,mounted=bool(isinstance(actor_state.get("mount"),Mapping) and actor_state.get("mount",{}).get("active")))
-    geometry=profile.effect_parameters.get("geometry"); channel="projectile" if profile.delivery in {"projectile","ranged","thrown"} else "melee"; trace=trace_attack_geometry(positions,actor_ref=actor_ref,aim_ref=target_ref,body_refs=body_refs,geometry=geometry,obstacles=combat.get("obstacles",[]),target_limit=1,maximum_range_m=(profile.effect_parameters.get("maximum_range_m") if channel=="projectile" else profile.effect_parameters.get("physical_reach_m")),channel=channel,trajectory=trajectory if channel=="projectile" else action.trajectory); contacts=trace.get("contacts",[]) if isinstance(trace,Mapping) else []; actual_ref=contacts[0].get("participant_ref") if contacts and isinstance(contacts[0],Mapping) else None
+    geometry=profile.effect_parameters.get("geometry"); channel="projectile" if profile.delivery in {"projectile","ranged","thrown"} else "melee"; melee_trajectory=profile.effect_parameters.get("committed_melee_trajectory") if isinstance(profile.effect_parameters.get("committed_melee_trajectory"),Mapping) else None; trace=trace_attack_geometry(positions,actor_ref=actor_ref,aim_ref=target_ref,body_refs=body_refs,geometry=geometry,obstacles=combat.get("obstacles",[]),target_limit=1,maximum_range_m=(profile.effect_parameters.get("maximum_range_m") if channel=="projectile" else profile.effect_parameters.get("physical_reach_m")),channel=channel,trajectory=trajectory if channel=="projectile" else melee_trajectory); contacts=trace.get("contacts",[]) if isinstance(trace,Mapping) else []; actual_ref=contacts[0].get("participant_ref") if contacts and isinstance(contacts[0],Mapping) else None
     if actual_ref is None and channel=="projectile": return {**event_base,"result":"miss_no_spatial_intersection","trace":trace,"precision_margin":precision,"bow_profile":bow_profile,"resource_commit":resource_commit,"fatigue":action_exertion,"qi":qi_result}
     if actual_ref is None: actual_ref=target_ref
     if actual_ref not in people: return {**event_base,"result":"no_contact","trace":trace,"fatigue":action_exertion,"qi":qi_result}
@@ -2389,7 +2401,11 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
             if preferred_action=="hold":
                 held=_hold_position_weapon_for(actor_ref,persons[actor_ref],ledger,target_distance_mm=target_distance_mm)
                 if held is None:
-                    declaration_events.append({"actor_ref":actor_ref,"result":"holding_guard_position","decision_origin":"player_retinue_ai" if assignment else "team_ai","target_ref":target})
+                    retinue_ai_refs={str(x) for x in (player_retinue_context or {}).get("member_refs",[]) if isinstance(x,str)}
+                    if isinstance(player_retinue_context,Mapping):
+                        retinue_ai_refs.update(str(x) for x in player_retinue_context.get("temporary_member_refs",[]) if isinstance(x,str) and x in retinue_coordinated_refs)
+                    hold_origin="player_retinue_ai" if actor_ref in retinue_ai_refs else "team_ai" if assignment else "actor_ai"
+                    declaration_events.append({"actor_ref":actor_ref,"result":"holding_guard_position","decision_origin":hold_origin,"target_ref":target})
                     continue
                 kind,weapon_ref=held
             else:
@@ -2408,7 +2424,7 @@ def resolve_exchange(*, combat: Mapping[str, Any], people: Mapping[str, Mapping[
             retinue_ai_refs={str(x) for x in (player_retinue_context or {}).get("member_refs",[]) if isinstance(x,str)}
             if isinstance(player_retinue_context,Mapping):
                 retinue_ai_refs.update(str(x) for x in player_retinue_context.get("temporary_member_refs",[]) if isinstance(x,str) and x in retinue_coordinated_refs)
-            provenance="player_retinue_ai" if preferred_action=="hold" or (isinstance(assignment,Mapping) and actor_ref in retinue_ai_refs) else "team_ai" if assignment else "actor_ai"
+            provenance="player_retinue_ai" if actor_ref in retinue_ai_refs else "team_ai" if assignment else "actor_ai"
             target_structure=_npc_target_structure(persons[actor_ref],persons[target],intent=npc_intent,familiarity=exposure)
             hit_zone=target_zone(structure_ref=target_structure) if target_structure else "chest"
         if target not in enemies: declaration_events.append({"actor_ref":actor_ref,"result":"target_unavailable","decision_origin":provenance}); continue

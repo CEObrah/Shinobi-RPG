@@ -1,0 +1,81 @@
+name: OOC DEV Systemic Combat Range Narration
+
+on:
+  push:
+    branches: [fix/systemic-combat-range-narration-20260831]
+
+permissions:
+  contents: write
+
+jobs:
+  patch-test-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/systemic-combat-range-narration-20260831
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+
+      - name: Apply systemic OOC DEV patch
+        run: python tools/_ooc_dev_systemic_combat_range_narration.py
+
+      - name: Prove no campaign state edits
+        shell: bash
+        run: |
+          if git diff --name-only | grep -q '^state/'; then
+            echo 'Refusing source repair with state edits.' >&2
+            git diff --name-only >&2
+            exit 1
+          fi
+
+      - name: Focused systemic combat regressions
+        run: |
+          pytest -q \
+            tests/runtime/test_systemic_combat_range_narration.py \
+            tests/current/test_combat_contact_pursuit_repair.py \
+            tests/current/test_combat_rally_and_approach_budget.py \
+            tests/current/test_combat_lethal_pursuit_repair.py
+
+      - name: Repository gates
+        run: |
+          python tools/quick_check.py
+          python tools/verify_jianghu_semantics.py
+          python tools/audit_state_bloat.py
+          python tools/verify_noop_roundtrip.py
+
+      - name: Changed-owner regression gate
+        run: |
+          python tools/test_changed.py \
+            runtime/shinobi_runtime/martial_world/exact_combat.py \
+            runtime/shinobi_runtime/api/transition_operations.py \
+            runtime/shinobi_runtime/api/travel_operations.py \
+            plugins/shinobi-rpg/skill/shinobi-game-master/references/combat.md \
+            tests/runtime/test_systemic_combat_range_narration.py
+
+      - name: Commit only tested product changes
+        shell: bash
+        run: |
+          rm -f \
+            tools/_ooc_dev_systemic_combat_range_narration.py \
+            .github/workflows/ooc-dev-systemic-combat-range-narration.yml
+          git diff --check
+          if git diff --name-only | grep -q '^state/'; then
+            echo 'State edit appeared before commit.' >&2
+            exit 1
+          fi
+          git config user.name 'Shinobi OOC DEV'
+          git config user.email 'ooc-dev@invalid'
+          git add -A
+          git commit -m 'Fix systemic combat range and narration transport'
+          git push origin HEAD:fix/systemic-combat-range-narration-20260831

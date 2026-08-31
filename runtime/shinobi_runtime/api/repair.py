@@ -130,7 +130,7 @@ class CampaignRepairService:
             if (
                 damaged.trailers.get(TRANSACTION_TRAILER) != transaction_id
                 or damaged.trailers.get(CAMPAIGN_TRAILER) != command.campaign_id
-                or damaged.trailers.get(MODE_TRAILER) not in {"gameplay", "autonomous"}
+                or damaged.trailers.get(MODE_TRAILER) not in {"gameplay", "autonomous", "repair"}
                 or _META_PATH not in damaged.paths
                 or any(not path.startswith("state/") for path in damaged.paths)
                 or not git.is_ancestor(damaged.commit_hash, head)
@@ -144,14 +144,16 @@ class CampaignRepairService:
         if revisions != expected_revisions:
             raise OperationError(409, "repair_provenance_invalid")
 
-        # A chain repair is intentionally stricter than general ancestry: the
-        # damaged state transactions themselves must be an exact first-parent
-        # sequence. This prevents a caller from skipping an intervening state
-        # mutation or selecting unrelated historical commits. Source-only commits
-        # may exist after the newest damaged transaction because state-tree
-        # equality below proves they did not mutate campaign truth.
+        # World revisions, not source commits, are the repair continuity
+        # authority. Source-only commits may legally sit between two consecutive
+        # campaign transactions. Prove that no state mutation was skipped by
+        # requiring the first parent of each newer world revision to expose the
+        # exact same ``state`` tree as the preceding transaction's after-image.
+        # If any unlisted gameplay/autonomous/repair transaction changed state in
+        # between, the tree OIDs differ and the repair fails closed.
         for older, newer in zip(damaged_records, damaged_records[1:]):
-            if git.first_parent(newer.commit_hash) != older.commit_hash:
+            newer_parent = git.first_parent(newer.commit_hash)
+            if git.tree_oid(newer_parent, "state") != git.tree_oid(older.commit_hash, "state"):
                 raise OperationError(409, "repair_provenance_invalid")
 
         newest = damaged_records[-1]
@@ -218,7 +220,7 @@ class CampaignRepairService:
             "repair_kind": (
                 "forward_transaction_repair"
                 if len(damaged_records) == 1
-                else "forward_transaction_chain_repair"
+                else "forward_world_revision_chain_repair"
             ),
             "restored_state_revision": first_revision - 1,
             "committed_revision": command.expected_revision + 1,

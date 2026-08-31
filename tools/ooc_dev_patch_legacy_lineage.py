@@ -213,6 +213,11 @@ write(ooc_path, ooc)
 
 # Add regressions for bounded Git discovery and exact-state-tree anchor rules.
 test_path = "tests/current/test_ooc_wal_combat_provenance.py"
+replace_once(
+    test_path,
+    '            return {"campaign_id": "c", "game": "jianghu", "revision": 143, "time": "T1"}',
+    '            return {"campaign_id": "c", "game": "jianghu", "revision": 143, "time": "T1", "player_id": "pc.test"}',
+)
 with (ROOT / test_path).open("a", encoding="utf-8") as handle:
     handle.write(r'''
 

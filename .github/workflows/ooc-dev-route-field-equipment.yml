@@ -34,9 +34,9 @@ jobs:
         run: |
           pytest -q \
             tests/current/test_route_field_equipment_materialization.py \
-            tests/current/test_operational_equipment.py \
-            tests/current/test_route_interception.py \
-            tests/current/test_route_combat_persistence.py
+            tests/current/test_route_interception_motive.py \
+            tests/current/test_live_combat_route_rebase.py \
+            tests/current/test_escort_living_world.py
       - name: Repository gates
         run: |
           python tools/quick_check.py

@@ -12,9 +12,6 @@ state is part of the canonical campaign baseline.
 
 def create_app_from_env():
     from shinobi_runtime.api import app as app_module
-    from shinobi_runtime.api.transition_envelope_safety import (
-        install_production_transition_envelope_safety,
-    )
     from shinobi_runtime.api.transition_operations import TransitionAwareCampaignOperations
     from shinobi_runtime.commands.combat_span_safety import install_production_combat_span_safety
 
@@ -25,20 +22,15 @@ def create_app_from_env():
     # explicit disposable-copy investigations and regression tests only.
 
     # Campaign-specific standing combat intent is composed before the service
-    # starts accepting commands.  The exact reducer remains deterministic; the
+    # starts accepting commands. The exact reducer remains deterministic; the
     # production wrapper only bounds one transaction's simulated-time footprint
     # and preserves the explicit rapid-lethal target-selection semantics.
     install_production_combat_span_safety()
 
-    # Current-transition recovery keeps the exact event page as primary evidence.
-    # Rich combat receipts may also carry a compact narrative spine; bound only
-    # that optional duplicate view so public object reads stay inside the same
-    # response envelope without weakening global validation.
-    install_production_transition_envelope_safety()
-
-    # create_app/create_app_from_env intentionally construct through the module
-    # class binding. Select the production projection at the composition boundary
-    # without changing the base operations contract used by isolated API tests.
+    # Current-transition response bounding is intrinsic to
+    # TransitionAwareCampaignOperations. Rich receipt events are paged by the
+    # same public response envelope they must satisfy, rather than relying on a
+    # startup validator monkeypatch or a fixed event-count assumption.
     app_module.CampaignOperations = TransitionAwareCampaignOperations
     return app_module.create_app_from_env()
 

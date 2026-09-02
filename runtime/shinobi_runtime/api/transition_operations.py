@@ -186,7 +186,6 @@ def _safe_combat_metadata(result: Mapping[str, Any]) -> dict[str, Any]:
     return out
 
 
-
 def _compact_mapping(value: object, keys: tuple[str, ...]) -> dict[str, Any]:
     if not isinstance(value, Mapping):
         return {}
@@ -322,6 +321,39 @@ def _combat_narrative_summary(raw_events: list[Any], opposing_refs: frozenset[st
         ),
     }
 
+
+def _trim_optional_combat_narrative(narrative: dict[str, Any]) -> bool:
+    """Deterministically shrink only the optional duplicate narrative spine."""
+
+    beats = narrative.get("material_beats")
+    if not isinstance(beats, list) or not beats:
+        return False
+    retained = len(beats) // 2
+    del beats[retained:]
+    material_count = narrative.get("material_event_count")
+    if isinstance(material_count, int) and not isinstance(material_count, bool):
+        narrative["material_beats_truncated"] = material_count > len(beats)
+        narrative["omitted_material_beat_count"] = max(0, material_count - len(beats))
+    else:
+        narrative["material_beats_truncated"] = True
+    return True
+
+
+def _event_page_sizes(remaining: int) -> list[int]:
+    """Return deterministic descending candidate sizes for an adaptive exact page."""
+
+    if remaining <= 0:
+        return [0]
+    size = min(_TRANSITION_EVENT_PAGE, remaining)
+    sizes: list[int] = []
+    while True:
+        sizes.append(size)
+        if size == 1:
+            break
+        size = max(1, size // 2)
+    return sizes
+
+
 def current_transition_projection(
     *,
     receipt: IdempotencyReceipt | None,
@@ -331,7 +363,14 @@ def current_transition_projection(
     event_offset: int,
     combat_opposing_person_refs: frozenset[str] | None = None,
 ) -> dict[str, Any]:
-    """Build one bounded, player-safe page of the exact current-revision receipt."""
+    """Build one bounded, player-safe page of the exact current-revision receipt.
+
+    Event count is not a response-size invariant: exact combat events vary greatly
+    in structural richness. Pagination therefore treats 16 as a maximum page
+    width and deterministically reduces the exact chronological slice until the
+    public JSON envelope accepts it. The cursor always advances by the number of
+    exact events actually returned, so no event is skipped or duplicated.
+    """
 
     if receipt is None:
         if event_offset:
@@ -391,7 +430,10 @@ def current_transition_projection(
                 "identity redaction could not be established safely; refreshed current state remains authoritative"
             ),
         }
-        validate_bounded_json(payload, label="game object projection", allow_float=True)
+        try:
+            validate_bounded_json(payload, label="game object projection", allow_float=True)
+        except ValueError as exc:
+            raise OperationError(503, "current_transition_projection_out_of_bounds") from exc
         return {
             "object_ref": object_ref,
             "view": "current_committed_transition",
@@ -399,14 +441,11 @@ def current_transition_projection(
         }
 
     opposing_refs = combat_opposing_person_refs or frozenset()
-    end = min(len(raw_events), event_offset + _TRANSITION_EVENT_PAGE)
-    next_ref = f"transition:current:{end}" if end < len(raw_events) else None
     original_command = thaw_json(receipt.command) if isinstance(receipt.command, Mapping) else None
 
     try:
         command_record = _sanitize_opposing_refs(original_command, opposing_refs) if original_command is not None else None
         result_metadata = _sanitize_opposing_refs(result, opposing_refs)
-        events = _sanitize_opposing_refs(raw_events[event_offset:end], opposing_refs)
     except ValueError as exc:
         if is_combat:
             if event_offset:
@@ -433,7 +472,10 @@ def current_transition_projection(
                     "identity redaction failed; refreshed current state remains authoritative"
                 ),
             }
-            validate_bounded_json(payload, label="game object projection", allow_float=True)
+            try:
+                validate_bounded_json(payload, label="game object projection", allow_float=True)
+            except ValueError as bounds_exc:
+                raise OperationError(503, "current_transition_projection_out_of_bounds") from bounds_exc
             return {
                 "object_ref": object_ref,
                 "view": "current_committed_transition",
@@ -444,45 +486,76 @@ def current_transition_projection(
     if (
         _contains_exact_ref(command_record, opposing_refs)
         or _contains_exact_ref(result_metadata, opposing_refs)
-        or _contains_exact_ref(events, opposing_refs)
     ):
         raise OperationError(503, "current_transition_redaction_invalid")
 
     command_redacted = original_command is not None and command_record != original_command
-    combat_narrative = _combat_narrative_summary(raw_events, opposing_refs) if is_combat and event_offset == 0 else None
-    payload = {
-        "available": True,
-        "campaign_id": receipt.campaign_id,
-        "committed_revision": receipt.committed_revision,
-        "request_id": receipt.request_id,
-        "transaction_id": receipt.transaction_id,
-        "committed_at": receipt.committed_at,
-        "command": command_record,
-        "command_recoverable": command_record is not None and not command_redacted,
-        "command_redacted": command_redacted,
-        "result_metadata": result_metadata,
-        "event_count": len(raw_events),
-        "event_offset": event_offset,
-        "events": events,
-        "events_withheld": False,
-        "combat_narrative": combat_narrative,
-        "next_object_ref": next_ref,
-        "event_identity_semantics": (
-            "opposing_exact_person_refs_redacted"
-            if is_combat
-            else "not_applicable"
-        ),
-        "recovery_semantics": (
-            "current_revision_transition_only; event pages preserve original order; "
-            "receipt evidence does not replace refreshed current state"
-        ),
-    }
-    validate_bounded_json(payload, label="game object projection", allow_float=True)
-    return {
-        "object_ref": object_ref,
-        "view": "current_committed_transition",
-        "object": payload,
-    }
+    last_bounds_error: ValueError | None = None
+    remaining = len(raw_events) - event_offset
+
+    for page_size in _event_page_sizes(remaining):
+        end = event_offset + page_size
+        try:
+            events = _sanitize_opposing_refs(raw_events[event_offset:end], opposing_refs)
+        except ValueError as exc:
+            if is_combat:
+                if event_offset:
+                    raise OperationError(422, "current_transition_event_cursor_invalid") from exc
+                raise OperationError(503, "current_transition_redaction_invalid") from exc
+            raise OperationError(503, "current_transition_redaction_invalid") from exc
+
+        if _contains_exact_ref(events, opposing_refs):
+            raise OperationError(503, "current_transition_redaction_invalid")
+
+        combat_narrative = (
+            _combat_narrative_summary(raw_events, opposing_refs)
+            if is_combat and event_offset == 0
+            else None
+        )
+        next_ref = f"transition:current:{end}" if end < len(raw_events) else None
+        payload = {
+            "available": True,
+            "campaign_id": receipt.campaign_id,
+            "committed_revision": receipt.committed_revision,
+            "request_id": receipt.request_id,
+            "transaction_id": receipt.transaction_id,
+            "committed_at": receipt.committed_at,
+            "command": command_record,
+            "command_recoverable": command_record is not None and not command_redacted,
+            "command_redacted": command_redacted,
+            "result_metadata": result_metadata,
+            "event_count": len(raw_events),
+            "event_offset": event_offset,
+            "events": events,
+            "events_withheld": False,
+            "combat_narrative": combat_narrative,
+            "next_object_ref": next_ref,
+            "event_identity_semantics": (
+                "opposing_exact_person_refs_redacted"
+                if is_combat
+                else "not_applicable"
+            ),
+            "recovery_semantics": (
+                "current_revision_transition_only; event pages preserve original order; "
+                "receipt evidence does not replace refreshed current state"
+            ),
+        }
+
+        while True:
+            try:
+                validate_bounded_json(payload, label="game object projection", allow_float=True)
+                return {
+                    "object_ref": object_ref,
+                    "view": "current_committed_transition",
+                    "object": payload,
+                }
+            except ValueError as exc:
+                last_bounds_error = exc
+                if isinstance(combat_narrative, dict) and _trim_optional_combat_narrative(combat_narrative):
+                    continue
+                break
+
+    raise OperationError(503, "current_transition_projection_out_of_bounds") from last_bounds_error
 
 
 class TransitionAwareCampaignOperations(ParleyAwareCampaignOperations):

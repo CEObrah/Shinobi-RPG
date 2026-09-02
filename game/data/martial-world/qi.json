@@ -1,0 +1,62 @@
+{
+  "persistent_stats": [
+    "qi",
+    "qi_control"
+  ],
+  "resource": "current_qi ranges from 0 to current maximum Qi stat; maximum Qi equals the current Qi capability value. Combat Qi temporarily improves the user's ordinary physical/sensory attributes; it does not create a separate damage channel or reinforce weapon material.",
+  "formulas": {
+    "control_efficiency": "qi_control / (qi_control + 100)",
+    "effective_cultivation": "0 if qi + qi_control == 0 else (2 * qi * qi_control) / (qi + qi_control)",
+    "biological_aging_rate": "1 / sqrt(1 + effective_cultivation / 100)",
+    "rest_recovery_per_hour": "max_qi * 0.05 * (0.5 + 0.5 * control_efficiency)",
+    "sleep_recovery_per_hour": "max_qi * 0.10 * (0.5 + 0.5 * control_efficiency)",
+    "safe_flow_per_second": "sqrt(max(qi,0)) * (1 + control_efficiency)",
+    "redistribution_latency_seconds": "0.60 / (1 + qi_control / 100)",
+    "external_projection_decay": "projected_effect_at_distance = release_effect * exp(-distance_m / max(0.25, qi_control / 100))"
+  },
+  "universal_applications": [
+    "temporary_perception_enhancement",
+    "temporary_dexterity_enhancement",
+    "temporary_speed_enhancement",
+    "temporary_strength_enhancement",
+    "explosive_movement",
+    "light_footed_movement",
+    "injury_stabilization",
+    "recovery_support",
+    "poison_resistance",
+    "close_range_qi_sensing",
+    "qi_suppression",
+    "qi_disruption",
+    "inefficient_external_projection"
+  ],
+  "forbidden": [
+    "teleportation",
+    "resurrection",
+    "limb_regrowth",
+    "matter_creation",
+    "element_creation",
+    "conjured_entities",
+    "clones",
+    "illusions_from_qi_alone",
+    "time_stop",
+    "inertia_cancellation",
+    "automatic_unseen_defense",
+    "instant_wound_erasure"
+  ],
+  "mechanics": {
+    "control_half_saturation": 100,
+    "effective_cultivation_multiplier": 2,
+    "aging_cultivation_scale": 100,
+    "recovery_per_hour_milli": {
+      "travel": 15,
+      "awake_rest": 50,
+      "sleep": 100
+    },
+    "minimum_recovery_control_factor_milli": 500,
+    "redistribution_base_ms": 600,
+    "redistribution_control_scale": 100,
+    "minimum_redistribution_latency_ms": 50,
+    "external_projection_min_decay_milli_m": 250,
+    "external_projection_control_scale": 100
+  }
+}

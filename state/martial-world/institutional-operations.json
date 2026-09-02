@@ -1,0 +1,95 @@
+{
+  "schema": "jianghu-institutional-operations-state-1.0",
+  "active": {
+    "mission:contract:contract.3d229e0d9f89e6e306088a4d": {
+      "operation_ref": "mission:contract:contract.3d229e0d9f89e6e306088a4d",
+      "faction_ref": "house_tang",
+      "issuer_ref": "market:temperate_mountain",
+      "assignee_ref": "pc_wei_tang",
+      "mission_kind": "escort",
+      "objective": "Escort 12000 food_ration_day from huashan to changan under funded contract contract.3d229e0d9f89e6e306088a4d.",
+      "linked_contract_ref": "contract.3d229e0d9f89e6e306088a4d",
+      "phase": "mustering",
+      "created_at": "0061-09-13T21:15:00",
+      "updated_at": "0061-09-14T10:15:00",
+      "participant_refs": [
+        "pc_wei_tang",
+        "mw.person.house_tang.1032",
+        "mw.person.house_tang.1050",
+        "mw.person.house_tang.1030",
+        "mw.person.house_tang.1006",
+        "mw.person.house_tang.1027",
+        "mw.person.house_tang.1037",
+        "mw.person.house_tang.1025",
+        "mw.person.house_tang.1045",
+        "mw.person.house_tang.1001",
+        "mw.person.house_tang.1017",
+        "mw.person.house_tang.1020"
+      ],
+      "commander_ref": "pc_wei_tang",
+      "reward_cash": 0,
+      "reward_mode": "none",
+      "briefing": {
+        "knowledge_basis": "accepted_funded_contract",
+        "source_place_ref": "huashan",
+        "destination_place_ref": "changan",
+        "item_ref": "food_ration_day",
+        "quantity": 12000,
+        "contract_reward_cash": 9184,
+        "expires_at": "0061-10-13T21:15:00"
+      },
+      "migration_note": "Backfilled from a pre-institutional-layer accepted contract without changing contract terms or campaign outcome.",
+      "mission_source": "public_contract",
+      "council": {
+        "convened_at": "0061-09-14T10:15:00",
+        "location_ref": "site.house_tang",
+        "place_ref": "luoyang",
+        "attendee_refs": [
+          "pc_wei_tang",
+          "char.zhu",
+          "char.ling"
+        ],
+        "attendee_names": {
+          "pc_wei_tang": "Tang Wei",
+          "char.zhu": "Tang Zhu",
+          "char.ling": "Tang Ling"
+        },
+        "views": [
+          {
+            "person_ref": "pc_wei_tang",
+            "stance": "neutral",
+            "concerns": []
+          },
+          {
+            "person_ref": "char.zhu",
+            "stance": "neutral",
+            "concerns": [
+              "provisions_and_equipment"
+            ]
+          },
+          {
+            "person_ref": "char.ling",
+            "stance": "neutral",
+            "concerns": []
+          }
+        ],
+        "approval_authority_ref": "char.zhu"
+      },
+      "operation_kind": "escort_contract",
+      "doctrine": "Layered convoy defense: Tang Wei commands; Tian Yun serves as deputy and watch commander; Fu Pengzhou and Deng Xiulan handle forward/outer reconnaissance; Jiang Li, Lu Yunyun, Ye Yongrong, Wan Weidong, Yao Shanan and Ouyang Shilan protect c",
+      "approved_by_ref": "char.zhu",
+      "approved_at": "0061-09-14T10:15:00",
+      "decision": {
+        "decided_at": "0061-09-14T10:15:00",
+        "authority_ref": "char.zhu",
+        "result": "approved"
+      },
+      "muster_source_place_ref": "luoyang",
+      "muster_destination_place_ref": "huashan",
+      "muster_movement_ref": "escort_muster:0e52cfa45f5bbea72ba0",
+      "muster_dispatched_at": "0061-09-14T10:15:00",
+      "estimated_muster_hours": 409
+    }
+  },
+  "archive": {}
+}

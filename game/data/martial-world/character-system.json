@@ -1,0 +1,56 @@
+{
+  "aptitude": {
+    "minimum": 0,
+    "maximum": 200,
+    "maximum_house_tang_family": 200,
+    "dimensions": [
+      "physical",
+      "martial",
+      "qi",
+      "cognitive",
+      "leadership"
+    ],
+    "rule": "Aptitude modifies development rate only. It never directly grants current capability and never sets a hard maximum on learned stats."
+  },
+  "appearance": {
+    "minimum": 0,
+    "maximum": 100,
+    "house_tang_family": 100,
+    "identity_persistence": true
+  },
+  "capability": {
+    "minimum": 0,
+    "maximum": null,
+    "rule": "Attributes, martial disciplines, professional skills, Qi and Qi Control are uncapped.",
+    "current_scale": {
+      "attributes": "0-20 child/severely undeveloped; 20-40 weak; 40-60 ordinary trained adult; 60-75 strong; 75-90 elite; 90-100 extraordinary; >100 rare later development.",
+      "skills": "1-20 beginner; 20-45 junior; 45-70 competent; 65-90 senior; 85-100 elite; 100-110 master; 110-120 exceptional specialist; 120+ rare world-class specialization.",
+      "qi": "0-20 little cultivation; 20-50 junior; 50-80 established; 80-110 senior; 100-130 elite; 120-160 major master; 160+ extremely rare."
+    }
+  },
+  "martial_disciplines": {
+    "sword": "Jian, Dao, Long Dao, Short Sword and Dagger.",
+    "spear": "Spear, Short Spear, Staff and Glaive.",
+    "bow": "Bow.",
+    "hidden_weapons": "Throwing Knife and Needle.",
+    "unarmed": "Striking, clinch, grappling, throws and joint control.",
+    "stealth_scouting": "Concealment, tracking, reconnaissance, ambush fieldcraft and route observation.",
+    "command": "Tactical control, delegation, synchronization, reserves, withdrawal and formation cohesion."
+  },
+  "professional_skills": [
+    "medicine",
+    "administration",
+    "commerce",
+    "crafting",
+    "instruction"
+  ],
+  "base_attributes": {
+    "strength": "Force production, load handling, bracing and grappling support.",
+    "speed": "Whole-body movement and acceleration capability.",
+    "dexterity": "Fine motor control, weapon handling and rapid body adjustment.",
+    "endurance": "Sustained exertion, fatigue resistance and work capacity.",
+    "perception": "Sensory recognition, spatial reading and threat acquisition.",
+    "intelligence": "Planning, learning, analysis and professional reasoning.",
+    "willpower": "Composure, pain tolerance, persistence and resistance to panic."
+  }
+}

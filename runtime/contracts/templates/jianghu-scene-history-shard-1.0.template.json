@@ -1,0 +1,96 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-scene-history-shard-1.0",
+  "target_schema": "jianghu-scene-history-shard-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "shard_ref",
+        "previous_shard_ref",
+        "records"
+      ],
+      "canonical_order": [
+        "schema",
+        "authority",
+        "mechanical_consequence_authority",
+        "shard_ref",
+        "previous_shard_ref",
+        "records"
+      ]
+    },
+    "/records/*": {
+      "mode": "open"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/mechanical_consequence_authority": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/shard_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/previous_shard_ref": [
+      "string",
+      "boolean",
+      "integer",
+      "array",
+      "null",
+      "object"
+    ],
+    "/records": [
+      "array"
+    ],
+    "/records/*": [
+      "object"
+    ]
+  },
+  "array_contracts": {
+    "/records": {
+      "item_types": [
+        "object"
+      ]
+    }
+  }
+}

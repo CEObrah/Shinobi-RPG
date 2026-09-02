@@ -1,0 +1,50 @@
+{
+  "salience_classes": {
+    "internal": {
+      "player_facing": false,
+      "interrupts_event_seeking": false,
+      "requires_player_decision": false
+    },
+    "soft_player_facing": {
+      "player_facing": true,
+      "interrupts_event_seeking": true,
+      "requires_player_decision": false
+    },
+    "hard_decision": {
+      "player_facing": true,
+      "interrupts_event_seeking": true,
+      "requires_player_decision": true
+    }
+  },
+  "event_kinds": {
+    "hard_decision": [
+      "hostile_contact",
+      "irreversible_treatment_choice",
+      "contract_acceptance_deadline",
+      "office_offer",
+      "marriage_proposal",
+      "surrender_or_mercy",
+      "custody_execution_decision"
+    ],
+    "soft_player_facing": [
+      "funded_contract_offer",
+      "ranking_publication",
+      "tournament_registration",
+      "faction_report",
+      "family_checkin",
+      "formal_challenge",
+      "succession_notice",
+      "trade_opportunity",
+      "bounty_notice",
+      "tournament_result",
+      "government_summons",
+      "retinue_assigned"
+    ]
+  },
+  "rules": [
+    "Autonomous work does not automatically become player knowledge. A lawful delivery or observation route is required before a handoff is player-facing.",
+    "An explicit requires_player_decision flag upgrades any event to hard_decision.",
+    "An explicit delivered_to_player flag makes an otherwise unregistered event soft_player_facing.",
+    "Unregistered and undelivered events remain internal and do not interrupt event seeking."
+  ]
+}

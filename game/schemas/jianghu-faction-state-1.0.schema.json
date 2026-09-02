@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "jianghu-faction-state-1.0",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "jianghu-faction-state-1.0"
+    },
+    "status": {
+      "enum": [
+        "extinct"
+      ]
+    }
+  },
+  "required": [
+    "schema"
+  ],
+  "additionalProperties": true
+}

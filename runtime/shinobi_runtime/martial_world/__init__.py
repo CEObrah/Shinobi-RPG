@@ -144,3 +144,6 @@ from .crime_custody import crime_attention, create_custody_record, custody_trans
 from .equipment_lifecycle import expend_ammunition, apply_wear, repair_quote
 from .family_life import courtship_eligible, marriage_eligible, due_birth_at, child_identity
 from .field_command import build_deployment_structure, command_score, formation_kind_for_headcount, validate_deployment_structure
+
+from .combat_friendly_line_safety import install as _install_combat_friendly_line_safety
+_install_combat_friendly_line_safety()

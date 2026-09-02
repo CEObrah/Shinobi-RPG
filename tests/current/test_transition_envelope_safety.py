@@ -3,9 +3,6 @@ from __future__ import annotations
 import json
 
 from shinobi_runtime.api.models import validate_bounded_json
-from shinobi_runtime.api.transition_envelope_safety import (
-    install_production_transition_envelope_safety,
-)
 from shinobi_runtime.api.transition_operations import current_transition_projection
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.tx.receipts import IdempotencyReceipt
@@ -76,6 +73,19 @@ def _rich_event(sequence: int) -> dict:
             "burden_after": 13 + sequence,
         },
         "physiology": {"status": "wounded"},
+        # Real exact-combat receipt rows may carry substantial geometry/timing
+        # structure. This deliberately makes a fixed 16-row page exceed the
+        # public 2048-node game-object envelope while each individual row stays
+        # comfortably valid and useful.
+        "geometry_trace": {
+            f"segment_{index}": {
+                "x_mm": sequence * 100 + index,
+                "y_mm": sequence * 200 + index,
+                "distance_mm": 500 + index,
+                "time_ms": 1000 + sequence * 10 + index,
+            }
+            for index in range(24)
+        },
     }
 
 
@@ -107,33 +117,84 @@ def _receipt(event_count: int = 80) -> IdempotencyReceipt:
     )
 
 
-def test_production_transition_safety_preserves_exact_page_and_bounds_optional_spine():
-    install_production_transition_envelope_safety()
-    projected = current_transition_projection(
+def _project(offset: int) -> dict:
+    object_ref = "transition:current" if offset == 0 else f"transition:current:{offset}"
+    return current_transition_projection(
         receipt=_receipt(),
         campaign_id="campaign.test",
         revision=8,
-        object_ref="transition:current",
-        event_offset=0,
+        object_ref=object_ref,
+        event_offset=offset,
         combat_opposing_person_refs=frozenset({f"enemy.{index}" for index in range(4)}),
     )["object"]
 
-    assert projected["event_count"] == 80
-    assert len(projected["events"]) == 16
-    assert [row["sequence"] for row in projected["events"]] == list(range(16))
-    assert projected["next_object_ref"] == "transition:current:16"
 
-    narrative = projected["combat_narrative"]
-    assert narrative["material_event_count"] == 80
-    assert narrative["material_beats_truncated"] is True
-    assert narrative["omitted_material_beat_count"] > 0
-    assert len(narrative["material_beats"]) < 80
+def test_rich_noninitial_transition_page_adapts_to_public_envelope():
+    projected = _project(16)
+
+    assert projected["event_offset"] == 16
+    assert 1 <= len(projected["events"]) < 16
+    assert [row["sequence"] for row in projected["events"]] == list(
+        range(16, 16 + len(projected["events"]))
+    )
+    assert projected["next_object_ref"] == (
+        f"transition:current:{16 + len(projected['events'])}"
+    )
+    assert projected["combat_narrative"] is None
 
     encoded = json.dumps(projected, sort_keys=True)
     for index in range(4):
         assert f"enemy.{index}" not in encoded
     assert "opposing_combatant" in encoded
+    validate_bounded_json(projected, label="game object projection", allow_float=True)
 
-    # The same authoritative public envelope validator must accept the final
-    # projection. The repair is local trimming, never a larger global limit.
+
+def test_adaptive_transition_pagination_preserves_complete_exact_order():
+    receipt = _receipt()
+    opposing = frozenset({f"enemy.{index}" for index in range(4)})
+    offset = 0
+    seen: list[int] = []
+    page_count = 0
+
+    while True:
+        object_ref = "transition:current" if offset == 0 else f"transition:current:{offset}"
+        projected = current_transition_projection(
+            receipt=receipt,
+            campaign_id="campaign.test",
+            revision=8,
+            object_ref=object_ref,
+            event_offset=offset,
+            combat_opposing_person_refs=opposing,
+        )["object"]
+        validate_bounded_json(projected, label="game object projection", allow_float=True)
+
+        rows = projected["events"]
+        assert rows or offset == projected["event_count"]
+        seen.extend(row["sequence"] for row in rows)
+        page_count += 1
+
+        next_ref = projected["next_object_ref"]
+        if next_ref is None:
+            break
+        offset = int(next_ref.rsplit(":", 1)[1])
+        assert offset == len(seen)
+
+    assert page_count > 5
+    assert seen == list(range(80))
+
+
+def test_first_rich_page_bounds_optional_narrative_without_startup_patch():
+    projected = _project(0)
+
+    assert projected["event_count"] == 80
+    assert 1 <= len(projected["events"]) <= 16
+    assert [row["sequence"] for row in projected["events"]] == list(
+        range(len(projected["events"]))
+    )
+
+    narrative = projected["combat_narrative"]
+    assert narrative["material_event_count"] == 80
+    assert narrative["material_beats_truncated"] is True
+    assert narrative["omitted_material_beat_count"] > 0
+
     validate_bounded_json(projected, label="game object projection", allow_float=True)

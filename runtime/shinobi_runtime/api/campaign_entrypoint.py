@@ -1,10 +1,10 @@
 """Production ASGI bootstrap for the single Jianghu campaign.
 
 Production play composes travel/public-place context, reversible combat parley,
-current-revision transition recovery, bounded standing-combat policy, resolved
-route-contact reconciliation, and one closed provenance repair for the packaged
-Black Lance battle replay. The repair identity is caller-nonconfigurable and is
-retained only until the affected live campaign has been restored forward.
+current-revision transition recovery, bounded standing-combat policy, and
+resolved-route-contact reconciliation. Historical repair implementations remain
+available for forensic tests, but one-time campaign repair anchors are not
+installed into normal production composition after their repair is complete.
 """
 from __future__ import annotations
 
@@ -13,9 +13,6 @@ from typing import Any, Mapping
 
 def create_app_from_env():
     from shinobi_runtime.api import app as app_module
-    from shinobi_runtime.api.packaged_battle_repair_anchor import (
-        install_packaged_battle_repair_anchor,
-    )
     from shinobi_runtime.api.transition_operations import TransitionAwareCampaignOperations
     from shinobi_runtime.commands.combat_span_safety import install_production_combat_span_safety
     from shinobi_runtime.martial_world.route_contact_reconciliation import (
@@ -31,23 +28,8 @@ def create_app_from_env():
                 base, self.repository.read_json,
             )
 
-    # This is not a generic historical restore surface. It recognizes one fixed
-    # packaged root and one fixed historical incident, verifies both Git
-    # provenances plus every later state-changing first-parent commit, and then
-    # restores only the incident's immutable pre-fight parent at a new revision.
-    install_packaged_battle_repair_anchor()
-
-    # Campaign-specific standing combat intent is composed before the service
-    # starts accepting commands. The exact reducer remains deterministic; the
-    # production wrapper only bounds one transaction's simulated-time footprint
-    # and preserves the explicit rapid-lethal target-selection semantics.
     install_production_combat_span_safety()
 
-    # Current-transition response bounding remains intrinsic to the transition
-    # operations base. The final production wrapper additionally prevents a
-    # route contact whose exact combat is already resolved from resurfacing as a
-    # fresh player decision. That normalization is read-only and identity-safe;
-    # the route owner itself is reconciled only by a later transactional write.
     app_module.CampaignOperations = RouteReconciledCampaignOperations
     return app_module.create_app_from_env()
 

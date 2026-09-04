@@ -1,30 +1,33 @@
-"""Production safety policy for long exact-combat command spans.
+"""Production safety policy for exact-combat command spans and adaptive attacks.
 
 The exact resolver is deterministic and pure at the command-planning boundary,
 so a standing-intent span may be re-evaluated with a smaller exchange frontier
-before any transaction is committed.  This module uses that property to keep a
-single gameplay write from consuming hours of simulated time while preserving
-ordinary one-exchange mechanics unchanged.
-
-It also preserves the player's explicit "kill as many as possible as quickly as
-possible" semantics.  The temporary lethal-pursuit doctrine is a command-span
-marker; while it is active, autonomous target choice favors the nearest lawful
-active opponent instead of generic hostility/team pressure that can otherwise
-send Wei after a distant retreating target.
+before any transaction is committed. This module keeps long standing intents
+bounded, returns control after protected player-decision casualties, preserves
+rapid lethal-pursuit semantics, and prevents a delegated ranged/thrown choice
+from needlessly replacing available melee while the chosen target is already in
+immediate close pressure.
 """
 from __future__ import annotations
 
 import copy
+import math
 from typing import Any, Callable, Mapping
 
-from shinobi_runtime.martial_world.exact_combat import currently_visible_enemies
+from shinobi_runtime.martial_world.exact_combat import (
+    currently_visible_enemies,
+    default_weapon_for_action,
+)
 
 
 _LETHAL_PURSUIT_DOCTRINE = "doctrine.tang_wei.precision_function_denial.lethal_pursuit"
 _MAX_STANDING_SPAN_ELAPSED_MS = 300_000
 _STANDING_SPAN_EXCHANGE_FRONTIERS = (16, 8, 4, 2, 1)
+_CLOSE_PRESSURE_DISTANCE_MM = 3_000
 _TERMINAL_HEALTH = frozenset({"dead", "incapacitated"})
 _TERMINAL_COMBAT_STATUS = frozenset({"dead", "unconscious", "incapacitated", "escaped", "reinforcing"})
+_RANGED_ACTIONS = frozenset({"bow_shot", "hidden_weapon_throw"})
+_MELEE_ACTIONS = frozenset({"cut", "thrust", "staff_strike", "staff_thrust", "staff_butt_strike", "staff_sweep"})
 
 
 def _side_of(combat: Mapping[str, Any], actor_ref: str) -> str | None:
@@ -83,9 +86,9 @@ def rapid_lethal_target_for(
     """Select the nearest lawful active opponent during explicit rapid lethal pursuit.
 
     ``base_selector`` is called first so the exact combat observation machinery
-    remains authoritative and can lawfully refresh encounter memory.  The lethal
+    remains authoritative and can lawfully refresh encounter memory. The lethal
     override is then restricted to fresh current visibility; a remembered hidden
-    opponent can never replace the lawful current target.  All other doctrines
+    opponent can never replace the lawful current target. All other doctrines
     retain the base selector exactly.
     """
 
@@ -119,21 +122,136 @@ def rapid_lethal_target_for(
     return min(candidates, key=target_key)
 
 
-def bounded_standing_span(
+def close_pressure_action_for(
+    base_selector: Callable[..., tuple[str, str]],
+    *,
+    melee_weapon_selector: Callable[..., str] = default_weapon_for_action,
+    close_pressure_distance_mm: int = _CLOSE_PRESSURE_DISTANCE_MM,
+    **kwargs: Any,
+) -> tuple[str, str]:
+    """Prefer usable melee for a delegated attack against an already-close target.
+
+    This is deliberately narrow. Explicit player weapon choices are never
+    changed. The base selector remains authoritative at normal range. Only when
+    the delegated base choice is bow/thrown and the selected lawful target is
+    already within immediate close pressure do we ask the existing explicit-
+    technique weapon selector for a carried melee option, then route that option
+    back through the same base selector so weapon legality and technique choice
+    remain centralized.
+    """
+    base_choice = base_selector(**kwargs)
+    preferred = kwargs.get("preferred_weapon_ref")
+    if isinstance(preferred, str) and preferred not in {"", "auto"}:
+        return base_choice
+    if not isinstance(base_choice, tuple) or len(base_choice) != 2 or str(base_choice[0]) not in _RANGED_ACTIONS:
+        return base_choice
+
+    combat = kwargs.get("combat")
+    actor_ref = str(kwargs.get("actor_ref") or "")
+    target_ref = str(kwargs.get("target_ref") or "")
+    people = kwargs.get("people")
+    equipment_ledger = kwargs.get("equipment_ledger")
+    if not isinstance(combat, Mapping) or not actor_ref or not target_ref:
+        return base_choice
+    if not isinstance(people, Mapping) or not isinstance(equipment_ledger, Mapping):
+        return base_choice
+    positions = combat.get("positions", {}) if isinstance(combat.get("positions"), Mapping) else {}
+    actor_pos = positions.get(actor_ref)
+    target_pos = positions.get(target_ref)
+    if not isinstance(actor_pos, Mapping) or not isinstance(target_pos, Mapping):
+        return base_choice
+    if actor_pos.get("zone_ref") != target_pos.get("zone_ref"):
+        return base_choice
+    dx = int(target_pos.get("x_mm", 0)) - int(actor_pos.get("x_mm", 0))
+    dy = int(target_pos.get("y_mm", 0)) - int(actor_pos.get("y_mm", 0))
+    if math.isqrt(dx * dx + dy * dy) > max(1, int(close_pressure_distance_mm)):
+        return base_choice
+
+    candidates: list[str] = []
+    combatants = combat.get("combatants", {}) if isinstance(combat.get("combatants"), Mapping) else {}
+    actor_state = combatants.get(actor_ref)
+    ready = actor_state.get("ready_weapon_ref") if isinstance(actor_state, Mapping) else None
+    if isinstance(ready, str) and ready not in {"", "auto", "body_unarmed", str(base_choice[1])}:
+        candidates.append(ready)
+    for action_kind in ("cut", "thrust"):
+        try:
+            candidate = melee_weapon_selector(
+                people=people,
+                equipment_ledger=equipment_ledger,
+                actor_ref=actor_ref,
+                action_kind=action_kind,
+            )
+        except (KeyError, TypeError, ValueError):
+            continue
+        if isinstance(candidate, str) and candidate and candidate not in candidates:
+            candidates.append(candidate)
+
+    for candidate in candidates:
+        attempt = dict(kwargs)
+        attempt["preferred_weapon_ref"] = candidate
+        try:
+            choice = base_selector(**attempt)
+        except (KeyError, TypeError, ValueError):
+            continue
+        if isinstance(choice, tuple) and len(choice) == 2 and str(choice[0]) in _MELEE_ACTIONS:
+            return str(choice[0]), str(choice[1])
+    return base_choice
+
+
+def _has_protected_player_decision(result: Mapping[str, Any]) -> bool:
+    projection = result.get("narrative_projection")
+    beats = projection.get("beats", []) if isinstance(projection, Mapping) else []
+    return any(
+        isinstance(row, Mapping) and bool(row.get("must_narrate_before_next_decision"))
+        for row in beats
+    )
+
+
+def _mark_protected_stop(result: Mapping[str, Any]) -> Mapping[str, Any]:
+    out = copy.deepcopy(dict(result))
+    out["scope_stop_reason"] = "protected_player_decision"
+    out["continuation_required"] = False
+    projection = out.get("narrative_projection")
+    if isinstance(projection, dict):
+        projection["scope_stop_reason"] = "protected_player_decision"
+    return out
+
+
+def _truncate_at_protected_player_decision(
+    base_resolver: Callable[..., Mapping[str, Any]],
+    result: Mapping[str, Any],
+    kwargs: Mapping[str, Any],
+) -> Mapping[str, Any]:
+    """Return the earliest deterministic exchange prefix containing a protected beat."""
+    if not _has_protected_player_decision(result):
+        return result
+    exchanges = max(1, int(result.get("exchanges_resolved", 1)))
+    if exchanges <= 1:
+        return _mark_protected_stop(result)
+
+    low = 1
+    high = exchanges
+    best: Mapping[str, Any] = result
+    while low <= high:
+        mid = (low + high) // 2
+        attempt = dict(kwargs)
+        attempt["frontier_exchanges"] = mid
+        candidate = base_resolver(**attempt)
+        if _has_protected_player_decision(candidate):
+            best = candidate
+            high = mid - 1
+        else:
+            low = mid + 1
+    return _mark_protected_stop(best)
+
+
+def _time_bounded_standing_result(
     base_resolver: Callable[..., Mapping[str, Any]],
     *,
-    max_elapsed_ms: int = _MAX_STANDING_SPAN_ELAPSED_MS,
-    exchange_frontiers: tuple[int, ...] = _STANDING_SPAN_EXCHANGE_FRONTIERS,
+    max_elapsed_ms: int,
+    exchange_frontiers: tuple[int, ...],
     **kwargs: Any,
 ) -> Mapping[str, Any]:
-    """Return the largest deterministic standing-intent chunk within the time budget.
-
-    The base resolver works on deep copies, so retries here are read-only planning
-    work.  The selected result is the only value that can reach transaction
-    execution.  Explicit finite exchange/duration scopes retain the base resolver
-    unchanged; this safety envelope is for ``until_resolution`` standing intent.
-    """
-
     if not bool(kwargs.get("until_resolution")):
         return base_resolver(**kwargs)
 
@@ -182,6 +300,31 @@ def bounded_standing_span(
     return last_result
 
 
+def bounded_standing_span(
+    base_resolver: Callable[..., Mapping[str, Any]],
+    *,
+    max_elapsed_ms: int = _MAX_STANDING_SPAN_ELAPSED_MS,
+    exchange_frontiers: tuple[int, ...] = _STANDING_SPAN_EXCHANGE_FRONTIERS,
+    **kwargs: Any,
+) -> Mapping[str, Any]:
+    """Bound time and stop before a later exchange crosses a player checkpoint.
+
+    The base resolver works on detached copies. We may therefore re-evaluate a
+    smaller deterministic prefix without committing any discarded suffix. This
+    applies the existing execution-time budget to ``until_resolution`` intents
+    and, for every multi-exchange mode, returns control immediately after the
+    first exchange that generates a protected ``must_narrate_before_next_decision``
+    beat.
+    """
+    result = _time_bounded_standing_result(
+        base_resolver,
+        max_elapsed_ms=max_elapsed_ms,
+        exchange_frontiers=exchange_frontiers,
+        **kwargs,
+    )
+    return _truncate_at_protected_player_decision(base_resolver, result, kwargs)
+
+
 def install_production_combat_span_safety() -> None:
     """Install the campaign production policy once, without changing saved doctrine."""
 
@@ -190,22 +333,28 @@ def install_production_combat_span_safety() -> None:
     if bool(getattr(extended, "_production_combat_span_safety_installed", False)):
         return
 
-    base_selector = extended.default_target_for
+    base_target_selector = extended.default_target_for
+    base_action_selector = extended.default_action_for
     base_resolver = extended._resolve_player_combat_span
 
     def target_selector(**kwargs: Any) -> str:
-        return rapid_lethal_target_for(base_selector, **kwargs)
+        return rapid_lethal_target_for(base_target_selector, **kwargs)
+
+    def action_selector(**kwargs: Any) -> tuple[str, str]:
+        return close_pressure_action_for(base_action_selector, **kwargs)
 
     def span_resolver(**kwargs: Any) -> Mapping[str, Any]:
         return bounded_standing_span(base_resolver, **kwargs)
 
     extended.default_target_for = target_selector
+    extended.default_action_for = action_selector
     extended._resolve_player_combat_span = span_resolver
     extended._production_combat_span_safety_installed = True
 
 
 __all__ = [
     "bounded_standing_span",
+    "close_pressure_action_for",
     "install_production_combat_span_safety",
     "rapid_lethal_target_for",
 ]

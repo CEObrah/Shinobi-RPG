@@ -133,15 +133,7 @@ def _verify_packaged_root(git: Any, campaign_id: str) -> None:
 
 
 def _first_parent_source_history(git: Any, commit: str) -> str:
-    """Return the first parent even when a source-only commit is a merge.
-
-    GitStager.first_parent intentionally rejects merge commits because a world
-    transaction must have exactly one parent. This repair also walks normal
-    source history, where merge commits are expected. We therefore select only
-    the repository's explicit first-parent edge here and separately require any
-    merge/source commit encountered on that edge to preserve the exact state
-    tree. A state-changing merge still fails the transaction-trailer checks.
-    """
+    """Return the first parent even when a source-only commit is a merge."""
     completed = git._run_bytes(
         ("rev-list", "--first-parent", "--parents", "-n", "1", commit)
     )
@@ -152,14 +144,20 @@ def _first_parent_source_history(git: Any, commit: str) -> str:
         )
     parts = completed.stdout.decode("ascii", errors="strict").strip().split()
     if len(parts) < 2 or parts[0] != commit:
-        raise GitStageError(1, "source-history commit has no first parent")
+        raise OperationError(409, "repair_packaged_history_invalid")
     return parts[1]
 
 
 def _verify_current_git_chain(
     *, repository: Any, coordinator: Any, campaign_id: str, expected_revision: int,
 ) -> tuple[str, ...]:
-    """Prove every post-package state mutation from first-parent Git history."""
+    """Prove every post-package state mutation from first-parent Git history.
+
+    Source merge commits are allowed only when their state tree is identical to
+    their first parent. Any commit that changes state must independently carry
+    a valid world-transaction identity and the world revisions must remain
+    exactly contiguous from the packaged baseline through ``expected_revision``.
+    """
     if expected_revision < _PACKAGED_REVISION:
         raise OperationError(409, "repair_packaged_revision_invalid")
     git = coordinator.git

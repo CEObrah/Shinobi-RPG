@@ -88,13 +88,13 @@ class Git:
         self.available = {BAD, BASE, ROOT, self._head}
         self.root_tree = ROOT_TREE
         self.parents = {
-            "source_after_r11": "r11",
-            "r11": "r10",
-            "r10": "r9",
-            "r9": "r8",
-            "r8": "source_after_root",
-            "source_after_root": ROOT,
-            BAD: BASE,
+            "source_after_r11": ("r11", "feature_after_r11"),
+            "r11": ("r10",),
+            "r10": ("r9",),
+            "r9": ("r8",),
+            "r8": ("source_after_root",),
+            "source_after_root": (ROOT, "feature_after_root"),
+            BAD: (BASE,),
         }
         self.trees = {
             ROOT: ROOT_TREE,
@@ -120,6 +120,11 @@ class Git:
             rows = sorted(self._files_for(sha))
             stdout = b"\x00".join(path.encode() for path in rows) + (b"\x00" if rows else b"")
             return SimpleNamespace(returncode=0, stdout=stdout, stderr=b"")
+        if args and args[0] == "rev-list" and "--first-parent" in args:
+            sha = args[-1]
+            parents = self.parents.get(sha, ())
+            line = " ".join((sha, *parents)).encode("ascii") + b"\n"
+            return SimpleNamespace(returncode=0, stdout=line, stderr=b"")
         raise AssertionError(args)
 
     def _files_for(self, sha):
@@ -140,7 +145,8 @@ class Git:
         return self._head
 
     def first_parent(self, sha):
-        return self.parents.get(sha)
+        parents = self.parents.get(sha, ())
+        return parents[0] if len(parents) == 1 else None
 
     def tree_oid(self, sha, path):
         assert path == "state"
@@ -161,6 +167,8 @@ class Git:
                     "Shinobi-Command-Digest": _ANCHOR["damaged_command_digest"],
                 },
             )
+        if sha in {"source_after_r11", "source_after_root"}:
+            return GitCommitRecord(sha, ("runtime/source.py",), {})
         revision = int(sha[1:])
         return GitCommitRecord(
             sha,
@@ -266,6 +274,30 @@ def test_packaged_anchor_fails_closed_on_wrong_root_or_missing_revision():
             coordinator=coordinator,
         )
     assert caught.value.code in {"repair_packaged_history_invalid", "repair_packaged_history_incomplete"}
+
+
+def test_source_merge_with_unchanged_state_is_allowed_but_state_changing_merge_is_not():
+    _, repo, coordinator = fixture()
+    build = build_packaged_battle_repair(
+        anchor=PACKAGED_BATTLE_REPAIR_ANCHOR,
+        campaign_id="jianghu-wei-main",
+        expected_revision=11,
+        repository=repo,
+        coordinator=coordinator,
+    )
+    assert build.result["post_package_state_commit_count"] == 4
+
+    _, repo, coordinator = fixture()
+    coordinator.git.trees["source_after_r11"] = "f" * 40
+    with pytest.raises(OperationError) as caught:
+        build_packaged_battle_repair(
+            anchor=PACKAGED_BATTLE_REPAIR_ANCHOR,
+            campaign_id="jianghu-wei-main",
+            expected_revision=11,
+            repository=repo,
+            coordinator=coordinator,
+        )
+    assert caught.value.code == "repair_packaged_history_invalid"
 
 
 def test_production_entrypoint_installs_only_closed_packaged_battle_anchor():

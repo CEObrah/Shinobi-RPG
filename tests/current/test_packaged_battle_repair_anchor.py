@@ -87,9 +87,6 @@ class Git:
         self._head = "source_after_r11"
         self.available = {BAD, BASE, ROOT, self._head}
         self.root_tree = ROOT_TREE
-        # Source-only nodes deliberately model GitHub merge commits. The repair
-        # must follow their first-parent edge without treating a second parent as
-        # a world-state ambiguity, because their state tree is unchanged.
         self.parents = {
             "source_after_r11": ("r11", "feature_after_r11"),
             "r11": ("r10",),
@@ -170,6 +167,8 @@ class Git:
                     "Shinobi-Command-Digest": _ANCHOR["damaged_command_digest"],
                 },
             )
+        if sha in {"source_after_r11", "source_after_root"}:
+            return GitCommitRecord(sha, ("runtime/source.py",), {})
         revision = int(sha[1:])
         return GitCommitRecord(
             sha,

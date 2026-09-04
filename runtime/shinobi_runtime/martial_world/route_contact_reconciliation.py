@@ -1,4 +1,4 @@
-"""Reconcile resolved player route combats back into their physical route owner.
+"""Reconcile route-contact state around exact player combat.
 
 A route interception and its exact combat are separate authorities. Combat may
 finish inside a player command before the next scheduled route wake. This
@@ -6,8 +6,15 @@ module closes that causal gap by replaying exactly one already-resolved player
 contact through the existing route frontier, then merging only that route's
 physical after-images back into the full world.
 
-The replay is deterministic, read-only until its caller commits the returned
-after-images, and never exposes opposing person identities through play context.
+Legacy active contacts created before finite field-equipment materialization
+also need one bounded pre-combat migration. The migration uses the same faction
+armory and exact-holder machinery as a fresh route interception, and persists a
+contact marker even when zero items are issued so later losses cannot trigger
+mid-fight re-arming.
+
+All helpers are deterministic and read-only until their caller commits the
+returned after-images. Player-facing normalization never exposes opposing
+person identities.
 """
 from __future__ import annotations
 
@@ -15,12 +22,18 @@ import copy
 from datetime import datetime
 from typing import Any, Callable, Mapping
 
+from .faction_state import faction_path, hydrate_faction_state, inventory_path, roster_path
 from .frontier_bridge import settle_shared_frontier
+from .inventory_state import compact_inventory_state, hydrate_inventory_state
+from .operational_equipment import materialize_faction_field_equipment
+from .person_state import hydrate_roster_state
 from .scheduler import route_ids_needing_service, sync_route_activity
 
 _ROUTE_OPERATIONS = "state/martial-world/route-operations.json"
 _COMBATS = "state/martial-world/combats.json"
 _SCHEDULER = "state/martial-world/scheduler.json"
+_EQUIPMENT_LEDGER = "state/martial-world/equipment-ledger.json"
+_FIELD_EQUIPMENT_MARKER = "field_equipment_materialized_count"
 
 
 def _mapping(value: Any) -> Mapping[str, Any]:
@@ -82,6 +95,189 @@ def has_resolved_player_route_contact(
     return _resolved_player_contact(
         read_json=read_json, player_ref=player_ref, combat_ref=combat_ref,
     ) is not None
+
+
+def _active_route_contact(
+    *, read_json: Callable[[str], Any], combat_ref: str,
+) -> tuple[dict[str, Any], str, dict[str, Any], str, dict[str, Any], dict[str, Any]] | None:
+    """Resolve one active route contact that owns ``combat_ref``.
+
+    This is deliberately keyed by the exact combat identity supplied by the
+    combat command. A non-route combat simply returns ``None``; malformed or
+    multiply-owned route identity fails closed.
+    """
+    route_state = read_json(_ROUTE_OPERATIONS)
+    combat_state = read_json(_COMBATS)
+    if not isinstance(route_state, Mapping) or not isinstance(combat_state, Mapping):
+        raise ValueError("route contact owners invalid")
+    movements = _mapping(route_state.get("movements"))
+    contacts = _mapping(route_state.get("contacts"))
+    combats = _mapping(combat_state.get("combats"))
+    combat = combats.get(combat_ref)
+    if not isinstance(combat, Mapping) or str(combat.get("status") or "") != "active":
+        return None
+
+    matches: list[tuple[str, dict[str, Any]]] = []
+    for movement_ref, raw_movement in movements.items():
+        if not isinstance(movement_ref, str) or not isinstance(raw_movement, Mapping):
+            continue
+        if str(raw_movement.get("status") or "") != "contact_pending":
+            continue
+        if str(raw_movement.get("combat_ref") or "") != combat_ref:
+            continue
+        matches.append((movement_ref, copy.deepcopy(dict(raw_movement))))
+    if not matches:
+        return None
+    if len(matches) != 1:
+        raise ValueError("active route combat has ambiguous movement owner")
+
+    movement_ref, movement = matches[0]
+    contact_ref = str(movement.get("contact_ref") or "")
+    raw_contact = contacts.get(contact_ref) if contact_ref else None
+    if not contact_ref or not isinstance(raw_contact, Mapping):
+        raise ValueError("active route combat contact owner missing")
+    contact = copy.deepcopy(dict(raw_contact))
+    if str(contact.get("combat_ref") or "") != combat_ref:
+        raise ValueError("active route contact combat identity mismatch")
+    if str(contact.get("movement_ref") or "") not in {"", movement_ref}:
+        raise ValueError("active route contact movement identity mismatch")
+    if str(contact.get("status") or "active") != "active":
+        raise ValueError("active route contact status mismatch")
+    return (
+        copy.deepcopy(dict(route_state)),
+        movement_ref,
+        movement,
+        contact_ref,
+        contact,
+        copy.deepcopy(dict(combat)),
+    )
+
+
+def _contact_attacker_identity(
+    *, movement: Mapping[str, Any], contact: Mapping[str, Any], combat: Mapping[str, Any],
+) -> tuple[str, list[str]]:
+    """Validate the exact attacking faction and people already owned by the contact."""
+    movement_faction = str(movement.get("contact_attacker_faction_ref") or "")
+    contact_faction = str(contact.get("attacker_faction_ref") or "")
+    if movement_faction and contact_faction and movement_faction != contact_faction:
+        raise ValueError("route contact attacker faction mismatch")
+    faction_ref = contact_faction or movement_faction
+    if not faction_ref:
+        raise ValueError("route contact attacker faction missing")
+
+    movement_refs = movement.get("contact_attacker_refs")
+    contact_refs = contact.get("attacker_refs")
+    movement_list = [str(x) for x in movement_refs if isinstance(x, str) and x] if isinstance(movement_refs, list) else []
+    contact_list = [str(x) for x in contact_refs if isinstance(x, str) and x] if isinstance(contact_refs, list) else []
+    if movement_list and contact_list and set(movement_list) != set(contact_list):
+        raise ValueError("route contact attacker roster mismatch")
+    attacker_refs = list(dict.fromkeys(contact_list or movement_list))
+    if not attacker_refs:
+        raise ValueError("route contact attacker roster missing")
+
+    participants = {
+        str(x) for x in movement.get("participant_refs", [])
+        if isinstance(x, str) and x
+    } if isinstance(movement.get("participant_refs"), list) else set()
+    if participants.intersection(attacker_refs):
+        raise ValueError("route contact attacker overlaps protected movement")
+
+    sides = _mapping(combat.get("sides"))
+    containing_sides = []
+    for side_ref, members in sides.items():
+        member_set = {str(x) for x in members if isinstance(x, str) and x} if isinstance(members, list) else set()
+        if set(attacker_refs).issubset(member_set):
+            containing_sides.append(str(side_ref))
+    if len(containing_sides) != 1:
+        raise ValueError("route contact attacker combat side unresolved")
+    return faction_ref, attacker_refs
+
+
+def reconcile_active_route_contact_field_equipment_records(
+    *, read_json: Callable[[str], Any], combat_ref: str,
+) -> dict[str, Mapping[str, Any]]:
+    """Stage a one-time finite armory migration for one legacy active contact.
+
+    Fresh route contacts already persist ``field_equipment_materialized_count``
+    before exact combat begins. Its *presence*, including a legitimate zero,
+    proves that issuance was considered. Only older active contacts lacking the
+    field are migrated. Persisting the marker in the same transaction as any
+    inventory debit prevents later weapon loss, breakage, or ammunition use
+    from being mistaken for a reason to issue replacement faction stock.
+    """
+    match = _active_route_contact(read_json=read_json, combat_ref=combat_ref)
+    if match is None:
+        return {}
+    route_state, _movement_ref, movement, contact_ref, contact, combat = match
+    if _FIELD_EQUIPMENT_MARKER in contact:
+        return {}
+
+    faction_ref, attacker_refs = _contact_attacker_identity(
+        movement=movement, contact=contact, combat=combat,
+    )
+
+    fpath = faction_path(faction_ref)
+    faction_raw = read_json(fpath)
+    if not isinstance(faction_raw, Mapping) or str(faction_raw.get("faction_id") or "") != faction_ref:
+        raise ValueError("route contact attacker faction owner invalid")
+    faction = hydrate_faction_state(faction_raw)
+
+    rpath = roster_path(faction_ref)
+    roster_raw = read_json(rpath)
+    if not isinstance(roster_raw, Mapping) or str(roster_raw.get("faction_ref") or "") != faction_ref:
+        raise ValueError("route contact attacker roster owner invalid")
+    roster = hydrate_roster_state(roster_raw, faction=faction)
+    people = roster.get("people")
+    if not isinstance(people, list):
+        raise ValueError("route contact attacker roster invalid")
+    people_by_ref = {
+        str(row.get("person_id")): row
+        for row in people
+        if isinstance(row, Mapping) and isinstance(row.get("person_id"), str) and row.get("person_id")
+    }
+    if any(ref not in people_by_ref for ref in attacker_refs):
+        raise ValueError("route contact attacker missing from faction roster")
+
+    ipath = inventory_path(faction_ref)
+    inventory_raw = read_json(ipath)
+    if not isinstance(inventory_raw, Mapping) or str(inventory_raw.get("faction_ref") or "") != faction_ref:
+        raise ValueError("route contact attacker inventory owner invalid")
+    inventory = hydrate_inventory_state(inventory_raw)
+    equipment_ledger = read_json(_EQUIPMENT_LEDGER)
+    if not isinstance(equipment_ledger, Mapping):
+        raise ValueError("route contact equipment ledger invalid")
+
+    materialized = materialize_faction_field_equipment(
+        faction_ref=faction_ref,
+        participant_refs=attacker_refs,
+        people_by_ref=people_by_ref,
+        inventory=inventory,
+        equipment_ledger=equipment_ledger,
+        status="route_attack_field_issue",
+    )
+    count = max(0, int(materialized.get("materialized_person_count", 0)))
+    inventory_after = compact_inventory_state(materialized.get("inventory_after", {}))
+    ledger_after = materialized.get("equipment_ledger_after")
+    if not isinstance(ledger_after, Mapping):
+        raise ValueError("route contact equipment materialization invalid")
+
+    route_after = copy.deepcopy(route_state)
+    contacts_after = route_after.get("contacts")
+    if not isinstance(contacts_after, dict):
+        raise ValueError("route contact registry invalid")
+    persisted_contact = contacts_after.get(contact_ref)
+    if not isinstance(persisted_contact, Mapping):
+        raise ValueError("route contact disappeared during materialization")
+    contact_after = copy.deepcopy(dict(persisted_contact))
+    contact_after[_FIELD_EQUIPMENT_MARKER] = count
+    contacts_after[contact_ref] = contact_after
+
+    writes: dict[str, Mapping[str, Any]] = {_ROUTE_OPERATIONS: route_after}
+    if inventory_after != inventory_raw:
+        writes[ipath] = inventory_after
+    if dict(ledger_after) != dict(equipment_ledger):
+        writes[_EQUIPMENT_LEDGER] = copy.deepcopy(dict(ledger_after))
+    return writes
 
 
 def _scoped_route_state(
@@ -349,5 +545,6 @@ def normalize_resolved_route_contact_context(
 __all__ = [
     "has_resolved_player_route_contact",
     "normalize_resolved_route_contact_context",
+    "reconcile_active_route_contact_field_equipment_records",
     "reconcile_resolved_player_route_contact_records",
 ]

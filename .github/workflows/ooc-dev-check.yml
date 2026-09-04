@@ -27,12 +27,14 @@ jobs:
           cat quick-check.log
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
-      - name: Resolved route contact regressions
+      - name: Battle repair and route regressions
         id: regressions
         shell: bash
         run: |
           set +e
           pytest -q \
+            tests/current/test_packaged_battle_repair_anchor.py \
+            tests/current/test_pre_root_historical_repair.py \
             tests/current/test_resolved_route_contact_reconciliation.py \
             tests/current/test_live_combat_route_rebase.py \
             tests/current/test_semantic_wait_and_time_flow.py \

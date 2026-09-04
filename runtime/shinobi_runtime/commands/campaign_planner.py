@@ -1,11 +1,12 @@
 """Production Jianghu planner composition.
 
 The generic repository planner owns command mechanics. Production additionally
-closes two narrow causal gaps around route combat: legacy active contacts that
-predate finite field-equipment materialization are reconciled before their next
-exact exchange, and a resolved player road combat is reconciled back into its
-physical route owner in the same transaction. Legacy stale resolved contacts
-are also staged before the next time-bearing action.
+closes narrow causal gaps around route combat: legacy active contacts that
+predate modern detachment sizing and finite field-equipment materialization are
+reconciled before their next exact exchange, and a resolved player road combat
+is reconciled back into its physical route owner in the same transaction.
+Legacy stale resolved contacts are also staged before the next time-bearing
+action.
 """
 from __future__ import annotations
 
@@ -15,6 +16,9 @@ from datetime import datetime
 from typing import Any, Mapping
 
 from shinobi_runtime.api.contracts import CommandRejectedError
+from shinobi_runtime.martial_world.legacy_route_contact_force import (
+    reconcile_legacy_active_route_contact_force_records,
+)
 from shinobi_runtime.martial_world.route_contact_reconciliation import (
     reconcile_active_route_contact_field_equipment_records,
     reconcile_resolved_player_route_contact_records,
@@ -98,12 +102,23 @@ class CampaignCommandPlanner(RepositoryCommandPlanner):
         except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
             raise CommandRejectedError("jianghu_route_contact_reconciliation_invalid") from exc
 
-    def _active_route_field_equipment_records(
+    def _active_route_force_records(
         self, *, combat_ref: str,
     ) -> dict[str, Mapping[str, Any]]:
         try:
-            return reconcile_active_route_contact_field_equipment_records(
+            return reconcile_legacy_active_route_contact_force_records(
                 read_json=self.repository.read_json,
+                combat_ref=combat_ref,
+            )
+        except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
+            raise CommandRejectedError("jianghu_route_force_reconciliation_invalid") from exc
+
+    def _active_route_field_equipment_records(
+        self, *, combat_ref: str, read_json=None,
+    ) -> dict[str, Mapping[str, Any]]:
+        try:
+            return reconcile_active_route_contact_field_equipment_records(
+                read_json=(read_json or self.repository.read_json),
                 combat_ref=combat_ref,
             )
         except (FileNotFoundError, KeyError, TypeError, ValueError) as exc:
@@ -122,10 +137,21 @@ class CampaignCommandPlanner(RepositoryCommandPlanner):
 
     def _jianghu_combat_resolution(self, command, meta, current_time):
         staged: dict[str, Mapping[str, Any]] = {}
+        force_staged: dict[str, Mapping[str, Any]] = {}
         if str(command.payload.get("action") or "") == "exchange":
             combat_ref = str(command.payload.get("combat_ref") or "")
             if combat_ref:
-                staged = self._active_route_field_equipment_records(combat_ref=combat_ref)
+                # Normalize the legacy detachment first. Field-equipment
+                # materialization must see the resized exact attacker list so
+                # removed nonparticipants never receive contact issue.
+                force_staged = self._active_route_force_records(combat_ref=combat_ref)
+                force_view = _RecordReadView(self.repository, force_staged) if force_staged else None
+                field_staged = self._active_route_field_equipment_records(
+                    combat_ref=combat_ref,
+                    read_json=(force_view.read_json if force_view is not None else None),
+                )
+                staged.update(force_staged)
+                staged.update(field_staged)
 
         plan = self._combat_plan_with_staged_records(
             command, meta, current_time, staged,
@@ -137,15 +163,18 @@ class CampaignCommandPlanner(RepositoryCommandPlanner):
                 if path not in plan.writes
             }
             if untouched:
+                result = {
+                    **dict(plan.result),
+                    "route_field_equipment_reconciled": True,
+                }
+                if force_staged:
+                    result["route_legacy_force_reconciled"] = True
                 plan = self._combine_time_plan(
                     command,
                     plan,
                     extra_records=untouched,
                     code=plan.code,
-                    result={
-                        **dict(plan.result),
-                        "route_field_equipment_reconciled": True,
-                    },
+                    result=result,
                 )
 
         if str(plan.result.get("combat_status") or "") != "resolved":

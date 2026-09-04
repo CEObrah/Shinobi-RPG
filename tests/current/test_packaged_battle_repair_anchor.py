@@ -300,10 +300,10 @@ def test_source_merge_with_unchanged_state_is_allowed_but_state_changing_merge_i
     assert caught.value.code == "repair_packaged_history_invalid"
 
 
-def test_production_entrypoint_installs_only_closed_packaged_battle_anchor():
+def test_production_entrypoint_does_not_install_one_time_battle_repair_anchor():
     text = (
         Path(__file__).resolve().parents[2]
         / "runtime/shinobi_runtime/api/campaign_entrypoint.py"
     ).read_text(encoding="utf-8")
-    assert "install_packaged_battle_repair_anchor" in text
+    assert "install_packaged_battle_repair_anchor" not in text
     assert "install_historical_repair_anchor" not in text

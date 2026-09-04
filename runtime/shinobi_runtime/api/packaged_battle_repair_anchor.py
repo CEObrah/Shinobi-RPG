@@ -1,14 +1,14 @@
 """Closed forward repair for the packaged Black Lance road-battle replay.
 
 The September 4 packaged campaign root already contained the historical player
-road combat in a terminal state.  That made the battle impossible to present or
+road combat in a terminal state. That made the battle impossible to present or
 play even though the original incident still has immutable Git provenance for
-an exact pre-fight parent.  This module bridges only those two fixed identities:
+an exact pre-fight parent. This module bridges only those two fixed identities:
 
 * the exact packaged root/state tree that inherited the terminal replay; and
 * the exact historical damaged combat commit and its verified pre-fight parent.
 
-Callers cannot select a Git ref, commit, path, value, or revision baseline.  The
+Callers cannot select a Git ref, commit, path, value, or revision baseline. The
 current live state must also be provably descended from the packaged root by a
 continuous first-parent Git state history before a forward repair plan exists.
 """
@@ -30,7 +30,7 @@ from shinobi_runtime.api.historical_repair_anchor import (
 )
 from shinobi_runtime.api.operations import OperationError
 from shinobi_runtime.commands import CommandEnvelope
-from shinobi_runtime.tx.errors import StaleRevisionError
+from shinobi_runtime.tx.errors import GitStageError, StaleRevisionError
 from shinobi_runtime.tx.git import (
     CAMPAIGN_TRAILER,
     COMMAND_DIGEST_TRAILER,
@@ -132,6 +132,30 @@ def _verify_packaged_root(git: Any, campaign_id: str) -> None:
         raise OperationError(409, "repair_packaged_root_snapshot_mismatch")
 
 
+def _first_parent_source_history(git: Any, commit: str) -> str:
+    """Return the first parent even when a source-only commit is a merge.
+
+    GitStager.first_parent intentionally rejects merge commits because a world
+    transaction must have exactly one parent. This repair also walks normal
+    source history, where merge commits are expected. We therefore select only
+    the repository's explicit first-parent edge here and separately require any
+    merge/source commit encountered on that edge to preserve the exact state
+    tree. A state-changing merge still fails the transaction-trailer checks.
+    """
+    completed = git._run_bytes(
+        ("rev-list", "--first-parent", "--parents", "-n", "1", commit)
+    )
+    if completed.returncode:
+        raise GitStageError(
+            completed.returncode,
+            completed.stderr.decode("utf-8", errors="replace"),
+        )
+    parts = completed.stdout.decode("ascii", errors="strict").strip().split()
+    if len(parts) < 2 or parts[0] != commit:
+        raise GitStageError(1, "source-history commit has no first parent")
+    return parts[1]
+
+
 def _verify_current_git_chain(
     *, repository: Any, coordinator: Any, campaign_id: str, expected_revision: int,
 ) -> tuple[str, ...]:
@@ -148,9 +172,7 @@ def _verify_current_git_chain(
         if current in seen or len(seen) > 1024:
             raise OperationError(409, "repair_packaged_history_invalid")
         seen.add(current)
-        parent = git.first_parent(current)
-        if not isinstance(parent, str) or not parent:
-            raise OperationError(409, "repair_packaged_history_invalid")
+        parent = _first_parent_source_history(git, current)
         current_tree = git.tree_oid(current, _STATE_PREFIX)
         parent_tree = git.tree_oid(parent, _STATE_PREFIX)
         if current_tree != parent_tree:
@@ -185,7 +207,13 @@ def _verify_current_git_chain(
     for path in sorted(head_paths):
         if repository.digest(path) != _sha(git.read_path_at(head, path)):
             raise OperationError(409, "repair_packaged_current_state_mismatch")
-    meta = json.loads(repository.read_optional_bytes(_META_PATH).decode("utf-8"))
+    meta_raw = repository.read_optional_bytes(_META_PATH)
+    if meta_raw is None:
+        raise OperationError(409, "repair_packaged_current_state_mismatch")
+    try:
+        meta = json.loads(meta_raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise OperationError(409, "repair_packaged_current_state_mismatch") from exc
     if meta.get("campaign_id") != campaign_id or meta.get("revision") != expected_revision:
         raise OperationError(409, "repair_packaged_current_state_mismatch")
     return tuple(sha for _revision, sha in ordered)

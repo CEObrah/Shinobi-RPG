@@ -1,31 +1,5 @@
 {
   "schema": "jianghu-equipment-ledger-1.0",
-  "provenance_exceptions": {
-    "mw.person.house_tang.1032": {
-      "tool_physicians_kit": {
-        "owner_ref": "house_tang",
-        "quantity": 1,
-        "status": "retinue_role_issue"
-      },
-      "supply_medical_bundle": {
-        "owner_ref": "house_tang",
-        "quantity": 4,
-        "status": "retinue_role_issue"
-      }
-    },
-    "mw.person.house_tang.1045": {
-      "clothing.faction.house_tang": {
-        "owner_ref": "house_tang",
-        "quantity": 1,
-        "status": "former_policy_issue"
-      },
-      "weapon_jian": {
-        "owner_ref": "house_tang",
-        "quantity": 1,
-        "status": "former_policy_issue"
-      }
-    }
-  },
   "policy_assignments": {
     "house_tang_sword_issue": [
       "char.kai",
@@ -76,6 +50,7 @@
       "mw.person.house_tang.1042",
       "mw.person.house_tang.1043",
       "mw.person.house_tang.1044",
+      "mw.person.house_tang.1045",
       "mw.person.house_tang.1046",
       "mw.person.house_tang.1047",
       "mw.person.house_tang.1048",
@@ -135,69 +110,28 @@
         "weapon_jian": 1
       }
     },
-    "mw.person.house_tang.1001": {
-      "condition_milli": {
-        "weapon_jian": 967
-      }
-    },
-    "mw.person.house_tang.1006": {
-      "condition_milli": {
-        "weapon_jian": 908
-      }
-    },
-    "mw.person.house_tang.1020": {
-      "condition_milli": {
-        "weapon_jian": 997
-      }
-    },
-    "mw.person.house_tang.1025": {
-      "condition_milli": {
-        "weapon_jian": 984
-      }
-    },
-    "mw.person.house_tang.1027": {
-      "condition_milli": {
-        "weapon_jian": 974
-      }
-    },
     "mw.person.house_tang.1030": {
       "items": {
-        "weapon_needle": 12
+        "poison_cardiotoxic": 6,
+        "weapon_needle": 24
       }
     },
     "mw.person.house_tang.1032": {
       "items": {
-        "supply_medical_bundle": 4,
-        "tool_physicians_kit": 1,
-        "weapon_needle": 3
-      }
-    },
-    "mw.person.house_tang.1037": {
-      "condition_milli": {
-        "weapon_jian": 970
-      }
-    },
-    "mw.person.house_tang.1045": {
-      "items": {
-        "clothing.faction.house_tang": 1,
-        "weapon_jian": 1
-      },
-      "condition_milli": {
-        "weapon_jian": 968
+        "poison_cardiotoxic": 6,
+        "weapon_needle": 24
       }
     },
     "mw.person.house_tang.1050": {
       "items": {
-        "weapon_needle": 12
+        "poison_cardiotoxic": 6,
+        "weapon_needle": 24
       }
     },
     "pc_wei_tang": {
       "items": {
-        "poison_cardiotoxic": 1,
-        "weapon_needle": 16
-      },
-      "condition_milli": {
-        "weapon_jian": 930
+        "poison_cardiotoxic": 6,
+        "weapon_needle": 24
       }
     }
   }

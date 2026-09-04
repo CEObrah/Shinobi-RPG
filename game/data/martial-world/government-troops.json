@@ -1,0 +1,60 @@
+{
+  "tiers": {
+    "militia": {
+      "primary_weapon_skill": 35,
+      "endurance": 40,
+      "perception": 35,
+      "discipline": 30,
+      "base_morale": 45,
+      "qi": 0,
+      "qi_control": 0
+    },
+    "standard": {
+      "primary_weapon_skill": 60,
+      "endurance": 60,
+      "perception": 55,
+      "discipline": 65,
+      "base_morale": 65,
+      "qi": 0,
+      "qi_control": 0
+    },
+    "elite": {
+      "primary_weapon_skill": 85,
+      "endurance": 80,
+      "perception": 75,
+      "discipline": 90,
+      "base_morale": 85,
+      "qi": 15,
+      "qi_control": 10
+    }
+  },
+  "aggregate_force_fields": [
+    "exact_headcount",
+    "tier_mix",
+    "equipment_profile",
+    "readiness_0_100",
+    "morale_0_100",
+    "command",
+    "fatigue_0_100",
+    "objective",
+    "current_losses"
+  ],
+  "rule": "Government forces remain aggregate exact headcounts. Tier profiles are fixed inputs to the shared combat laws; no vague Strength: High authority exists.",
+  "default_regional_capacity": {
+    "militia": 120,
+    "standard": 60,
+    "elite": 12
+  },
+  "monthly_reconstitution": {
+    "militia": 40,
+    "standard": 20,
+    "elite": 4
+  },
+  "contact_resolution": {
+    "militia_power": 35,
+    "standard_power": 65,
+    "elite_power": 95,
+    "detention_advantage_milli": 1800,
+    "rule": "Aggregate government contact compares conserved deployed headcount and registered tier capability against the subject current combat index. A player is never auto-detained by this background resolver."
+  }
+}

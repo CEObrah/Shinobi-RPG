@@ -1,0 +1,142 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-equipment-ledger-1.0",
+  "target_schema": "jianghu-equipment-ledger-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "policy_assignments",
+        "person_loadouts",
+        "provenance_exceptions",
+        "recovery_demands"
+      ],
+      "canonical_order": [
+        "schema",
+        "policy_assignments",
+        "person_loadouts",
+        "provenance_exceptions",
+        "recovery_demands"
+      ]
+    },
+    "/policy_assignments": {
+      "mode": "open_map"
+    },
+    "/person_loadouts": {
+      "mode": "open_map"
+    },
+    "/person_loadouts/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "items",
+        "condition_milli"
+      ],
+      "canonical_order": [
+        "items",
+        "condition_milli"
+      ]
+    },
+    "/person_loadouts/*/items": {
+      "mode": "open_map"
+    },
+    "/person_loadouts/*/condition_milli": {
+      "mode": "open_map"
+    },
+    "/provenance_exceptions": {
+      "mode": "open_map"
+    },
+    "/provenance_exceptions/*": {
+      "mode": "open_map"
+    },
+    "/provenance_exceptions/*/*": {
+      "mode": "closed",
+      "allowed_keys": ["owner_ref", "quantity", "property_ref", "status"],
+      "canonical_order": ["owner_ref", "quantity", "property_ref", "status"]
+    },
+    "/recovery_demands": {
+      "mode": "open_map"
+    },
+    "/recovery_demands/*": {
+      "mode": "closed",
+      "allowed_keys": ["owner_ref", "holder_ref", "item_ref", "quantity", "status", "issued_at", "property_ref", "evidence_ref"],
+      "canonical_order": ["owner_ref", "holder_ref", "item_ref", "quantity", "status", "issued_at", "property_ref", "evidence_ref"]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/policy_assignments": [
+      "object"
+    ],
+    "/policy_assignments/*": [
+      "array"
+    ],
+    "/policy_assignments/*/*": [
+      "string"
+    ],
+    "/person_loadouts": [
+      "object"
+    ],
+    "/person_loadouts/*": [
+      "object"
+    ],
+    "/person_loadouts/*/items": [
+      "object"
+    ],
+    "/person_loadouts/*/items/*": [
+      "integer"
+    ],
+    "/person_loadouts/*/condition_milli": [
+      "object"
+    ],
+    "/person_loadouts/*/condition_milli/*": [
+      "integer"
+    ],
+    "/provenance_exceptions": ["object"],
+    "/provenance_exceptions/*": ["object"],
+    "/provenance_exceptions/*/*": ["object"],
+    "/provenance_exceptions/*/*/owner_ref": ["string"],
+    "/provenance_exceptions/*/*/quantity": ["integer"],
+    "/provenance_exceptions/*/*/property_ref": ["string"],
+    "/provenance_exceptions/*/*/status": ["string"],
+    "/recovery_demands": ["object"],
+    "/recovery_demands/*": ["object"],
+    "/recovery_demands/*/owner_ref": ["string"],
+    "/recovery_demands/*/holder_ref": ["string"],
+    "/recovery_demands/*/item_ref": ["string"],
+    "/recovery_demands/*/quantity": ["integer"],
+    "/recovery_demands/*/status": ["string"],
+    "/recovery_demands/*/issued_at": ["string"],
+    "/recovery_demands/*/property_ref": ["string"],
+    "/recovery_demands/*/evidence_ref": ["string"]
+  },
+  "array_contracts": {
+    "/policy_assignments/*": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Static loadout composition belongs in game/data/martial-world/equipment-loadouts.json.",
+    "Policy assignments are current conserved custody: assigning a person never happens merely because they qualify for a policy.",
+    "An assigned person's item map stores only absolute quantity deviations from the static policy; zero is retained when a policy item is currently absent.",
+    "Condition maps store only deviations from the policy/default full integrity of 1000.",
+    "Unassigned person rows store only current positive item quantities and non-default condition.",
+    "Do not duplicate faction, policy, status, empty stock, repair-project, or full-integrity defaults in hot state."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "campaign-rebaseline-manifest-1.0",
+  "game": "Shinobi RPG",
+  "rebaseline_date": "2026-09-02",
+  "old_revision": 158,
+  "new_revision": 1,
+  "campaign_id": "jianghu-wei-main",
+  "world_time": "SE-0061-09-27T21:15:54",
+  "policy": "current repaired hard world truth is the new canonical baseline; prior revision lineage is forensic only",
+  "archived_state": "docs/forensics/campaign-state-revision-158-pre-rebaseline.tar.gz",
+  "presentation_residue_reset": [
+    "state/martial-world/interaction-attempts.json",
+    "state/martial-world/scene-history-head.json",
+    "state/martial-world/scene-history/*",
+    "state/martial-world/scene-session.json if present"
+  ],
+  "hard_truth_rewound": false,
+  "fresh_private_recovery_store_required": true,
+  "fresh_campaign_checkout_required": true,
+  "git_branch": "main",
+  "single_branch_source_and_campaign_durability": true,
+  "other_campaign_branches_required": false,
+  "old_revision_lineage_preserved_in_forensic_archive": true
+}

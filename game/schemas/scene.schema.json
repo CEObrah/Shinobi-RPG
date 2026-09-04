@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Current canonical schema: scene.",
+  "type": "object",
+  "required": [
+    "schema",
+    "scene_id",
+    "location_id",
+    "present_person_ids",
+    "visible_person_ids"
+  ],
+  "properties": {
+    "schema": {
+      "const": "scene"
+    },
+    "scene_id": {
+      "type": "string"
+    },
+    "location_id": {
+      "type": "string"
+    },
+    "active_combat_ref": {
+      "type": "string"
+    },
+    "activity_handoff": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "kind",
+        "requires_player_decision",
+        "interrupts_continuation"
+      ],
+      "properties": {
+        "event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "type": "string"
+        },
+        "requires_player_decision": {
+          "type": "boolean"
+        },
+        "interrupts_continuation": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "present_person_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "visible_person_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "description": "Minimum-sufficient current scene facts. World time, active-combat booleans, time-passage policy and narration are derived rather than persisted. A bounded activity_handoff persists only the current player-facing wake that must survive the committing frontier. event_id may be null for a mechanically real synthetic boundary, such as a travel stop, that is not backed by a scheduler event identity."
+}

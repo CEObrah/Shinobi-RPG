@@ -1,0 +1,61 @@
+{
+  "active_defense": {
+    "minimum_available_milli": 60,
+    "base_commitment_milli": 180,
+    "distinct_attacker_penalty_milli": 110,
+    "max_distinct_attacker_penalty_milli": 440,
+    "rear_angle_penalty_milli": 260,
+    "side_angle_penalty_milli": 120,
+    "low_balance_penalty_max_milli": 250,
+    "limb_commitment_penalty_max_milli": 220,
+    "maximum_commitment_milli": 900
+  },
+  "qi": {
+    "overdraw_strain_per_flow_milli": 2,
+    "allocations": [
+      "movement",
+      "body",
+      "sensing"
+    ]
+  },
+  "actions": {
+    "cut": {
+      "skill": "sword",
+      "startup_ms": 380,
+      "commitment_milli": 520,
+      "channels": [
+        "cut",
+        "blunt"
+      ]
+    },
+    "thrust": {
+      "skill": "sword",
+      "startup_ms": 330,
+      "commitment_milli": 470,
+      "channels": [
+        "pierce",
+        "penetration"
+      ]
+    },
+    "unarmed_strike": {
+      "skill": "unarmed",
+      "startup_ms": 300,
+      "commitment_milli": 400,
+      "channels": [
+        "blunt"
+      ]
+    },
+    "bow_shot": {
+      "skill": "bow",
+      "startup_ms": 700,
+      "commitment_milli": 300,
+      "channels": [
+        "pierce",
+        "penetration"
+      ]
+    }
+  },
+  "rule": "Actions are physical primitives, not named techniques. A combat action uses exact timing, geometry, skill, body commitment, equipment, Qi allocation, fatigue and current injury state.",
+  "minimum_exchange_advance_ms": 250,
+  "maximum_melee_approach_ms": 2000
+}

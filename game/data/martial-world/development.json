@@ -1,0 +1,43 @@
+{
+  "training_gain": {
+    "aptitude_baseline_milli": 700,
+    "aptitude_linear_milli_per_point": 2,
+    "aptitude_quadratic_divisor": 100,
+    "facility_factor_milli_by_level": [
+      700,
+      850,
+      1000,
+      1100,
+      1200,
+      1300
+    ],
+    "instructor_none_milli": 850,
+    "instructor_gap_min": -100,
+    "instructor_gap_max": 150,
+    "instructor_base_milli": 1000,
+    "instructor_gap_milli_per_point": 3,
+    "instruction_milli_per_point": 2,
+    "instructor_factor_min_milli": 700,
+    "instructor_factor_max_milli": 1600,
+    "health_min_milli": 0,
+    "health_max_milli": 1200,
+    "novelty_min_milli": 0,
+    "novelty_max_milli": 1400,
+    "recovery_min_milli": 0,
+    "recovery_max_milli": 1200,
+    "difficulty_base_milli": 1000,
+    "difficulty_linear_per_skill": 12,
+    "difficulty_quadratic_divisor": 40,
+    "base_progress_rate": 20
+  },
+  "instructor_capacity": {
+    "group_base": 20,
+    "group_instruction_divisor": 2,
+    "group_facility_divisor": 3,
+    "individual_base": 4,
+    "individual_instruction_divisor": 20
+  },
+  "gain_formula": "runtime.shinobi_runtime.martial_world.training.training_gain_milli; current skill raises point cost continuously but never makes gain impossible",
+  "combat_evidence_rule": "combat and difficult field work create development evidence/novelty; training, reflection or instruction converts that evidence through the same progression formula rather than granting arbitrary instant skill points",
+  "representation_parity": "Full Character, Person Lite and aggregate-derived recruits use the same progression law."
+}

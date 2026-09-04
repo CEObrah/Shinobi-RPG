@@ -1,0 +1,1107 @@
+{
+  "blood_ml_per_kg": 70,
+  "zones": {
+    "head": {
+      "vascularity": 70,
+      "bone": 85,
+      "organ": 100,
+      "tendon": 10,
+      "nerve": 100,
+      "function": "consciousness"
+    },
+    "face": {
+      "vascularity": 65,
+      "bone": 55,
+      "organ": 25,
+      "tendon": 15,
+      "nerve": 70,
+      "function": "senses"
+    },
+    "eyes": {
+      "vascularity": 45,
+      "bone": 5,
+      "organ": 100,
+      "tendon": 5,
+      "nerve": 100,
+      "function": "vision"
+    },
+    "neck": {
+      "vascularity": 100,
+      "bone": 35,
+      "organ": 85,
+      "tendon": 45,
+      "nerve": 100,
+      "function": "breathing_and_head_control"
+    },
+    "shoulder": {
+      "vascularity": 55,
+      "bone": 60,
+      "organ": 5,
+      "tendon": 85,
+      "nerve": 70,
+      "function": "arm"
+    },
+    "armpit": {
+      "vascularity": 95,
+      "bone": 5,
+      "organ": 25,
+      "tendon": 65,
+      "nerve": 85,
+      "function": "arm"
+    },
+    "chest": {
+      "vascularity": 80,
+      "bone": 60,
+      "organ": 100,
+      "tendon": 20,
+      "nerve": 50,
+      "function": "breathing_and_core"
+    },
+    "ribs": {
+      "vascularity": 55,
+      "bone": 85,
+      "organ": 45,
+      "tendon": 20,
+      "nerve": 35,
+      "function": "breathing_and_core"
+    },
+    "abdomen": {
+      "vascularity": 75,
+      "bone": 10,
+      "organ": 100,
+      "tendon": 20,
+      "nerve": 45,
+      "function": "core"
+    },
+    "back": {
+      "vascularity": 55,
+      "bone": 60,
+      "organ": 55,
+      "tendon": 40,
+      "nerve": 90,
+      "function": "core_and_spine"
+    },
+    "pelvis": {
+      "vascularity": 70,
+      "bone": 90,
+      "organ": 55,
+      "tendon": 55,
+      "nerve": 65,
+      "function": "lower_body"
+    },
+    "hip": {
+      "vascularity": 70,
+      "bone": 75,
+      "organ": 5,
+      "tendon": 85,
+      "nerve": 65,
+      "function": "leg"
+    },
+    "upper_arm": {
+      "vascularity": 60,
+      "bone": 60,
+      "organ": 0,
+      "tendon": 55,
+      "nerve": 60,
+      "function": "arm"
+    },
+    "elbow": {
+      "vascularity": 45,
+      "bone": 65,
+      "organ": 0,
+      "tendon": 100,
+      "nerve": 75,
+      "function": "arm"
+    },
+    "forearm": {
+      "vascularity": 65,
+      "bone": 55,
+      "organ": 0,
+      "tendon": 80,
+      "nerve": 70,
+      "function": "arm"
+    },
+    "wrist": {
+      "vascularity": 55,
+      "bone": 55,
+      "organ": 0,
+      "tendon": 100,
+      "nerve": 95,
+      "function": "grip"
+    },
+    "hand": {
+      "vascularity": 55,
+      "bone": 50,
+      "organ": 0,
+      "tendon": 100,
+      "nerve": 100,
+      "function": "grip"
+    },
+    "thigh": {
+      "vascularity": 90,
+      "bone": 70,
+      "organ": 0,
+      "tendon": 60,
+      "nerve": 60,
+      "function": "leg"
+    },
+    "knee": {
+      "vascularity": 50,
+      "bone": 65,
+      "organ": 0,
+      "tendon": 100,
+      "nerve": 65,
+      "function": "leg"
+    },
+    "shin": {
+      "vascularity": 55,
+      "bone": 85,
+      "organ": 0,
+      "tendon": 55,
+      "nerve": 55,
+      "function": "leg"
+    },
+    "ankle": {
+      "vascularity": 45,
+      "bone": 65,
+      "organ": 0,
+      "tendon": 100,
+      "nerve": 70,
+      "function": "footwork"
+    },
+    "foot": {
+      "vascularity": 45,
+      "bone": 60,
+      "organ": 0,
+      "tendon": 85,
+      "nerve": 80,
+      "function": "footwork"
+    }
+  },
+  "structures": {
+    "brain": {
+      "zone": "head",
+      "side": "center",
+      "functions": {
+        "consciousness": 100
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 150,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1300,
+        "blunt": 1200,
+        "penetration": 1450
+      }
+    },
+    "left_eye": {
+      "zone": "eyes",
+      "side": "left",
+      "functions": {
+        "vision_left": 100
+      },
+      "vulnerability_milli": 1600,
+      "destruction_threshold": 105,
+      "channel_bias_milli": {
+        "cut": 1300,
+        "pierce": 1700,
+        "blunt": 900,
+        "penetration": 1700
+      },
+      "destruction_outcome": "left_eye_destroyed"
+    },
+    "right_eye": {
+      "zone": "eyes",
+      "side": "right",
+      "functions": {
+        "vision_right": 100
+      },
+      "vulnerability_milli": 1600,
+      "destruction_threshold": 105,
+      "channel_bias_milli": {
+        "cut": 1300,
+        "pierce": 1700,
+        "blunt": 900,
+        "penetration": 1700
+      },
+      "destruction_outcome": "right_eye_destroyed"
+    },
+    "throat": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "breathing": 80,
+        "voice": 60
+      },
+      "vulnerability_milli": 1400,
+      "destruction_threshold": 125,
+      "channel_bias_milli": {
+        "cut": 1500,
+        "pierce": 1300,
+        "blunt": 700,
+        "penetration": 1300
+      }
+    },
+    "cervical_spine": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "head_control": 100,
+        "consciousness": 80
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 150,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1200,
+        "blunt": 1200,
+        "penetration": 1500
+      }
+    },
+    "heart": {
+      "zone": "chest",
+      "side": "center",
+      "functions": {
+        "circulation": 100
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 105,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1500,
+        "blunt": 700,
+        "penetration": 1600
+      }
+    },
+    "left_lung": {
+      "zone": "chest",
+      "side": "left",
+      "functions": {
+        "breathing": 60
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 140,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1400,
+        "blunt": 700,
+        "penetration": 1500
+      }
+    },
+    "right_lung": {
+      "zone": "chest",
+      "side": "right",
+      "functions": {
+        "breathing": 60
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 140,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1400,
+        "blunt": 700,
+        "penetration": 1500
+      }
+    },
+    "liver": {
+      "zone": "abdomen",
+      "side": "right",
+      "functions": {
+        "core": 40,
+        "circulation": 45
+      },
+      "vulnerability_milli": 1200,
+      "destruction_threshold": 145,
+      "channel_bias_milli": {
+        "cut": 700,
+        "pierce": 1400,
+        "blunt": 1000,
+        "penetration": 1450
+      }
+    },
+    "spine": {
+      "zone": "back",
+      "side": "center",
+      "functions": {
+        "spinal_control": 100
+      },
+      "vulnerability_milli": 950,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 500,
+        "pierce": 1200,
+        "blunt": 1150,
+        "penetration": 1500
+      }
+    },
+    "left_shoulder": {
+      "zone": "shoulder",
+      "side": "left",
+      "functions": {
+        "arm_left": 75
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_arm_lost",
+      "severance_cut_threshold": 185
+    },
+    "left_axilla": {
+      "zone": "armpit",
+      "side": "left",
+      "functions": {
+        "arm_left": 55,
+        "circulation": 50
+      },
+      "vulnerability_milli": 1350,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1400,
+        "pierce": 1400,
+        "blunt": 700,
+        "penetration": 1400
+      }
+    },
+    "left_upper_arm": {
+      "zone": "upper_arm",
+      "side": "left",
+      "functions": {
+        "arm_left": 65
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 160,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_arm_lost",
+      "severance_cut_threshold": 180
+    },
+    "left_elbow": {
+      "zone": "elbow",
+      "side": "left",
+      "functions": {
+        "arm_left": 85,
+        "weapon_control_left": 70
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1100,
+        "pierce": 1100,
+        "blunt": 1200,
+        "penetration": 1100
+      },
+      "severance_outcome": "left_arm_lost",
+      "severance_cut_threshold": 175
+    },
+    "left_forearm": {
+      "zone": "forearm",
+      "side": "left",
+      "functions": {
+        "arm_left": 60,
+        "weapon_control_left": 45
+      },
+      "vulnerability_milli": 1050,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_hand_lost",
+      "severance_cut_threshold": 175
+    },
+    "left_wrist": {
+      "zone": "wrist",
+      "side": "left",
+      "functions": {
+        "weapon_control_left": 100,
+        "grip_left": 70
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 125,
+      "channel_bias_milli": {
+        "cut": 1250,
+        "pierce": 1100,
+        "blunt": 1050,
+        "penetration": 1200
+      },
+      "severance_outcome": "left_hand_lost",
+      "severance_cut_threshold": 155
+    },
+    "left_hand": {
+      "zone": "hand",
+      "side": "left",
+      "functions": {
+        "grip_left": 100,
+        "weapon_control_left": 80
+      },
+      "vulnerability_milli": 1300,
+      "destruction_threshold": 120,
+      "channel_bias_milli": {
+        "cut": 1300,
+        "pierce": 1100,
+        "blunt": 1000,
+        "penetration": 1200
+      },
+      "severance_outcome": "left_hand_lost",
+      "severance_cut_threshold": 170
+    },
+    "left_hip": {
+      "zone": "hip",
+      "side": "left",
+      "functions": {
+        "leg_left": 70
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_leg_lost",
+      "severance_cut_threshold": 195
+    },
+    "left_thigh": {
+      "zone": "thigh",
+      "side": "left",
+      "functions": {
+        "leg_left": 55,
+        "circulation": 35
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 165,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_leg_lost",
+      "severance_cut_threshold": 190
+    },
+    "left_knee": {
+      "zone": "knee",
+      "side": "left",
+      "functions": {
+        "leg_left": 100,
+        "footwork_left": 90
+      },
+      "vulnerability_milli": 1200,
+      "destruction_threshold": 130,
+      "channel_bias_milli": {
+        "cut": 900,
+        "pierce": 1000,
+        "blunt": 1300,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_leg_lost",
+      "severance_cut_threshold": 180
+    },
+    "left_shin": {
+      "zone": "shin",
+      "side": "left",
+      "functions": {
+        "leg_left": 65,
+        "footwork_left": 55
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_foot_lost",
+      "severance_cut_threshold": 180
+    },
+    "left_ankle": {
+      "zone": "ankle",
+      "side": "left",
+      "functions": {
+        "footwork_left": 100,
+        "leg_left": 85
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 125,
+      "channel_bias_milli": {
+        "cut": 1050,
+        "pierce": 1000,
+        "blunt": 1250,
+        "penetration": 1050
+      },
+      "severance_outcome": "left_foot_lost",
+      "severance_cut_threshold": 160
+    },
+    "left_foot": {
+      "zone": "foot",
+      "side": "left",
+      "functions": {
+        "footwork_left": 85
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "left_foot_lost",
+      "severance_cut_threshold": 175
+    },
+    "right_shoulder": {
+      "zone": "shoulder",
+      "side": "right",
+      "functions": {
+        "arm_right": 75
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_arm_lost",
+      "severance_cut_threshold": 185
+    },
+    "right_axilla": {
+      "zone": "armpit",
+      "side": "right",
+      "functions": {
+        "arm_right": 55,
+        "circulation": 50
+      },
+      "vulnerability_milli": 1350,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1400,
+        "pierce": 1400,
+        "blunt": 700,
+        "penetration": 1400
+      }
+    },
+    "right_upper_arm": {
+      "zone": "upper_arm",
+      "side": "right",
+      "functions": {
+        "arm_right": 65
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 160,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_arm_lost",
+      "severance_cut_threshold": 180
+    },
+    "right_elbow": {
+      "zone": "elbow",
+      "side": "right",
+      "functions": {
+        "arm_right": 85,
+        "weapon_control_right": 70
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1100,
+        "pierce": 1100,
+        "blunt": 1200,
+        "penetration": 1100
+      },
+      "severance_outcome": "right_arm_lost",
+      "severance_cut_threshold": 175
+    },
+    "right_forearm": {
+      "zone": "forearm",
+      "side": "right",
+      "functions": {
+        "arm_right": 60,
+        "weapon_control_right": 45
+      },
+      "vulnerability_milli": 1050,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_hand_lost",
+      "severance_cut_threshold": 175
+    },
+    "right_wrist": {
+      "zone": "wrist",
+      "side": "right",
+      "functions": {
+        "weapon_control_right": 100,
+        "grip_right": 70
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 125,
+      "channel_bias_milli": {
+        "cut": 1250,
+        "pierce": 1100,
+        "blunt": 1050,
+        "penetration": 1200
+      },
+      "severance_outcome": "right_hand_lost",
+      "severance_cut_threshold": 155
+    },
+    "right_hand": {
+      "zone": "hand",
+      "side": "right",
+      "functions": {
+        "grip_right": 100,
+        "weapon_control_right": 80
+      },
+      "vulnerability_milli": 1300,
+      "destruction_threshold": 120,
+      "channel_bias_milli": {
+        "cut": 1300,
+        "pierce": 1100,
+        "blunt": 1000,
+        "penetration": 1200
+      },
+      "severance_outcome": "right_hand_lost",
+      "severance_cut_threshold": 170
+    },
+    "right_hip": {
+      "zone": "hip",
+      "side": "right",
+      "functions": {
+        "leg_right": 70
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_leg_lost",
+      "severance_cut_threshold": 195
+    },
+    "right_thigh": {
+      "zone": "thigh",
+      "side": "right",
+      "functions": {
+        "leg_right": 55,
+        "circulation": 35
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 165,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_leg_lost",
+      "severance_cut_threshold": 190
+    },
+    "right_knee": {
+      "zone": "knee",
+      "side": "right",
+      "functions": {
+        "leg_right": 100,
+        "footwork_right": 90
+      },
+      "vulnerability_milli": 1200,
+      "destruction_threshold": 130,
+      "channel_bias_milli": {
+        "cut": 900,
+        "pierce": 1000,
+        "blunt": 1300,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_leg_lost",
+      "severance_cut_threshold": 180
+    },
+    "right_shin": {
+      "zone": "shin",
+      "side": "right",
+      "functions": {
+        "leg_right": 65,
+        "footwork_right": 55
+      },
+      "vulnerability_milli": 1000,
+      "destruction_threshold": 155,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_foot_lost",
+      "severance_cut_threshold": 180
+    },
+    "right_ankle": {
+      "zone": "ankle",
+      "side": "right",
+      "functions": {
+        "footwork_right": 100,
+        "leg_right": 85
+      },
+      "vulnerability_milli": 1250,
+      "destruction_threshold": 125,
+      "channel_bias_milli": {
+        "cut": 1050,
+        "pierce": 1000,
+        "blunt": 1250,
+        "penetration": 1050
+      },
+      "severance_outcome": "right_foot_lost",
+      "severance_cut_threshold": 160
+    },
+    "right_foot": {
+      "zone": "foot",
+      "side": "right",
+      "functions": {
+        "footwork_right": 85
+      },
+      "vulnerability_milli": 1150,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1000,
+        "blunt": 1000,
+        "penetration": 1000
+      },
+      "severance_outcome": "right_foot_lost",
+      "severance_cut_threshold": 175
+    },
+    "left_achilles_tendon": {
+      "zone": "ankle",
+      "side": "left",
+      "functions": {
+        "footwork_left": 100,
+        "leg_left": 65
+      },
+      "vulnerability_milli": 1500,
+      "destruction_threshold": 105,
+      "destruction_outcome": "left_achilles_severed",
+      "channel_bias_milli": {
+        "cut": 1750,
+        "pierce": 1250,
+        "blunt": 450,
+        "penetration": 1100
+      },
+      "severance_outcome": "left_achilles_severed",
+      "severance_cut_threshold": 90
+    },
+    "right_achilles_tendon": {
+      "zone": "ankle",
+      "side": "right",
+      "functions": {
+        "footwork_right": 100,
+        "leg_right": 65
+      },
+      "vulnerability_milli": 1500,
+      "destruction_threshold": 105,
+      "destruction_outcome": "right_achilles_severed",
+      "channel_bias_milli": {
+        "cut": 1750,
+        "pierce": 1250,
+        "blunt": 450,
+        "penetration": 1100
+      },
+      "severance_outcome": "right_achilles_severed",
+      "severance_cut_threshold": 90
+    },
+    "carotid_artery": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "circulation": 100
+      },
+      "vulnerability_milli": 1800,
+      "destruction_threshold": 95,
+      "channel_bias_milli": {
+        "cut": 1700,
+        "pierce": 1800,
+        "blunt": 300,
+        "penetration": 1900
+      }
+    },
+    "jugular_vein": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "circulation": 85
+      },
+      "vulnerability_milli": 1700,
+      "destruction_threshold": 100,
+      "channel_bias_milli": {
+        "cut": 1700,
+        "pierce": 1700,
+        "blunt": 300,
+        "penetration": 1800
+      }
+    },
+    "trachea": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "breathing": 100,
+        "voice": 80
+      },
+      "vulnerability_milli": 1500,
+      "destruction_threshold": 110,
+      "channel_bias_milli": {
+        "cut": 1500,
+        "pierce": 1600,
+        "blunt": 700,
+        "penetration": 1700
+      }
+    },
+    "spinal_cord": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "consciousness": 100,
+        "head_control": 100,
+        "movement": 100
+      },
+      "vulnerability_milli": 1200,
+      "destruction_threshold": 115,
+      "channel_bias_milli": {
+        "cut": 400,
+        "pierce": 1500,
+        "blunt": 1000,
+        "penetration": 1800
+      }
+    },
+    "esophagus": {
+      "zone": "neck",
+      "side": "center",
+      "functions": {
+        "swallowing": 100
+      },
+      "vulnerability_milli": 1100,
+      "destruction_threshold": 135,
+      "channel_bias_milli": {
+        "cut": 1000,
+        "pierce": 1400,
+        "blunt": 500,
+        "penetration": 1500
+      }
+    }
+  },
+  "structure_families": {
+    "eye": [
+      "left_eye",
+      "right_eye"
+    ],
+    "wrist": [
+      "left_wrist",
+      "right_wrist"
+    ],
+    "hand": [
+      "left_hand",
+      "right_hand"
+    ],
+    "elbow": [
+      "left_elbow",
+      "right_elbow"
+    ],
+    "axilla": [
+      "left_axilla",
+      "right_axilla"
+    ],
+    "knee": [
+      "left_knee",
+      "right_knee"
+    ],
+    "ankle": [
+      "left_ankle",
+      "right_ankle"
+    ],
+    "neck_vital": [
+      "carotid_artery",
+      "jugular_vein",
+      "trachea",
+      "cervical_spine",
+      "spinal_cord"
+    ],
+    "upper_torso_vital": [
+      "heart",
+      "left_lung",
+      "right_lung"
+    ],
+    "achilles_tendon": [
+      "left_achilles_tendon",
+      "right_achilles_tendon"
+    ]
+  },
+  "lethality": {
+    "catastrophic_brain_trauma": 180,
+    "catastrophic_neck_trauma": 180,
+    "catastrophic_chest_organ_trauma": 190,
+    "unconsciousness_shock": 160,
+    "critical_blood_loss_fraction_milli": 400,
+    "fatal_blood_loss_fraction_milli": 550,
+    "destroyed_circulation_structure_damage": 175,
+    "catastrophic_major_neck_vessel_damage": 95,
+    "catastrophic_airway_damage": 110,
+    "catastrophic_spinal_cord_damage": 115
+  },
+  "vision_rules": {
+    "one_eye_destroyed_visual_perception_loss_pct": 25,
+    "one_eye_destroyed_depth_perception_loss_pct": 45,
+    "both_eyes_destroyed_visual_perception_loss_pct": 100,
+    "blind_side_detection_penalty": 35
+  },
+  "rule": "There is no hit-point pool. Coarse zones route physical contact; named structures own localized functional consequences. Wounds, blood loss, pain, shock, consciousness and derived function are authoritative.",
+  "permanent_outcomes": {
+    "left_eye_destroyed": {
+      "effects": {
+        "vision_left": 100
+      },
+      "status_families": [
+        "blind_left_eye"
+      ]
+    },
+    "right_eye_destroyed": {
+      "effects": {
+        "vision_right": 100
+      },
+      "status_families": [
+        "blind_right_eye"
+      ]
+    },
+    "left_hand_lost": {
+      "effects": {
+        "grip_left": 100,
+        "weapon_control_left": 100,
+        "arm_left": 25
+      },
+      "status_families": [
+        "left_hand_lost"
+      ]
+    },
+    "right_hand_lost": {
+      "effects": {
+        "grip_right": 100,
+        "weapon_control_right": 100,
+        "arm_right": 25
+      },
+      "status_families": [
+        "right_hand_lost"
+      ]
+    },
+    "left_arm_lost": {
+      "effects": {
+        "arm_left": 100,
+        "grip_left": 100,
+        "weapon_control_left": 100
+      },
+      "status_families": [
+        "left_arm_lost",
+        "left_hand_lost"
+      ]
+    },
+    "right_arm_lost": {
+      "effects": {
+        "arm_right": 100,
+        "grip_right": 100,
+        "weapon_control_right": 100
+      },
+      "status_families": [
+        "right_arm_lost",
+        "right_hand_lost"
+      ]
+    },
+    "left_foot_lost": {
+      "effects": {
+        "footwork_left": 100,
+        "leg_left": 55
+      },
+      "status_families": [
+        "left_foot_lost"
+      ]
+    },
+    "right_foot_lost": {
+      "effects": {
+        "footwork_right": 100,
+        "leg_right": 55
+      },
+      "status_families": [
+        "right_foot_lost"
+      ]
+    },
+    "left_leg_lost": {
+      "effects": {
+        "leg_left": 100,
+        "footwork_left": 100
+      },
+      "status_families": [
+        "left_leg_lost",
+        "left_foot_lost"
+      ]
+    },
+    "right_leg_lost": {
+      "effects": {
+        "leg_right": 100,
+        "footwork_right": 100
+      },
+      "status_families": [
+        "right_leg_lost",
+        "right_foot_lost"
+      ]
+    },
+    "left_achilles_severed": {
+      "effects": {
+        "footwork_left": 95,
+        "leg_left": 65
+      },
+      "status_families": [
+        "left_achilles_severed"
+      ]
+    },
+    "right_achilles_severed": {
+      "effects": {
+        "footwork_right": 95,
+        "leg_right": 65
+      },
+      "status_families": [
+        "right_achilles_severed"
+      ]
+    }
+  },
+  "permanent_injury_rule": "Destroyed eyes/limbs/joints/tendons and anatomical severance persist after acute healing. Treatment can stop bleeding, heal tissue and stabilize fractures but cannot regenerate lost anatomy; all functional effects are derived from the retained residual wound.",
+  "physiology": {
+    "acute_max_wake_minutes": 5,
+    "natural_hemostasis_progress_per_hour_milli": {
+      "treated": 300,
+      "minor": 240,
+      "moderate": 120,
+      "severe": 30,
+      "catastrophic": 0
+    },
+    "minor_bleeding_ml_per_min_max": 5,
+    "moderate_bleeding_ml_per_min_max": 20,
+    "catastrophic_bleeding_ml_per_min_min": 60,
+    "blood_regeneration_ml_per_hour_at_70kg": 8,
+    "dying_deadline_minutes": 5
+  }
+}

@@ -1,12 +1,10 @@
 """Production ASGI bootstrap for the single Jianghu campaign.
 
 Production play composes travel/public-place context, reversible combat parley,
-current-revision transition recovery, bounded standing-combat policy, and
-resolved-route-contact reconciliation so exact co-travelers, observer-specific
-combat knowledge, interrupted committed scene chronology, and long delegated
-combat intent remain safe and recoverable from Runtime authority. Historical
-one-off repair anchors are intentionally excluded from live composition once
-their repaired state is part of the canonical campaign baseline.
+current-revision transition recovery, bounded standing-combat policy, resolved
+route-contact reconciliation, and one closed provenance repair for the packaged
+Black Lance battle replay. The repair identity is caller-nonconfigurable and is
+retained only until the affected live campaign has been restored forward.
 """
 from __future__ import annotations
 
@@ -15,6 +13,9 @@ from typing import Any, Mapping
 
 def create_app_from_env():
     from shinobi_runtime.api import app as app_module
+    from shinobi_runtime.api.packaged_battle_repair_anchor import (
+        install_packaged_battle_repair_anchor,
+    )
     from shinobi_runtime.api.transition_operations import TransitionAwareCampaignOperations
     from shinobi_runtime.commands.combat_span_safety import install_production_combat_span_safety
     from shinobi_runtime.martial_world.route_contact_reconciliation import (
@@ -30,11 +31,11 @@ def create_app_from_env():
                 base, self.repository.read_json,
             )
 
-    # Do not install historical one-off repair anchors here. The canonical
-    # packaged baseline already contains their repaired truth, while a fresh
-    # private recovery store intentionally lacks the legacy WAL chain required
-    # to prove those old incidents. The forensic helper remains importable for
-    # explicit disposable-copy investigations and regression tests only.
+    # This is not a generic historical restore surface. It recognizes one fixed
+    # packaged root and one fixed historical incident, verifies both Git
+    # provenances plus every later state-changing first-parent commit, and then
+    # restores only the incident's immutable pre-fight parent at a new revision.
+    install_packaged_battle_repair_anchor()
 
     # Campaign-specific standing combat intent is composed before the service
     # starts accepting commands. The exact reducer remains deterministic; the

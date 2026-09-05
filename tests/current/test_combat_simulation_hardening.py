@@ -153,6 +153,59 @@ def test_empty_standing_frontier_becomes_stagnation_checkpoint():
     assert result["narrative_projection"]["scope_stop_reason"] == "stagnation_checkpoint"
 
 
+def test_ally_support_motion_counts_as_material_standing_progress():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return _standing_result([
+            {
+                "actor_ref": "medic",
+                "intended_ref": "casualty",
+                "action_kind": "ally_support",
+                "task": "treat",
+                "result": "support_treatment_approach",
+                "movement": {
+                    "start_x_mm": 0,
+                    "start_y_mm": 0,
+                    "end_x_mm": 500,
+                    "end_y_mm": 0,
+                    "duration_ms": 1000,
+                },
+            }
+        ])
+
+    result = stagnation_checkpoint_span(
+        base,
+        until_resolution=True,
+        exchange_count=None,
+        duration_seconds=None,
+    )
+
+    assert result["scope_stop_reason"] == "execution_frontier"
+    assert result["continuation_required"] is True
+
+
+def test_blocked_ally_support_does_not_fake_material_progress():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return _standing_result([
+            {
+                "actor_ref": "medic",
+                "intended_ref": "casualty",
+                "action_kind": "ally_support",
+                "task": "treat",
+                "result": "support_path_blocked",
+            }
+        ])
+
+    result = stagnation_checkpoint_span(
+        base,
+        until_resolution=True,
+        exchange_count=None,
+        duration_seconds=None,
+    )
+
+    assert result["scope_stop_reason"] == "stagnation_checkpoint"
+    assert result["continuation_required"] is False
+
+
 def test_material_wound_keeps_normal_standing_continuation():
     def base(**_kwargs: Any) -> Mapping[str, Any]:
         return _standing_result([

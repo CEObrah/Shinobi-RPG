@@ -4,9 +4,10 @@ The exact resolver is deterministic and pure at the command-planning boundary,
 so a standing-intent span may be re-evaluated with a smaller exchange frontier
 before any transaction is committed. This module keeps long standing intents
 bounded, returns control after protected player-decision casualties, preserves
-rapid lethal-pursuit semantics, and prevents a delegated ranged/thrown choice
-from needlessly replacing available melee while the chosen target is already in
-immediate close pressure.
+rapid lethal-pursuit semantics, prevents a delegated ranged/thrown choice from
+needlessly replacing available melee while the chosen target is already in
+immediate close pressure, and prevents defensive reactions from being recorded
+before the incoming attack has physically started.
 """
 from __future__ import annotations
 
@@ -198,6 +199,55 @@ def close_pressure_action_for(
     return base_choice
 
 
+def pending_action_record_with_start(
+    base_recorder: Callable[[Any], Mapping[str, Any]], action: Any
+) -> dict[str, Any]:
+    """Preserve the physical action-start frontier in transient pending state."""
+
+    row = copy.deepcopy(dict(base_recorder(action)))
+    row["start_at_ms"] = int(action.start_at_ms)
+    return row
+
+
+def physically_bounded_defensive_interruption(
+    base_recorder: Callable[..., None],
+    *,
+    combat: dict[str, Any],
+    defender_ref: str,
+    attacker_ref: str,
+    response: str,
+    response_start_ms: int,
+    response_contact_ms: int,
+) -> None:
+    """Never back-date a defense before the incoming attack physically starts.
+
+    Exact combat estimates a response start by subtracting reaction latency from
+    contact time. Under very fast defenders that estimate can precede the
+    attacker's own scheduled start. Because defense-start time can cancel the
+    defender's pending attack, that creates a retroactive/pre-cognitive offense
+    starvation loop under multi-attacker pressure. Pending action records carry
+    the attacker's real start frontier so the reaction can be bounded to causal
+    time without changing contact, defense quality, or later interruption rules.
+    """
+
+    bounded_start = int(response_start_ms)
+    pending = combat.get("_pending_actions", {}) if isinstance(combat.get("_pending_actions"), Mapping) else {}
+    attacker_action = pending.get(attacker_ref) if isinstance(pending, Mapping) else None
+    if isinstance(attacker_action, Mapping):
+        raw_start = attacker_action.get("start_at_ms")
+        if isinstance(raw_start, int) and not isinstance(raw_start, bool):
+            bounded_start = max(bounded_start, int(raw_start))
+    bounded_start = min(bounded_start, int(response_contact_ms))
+    base_recorder(
+        combat,
+        defender_ref=defender_ref,
+        attacker_ref=attacker_ref,
+        response=response,
+        response_start_ms=bounded_start,
+        response_contact_ms=int(response_contact_ms),
+    )
+
+
 def _has_protected_player_decision(result: Mapping[str, Any]) -> bool:
     projection = result.get("narrative_projection")
     beats = projection.get("beats", []) if isinstance(projection, Mapping) else []
@@ -329,8 +379,26 @@ def install_production_combat_span_safety() -> None:
     """Install the campaign production policy once, without changing saved doctrine."""
 
     from shinobi_runtime.commands import jianghu_extended as extended
+    from shinobi_runtime.martial_world import exact_combat as exact
 
-    if bool(getattr(extended, "_production_combat_span_safety_installed", False)):
+    extended_installed = bool(getattr(extended, "_production_combat_span_safety_installed", False))
+    timing_installed = bool(getattr(exact, "_production_defense_timing_safety_installed", False))
+
+    if not timing_installed:
+        base_pending_action_recorder = exact._pending_action_record
+        base_defensive_interruption_recorder = exact._record_defensive_interruption
+
+        def pending_action_recorder(action: Any) -> dict[str, Any]:
+            return pending_action_record_with_start(base_pending_action_recorder, action)
+
+        def defensive_interruption_recorder(**kwargs: Any) -> None:
+            physically_bounded_defensive_interruption(base_defensive_interruption_recorder, **kwargs)
+
+        exact._pending_action_record = pending_action_recorder
+        exact._record_defensive_interruption = defensive_interruption_recorder
+        exact._production_defense_timing_safety_installed = True
+
+    if extended_installed:
         return
 
     base_target_selector = extended.default_target_for
@@ -356,5 +424,7 @@ __all__ = [
     "bounded_standing_span",
     "close_pressure_action_for",
     "install_production_combat_span_safety",
+    "pending_action_record_with_start",
+    "physically_bounded_defensive_interruption",
     "rapid_lethal_target_for",
 ]

@@ -13,6 +13,11 @@ physically started before the brace response begins. A brace that starts first m
 pre-empt a future offensive startup. Evades, repositions, parries, deflections, blocks
 and counter-intercepts retain the existing interruption path because each can plausibly
 consume the body, weapon or movement needed for the queued offense.
+
+The exact resolver's compact pending-action record historically began at commitment,
+not startup. Brace continuity needs the earlier physical startup timestamp, so this
+integrity layer also carries ``start_at_ms`` from the scheduled action into that bounded
+transient record. The record remains exchange-local and is never campaign state.
 """
 from __future__ import annotations
 
@@ -20,6 +25,15 @@ from typing import Any, Callable, Mapping
 
 
 _NON_INTERRUPTING_STARTED_RESPONSES = frozenset({"brace"})
+
+
+def pending_action_record_with_start(
+    base_recorder: Callable[[Any], Mapping[str, Any]], action: Any
+) -> dict[str, Any]:
+    """Extend the exact transient pending record with physical startup timing."""
+    row = dict(base_recorder(action))
+    row["start_at_ms"] = int(getattr(action, "start_at_ms"))
+    return row
 
 
 def _started_pending_offense(
@@ -72,13 +86,22 @@ def install_combat_pressure_integrity() -> None:
 
     if bool(getattr(exact, "_combat_pressure_integrity_installed", False)):
         return
-    base_recorder = exact._record_defensive_interruption
+    base_pending_recorder = exact._pending_action_record
+    base_defense_recorder = exact._record_defensive_interruption
+
+    def pending_action_recorder(action: Any) -> dict[str, Any]:
+        return pending_action_record_with_start(base_pending_recorder, action)
 
     def defensive_interruption_recorder(combat: dict[str, Any], **kwargs: Any) -> None:
-        interruption_aware_defense_record(base_recorder, combat=combat, **kwargs)
+        interruption_aware_defense_record(base_defense_recorder, combat=combat, **kwargs)
 
+    exact._pending_action_record = pending_action_recorder
     exact._record_defensive_interruption = defensive_interruption_recorder
     exact._combat_pressure_integrity_installed = True
 
 
-__all__ = ["install_combat_pressure_integrity", "interruption_aware_defense_record"]
+__all__ = [
+    "install_combat_pressure_integrity",
+    "interruption_aware_defense_record",
+    "pending_action_record_with_start",
+]

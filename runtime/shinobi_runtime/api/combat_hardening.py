@@ -108,9 +108,20 @@ def _event_is_material_progress(event: Mapping[str, Any]) -> bool:
     if result in {
         "dead", "incapacitated", "escaped", "withdrew_from_combat",
         "withdrawal_in_progress", "support_treatment_completed",
+        # Keep legacy names readable for any older transition evidence.
         "support_extract_moved", "support_reached_target",
     }:
         return True
+    if str(event.get("action_kind") or "") == "ally_support":
+        movement = event.get("movement")
+        if isinstance(movement, Mapping):
+            return True
+        if result in {
+            "support_reached", "support_approach", "support_protecting",
+            "support_extraction_secured", "support_treatment_approach",
+            "support_treatment_started", "support_treatment_in_progress",
+        }:
+            return True
     physiology = event.get("physiology") if isinstance(event.get("physiology"), Mapping) else {}
     if str(physiology.get("status") or "") in {"dead", "incapacitated", "unconscious"}:
         return True

@@ -153,7 +153,10 @@ def test_empty_standing_frontier_becomes_stagnation_checkpoint():
     assert result["narrative_projection"]["scope_stop_reason"] == "stagnation_checkpoint"
 
 
-def test_ally_support_motion_counts_as_material_standing_progress():
+def test_ally_support_motion_remains_locally_observable_progress_for_base_hardening():
+    """Base hardening may observe support motion; the production convergence guard
+    decides whether that motion actually justifies global combat auto-continuation.
+    """
     def base(**_kwargs: Any) -> Mapping[str, Any]:
         return _standing_result([
             {

@@ -1,11 +1,11 @@
-"""Production ASGI bootstrap for the single Jianghu campaign.
+"""Environment-built production application for the single Jianghu campaign.
 
 Production play composes travel/public-place context, reversible combat parley,
 current-revision transition recovery, bounded standing-combat policy, combat
-simulation hardening, and resolved-route-contact reconciliation. Historical
-repair implementations remain available for forensic tests, but one-time
-campaign repair anchors are not installed into normal production composition
-after their repair is complete.
+simulation hardening, combat pressure integrity, combat liveness integrity, and
+resolved-route-contact reconciliation. Historical repair implementations remain
+available for forensic tests, but one-time campaign repair anchors are not installed
+into normal production composition after their repair is complete.
 """
 from __future__ import annotations
 
@@ -18,6 +18,8 @@ def create_app_from_env():
         CombatHardenedCampaignOperations,
         install_combat_simulation_hardening,
     )
+    from shinobi_runtime.api.combat_pressure_integrity import install_combat_pressure_integrity
+    from shinobi_runtime.api.combat_liveness_integrity import install_combat_liveness_integrity
     from shinobi_runtime.martial_world.route_contact_reconciliation import (
         normalize_resolved_route_contact_context,
     )
@@ -31,7 +33,11 @@ def create_app_from_env():
                 base, self.repository.read_json,
             )
 
+    # Order matters. Liveness wraps the final hardened span/disengage surfaces so
+    # it evaluates the same production behavior that will actually commit.
     install_combat_simulation_hardening()
+    install_combat_pressure_integrity()
+    install_combat_liveness_integrity()
 
     app_module.CampaignOperations = RouteReconciledCampaignOperations
     return app_module.create_app_from_env()

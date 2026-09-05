@@ -34,6 +34,13 @@ jobs:
           set +e
           pytest -q \
             tests/current/test_combat_simulation_hardening.py \
+            tests/current/test_combat_command_wrapper.py \
+            tests/current/test_player_retinue_doctrine.py \
+            tests/current/test_combat_rally_and_approach_budget.py \
+            tests/current/test_combat_defense_timing_integrity.py \
+            tests/current/test_field_stabilization_command.py \
+            tests/current/test_live_active_combat_preview_contract.py \
+            tests/current/test_live_combat_ally_support.py \
             tests/current/test_person_sheet_trauma_projection.py \
             tests/current/test_packaged_battle_repair_anchor.py \
             tests/current/test_pre_root_historical_repair.py \

@@ -77,7 +77,7 @@ def separating_retreat_corridors(
     """Return the safest currently open retreat corridor first and exclusively.
 
     ``_disengage_step`` historically sorts its candidates by raw angle and takes the
-    first one.  Returning one best lawful candidate preserves that resolver contract
+    first one. Returning one best lawful candidate preserves that resolver contract
     while replacing the accidental global eastward preference with hostile separation.
     Outside a live disengage call the geometry helper is unchanged.
     """
@@ -106,8 +106,6 @@ def separating_retreat_corridors(
             _distance_xy(ex, ey, int(pos.get("x_mm", 0)), int(pos.get("y_mm", 0)))
             for pos in hostiles
         ]
-        # First maximize the nearest hostile, then overall clearance.  Final angle
-        # tie-break keeps the result deterministic without making angle the tactic.
         return (min(distances), sum(distances), -int(row.get("angle_mdeg", 0)))
 
     return (max(rows, key=score),)
@@ -132,15 +130,12 @@ def _genuine_pursuit(combat: Mapping[str, Any], actor_ref: str) -> bool:
             return True
         if distance > _PURSUIT_HORIZON_MM:
             continue
-
-        # Velocity toward the withdrawing actor is direct physical evidence of pursuit.
         vx, vy = int(pos.get("vx_mmps", 0)), int(pos.get("vy_mmps", 0))
         toward_dot = (ax - hx) * vx + (ay - hy) * vy
         if toward_dot > max(1, distance) * 200:
             return True
         if str(pos.get("stance") or "") == "approaching" and toward_dot > 0:
             return True
-
         row = pending.get(ref) if isinstance(pending, Mapping) else None
         if isinstance(row, Mapping) and str(row.get("target_ref") or "") == actor_ref:
             action_kind = str(row.get("action_kind") or row.get("kind") or "")
@@ -166,9 +161,6 @@ def disengage_with_integrity(base: Callable[..., Mapping[str, Any]], **kwargs: A
     nearest = max(0, int(movement.get("nearest_enemy_mm", 0) or 0))
     if nearest < _ESCAPE_CLEAR_MM or _genuine_pursuit(combat, actor_ref):
         return result
-
-    # The base step has already committed the lawful movement.  Only repair the
-    # escape classification that a stale pending-target veto could incorrectly deny.
     if isinstance(combat, dict):
         states = combat.get("combatants", {}) if isinstance(combat.get("combatants"), Mapping) else {}
         state = states.get(actor_ref) if isinstance(states, Mapping) else None
@@ -289,7 +281,6 @@ def resolution_progress_guard(
     events = result.get("events", []) if isinstance(result.get("events"), list) else []
     if _resolution_progress(before, after, [event for event in events if isinstance(event, Mapping)]):
         return result
-
     out = copy.deepcopy(dict(result))
     out["scope_stop_reason"] = "stagnation_checkpoint"
     out["continuation_required"] = False

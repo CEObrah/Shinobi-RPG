@@ -4,7 +4,7 @@ import copy
 from datetime import datetime
 from typing import Any, Mapping, Optional
 from shinobi_runtime.store import RepositoryStore
-from shinobi_runtime.martial_world.health import combat_status_families, functional_penalties, vision_state
+from shinobi_runtime.martial_world import health as health_model
 from shinobi_runtime.martial_world.live_state import roster_person
 from shinobi_runtime.martial_world.faction_state import read_faction, roster_path
 from shinobi_runtime.martial_world.person_state import hydrate_roster_state
@@ -113,9 +113,9 @@ class RepositoryPersonSheetResolver:
         health = person.get("health", {}) if isinstance(person.get("health"), Mapping) else {}
         wounds = health.get("injuries", []) if isinstance(health.get("injuries"), list) else []
         person["derived_condition"] = {
-            "vision": vision_state(wounds),
-            "functional_penalties": functional_penalties(wounds),
-            "combat_status_families": list(combat_status_families(wounds)),
+            "vision": health_model.vision_state(wounds),
+            "functional_penalties": health_model.functional_penalties(wounds),
+            "combat_status_families": list(health_model.combat_status_families(wounds)),
         }
         retinues = self._standing_retinues_for_player(person_id)
         if retinues:

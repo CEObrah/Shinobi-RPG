@@ -34,6 +34,7 @@ jobs:
           set +e
           pytest -q \
             tests/current/test_combat_simulation_hardening.py \
+            tests/current/test_person_sheet_trauma_projection.py \
             tests/current/test_packaged_battle_repair_anchor.py \
             tests/current/test_pre_root_historical_repair.py \
             tests/current/test_resolved_route_contact_reconciliation.py \

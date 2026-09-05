@@ -391,8 +391,12 @@ def install_production_combat_span_safety() -> None:
         def pending_action_recorder(action: Any) -> dict[str, Any]:
             return pending_action_record_with_start(base_pending_action_recorder, action)
 
-        def defensive_interruption_recorder(**kwargs: Any) -> None:
-            physically_bounded_defensive_interruption(base_defensive_interruption_recorder, **kwargs)
+        def defensive_interruption_recorder(combat: dict[str, Any], **kwargs: Any) -> None:
+            physically_bounded_defensive_interruption(
+                base_defensive_interruption_recorder,
+                combat=combat,
+                **kwargs,
+            )
 
         exact._pending_action_record = pending_action_recorder
         exact._record_defensive_interruption = defensive_interruption_recorder

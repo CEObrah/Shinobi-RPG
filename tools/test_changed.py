@@ -21,6 +21,7 @@ CORE = {
     "tests/current/test_main_branch_bootstrap.py",
     "tests/current/test_world_invariants.py",
     "tests/current/test_release_surface.py",
+    "tests/current/test_combat_defense_timing_integrity.py",
 }
 COMBAT = {
     "tests/current/test_autonomous_lethality.py",

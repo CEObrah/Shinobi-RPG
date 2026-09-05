@@ -3,21 +3,37 @@
 A defensive response and an offensive interruption are related but not identical.
 The physical-defense layer already distinguishes a simple brace from responses that
 meaningfully contest the attacker's or defender's weapon line. Treating every detected
-response as a full cancellation of the defender's pending offense creates an artificial
-turn-lock under repeated incoming attacks, especially in spear-heavy group combat.
+response as a full cancellation of offense that is already underway creates an
+artificial turn-lock under repeated incoming attacks, especially in spear-heavy group
+combat.
 
-This module keeps the existing causal timing clamp and all active-defense costs. It only
-prevents a low-disruption stationary brace from erasing a pending attack. Evades,
-repositions, parries, deflections, blocks and counter-intercepts retain the existing
-interruption path because each can plausibly consume the body, weapon or movement needed
-for the queued offense.
+This module keeps the existing causal timing clamp and all active-defense costs. A
+low-disruption stationary brace preserves a pending attack only when that attack has
+physically started before the brace response begins. A brace that starts first may still
+pre-empt a future offensive startup. Evades, repositions, parries, deflections, blocks
+and counter-intercepts retain the existing interruption path because each can plausibly
+consume the body, weapon or movement needed for the queued offense.
 """
 from __future__ import annotations
 
-from typing import Any, Callable
+from typing import Any, Callable, Mapping
 
 
-_NON_INTERRUPTING_RESPONSES = frozenset({"brace"})
+_NON_INTERRUPTING_STARTED_RESPONSES = frozenset({"brace"})
+
+
+def _started_pending_offense(
+    combat: Mapping[str, Any], *, defender_ref: str, response_start_ms: int
+) -> bool:
+    pending = combat.get("_pending_actions", {}) if isinstance(combat.get("_pending_actions"), Mapping) else {}
+    row = pending.get(defender_ref) if isinstance(pending, Mapping) else None
+    if not isinstance(row, Mapping):
+        return False
+    start_at = int(row.get("start_at_ms", 10**18))
+    release_at = int(row.get("release_at_ms", -1))
+    started = start_at <= int(response_start_ms)
+    not_finished = release_at < 0 or int(response_start_ms) < release_at
+    return bool(started and not_finished)
 
 
 def interruption_aware_defense_record(
@@ -30,8 +46,15 @@ def interruption_aware_defense_record(
     response_start_ms: int,
     response_contact_ms: int,
 ) -> None:
-    """Record only defensive responses that can consume the pending offense."""
-    if str(response) in _NON_INTERRUPTING_RESPONSES:
+    """Record defenses unless a low-disruption brace meets started offense."""
+    if (
+        str(response) in _NON_INTERRUPTING_STARTED_RESPONSES
+        and _started_pending_offense(
+            combat,
+            defender_ref=defender_ref,
+            response_start_ms=int(response_start_ms),
+        )
+    ):
         return
     base_recorder(
         combat,

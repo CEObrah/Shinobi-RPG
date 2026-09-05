@@ -1,23 +1,22 @@
-"""Target-frontage correction for autonomous exact-combat team plans.
+"""Finite melee-frontage policy for autonomous exact-combat team plans.
 
-Physical exact combat already traces bodies, obstacles, and friendly attack lanes.
-The tactical planner can nevertheless over-concentrate a whole team on one primary
-opponent before those downstream collision checks run. Long-reach melee weapons make
-that planning defect especially visible because more attackers begin inside nominal
-weapon reach.
+Exact combat already traces bodies, obstacles, weapon lanes and friendly bodies. The
+team planner can still over-concentrate autonomous melee actors on one target before
+those downstream checks run, especially with long-reach spears. This module treats the
+space around a defender as finite melee frontage while preserving real multi-attacker
+pressure from genuinely distinct directions.
 
-This module keeps reach physical and keeps multi-attacker pressure, but treats the
-space around a defender as finite melee frontage. One autonomous melee assignment may
-occupy each broad target-relative angular sector in a plan. Additional attackers must
-use a different lawful target or hold until geometry changes. A genuinely surrounded
-defender can therefore still be pressured from several distinct directions; this is
-not a global attacker-count cap.
+A broad target-relative angular sector may contain one proactive autonomous melee
+assignment. Extra proactive attackers must select another lawful target or wait for the
+frontage to change. Generic tactical ``hold`` roles are deliberately not proactive
+attacks. Player-retinue sector holds have separate runtime semantics and are not planned
+through this generic wrapper.
 
-Frontage is deterministic planning policy, not durable state of its own. The returned
-plan therefore persists only the ordinary assignment consequences (target selection
-and hold/attack posture) already registered by the combat-state contract. Sector
-numbers and policy diagnostics remain local to this planning pass so adding or tuning
-the algorithm cannot silently expand mutable-state schema.
+Frontage is deterministic planning policy, not a second durable authority. Only the
+ordinary registered assignment fields are changed. Current enemy plans are re-evaluated
+from current geometry at each exact exchange so a stale plan cannot preserve a dogpile
+after bodies move, while offensive assignments previously forced to wait can re-enter
+when a lane actually opens.
 """
 from __future__ import annotations
 
@@ -30,6 +29,8 @@ from . import team_tactics
 _INSTALLED = False
 _FRONTAGE_SECTOR_COUNT = 8
 _RANGED_ROLES = frozenset({"ranged_denial", "shape", "track"})
+_PASSIVE_HOLD_ROLES = frozenset({"anchor", "screen", "protect", "reserve", "medical_support"})
+_CAPTURE_ROLES = frozenset({"control", "intercept", "exploit"})
 
 
 def _skill(record: Mapping[str, Any], key: str) -> int:
@@ -46,14 +47,18 @@ def _skill(record: Mapping[str, Any], key: str) -> int:
 
 def _uses_melee_frontage(assignment: Mapping[str, Any], record: Mapping[str, Any]) -> bool:
     preferred = str(assignment.get("preferred_action") or "attack")
-    if preferred == "hold":
-        return False
     role = str(assignment.get("role") or "")
+    # Generic passive tactical roles really hold. Offensive roles may temporarily
+    # carry preferred_action=hold because an earlier frontage pass had no lane;
+    # those rows must be reconsidered when geometry changes.
+    if preferred == "hold" and role in _PASSIVE_HOLD_ROLES:
+        return False
+    if preferred in {"player_decides", "medical_support_hold"}:
+        return False
     melee = max(_skill(record, "sword"), _skill(record, "spear"), _skill(record, "unarmed"))
     ranged = max(_skill(record, "bow"), _skill(record, "hidden_weapons"))
-    # Roles explicitly intended to work at range should not consume melee frontage
-    # when the member is actually a stronger ranged fighter. Everyone else who is
-    # being told to attack/capture competes for physical close-combat access.
+    # Roles explicitly intended to work at range do not consume melee frontage
+    # when the member is actually a stronger ranged fighter.
     return not (role in _RANGED_ROLES and ranged > melee)
 
 
@@ -68,6 +73,24 @@ def _frontage_sector(
         return None
     bearing = facing_to_target_mdeg(target, attacker)
     return (bearing * _FRONTAGE_SECTOR_COUNT // 360_000) % _FRONTAGE_SECTOR_COUNT
+
+
+def _distance_band(distance_mm: int) -> int:
+    """Broad local-engagement band used before tactical target preference.
+
+    Exact target selection is geometry-first. Frontage must make the same kind of
+    distinction or a remote nominal assignment can later collapse onto a nearby body
+    and bypass the sector allocation. These are planning envelopes, not weapon reach;
+    exact contact remains owned by the physical resolver.
+    """
+    distance = max(0, int(distance_mm))
+    if distance <= 3_000:
+        return 0
+    if distance <= 8_000:
+        return 1
+    if distance <= 20_000:
+        return 2
+    return 3
 
 
 def _ordered_targets(
@@ -91,10 +114,13 @@ def _ordered_targets(
             continue
         candidates.append(ref)
 
-    def key(ref: str) -> tuple[int, int, int, int, str]:
+    def key(ref: str) -> tuple[int, int, int, int, int, str]:
         target = positions[ref]
         distance = planar_distance_mm(attacker, target)
+        # Lower geometry bands outrank team preference. Within a comparable
+        # physical envelope, preserve the planner's intended target and threat.
         return (
+            -_distance_band(distance),
             1 if ref == original_target_ref else 0,
             1 if ref == primary_ref else 0,
             team_tactics.threat_score(records[ref]),
@@ -105,6 +131,18 @@ def _ordered_targets(
     return sorted(candidates, key=key, reverse=True)
 
 
+def _reactivated_preference(plan: Mapping[str, Any], assignment: Mapping[str, Any]) -> str:
+    preferred = str(assignment.get("preferred_action") or "attack")
+    if preferred != "hold":
+        return preferred
+    role = str(assignment.get("role") or "")
+    if role in _PASSIVE_HOLD_ROLES:
+        return "hold"
+    if str(plan.get("objective_kind") or "") == "capture" and role in _CAPTURE_ROLES:
+        return "capture"
+    return "attack"
+
+
 def apply_frontage_to_plan(
     plan: Mapping[str, Any],
     *,
@@ -112,12 +150,7 @@ def apply_frontage_to_plan(
     records: Mapping[str, Mapping[str, Any]],
     positions: Mapping[str, Mapping[str, Any]],
 ) -> dict[str, Any]:
-    """Return a plan whose autonomous melee assignments respect target frontage.
-
-    The policy is realized by changing only the assignment fields the ordinary
-    team-plan schema already owns: ``target_ref`` and ``preferred_action``.
-    Recomputable sector/debug annotations deliberately do not escape this layer.
-    """
+    """Return a plan whose proactive autonomous melee assignments respect frontage."""
     out = copy.deepcopy(dict(plan))
     assignments = out.get("assignments")
     if not isinstance(assignments, Mapping) or not assignments:
@@ -139,6 +172,9 @@ def apply_frontage_to_plan(
             adjusted[attacker_ref] = assignment
             continue
 
+        # A prior frontage wait is reversible. Re-establish the actor's ordinary
+        # proactive posture before testing the current geometry.
+        assignment["preferred_action"] = _reactivated_preference(out, assignment)
         original_raw = assignment.get("target_ref")
         original_target = original_raw if isinstance(original_raw, str) else None
         chosen_ref: str | None = None
@@ -159,8 +195,7 @@ def apply_frontage_to_plan(
             break
 
         if chosen_ref is None or chosen_sector is None:
-            # No distinct physical attack sector is presently available. Holding
-            # preserves pressure without pretending another body/weapon lane exists.
+            # Generic team hold is a true non-proactive wait in exact combat.
             assignment["preferred_action"] = "hold"
             adjusted[attacker_ref] = assignment
             continue
@@ -169,8 +204,6 @@ def apply_frontage_to_plan(
         assignment["target_ref"] = chosen_ref
         adjusted[attacker_ref] = assignment
 
-    # Preserve any unusual non-string assignment keys rather than silently dropping
-    # them; normal planner output is string-keyed, but this layer should be conservative.
     for key, value in assignments.items():
         if key not in adjusted:
             adjusted[key] = copy.deepcopy(value)
@@ -178,32 +211,87 @@ def apply_frontage_to_plan(
     return out
 
 
+def _player_side(combat: Mapping[str, Any], player_ref: str) -> str | None:
+    sides = combat.get("sides", {}) if isinstance(combat.get("sides"), Mapping) else {}
+    for side_ref, members in sides.items():
+        if isinstance(members, list) and player_ref in members:
+            return str(side_ref)
+    return None
+
+
+def reapply_enemy_frontage(
+    combat: Mapping[str, Any], *, people: Mapping[str, Mapping[str, Any]], player_ref: str
+) -> dict[str, Any]:
+    """Refresh autonomous enemy frontage from the current local geometry.
+
+    The player side is excluded because its stored plan can already contain the
+    separate player-retinue overlay. That overlay has its own agency and formation
+    semantics and must not be rewritten by generic enemy-team policy.
+    """
+    out = copy.deepcopy(dict(combat))
+    team_plans = out.get("team_plans")
+    positions = out.get("positions")
+    if not isinstance(team_plans, dict) or not isinstance(positions, Mapping):
+        return out
+    player_side = _player_side(out, player_ref)
+    for side_ref, raw_plan in list(team_plans.items()):
+        if str(side_ref) == player_side or not isinstance(raw_plan, Mapping):
+            continue
+        known = raw_plan.get("known_enemy_refs", ())
+        if not isinstance(known, (list, tuple)):
+            continue
+        team_plans[side_ref] = apply_frontage_to_plan(
+            raw_plan,
+            known_enemy_refs=[str(ref) for ref in known if isinstance(ref, str)],
+            records=people,
+            positions=positions,
+        )
+    return out
+
+
 def install() -> None:
-    """Install frontage correction on both public and exact-combat planner references."""
+    """Install planner and current-geometry frontage correction for exact combat."""
     global _INSTALLED
     if _INSTALLED:
         return
     from ..martial_world import exact_combat as exact
 
-    original = exact.plan_team_exchange
-    if getattr(original, "_frontage_targeting", False):
-        _INSTALLED = True
-        return
+    original_plan = exact.plan_team_exchange
+    if not getattr(original_plan, "_frontage_targeting", False):
+        def plan_with_frontage(**kwargs: Any) -> dict[str, Any]:
+            plan = original_plan(**kwargs)
+            return apply_frontage_to_plan(
+                plan,
+                known_enemy_refs=kwargs.get("known_enemy_refs", ()),
+                records=kwargs.get("records", {}),
+                positions=kwargs.get("positions", {}),
+            )
 
-    def plan_with_frontage(**kwargs: Any) -> dict[str, Any]:
-        plan = original(**kwargs)
-        return apply_frontage_to_plan(
-            plan,
-            known_enemy_refs=kwargs.get("known_enemy_refs", ()),
-            records=kwargs.get("records", {}),
-            positions=kwargs.get("positions", {}),
-        )
+        plan_with_frontage._frontage_targeting = True  # type: ignore[attr-defined]
+        exact.plan_team_exchange = plan_with_frontage
+        if team_tactics.plan_team_exchange is original_plan:
+            team_tactics.plan_team_exchange = plan_with_frontage
 
-    plan_with_frontage._frontage_targeting = True  # type: ignore[attr-defined]
-    exact.plan_team_exchange = plan_with_frontage
-    if team_tactics.plan_team_exchange is original:
-        team_tactics.plan_team_exchange = plan_with_frontage
+    original_resolve = exact.resolve_exchange
+    if not getattr(original_resolve, "_frontage_refresh", False):
+        def resolve_with_frontage(**kwargs: Any) -> Mapping[str, Any]:
+            combat = kwargs.get("combat")
+            people = kwargs.get("people")
+            player_ref = str(kwargs.get("player_ref") or "")
+            if isinstance(combat, Mapping) and isinstance(people, Mapping) and player_ref:
+                adjusted = reapply_enemy_frontage(combat, people=people, player_ref=player_ref)
+                if bool(kwargs.get("mutate_state")) and isinstance(combat, dict):
+                    combat.clear()
+                    combat.update(adjusted)
+                    kwargs["combat"] = combat
+                else:
+                    kwargs["combat"] = adjusted
+            return original_resolve(**kwargs)
+
+        resolve_with_frontage._frontage_refresh = True  # type: ignore[attr-defined]
+        exact.resolve_exchange = resolve_with_frontage
+
     _INSTALLED = True
 
 
-__all__ = ["apply_frontage_to_plan", "install"]
+__all__ = ["apply_frontage_to_plan", "install", "reapply_enemy_frontage"]

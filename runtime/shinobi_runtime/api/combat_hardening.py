@@ -108,9 +108,20 @@ def _event_is_material_progress(event: Mapping[str, Any]) -> bool:
     if result in {
         "dead", "incapacitated", "escaped", "withdrew_from_combat",
         "withdrawal_in_progress", "support_treatment_completed",
+        # Keep legacy names readable for any older transition evidence.
         "support_extract_moved", "support_reached_target",
     }:
         return True
+    if str(event.get("action_kind") or "") == "ally_support":
+        movement = event.get("movement")
+        if isinstance(movement, Mapping):
+            return True
+        if result in {
+            "support_reached", "support_approach", "support_protecting",
+            "support_extraction_secured", "support_treatment_approach",
+            "support_treatment_started", "support_treatment_in_progress",
+        }:
+            return True
     physiology = event.get("physiology") if isinstance(event.get("physiology"), Mapping) else {}
     if str(physiology.get("status") or "") in {"dead", "incapacitated", "unconscious"}:
         return True
@@ -171,6 +182,72 @@ def stagnation_checkpoint_span(
             )
             if rule not in rules:
                 rules.append(rule)
+    return out
+
+
+def preserve_player_support_task_provenance(
+    base_resolver: Callable[..., Mapping[str, Any]], **kwargs: Any
+) -> Mapping[str, Any]:
+    """Keep player-authored persistent support tasks tied to the exact issuer.
+
+    The core treatment step has a defensive fallback that can create a task when
+    one is unexpectedly absent. Older code stamped that fallback with the literal
+    string ``player``. Persistent treatment recovery compares ``issued_by_ref``
+    to the exact player person ID, so that placeholder can orphan an otherwise
+    valid medic objective at the next exchange. Normalize only support tasks that
+    correspond to a concrete treatment order in this exact resolver call.
+    """
+
+    result = base_resolver(**kwargs)
+    player_ref = str(kwargs.get("player_ref") or "")
+    raw_orders = kwargs.get("player_ally_orders")
+    if not player_ref or not isinstance(raw_orders, Sequence) or isinstance(raw_orders, (str, bytes, bytearray)):
+        return result
+
+    ordered: dict[str, str] = {}
+    for raw in raw_orders:
+        if not isinstance(raw, Mapping) or str(raw.get("task") or "") != "treat":
+            continue
+        actor_ref = str(raw.get("actor_ref") or "")
+        target_ref = str(raw.get("target_ref") or "")
+        if actor_ref and target_ref:
+            ordered[actor_ref] = target_ref
+    if not ordered:
+        return result
+
+    combat_after = result.get("combat_after") if isinstance(result, Mapping) else None
+    states = combat_after.get("combatants") if isinstance(combat_after, Mapping) else None
+    if not isinstance(states, Mapping):
+        return result
+
+    needs_fix = False
+    for actor_ref, target_ref in ordered.items():
+        state = states.get(actor_ref)
+        support = state.get("support_task") if isinstance(state, Mapping) else None
+        if not isinstance(support, Mapping):
+            continue
+        if str(support.get("task") or "") != "treat" or str(support.get("target_ref") or "") != target_ref:
+            continue
+        if str(support.get("issued_by_ref") or "") in {"", "player"}:
+            needs_fix = True
+            break
+    if not needs_fix:
+        return result
+
+    out = copy.deepcopy(dict(result))
+    out_combat = out.get("combat_after")
+    out_states = out_combat.get("combatants") if isinstance(out_combat, Mapping) else None
+    if not isinstance(out_states, dict):
+        return result
+    for actor_ref, target_ref in ordered.items():
+        state = out_states.get(actor_ref)
+        support = state.get("support_task") if isinstance(state, dict) else None
+        if not isinstance(support, dict):
+            continue
+        if str(support.get("task") or "") != "treat" or str(support.get("target_ref") or "") != target_ref:
+            continue
+        if str(support.get("issued_by_ref") or "") in {"", "player"}:
+            support["issued_by_ref"] = player_ref
     return out
 
 
@@ -351,6 +428,23 @@ def install_combat_simulation_hardening() -> None:
         exact.functional_penalties = functional_penalties
         health._legacy_function_fallback_installed = True
 
+    if not bool(getattr(exact, "_support_task_provenance_hardening_installed", False)):
+        base_exact_exchange = exact.resolve_exchange
+        base_extended_exchange = extended.resolve_exchange
+
+        def exact_exchange(**kwargs: Any) -> Mapping[str, Any]:
+            return preserve_player_support_task_provenance(base_exact_exchange, **kwargs)
+
+        exact.resolve_exchange = exact_exchange
+        if base_extended_exchange is base_exact_exchange:
+            extended.resolve_exchange = exact_exchange
+        else:
+            def extended_exchange(**kwargs: Any) -> Mapping[str, Any]:
+                return preserve_player_support_task_provenance(base_extended_exchange, **kwargs)
+
+            extended.resolve_exchange = extended_exchange
+        exact._support_task_provenance_hardening_installed = True
+
     if not bool(getattr(exact, "_fatigue_withdrawal_hardening_installed", False)):
         base_withdrawal = exact._npc_withdrawal_decision
 
@@ -377,6 +471,7 @@ __all__ = [
     "install_combat_contract_hints",
     "install_combat_simulation_hardening",
     "legacy_safe_functional_penalties",
+    "preserve_player_support_task_provenance",
     "stagnation_checkpoint_span",
     "transition_handoff_from_result",
 ]

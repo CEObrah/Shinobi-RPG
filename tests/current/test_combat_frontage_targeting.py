@@ -63,8 +63,7 @@ def test_same_front_sector_cannot_stack_melee_assignments_on_one_target() -> Non
 
     assert len(primary_active) == 1
     assert len({row["target_ref"] for row in active}) > 1
-    assert any(row.get("target_reassigned_for_frontage") for row in active)
-    assert any(row.get("frontage_saturated") for row in rows.values())
+    assert any(row["preferred_action"] == "hold" for row in rows.values())
 
 
 def test_distinct_surrounding_sectors_can_all_pressure_one_target() -> None:
@@ -90,8 +89,7 @@ def test_distinct_surrounding_sectors_can_all_pressure_one_target() -> None:
     )
 
     assert all(row["preferred_action"] == "attack" for row in adjusted["assignments"].values())
-    assert {row["frontage_sector"] for row in adjusted["assignments"].values()} == {0, 2, 4, 6}
-    assert adjusted["frontage_policy"]["global_attacker_cap"] is False
+    assert {row["target_ref"] for row in adjusted["assignments"].values()} == {"p"}
 
 
 def test_ranged_specialists_do_not_consume_melee_frontage() -> None:
@@ -118,7 +116,31 @@ def test_ranged_specialists_do_not_consume_melee_frontage() -> None:
     )
 
     assert [row["preferred_action"] for row in adjusted["assignments"].values()] == ["attack", "attack"]
-    assert all("frontage_sector" not in row for row in adjusted["assignments"].values())
+
+
+def test_frontage_policy_does_not_leak_unregistered_metadata_into_durable_plan() -> None:
+    records = {ref: _person() for ref in ["a0", "a1", "p", "q"]}
+    positions = {
+        "a0": _pos(0, 100),
+        "a1": _pos(0, 300),
+        "p": _pos(2500, 0),
+        "q": _pos(2500, 1800),
+    }
+    plan = _plan({
+        "a0": {"role": "pressure", "target_ref": "p", "preferred_action": "attack"},
+        "a1": {"role": "pressure", "target_ref": "p", "preferred_action": "attack"},
+    })
+
+    adjusted = apply_frontage_to_plan(
+        plan,
+        known_enemy_refs=["p", "q"],
+        records=records,
+        positions=positions,
+    )
+
+    assert set(adjusted) == set(plan)
+    allowed_assignment_keys = {"role", "target_ref", "preferred_action"}
+    assert all(set(row) <= allowed_assignment_keys for row in adjusted["assignments"].values())
 
 
 def test_frontage_adjustment_is_deterministic() -> None:

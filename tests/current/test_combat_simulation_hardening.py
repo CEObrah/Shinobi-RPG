@@ -7,6 +7,7 @@ from shinobi_runtime.api.combat_hardening import (
     fatigue_aware_withdrawal,
     install_combat_contract_hints,
     legacy_safe_functional_penalties,
+    preserve_player_support_task_provenance,
     stagnation_checkpoint_span,
     transition_handoff_from_result,
 )
@@ -58,6 +59,67 @@ def test_legacy_unsided_knee_trauma_recovers_aggregate_function_loss():
     assert penalties["footwork_right"] == 0
 
 
+def test_player_treatment_support_fallback_keeps_exact_issuer_provenance():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return {
+            "combat_after": {
+                "combatants": {
+                    "medic": {
+                        "support_task": {
+                            "task": "treat",
+                            "target_ref": "casualty",
+                            "status": "active",
+                            "issued_by_ref": "player",
+                            "issued_at_ms": 1000,
+                        }
+                    }
+                }
+            }
+        }
+
+    result = preserve_player_support_task_provenance(
+        base,
+        player_ref="wei",
+        player_ally_orders=[
+            {"actor_ref": "medic", "task": "treat", "target_ref": "casualty"},
+        ],
+    )
+
+    assert result["combat_after"]["combatants"]["medic"]["support_task"]["issued_by_ref"] == "wei"
+
+
+def test_support_provenance_does_not_rewrite_unrelated_or_nonplaceholder_tasks():
+    original = {
+        "combat_after": {
+            "combatants": {
+                "medic": {
+                    "support_task": {
+                        "task": "treat",
+                        "target_ref": "someone_else",
+                        "status": "active",
+                        "issued_by_ref": "captain",
+                        "issued_at_ms": 1000,
+                    }
+                }
+            }
+        }
+    }
+
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return original
+
+    result = preserve_player_support_task_provenance(
+        base,
+        player_ref="wei",
+        player_ally_orders=[
+            {"actor_ref": "medic", "task": "treat", "target_ref": "casualty"},
+        ],
+    )
+
+    assert result is original
+    assert result["combat_after"]["combatants"]["medic"]["support_task"]["issued_by_ref"] == "captain"
+
+
 def _standing_result(events: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "scope_stop_reason": "execution_frontier",
@@ -89,6 +151,59 @@ def test_empty_standing_frontier_becomes_stagnation_checkpoint():
     assert result["scope_stop_reason"] == "stagnation_checkpoint"
     assert result["continuation_required"] is False
     assert result["narrative_projection"]["scope_stop_reason"] == "stagnation_checkpoint"
+
+
+def test_ally_support_motion_counts_as_material_standing_progress():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return _standing_result([
+            {
+                "actor_ref": "medic",
+                "intended_ref": "casualty",
+                "action_kind": "ally_support",
+                "task": "treat",
+                "result": "support_treatment_approach",
+                "movement": {
+                    "start_x_mm": 0,
+                    "start_y_mm": 0,
+                    "end_x_mm": 500,
+                    "end_y_mm": 0,
+                    "duration_ms": 1000,
+                },
+            }
+        ])
+
+    result = stagnation_checkpoint_span(
+        base,
+        until_resolution=True,
+        exchange_count=None,
+        duration_seconds=None,
+    )
+
+    assert result["scope_stop_reason"] == "execution_frontier"
+    assert result["continuation_required"] is True
+
+
+def test_blocked_ally_support_does_not_fake_material_progress():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return _standing_result([
+            {
+                "actor_ref": "medic",
+                "intended_ref": "casualty",
+                "action_kind": "ally_support",
+                "task": "treat",
+                "result": "support_path_blocked",
+            }
+        ])
+
+    result = stagnation_checkpoint_span(
+        base,
+        until_resolution=True,
+        exchange_count=None,
+        duration_seconds=None,
+    )
+
+    assert result["scope_stop_reason"] == "stagnation_checkpoint"
+    assert result["continuation_required"] is False
 
 
 def test_material_wound_keeps_normal_standing_continuation():

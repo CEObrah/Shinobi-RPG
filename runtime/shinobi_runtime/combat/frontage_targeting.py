@@ -12,6 +12,12 @@ occupy each broad target-relative angular sector in a plan. Additional attackers
 use a different lawful target or hold until geometry changes. A genuinely surrounded
 defender can therefore still be pressured from several distinct directions; this is
 not a global attacker-count cap.
+
+Frontage is deterministic planning policy, not durable state of its own. The returned
+plan therefore persists only the ordinary assignment consequences (target selection
+and hold/attack posture) already registered by the combat-state contract. Sector
+numbers and policy diagnostics remain local to this planning pass so adding or tuning
+the algorithm cannot silently expand mutable-state schema.
 """
 from __future__ import annotations
 
@@ -106,7 +112,12 @@ def apply_frontage_to_plan(
     records: Mapping[str, Mapping[str, Any]],
     positions: Mapping[str, Mapping[str, Any]],
 ) -> dict[str, Any]:
-    """Return a plan whose autonomous melee assignments respect target frontage."""
+    """Return a plan whose autonomous melee assignments respect target frontage.
+
+    The policy is realized by changing only the assignment fields the ordinary
+    team-plan schema already owns: ``target_ref`` and ``preferred_action``.
+    Recomputable sector/debug annotations deliberately do not escape this layer.
+    """
     out = copy.deepcopy(dict(plan))
     assignments = out.get("assignments")
     if not isinstance(assignments, Mapping) or not assignments:
@@ -151,17 +162,11 @@ def apply_frontage_to_plan(
             # No distinct physical attack sector is presently available. Holding
             # preserves pressure without pretending another body/weapon lane exists.
             assignment["preferred_action"] = "hold"
-            assignment["frontage_saturated"] = True
-            assignment["frontage_policy"] = "one_melee_assignment_per_target_sector"
             adjusted[attacker_ref] = assignment
             continue
 
         occupied[chosen_ref].add(chosen_sector)
         assignment["target_ref"] = chosen_ref
-        assignment["frontage_sector"] = chosen_sector
-        assignment["frontage_policy"] = "one_melee_assignment_per_target_sector"
-        if original_target is not None and chosen_ref != original_target:
-            assignment["target_reassigned_for_frontage"] = True
         adjusted[attacker_ref] = assignment
 
     # Preserve any unusual non-string assignment keys rather than silently dropping
@@ -170,11 +175,6 @@ def apply_frontage_to_plan(
         if key not in adjusted:
             adjusted[key] = copy.deepcopy(value)
     out["assignments"] = adjusted
-    out["frontage_policy"] = {
-        "sector_count": _FRONTAGE_SECTOR_COUNT,
-        "rule": "one_autonomous_melee_assignment_per_target_sector",
-        "global_attacker_cap": False,
-    }
     return out
 
 

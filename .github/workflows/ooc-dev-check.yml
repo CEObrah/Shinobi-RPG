@@ -34,6 +34,7 @@ jobs:
           set +e
           pytest -q \
             tests/current/test_combat_simulation_hardening.py \
+            tests/current/test_combat_frontage_targeting.py \
             tests/current/test_combat_command_wrapper.py \
             tests/current/test_player_retinue_doctrine.py \
             tests/current/test_combat_rally_and_approach_budget.py \

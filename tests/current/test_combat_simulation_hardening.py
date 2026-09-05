@@ -7,6 +7,7 @@ from shinobi_runtime.api.combat_hardening import (
     fatigue_aware_withdrawal,
     install_combat_contract_hints,
     legacy_safe_functional_penalties,
+    preserve_player_support_task_provenance,
     stagnation_checkpoint_span,
     transition_handoff_from_result,
 )
@@ -56,6 +57,67 @@ def test_legacy_unsided_knee_trauma_recovers_aggregate_function_loss():
     assert penalties["leg_right"] == 0
     assert penalties["footwork_left"] == 0
     assert penalties["footwork_right"] == 0
+
+
+def test_player_treatment_support_fallback_keeps_exact_issuer_provenance():
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return {
+            "combat_after": {
+                "combatants": {
+                    "medic": {
+                        "support_task": {
+                            "task": "treat",
+                            "target_ref": "casualty",
+                            "status": "active",
+                            "issued_by_ref": "player",
+                            "issued_at_ms": 1000,
+                        }
+                    }
+                }
+            }
+        }
+
+    result = preserve_player_support_task_provenance(
+        base,
+        player_ref="wei",
+        player_ally_orders=[
+            {"actor_ref": "medic", "task": "treat", "target_ref": "casualty"},
+        ],
+    )
+
+    assert result["combat_after"]["combatants"]["medic"]["support_task"]["issued_by_ref"] == "wei"
+
+
+def test_support_provenance_does_not_rewrite_unrelated_or_nonplaceholder_tasks():
+    original = {
+        "combat_after": {
+            "combatants": {
+                "medic": {
+                    "support_task": {
+                        "task": "treat",
+                        "target_ref": "someone_else",
+                        "status": "active",
+                        "issued_by_ref": "captain",
+                        "issued_at_ms": 1000,
+                    }
+                }
+            }
+        }
+    }
+
+    def base(**_kwargs: Any) -> Mapping[str, Any]:
+        return original
+
+    result = preserve_player_support_task_provenance(
+        base,
+        player_ref="wei",
+        player_ally_orders=[
+            {"actor_ref": "medic", "task": "treat", "target_ref": "casualty"},
+        ],
+    )
+
+    assert result is original
+    assert result["combat_after"]["combatants"]["medic"]["support_task"]["issued_by_ref"] == "captain"
 
 
 def _standing_result(events: list[dict[str, Any]]) -> dict[str, Any]:

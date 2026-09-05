@@ -1,0 +1,280 @@
+# Exact Combat
+
+Use this reference for duels, team combat, pursuit, ambush, and immediate physical danger.
+
+## Combat is a dramatic sequence, not a resolver transcript
+
+The combat result is evidence, not prose order. Never narrate resolved exchanges by walking the result packet field by field. For an important fight, stage the committed truth as a physical sequence with anticipation, geometry, intent visible through action, attack/defense interplay, reversal, bodily consequence, and aftermath. In group violence, keep the camera close enough that bodies, spacing, weapons, Qi use, companions, fear, exhaustion, and local confusion remain lived rather than becoming a casualty ticker.
+
+A meaningful exchange should normally change more than a number: position, tempo, confidence visible in behavior, weapon condition, breathing room, an injury's practical effect, a relationship beat, or the tactical problem itself, but only where the runtime actually committed that change. Compress repeated mechanically similar exchanges. Expand the moment the fight changes shape.
+
+After major violence, do not jump directly from the last resolved attack to a menu. Give the committed aftermath enough room for the survivors, wounded, captives, companions, surroundings, and next pressure to register before handing control back.
+
+## Spatial authority
+
+Exact combat owns a bounded local battlefield with coordinates, elevation, facing, occupied body footprints, movement vectors, obstacles, cover, exits, and line of sight. Distance bands are derived summaries only.
+
+Target identity expresses intent. Contact comes from geometry. A released projectile keeps its launch position, direction and velocity. Direct, lane, cone, arc, sweep, and radius effects test physical intersection and obstruction. Friendly bodies can obstruct or be struck when the path actually crosses them.
+
+## Player intent granularity
+
+A player combat command does not need to enumerate every mechanical choice. A terse intent such as **attack**, **press him**, or **keep fighting** authorizes the runtime to fill only the unspecified tactical details from Tang Wei's standing combat doctrine, lawful perception, current geometry, equipment, fatigue, Qi state, poison inventory, and active team doctrine. This can include target selection when the player did not name one, weapon/technique selection, anatomical aim, automatic defense, movement needed to make the attack physical, and conservative Qi/poison use.
+
+Concrete player details always override doctrine for that detail. For example, **throw an unpoisoned needle at his right wrist without Qi** fixes weapon family, poison choice, target and Qi choice while leaving unrelated defensive reactions to the resolver. No special delegation flag is required for ordinary shorthand.
+
+A longer instruction such as **fight for thirty seconds**, **keep attacking**, or **finish the fight** may carry the same standing policy through many exact exchanges. This is valid player delegation. Do not force Tang Wei to micromanage every swing merely to keep the fight moving.
+
+Preserve compound engagement intent, not only force intent. **Kill as many as possible as quickly as possible**, **run them down**, or another explicit relentless lethal-until-resolution declaration must not be reduced to `targeting_intent: lethal` while silently restoring a restrained pursuit posture for the omitted tempo. The registered lethal-until-resolution combat span supplies a temporary assertive, committed, persistent, mobile engagement override while retaining Wei's standing resource discipline and targeting policy; it must never overwrite his saved doctrine.
+
+Preserve independent components of a compound combat declaration. If Wei says **rally them and attack**, **cover the withdrawal while killing pursuers**, or otherwise combines leadership/team intent with personal violence, do not silently execute only the attack. Route each hard consequence through its registered authority in the same declared intent where supported; if one required consequence is unsupported, fail closed on that unsupported component rather than pretending it was never said. A rally is an attempt against real allied withdrawal pressure, not automatic obedience.
+
+A long standing combat span is never permission to erase the fight as a scene. The runtime may resolve many exchanges under one declared policy, but the GM must preserve and narrate the committed chronology rather than replacing it with terminal HP, injury, or casualty accounting.
+
+## Combat narration contract
+
+Active combat is a lived scene, not an after-action report.
+
+A combat command receipt that contains ordered `events` is transition evidence. Preserve that event sequence while refreshing play context. The refreshed context establishes current truth; the receipt establishes how the committed transition happened. Do not throw away the events and reconstruct the fight afterward from final health totals.
+When the current-transition projection provides `combat_narrative`, use its ordered `material_beats` as the primary scene spine and its routine/event/resource summaries for compression. Those fields are a deterministic projection of the same committed receipt, not a second combat authority. Demand-load raw event pages when a material detail is absent, when exact ordering beyond the compact spine matters, or before making a negative claim such as no wound, no kill, no Qi use, or no poison/ammunition expenditure.
+
+When current-transition recovery is paginated, follow `next_object_ref` sequentially from the first page until it is null before making any negative claim about the span. Never sample arbitrary event offsets and infer an absence. Claims such as **no kill**, **no wound**, **no Qi use**, **no casualty**, or **nothing material happened** require complete receipt coverage or an authoritative bounded summary that explicitly establishes that absence. If complete chronology cannot be recovered, narrate only what the recovered evidence positively establishes and say the omitted outcome is unresolved rather than inventing certainty.
+
+For any committed combat span, narrate the fight in chronological scene beats before presenting a compact status summary. The reader should be able to follow what pressure existed, what Wei attempted, what answered him, what changed, and why the battlefield now looks different.
+
+The core presentation loop is:
+
+`pressure/geometry -> Wei's action -> defense/collision -> ally/enemy reactions -> wound/status/tactical change -> continued pressure`
+
+Repeat that loop as many times as the committed span materially requires.
+
+Do not turn raw events into a literal log. Routine misses, repeated guard work, and mechanically similar exchanges may be compressed into fluid connective prose. But do not compress away material developments. Every first visible onset of a serious wound, incapacitation, death, dangerous poison effect, weapon loss, major knockdown, formation break, rescue pressure, surrender attempt, reinforcement, or decisive positional reversal must appear at the point it happens in the chronology.
+
+If a span contains many exchanges, write it as an actual sustained combat sequence. Use paragraphing and pressure transitions so the reader can feel the battle evolving. It is acceptable for several routine exchanges to occupy one paragraph when nothing important changes; it is not acceptable to skip ten minutes of fighting and then announce who died.
+
+A good combat response should feel like fiction generated from mechanics, not mechanics summarized as prose.
+
+### Player-facing prose translation
+
+Player-facing combat prose must not name resolver primitives when ordinary physical language can express the same committed fact. Terms such as **attack line**, **movement lane**, **contact geometry**, **trajectory intersection**, **range band**, **decision origin**, **execution frontier**, **combatant ref**, **contact trace**, or **retreat corridor** belong in explicit OOC audits, not in the lived fight. A road, doorway, gap between bodies, line of sight, spear reach, or visible path may of course be described when those are things Wei can actually perceive.
+
+Translate mechanics into embodied cause and effect. **Target moved out of reach** becomes the point arriving a handspan late as the opponent jerks back. **A friendly body intersected the attack geometry** becomes a fist, blade, or shaft smashing into the person who physically crossed between attacker and target. **The approach lane was blocked** becomes bodies, a cart, a wall, bad footing, or another established obstacle physically preventing the close. Never make the reader decode the simulation vocabulary to understand the action.
+
+Write sustained combat with the continuity of an action scene in a strong novel or film: immediate threat, committed movement, steel or body contact, reaction, visible consequence, then the next pressure. Use concrete orientation such as **to your left**, **three paces downslope**, **between the carts**, **inside his spear point**, or **behind the man you just passed** when supported. Prefer breath, balance, timing, pain, sound, footing, weapon feel, faces, and split-second choices over abstract tactical labels.
+
+Do not narrate a resolved event as a technical explanation merely because its receipt is technical. The receipt is evidence for the GM, not dialogue for the player. If an OOC mechanical note is useful, place it after the scene and clearly separate it from the fiction.
+
+## AI scene direction inside combat
+
+Combat is a multi-actor human scene, not telemetry with decorative adjectives. The runtime owns geometry, timing, legal action, defense, fatigue, Qi, poison, wounds, death and every other hard result. The LLM owns how the **committed chronology is experienced**: who becomes the immediate pressure, who reacts to Wei, how allies and enemies answer one another, which material beat deserves expansion, where speech naturally cuts through the action, and which routine exchanges should be compressed.
+
+After Wei attacks, moves, threatens, gives an already-authorized order, or continues a standing combat span, do not spend the response paraphrasing that input. Move to the grounded answer from the fight: defense, collision, miss, counter-pressure, ally intervention, enemy adaptation, wound, positional change, retreat, hesitation, parley, or another committed consequence. When several people matter, let them interact laterally instead of narrating every action as a private exchange between Wei and one target.
+
+Use GM-private resolved traces and private combat direction to understand the whole causal scene, but render only what Wei can perceive or lawfully infer. Never add an attack, block, wound, tactic, movement, Qi use, poison use, death, surrender or other hard event that the committed trace does not support. Named/material developments deserve concrete prose; repeated mechanically similar exchanges may be compressed. `The fight continues`, generic circling, repeated staring, or a recap of status numbers is not a valid substitute for the next committed combat beat.
+
+Bare `continue` during an authorized combat span carries the existing player intent/standing doctrine through the next lawful mechanical resolution. The AI then stages the resulting chronology as a flowing scene; it does not require Wei to micromanage every strike, defense, reaction or companion action.
+
+## Standing orders and player control
+
+Agency cadence and narration cadence are separate.
+
+A standing order such as **keep attacking**, **press them**, or **finish the fight** may continue automatically across many committed exchanges without asking the player to restate the same instruction. Casualties and injuries do not automatically cancel that order.
+
+Deaths, critical wounds, incapacitations, poison crises, and tactical collapses are mandatory **narration checkpoints**. Show them when they happen. They become **control checkpoints** only when the new state creates a genuine protected decision that the standing order does not already answer.
+
+Examples where standing attack normally remains sufficient:
+
+- an enemy dies and another lawful target remains;
+- an ally is wounded but the declared policy was to keep pressing and no rescue choice is forced;
+- routine Qi expenditure, fatigue, misses, blocks, and minor wounds accumulate;
+- the formation degrades but the established combat doctrine can lawfully adapt without choosing a new strategic objective.
+
+Examples where control should return because the standing order is no longer enough:
+
+- Wei is incapacitated or otherwise unable to continue the declared action;
+- the only explicit target becomes unavailable and the player's intent does not authorize retargeting;
+- an ally's condition creates a real rescue-versus-continue tradeoff not already resolved by standing doctrine;
+- a credible surrender, ceasefire, ransom, binding demand, or parley creates a new voluntary commitment decision;
+- the mission objective changes, becomes impossible, or conflicts with continuing the attack;
+- an unexpected development creates a new strategic choice rather than merely another combat problem.
+
+Do not manufacture a menu merely because blood was spilled. If the player already said to keep fighting and the current doctrine still lawfully determines ordinary continuation, keep the scene moving while narrating what it costs.
+
+If the player explicitly asks to fast-forward or compress a fight, reduce prose density accordingly, but still preserve chronology around irreversible or identity-changing events. Compression changes narrative density, not causal truth.
+
+## Narrating committed combat
+
+Lead with physical action. Do not begin an active combat response with a roster, casualty table, or status digest.
+
+Render Wei's declared attack, movement, threat, order, or supplied action on screen before the world reaction. Then synthesize committed events in chronological order.
+
+A useful sustained combat scene usually includes:
+
+- Wei's position relative to the immediate threat and what is constraining him;
+- the attacks, movement, defenses, collisions, and recoveries that actually matter;
+- nearby allies and enemies acting when they materially affect Wei, a casualty, the objective, or local geometry;
+- concrete wound onset and visible degradation rather than abstract damage labels;
+- shifts in initiative, spacing, lanes, crowding, pursuit, retreat pressure, and formation integrity;
+- battlefield speech when it is naturally supported;
+- the pressure that carries directly into the next beat.
+
+Translate numbers into lived evidence first. Fatigue becomes shorter breath, late recovery, shaking structure, or degraded footwork when supported. Blood loss becomes visible bleeding and functional decline. Qi expenditure becomes the concrete speed, force, control, defense, or recovery effect actually committed. Poison becomes observable symptoms and capability effects Wei can lawfully perceive.
+
+Exact numbers may follow in a compact status block when useful for the next decision, but that block is secondary. Never let the status block become the scene.
+
+Time must remain legible. When a fight spans minutes, show strain accumulating through the narrated sequence. Do not use **an hour passes beneath steel** as a substitute for the combat that made that hour consequential.
+
+## Scene quality
+
+Combat prose should be concrete, spatial, and causal rather than generically cinematic.
+
+Prefer supported physical cues such as feet slipping or planting, steel binding, a spear haft jarring, a blade being knocked off line, breath shortening, blood changing a grip, an injured fighter protecting one side, Qi sharpening a burst of movement, bodies constricting a lane, or a retreat corridor opening.
+
+Vary rhythm. A routine stretch can move quickly. A decisive collision may deserve several paragraphs. Let prose density follow consequence.
+
+Avoid repetitive sentence templates such as **Wei attacks. The enemy blocks. Wei attacks again.** Show intention, geometry, reaction, and consequence as one physical flow.
+
+Do not add unsupported flourish that changes mechanics. The goal is not purple prose; the goal is making mechanically rich combat readable and exciting.
+
+## Battlefield voices and human presence
+
+Team combat is also a co-located people scene. Named allies are not health bars.
+
+When fresh player-safe facts support it, let combatants use brief reversible battlefield speech and reactions: warnings, calls for help, pain, confirmation, challenges, coordination, a medic shouting a visible casualty state, or an ally reacting to someone going down.
+
+Do not force everyone to speak, rotate through the roster, or use dialogue to recite mechanics. One sharp warning may be enough. A fighter busy surviving may say nothing.
+
+Ordinary nonbinding battlefield speech may be realized as scene performance under the normal scene contract. Persist only speech whose later attribution materially matters. A surrender, ceasefire, binding order, promise, ransom term, custody change, or other hard consequence still requires its mechanical authority before narration treats it as accomplished.
+
+## Committed combat chronology
+
+When a committed exact-combat result exposes `narrative_projection`, treat it as the primary player-facing chronology for that resolved span. Follow its timestamped `beats` to stage cause before consequence; do not reorder a withdrawal, contact, treatment, or critical casualty merely to make cleaner prose. A beat marked `salience: protected` or `must_narrate_before_next_decision: true` must appear in the lived scene before control returns to the player.
+
+Use `contact_structure_ref` only when the resolver actually established that exact anatomical structure. A coarse `contact_zone: neck` is not permission to write **throat**, **carotid**, **jugular**, **trachea**, or spinal damage. When withdrawal beats carry `withdrawal_reason`, render the visible causal development—hesitation, disengagement, opening distance, or a local break supported by the trace—before summarizing the enemy as retreating or routing. The projection is evidence for scene direction, not a status dump.
+
+## Combat accounting
+
+When a committed exact-combat result exposes `combat_information`, use it as the accounting source after the lived scene when the numbers are decision-relevant. Do not replace the action scene with a status panel.
+
+For small exact fights, prefer a compact battlefield picture such as: observed hostile count, how many are still actively engaged, withdrawing, escaped, incapacitated, or dead, plus Tang Wei's confirmed personal defeats/kills for this resolved span and encounter when tracking is complete. If `personal_tally_status` says the active encounter predates tracking, state that the prior encounter total is incomplete rather than printing a misleading zero.
+
+Current enemy-strength numbers remain knowledge-bounded. Use only the observed/current categories the runtime marks player-lawful; never subtract GM-private deaths, escapes, or hidden roster size from an old reconnaissance total to fabricate "X enemies left."
+
+A confirmed personal defeat means the resolver attributed the opponent's transition out of combat to Wei. Do not turn wounds, assists, crowd pressure, or aggregate team casualties into personal takedowns.
+
+## Observer reports and enemy counts
+
+Treat combat observation as observer-specific knowledge. When `scene.combat_observation_context` exists, `player_observation` is Wei's own stored observation while each entry in `ally_observer_summaries` belongs to that ally and is not automatically Wei's knowledge.
+
+When `scene.combat_present_person_ids` exists, treat it as the exact player-safe friendly cast that has actually reached the active combat space. Prefer it over stale `state/scene.json` cast memory, route membership, mission rosters, or `person_reads.suggested_owner_ids` when deciding which allies can physically speak, protect, be addressed, or otherwise participate in the immediate battle scene. A registered future reinforcement is reserved for the combat but is **not co-present** until its exact reinforcement clock arrives.
+
+`confirmed_observed_hostile_count` is cumulative encounter observation: it is the count of distinct hostile combatants that observer has lawfully detected during the active combat so far. It is not a live census of who remains capable, conscious, present, visible, or engaged at this moment, and it is not a guarantee that no additional enemy exists outside the observer's knowledge or outside the current combat space. Never expose hidden hostile IDs or substitute the hidden opposing roster size for an observer's count.
+
+Treat cumulative encounter memory and current contact as different authorities. A person in `observed_refs` was identified at some point; that alone does not establish that Wei can target, track, defend against by identity, or narrate that body as visible now. Current targeting and immediate sensory prose must follow the runtime's fresh current-contact/current-visibility projection. Losing line of sight can drop current contact without erasing encounter memory, and memory must not silently restore exact body position after occlusion.
+
+Current-strength narration must come from fresh player-lawful battlefield evidence: direct sensory events, current player-safe presence or perception projection, or a fresh attributed report. Never render the cumulative observed count as an exact statement that **X remain**, **X are still up**, **X surround you**, **X are left**, or equivalent current-strength prose unless fresh player-lawful evidence independently supports that exact current cardinality. If exact current strength is not lawfully established, describe the current pressure qualitatively instead of recycling stale numerical precision.
+
+Never back-calculate an IC live enemy count by combining `confirmed_observed_hostile_count` with GM-private participant, casualty, incapacitation, withdrawal, escape, or exact-roster data. GM-private exact combat totals may inform behind-the-curtain direction and an explicit OOC audit, but they are not automatically Wei's knowledge. For current scene presentation, fresh lawful perception outranks stale mission reports, route rosters, historical observation totals, and GM-private arithmetic.
+
+If Wei asks an exactly co-present scout or ally how many enemies they saw, let that person report the concrete confirmed count through ordinary reversible dialogue. Prefer wording such as **I saw seven** or **I counted seven; there may be more** when total force remains uncertain. Do not collapse a stored positive observation to a generic **I don't know** merely because the observer cannot certify the entire hostile force.
+
+Do not union allied observations into Wei's knowledge merely because the handoff contains them. The observation becomes Wei's scene knowledge only through a lawful shared-information path such as the ally reporting it, Wei directly observing it, or another established communication path.
+
+## Combat picture and personal tally
+
+When a committed combat result exposes `combat_information`, use it after the lived scene when it materially helps the next decision. The compact accounting must stay at the scale and knowledge level Wei actually has.
+
+For an exact melee, useful player-facing information may include the number of **observed** hostiles still actively engaged, withdrawing, escaped, incapacitated, or dead, plus Wei's mechanically confirmed personal defeats/kills. Never substitute the hidden registered hostile roster for observation. If the tally says it is partial because the encounter began before tracking existed, say that plainly or label it as a tracked subtotal. Never render a legacy unknown as `0`.
+
+The personal tally is attribution, not damage credit. Count an opponent for Wei only when the resolver confirms the opponent left combat and attributes the decisive current material contact to Wei under the combat accounting contract. Do not claim a personal kill because Wei wounded somebody who later fell to an ally, poison, delayed physiology, or another cause.
+
+Keep the accounting secondary to the action scene. A compact line such as `Observed: 7 still fighting, 2 withdrawing, 3 down. Wei: 2 confirmed defeats this fight.` is appropriate when those exact categories are lawfully known. Do not turn every exchange into a scoreboard.
+
+## Parley during combat
+
+Active exact combat does not make speech impossible. Wei may call out, question, warn, identify himself, request parley, or make another reversible nonbinding social attempt while combat remains active. Use `jianghu_interaction_resolution` for that attempt rather than forcing Wei to attack or disengage merely because combat has been initialized.
+
+When Wei is addressing the opposing side generally and no opposing individual ID is player-visible, use the exact active `combat_ref` as the interaction `target_ref`. That means **address the opposing combat side**. Never guess, retrieve, or expose a hidden hostile person ID just to make dialogue possible.
+
+A combat parley attempt does not pause the exact-combat timeline, create a safe zone, make attacks impossible, establish that anyone answered, or produce a ceasefire, surrender, truce, ransom, safe passage, custody transfer, retreat agreement, or other binding consequence. Those outcomes require their own mechanical authority.
+
+When fresh play context exposes `scene.combat_parley`, treat that handoff as the durable reversible conversation surface for the exact active opposing side. Its `open_threads` are player-authored response-bearing conversational moves still live against that combat side; `open_questions` is the compatibility subset for literal questions. The combat ref is a group address, not a hidden spokesman identity.
+
+When an ordinary response is natural and the player-safe scene supports one, do not default to sterile silence merely because no hostile person ID is visible. Realize one bounded opposing-side line, then persist it with `jianghu_scene_session_resolution` using `action: record_speech`, with both `session_ref` and `speaker_ref` set to the exact active combat ref. If the line actually responds to one projected open thread, set `resolves_thread_ref` to that exact thread ref. `resolves_question_ref` remains a compatibility alias for literal questions. Refresh play context after the write before continuing the scene.
+
+That group-attributed line may acknowledge, refuse, object, warn, challenge, ask a question, make a nonbinding proposal, lie, evade, or selectively disclose real private facts when that is coherent with the GM-private encounter/cognition context. Hidden hostile identity, employer, mission, force facts, motive, or plans are valid **director knowledge** when explicitly returned as GM-private, but they are not player knowledge. Reveal one only when the NPC actually chooses to disclose it or Wei can lawfully perceive/infer it. Do not invent a new hidden fact merely to make the exchange interesting.
+
+Persisted combat-side speech is only an **attributed statement from the opposing side**. It has no mechanical-consequence authority and is not automatically objective truth. A hostile speaker may truthfully reveal something Wei did not know, refuse to explain, lie, bluff, threaten, misunderstand, or state an opinion. The runtime's GM-private truth tells the director what is actually behind the line; the attributed speech records only what Wei heard. Mechanically significant new knowledge should be persisted through the appropriate information authority when the disclosure itself must become durable player knowledge.
+
+A reversible line such as **Turn back**, **You are not owed an explanation**, **Name your purpose**, or **Come no closer** does not itself move anyone, pause combat, establish that every combatant obeys, or create an agreement. If either side actually attacks, moves consequentially, surrenders, accepts terms, creates a ceasefire, changes custody, pays ransom, grants passage, or makes another hard commitment, use the relevant mechanical command before narrating that consequence.
+
+A new response-bearing combat-side conversational thread should remain open until responded to or made irrelevant by a hard scene boundary. The read projection may also recover an unresolved legacy combat-side question that was written before combat questions became first-class threads. Never generalize that legacy compatibility to an old combat ref, a person target, or an already answered question.
+
+## Action sequence
+
+Resolve roughly:
+
+1. lawful action selection;
+2. equipment/resource/status/range legality;
+3. movement and startup;
+4. detection;
+5. physical defensive response selection;
+6. defensive movement/commitment;
+7. geometry recalculation;
+8. contact determination;
+9. weapon/body interaction;
+10. wound, blood loss, shock, displacement or status;
+11. recovery and commitment;
+12. pending-action recalculation.
+
+Melee outside reach requires physical closing movement. Extreme speed shortens travel and recovery but never removes travel, body orientation, balance, or commitment.
+
+## Defense
+
+Possible lawful responses include evade, reposition, parry, deflect, block, brace, and counter-intercept. Selection depends on perception, skill, equipment, doctrine, injuries, fatigue, geometry, timing, momentum, nearby bodies, terrain, and objective. Successful evasion/reposition changes authoritative coordinates.
+
+## Multiple attackers
+
+Pressure comes from real timing, different angles, facing changes, movement, limb/weapon commitment, balance, recovery, crowding, and blocked escape routes. Do not model several attackers as repeated fresh one-on-one defenses.
+
+## Team tactics
+
+A trained team may create a shared tactical problem, desired state, and temporary roles such as anchor, screen, control, shape, track, intercept, pressure, flank, protect, ranged denial, reserve, extract, treat, or exploit. Planning uses only lawfully shared information. Individual action selection and the resolver still determine success.
+
+A player-authored field-medic order is a persistent support objective when the exact combat state accepts `task: treat`. Do not reduce **send the medic to Yao** to one approach step or narrate treatment merely because the medic moved. Carry the committed support task through physical approach, access, uninterrupted treatment time, and the actual medicine/resource result until it completes, becomes physically blocked, runs out of lawful supplies, or a new protected decision interrupts it. A medic remains a real body in the fight and may be unable to reach or safely work on the casualty. Emergency stabilization may reduce an established wound consequence only when the committed treatment event says so; it never invents a physician's kit, medical bundle, healed anatomy, or infirmary-grade recovery.
+
+## Persistence
+
+Persist positions, facing, movement, recovery, defensive commitment, objective identity, incapacitated bodies, equipment state, wounds, fatigue and Qi state across internal processing boundaries. An incapacitated participant stops acting but remains a body, casualty and objective state.
+
+### GM-private combat direction versus Wei's perception
+
+When fresh context contains `scene.gm_private_director_context.combat`, use it aggressively **behind the curtain**. It exists so the AI GM can know the real current geometry, all registered participants, actual wounds, tactical state, objectives, team plans, private character direction when available, encounter motive/causality, and other current-scene truth needed to choreograph a living fight instead of paraphrasing a thin player projection. This is not player knowledge. `scene.combat_observation_context`, direct sensory events, attributed reports, recognition, and information mechanics determine what Wei can actually know.
+
+Do not confuse **GM omniscience** with **omniscient narration**. It is good for the GM to know that an unseen attacker is circling, that a fighter is protecting a damaged knee, that the ambush was motivated by cargo, or that an enemy is trying to disengage. Use that truth to make actions and reactions causally intelligent. Reveal the hidden fact itself only when Wei perceives it, reasonably infers it from observable effects, hears it disclosed, or receives it through a lawful information path.
+
+The private director packet may explain why an unseen opponent moves, why someone hesitates, what attack is coming, or which wound is affecting a fighter, but the narration must reveal those causes only through observable consequences unless Wei has a lawful information path. Do not make hidden actors vanish from the simulation merely because Wei has not detected them. Likewise, do not name or precisely locate them to the player until detection/recognition supports it.
+
+The exact combat resolver remains outcome authority. Omniscient GM context improves direction and prose; it never lets the narrator change contact, defense, injury, fatigue, Qi use, poison, position, or timing.
+
+## Combat buildup, reversals, and aftermath
+
+Do not begin every fight at the instant of impact when the committed situation gives lawful room for approach. The seconds before contact can matter: distance closing, a weapon being readied, breath changing, allies finding space, someone recognizing bad footing, a warning cut short, an opponent choosing not to yield. These are scene-direction details only when supported by established presence and the committed chronology; they may never add an uncommitted attack, movement, tactic, or time advance.
+
+During sustained fighting, give the sequence an evolving shape. Expand the first contact, a surprising defense, a wound that changes capability, a weapon or footing problem, an ally entering pressure, a failed assumption, a positional reversal, surrender pressure, or the decisive exchange. Compress mechanically repetitive exchanges between those turns. The reader should feel why the fight is different now than ten seconds ago.
+
+Keep opponents human without inventing hidden facts. Show observable discipline, panic behavior only when established, protective choices only when committed, pain, hesitation, shouted coordination, breath, balance, and the visible consequences of injury. Do not make enemies faceless damage containers or turn Wei into an invulnerable camera.
+
+When contact ends, do not snap immediately to a sterile status panel. First render the immediate aftermath that the state supports: who is still standing, who cannot continue, where weapons and bodies actually are, what allies do next, what danger remains, and what the cost feels like in the space. Then give concise accounting if useful.
+
+
+## Exact anatomy language is evidence-bound
+
+Treat the external zone and the actually resolved internal structure as different facts. A generic `neck` contact may be described as the neck, side of the neck, or base of the neck as geometry permits; it is **not** permission to say the blade pierced the throat, carotid, jugular, trachea, cervical spine, or spinal cord. Use those specific words only when the committed contact identifies that exact structure. If the player declared an anatomical aim such as the throat before resolution, you may describe the attempted aim, but the aftermath must still follow the structure actually contacted.
+
+When exact anatomy establishes catastrophic carotid/jugular destruction, spinal-cord destruction, or catastrophic airway trauma, the prose must respect the health owner's resulting dead/dying state immediately. Conversely, do not promote a survivable coarse neck wound into a lethal throat strike merely for drama. Anatomical precision is part of mechanical truth, not decorative wording.
+
+## Withdrawal and rout must develop causally
+
+Never flip the prose from `they attack` to `they are routing` as an unexplained mode change. When the committed combat trace shows withdrawal pressure propagating, stage only the causal beats it actually supports: injury or local collapse, a fighter opening distance, a corridor becoming usable, a nearby ally reacting, a unit losing enough cohesion to follow, or a disciplined withdrawal remaining orderly. A successful escape is not itself a casualty and must not be narrated as one. Do not call a withdrawal a rout unless the mechanics establish rout/collapse rather than ordinary disengagement.
+
+If several withdrawals occur in one resolution, select the first perceptible change and the propagation point rather than dumping the final escaped count as an omniscient summary. The player should be able to understand **why the fight changed shape** from the lived sequence before any compact accounting line appears.

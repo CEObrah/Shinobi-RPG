@@ -1,7 +1,7 @@
 from pathlib import Path
 
+from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
 from shinobi_runtime.commands.envelope import CommandEnvelope
-from shinobi_runtime.commands.planner import RepositoryCommandPlanner
 from shinobi_runtime.martial_world.physical_presence import active_combat_for_person
 from shinobi_runtime.store import RepositoryStore
 
@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def test_canonical_active_combat_bare_exchange_matches_advertised_contract():
     repo = RepositoryStore(ROOT)
-    planner = RepositoryCommandPlanner(repo)
+    planner = CampaignCommandPlanner(repo)
     meta = repo.read_json("state/meta.json")
     player_ref = str(meta["player_id"])
     active = active_combat_for_person(repo.read_json, player_ref)

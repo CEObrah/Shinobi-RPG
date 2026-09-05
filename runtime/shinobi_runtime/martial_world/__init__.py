@@ -147,3 +147,6 @@ from .field_command import build_deployment_structure, command_score, formation_
 
 from .combat_friendly_line_safety import install as _install_combat_friendly_line_safety
 _install_combat_friendly_line_safety()
+
+from ..combat.frontage_targeting import install as _install_combat_frontage_targeting
+_install_combat_frontage_targeting()

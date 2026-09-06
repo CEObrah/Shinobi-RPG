@@ -219,15 +219,26 @@ def test_three_vs_three_teammates_create_real_defensive_interruptions(monkeypatc
     for side,prefix in (("a","a"),("b","b")):
         for idx in range(3):
             row=copy.deepcopy(base); row['person_id']=f'{prefix}{idx}'
-            # Side A wingmen are faster so their pressure lands while B1/B2 are
-            # still committing attacks into A0. This makes the tradeoff visible.
-            level=260 if prefix=='a' and idx in {1,2} else 90 if prefix=='b' else 150
-            row['attributes']={k:level for k in row['attributes']}
-            row['martial_skills']={k:level for k in row['martial_skills']}
+            if prefix=='b':
+                # The B wingmen are intentionally perceptive enough to begin a
+                # lawful defense before A1/A2 contact, while remaining slower on
+                # their longer diagonal approach toward A0. Their own attack is
+                # therefore still unreleased when the defense starts. This tests
+                # a real shared-timeline interruption rather than the historical
+                # inverted-reaction clock.
+                row['attributes']={k:90 for k in row['attributes']}
+                row['attributes'].update(speed=60,dexterity=70,perception=320,intelligence=220,endurance=120,willpower=120)
+                row['martial_skills']={k:180 for k in row['martial_skills']}
+            else:
+                level=260 if idx in {1,2} else 150
+                row['attributes']={k:level for k in row['attributes']}
+                row['martial_skills']={k:level for k in row['martial_skills']}
             people[row['person_id']]=row
     ledger={'schema':'jianghu-equipment-ledger-1.0','policy_assignments':{},'person_loadouts':{}}
     combat=initialize_combat(combat_ref='team-pressure',side_a_refs=['a0','a1','a2'],side_b_refs=['b0','b1','b2'],people=people,zone_ref='site.house_tang',started_at='x',objective={'kind':'eliminate','target_refs':['b0','b1','b2']},equipment_ledger=ledger)
-    # Keep everyone close enough that timing is dominated by body/reaction speed.
+    # A1/A2 have the shorter direct lane into B1/B2. B1/B2 attack A0 along a
+    # longer diagonal, leaving a causal window for teammate pressure to force a
+    # defense before those attacks release.
     combat['positions']['a0'].update(x_mm=0,y_mm=0); combat['positions']['a1'].update(x_mm=0,y_mm=800); combat['positions']['a2'].update(x_mm=0,y_mm=-800)
     combat['positions']['b0'].update(x_mm=900,y_mm=0); combat['positions']['b1'].update(x_mm=900,y_mm=800); combat['positions']['b2'].update(x_mm=900,y_mm=-800)
 
@@ -250,6 +261,7 @@ def test_three_vs_three_teammates_create_real_defensive_interruptions(monkeypatc
     interrupted=[by_actor[ref] for ref in ('b1','b2') if str(by_actor[ref].get('result','')).startswith('action_interrupted_by_defense') or str(by_actor[ref].get('result','')).startswith('action_disrupted_by_defense')]
     assert interrupted, {ref:by_actor[ref].get('result') for ref in ('b0','b1','b2')}
     assert all(event.get('defensive_attacker_ref') in {'a1','a2'} for event in interrupted)
+    assert all(int(event['defense_started_at_ms']) < int(event['release_at_ms']) for event in interrupted)
     assert '_pending_actions' not in result['combat_after'] and '_defense_interruptions' not in result['combat_after']
 
 

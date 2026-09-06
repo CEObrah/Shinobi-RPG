@@ -422,13 +422,25 @@ def install_production_combat_span_safety() -> None:
         # delegated adaptation silently switch away from it after chunk one.
         if kwargs.get("player_improvised_weapon_state") is not None:
             return bounded_standing_span(base_resolver, **kwargs)
-        return adaptive_standing_span(
+        result = adaptive_standing_span(
             base_resolver,
             fallback=bounded_standing_span,
             max_elapsed_ms=_MAX_STANDING_SPAN_ELAPSED_MS,
             standing_exchange_limit=max(_STANDING_SPAN_EXCHANGE_FRONTIERS),
             **kwargs,
         )
+        if str(result.get("scope_stop_reason") or "") != "tactical_stagnation":
+            return result
+        # Production already exposes one canonical no-progress checkpoint through
+        # combat-liveness integrity. Reuse that contract for an earlier adaptive
+        # stop instead of creating a competing public stop-reason vocabulary.
+        normalized = copy.deepcopy(dict(result))
+        normalized["scope_stop_reason"] = "stagnation_checkpoint"
+        normalized["continuation_required"] = False
+        projection = normalized.get("narrative_projection")
+        if isinstance(projection, dict):
+            projection["scope_stop_reason"] = "stagnation_checkpoint"
+        return normalized
 
     extended.default_target_for = target_selector
     extended.default_action_for = action_selector

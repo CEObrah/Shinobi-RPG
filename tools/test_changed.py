@@ -34,6 +34,19 @@ COMBAT = {
     "tests/current/test_play_regression_hardening.py",
     "tests/current/test_exact_combat_withdrawal.py",
     "tests/current/test_combat_contact_pursuit_repair.py",
+    "tests/current/test_combat_simulation_hardening.py",
+    "tests/current/test_combat_frontage_targeting.py",
+    "tests/current/test_combat_frontage_live_semantics.py",
+    "tests/current/test_combat_pressure_integrity.py",
+    "tests/current/test_combat_readiness_integrity.py",
+    "tests/current/test_combat_liveness_integrity.py",
+    "tests/current/test_combat_reaction_window_causality.py",
+    "tests/current/test_combat_reaction_timing_integrity.py",
+    "tests/current/test_combat_defense_timing_integrity.py",
+    "tests/current/test_player_retinue_doctrine.py",
+    "tests/current/test_combat_rally_and_approach_budget.py",
+    "tests/current/test_live_active_combat_preview_contract.py",
+    "tests/current/test_live_combat_ally_support.py",
 }
 COMMAND_INTEGRATION = {
     "tests/current/test_combat_command_wrapper.py",
@@ -141,6 +154,8 @@ def select(paths: list[str]) -> list[str]:
 
         if (
             path.startswith("runtime/shinobi_runtime/combat/")
+            or path.startswith("runtime/shinobi_runtime/api/combat_")
+            or path.startswith("runtime/shinobi_runtime/commands/combat_")
             or any(token in low for token in ("/exact_combat.py", "/combat.py", "/combat_simulation.py", "/health.py", "/targeting.py", "/mounts.py", "/medicine.py", "/poison.py"))
             or path == "game/data/martial-world/medicine.json"
         ):

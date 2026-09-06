@@ -190,3 +190,35 @@ def test_active_defense_pressure_can_exhaust_an_otherwise_lawful_reaction_window
     assert decision.reaction_delay_ms >= 330
     assert decision.response == "none"
     assert decision.reason == "reaction_window_elapsed_before_response"
+
+
+def test_tiny_positive_movement_window_does_not_grant_minimum_distance_dodge() -> None:
+    from shinobi_runtime.combat.geometry import planar_distance_mm
+    from shinobi_runtime.combat.physical_defense import _movement_response, movement_speed_mmps
+
+    defender_pos = PositionState(zone_ref="test", x_mm=0, y_mm=0, facing_mdeg=0)
+    attacker_pos = PositionState(zone_ref="test", x_mm=2000, y_mm=0, facing_mdeg=180000)
+    capability = _cap(reaction=100, perception=100, mobility=100)
+
+    moved = _movement_response(
+        response="evade",
+        attacker_ref="attacker",
+        defender_ref="defender",
+        participant_positions={
+            "attacker": attacker_pos.to_record(),
+            "defender": defender_pos.to_record(),
+        },
+        defender_position=defender_pos,
+        incoming_bearing_mdeg=0,
+        defender_capability=capability,
+        reaction_delay_ms=99,
+        warning_ms=100,
+        body_refs=("attacker", "defender"),
+        obstacles=(),
+    )
+
+    assert moved is not None
+    displacement = planar_distance_mm(defender_pos.to_record(), moved.to_record())
+    physical_budget = movement_speed_mmps(capability) * 1 // 1000
+    assert displacement <= physical_budget + 1
+    assert displacement < 350

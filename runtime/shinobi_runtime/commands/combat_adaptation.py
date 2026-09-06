@@ -10,6 +10,7 @@ from __future__ import annotations
 import copy
 from typing import Any, Callable, Mapping, Sequence
 
+from shinobi_runtime.martial_world.doctrines import resolve_individual_doctrine
 from shinobi_runtime.martial_world.exact_combat import currently_visible_enemies
 from shinobi_runtime.martial_world.qi import person_current_qi_milli, safe_flow_milli_per_second
 from shinobi_runtime.martial_world.social_causality import apply_martial_events, breach_hostile_commitments
@@ -26,9 +27,8 @@ _REJECTED_RESULTS = frozenset({
     "melee_approach_blocked", "mount_target_unavailable",
 })
 _DEFINITE_FAILURE_RESULTS = _REJECTED_RESULTS | frozenset({
-    "defended_or_missed", "missed", "blocked", "parried", "dodged", "no_contact",
-    "miss_no_spatial_intersection", "target_outpaced_committed_approach",
-    "attack_interrupted", "interrupted_before_contact",
+    "defended_or_missed", "missed", "blocked", "parried", "dodged",
+    "miss_no_spatial_intersection", "no_contact", "target_outpaced_committed_approach",
 })
 _ACTION_ALTERNATES = {
     "thrust": "cut",
@@ -47,7 +47,6 @@ _TANG_WEI_ADAPTIVE_QI_DOCTRINES = frozenset({
     "doctrine.tang_wei.precision_function_denial",
     "doctrine.tang_wei.precision_function_denial.lethal_pursuit",
 })
-_ADAPTIVE_LETHAL_QI_RESERVE_PERCENT = 60
 
 
 def intelligence_adaptation_threshold(people: Mapping[str, Mapping[str, Any]], actor_ref: str) -> int:
@@ -372,12 +371,15 @@ def _adaptive_qi_allocation(
     failure_streak: int, threshold: int, targeting_intent: str,
     until_resolution: bool,
 ) -> dict[str, int] | None:
-    """Return bounded delegated Qi escalation after repeated lethal-pursuit failure.
+    """Return bounded emergency flow for an already-authorized lethal standing span.
 
-    This is a command-span policy, not a saved-doctrine mutation. It applies only
-    to Tang Wei's established precision-denial doctrine family after the player
-    has already delegated lethal combat until resolution. Exact Qi mechanics
-    still own safe-flow delivery, resource limitation and final spend.
+    Normal doctrine conservation remains authored and unchanged. Once repeated
+    failure crosses the intelligence-derived replan threshold, this planner may
+    temporarily spend below that normal reserve to keep a persistent lethal
+    pursuit tactically live. The emergency floor is derived from the existing
+    authored conservation value, not saved as a second doctrine or campaign
+    setting. Exact Qi mechanics still own delivery, strain, current Qi, and all
+    consequences of the requested flow.
     """
     if failure_streak < threshold or not until_resolution or targeting_intent != "lethal":
         return None
@@ -387,17 +389,25 @@ def _adaptive_qi_allocation(
     doctrine_ref = str(actor.get("combat_doctrine_ref") or "")
     if doctrine_ref not in _TANG_WEI_ADAPTIVE_QI_DOCTRINES:
         return None
-    reserve_percent = _ADAPTIVE_LETHAL_QI_RESERVE_PERCENT
+    doctrine = resolve_individual_doctrine(doctrine_ref)
+    resources = doctrine.get("resource_discipline", {}) if isinstance(doctrine, Mapping) else {}
+    conservation = resources.get("qi_conservation") if isinstance(resources, Mapping) else None
+    if not isinstance(conservation, int) or isinstance(conservation, bool):
+        return None
+    conservation = max(0, min(100, conservation))
+    emergency_reserve_percent = max(50, conservation * 2 // 3)
+
     qi = max(0, int(actor.get("qi", 0)))
     control = max(0, int(actor.get("qi_control", 0)))
     current = person_current_qi_milli(actor)
-    reserve = qi * 1000 * reserve_percent // 100
-    if qi <= 0 or control <= 0 or current <= reserve:
+    reserve = qi * 1000 * emergency_reserve_percent // 100
+    spendable = max(0, current - reserve)
+    if qi <= 0 or control <= 0 or spendable <= 0:
         return None
     safe_flow = max(0, safe_flow_milli_per_second(qi, control))
     if safe_flow <= 0:
         return None
-    flow = max(1, safe_flow * 3 // 4)
+    flow = min(max(1, safe_flow * 3 // 4), max(1, spendable // 4))
     movement = max(1, flow * 55 // 100)
     body = max(1, flow * 35 // 100)
     sensing = max(0, flow - movement - body)
@@ -514,8 +524,7 @@ def adaptive_standing_span(
         return fallback(base_resolver, **kwargs)
 
     original = copy.deepcopy(dict(kwargs))
-    initial_combat = copy.deepcopy(dict(kwargs["combat"]))
-    combat_cursor = copy.deepcopy(initial_combat)
+    combat_cursor = copy.deepcopy(dict(kwargs["combat"]))
     people_cursor = {str(ref): copy.deepcopy(dict(person)) for ref, person in kwargs["people"].items()}
     ledger_cursor = copy.deepcopy(dict(kwargs["equipment_ledger"]))
     social_cursor = copy.deepcopy(dict(kwargs["social_state"]))
@@ -712,13 +721,6 @@ def adaptive_standing_span(
         "scope_stop_reason": stop_reason,
         "continuation_required": continuation_required,
         "narrative_projection": _merge_projections(projections, exchanges=exchanges, stop_reason=stop_reason),
-        "combat_information": _normalize_span_combat_information(
-            initial_combat=initial_combat,
-            final_combat=combat_cursor,
-            events=all_events,
-            player_ref=player_ref,
-            current_information=last_result.get("combat_information") if isinstance(last_result, Mapping) else None,
-        ),
     })
     return out
 

@@ -359,9 +359,14 @@ def select_physical_defense(
     movement_locked = bool(statuses & _MOVEMENT_LOCKS) or recovery_lock > warning
     options: list[tuple[int, str, PositionState | None]] = []
 
-    if not detected:
+    # Detection is not itself an active defense. The pressure-adjusted reaction
+    # latency must leave real physical time before contact for a dodge, parry,
+    # block, brace, or counter-intercept to begin. Otherwise the old selector
+    # could grant a successful stationary defense at contact even though the
+    # reaction mathematically completed only at or after that same contact.
+    if not detected or reaction_delay >= warning:
         return PhysicalDefenseDecision(
-            detected=False, detection_margin=detection_margin, response="none",
+            detected=detected, detection_margin=detection_margin, response="none",
             before_position=defender_position, after_position=defender_position,
             displacement_mm=0, reaction_delay_ms=reaction_delay, recovery_ms=0,
             defense_factor_milli=max(80, 350 * reaction_availability // 1000),
@@ -372,7 +377,7 @@ def select_physical_defense(
             attack_angle_mdeg=attack_angle, tracking_milli=1000,
             force_transmission_milli=1000, control_disruption=0, displacement_resistance_milli=0,
             interrupts_attacker=False, contact_surface="none",
-            reason="attack_not_detected_in_time",
+            reason=("attack_not_detected_in_time" if not detected else "reaction_window_elapsed_before_response"),
         )
 
     if not movement_locked:

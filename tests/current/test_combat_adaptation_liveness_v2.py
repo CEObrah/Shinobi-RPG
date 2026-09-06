@@ -31,8 +31,9 @@ def _combat():
     }
 
 
-def test_spatial_projectile_miss_is_a_definite_tactical_failure():
+def test_spatial_and_no_contact_misses_are_definite_tactical_failures():
     assert adaptation.definite_tactical_failure({"result": "miss_no_spatial_intersection"}) is True
+    assert adaptation.definite_tactical_failure({"result": "no_contact"}) is True
 
 
 def test_adaptation_changes_geometry_and_same_discipline_before_generic_retarget(monkeypatch):
@@ -169,31 +170,52 @@ def test_explicit_poison_is_never_suppressed_by_adaptive_history(monkeypatch):
     assert all(poison == "cardiotoxic" and auto is False for poison, auto in calls)
 
 
-def test_lethal_pursuit_can_escalate_delegated_qi_after_failure_without_changing_normal_doctrine():
-    people = {
-        "wei": _person(
-            "wei",
-            doctrine="doctrine.tang_wei.precision_function_denial.lethal_pursuit",
-            qi=150,
-            qi_control=78,
-            current_qi_milli=99_935,
+def test_stored_and_span_override_wei_doctrines_can_escalate_qi_only_for_delegated_lethal_pursuit():
+    for doctrine_ref in (
+        "doctrine.tang_wei.precision_function_denial",
+        "doctrine.tang_wei.precision_function_denial.lethal_pursuit",
+    ):
+        people = {
+            "wei": _person(
+                "wei",
+                doctrine=doctrine_ref,
+                qi=150,
+                qi_control=78,
+                current_qi_milli=99_935,
+            )
+        }
+        allocation = adaptation._adaptive_qi_allocation(
+            people=people,
+            player_ref="wei",
+            failure_streak=1,
+            threshold=1,
+            targeting_intent="lethal",
+            until_resolution=True,
         )
-    }
-    allocation = adaptation._adaptive_qi_allocation(
-        people=people,
-        player_ref="wei",
-        failure_streak=1,
-        threshold=1,
-        targeting_intent="lethal",
-        until_resolution=True,
-    )
-    assert allocation
-    assert set(allocation) <= {"movement", "body", "sensing"}
-    assert sum(allocation.values()) <= adaptation.safe_flow_milli_per_second(150, 78)
+        assert allocation
+        assert set(allocation) <= {"movement", "body", "sensing"}
+        assert sum(allocation.values()) <= adaptation.safe_flow_milli_per_second(150, 78)
 
-    normal_people = {"wei": _person("wei", doctrine="doctrine.tang_wei.precision_function_denial")}
+        assert adaptation._adaptive_qi_allocation(
+            people=people,
+            player_ref="wei",
+            failure_streak=1,
+            threshold=1,
+            targeting_intent="disable",
+            until_resolution=True,
+        ) is None
+        assert adaptation._adaptive_qi_allocation(
+            people=people,
+            player_ref="wei",
+            failure_streak=1,
+            threshold=1,
+            targeting_intent="lethal",
+            until_resolution=False,
+        ) is None
+
+    unrelated = {"wei": _person("wei", doctrine="doctrine.someone_else")}
     assert adaptation._adaptive_qi_allocation(
-        people=normal_people,
+        people=unrelated,
         player_ref="wei",
         failure_streak=1,
         threshold=1,

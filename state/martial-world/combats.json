@@ -5,7 +5,7 @@
       "combat_id": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
       "status": "active",
       "started_at": "0061-09-27T21:15:00",
-      "elapsed_ms": 275824,
+      "elapsed_ms": 279393,
       "zone_ref": "route.changan.huashan",
       "sides": {
         "side_a": [
@@ -184,12 +184,12 @@
           "zone_ref": "route.changan.huashan",
           "elevation_mm": 500,
           "cover_milli": 0,
-          "x_mm": 2642,
-          "y_mm": 12074,
-          "facing_mdeg": 348006,
+          "x_mm": 2521,
+          "y_mm": 12786,
+          "facing_mdeg": 336220,
           "body_radius_mm": 300,
-          "vx_mmps": 2471,
-          "vy_mmps": -529,
+          "vx_mmps": 199,
+          "vy_mmps": -90,
           "stance": "lateral_entry_left"
         },
         "mw.person.black_lance_company.0004": {
@@ -280,12 +280,12 @@
           "zone_ref": "route.changan.huashan",
           "elevation_mm": 500,
           "cover_milli": 0,
-          "x_mm": -2834,
-          "y_mm": 12588,
-          "facing_mdeg": 131224,
+          "x_mm": -2985,
+          "y_mm": 12760,
+          "facing_mdeg": 131212,
           "body_radius_mm": 300,
-          "vx_mmps": -1648,
-          "vy_mmps": 1880,
+          "vx_mmps": -1642,
+          "vy_mmps": 1869,
           "stance": "approaching"
         },
         "mw.person.black_lance_company.0041": {
@@ -296,8 +296,8 @@
           "y_mm": 9980,
           "facing_mdeg": 56844,
           "body_radius_mm": 300,
-          "vx_mmps": 1395,
-          "vy_mmps": 2136,
+          "vx_mmps": 0,
+          "vy_mmps": 0,
           "stance": "approaching"
         },
         "mw.person.black_lance_company.0044": {
@@ -318,22 +318,22 @@
           "cover_milli": 0,
           "x_mm": 1725,
           "y_mm": 9747,
-          "facing_mdeg": 68506,
+          "facing_mdeg": 68492,
           "body_radius_mm": 300,
-          "vx_mmps": 722,
-          "vy_mmps": 1837,
+          "vx_mmps": 0,
+          "vy_mmps": 0,
           "stance": "approaching"
         },
         "mw.person.black_lance_company.0050": {
           "zone_ref": "route.changan.huashan",
           "elevation_mm": 0,
           "cover_milli": 0,
-          "x_mm": 2918,
+          "x_mm": 2917,
           "y_mm": 9588,
-          "facing_mdeg": 96358,
+          "facing_mdeg": 96335,
           "body_radius_mm": 300,
-          "vx_mmps": -225,
-          "vy_mmps": 1966,
+          "vx_mmps": -1000,
+          "vy_mmps": 0,
           "stance": "approaching"
         },
         "mw.person.black_lance_company.0060": {
@@ -402,11 +402,11 @@
           "cover_milli": 0,
           "x_mm": 3574,
           "y_mm": 12322,
-          "facing_mdeg": 194901,
+          "facing_mdeg": 156220,
           "body_radius_mm": 300,
           "vx_mmps": -1702,
           "vy_mmps": -893,
-          "stance": "braced"
+          "stance": "guarding"
         }
       },
       "obstacles": [
@@ -524,9 +524,9 @@
               "mw.person.black_lance_company.0085": 269793
             }
           },
-          "balance_milli": 835,
+          "balance_milli": 768,
           "limb_commitment_milli": 338,
-          "recovery_until_ms": 273561,
+          "recovery_until_ms": 277784,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_jian",
           "status_families": [],
@@ -576,23 +576,24 @@
             "mw.person.black_lance_company.0085",
             "mw.person.black_lance_company.0092"
           ],
-          "guard_exertion_fraction_numerator": 20182,
-          "guard_exertion_fraction_denominator": 21875,
+          "guard_exertion_fraction_numerator": 23321,
+          "guard_exertion_fraction_denominator": 43750,
           "ready_hands_required": 1,
-          "guard_exertion_milli": 423,
+          "guard_exertion_milli": 546,
           "qi_reserve_milli": 138000
         },
         "mw.person.house_tang.1032": {
           "defense_state": {
-            "load_milli": 309,
-            "last_at_ms": 273310,
+            "load_milli": 686,
+            "last_at_ms": 276879,
             "recent_attackers": {
-              "mw.person.black_lance_company.0035": 273310
+              "mw.person.black_lance_company.0037": 276875,
+              "mw.person.black_lance_company.0035": 276879
             }
           },
           "balance_milli": 970,
           "limb_commitment_milli": 0,
-          "recovery_until_ms": 273310,
+          "recovery_until_ms": 276879,
           "weapon_position": "guard",
           "ready_weapon_ref": "weapon_needle",
           "status_families": [],
@@ -643,9 +644,9 @@
             "mw.person.black_lance_company.0092"
           ],
           "qi_reserve_milli": 5250,
-          "guard_exertion_milli": 923,
-          "guard_exertion_fraction_numerator": 114,
-          "guard_exertion_fraction_denominator": 625,
+          "guard_exertion_milli": 12,
+          "guard_exertion_fraction_numerator": 7643,
+          "guard_exertion_fraction_denominator": 10000,
           "support_task": {
             "task": "treat",
             "target_ref": "mw.person.house_tang.1050",
@@ -653,7 +654,7 @@
             "issued_by_ref": "pc_wei_tang",
             "issued_at_ms": 188727,
             "access_started_ms": 268691,
-            "last_access_ms": 272255
+            "last_access_ms": 275824
           }
         },
         "mw.person.house_tang.1050": {
@@ -1365,7 +1366,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 274278,
+          "recovery_until_ms": 277303,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -1397,9 +1398,9 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 19500,
-          "guard_exertion_milli": 399,
-          "guard_exertion_fraction_numerator": 53972,
-          "guard_exertion_fraction_denominator": 65625,
+          "guard_exertion_milli": 613,
+          "guard_exertion_fraction_numerator": 447,
+          "guard_exertion_fraction_denominator": 1750,
           "ready_hands_required": 2
         },
         "mw.person.black_lance_company.0035": {
@@ -1412,7 +1413,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 273830,
+          "recovery_until_ms": 277399,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -1443,10 +1444,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 19500,
-          "guard_exertion_fraction_numerator": 176991,
-          "guard_exertion_fraction_denominator": 193750,
+          "guard_exertion_fraction_numerator": 12229,
+          "guard_exertion_fraction_denominator": 15500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 662
+          "guard_exertion_milli": 879
         },
         "mw.person.black_lance_company.0004": {
           "defense_state": {
@@ -1484,9 +1485,9 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 42000,
-          "guard_exertion_milli": 507,
-          "guard_exertion_fraction_numerator": 51799,
-          "guard_exertion_fraction_denominator": 184375,
+          "guard_exertion_milli": 735,
+          "guard_exertion_fraction_numerator": 67841,
+          "guard_exertion_fraction_denominator": 368750,
           "ready_hands_required": 2
         },
         "mw.person.black_lance_company.0048": {
@@ -1499,7 +1500,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 274410,
+          "recovery_until_ms": 277388,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -1530,10 +1531,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 17250,
-          "guard_exertion_fraction_numerator": 26058,
-          "guard_exertion_fraction_denominator": 59375,
+          "guard_exertion_fraction_numerator": 40197,
+          "guard_exertion_fraction_denominator": 118750,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 125
+          "guard_exertion_milli": 361
         },
         "mw.person.black_lance_company.0037": {
           "defense_state": {
@@ -1545,7 +1546,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 275730,
+          "recovery_until_ms": 277395,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -1577,10 +1578,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 13500,
-          "guard_exertion_fraction_numerator": 64279,
-          "guard_exertion_fraction_denominator": 209375,
+          "guard_exertion_fraction_numerator": 417801,
+          "guard_exertion_fraction_denominator": 418750,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 418
+          "guard_exertion_milli": 618
         },
         "mw.person.black_lance_company.0066": {
           "defense_state": {
@@ -1621,10 +1622,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 22500,
-          "guard_exertion_fraction_numerator": 6219,
-          "guard_exertion_fraction_denominator": 34375,
+          "guard_exertion_fraction_numerator": 125457,
+          "guard_exertion_fraction_denominator": 137500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 650
+          "guard_exertion_milli": 853
         },
         "mw.person.black_lance_company.0085": {
           "defense_state": {
@@ -1664,23 +1665,23 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 18750,
-          "guard_exertion_fraction_numerator": 35309,
-          "guard_exertion_fraction_denominator": 181250,
+          "guard_exertion_fraction_numerator": 9861,
+          "guard_exertion_fraction_denominator": 362500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 810
+          "guard_exertion_milli": 42
         },
         "mw.person.black_lance_company.0092": {
           "defense_state": {
-            "load_milli": 477,
-            "last_at_ms": 273131,
+            "load_milli": 679,
+            "last_at_ms": 277354,
             "recent_attackers": {
-              "pc_wei_tang": 273131
+              "pc_wei_tang": 277354
             }
           },
-          "balance_milli": 970,
-          "limb_commitment_milli": 0,
-          "recovery_until_ms": 273131,
-          "weapon_position": "guard",
+          "balance_milli": 820,
+          "limb_commitment_milli": 620,
+          "recovery_until_ms": 278287,
+          "weapon_position": "extended_parry",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
           "reinforcement_at_ms": 0,
@@ -1710,9 +1711,9 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 9000,
-          "guard_exertion_milli": 491,
-          "guard_exertion_fraction_numerator": 137907,
-          "guard_exertion_fraction_denominator": 165625,
+          "guard_exertion_milli": 745,
+          "guard_exertion_fraction_numerator": 177557,
+          "guard_exertion_fraction_denominator": 331250,
           "ready_hands_required": 2
         },
         "mw.person.black_lance_company.0012": {
@@ -1754,10 +1755,10 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 21750,
-          "guard_exertion_fraction_numerator": 1698,
-          "guard_exertion_fraction_denominator": 3125,
+          "guard_exertion_fraction_numerator": 318263,
+          "guard_exertion_fraction_denominator": 750000,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 200
+          "guard_exertion_milli": 424
         },
         "mw.person.black_lance_company.0026": {
           "defense_state": {
@@ -1795,9 +1796,9 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 27750,
-          "guard_exertion_milli": 199,
-          "guard_exertion_fraction_numerator": 1547,
-          "guard_exertion_fraction_denominator": 3000,
+          "guard_exertion_milli": 423,
+          "guard_exertion_fraction_numerator": 297493,
+          "guard_exertion_fraction_denominator": 750000,
           "ready_hands_required": 2
         },
         "mw.person.black_lance_company.0029": {
@@ -1836,9 +1837,9 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 13500,
-          "guard_exertion_fraction_numerator": 489,
-          "guard_exertion_fraction_denominator": 875,
-          "guard_exertion_milli": 870
+          "guard_exertion_fraction_numerator": 3893,
+          "guard_exertion_fraction_denominator": 14000,
+          "guard_exertion_milli": 998
         },
         "mw.person.black_lance_company.0077": {
           "defense_state": {
@@ -1876,10 +1877,10 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 8250,
-          "guard_exertion_fraction_numerator": 8269,
-          "guard_exertion_fraction_denominator": 12500,
+          "guard_exertion_fraction_numerator": 2633,
+          "guard_exertion_fraction_denominator": 3000,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 231
+          "guard_exertion_milli": 403
         },
         "mw.person.black_lance_company.0021": {
           "defense_state": {
@@ -1920,10 +1921,10 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 12750,
-          "guard_exertion_fraction_numerator": 7721,
-          "guard_exertion_fraction_denominator": 96875,
+          "guard_exertion_fraction_numerator": 370127,
+          "guard_exertion_fraction_denominator": 387500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 664
+          "guard_exertion_milli": 880
         },
         "mw.person.black_lance_company.0031": {
           "defense_state": {
@@ -1964,10 +1965,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 24000,
-          "guard_exertion_fraction_numerator": 25192,
-          "guard_exertion_fraction_denominator": 59375,
+          "guard_exertion_fraction_numerator": 63047,
+          "guard_exertion_fraction_denominator": 712500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 103
+          "guard_exertion_milli": 339
         },
         "mw.person.black_lance_company.0060": {
           "defense_state": {
@@ -1977,7 +1978,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 276344,
+          "recovery_until_ms": 279913,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -2007,10 +2008,10 @@
             "mw.person.house_tang.1032"
           ],
           "qi_reserve_milli": 19500,
-          "guard_exertion_fraction_numerator": 84908,
-          "guard_exertion_fraction_denominator": 203125,
+          "guard_exertion_fraction_numerator": 115309,
+          "guard_exertion_fraction_denominator": 406250,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 892
+          "guard_exertion_milli": 99
         },
         "mw.person.black_lance_company.0079": {
           "defense_state": {
@@ -2048,9 +2049,9 @@
           "concealment_milli": 280,
           "current_contact_refs": [],
           "qi_reserve_milli": 19500,
-          "guard_exertion_fraction_numerator": 493,
-          "guard_exertion_fraction_denominator": 7125,
-          "guard_exertion_milli": 707
+          "guard_exertion_fraction_numerator": 6393,
+          "guard_exertion_fraction_denominator": 9500,
+          "guard_exertion_milli": 832
         },
         "mw.person.black_lance_company.0044": {
           "defense_state": {
@@ -2093,10 +2094,10 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 23250,
-          "guard_exertion_fraction_numerator": 12196,
-          "guard_exertion_fraction_denominator": 46875,
+          "guard_exertion_fraction_numerator": 342163,
+          "guard_exertion_fraction_denominator": 937500,
           "ready_hands_required": 2,
-          "guard_exertion_milli": 759
+          "guard_exertion_milli": 938
         },
         "mw.person.black_lance_company.0050": {
           "defense_state": {
@@ -2106,7 +2107,7 @@
           },
           "balance_milli": 350,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 273997,
+          "recovery_until_ms": 277388,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
           "status_families": [],
@@ -2137,18 +2138,18 @@
             "pc_wei_tang"
           ],
           "qi_reserve_milli": 16500,
-          "guard_exertion_milli": 508,
+          "guard_exertion_milli": 736,
           "ready_hands_required": 2,
-          "guard_exertion_fraction_numerator": 181551,
-          "guard_exertion_fraction_denominator": 184375
+          "guard_exertion_fraction_numerator": 65469,
+          "guard_exertion_fraction_denominator": 73750
         }
       },
       "awareness_mode": "mutual",
       "team_plans": {
         "side_a": {
-          "plan_id": "player-retinue:b112169b125e5fba63a8",
+          "plan_id": "player-retinue:50a308deba38e3c50673",
           "side_ref": "side_a",
-          "generated_at_ms": 272255,
+          "generated_at_ms": 275824,
           "objective_kind": "preserve_route_mission",
           "primary_threat_ref": "mw.person.black_lance_company.0004",
           "primary_threat_score": 1114,

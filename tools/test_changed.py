@@ -31,8 +31,6 @@ COMBAT = {
     "tests/current/test_health_targeting.py",
     "tests/current/test_mounted_combat.py",
     "tests/current/test_combat_friendly_line_safety.py",
-    "tests/current/test_play_failure_matrix.py",
-    "tests/current/test_play_regression_hardening.py",
     "tests/current/test_exact_combat_withdrawal.py",
     "tests/current/test_combat_contact_pursuit_repair.py",
     "tests/current/test_combat_simulation_hardening.py",

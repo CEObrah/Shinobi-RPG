@@ -294,7 +294,12 @@ def _movement_response(
     if available_ms <= 0:
         return None
     speed = movement_speed_mmps(defender_capability)
-    displacement = min(3200, max(350, speed * available_ms // 1000))
+    # Defensive movement is bounded by actual time available. A tiny positive
+    # reaction window may produce only a few millimetres of motion; it must not
+    # be inflated into a minimum dodge distance.
+    displacement = min(3200, speed * available_ms // 1000)
+    if displacement <= 0:
+        return None
     current = dict(participant_positions)
     current[defender_ref] = defender_position.to_record()
     candidates = _candidate_displacements(defender_position, incoming_bearing_mdeg=incoming_bearing_mdeg, max_displacement_mm=displacement)

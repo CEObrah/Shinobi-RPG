@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -27,6 +29,37 @@ jobs:
           cat quick-check.log
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
+      - name: Changed-owner regressions
+        id: changed
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BASE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: |
+          set +e
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            base="$PR_BASE_SHA"
+            head="$PR_HEAD_SHA"
+          else
+            base="$PUSH_BASE_SHA"
+            head="$CURRENT_SHA"
+          fi
+          if [[ -z "$base" || "$base" =~ ^0+$ ]]; then
+            base="$(git rev-parse HEAD^)"
+          fi
+          if [[ -z "$head" ]]; then
+            head="$(git rev-parse HEAD)"
+          fi
+          mapfile -t changed_files < <(git diff --name-only "$base" "$head")
+          printf 'CHANGED FILE: %s\n' "${changed_files[@]}"
+          python tools/test_changed.py "${changed_files[@]}" > changed-tests.log 2>&1
+          code=$?
+          cat changed-tests.log
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
       - name: Battle repair and route regressions
         id: regressions
         shell: bash
@@ -39,6 +72,10 @@ jobs:
             tests/current/test_combat_pressure_integrity.py \
             tests/current/test_combat_readiness_integrity.py \
             tests/current/test_combat_liveness_integrity.py \
+            tests/current/test_combat_reaction_window_causality.py \
+            tests/current/test_combat_reaction_timing_integrity.py \
+            tests/current/test_combat_defensive_movement_integrity.py \
+            tests/current/test_combat_reaction_window_causality_ci_contract.py \
             tests/current/test_combat_command_wrapper.py \
             tests/current/test_player_retinue_doctrine.py \
             tests/current/test_combat_rally_and_approach_budget.py \
@@ -66,9 +103,11 @@ jobs:
           name: ooc-dev-check-logs
           path: |
             quick-check.log
+            changed-tests.log
             route-regressions.log
       - name: Enforce checks
         shell: bash
         run: |
           test "${{ steps.quick.outputs.exit_code }}" = "0"
+          test "${{ steps.changed.outputs.exit_code }}" = "0"
           test "${{ steps.regressions.outputs.exit_code }}" = "0"

@@ -10,7 +10,9 @@ from __future__ import annotations
 import copy
 from typing import Any, Callable, Mapping, Sequence
 
+from shinobi_runtime.martial_world.doctrines import resolve_individual_doctrine
 from shinobi_runtime.martial_world.exact_combat import currently_visible_enemies
+from shinobi_runtime.martial_world.qi import person_current_qi_milli, safe_flow_milli_per_second
 from shinobi_runtime.martial_world.social_causality import apply_martial_events, breach_hostile_commitments
 
 
@@ -26,6 +28,8 @@ _REJECTED_RESULTS = frozenset({
 })
 _DEFINITE_FAILURE_RESULTS = _REJECTED_RESULTS | frozenset({
     "defended_or_missed", "missed", "blocked", "parried", "dodged",
+    "miss_no_spatial_intersection", "target_outpaced_committed_approach",
+    "attack_interrupted", "interrupted_before_contact",
 })
 _ACTION_ALTERNATES = {
     "thrust": "cut",
@@ -33,7 +37,13 @@ _ACTION_ALTERNATES = {
     "staff_strike": "staff_thrust",
     "staff_thrust": "staff_strike",
 }
+_MELEE_ACTIONS = frozenset({
+    "cut", "thrust", "unarmed_strike", "staff_strike", "staff_sweep",
+    "staff_thrust", "staff_butt_strike", "improvised_strike",
+})
+_PROJECTILE_ACTIONS = frozenset({"bow_shot", "hidden_weapon_throw"})
 _ADAPTIVE_ZONES = ("chest", "forearm", "knee")
+_ADAPTIVE_MOVEMENT_SENTINEL = "_adaptive_movement_intent"
 
 
 def intelligence_adaptation_threshold(people: Mapping[str, Mapping[str, Any]], actor_ref: str) -> int:
@@ -197,8 +207,14 @@ def adaptive_override_candidates(
     player_ref: str,
     previous_event: Mapping[str, Any] | None,
     previous_projection: Mapping[str, Any] | None,
+    movement_already_used: bool = False,
 ) -> list[dict[str, Any]]:
-    """Return lawful omitted-detail variations, ordered by tactical value."""
+    """Return lawful omitted-detail variations, ordered by tactical value.
+
+    Local geometry and the fighter's already-selected discipline are exhausted
+    before a generic target switch. This avoids treating a single failed sword
+    entry as a reason to jump immediately to a weaker ranged discipline.
+    """
     candidates: list[dict[str, Any]] = []
     previous_target = str(previous_event.get("intended_ref") or "") if isinstance(previous_event, Mapping) else ""
     previous_action = str(previous_event.get("action_kind") or "") if isinstance(previous_event, Mapping) else ""
@@ -206,8 +222,26 @@ def adaptive_override_candidates(
 
     target_delegated = str(original_kwargs.get("raw_target_ref") or "auto") in _AUTO_TARGETS
     action_delegated = str(original_kwargs.get("raw_action_kind") or "attack") in _AUTO_ACTIONS
+    weapon_delegated = str(original_kwargs.get("raw_weapon_ref") or "auto") in _AUTO_WEAPONS
     hit_zone_delegated = str(original_kwargs.get("hit_zone") or "auto") in _AUTO_TARGETS
     structure_delegated = original_kwargs.get("target_structure_ref") in (None, "", "auto")
+
+    if (
+        not movement_already_used
+        and previous_action in _MELEE_ACTIONS
+        and (target_delegated or action_delegated or weapon_delegated)
+    ):
+        candidates.append({_ADAPTIVE_MOVEMENT_SENTINEL: "lateral"})
+
+    if action_delegated:
+        alternate = _ACTION_ALTERNATES.get(previous_action)
+        if alternate:
+            candidates.append({"raw_action_kind": alternate})
+
+    if hit_zone_delegated and structure_delegated:
+        for zone in _ADAPTIVE_ZONES:
+            if zone != previous_zone:
+                candidates.append({"hit_zone": zone})
 
     visible = visible_active_enemies(combat, people, player_ref)
     if target_delegated:
@@ -217,20 +251,10 @@ def adaptive_override_candidates(
             if ref != previous_target:
                 candidates.append({"raw_target_ref": ref})
 
-    if action_delegated:
-        alternate = _ACTION_ALTERNATES.get(previous_action)
-        if alternate:
-            candidates.append({"raw_action_kind": alternate})
-
-    if target_delegated:
         for ref in visible:
-            if ref != previous_target and {"raw_target_ref": ref} not in candidates:
-                candidates.append({"raw_target_ref": ref})
-
-    if hit_zone_delegated and structure_delegated:
-        for zone in _ADAPTIVE_ZONES:
-            if zone != previous_zone:
-                candidates.append({"hit_zone": zone})
+            candidate = {"raw_target_ref": ref}
+            if ref != previous_target and candidate not in candidates:
+                candidates.append(candidate)
 
     return candidates
 
@@ -339,6 +363,123 @@ def _requested_scope_complete(
     return exchanges >= 1
 
 
+def _adaptive_qi_allocation(
+    *, people: Mapping[str, Mapping[str, Any]], player_ref: str,
+    failure_streak: int, threshold: int, targeting_intent: str,
+    until_resolution: bool,
+) -> dict[str, int] | None:
+    """Return a bounded emergency flow for delegated lethal pursuit after failure.
+
+    The reserve threshold is authored on the active personal doctrine. Exact Qi
+    mechanics still own safe-flow delivery, resource limitation and final spend.
+    """
+    if failure_streak < threshold or not until_resolution or targeting_intent != "lethal":
+        return None
+    actor = people.get(player_ref)
+    if not isinstance(actor, Mapping):
+        return None
+    doctrine_ref = actor.get("combat_doctrine_ref")
+    doctrine = resolve_individual_doctrine(doctrine_ref) if isinstance(doctrine_ref, str) else None
+    resources = doctrine.get("resource_discipline", {}) if isinstance(doctrine, Mapping) else {}
+    reserve_percent = resources.get("adaptive_failure_qi_reserve_percent") if isinstance(resources, Mapping) else None
+    if not isinstance(reserve_percent, int) or isinstance(reserve_percent, bool):
+        return None
+    reserve_percent = max(0, min(100, reserve_percent))
+    qi = max(0, int(actor.get("qi", 0)))
+    control = max(0, int(actor.get("qi_control", 0)))
+    current = person_current_qi_milli(actor)
+    reserve = qi * 1000 * reserve_percent // 100
+    if qi <= 0 or control <= 0 or current <= reserve:
+        return None
+    safe_flow = max(0, safe_flow_milli_per_second(qi, control))
+    if safe_flow <= 0:
+        return None
+    flow = max(1, safe_flow * 3 // 4)
+    movement = max(1, flow * 55 // 100)
+    body = max(1, flow * 35 // 100)
+    sensing = max(0, flow - movement - body)
+    out = {"movement": movement, "body": body}
+    if sensing > 0:
+        out["sensing"] = sensing
+    return out
+
+
+def _wasted_auto_poison_projectile(event: Mapping[str, Any] | None) -> bool:
+    if not isinstance(event, Mapping):
+        return False
+    if str(event.get("action_kind") or "") not in _PROJECTILE_ACTIONS:
+        return False
+    commit = event.get("resource_commit")
+    if not isinstance(commit, Mapping) or not bool(commit.get("poison_dose_consumed")):
+        return False
+    if not str(event.get("poison_ref") or ""):
+        return False
+    return str(event.get("result") or "") in _DEFINITE_FAILURE_RESULTS
+
+
+def _movement_rejection(exc: BaseException) -> bool:
+    text = str(exc)
+    return text in {
+        "jianghu_combat_tactical_movement_unavailable",
+        "jianghu_combat_tactical_movement_path_blocked",
+        "jianghu_combat_tactical_movement_requires_melee",
+    }
+
+
+def _resolve_with_optional_movement(
+    base_resolver: Callable[..., Mapping[str, Any]],
+    *, attempt: dict[str, Any], player_ref: str,
+) -> Mapping[str, Any]:
+    movement_intent = str(attempt.pop(_ADAPTIVE_MOVEMENT_SENTINEL, "") or "")
+    if not movement_intent:
+        return base_resolver(**attempt)
+    from shinobi_runtime.api.combat_tactical_movement_integrity import _MOVEMENT_CONTEXT
+
+    token = _MOVEMENT_CONTEXT.set({"actor_ref": player_ref, "movement_intent": movement_intent})
+    try:
+        return base_resolver(**attempt)
+    finally:
+        _MOVEMENT_CONTEXT.reset(token)
+
+
+def _combat_tally(combat: Mapping[str, Any], player_ref: str) -> Mapping[str, Any]:
+    tallies = combat.get("player_combat_tallies", {}) if isinstance(combat.get("player_combat_tallies"), Mapping) else {}
+    row = tallies.get(player_ref)
+    return row if isinstance(row, Mapping) else {}
+
+
+def _normalize_span_combat_information(
+    *, initial_combat: Mapping[str, Any], final_combat: Mapping[str, Any],
+    events: Sequence[Mapping[str, Any]], player_ref: str,
+    current_information: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    """Project whole-span resolution counters from authoritative final state."""
+    info = copy.deepcopy(dict(current_information)) if isinstance(current_information, Mapping) else {}
+    before = _combat_tally(initial_combat, player_ref)
+    after = _combat_tally(final_combat, player_ref)
+    defeats_before = max(0, int(before.get("confirmed_defeats", 0) or 0))
+    kills_before = max(0, int(before.get("confirmed_kills", 0) or 0))
+    defeats_after = max(defeats_before, int(after.get("confirmed_defeats", defeats_before) or defeats_before))
+    kills_after = max(kills_before, int(after.get("confirmed_kills", kills_before) or kills_before))
+    info["player_confirmed_defeats_this_resolution"] = defeats_after - defeats_before
+    info["player_confirmed_kills_this_resolution"] = kills_after - kills_before
+    if after:
+        info["player_confirmed_defeats_encounter"] = defeats_after
+        info["player_confirmed_kills_encounter"] = kills_after
+
+    hostile_refs = set(_enemy_refs(final_combat, player_ref)) | set(_enemy_refs(initial_combat, player_ref))
+    withdrawals = {
+        str(event.get("actor_ref") or "")
+        for event in events
+        if isinstance(event, Mapping)
+        and str(event.get("result") or "") == "withdrew_from_combat"
+        and str(event.get("actor_ref") or "") in hostile_refs
+    }
+    info["confirmed_hostile_withdrawals_this_resolution"] = len(withdrawals)
+    info["observed_escaped"] = len(withdrawals)
+    return info
+
+
 def adaptive_standing_span(
     base_resolver: Callable[..., Mapping[str, Any]],
     *,
@@ -370,7 +511,8 @@ def adaptive_standing_span(
         return fallback(base_resolver, **kwargs)
 
     original = copy.deepcopy(dict(kwargs))
-    combat_cursor = copy.deepcopy(dict(kwargs["combat"]))
+    initial_combat = copy.deepcopy(dict(kwargs["combat"]))
+    combat_cursor = copy.deepcopy(initial_combat)
     people_cursor = {str(ref): copy.deepcopy(dict(person)) for ref, person in kwargs["people"].items()}
     ledger_cursor = copy.deepcopy(dict(kwargs["equipment_ledger"]))
     social_cursor = copy.deepcopy(dict(kwargs["social_state"]))
@@ -392,6 +534,8 @@ def adaptive_standing_span(
     previous_projection: Mapping[str, Any] | None = None
     last_result: Mapping[str, Any] | None = None
     stop_reason = "scope_complete"
+    movement_used = False
+    suppress_auto_poison = False
 
     while str(combat_cursor.get("status") or "") == "active":
         if _requested_scope_complete(
@@ -419,6 +563,7 @@ def adaptive_standing_span(
                 player_ref=player_ref,
                 previous_event=previous_event,
                 previous_projection=previous_projection,
+                movement_already_used=movement_used,
             )
             if adaptive_candidates:
                 round_index = max(0, failure_streak // threshold - 1)
@@ -428,7 +573,7 @@ def adaptive_standing_span(
         candidate_overrides = [*adaptive_candidates, {}]
         resolved: Mapping[str, Any] | None = None
         used_override: Mapping[str, Any] = {}
-        last_error: ValueError | None = None
+        last_error: Exception | None = None
         for override in candidate_overrides:
             attempt = dict(original)
             attempt.update(override)
@@ -444,14 +589,37 @@ def adaptive_standing_span(
                 "rally_allies": bool(original.get("rally_allies")) if exchanges == 0 else False,
                 "player_improvised_weapon_state": original.get("player_improvised_weapon_state") if exchanges == 0 else None,
             })
+            if suppress_auto_poison and original.get("explicit_poison_ref") in (None, "", "auto"):
+                attempt["poison_auto"] = False
+            if original.get("explicit_qi_allocation_milli") is None and bool(original.get("qi_auto", True)):
+                emergency_qi = _adaptive_qi_allocation(
+                    people=people_cursor,
+                    player_ref=player_ref,
+                    failure_streak=failure_streak,
+                    threshold=threshold,
+                    targeting_intent=str(original.get("targeting_intent") or "disable"),
+                    until_resolution=until_resolution,
+                )
+                if emergency_qi:
+                    attempt["explicit_qi_allocation_milli"] = emergency_qi
+                    attempt["qi_auto"] = False
             try:
-                resolved = base_resolver(**attempt)
+                resolved = _resolve_with_optional_movement(
+                    base_resolver, attempt=attempt, player_ref=player_ref,
+                )
                 used_override = override
+                if _ADAPTIVE_MOVEMENT_SENTINEL in override:
+                    movement_used = True
                 break
             except ValueError as exc:
                 last_error = exc
                 if not override:
                     raise
+            except Exception as exc:
+                if _ADAPTIVE_MOVEMENT_SENTINEL in override and _movement_rejection(exc):
+                    last_error = exc
+                    continue
+                raise
         if resolved is None:
             if last_error is not None:
                 raise last_error
@@ -494,6 +662,13 @@ def adaptive_standing_span(
             failure_streak += 1
         else:
             failure_streak = 0
+        if (
+            not suppress_auto_poison
+            and original.get("explicit_poison_ref") in (None, "", "auto")
+            and bool(original.get("poison_auto", True))
+            and _wasted_auto_poison_projectile(player_event)
+        ):
+            suppress_auto_poison = True
         previous_event = copy.deepcopy(dict(player_event)) if isinstance(player_event, Mapping) else None
         previous_projection = copy.deepcopy(dict(projection))
 
@@ -534,6 +709,13 @@ def adaptive_standing_span(
         "scope_stop_reason": stop_reason,
         "continuation_required": continuation_required,
         "narrative_projection": _merge_projections(projections, exchanges=exchanges, stop_reason=stop_reason),
+        "combat_information": _normalize_span_combat_information(
+            initial_combat=initial_combat,
+            final_combat=combat_cursor,
+            events=all_events,
+            player_ref=player_ref,
+            current_information=last_result.get("combat_information") if isinstance(last_result, Mapping) else None,
+        ),
     })
     return out
 

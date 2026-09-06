@@ -22,6 +22,7 @@ CORE = {
     "tests/current/test_world_invariants.py",
     "tests/current/test_release_surface.py",
     "tests/current/test_combat_defense_timing_integrity.py",
+    "tests/current/test_combat_reaction_window_causality_ci_contract.py",
 }
 COMBAT = {
     "tests/current/test_autonomous_lethality.py",

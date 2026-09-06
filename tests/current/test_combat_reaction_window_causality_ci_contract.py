@@ -25,3 +25,5 @@ def test_changed_owner_gate_routes_combat_integrity_modules_to_combat_suite() ->
     assert 'path.startswith("runtime/shinobi_runtime/commands/combat_")' in source
     assert '"tests/current/test_combat_reaction_window_causality.py"' in source
     assert '"tests/current/test_combat_reaction_timing_integrity.py"' in source
+    assert '"tests/current/test_combat_tactical_movement_integrity.py"' in source
+    assert '"tests/current/test_combat_tactical_movement_blocked.py"' in source

@@ -11,6 +11,7 @@ def test_ooc_dev_workflow_runs_reaction_window_and_timing_regressions() -> None:
 
     assert "tests/current/test_combat_reaction_window_causality.py" in workflow
     assert "tests/current/test_combat_reaction_timing_integrity.py" in workflow
+    assert "tests/current/test_combat_defensive_movement_integrity.py" in workflow
     assert "Changed-owner regressions" in workflow
     assert "python tools/test_changed.py" in workflow
 

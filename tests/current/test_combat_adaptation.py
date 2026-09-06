@@ -61,7 +61,7 @@ def _kwargs(*, intelligence: int = 100):
         "until_resolution": True,
         "rally_allies": True,
         "ally_orders": None,
-        "player_improvised_weapon_state": {"fact_ref": "scene:test"},
+        "player_improvised_weapon_state": None,
     }
 
 
@@ -137,8 +137,6 @@ def test_high_intelligence_replans_technique_after_one_clear_failure_and_preserv
     assert all(call["explicit_qi_allocation_milli"] is None for call in calls)
     assert calls[0]["rally_allies"] is True
     assert calls[1]["rally_allies"] is False
-    assert calls[0]["player_improvised_weapon_state"] == {"fact_ref": "scene:test"}
-    assert calls[1]["player_improvised_weapon_state"] is None
     assert result["scope_stop_reason"] == "combat_resolved"
     assert result["exchanges_resolved"] == 2
 

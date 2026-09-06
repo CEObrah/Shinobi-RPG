@@ -10,7 +10,6 @@ from __future__ import annotations
 import copy
 from typing import Any, Callable, Mapping, Sequence
 
-from shinobi_runtime.martial_world.doctrines import resolve_individual_doctrine
 from shinobi_runtime.martial_world.exact_combat import currently_visible_enemies
 from shinobi_runtime.martial_world.qi import person_current_qi_milli, safe_flow_milli_per_second
 from shinobi_runtime.martial_world.social_causality import apply_martial_events, breach_hostile_commitments
@@ -27,7 +26,7 @@ _REJECTED_RESULTS = frozenset({
     "melee_approach_blocked", "mount_target_unavailable",
 })
 _DEFINITE_FAILURE_RESULTS = _REJECTED_RESULTS | frozenset({
-    "defended_or_missed", "missed", "blocked", "parried", "dodged",
+    "defended_or_missed", "missed", "blocked", "parried", "dodged", "no_contact",
     "miss_no_spatial_intersection", "target_outpaced_committed_approach",
     "attack_interrupted", "interrupted_before_contact",
 })
@@ -44,6 +43,11 @@ _MELEE_ACTIONS = frozenset({
 _PROJECTILE_ACTIONS = frozenset({"bow_shot", "hidden_weapon_throw"})
 _ADAPTIVE_ZONES = ("chest", "forearm", "knee")
 _ADAPTIVE_MOVEMENT_SENTINEL = "_adaptive_movement_intent"
+_TANG_WEI_ADAPTIVE_QI_DOCTRINES = frozenset({
+    "doctrine.tang_wei.precision_function_denial",
+    "doctrine.tang_wei.precision_function_denial.lethal_pursuit",
+})
+_ADAPTIVE_LETHAL_QI_RESERVE_PERCENT = 60
 
 
 def intelligence_adaptation_threshold(people: Mapping[str, Mapping[str, Any]], actor_ref: str) -> int:
@@ -368,23 +372,22 @@ def _adaptive_qi_allocation(
     failure_streak: int, threshold: int, targeting_intent: str,
     until_resolution: bool,
 ) -> dict[str, int] | None:
-    """Return a bounded emergency flow for delegated lethal pursuit after failure.
+    """Return bounded delegated Qi escalation after repeated lethal-pursuit failure.
 
-    The reserve threshold is authored on the active personal doctrine. Exact Qi
-    mechanics still own safe-flow delivery, resource limitation and final spend.
+    This is a command-span policy, not a saved-doctrine mutation. It applies only
+    to Tang Wei's established precision-denial doctrine family after the player
+    has already delegated lethal combat until resolution. Exact Qi mechanics
+    still own safe-flow delivery, resource limitation and final spend.
     """
     if failure_streak < threshold or not until_resolution or targeting_intent != "lethal":
         return None
     actor = people.get(player_ref)
     if not isinstance(actor, Mapping):
         return None
-    doctrine_ref = actor.get("combat_doctrine_ref")
-    doctrine = resolve_individual_doctrine(doctrine_ref) if isinstance(doctrine_ref, str) else None
-    resources = doctrine.get("resource_discipline", {}) if isinstance(doctrine, Mapping) else {}
-    reserve_percent = resources.get("adaptive_failure_qi_reserve_percent") if isinstance(resources, Mapping) else None
-    if not isinstance(reserve_percent, int) or isinstance(reserve_percent, bool):
+    doctrine_ref = str(actor.get("combat_doctrine_ref") or "")
+    if doctrine_ref not in _TANG_WEI_ADAPTIVE_QI_DOCTRINES:
         return None
-    reserve_percent = max(0, min(100, reserve_percent))
+    reserve_percent = _ADAPTIVE_LETHAL_QI_RESERVE_PERCENT
     qi = max(0, int(actor.get("qi", 0)))
     control = max(0, int(actor.get("qi_control", 0)))
     current = person_current_qi_milli(actor)

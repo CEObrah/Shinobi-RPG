@@ -15,6 +15,7 @@ import copy
 import math
 from typing import Any, Callable, Mapping
 
+from shinobi_runtime.commands.combat_adaptation import adaptive_standing_span
 from shinobi_runtime.martial_world.exact_combat import (
     currently_visible_enemies,
     default_weapon_for_action,
@@ -416,7 +417,30 @@ def install_production_combat_span_safety() -> None:
         return close_pressure_action_for(base_action_selector, **kwargs)
 
     def span_resolver(**kwargs: Any) -> Mapping[str, Any]:
-        return bounded_standing_span(base_resolver, **kwargs)
+        # An improvised scene prop is a player-established physical commitment.
+        # Preserve the existing multi-exchange prop semantics rather than letting
+        # delegated adaptation silently switch away from it after chunk one.
+        if kwargs.get("player_improvised_weapon_state") is not None:
+            return bounded_standing_span(base_resolver, **kwargs)
+        result = adaptive_standing_span(
+            base_resolver,
+            fallback=bounded_standing_span,
+            max_elapsed_ms=_MAX_STANDING_SPAN_ELAPSED_MS,
+            standing_exchange_limit=max(_STANDING_SPAN_EXCHANGE_FRONTIERS),
+            **kwargs,
+        )
+        if str(result.get("scope_stop_reason") or "") != "tactical_stagnation":
+            return result
+        # Production already exposes one canonical no-progress checkpoint through
+        # combat-liveness integrity. Reuse that contract for an earlier adaptive
+        # stop instead of creating a competing public stop-reason vocabulary.
+        normalized = copy.deepcopy(dict(result))
+        normalized["scope_stop_reason"] = "stagnation_checkpoint"
+        normalized["continuation_required"] = False
+        projection = normalized.get("narrative_projection")
+        if isinstance(projection, dict):
+            projection["scope_stop_reason"] = "stagnation_checkpoint"
+        return normalized
 
     extended.default_target_for = target_selector
     extended.default_action_for = action_selector

@@ -31,9 +31,11 @@ def _combat():
     }
 
 
-def test_spatial_and_no_contact_misses_are_definite_tactical_failures():
+def test_spatial_and_no_contact_misses_are_definite_tactical_failures_but_approach_progress_is_not():
     assert adaptation.definite_tactical_failure({"result": "miss_no_spatial_intersection"}) is True
     assert adaptation.definite_tactical_failure({"result": "no_contact"}) is True
+    assert adaptation.definite_tactical_failure({"result": "target_outpaced_committed_approach"}) is True
+    assert adaptation.definite_tactical_failure({"result": "melee_approach_in_progress"}) is False
 
 
 def test_adaptation_changes_geometry_and_same_discipline_before_generic_retarget(monkeypatch):
@@ -196,6 +198,20 @@ def test_stored_and_span_override_wei_doctrines_can_escalate_qi_only_for_delegat
         assert set(allocation) <= {"movement", "body", "sensing"}
         assert sum(allocation.values()) <= adaptation.safe_flow_milli_per_second(150, 78)
 
+        doctrine = adaptation.resolve_individual_doctrine(doctrine_ref)
+        conservation = doctrine["resource_discipline"]["qi_conservation"]
+        emergency_reserve_percent = max(50, conservation * 2 // 3)
+        spendable = 99_935 - (150_000 * emergency_reserve_percent // 100)
+        assert sum(allocation.values()) <= max(1, spendable // 4)
+
+        assert adaptation._adaptive_qi_allocation(
+            people=people,
+            player_ref="wei",
+            failure_streak=0,
+            threshold=1,
+            targeting_intent="lethal",
+            until_resolution=True,
+        ) is None
         assert adaptation._adaptive_qi_allocation(
             people=people,
             player_ref="wei",

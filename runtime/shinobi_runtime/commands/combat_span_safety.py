@@ -15,6 +15,7 @@ import copy
 import math
 from typing import Any, Callable, Mapping
 
+from shinobi_runtime.commands.combat_adaptation import adaptive_standing_span
 from shinobi_runtime.martial_world.exact_combat import (
     currently_visible_enemies,
     default_weapon_for_action,
@@ -416,7 +417,13 @@ def install_production_combat_span_safety() -> None:
         return close_pressure_action_for(base_action_selector, **kwargs)
 
     def span_resolver(**kwargs: Any) -> Mapping[str, Any]:
-        return bounded_standing_span(base_resolver, **kwargs)
+        return adaptive_standing_span(
+            base_resolver,
+            fallback=bounded_standing_span,
+            max_elapsed_ms=_MAX_STANDING_SPAN_ELAPSED_MS,
+            standing_exchange_limit=max(_STANDING_SPAN_EXCHANGE_FRONTIERS),
+            **kwargs,
+        )
 
     extended.default_target_for = target_selector
     extended.default_action_for = action_selector

@@ -42,6 +42,8 @@ COMBAT = {
     "tests/current/test_combat_reaction_window_causality.py",
     "tests/current/test_combat_reaction_timing_integrity.py",
     "tests/current/test_combat_defense_timing_integrity.py",
+    "tests/current/test_combat_tactical_movement_integrity.py",
+    "tests/current/test_combat_tactical_movement_blocked.py",
     "tests/current/test_player_retinue_doctrine.py",
     "tests/current/test_combat_rally_and_approach_budget.py",
     "tests/current/test_live_active_combat_preview_contract.py",

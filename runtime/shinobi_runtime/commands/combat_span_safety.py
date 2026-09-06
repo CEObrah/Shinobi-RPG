@@ -15,7 +15,10 @@ import copy
 import math
 from typing import Any, Callable, Mapping
 
-from shinobi_runtime.commands.combat_adaptation import adaptive_standing_span
+from shinobi_runtime.commands.combat_adaptation import (
+    _normalize_span_combat_information,
+    adaptive_standing_span,
+)
 from shinobi_runtime.martial_world.exact_combat import (
     currently_visible_enemies,
     default_weapon_for_action,
@@ -376,6 +379,27 @@ def bounded_standing_span(
     return _truncate_at_protected_player_decision(base_resolver, result, kwargs)
 
 
+def _normalize_production_span_information(
+    result: Mapping[str, Any], kwargs: Mapping[str, Any]
+) -> Mapping[str, Any]:
+    """Normalize per-resolution counters across every production span path."""
+    initial_combat = kwargs.get("combat")
+    final_combat = result.get("combat_after") if isinstance(result, Mapping) else None
+    player_ref = str(kwargs.get("player_ref") or "")
+    if not isinstance(initial_combat, Mapping) or not isinstance(final_combat, Mapping) or not player_ref:
+        return result
+    events = result.get("events", []) if isinstance(result.get("events"), list) else []
+    out = copy.deepcopy(dict(result))
+    out["combat_information"] = _normalize_span_combat_information(
+        initial_combat=initial_combat,
+        final_combat=final_combat,
+        events=[row for row in events if isinstance(row, Mapping)],
+        player_ref=player_ref,
+        current_information=result.get("combat_information") if isinstance(result.get("combat_information"), Mapping) else None,
+    )
+    return out
+
+
 def install_production_combat_span_safety() -> None:
     """Install the campaign production policy once, without changing saved doctrine."""
 
@@ -421,14 +445,16 @@ def install_production_combat_span_safety() -> None:
         # Preserve the existing multi-exchange prop semantics rather than letting
         # delegated adaptation silently switch away from it after chunk one.
         if kwargs.get("player_improvised_weapon_state") is not None:
-            return bounded_standing_span(base_resolver, **kwargs)
-        result = adaptive_standing_span(
-            base_resolver,
-            fallback=bounded_standing_span,
-            max_elapsed_ms=_MAX_STANDING_SPAN_ELAPSED_MS,
-            standing_exchange_limit=max(_STANDING_SPAN_EXCHANGE_FRONTIERS),
-            **kwargs,
-        )
+            result = bounded_standing_span(base_resolver, **kwargs)
+        else:
+            result = adaptive_standing_span(
+                base_resolver,
+                fallback=bounded_standing_span,
+                max_elapsed_ms=_MAX_STANDING_SPAN_ELAPSED_MS,
+                standing_exchange_limit=max(_STANDING_SPAN_EXCHANGE_FRONTIERS),
+                **kwargs,
+            )
+        result = _normalize_production_span_information(result, kwargs)
         if str(result.get("scope_stop_reason") or "") != "tactical_stagnation":
             return result
         # Production already exposes one canonical no-progress checkpoint through

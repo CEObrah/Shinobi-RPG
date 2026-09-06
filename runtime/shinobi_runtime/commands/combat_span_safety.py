@@ -417,6 +417,11 @@ def install_production_combat_span_safety() -> None:
         return close_pressure_action_for(base_action_selector, **kwargs)
 
     def span_resolver(**kwargs: Any) -> Mapping[str, Any]:
+        # An improvised scene prop is a player-established physical commitment.
+        # Preserve the existing multi-exchange prop semantics rather than letting
+        # delegated adaptation silently switch away from it after chunk one.
+        if kwargs.get("player_improvised_weapon_state") is not None:
+            return bounded_standing_span(base_resolver, **kwargs)
         return adaptive_standing_span(
             base_resolver,
             fallback=bounded_standing_span,

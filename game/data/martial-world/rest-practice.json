@@ -1,0 +1,15 @@
+{
+  "safe_lodging_site_types": [
+    "inn",
+    "tavern",
+    "guesthouse"
+  ],
+  "evening_practice_start_hour": 19,
+  "evening_practice_end_hour": 21,
+  "journey_active_route_hours_per_24": 8,
+  "journey_rest_practice_hours_per_24": 1,
+  "journey_minimum_elapsed_hours_for_rest_practice": 10,
+  "safe_lodging_pressure_milli": 650,
+  "journey_rest_pressure_milli": 500,
+  "rule": "Travel duration is elapsed world time, not continuous exertion. Field development uses only bounded active route hours. Uncommitted people at safe lodging may use the registered evening window for self-practice. Journey rest practice is a smaller zero-facility self-practice allowance drawn from non-route hours. Explicit personal training focus overrides standing-retinue role practice."
+}

@@ -1,0 +1,7 @@
+{
+  "schema":"file-template","template_id":"template.jianghu-independent-people-state-1.0","target_schema":"jianghu-independent-people-state-1.0","source_schema":null,"scope":"mutable_state","current_directories":["state/martial-world"],"unknown_key_policy":"reject","required_top_level_keys":["schema","people"],
+  "object_contracts":{"":{"mode":"closed","allowed_keys":["schema","people"],"canonical_order":["schema","people"]},"/people/*":{"mode":"open"}},
+  "type_contracts":{"/":["object"],"/schema":["string"],"/people":["array"],"/people/*":["object"]},
+  "array_contracts":{"/people":{"item_types":["object"]}},
+  "writing_rules":["Stores exact persistent martial people currently outside a faction. It is not a civilian population owner or a historical archive.","Independent people retain heterogeneous exact person state from their prior causal history; the Jianghu domain/schema validators own nested person payload semantics while this template owns the top-level collection shape."]
+}

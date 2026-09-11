@@ -1,0 +1,54 @@
+{
+  "mode_speed_km_per_day": {
+    "foot": 32,
+    "horse": 55,
+    "pack": 28,
+    "convoy": 24,
+    "courier": 75
+  },
+  "terrain_time_milli": {
+    "plain": 1000,
+    "river_plain": 1050,
+    "hills": 1150,
+    "mountain": 1450,
+    "highland": 1350,
+    "forest": 1250,
+    "marsh": 1500,
+    "desert": 1200,
+    "urban": 1100
+  },
+  "road_time_milli": {
+    "trunk_road": 900,
+    "maintained": 1000,
+    "estate_road": 1000,
+    "mountain_road": 1150,
+    "rough_road": 1250
+  },
+  "weather_time_milli": {
+    "clear": 1000,
+    "fog": 1060,
+    "rain": 1100,
+    "storm": 1250,
+    "snow": 1180,
+    "snowstorm": 1380
+  },
+  "ground_time_milli": {
+    "dry": 1000,
+    "wet": 1060,
+    "muddy": 1180,
+    "snow": 1150,
+    "ice": 1250
+  },
+  "party_speed_formula": "slowest lawful exact traveler movement/endurance factor; aggregate convoy uses its registered mode baseline",
+  "encumbrance_formula": "uses physical carried mass through martial_world.equipment.encumbrance_effects",
+  "food_consumption": "1 ration-day per person per 24 elapsed travel hours; animals consume their registered feed if used",
+  "mounted_combat_rule": "Horse mode can carry into exact combat when aggregate rider capacity is reserved. Mounted movement and weapon momentum use the same shared combat clock, terrain environment and geometry as every other fighter. There is no Riding proficiency and only one ordinary horse profile.",
+  "riding_horse_profile": {
+    "id": "riding_horse",
+    "mass_kg": 480,
+    "comfortable_load_kg": 160,
+    "battlefield_speed_mmps": 9000,
+    "disabled_condition_milli": 300,
+    "rule": "One canonical unarmored riding-horse service profile. No Riding proficiency exists; mounted control derives from current rider attributes, anatomy, carried load, terrain and horse condition. Ordinary transport remains aggregate rider capacity rather than permanent horse identities."
+  }
+}

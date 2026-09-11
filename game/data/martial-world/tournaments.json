@@ -1,0 +1,134 @@
+{
+  "funding": {
+    "placement_faction_share_permille": 700,
+    "placement_personal_share_permille": 300
+  },
+  "funding_rule": "Every competitor is sponsored by their faction treasury. 100% of each paid competitor entry fee enters the tournament prize escrow. Every paid non-competing faction delegate admission and every paid aggregate public spectator ticket also enters that same prize escrow. The civic or Imperial host takes no cut and has no faction-style treasury. Lodging, food, tolls and ordinary host-city spending remain separate conserved regional-economy flows. The entire prize escrow is paid back out to earned placements. The championship bracket determines first and second. Every championship loser except the final runner-up enters a full losers bracket, so even a first-round loser can fight through that bracket to earn third; the losers-bracket finalist earns fourth.",
+  "registration_rule": "There is no hard tournament field-size cap, no reserved local/travel slot pool and no per-faction entrant cap. Any alive, medically eligible martial member whose faction sponsors the fee may register if physically present before registration closes. The four-year Great Jianghu Tournament is publicly known one year in advance, and its formal preparation/registration window is never shorter than the worst registered connected foot route to Luoyang under the harshest registered weather/ground factors plus an institutional preparation buffer. Therefore an established connected faction does not miss the Great Tournament merely because notice was too late. Distant factions plan travel when registration opens but depart only when needed to reach the host near the close/convergence window; actual departure rechecks health, availability, provisions, tolls, entry funding and operating reserve. Failure to attend should come from a faction's own refusal, finances, health, commitments or other causal constraints, not an artificially short countdown. A faction may sponsor multiple entrants while it can lawfully afford their marginal fees and travel.",
+  "bracket_rule": "Seed every paid registered entrant by public qualifying score then stable ID. Odd fields receive deterministic byes. The championship bracket is single elimination for first and second. Every championship loser except the championship-final loser enters a full losers bracket; its winner earns third and its finalist earns fourth, so a first-round loser can still win every remaining losers-bracket match and finish third. Individual match outcomes use the full exact combat engine and persist injury/death. Field size is an outcome of real registration, never a configured slot ceiling. Large fields use multiple bounded official competition sessions per day across the tournament grounds; each runtime frontier resolves only one finite session.",
+  "host_rule": "The annual Regional Martial Tournament is hosted by the civic authority of the rotating host city. The Great Jianghu Tournament is hosted by the Imperial government at the Luoyang Great Tournament Ground. These hosts are aggregate jurisdiction, venue and security authorities, not martial factions with faction treasuries. Competitor entry fees, faction-delegation admissions and paid public spectator tickets all fund the prize escrow 100%. Ordinary lodging, food, tolls and market activity remain in the regional economy. The Great event observes tournament safe-conduct inside the official grounds so normally outlawed Jianghu organizations may attempt formal attendance; this does not erase crimes or warrants outside the event.",
+  "event_profiles": {
+    "regional_martial_tournament": {
+      "entry_fee_cash": 5000,
+      "prestige_weight": 85,
+      "max_exchanges_per_match": 96,
+      "allows_outlaw_factions": false,
+      "convergence_days_before": 2,
+      "arrival_lead_hours_min": 12,
+      "arrival_lead_hours_max": 36,
+      "convergence_contacts_per_faction_per_day": 1,
+      "spectator_delegation_floor": 1,
+      "major_spectator_population_threshold": 100,
+      "major_spectator_delegation_floor": 3,
+      "leader_attendance_permille": 500,
+      "spectator_marginal_interest_permille": 260,
+      "spectator_marginal_decay_permille": 70,
+      "attendee_host_cash_per_person_day": 100,
+      "matches_per_competition_session": 16,
+      "competition_sessions_per_day": 2,
+      "public_faction_standings_count": 6,
+      "faction_performance_max_martial_respect": 4,
+      "prize_payout_permille": {
+        "first": 500,
+        "second": 250,
+        "third": 150,
+        "fourth": 100
+      },
+      "public_spectator_ticket_cash_per_day": 25,
+      "faction_delegate_ticket_cash_per_day": 25,
+      "ring_radius_mm": 6000
+    },
+    "great_jianghu_tournament": {
+      "entry_fee_cash": 10000,
+      "prestige_weight": 100,
+      "faction_interest_floor_permille": 1000,
+      "major_sect_population_threshold": 100,
+      "major_sect_competitor_floor": 3,
+      "major_institution_population_threshold": 100,
+      "major_institution_competitor_floor": 2,
+      "ordinary_competitor_floor": 1,
+      "additional_competitor_interest_permille": 260,
+      "additional_competitor_decay_permille": 170,
+      "additional_competitor_relative_strength_permille": 780,
+      "max_exchanges_per_match": 128,
+      "allows_outlaw_factions": true,
+      "safe_conduct_on_official_grounds": true,
+      "convergence_days_before": 7,
+      "arrival_lead_hours_min": 24,
+      "arrival_lead_hours_max": 72,
+      "convergence_contacts_per_faction_per_day": 2,
+      "spectator_delegation_floor": 3,
+      "major_spectator_population_threshold": 100,
+      "major_spectator_delegation_floor": 8,
+      "major_sect_spectator_delegation_floor": 12,
+      "leader_attendance_permille": 1000,
+      "spectator_marginal_interest_permille": 520,
+      "spectator_marginal_decay_permille": 45,
+      "attendee_host_cash_per_person_day": 140,
+      "matches_per_competition_session": 24,
+      "competition_sessions_per_day": 4,
+      "public_faction_standings_count": 20,
+      "faction_performance_max_martial_respect": 10,
+      "prize_payout_permille": {
+        "first": 450,
+        "second": 250,
+        "third": 180,
+        "fourth": 120
+      },
+      "public_spectator_ticket_cash_per_day": 50,
+      "faction_delegate_ticket_cash_per_day": 50,
+      "ring_radius_mm": 8000
+    },
+    "midyear_junior_tournament": {
+      "entry_fee_cash": 1000,
+      "prestige_weight": 55,
+      "max_exchanges_per_match": 80,
+      "allows_outlaw_factions": false,
+      "convergence_days_before": 1,
+      "arrival_lead_hours_min": 12,
+      "arrival_lead_hours_max": 24,
+      "convergence_contacts_per_faction_per_day": 1,
+      "spectator_delegation_floor": 1,
+      "major_spectator_population_threshold": 100,
+      "major_spectator_delegation_floor": 2,
+      "leader_attendance_permille": 250,
+      "spectator_marginal_interest_permille": 180,
+      "spectator_marginal_decay_permille": 70,
+      "attendee_host_cash_per_person_day": 60,
+      "matches_per_competition_session": 16,
+      "competition_sessions_per_day": 2,
+      "public_faction_standings_count": 6,
+      "faction_performance_max_martial_respect": 3,
+      "prize_payout_permille": {
+        "first": 500,
+        "second": 250,
+        "third": 150,
+        "fourth": 100
+      },
+      "public_spectator_ticket_cash_per_day": 10,
+      "faction_delegate_ticket_cash_per_day": 10,
+      "ring_radius_mm": 5000
+    }
+  },
+  "great_access_rule": "The Great Jianghu Tournament is open to orthodox, unorthodox and outlaw faction delegations under an Imperial tournament truce. Faction classification alone cannot bar entry; unrelated crimes, warrants and custody remain separate authorities outside the competition.",
+  "convergence_programs": {
+    "regional_martial_tournament": [
+      "delegation_reception_and_open_practice",
+      "regional_exchange_and_opening_assembly"
+    ],
+    "great_jianghu_tournament": [
+      "delegation_reception_and_formal_greetings",
+      "open_training_and_martial_observation",
+      "merchant_craft_and_medicine_fair",
+      "senior_faction_assembly",
+      "inter_school_house_and_junior_exchange",
+      "private_negotiations_and_rivalry_mediation",
+      "opening_procession_rules_and_final_greetings"
+    ],
+    "midyear_junior_tournament": [
+      "junior_delegation_reception_and_open_practice"
+    ]
+  },
+  "delegation_rule": "Tournament attendance is broader than the fight bracket. Factions may send real non-competing spectators/representatives such as leaders, elders, instructors, physicians, stewards, guards and ordinary members. The Great Jianghu Tournament makes every faction evaluate a delegation and major sects strongly prefer leadership attendance. Delegations have no arbitrary headcount cap: nomination interest falls at the margin and actual travel food, tolls, lodging/event spending, health, commitments and treasury reserves are hard limits. Spectators are real people at the host, consume time/resources, and return physically after the event.",
+  "venue_rule": "Venue capacity limits simultaneous occupancy and match throughput, never how many people may register or how many factions may attempt attendance. Large events use multiple official rings and multiple competition days; excess spectators are represented as rotating public attendance around the grounds and host city rather than a fake entrant cap."
+}

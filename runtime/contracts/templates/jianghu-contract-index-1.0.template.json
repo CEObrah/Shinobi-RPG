@@ -1,0 +1,140 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-contract-index-1.0",
+  "target_schema": "jianghu-contract-index-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world/contracts"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "active"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "active"
+      ],
+      "canonical_order": [
+        "schema",
+        "active"
+      ]
+    },
+    "/active": {
+      "mode": "open_map"
+    },
+    "/active/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "contract_id",
+        "contract_type",
+        "issuer_ref",
+        "beneficiary_ref",
+        "status",
+        "offered_at",
+        "expires_at",
+        "escrow_cash",
+        "reward_cash",
+        "objective",
+        "source_ref",
+        "participants"
+      ],
+      "canonical_order": [
+        "contract_id",
+        "contract_type",
+        "issuer_ref",
+        "beneficiary_ref",
+        "status",
+        "offered_at",
+        "expires_at",
+        "escrow_cash",
+        "reward_cash",
+        "objective",
+        "source_ref",
+        "participants"
+      ]
+    },
+    "/active/*/objective": {
+      "mode": "open_map"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/active": [
+      "object"
+    ],
+    "/active/*": [
+      "object"
+    ],
+    "/active/*/contract_id": [
+      "string"
+    ],
+    "/active/*/contract_type": [
+      "string"
+    ],
+    "/active/*/issuer_ref": [
+      "string"
+    ],
+    "/active/*/beneficiary_ref": [
+      "string",
+      "null"
+    ],
+    "/active/*/status": [
+      "string"
+    ],
+    "/active/*/offered_at": [
+      "string"
+    ],
+    "/active/*/expires_at": [
+      "string"
+    ],
+    "/active/*/escrow_cash": [
+      "integer"
+    ],
+    "/active/*/reward_cash": [
+      "integer"
+    ],
+    "/active/*/objective": [
+      "object"
+    ],
+    "/active/*/objective/*": [
+      "string",
+      "integer",
+      "boolean",
+      "number",
+      "null",
+      "array",
+      "object"
+    ],
+    "/active/*/source_ref": [
+      "string"
+    ],
+    "/active/*/participants": [
+      "array"
+    ],
+    "/active/*/participants/*": [
+      "string"
+    ]
+  },
+  "array_contracts": {
+    "/active/*/participants": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Persist only currently active contract owners; completed/failed/expired lifetime counters are telemetry, not campaign truth.",
+    "Contract terms belong to the contract; physical travel/combat execution facts belong to the active movement owner.",
+    "Dynamic contract IDs are allowed only inside /active and each active value must satisfy the closed contract row."
+  ]
+}

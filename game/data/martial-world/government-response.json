@@ -1,0 +1,28 @@
+{
+  "attention": {
+    "violent_death_public": 20,
+    "serious_injury_public": 6,
+    "robbery_public": 8,
+    "kidnapping_public": 15,
+    "attack_on_official": 40,
+    "repeat_offense_multiplier_milli_per_prior": 150,
+    "decay_per_30_days": 5
+  },
+  "mobilization": {
+    "militia_headcount_per_attention": 2,
+    "standard_headcount_per_attention_over_40": 3,
+    "elite_headcount_per_attention_over_80": 1,
+    "base_mobilization_hours": 24,
+    "distance_hours_multiplier_milli": 1000
+  },
+  "rule": "Government response uses only delivered/publicly established evidence inside the relevant jurisdiction. It is not omniscient and ordinary troops remain aggregate exact headcounts.",
+  "offense_attention_kind_map": {
+    "assault": "serious_injury_public",
+    "robbery": "robbery_public",
+    "kidnapping": "kidnapping_public",
+    "murder": "violent_death_public",
+    "mass_killing": "violent_death_public",
+    "smuggling": "robbery_public",
+    "prisoner_escape": "serious_injury_public"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-route-operations-state-1.0",
+  "target_schema": "jianghu-route-operations-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "movements",
+    "contacts"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "movements",
+        "contacts",
+        "daily_route_attack_budget"
+      ]
+    },
+    "/movements": {
+      "mode": "open_map"
+    },
+    "/movements/*": {
+      "mode": "open_map"
+    },
+    "/contacts": {
+      "mode": "open_map"
+    },
+    "/contacts/*": {
+      "mode": "open_map"
+    },
+    "/daily_route_attack_budget": {
+      "mode": "closed",
+      "allowed_keys": [
+        "date",
+        "counts"
+      ],
+      "canonical_order": [
+        "date",
+        "counts"
+      ]
+    },
+    "/daily_route_attack_budget/counts": {
+      "mode": "open_map"
+    },
+    "/movements/*/*": {
+      "mode": "open"
+    },
+    "/movements/*/*/*": {
+      "mode": "open"
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/movements": [
+      "object"
+    ],
+    "/movements/*": [
+      "object"
+    ],
+    "/movements/*/*": [
+      "string",
+      "integer",
+      "number",
+      "boolean",
+      "object",
+      "array",
+      "null"
+    ],
+    "/contacts": [
+      "object"
+    ],
+    "/contacts/*": [
+      "object"
+    ],
+    "/contacts/*/*": [
+      "string",
+      "integer",
+      "number",
+      "boolean",
+      "object",
+      "array",
+      "null"
+    ],
+    "/daily_route_attack_budget": [
+      "object"
+    ],
+    "/daily_route_attack_budget/date": [
+      "string"
+    ],
+    "/daily_route_attack_budget/counts": [
+      "object"
+    ],
+    "/daily_route_attack_budget/counts/*": [
+      "integer"
+    ],
+    "/movements/*/*/*": [
+      "string",
+      "integer",
+      "number",
+      "boolean",
+      "object",
+      "array",
+      "null"
+    ]
+  },
+  "array_contracts": {
+    "/movements/*/*": {
+      "item_types": [
+        "string",
+        "integer",
+        "object"
+      ]
+    },
+    "/contacts/*/*": {
+      "item_types": [
+        "string",
+        "integer",
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Store only unresolved current route movements, player-facing contacts, and the bounded current-day route attack budget needed for resumable chunk equivalence. Aggregate route outcomes belong in ephemeral simulation/review output, not hot state.",
+    "daily_route_attack_budget is a transient same-day accumulator keyed by exact attacking faction and must be removed after the final route_daily owner chunk for that date.",
+    "Movement and contact rows remain extensible across registered movement kinds; any nested array must contain only bounded semantic refs, scalar indices, or compact structured records. Array transport does not cap fictional participation."
+  ]
+}

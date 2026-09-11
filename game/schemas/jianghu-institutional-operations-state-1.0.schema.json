@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "jianghu-institutional-operations-state-1.0",
+  "type": "object",
+  "required": ["schema", "active", "archive"],
+  "properties": {
+    "schema": {"const": "jianghu-institutional-operations-state-1.0"},
+    "active": {"type": "object", "additionalProperties": {"type": "object"}},
+    "archive": {"type": "object", "additionalProperties": {"type": "object"}}
+  },
+  "additionalProperties": false
+}

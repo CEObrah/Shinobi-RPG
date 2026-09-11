@@ -1,0 +1,700 @@
+{
+  "currency": {
+    "base_unit": "copper_cash",
+    "silver_tael_cash": 1000
+  },
+  "finite_types": {
+    "agriculture_landholding": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 12000,
+            "management_labor_hours": 80,
+            "general_setup_labor_hours": 240,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 50,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 20400,
+            "management_labor_hours": 136,
+            "general_setup_labor_hours": 408,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 85,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 33600,
+            "management_labor_hours": 224,
+            "general_setup_labor_hours": 672,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 140,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 52800,
+            "management_labor_hours": 352,
+            "general_setup_labor_hours": 1056,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 220,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 81600,
+            "management_labor_hours": 544,
+            "general_setup_labor_hours": 1632,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 340,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "managed_land_mu",
+        "seed_scale_by_level": {
+          "1": 50,
+          "2": 85,
+          "3": 140,
+          "4": 220,
+          "5": 340
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "trade_merchant_business": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 30000,
+            "management_labor_hours": 180,
+            "general_setup_labor_hours": 120,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 100000,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 1,
+              "transport_yard": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 51000,
+            "management_labor_hours": 306,
+            "general_setup_labor_hours": 204,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 170000,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 1,
+              "transport_yard": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 84000,
+            "management_labor_hours": 504,
+            "general_setup_labor_hours": 336,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 280000,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 2,
+              "transport_yard": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 132000,
+            "management_labor_hours": 792,
+            "general_setup_labor_hours": 528,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 440000,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 3,
+              "transport_yard": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 204000,
+            "management_labor_hours": 1224,
+            "general_setup_labor_hours": 816,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 680000,
+            "supporting_buildings_minimum_levels": {
+              "storehouse": 4,
+              "transport_yard": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "monthly_trade_capital_cash",
+        "seed_scale_by_level": {
+          "1": 100000,
+          "2": 170000,
+          "3": 280000,
+          "4": 440000,
+          "5": 680000
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "crafting_workshop": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 20000,
+            "management_labor_hours": 240,
+            "general_setup_labor_hours": 120,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 5,
+            "supporting_buildings_minimum_levels": {
+              "armory_workshop": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 34000,
+            "management_labor_hours": 408,
+            "general_setup_labor_hours": 204,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 8,
+            "supporting_buildings_minimum_levels": {
+              "armory_workshop": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 56000,
+            "management_labor_hours": 672,
+            "general_setup_labor_hours": 336,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 14,
+            "supporting_buildings_minimum_levels": {
+              "armory_workshop": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 88000,
+            "management_labor_hours": 1056,
+            "general_setup_labor_hours": 528,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 22,
+            "supporting_buildings_minimum_levels": {
+              "armory_workshop": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 136000,
+            "management_labor_hours": 1632,
+            "general_setup_labor_hours": 816,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 34,
+            "supporting_buildings_minimum_levels": {
+              "armory_workshop": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "productive_workstations",
+        "seed_scale_by_level": {
+          "1": 5,
+          "2": 8,
+          "3": 14,
+          "4": 22,
+          "5": 34
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "medicine_apothecary": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 22000,
+            "management_labor_hours": 260,
+            "general_setup_labor_hours": 120,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 4,
+            "supporting_buildings_minimum_levels": {
+              "infirmary_apothecary": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 37400,
+            "management_labor_hours": 442,
+            "general_setup_labor_hours": 204,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 7,
+            "supporting_buildings_minimum_levels": {
+              "infirmary_apothecary": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 61600,
+            "management_labor_hours": 728,
+            "general_setup_labor_hours": 336,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 11,
+            "supporting_buildings_minimum_levels": {
+              "infirmary_apothecary": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 96800,
+            "management_labor_hours": 1144,
+            "general_setup_labor_hours": 528,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 18,
+            "supporting_buildings_minimum_levels": {
+              "infirmary_apothecary": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 149600,
+            "management_labor_hours": 1768,
+            "general_setup_labor_hours": 816,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 27,
+            "supporting_buildings_minimum_levels": {
+              "infirmary_apothecary": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "medicine_workstations",
+        "seed_scale_by_level": {
+          "1": 4,
+          "2": 7,
+          "3": 11,
+          "4": 18,
+          "5": 27
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "escort_service": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 25000,
+            "management_labor_hours": 180,
+            "general_setup_labor_hours": 100,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 2,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 1,
+              "transport_yard": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 42500,
+            "management_labor_hours": 306,
+            "general_setup_labor_hours": 170,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 3,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 1,
+              "transport_yard": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 70000,
+            "management_labor_hours": 504,
+            "general_setup_labor_hours": 280,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 6,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 2,
+              "transport_yard": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 110000,
+            "management_labor_hours": 792,
+            "general_setup_labor_hours": 440,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 9,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 3,
+              "transport_yard": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 170000,
+            "management_labor_hours": 1224,
+            "general_setup_labor_hours": 680,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 14,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 4,
+              "transport_yard": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "simultaneous_contract_capacity",
+        "seed_scale_by_level": {
+          "1": 2,
+          "2": 3,
+          "3": 6,
+          "4": 9,
+          "5": 14
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "property_rent": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 20000,
+            "management_labor_hours": 100,
+            "general_setup_labor_hours": 80,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 4,
+            "supporting_buildings_minimum_levels": {}
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 34000,
+            "management_labor_hours": 170,
+            "general_setup_labor_hours": 136,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 7,
+            "supporting_buildings_minimum_levels": {}
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 56000,
+            "management_labor_hours": 280,
+            "general_setup_labor_hours": 224,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 11,
+            "supporting_buildings_minimum_levels": {}
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 88000,
+            "management_labor_hours": 440,
+            "general_setup_labor_hours": 352,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 18,
+            "supporting_buildings_minimum_levels": {}
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 136000,
+            "management_labor_hours": 680,
+            "general_setup_labor_hours": 544,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 27,
+            "supporting_buildings_minimum_levels": {}
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "registered_property_units",
+        "seed_scale_by_level": {
+          "1": 4,
+          "2": 7,
+          "3": 11,
+          "4": 18,
+          "5": 27
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "school_tuition": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 16000,
+            "management_labor_hours": 160,
+            "general_setup_labor_hours": 100,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 30,
+            "supporting_buildings_minimum_levels": {
+              "training_hall": 1,
+              "training_grounds": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 27200,
+            "management_labor_hours": 272,
+            "general_setup_labor_hours": 170,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 51,
+            "supporting_buildings_minimum_levels": {
+              "training_hall": 1,
+              "training_grounds": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 44800,
+            "management_labor_hours": 448,
+            "general_setup_labor_hours": 280,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 84,
+            "supporting_buildings_minimum_levels": {
+              "training_hall": 2,
+              "training_grounds": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 70400,
+            "management_labor_hours": 704,
+            "general_setup_labor_hours": 440,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 132,
+            "supporting_buildings_minimum_levels": {
+              "training_hall": 3,
+              "training_grounds": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 108800,
+            "management_labor_hours": 1088,
+            "general_setup_labor_hours": 680,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 204,
+            "supporting_buildings_minimum_levels": {
+              "training_hall": 4,
+              "training_grounds": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "paying_student_slots",
+        "seed_scale_by_level": {
+          "1": 30,
+          "2": 51,
+          "3": 84,
+          "4": 132,
+          "5": 204
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    },
+    "criminal_enterprise": {
+      "levels": {
+        "1": {
+          "management_load": 10,
+          "operating_efficiency_milli": 900,
+          "upgrade_to_this_level": {
+            "cash_overhead": 18000,
+            "management_labor_hours": 140,
+            "general_setup_labor_hours": 80,
+            "minimum_calendar_days": 20,
+            "minimum_operating_scale": 2,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 1
+            }
+          }
+        },
+        "2": {
+          "management_load": 20,
+          "operating_efficiency_milli": 1000,
+          "upgrade_to_this_level": {
+            "cash_overhead": 30600,
+            "management_labor_hours": 238,
+            "general_setup_labor_hours": 136,
+            "minimum_calendar_days": 35,
+            "minimum_operating_scale": 3,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 1
+            }
+          }
+        },
+        "3": {
+          "management_load": 30,
+          "operating_efficiency_milli": 1100,
+          "upgrade_to_this_level": {
+            "cash_overhead": 50400,
+            "management_labor_hours": 392,
+            "general_setup_labor_hours": 224,
+            "minimum_calendar_days": 60,
+            "minimum_operating_scale": 6,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 2
+            }
+          }
+        },
+        "4": {
+          "management_load": 40,
+          "operating_efficiency_milli": 1200,
+          "upgrade_to_this_level": {
+            "cash_overhead": 79200,
+            "management_labor_hours": 616,
+            "general_setup_labor_hours": 352,
+            "minimum_calendar_days": 95,
+            "minimum_operating_scale": 9,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 3
+            }
+          }
+        },
+        "5": {
+          "management_load": 50,
+          "operating_efficiency_milli": 1300,
+          "upgrade_to_this_level": {
+            "cash_overhead": 122400,
+            "management_labor_hours": 952,
+            "general_setup_labor_hours": 544,
+            "minimum_calendar_days": 140,
+            "minimum_operating_scale": 14,
+            "supporting_buildings_minimum_levels": {
+              "main_hall": 4
+            }
+          }
+        }
+      },
+      "scale_model": {
+        "scale_basis": "registered_cells_or_ventures",
+        "seed_scale_by_level": {
+          "1": 2,
+          "2": 3,
+          "3": 6,
+          "4": 9,
+          "5": 14
+        },
+        "rule": "Mutable faction enterprise_scale owns actual operating scale. Enterprise level changes organizational efficiency only and never creates scale, workers, land, capital, inventory or contracts."
+      }
+    }
+  },
+  "rules": [
+    "Enterprise level is organizational quality and efficiency, not physical scale, wealth or free revenue.",
+    "Mutable faction enterprise_scale owns actual operating scale; increasing scale does not create another duplicate enterprise.",
+    "Revenue comes only from actual production, sales, rents, tuition, contracts or other conserved operations.",
+    "Enterprise quality upgrades consume exact cash and management/setup labor and require actual current operating scale plus supporting facilities.",
+    "Physical construction belongs to the infrastructure expansion system, avoiding double-counting buildings inside enterprise quality."
+  ]
+}

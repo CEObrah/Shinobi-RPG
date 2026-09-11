@@ -14,6 +14,7 @@ def create_app_from_env():
     from shinobi_runtime.api import app as app_module
     from shinobi_runtime.api.transition_operations import TransitionAwareCampaignOperations
     from shinobi_runtime.api.combat_production import install_production_combat_runtime
+    from shinobi_runtime.api.black_lance_combat_reset import install_black_lance_combat_reset
     from shinobi_runtime.martial_world.route_contact_reconciliation import (
         normalize_resolved_route_contact_context,
     )
@@ -30,6 +31,9 @@ def create_app_from_env():
     # Production combat composition has one static owner handshake. Historical
     # integrity adapters are not installed at runtime.
     install_production_combat_runtime()
+    # One closed repair identity is temporarily installed for the exact bad
+    # revision-100 Black Lance state. It cannot target any other state.
+    install_black_lance_combat_reset()
 
     app_module.CampaignOperations = RouteReconciledCampaignOperations
     return app_module.create_app_from_env()

@@ -1,0 +1,194 @@
+{
+  "schema": "jianghu-geography-extensions-1.0",
+  "purpose": "Small authored route additions composed with geography.json by the canonical geography loader. Extensions may add registered edges but may not replace an existing route id. Corridors in this file repair severe strategic graph stretch where the base backbone otherwise forces implausible regional backtracking.",
+  "routes": [
+    {
+      "id": "route.luoyang.huashan",
+      "from": "luoyang",
+      "to": "huashan",
+      "straight_line_km": 217.6,
+      "distance_km": 267.9,
+      "detour_factor_milli": 1231,
+      "terrain": "hills",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 30,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 250, "terrain": "hills"},
+        {"start_milli": 250, "end_milli": 700, "terrain": "plain"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "hills"}
+      ]
+    },
+    {
+      "id": "route.luoyang.dengfeng",
+      "from": "luoyang",
+      "to": "dengfeng",
+      "straight_line_km": 56.9,
+      "distance_km": 72.8,
+      "detour_factor_milli": 1279,
+      "terrain": "hills",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 10,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 250, "terrain": "hills"},
+        {"start_milli": 250, "end_milli": 700, "terrain": "forest"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "hills"}
+      ]
+    },
+    {
+      "id": "route.zhengzhou.xuchang",
+      "from": "zhengzhou",
+      "to": "xuchang",
+      "straight_line_km": 82.8,
+      "distance_km": 97.7,
+      "detour_factor_milli": 1180,
+      "terrain": "plain",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 20,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 1000, "terrain": "plain"}
+      ]
+    },
+    {
+      "id": "route.kaifeng.hefei",
+      "from": "kaifeng",
+      "to": "hefei",
+      "straight_line_km": 428.2,
+      "distance_km": 522.4,
+      "detour_factor_milli": 1220,
+      "terrain": "river_plain",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 2,
+      "toll_cash": 35,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "plain"},
+        {"start_milli": 300, "end_milli": 750, "terrain": "river_plain"},
+        {"start_milli": 750, "end_milli": 1000, "terrain": "plain"}
+      ]
+    },
+    {
+      "id": "route.jinan.nanjing",
+      "from": "jinan",
+      "to": "nanjing",
+      "straight_line_km": 538.8,
+      "distance_km": 657.4,
+      "detour_factor_milli": 1220,
+      "terrain": "river_plain",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 2,
+      "toll_cash": 45,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "plain"},
+        {"start_milli": 300, "end_milli": 750, "terrain": "river_plain"},
+        {"start_milli": 750, "end_milli": 1000, "terrain": "plain"}
+      ]
+    },
+    {
+      "id": "route.changan.wudangshan",
+      "from": "changan",
+      "to": "wudangshan",
+      "straight_line_km": 282.0,
+      "distance_km": 394.7,
+      "detour_factor_milli": 1400,
+      "terrain": "mountain",
+      "road_quality": "mountain_road",
+      "fixed_delay_hours": 0,
+      "toll_cash": 15,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "mountain"},
+        {"start_milli": 300, "end_milli": 700, "terrain": "forest"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "mountain"}
+      ]
+    },
+    {
+      "id": "route.changan.chengdu",
+      "from": "changan",
+      "to": "chengdu",
+      "straight_line_km": 608.7,
+      "distance_km": 864.3,
+      "detour_factor_milli": 1420,
+      "terrain": "mountain",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 45,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 350, "terrain": "mountain"},
+        {"start_milli": 350, "end_milli": 700, "terrain": "forest"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "hills"}
+      ]
+    },
+    {
+      "id": "route.lanzhou.chengdu",
+      "from": "lanzhou",
+      "to": "chengdu",
+      "straight_line_km": 599.7,
+      "distance_km": 851.6,
+      "detour_factor_milli": 1420,
+      "terrain": "mountain",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 45,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "highland"},
+        {"start_milli": 300, "end_milli": 750, "terrain": "mountain"},
+        {"start_milli": 750, "end_milli": 1000, "terrain": "hills"}
+      ]
+    },
+    {
+      "id": "route.hangzhou.wuyi",
+      "from": "hangzhou",
+      "to": "wuyi",
+      "straight_line_km": 350.6,
+      "distance_km": 473.3,
+      "detour_factor_milli": 1350,
+      "terrain": "mountain",
+      "road_quality": "mountain_road",
+      "fixed_delay_hours": 0,
+      "toll_cash": 15,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "hills"},
+        {"start_milli": 300, "end_milli": 700, "terrain": "forest"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "mountain"}
+      ]
+    },
+    {
+      "id": "route.jingzhou.hengyang",
+      "from": "jingzhou",
+      "to": "hengyang",
+      "straight_line_km": 386.5,
+      "distance_km": 483.1,
+      "detour_factor_milli": 1250,
+      "terrain": "hills",
+      "road_quality": "maintained",
+      "fixed_delay_hours": 0,
+      "toll_cash": 25,
+      "allowed_modes": ["foot", "horse", "pack", "convoy", "courier"],
+      "status": "open",
+      "terrain_segments": [
+        {"start_milli": 0, "end_milli": 300, "terrain": "hills"},
+        {"start_milli": 300, "end_milli": 700, "terrain": "forest"},
+        {"start_milli": 700, "end_milli": 1000, "terrain": "hills"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "game_name": "Jianghu RPG",
+  "setting": "Original Chinese Jianghu martial world.",
+  "name_order": "Chinese surname-first presentation",
+  "core_invariants": [
+    "No named martial techniques or spell lists. Combat capability comes from attributes, universal disciplines, Qi, equipment, experience, doctrine and current physical state.",
+    "Qi and Qi Control use one universal cultivation system for every faction and person.",
+    "Actual capability stats are uncapped. Aptitudes are capped at 200 because aptitude is a bounded deterministic learning coefficient. Appearance is normalized 0-100.",
+    "Martial factions have exact conserved populations. Ordinary civilians are aggregate. Government forces are aggregate exact headcounts with registered troop tiers.",
+    "Riding horses are conserved aggregate faction assets. Exact mounted combat may allocate one ordinary unarmored horse per rider from that pool; rider control derives from existing attributes and current anatomy, not a Riding proficiency. Surviving horses return to the pool and combat-disabled/dead horses debit it exactly once.",
+    "No free people, money, equipment, food, herbs, medicine, buildings, enterprise levels, ranks, offices, reputation or stat gains may be created by narration.",
+    "All recurring world events come from a finite calendar registry; causal events must arise from persisted conditions and actor decisions."
+  ],
+  "simulation_boundaries": {
+    "exact": [
+      "martial_faction_members",
+      "important_independent_people",
+      "martial_faction_buildings",
+      "martial_faction_enterprises",
+      "important_inventory",
+      "money",
+      "injuries",
+      "relationships",
+      "combat_local_mount_state"
+    ],
+    "aggregate_numeric": [
+      "civilian_population",
+      "ordinary_state_forces",
+      "agricultural_labor",
+      "commercial_labor",
+      "horses_and_pack_animals"
+    ],
+    "not_simulated": [
+      "individual_horses",
+      "every_civilian_household_item",
+      "individual_state_soldiers_unless_materialized_as_important_people"
+    ]
+  }
+}

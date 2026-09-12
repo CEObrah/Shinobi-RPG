@@ -1,0 +1,60 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-faction-registry-1.0",
+  "target_schema": "jianghu-faction-registry-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "faction_refs"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "faction_refs",
+        "dormant_estate_refs"
+      ],
+      "canonical_order": [
+        "schema",
+        "faction_refs",
+        "dormant_estate_refs"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/faction_refs": [
+      "array"
+    ],
+    "/dormant_estate_refs": [
+      "array"
+    ]
+  },
+  "array_contracts": {
+    "/faction_refs": {
+      "item_types": [
+        "string"
+      ]
+    },
+    "/dormant_estate_refs": {
+      "item_types": [
+        "string"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Store only exact faction IDs that currently exist. Authored world-seed factions are creation-time data, not a perpetual existence list.",
+    "Register or unregister a faction atomically with creation, destruction, merger, or splintering of its canonical owners and scheduler membership."
+  ]
+}

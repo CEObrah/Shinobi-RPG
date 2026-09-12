@@ -1,0 +1,81 @@
+{
+  "decision_priorities": [
+    "survival",
+    "existing_commitments",
+    "food_and_cash_reserve",
+    "recovery",
+    "training",
+    "institutional_staffing",
+    "lineage_training",
+    "recruitment",
+    "contracts",
+    "market_response"
+  ],
+  "rules": [
+    "Autonomous factions use the same conserved recruitment, market, travel, combat, contract, recovery and training laws as player-linked factions.",
+    "Routine choices are deterministic functions of current saved resources, capacity, knowledge, relationships and pressure. No random drama action table.",
+    "A faction cannot execute an action it cannot fund, staff, reach or lawfully know about.",
+    "Outlaw aggression is evaluated only when a physically relevant route frontier is active; diplomacy changes only through explicit proposals."
+  ],
+  "mechanics": {
+    "food_reserve_floor_days": 30,
+    "cash_reserve_floor_months": 1,
+    "growth_cash_reserve_months": 8,
+    "contract_capable_faction_types": [
+      "escort_agency",
+      "contract_hall",
+      "martial_house",
+      "sect",
+      "brotherhood_society"
+    ],
+    "hostility_affordances": {
+      "outlaw_faction": {
+        "rivalry": "faction_raid",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "martial_school": {
+        "rivalry": "formal_challenge",
+        "feud": "formal_challenge",
+        "war": "faction_war_strike"
+      },
+      "sect": {
+        "rivalry": "formal_challenge",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "martial_house": {
+        "rivalry": "formal_challenge",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "escort_agency": {
+        "rivalry": "formal_challenge",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "brotherhood_society": {
+        "rivalry": "",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "contract_hall": {
+        "rivalry": "",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      },
+      "_default": {
+        "rivalry": "formal_challenge",
+        "feud": "faction_raid",
+        "war": "faction_war_strike"
+      }
+    },
+    "outlaw_operation_intents": {
+      "road_band": "robbery",
+      "mountain_stronghold": "kidnapping",
+      "river_pirates": "cargo_seizure",
+      "urban_gang": "extortion",
+      "smuggling_ring": "cargo_diversion"
+    }
+  }
+}

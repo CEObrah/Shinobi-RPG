@@ -1,0 +1,32 @@
+{
+  "schema": "jianghu-duty-roles-1.0",
+  "rules": [
+    "Name an exact duty assignment only when a person's capability materially gates a real institutional output; derive that assignment for the current settlement and never store it on the person.",
+    "Routine kitchens, cleaning, records handling, storage handling and stable work are derived as faction-level service overhead from current population and infrastructure; they are not permanent person labels.",
+    "Specialist duty consumes finite time and therefore reduces that person's institutional training availability.",
+    "Specialist assignments are deterministically reassessed from current institutional need, capability and availability. No duty history or hourly schedule is stored."
+  ],
+  "duties": {
+    "trade_service": {
+      "time_share_milli": 420,
+      "professional_skill": "commerce",
+      "minimum_professional_skill": 10,
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "workshop_service": {
+      "time_share_milli": 440,
+      "professional_skill": "crafting",
+      "minimum_professional_skill": 10,
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    },
+    "infirmary_service": {
+      "time_share_milli": 440,
+      "professional_skill": "medicine",
+      "minimum_professional_skill": 10,
+      "minimum_age": 14,
+      "rotation_period_months": 12
+    }
+  }
+}

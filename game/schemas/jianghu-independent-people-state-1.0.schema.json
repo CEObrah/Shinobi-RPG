@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "jianghu-independent-people-state-1.0",
+  "type": "object",
+  "properties": {
+    "schema": {"const": "jianghu-independent-people-state-1.0"},
+    "people": {"type": "array", "items": {"type": "object"}}
+  },
+  "required": ["schema", "people"],
+  "additionalProperties": false
+}

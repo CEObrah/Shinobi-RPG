@@ -1,0 +1,576 @@
+{
+  "calendar_events": {
+    "regional_martial_tournament": {
+      "cadence": "YEARLY",
+      "month_day": "04-15",
+      "formats": [
+        "individual"
+      ],
+      "registration_closes_days_before": 3,
+      "registration_opens_days_before_close": 90,
+      "convergence_days_before": 2,
+      "display_name": "Regional Martial Tournament",
+      "participation": {
+        "scope": "host_place",
+        "site_types": [
+          "tournament_ground"
+        ],
+        "player_modes": [
+          "register",
+          "compete",
+          "spectate"
+        ],
+        "command_hints": [
+          "jianghu_tournament_resolution"
+        ],
+        "npc_attendance_milli": 800
+      }
+    },
+    "great_jianghu_tournament": {
+      "cadence": "EVERY_4_YEARS",
+      "month_day": "09-01",
+      "formats": [
+        "individual"
+      ],
+      "advance_notice_days_before": 365,
+      "registration_closes_days_before": 8,
+      "registration_opens_days_before_close": 180,
+      "derive_open_from_connected_route": true,
+      "preparation_route_mode": "foot",
+      "preparation_buffer_days": 60,
+      "convergence_days_before": 7,
+      "display_name": "Great Jianghu Tournament",
+      "participation": {
+        "scope": "host_place",
+        "site_types": [
+          "tournament_ground"
+        ],
+        "player_modes": [
+          "register",
+          "compete",
+          "spectate"
+        ],
+        "command_hints": [
+          "jianghu_tournament_resolution"
+        ],
+        "npc_attendance_milli": 950
+      }
+    },
+    "spring_recruitment_season": {
+      "cadence": "YEARLY",
+      "month_day": "02-01",
+      "duration_days": 30,
+      "display_name": "Spring Recruitment Season",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "martial_headquarters",
+          "market",
+          "guild_hall"
+        ],
+        "player_modes": [
+          "recruit",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_recruitment_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 500
+      },
+      "simulation_effect": "recruitment_capacity_1500_milli"
+    },
+    "autumn_recruitment_season": {
+      "cadence": "YEARLY",
+      "month_day": "08-01",
+      "duration_days": 30,
+      "display_name": "Autumn Recruitment Season",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "martial_headquarters",
+          "market",
+          "guild_hall"
+        ],
+        "player_modes": [
+          "recruit",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_recruitment_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 500
+      },
+      "simulation_effect": "recruitment_capacity_1500_milli"
+    },
+    "spring_trade_fair": {
+      "cadence": "YEARLY",
+      "month_day": "03-01",
+      "duration_days": 7,
+      "display_name": "Spring Trade Fair",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "market",
+          "guild_hall",
+          "caravan_yard"
+        ],
+        "player_modes": [
+          "trade",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_market_trade_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 700
+      },
+      "simulation_effect": "merchant_trade_capital_1500_milli"
+    },
+    "autumn_trade_fair": {
+      "cadence": "YEARLY",
+      "month_day": "09-15",
+      "duration_days": 7,
+      "display_name": "Autumn Trade Fair",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "market",
+          "guild_hall",
+          "caravan_yard"
+        ],
+        "player_modes": [
+          "trade",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_market_trade_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 700
+      },
+      "simulation_effect": "merchant_trade_capital_1500_milli"
+    },
+    "jianghu_ranking_publication": {
+      "cadence": "YEARLY",
+      "month_day": "12-15",
+      "knowledge_rule": "Uses only documented public results and propagated reports; never hidden true stats.",
+      "display_name": "Jianghu Ranking Publication",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "tea_house",
+          "inn",
+          "guild_hall",
+          "tournament_ground"
+        ],
+        "player_modes": [
+          "review",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 600
+      },
+      "simulation_effect": "publish_public_evidence_bounded_rankings"
+    },
+    "winter_martial_lectures": {
+      "cadence": "YEARLY",
+      "month_day": "01-10",
+      "duration_days": 5,
+      "display_name": "Winter Martial Lectures",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "martial_headquarters",
+          "temple"
+        ],
+        "player_modes": [
+          "attend",
+          "socialize",
+          "instruction"
+        ],
+        "command_hints": [
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 650
+      },
+      "simulation_effect": "interactive_martial_instruction_gathering"
+    },
+    "lantern_city_martial_exhibitions": {
+      "cadence": "YEARLY",
+      "month_day": "01-15",
+      "duration_days": 3,
+      "display_name": "Lantern Festival Martial Exhibitions",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "tournament_ground",
+          "market",
+          "temple"
+        ],
+        "player_modes": [
+          "attend",
+          "socialize",
+          "demonstrate"
+        ],
+        "command_hints": [
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 750
+      },
+      "simulation_effect": "interactive_public_martial_exhibitions"
+    },
+    "spring_escort_exchange": {
+      "cadence": "YEARLY",
+      "month_day": "03-20",
+      "duration_days": 4,
+      "display_name": "Spring Escort Exchange",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "escort_agency",
+          "guild_hall",
+          "caravan_yard",
+          "inn"
+        ],
+        "player_modes": [
+          "seek_contracts",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_contract_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 700
+      },
+      "simulation_effect": "escort_demand_1400_milli_and_interactive_exchange"
+    },
+    "summer_river_trade_convoy_season": {
+      "cadence": "YEARLY",
+      "month_day": "05-15",
+      "duration_days": 45,
+      "display_name": "Summer River Trade Convoy Season",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "caravan_yard",
+          "market",
+          "inn"
+        ],
+        "player_modes": [
+          "trade",
+          "seek_contracts",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_market_trade_resolution",
+          "jianghu_contract_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 550
+      },
+      "simulation_effect": "river_plain_merchant_trade_capital_1250_milli"
+    },
+    "midyear_junior_tournament": {
+      "cadence": "YEARLY",
+      "month_day": "06-15",
+      "display_name": "Midyear Junior Tournament",
+      "participation": {
+        "scope": "host_place",
+        "site_types": [
+          "tournament_ground"
+        ],
+        "player_modes": [
+          "register",
+          "compete",
+          "spectate"
+        ],
+        "command_hints": [
+          "jianghu_tournament_resolution"
+        ],
+        "npc_attendance_milli": 800
+      },
+      "formats": [
+        "individual"
+      ],
+      "registration_closes_days_before": 3,
+      "registration_opens_days_before_close": 60,
+      "convergence_days_before": 1
+    },
+    "ghost_month_security_surge": {
+      "cadence": "YEARLY",
+      "month_day": "07-15",
+      "duration_days": 15,
+      "display_name": "Ghost Month Security Surge",
+      "participation": {
+        "scope": "systemic",
+        "site_types": [
+          "magistrate_office",
+          "government_office",
+          "market",
+          "inn"
+        ],
+        "player_modes": [
+          "observe"
+        ],
+        "command_hints": [],
+        "npc_attendance_milli": 0
+      },
+      "simulation_effect": "government_attention_response_1250_milli"
+    },
+    "autumn_escort_exchange": {
+      "cadence": "YEARLY",
+      "month_day": "10-05",
+      "duration_days": 4,
+      "display_name": "Autumn Escort Exchange",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "escort_agency",
+          "guild_hall",
+          "caravan_yard",
+          "inn"
+        ],
+        "player_modes": [
+          "seek_contracts",
+          "attend",
+          "socialize"
+        ],
+        "command_hints": [
+          "jianghu_contract_resolution",
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 700
+      },
+      "simulation_effect": "escort_demand_1400_milli_and_interactive_exchange"
+    },
+    "winter_school_challenge_meets": {
+      "cadence": "YEARLY",
+      "month_day": "11-10",
+      "duration_days": 10,
+      "display_name": "Winter School Challenge Meets",
+      "participation": {
+        "scope": "local_settlement",
+        "site_types": [
+          "tournament_ground",
+          "martial_headquarters"
+        ],
+        "player_modes": [
+          "attend",
+          "socialize",
+          "challenge"
+        ],
+        "command_hints": [
+          "jianghu_calendar_event_resolution",
+          "jianghu_combat_resolution"
+        ],
+        "npc_attendance_milli": 700
+      },
+      "simulation_effect": "formal_challenge_pressure_1400_milli"
+    },
+    "year_end_member_assessments": {
+      "cadence": "YEARLY",
+      "month_day": "12-20",
+      "duration_days": 5,
+      "display_name": "Year-End Member Assessments",
+      "participation": {
+        "scope": "own_faction_headquarters",
+        "site_types": [
+          "martial_headquarters"
+        ],
+        "player_modes": [
+          "attend",
+          "socialize",
+          "assess"
+        ],
+        "command_hints": [
+          "jianghu_calendar_event_resolution"
+        ],
+        "npc_attendance_milli": 900
+      },
+      "simulation_effect": "interactive_faction_member_assessment"
+    },
+    "annual_civilian_demography": {
+      "cadence": "YEARLY",
+      "month_day": "12-01",
+      "duration_days": 15,
+      "simulation_effect": "aggregate_birth_death_and_net_migration_cycle",
+      "display_name": "Annual Civilian Demography Cycle",
+      "participation": {
+        "scope": "systemic",
+        "site_types": [],
+        "player_modes": [],
+        "command_hints": [],
+        "npc_attendance_milli": 0
+      }
+    }
+  },
+  "tournament_rules": {
+    "individual": {
+      "combat_engine": "full_exact",
+      "victory": [
+        "surrender",
+        "incapacitation",
+        "referee_stoppage",
+        "ring_out_if_venue_uses_boundary"
+      ],
+      "persistent_injury": true,
+      "death_possible": true
+    }
+  },
+  "causal_events_rule": "Wars, feuds, marriages, assassinations, deaths, faction splits and political crises are not calendar flavor events. They require actual causal conditions and committed actor decisions.",
+  "host_cycles": {
+    "regional_martial_tournament": [
+      "luoyang",
+      "kaifeng",
+      "xiangyang",
+      "jingzhou",
+      "suzhou",
+      "hangzhou",
+      "chengdu",
+      "changan"
+    ],
+    "host_formula": "host_index = world_year % len(host_cycle)",
+    "great_jianghu_tournament_host": "luoyang",
+    "midyear_junior_tournament": [
+      "luoyang",
+      "kaifeng",
+      "xiangyang",
+      "jingzhou",
+      "suzhou",
+      "hangzhou",
+      "chengdu",
+      "changan"
+    ]
+  },
+  "calendar_rule": "Calendar events are generated from exact dates and host cycles. Registration and brackets are deterministic from eligible saved entrants; no narrator-created event or entrant.",
+  "causal_event_templates": {
+    "master_death_succession": {
+      "requires": [
+        "leader_or_master_death",
+        "eligible_successors"
+      ],
+      "result": "succession_process"
+    },
+    "faction_foundation": {
+      "requires": [
+        "founder",
+        "followers",
+        "funded_site_or_lease",
+        "charter_type"
+      ],
+      "result": "new_independent_faction"
+    },
+    "faction_split": {
+      "requires": [
+        "internal_conflict",
+        "lawful_departing_members",
+        "asset_split"
+      ],
+      "result": "two_conserved_factions"
+    },
+    "faction_dissolution": {
+      "requires": [
+        "zero_viable_leadership_or_membership_decision"
+      ],
+      "result": "members_and_assets_reclassified"
+    },
+    "formal_challenge": {
+      "requires": [
+        "challenger",
+        "target",
+        "known_grievance_or_reputation_goal"
+      ],
+      "result": "delivered_challenge_offer"
+    },
+    "feud_escalation": {
+      "requires": [
+        "hostility_threshold",
+        "recent_grievance",
+        "capability_to_act"
+      ],
+      "result": "hostile_commitment"
+    },
+    "marriage_negotiation": {
+      "requires": [
+        "eligible_people",
+        "lawful_family_or_self_authority",
+        "mutual_interest"
+      ],
+      "result": "proposal_or_negotiation"
+    },
+    "outlaw_bounty_issue": {
+      "requires": [
+        "delivered_crime_evidence",
+        "jurisdiction",
+        "funding"
+      ],
+      "result": "active_warrant_and_government_response"
+    },
+    "escort_demand": {
+      "requires": [
+        "saved_shipment",
+        "route",
+        "cargo",
+        "payer"
+      ],
+      "result": "funded_escort_offer"
+    },
+    "market_shortage": {
+      "requires": [
+        "market_stock_below_threshold"
+      ],
+      "result": "price_pressure_and_trade_demand"
+    },
+    "medical_emergency": {
+      "requires": [
+        "actual_injury_or_disease_owner"
+      ],
+      "result": "treatment_need"
+    },
+    "leadership_vacancy": {
+      "requires": [
+        "vacant_office"
+      ],
+      "result": "appointment_or_succession_review"
+    },
+    "tournament_rivalry": {
+      "requires": [
+        "public_match_result",
+        "relationship_update"
+      ],
+      "result": "reputation_and_optional_challenge_pressure"
+    },
+    "government_crackdown": {
+      "requires": [
+        "delivered_crime_evidence",
+        "attention_threshold"
+      ],
+      "result": "mobilization_or_bounty"
+    },
+    "outlaw_fragmentation": {
+      "requires": [
+        "leadership_loss_or_severe_shortage",
+        "surviving_members"
+      ],
+      "result": "split_merge_surrender_or_dissolve_review"
+    },
+    "talent_competition": {
+      "requires": [
+        "known_recruit_candidate",
+        "multiple_interested_factions"
+      ],
+      "result": "competing_recruitment_offers"
+    }
+  }
+}

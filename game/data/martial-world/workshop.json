@@ -1,0 +1,234 @@
+{
+  "raw_materials": [
+    "timber_kg",
+    "stone_kg",
+    "brick_tile_kg",
+    "lime_kg",
+    "metal_kg",
+    "hardwood_kg",
+    "leather_kg",
+    "cloth_m",
+    "fletching_set_24",
+    "charcoal_kg",
+    "rope_m",
+    "toxin_reagent_unit",
+    "carrier_reagent_unit"
+  ],
+  "raw_material_base_value_cash": {
+    "timber_kg": 3,
+    "stone_kg": 1,
+    "brick_tile_kg": 2,
+    "lime_kg": 2,
+    "metal_kg": 20,
+    "hardwood_kg": 8,
+    "leather_kg": 30,
+    "cloth_m": 8,
+    "fletching_set_24": 100,
+    "charcoal_kg": 2,
+    "rope_m": 1,
+    "toxin_reagent_unit": 18,
+    "carrier_reagent_unit": 6
+  },
+  "labor_hour_cash": 60,
+  "base_production_cost_formula": "sum(input physical quantity * economy material base value) + active_hours * skilled labor rate; divide by output quantity for per-unit cost",
+  "recipes": {
+    "jian": {
+      "output": "weapon_jian",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 2,
+        "hardwood_kg": 1,
+        "leather_kg": 1,
+        "charcoal_kg": 12
+      },
+      "active_hours": 45,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "dao": {
+      "output": "weapon_dao",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 2,
+        "hardwood_kg": 1,
+        "leather_kg": 1,
+        "charcoal_kg": 12
+      },
+      "active_hours": 42,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "long_dao": {
+      "output": "weapon_long_dao",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 3,
+        "hardwood_kg": 1,
+        "leather_kg": 1,
+        "charcoal_kg": 18
+      },
+      "active_hours": 65,
+      "minimum_workshop_level": 2,
+      "minimum_crafting_skill": 50
+    },
+    "short_sword": {
+      "output": "weapon_short_sword",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 2,
+        "hardwood_kg": 1,
+        "leather_kg": 1,
+        "charcoal_kg": 10
+      },
+      "active_hours": 35,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "dagger": {
+      "output": "weapon_dagger",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 1,
+        "hardwood_kg": 1,
+        "charcoal_kg": 6
+      },
+      "active_hours": 22,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "spear": {
+      "output": "weapon_spear",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 1,
+        "hardwood_kg": 3,
+        "leather_kg": 1,
+        "charcoal_kg": 5
+      },
+      "active_hours": 28,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "short_spear": {
+      "output": "weapon_short_spear",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 1,
+        "hardwood_kg": 2,
+        "leather_kg": 1,
+        "charcoal_kg": 5
+      },
+      "active_hours": 24,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "staff": {
+      "output": "weapon_staff",
+      "quantity": 1,
+      "inputs": {
+        "hardwood_kg": 3
+      },
+      "active_hours": 16,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "glaive": {
+      "output": "weapon_glaive",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 4,
+        "hardwood_kg": 3,
+        "leather_kg": 1,
+        "charcoal_kg": 18
+      },
+      "active_hours": 60,
+      "minimum_workshop_level": 3,
+      "minimum_crafting_skill": 75
+    },
+    "bow": {
+      "output": "weapon_bow",
+      "quantity": 1,
+      "inputs": {
+        "hardwood_kg": 3,
+        "leather_kg": 2
+      },
+      "active_hours": 32,
+      "minimum_workshop_level": 2,
+      "minimum_crafting_skill": 40
+    },
+    "throwing_knife": {
+      "output": "weapon_throwing_knife",
+      "quantity": 12,
+      "inputs": {
+        "metal_kg": 2,
+        "charcoal_kg": 6
+      },
+      "active_hours": 18,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "needle": {
+      "output": "weapon_needle",
+      "quantity": 24,
+      "inputs": {
+        "metal_kg": 1,
+        "charcoal_kg": 4
+      },
+      "active_hours": 16,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "arrows": {
+      "output": "item_arrow",
+      "quantity": 24,
+      "inputs": {
+        "metal_kg": 2,
+        "hardwood_kg": 3,
+        "fletching_set_24": 1,
+        "charcoal_kg": 3
+      },
+      "active_hours": 20,
+      "minimum_workshop_level": 2,
+      "minimum_crafting_skill": 50
+    },
+    "traditional_martial_clothing": {
+      "output": "clothing_traditional_martial",
+      "quantity": 1,
+      "inputs": {
+        "cloth_m": 4,
+        "leather_kg": 1
+      },
+      "active_hours": 10,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 25
+    },
+    "physicians_kit": {
+      "output": "tool_physicians_kit",
+      "quantity": 1,
+      "inputs": {
+        "metal_kg": 2,
+        "cloth_m": 2,
+        "leather_kg": 2
+      },
+      "active_hours": 6,
+      "minimum_workshop_level": 3,
+      "minimum_crafting_skill": 65
+    },
+    "medical_supply_bundle": {
+      "output": "supply_medical_bundle",
+      "quantity": 5,
+      "inputs": {
+        "cloth_m": 3,
+        "timber_kg": 1
+      },
+      "active_hours": 2,
+      "minimum_workshop_level": 1,
+      "minimum_crafting_skill": 30
+    }
+  },
+  "rules": [
+    "Every standard Jianghu weapon, clothing item and arrow in the finite equipment registry has one standard workshop recipe.",
+    "No random item rarity or quality generation exists. Standard recipes produce registered physical items. Condition changes through use, damage and repair.",
+    "Workshop production consumes registered raw materials, skilled labor capacity and elapsed time."
+  ]
+}

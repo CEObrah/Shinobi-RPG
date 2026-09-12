@@ -1,0 +1,75 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-civilian-populations-1.0",
+  "target_schema": "jianghu-civilian-populations-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "places"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "places"
+      ],
+      "canonical_order": [
+        "schema",
+        "places"
+      ]
+    },
+    "/places": {
+      "mode": "open_map"
+    },
+    "/places/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "current_population",
+        "reserved_for_recruitment",
+        "identity_ordinal_cursor"
+      ],
+      "canonical_order": [
+        "current_population",
+        "reserved_for_recruitment",
+        "identity_ordinal_cursor"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/places": [
+      "object"
+    ],
+    "/places/*": [
+      "object"
+    ],
+    "/places/*/current_population": [
+      "integer"
+    ],
+    "/places/*/reserved_for_recruitment": [
+      "integer"
+    ],
+    "/places/*/identity_ordinal_cursor": [
+      "integer"
+    ]
+  },
+  "array_contracts": {},
+  "writing_rules": [
+    "Recruitment transfers conserved aggregate bodies before persistent materialization.",
+    "The place ID is the map key; never repeat place_ref inside a place row.",
+    "Total civilian population is derived from current plus reserved place pools and is never stored as a mirror.",
+    "Zero reservation and zero identity cursor are defaults and are omitted.",
+    "Scheduler chronology and explanatory rules do not belong in this owner."
+  ]
+}

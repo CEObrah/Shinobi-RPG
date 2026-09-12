@@ -1,0 +1,224 @@
+{
+  "schema": "file-template",
+  "template_id": "template.jianghu-reputation-state-1.0",
+  "target_schema": "jianghu-reputation-state-1.0",
+  "source_schema": null,
+  "scope": "mutable_state",
+  "current_directories": [
+    "state/martial-world"
+  ],
+  "unknown_key_policy": "reject",
+  "required_top_level_keys": [
+    "schema",
+    "audiences",
+    "rankings"
+  ],
+  "object_contracts": {
+    "": {
+      "mode": "closed",
+      "allowed_keys": [
+        "schema",
+        "audiences",
+        "rankings",
+        "faction_awareness",
+        "faction_reputation",
+        "personal_fame"
+      ],
+      "canonical_order": [
+        "schema",
+        "audiences",
+        "rankings",
+        "faction_awareness",
+        "faction_reputation",
+        "personal_fame"
+      ]
+    },
+    "/audiences": {
+      "mode": "open_map"
+    },
+    "/audiences/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "tournament_points",
+        "documented_contract_points",
+        "documented_duel_points",
+        "reputation",
+        "public_score"
+      ],
+      "canonical_order": [
+        "tournament_points",
+        "documented_contract_points",
+        "documented_duel_points",
+        "reputation",
+        "public_score"
+      ]
+    },
+    "/rankings": {
+      "mode": "closed",
+      "allowed_keys": [
+        "public"
+      ],
+      "canonical_order": [
+        "public"
+      ]
+    },
+    "/faction_awareness": {
+      "mode": "open_map"
+    },
+    "/faction_awareness/*": {
+      "mode": "open_map"
+    },
+    "/faction_reputation": {
+      "mode": "open_map"
+    },
+    "/faction_reputation/*": {
+      "mode": "open_map"
+    },
+    "/faction_reputation/*/*": {
+      "mode": "open_map"
+    },
+    "/personal_fame": {
+      "mode": "open_map"
+    },
+    "/personal_fame/*": {
+      "mode": "open_map"
+    },
+    "/audiences/*/reputation": {
+      "mode": "closed",
+      "allowed_keys": [
+        "martial_respect",
+        "confidence"
+      ],
+      "canonical_order": [
+        "martial_respect",
+        "confidence"
+      ]
+    },
+    "/rankings/public": {
+      "mode": "closed",
+      "allowed_keys": [
+        "published_at",
+        "rows"
+      ],
+      "canonical_order": [
+        "published_at",
+        "rows"
+      ]
+    },
+    "/rankings/public/rows/*": {
+      "mode": "closed",
+      "allowed_keys": [
+        "person_id",
+        "public_score",
+        "rank"
+      ],
+      "canonical_order": [
+        "person_id",
+        "public_score",
+        "rank"
+      ]
+    }
+  },
+  "type_contracts": {
+    "": [
+      "object"
+    ],
+    "/schema": [
+      "string"
+    ],
+    "/audiences": [
+      "object"
+    ],
+    "/audiences/*": [
+      "object"
+    ],
+    "/rankings": [
+      "object"
+    ],
+    "/faction_awareness": [
+      "object"
+    ],
+    "/faction_awareness/*": [
+      "object"
+    ],
+    "/faction_awareness/*/*": [
+      "integer"
+    ],
+    "/faction_reputation": [
+      "object"
+    ],
+    "/faction_reputation/*": [
+      "object"
+    ],
+    "/faction_reputation/*/*": [
+      "object"
+    ],
+    "/faction_reputation/*/*/*": [
+      "integer"
+    ],
+    "/personal_fame": [
+      "object"
+    ],
+    "/personal_fame/*": [
+      "object"
+    ],
+    "/personal_fame/*/*": [
+      "integer"
+    ],
+    "/audiences/*/tournament_points": [
+      "integer"
+    ],
+    "/audiences/*/documented_contract_points": [
+      "integer"
+    ],
+    "/audiences/*/documented_duel_points": [
+      "integer"
+    ],
+    "/audiences/*/public_score": [
+      "integer"
+    ],
+    "/audiences/*/reputation": [
+      "object"
+    ],
+    "/audiences/*/reputation/martial_respect": [
+      "integer"
+    ],
+    "/audiences/*/reputation/confidence": [
+      "integer"
+    ],
+    "/rankings/public": [
+      "object"
+    ],
+    "/rankings/public/published_at": [
+      "string"
+    ],
+    "/rankings/public/rows": [
+      "array"
+    ],
+    "/rankings/public/rows/*": [
+      "object"
+    ],
+    "/rankings/public/rows/*/person_id": [
+      "string"
+    ],
+    "/rankings/public/rows/*/public_score": [
+      "integer"
+    ],
+    "/rankings/public/rows/*/rank": [
+      "integer"
+    ]
+  },
+  "array_contracts": {
+    "/rankings/public/rows": {
+      "item_types": [
+        "object"
+      ]
+    }
+  },
+  "writing_rules": [
+    "Public-evidence aggregates under audiences remain person publication evidence, not observer awareness.",
+    "Faction awareness/reputation and personal fame are keyed by the audience that actually received information.",
+    "Omit empty audience maps; do not materialize a world-wide matrix.",
+    "Current-scene recognition remains a derived recognition-system result and is never stored here."
+  ]
+}

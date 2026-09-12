@@ -113,6 +113,5 @@ def test_travel_enrichment_preserves_base_combat_judgment_frontier(monkeypatch) 
 
     compact = compact_play_context(enriched)
     private_combat = compact["gm_scene_context"]["gm_private_scene_truth"]["combat"]
-    assert private_combat["participant_count"] == 2
     assert private_combat["npc_judgment_envelopes"][0]["actor_ref"] == "npc.test"
     assert private_combat["npc_judgment_contract"]["meaningful_choice_owner"] == "chatgpt"

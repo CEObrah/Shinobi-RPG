@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from pathlib import Path
 
+from shinobi_runtime.api.command_discovery import compact_play_context
 from shinobi_runtime.api.contracts import basic_ooc_audit
 from shinobi_runtime.api.operations import CampaignOperations
 from shinobi_runtime.commands.campaign_planner import CampaignCommandPlanner
@@ -81,7 +82,7 @@ def test_current_active_combat_builds_complete_gm_npc_judgment_frontier() -> Non
 
 
 def test_current_play_context_exposes_complete_private_npc_frontier(tmp_path) -> None:
-    """Live play context must not swallow a valid exact-combat frontier."""
+    """Live and compact MCP context must preserve the complete private frontier."""
     repository = RepositoryStore(ROOT)
     meta = repository.read_json("state/meta.json")
     player_ref = str(meta["player_id"])
@@ -110,3 +111,10 @@ def test_current_play_context_exposes_complete_private_npc_frontier(tmp_path) ->
     assert private["npc_judgment_contract"]["meaningful_choice_owner"] == "chatgpt"
     assert len(rows) == 29
     assert all(row.get("requires_llm_authored_intent") is True for row in rows)
+
+    compact = compact_play_context(context)
+    compact_private = compact["gm_scene_context"]["gm_private_scene_truth"]["combat"]
+    compact_rows = compact_private["npc_judgment_envelopes"]
+    assert compact_private["npc_judgment_contract"]["meaningful_choice_owner"] == "chatgpt"
+    assert len(compact_rows) == 29
+    assert {row["actor_ref"] for row in compact_rows} == {row["actor_ref"] for row in rows}

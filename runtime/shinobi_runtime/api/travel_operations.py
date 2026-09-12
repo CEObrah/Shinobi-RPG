@@ -704,7 +704,10 @@ class TravelAwareCampaignOperations(CampaignOperations):
                 scene["combat_observation_context"] = combat_observation
                 if gm_private_combat is not None:
                     director = dict(scene.get("gm_private_director_context", {})) if isinstance(scene.get("gm_private_director_context"), Mapping) else {}
-                    director["combat"] = gm_private_combat
+                    existing_combat = director.get("combat")
+                    merged_combat = dict(existing_combat) if isinstance(existing_combat, Mapping) else {}
+                    merged_combat.update(dict(gm_private_combat))
+                    director["combat"] = merged_combat
                     scene["gm_private_director_context"] = director
                 combat_present = _unique_person_refs(
                     combat_observation.get("friendly_participant_person_ids")

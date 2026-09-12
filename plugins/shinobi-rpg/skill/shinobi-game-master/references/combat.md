@@ -27,6 +27,28 @@ Do not create a "sharper choice" merely because a tactic is currently ineffectiv
 
 The scene must answer **why the fight changed shape**, not merely enumerate that attacks were blocked or rejected. Player-facing combat prose translates mechanics into lived action: **Player-facing combat prose must not name resolver primitives** such as **attack line**, **movement lane**, or **contact geometry** when ordinary physical language works. **Translate mechanics into embodied cause and effect** and preserve the **continuity of an action scene in a strong novel or film**. The receipt is evidence for the GM, not dialogue for the player.
 
+## Pre-contact tactical feasibility gate
+
+When the player's declaration leaves target, weapon, technique, timing, or approach details to the GM, **do not author an attack merely because that weapon is available**. Before preview, compare fresh lawful target distance and geometry with the selected weapon's current reach or maximum range and with the movement that can actually be completed during that declared exchange. A GM-inferred tactic must be physically capable of affecting at least one lawful current target unless the player explicitly asked for a deliberate non-contact attempt.
+
+Treat standing language such as **use needles where possible**, **throw when it makes sense**, or equivalent opportunistic ranged intent as a feasibility condition, not an ammunition-spending instruction. `Where possible` means a lawful target is currently within the weapon's physical maximum range and the attack is otherwise meaningful from the fresh geometry. Do not throw a twelve-metre needle at a target twenty-five metres away and call the waste doctrine execution.
+
+For generic **attack**, **press**, **keep fighting**, or other delegated combat intent when every lawful attack is presently outside physical reach, close with the registered `maneuver` action first, refresh context and the NPC judgment frontier, then attack once a lawful contact attempt becomes physically feasible. Do not encode an obviously unreachable strike plus `movement_intent: close` merely to make Wei start moving when the strike cannot become reachable inside that exchange's committed approach horizon.
+
+This gate does **not** veto an explicit player-authored out-of-range attempt. If the player actually says to throw or shoot anyway, make a warning shot, suppress an area, test a reaction, or perform another deliberate non-contact action, preserve that declaration and let the runtime resolve it. The GM protects delegated tactical competence; it does not rewrite explicit player intent.
+
+Re-evaluate feasibility after every material write. A target that was in range before a defense, displacement, withdrawal, or maneuver may no longer be in range at the next frontier, and a target that was unreachable may have become a valid ranged or melee target.
+
+### Combat-option feasibility
+
+Before presenting an IC combat menu, audit each offered immediate action against the same fresh physical constraints. Do not offer **throw needles now** or **strike with the jian now** when the GM already knows no lawful current target can be reached. Offer the actual approach, positioning, command, disengagement, or other meaningful commitment instead. A compound option such as **advance while throwing** is valid only when the described sequence preserves both components lawfully: advance until a throw is physically possible, use the ranged opening while it remains feasible, and continue the declared approach rather than standing still to spend ammunition.
+
+### Do not rationalize GM-created tactical mistakes
+
+Narration must never retrofit a GM-authored infeasible or wasteful command into Wei's protected motive, confidence, or tactical decision. If an already-committed odd failure must be narrated, state only the observable failure and its actual cause as established by the receipt. Do not add lines such as **you do not hesitate over them**, **you abandon the premature thrust**, or equivalent language that falsely makes a bad GM command sound like Wei knowingly chose and corrected it.
+
+Prevent the bad command at orchestration time whenever the player's delegated intent permits a competent feasible continuation. If an explicit player action fails because it was out of range, narrate that attempt faithfully without insulting the player, praising the mistake, or inventing private psychology to justify it.
+
 ## Preserved base-contract anchors
 
 These incident overrides do not weaken any existing combat rule. In particular:

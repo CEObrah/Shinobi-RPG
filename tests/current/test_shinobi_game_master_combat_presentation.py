@@ -28,6 +28,7 @@ def test_observed_hostile_count_is_not_presented_as_current_strength_census():
         "among the current hostile combatants"
     ) not in text
 
+
 def test_player_facing_combat_prose_translates_resolver_primitives_into_lived_action():
     text = COMBAT_REFERENCE.read_text(encoding="utf-8")
 
@@ -38,7 +39,6 @@ def test_player_facing_combat_prose_translates_resolver_primitives_into_lived_ac
     assert "Translate mechanics into embodied cause and effect" in text
     assert "continuity of an action scene in a strong novel or film" in text
     assert "The receipt is evidence for the GM, not dialogue for the player" in text
-
 
 
 def test_skill_consumes_committed_combat_narrative_projection_before_returning_control():
@@ -87,3 +87,35 @@ def test_skill_preserves_relentless_lethal_tempo_in_runtime_payload() -> None:
     assert "encode the registered lethal `until_resolution` span" in skill
     assert "movement_intent: chase" in skill
     assert "Never reduce that declaration to `targeting_intent: lethal` plus an arbitrary exchange count" in skill
+
+
+def test_skill_gates_gm_inferred_combat_actions_by_current_physical_reach():
+    text = COMBAT_REFERENCE.read_text(encoding="utf-8")
+
+    assert "Pre-contact tactical feasibility gate" in text
+    assert "A GM-inferred tactic must be physically capable of affecting at least one lawful current target" in text
+    assert "`Where possible` means a lawful target is currently within the weapon's physical maximum range" in text
+    assert "close with the registered `maneuver` action first" in text
+    assert "refresh context and the NPC judgment frontier" in text
+    assert "does **not** veto an explicit player-authored out-of-range attempt" in text
+
+
+def test_skill_does_not_offer_known_impossible_immediate_combat_options():
+    text = COMBAT_REFERENCE.read_text(encoding="utf-8")
+
+    assert "Combat-option feasibility" in text
+    assert "audit each offered immediate action against the same fresh physical constraints" in text
+    assert "Do not offer **throw needles now** or **strike with the jian now**" in text
+    assert "advance until a throw is physically possible" in text
+    assert "continue the declared approach rather than standing still to spend ammunition" in text
+
+
+def test_skill_does_not_rationalize_gm_created_tactical_mistakes_as_wei_intent():
+    text = COMBAT_REFERENCE.read_text(encoding="utf-8")
+
+    assert "Do not rationalize GM-created tactical mistakes" in text
+    assert "must never retrofit a GM-authored infeasible or wasteful command into Wei's protected motive" in text
+    assert "you do not hesitate over them" in text
+    assert "you abandon the premature thrust" in text
+    assert "Prevent the bad command at orchestration time" in text
+    assert "without insulting the player, praising the mistake, or inventing private psychology" in text

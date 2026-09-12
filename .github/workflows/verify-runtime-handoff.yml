@@ -1,0 +1,27 @@
+name: Verify runtime handoff
+
+on:
+  push:
+    branches:
+      - main
+      - fix/live-npc-judgment-handoff
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install runtime and test dependencies
+        run: python -m pip install -e '.[service,service-test]'
+      - name: Verify deployment freshness and NPC handoff boundaries
+        run: >-
+          python -m pytest -q
+          tests/current/test_deployment_freshness_loaded_source.py
+          tests/current/test_npc_judgment_boundary.py::test_gm_scene_context_preserves_private_combat_judgment_envelopes
+          tests/current/test_npc_judgment_boundary.py::test_gm_judgment_envelope_scores_constraints_without_selecting_intent

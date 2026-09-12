@@ -2,14 +2,12 @@
 
 Railway builds the executable Python image from one Git commit while the mutable
 campaign checkout lives on a persistent volume and may legitimately advance by
-state-only gameplay commits.  A healthy production process therefore needs to
-prove that its build commit is an ancestor of the live checkout and that every
-commit after the build changed only ``state/``.  Any non-state delta means the
-running image is older than source/configuration already present in the
-campaign checkout and must not be reported healthy.
+state-only gameplay commits. A healthy production process therefore needs to
+prove both that its build commit covers the live checkout's non-state source and
+that the Python modules actually loaded by the process match that checkout.
 
 The check is read-only and uses fixed Git commands against the configured
-repository root.  It never accepts repository paths or Git arguments from a
+repository root. It never accepts repository paths or Git arguments from a
 caller.
 """
 from __future__ import annotations
@@ -27,6 +25,19 @@ _RAILWAY_MARKERS = (
     "RAILWAY_SERVICE_ID",
     "RAILWAY_ENVIRONMENT_ID",
     "RAILWAY_DEPLOYMENT_ID",
+)
+
+# These modules own the live GM handoff from authoritative campaign reads to the
+# exact-combat decision frontier. A Git SHA alone cannot prove that a long-lived
+# process imported these bytes from the same source image, so freshness checks a
+# small fixed executable-source sentinel set as well.
+_RUNTIME_PACKAGE_ROOT = Path(__file__).resolve().parent
+_RUNTIME_SOURCE_SENTINELS = (
+    "deployment_freshness.py",
+    "api/operations.py",
+    "api/gm_scene_context.py",
+    "api/command_discovery.py",
+    "martial_world/exact_combat.py",
 )
 
 
@@ -61,10 +72,7 @@ class DeploymentFreshnessError(RuntimeError):
     """The production image cannot safely serve the current checkout."""
 
 
-def _git(
-    root: Path,
-    *arguments: str,
-) -> subprocess.CompletedProcess[bytes]:
+def _git(root: Path, *arguments: str) -> subprocess.CompletedProcess[bytes]:
     return subprocess.run(
         ["git", "-C", str(root), *arguments],
         stdout=subprocess.PIPE,
@@ -84,16 +92,39 @@ def _head(root: Path) -> Optional[str]:
     return value if _SHA.fullmatch(value) else None
 
 
+def _loaded_runtime_source_mismatches(root: Path) -> Tuple[str, ...]:
+    """Return fixed runtime modules whose loaded bytes differ from checkout.
+
+    The mutable campaign checkout can legitimately live somewhere other than the
+    immutable Railway application image. Comparing the loaded package files to
+    the checkout closes the gap where build/checkout Git identities are fresh
+    but the serving Python process is executing older module bytes.
+    """
+    checkout_package = root / "runtime" / "shinobi_runtime"
+    mismatches: list[str] = []
+    for relative in _RUNTIME_SOURCE_SENTINELS:
+        loaded = _RUNTIME_PACKAGE_ROOT / relative
+        expected = checkout_package / relative
+        path_label = f"runtime/shinobi_runtime/{relative}"
+        try:
+            if loaded.read_bytes() != expected.read_bytes():
+                mismatches.append(path_label)
+        except OSError:
+            mismatches.append(path_label)
+    return tuple(sorted(mismatches))
+
+
 def inspect_deployment_freshness(
     repository_root: object,
     *,
     environ: Optional[Mapping[str, str]] = None,
 ) -> DeploymentFreshness:
-    """Compare the immutable Railway build commit with the live checkout.
+    """Compare the immutable Railway build and loaded runtime with live source.
 
-    State-only commits after the build are expected and healthy.  A non-state
+    State-only commits after the build are expected and healthy. A non-state
     path changed after the build, missing/invalid Railway build identity in a
-    Railway process, an unknown build commit, or divergent lineage is not.
+    Railway process, an unknown build commit, divergent lineage, or loaded
+    runtime source that differs from checkout is not healthy.
     """
     root = Path(repository_root).resolve()
     environment = os.environ if environ is None else environ
@@ -180,13 +211,25 @@ def inspect_deployment_freshness(
             production=production,
             reason="non_state_source_ahead_of_running_image",
         )
+
+    loaded_mismatches = _loaded_runtime_source_mismatches(root)
+    if loaded_mismatches:
+        return DeploymentFreshness(
+            status="stale",
+            source_revision=source,
+            checkout_revision=checkout,
+            non_state_paths=loaded_mismatches,
+            production=production,
+            reason="loaded_runtime_source_mismatch",
+        )
+
     return DeploymentFreshness(
         status="fresh",
         source_revision=source,
         checkout_revision=checkout,
         non_state_paths=(),
         production=production,
-        reason="build_covers_all_non_state_checkout_changes",
+        reason="build_and_loaded_runtime_cover_all_non_state_checkout_changes",
     )
 
 
@@ -195,7 +238,7 @@ def assert_deployment_freshness(
     *,
     environ: Optional[Mapping[str, str]] = None,
 ) -> DeploymentFreshness:
-    """Fail production startup unless the running image covers live source.
+    """Fail production startup unless the running process covers live source.
 
     Local development remains permissive when Railway build metadata is absent.
     In production, a service that cannot prove source compatibility must not

@@ -1,0 +1,33 @@
+name: Temp sync GM skill contract
+
+on:
+  push:
+    branches:
+      - fix/sync-combat-skill-contract
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/sync-combat-skill-contract
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Synchronize Skill/runtime fingerprint
+        run: python tools/sync_gm_skill_contract.py
+      - name: Commit synchronized contract if changed
+        run: |
+          if git diff --quiet; then
+            echo "Fingerprint already synchronized"
+            exit 0
+          fi
+          git config user.name "Shinobi Runtime"
+          git config user.email "runtime@invalid"
+          git add plugins/shinobi-rpg/skill/shinobi-game-master/SKILL.md runtime/shinobi_runtime/gm_skill_contract.py
+          git commit -m "sync GM skill contract after combat feasibility fix"
+          git push origin HEAD:fix/sync-combat-skill-contract

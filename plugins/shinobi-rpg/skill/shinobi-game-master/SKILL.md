@@ -44,7 +44,7 @@ Keep this game self-contained. Shared GM craft concepts may be independently mir
 
 ## Start every live turn
 
-GM_SKILL_CONTRACT_TOKEN: b5575474802c7da3605e8d6ded3e9d5ec5284478dfe014e130fc97464c8b7b1f
+GM_SKILL_CONTRACT_TOKEN: 007a8ee3d26630f4bd00ebeaf991416d2a3b649deaf84b5be2d81c0e6d1164ca
 
 1. Classify the request as gameplay/IC, read-only OOC, `OOC DEV:`, or ordered mixed intent.
 2. For every live gameplay turn, bare `continue`, or current-state OOC question, call `get_play_context` first. Pass the exact value from the `GM_SKILL_CONTRACT_TOKEN` line above as `skill_contract_token` on every call. This token is a non-secret release fingerprint, not authentication.

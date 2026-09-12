@@ -10,7 +10,7 @@ import secrets
 from typing import Any
 
 GM_SKILL_CONTRACT_ID = "shinobi-gm-skill-v1"
-GM_SKILL_CONTRACT_TOKEN = "b5575474802c7da3605e8d6ded3e9d5ec5284478dfe014e130fc97464c8b7b1f"
+GM_SKILL_CONTRACT_TOKEN = "007a8ee3d26630f4bd00ebeaf991416d2a3b649deaf84b5be2d81c0e6d1164ca"
 
 
 def verify_gm_skill_contract_token(value: object) -> bool:

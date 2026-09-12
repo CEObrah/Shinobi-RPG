@@ -19,6 +19,8 @@ jobs:
           python-version: '3.12'
       - name: Install runtime and test dependencies
         run: python -m pip install -e '.[service,service-test]'
+      - name: Verify packaged GM Skill/runtime fingerprint
+        run: python tools/sync_gm_skill_contract.py --check
       - name: Verify deployment freshness, NPC handoff, and combat GM presentation
         run: >-
           python -m pytest -q

@@ -909,7 +909,7 @@
           "attribute:perception": 56
         }
       },
-      "fatigue_milli": 1,
+      "fatigue_milli": 2,
       "training_carry_milli": "137,38,0,65,0,11,134,0,831,0,0,623,0,0,381,289"
     },
     {
@@ -1533,7 +1533,7 @@
           "attribute:perception": 148
         }
       },
-      "fatigue_milli": 1,
+      "fatigue_milli": 2,
       "training_carry_milli": "129,55,0,73,13,17,90,0,465,0,0,455,132,64,289,222"
     },
     {
@@ -1799,7 +1799,7 @@
           "attribute:perception": 31
         }
       },
-      "fatigue_milli": 1,
+      "fatigue_milli": 2,
       "training_carry_milli": "165,45,0,68,0,14,133,0,575,0,0,479,0,0,323,247"
     },
     {
@@ -2649,12 +2649,15 @@
             "pain": 100,
             "function_loss_pct": 68,
             "treated": false,
-            "healing_progress_milli": 0
+            "healing_progress_milli": 0,
+            "hemostasis_initial_bleeding_ml_per_min": 45,
+            "hemostasis_progress_units": 30,
+            "hemostasis_blood_remainder": 323998650000
           }
         ],
         "shock": 17
       },
-      "fatigue_milli": 1,
+      "fatigue_milli": 24,
       "training_carry_milli": "169,45,0,73,0,16,124,0,507,0,0,535,0,0,304,233"
     },
     {
@@ -2939,8 +2942,8 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 48,
-            "hemostasis_progress_units": 120,
-            "hemostasis_blood_remainder": 86376960000
+            "hemostasis_progress_units": 150,
+            "hemostasis_blood_remainder": 431964000000
           }
         ],
         "blood_lost_ml": 3,

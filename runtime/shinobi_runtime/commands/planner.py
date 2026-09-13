@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from typing import Any, Mapping, Tuple
 
 from shinobi_runtime.api.contracts import CommandPlan, CommandPreview, CommandRejectedError
+from shinobi_runtime.commands.combat_npc_judgment_contract import normalize_jianghu_combat_payload
 from shinobi_runtime.commands.core import _BuiltPlan
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.jianghu import JianghuCommandsMixin
@@ -127,6 +128,10 @@ class RepositoryCommandPlanner(JianghuSceneCommandsMixin,JianghuInstitutionalEsc
             required=set(spec.required_fields); optional=set(spec.optional_fields); actual=set(command.payload)
             if not required.issubset(actual) or not actual.issubset(required|optional):
                 raise CommandRejectedError(command.command_type+"_payload_fields_invalid")
+        if command.command_type=="jianghu_combat_resolution":
+            normalized_payload=normalize_jianghu_combat_payload(command.payload)
+            if normalized_payload is not command.payload:
+                command=_ExpandedCommand(command,normalized_payload)
         fn=getattr(self,"_"+command.command_type,None)
         if not callable(fn): raise RuntimeError("missing command reducer for "+command.command_type)
         previous_site_service = self._allow_site_service_presence

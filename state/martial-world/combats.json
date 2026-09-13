@@ -5,7 +5,7 @@
       "combat_id": "combat:contact:escort_muster:0e52cfa45f5bbea72ba0:0061-09-27:black_lance_company",
       "status": "active",
       "started_at": "0061-09-27T21:15:00",
-      "elapsed_ms": 33772,
+      "elapsed_ms": 35013,
       "zone_ref": "route.changan.huashan",
       "sides": {
         "side_a": [
@@ -184,13 +184,14 @@
           "zone_ref": "route.changan.huashan",
           "elevation_mm": 500,
           "cover_milli": 0,
-          "x_mm": 12498,
-          "y_mm": 7450,
-          "facing_mdeg": 270100,
+          "x_mm": 12871,
+          "y_mm": 6192,
+          "facing_mdeg": 286563,
           "body_radius_mm": 300,
-          "vx_mmps": 0,
-          "vy_mmps": 0,
-          "stance": "guarding"
+          "vx_mmps": 983,
+          "vy_mmps": -3312,
+          "stance": "approaching",
+          "motion_expires_at_ms": 35263
         },
         "mw.person.black_lance_company.0004": {
           "zone_ref": "route.changan.huashan",
@@ -342,13 +343,13 @@
           "zone_ref": "route.changan.huashan",
           "elevation_mm": 0,
           "cover_milli": 0,
-          "x_mm": 12500,
-          "y_mm": 6300,
-          "facing_mdeg": 180000,
+          "x_mm": 13705,
+          "y_mm": 3389,
+          "facing_mdeg": 292500,
           "body_radius_mm": 300,
           "vx_mmps": 0,
           "vy_mmps": 0,
-          "stance": "ready"
+          "stance": "disengaging"
         },
         "mw.person.black_lance_company.0066": {
           "zone_ref": "route.changan.huashan",
@@ -524,11 +525,11 @@
               "mw.person.black_lance_company.0060": 33692
             }
           },
-          "balance_milli": 820,
-          "limb_commitment_milli": 620,
-          "recovery_until_ms": 34138,
+          "balance_milli": 891,
+          "limb_commitment_milli": 546,
+          "recovery_until_ms": 35443,
           "offhand_recovery_until_ms": 26222,
-          "weapon_position": "extended_parry",
+          "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_jian",
           "status_families": [],
           "reinforcement_at_ms": 0,
@@ -567,7 +568,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077",
             "mw.person.black_lance_company.0079",
             "mw.person.black_lance_company.0085",
@@ -583,10 +583,10 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "qi_flow_carry_milli_ms": 660,
-          "guard_exertion_milli": 160,
-          "guard_exertion_fraction_numerator": 4658,
-          "guard_exertion_fraction_denominator": 21875,
+          "qi_flow_carry_milli_ms": 15,
+          "guard_exertion_milli": 202,
+          "guard_exertion_fraction_numerator": 37039,
+          "guard_exertion_fraction_denominator": 43750,
           "ready_hands_required": 1,
           "qi_reserve_milli": 138000
         },
@@ -634,7 +634,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0092"
           ],
           "awareness_confidence_milli": 1000,
@@ -643,9 +642,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 220,
-          "guard_exertion_fraction_numerator": 10237,
-          "guard_exertion_fraction_denominator": 15625
+          "guard_exertion_milli": 265,
+          "guard_exertion_fraction_numerator": 31867,
+          "guard_exertion_fraction_denominator": 62500
         },
         "mw.person.house_tang.1050": {
           "defense_state": {
@@ -691,7 +690,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0085",
             "mw.person.black_lance_company.0092"
           ],
@@ -701,8 +699,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 548,
-          "guard_exertion_fraction_numerator": 10816,
+          "guard_exertion_milli": 605,
+          "guard_exertion_fraction_numerator": 8664,
           "guard_exertion_fraction_denominator": 21875
         },
         "mw.person.house_tang.1030": {
@@ -748,8 +746,7 @@
             "mw.person.black_lance_company.0044",
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
-            "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066"
+            "mw.person.black_lance_company.0060"
           ],
           "awareness_confidence_milli": 1000,
           "qi_allocation_milli": {},
@@ -757,9 +754,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 36,
-          "guard_exertion_fraction_numerator": 1129,
-          "guard_exertion_fraction_denominator": 2500
+          "guard_exertion_milli": 111,
+          "guard_exertion_fraction_numerator": 2839,
+          "guard_exertion_fraction_denominator": 10000
         },
         "mw.person.house_tang.1006": {
           "defense_state": {
@@ -807,7 +804,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077"
           ],
           "awareness_confidence_milli": 1000,
@@ -816,9 +812,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 34,
-          "guard_exertion_fraction_numerator": 1329,
-          "guard_exertion_fraction_denominator": 3125
+          "guard_exertion_milli": 109,
+          "guard_exertion_fraction_numerator": 2289,
+          "guard_exertion_fraction_denominator": 12500
         },
         "mw.person.house_tang.1027": {
           "defense_state": {
@@ -863,8 +859,7 @@
             "mw.person.black_lance_company.0044",
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
-            "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066"
+            "mw.person.black_lance_company.0060"
           ],
           "awareness_confidence_milli": 1000,
           "qi_allocation_milli": {},
@@ -872,8 +867,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 655,
-          "guard_exertion_fraction_numerator": 23167,
+          "guard_exertion_milli": 715,
+          "guard_exertion_fraction_numerator": 174343,
           "guard_exertion_fraction_denominator": 184375
         },
         "mw.person.house_tang.1037": {
@@ -920,7 +915,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0092"
           ],
           "awareness_confidence_milli": 1000,
@@ -929,8 +923,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 548,
-          "guard_exertion_fraction_numerator": 10816,
+          "guard_exertion_milli": 605,
+          "guard_exertion_fraction_numerator": 8664,
           "guard_exertion_fraction_denominator": 21875
         },
         "mw.person.house_tang.1025": {
@@ -976,7 +970,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077"
           ],
           "awareness_confidence_milli": 1000,
@@ -985,8 +978,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 953,
-          "guard_exertion_fraction_numerator": 3771,
+          "guard_exertion_milli": 24,
+          "guard_exertion_fraction_numerator": 63734,
           "guard_exertion_fraction_denominator": 78125
         },
         "mw.person.house_tang.1045": {
@@ -1033,7 +1026,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0092"
           ],
           "awareness_confidence_milli": 1000,
@@ -1042,8 +1034,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 335,
-          "guard_exertion_fraction_numerator": 9021,
+          "guard_exertion_milli": 384,
+          "guard_exertion_fraction_numerator": 22234,
           "guard_exertion_fraction_denominator": 228125
         },
         "mw.person.house_tang.1001": {
@@ -1091,7 +1083,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077"
           ],
           "awareness_confidence_milli": 1000,
@@ -1100,8 +1091,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 604,
-          "guard_exertion_fraction_numerator": 9188,
+          "guard_exertion_milli": 662,
+          "guard_exertion_fraction_numerator": 188952,
           "guard_exertion_fraction_denominator": 190625
         },
         "mw.person.house_tang.1017": {
@@ -1149,7 +1140,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077"
           ],
           "awareness_confidence_milli": 1000,
@@ -1158,8 +1148,8 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 713,
-          "guard_exertion_fraction_numerator": 11889,
+          "guard_exertion_milli": 776,
+          "guard_exertion_fraction_numerator": 9156,
           "guard_exertion_fraction_denominator": 59375
         },
         "mw.person.house_tang.1020": {
@@ -1206,7 +1196,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077"
           ],
           "awareness_confidence_milli": 1000,
@@ -1215,9 +1204,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 808,
-          "guard_exertion_fraction_numerator": 3544,
-          "guard_exertion_fraction_denominator": 9375
+          "guard_exertion_milli": 874,
+          "guard_exertion_fraction_numerator": 2592,
+          "guard_exertion_fraction_denominator": 3125
         },
         "mw.person.black_lance_company.0041": {
           "defense_state": {
@@ -1268,9 +1257,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 19,
-          "guard_exertion_fraction_numerator": 41339,
-          "guard_exertion_fraction_denominator": 65625
+          "guard_exertion_milli": 93,
+          "guard_exertion_fraction_numerator": 36929,
+          "guard_exertion_fraction_denominator": 43750
         },
         "mw.person.black_lance_company.0035": {
           "defense_state": {
@@ -1320,9 +1309,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 52,
-          "guard_exertion_fraction_numerator": 19821,
-          "guard_exertion_fraction_denominator": 96875
+          "guard_exertion_milli": 127,
+          "guard_exertion_fraction_numerator": 238611,
+          "guard_exertion_fraction_denominator": 387500
         },
         "mw.person.black_lance_company.0004": {
           "defense_state": {
@@ -1365,9 +1354,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 156,
-          "guard_exertion_fraction_numerator": 102142,
-          "guard_exertion_fraction_denominator": 184375
+          "guard_exertion_milli": 235,
+          "guard_exertion_fraction_numerator": 294861,
+          "guard_exertion_fraction_denominator": 368750
         },
         "mw.person.black_lance_company.0048": {
           "defense_state": {
@@ -1420,9 +1409,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 232,
-          "guard_exertion_fraction_numerator": 13214,
-          "guard_exertion_fraction_denominator": 59375
+          "guard_exertion_milli": 314,
+          "guard_exertion_fraction_numerator": 29537,
+          "guard_exertion_fraction_denominator": 118750
         },
         "mw.person.black_lance_company.0037": {
           "defense_state": {
@@ -1472,9 +1461,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 899,
-          "guard_exertion_fraction_numerator": 11517,
-          "guard_exertion_fraction_denominator": 209375
+          "guard_exertion_milli": 968,
+          "guard_exertion_fraction_numerator": 351111,
+          "guard_exertion_fraction_denominator": 418750
         },
         "mw.person.black_lance_company.0066": {
           "defense_state": {
@@ -1572,9 +1561,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 193,
-          "guard_exertion_fraction_numerator": 66696,
-          "guard_exertion_fraction_denominator": 90625
+          "guard_exertion_milli": 274,
+          "guard_exertion_fraction_numerator": 126111,
+          "guard_exertion_fraction_denominator": 362500
         },
         "mw.person.black_lance_company.0092": {
           "defense_state": {
@@ -1617,9 +1606,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 400,
-          "guard_exertion_fraction_numerator": 114642,
-          "guard_exertion_fraction_denominator": 165625
+          "guard_exertion_milli": 488,
+          "guard_exertion_fraction_numerator": 301111,
+          "guard_exertion_fraction_denominator": 331250
         },
         "mw.person.black_lance_company.0012": {
           "defense_state": {
@@ -1661,9 +1650,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 118,
-          "guard_exertion_fraction_numerator": 92821,
-          "guard_exertion_fraction_denominator": 187500
+          "guard_exertion_milli": 196,
+          "guard_exertion_fraction_numerator": 85537,
+          "guard_exertion_fraction_denominator": 250000
         },
         "mw.person.black_lance_company.0026": {
           "defense_state": {
@@ -1703,9 +1692,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 118,
-          "guard_exertion_fraction_numerator": 92821,
-          "guard_exertion_fraction_denominator": 187500
+          "guard_exertion_milli": 196,
+          "guard_exertion_fraction_numerator": 85537,
+          "guard_exertion_fraction_denominator": 250000
         },
         "mw.person.black_lance_company.0029": {
           "defense_state": {
@@ -1743,9 +1732,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 272,
-          "guard_exertion_fraction_numerator": 7321,
-          "guard_exertion_fraction_denominator": 87500
+          "guard_exertion_milli": 355,
+          "guard_exertion_fraction_numerator": 201111,
+          "guard_exertion_fraction_denominator": 350000
         },
         "mw.person.black_lance_company.0077": {
           "defense_state": {
@@ -1789,9 +1778,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 629,
-          "guard_exertion_fraction_numerator": 11467,
-          "guard_exertion_fraction_denominator": 18750
+          "guard_exertion_milli": 689,
+          "guard_exertion_fraction_numerator": 12349,
+          "guard_exertion_fraction_denominator": 25000
         },
         "mw.person.black_lance_company.0021": {
           "defense_state": {
@@ -1832,9 +1821,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 52,
-          "guard_exertion_fraction_numerator": 19821,
-          "guard_exertion_fraction_denominator": 96875
+          "guard_exertion_milli": 127,
+          "guard_exertion_fraction_numerator": 238611,
+          "guard_exertion_fraction_denominator": 387500
         },
         "mw.person.black_lance_company.0031": {
           "defense_state": {
@@ -1880,9 +1869,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 229,
-          "guard_exertion_fraction_numerator": 177196,
-          "guard_exertion_fraction_denominator": 178125
+          "guard_exertion_milli": 311,
+          "guard_exertion_fraction_numerator": 223037,
+          "guard_exertion_fraction_denominator": 237500
         },
         "mw.person.black_lance_company.0060": {
           "defense_state": {
@@ -1894,7 +1883,7 @@
           },
           "balance_milli": 906,
           "limb_commitment_milli": 470,
-          "recovery_until_ms": 34212,
+          "recovery_until_ms": 35022,
           "offhand_recovery_until_ms": 0,
           "weapon_position": "extended_attack",
           "ready_weapon_ref": "weapon_spear",
@@ -1935,9 +1924,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 957,
-          "guard_exertion_fraction_numerator": 99017,
-          "guard_exertion_fraction_denominator": 203125,
+          "guard_exertion_milli": 29,
+          "guard_exertion_fraction_numerator": 169861,
+          "guard_exertion_fraction_denominator": 406250,
           "qi_reserve_milli": 0,
           "ready_hands_required": 2
         },
@@ -1977,9 +1966,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 234,
-          "guard_exertion_fraction_numerator": 80213,
-          "guard_exertion_fraction_denominator": 178125
+          "guard_exertion_milli": 316,
+          "guard_exertion_fraction_numerator": 132611,
+          "guard_exertion_fraction_denominator": 237500
         },
         "mw.person.black_lance_company.0044": {
           "defense_state": {
@@ -2030,9 +2019,9 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 694,
-          "guard_exertion_fraction_numerator": 186571,
-          "guard_exertion_fraction_denominator": 234375
+          "guard_exertion_milli": 757,
+          "guard_exertion_fraction_numerator": 23037,
+          "guard_exertion_fraction_denominator": 312500
         },
         "mw.person.black_lance_company.0050": {
           "defense_state": {
@@ -2085,22 +2074,22 @@
           "environment_mounted_milli": 820,
           "environment_visibility_milli": 900,
           "concealment_milli": 280,
-          "guard_exertion_milli": 156,
-          "guard_exertion_fraction_numerator": 102142,
-          "guard_exertion_fraction_denominator": 184375
+          "guard_exertion_milli": 235,
+          "guard_exertion_fraction_numerator": 294861,
+          "guard_exertion_fraction_denominator": 368750
         }
       },
       "team_plans": {
         "side_a": {
-          "plan_id": "player-retinue:7a73fa5b6b4b97dcaf18",
+          "plan_id": "player-retinue:f9f1649c1363d9ed1b71",
           "side_ref": "side_a",
-          "generated_at_ms": 31827,
+          "generated_at_ms": 33772,
           "objective_kind": "preserve_route_mission",
-          "primary_threat_ref": "mw.person.black_lance_company.0066",
-          "primary_threat_score": 952,
+          "primary_threat_ref": "mw.person.black_lance_company.0041",
+          "primary_threat_score": 933,
           "primary_position_snapshot": {
-            "x_mm": 17950,
-            "y_mm": 8100
+            "x_mm": 12500,
+            "y_mm": -900
           },
           "tactical_problem": "multiple_threats",
           "desired_states": [
@@ -2129,7 +2118,6 @@
             "mw.person.black_lance_company.0048",
             "mw.person.black_lance_company.0050",
             "mw.person.black_lance_company.0060",
-            "mw.person.black_lance_company.0066",
             "mw.person.black_lance_company.0077",
             "mw.person.black_lance_company.0079",
             "mw.person.black_lance_company.0085",
@@ -2144,7 +2132,7 @@
             },
             "mw.person.house_tang.1045": {
               "role": "anchor",
-              "target_ref": "mw.person.black_lance_company.0066",
+              "target_ref": "mw.person.black_lance_company.0041",
               "preferred_action": "hold",
               "role_score": 1079,
               "communication_delay_ms": 965,
@@ -2153,7 +2141,7 @@
             },
             "mw.person.house_tang.1037": {
               "role": "intercept",
-              "target_ref": "mw.person.black_lance_company.0066",
+              "target_ref": "mw.person.black_lance_company.0041",
               "preferred_action": "attack",
               "role_score": 1310,
               "communication_delay_ms": 965,
@@ -2164,7 +2152,7 @@
             },
             "mw.person.house_tang.1027": {
               "role": "pressure",
-              "target_ref": "mw.person.black_lance_company.0004",
+              "target_ref": "mw.person.black_lance_company.0041",
               "preferred_action": "attack",
               "role_score": 1093,
               "communication_delay_ms": 965,
@@ -2175,7 +2163,7 @@
             },
             "mw.person.house_tang.1006": {
               "role": "reserve",
-              "target_ref": "mw.person.black_lance_company.0066",
+              "target_ref": "mw.person.black_lance_company.0041",
               "preferred_action": "hold",
               "role_score": 1295,
               "communication_delay_ms": 965,
@@ -2184,7 +2172,7 @@
             },
             "mw.person.house_tang.1001": {
               "role": "protect",
-              "target_ref": "mw.person.black_lance_company.0066",
+              "target_ref": "mw.person.black_lance_company.0041",
               "preferred_action": "hold",
               "role_score": 1146,
               "communication_delay_ms": 965,
@@ -2193,7 +2181,7 @@
             },
             "mw.person.house_tang.1025": {
               "role": "exploit",
-              "target_ref": "mw.person.black_lance_company.0035",
+              "target_ref": "mw.person.black_lance_company.0004",
               "preferred_action": "attack",
               "role_score": 1222,
               "communication_delay_ms": 965,
@@ -2211,12 +2199,12 @@
             },
             "mw.person.house_tang.1030": {
               "role": "pressure",
-              "target_ref": "mw.person.black_lance_company.0041",
+              "target_ref": "mw.person.black_lance_company.0035",
               "preferred_action": "attack"
             },
             "mw.person.house_tang.1020": {
               "role": "intercept",
-              "target_ref": "mw.person.black_lance_company.0041",
+              "target_ref": "mw.person.black_lance_company.0060",
               "preferred_action": "attack",
               "role_score": 1177,
               "communication_delay_ms": 965,
@@ -2227,7 +2215,7 @@
             },
             "mw.person.house_tang.1032": {
               "role": "pressure",
-              "target_ref": "mw.person.black_lance_company.0060",
+              "target_ref": "mw.person.black_lance_company.0079",
               "preferred_action": "attack"
             },
             "mw.person.house_tang.1050": {
@@ -2237,19 +2225,19 @@
             }
           },
           "replan_reasons": [
-            "material_geometry_shift"
+            "primary_threat_lost_or_disabled"
           ]
         },
         "side_b": {
-          "plan_id": "plan:f026002a31a6f74664d5",
+          "plan_id": "plan:e4dcadae760373537872",
           "side_ref": "side_b",
-          "generated_at_ms": 24592,
+          "generated_at_ms": 33772,
           "objective_kind": "preserve_route_mission",
           "primary_threat_ref": "pc_wei_tang",
           "primary_threat_score": 1664,
           "primary_position_snapshot": {
-            "x_mm": 9935,
-            "y_mm": 8284
+            "x_mm": 12498,
+            "y_mm": 7450
           },
           "tactical_problem": "superior_or_primary_combatant",
           "desired_states": [
@@ -2275,45 +2263,45 @@
             "mw.person.house_tang.1050",
             "pc_wei_tang"
           ],
-          "coordination_latency_ms": 952,
+          "coordination_latency_ms": 970,
           "assignments": {
-            "mw.person.black_lance_company.0066": {
+            "mw.person.black_lance_company.0004": {
               "role": "anchor",
               "target_ref": "pc_wei_tang",
               "preferred_action": "hold",
-              "role_score": 1328,
-              "communication_delay_ms": 952,
+              "role_score": 1266,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
               "requires_line_of_sight": false
             },
-            "mw.person.black_lance_company.0041": {
+            "mw.person.black_lance_company.0079": {
               "role": "flank",
               "target_ref": "pc_wei_tang",
               "preferred_action": "attack",
-              "role_score": 1433,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [
-                "exploit"
-              ],
-              "requires_line_of_sight": false
-            },
-            "mw.person.black_lance_company.0004": {
-              "role": "pressure",
-              "target_ref": "mw.person.house_tang.1006",
-              "preferred_action": "attack",
-              "role_score": 1226,
-              "communication_delay_ms": 952,
+              "role_score": 1623,
+              "communication_delay_ms": 970,
               "setup_for_roles": [
                 "exploit"
               ],
               "requires_line_of_sight": false
             },
             "mw.person.black_lance_company.0060": {
-              "role": "intercept",
+              "role": "pressure",
               "target_ref": "pc_wei_tang",
               "preferred_action": "attack",
-              "role_score": 1297,
-              "communication_delay_ms": 952,
+              "role_score": 1165,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [
+                "exploit"
+              ],
+              "requires_line_of_sight": false
+            },
+            "mw.person.black_lance_company.0041": {
+              "role": "intercept",
+              "target_ref": "mw.person.house_tang.1006",
+              "preferred_action": "attack",
+              "role_score": 1274,
+              "communication_delay_ms": 970,
               "setup_for_roles": [
                 "exploit"
               ],
@@ -2321,62 +2309,20 @@
             },
             "mw.person.black_lance_company.0035": {
               "role": "exploit",
-              "target_ref": "mw.person.house_tang.1006",
+              "target_ref": "mw.person.house_tang.1027",
               "preferred_action": "attack",
-              "role_score": 1285,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [],
-              "requires_line_of_sight": false
-            },
-            "mw.person.black_lance_company.0079": {
-              "role": "protect",
-              "target_ref": "pc_wei_tang",
-              "preferred_action": "hold",
-              "role_score": 1133,
-              "communication_delay_ms": 952,
+              "role_score": 1286,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
               "requires_line_of_sight": false
             },
             "mw.person.black_lance_company.0077": {
-              "role": "reserve",
+              "role": "protect",
               "target_ref": "pc_wei_tang",
               "preferred_action": "hold",
-              "role_score": 1276,
-              "communication_delay_ms": 952,
+              "role_score": 1076,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
-              "requires_line_of_sight": false
-            },
-            "mw.person.black_lance_company.0029": {
-              "role": "shape",
-              "target_ref": "mw.person.house_tang.1027",
-              "preferred_action": "attack",
-              "role_score": 775,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [
-                "exploit"
-              ],
-              "requires_line_of_sight": true
-            },
-            "mw.person.black_lance_company.0092": {
-              "role": "pressure",
-              "target_ref": "pc_wei_tang",
-              "preferred_action": "attack",
-              "role_score": 1062,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [
-                "exploit"
-              ],
-              "requires_line_of_sight": false
-            },
-            "mw.person.black_lance_company.0050": {
-              "role": "intercept",
-              "target_ref": "mw.person.house_tang.1037",
-              "preferred_action": "attack",
-              "role_score": 1228,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [
-                "exploit"
-              ],
               "requires_line_of_sight": false
             },
             "mw.person.black_lance_company.0044": {
@@ -2384,36 +2330,78 @@
               "target_ref": "pc_wei_tang",
               "preferred_action": "hold",
               "role_score": 1214,
-              "communication_delay_ms": 952,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
               "requires_line_of_sight": false
             },
-            "mw.person.black_lance_company.0048": {
-              "role": "exploit",
-              "target_ref": "mw.person.house_tang.1027",
+            "mw.person.black_lance_company.0092": {
+              "role": "shape",
+              "target_ref": "mw.person.house_tang.1037",
               "preferred_action": "attack",
-              "role_score": 1209,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [],
-              "requires_line_of_sight": false
+              "role_score": 793,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [
+                "exploit"
+              ],
+              "requires_line_of_sight": true
             },
-            "mw.person.black_lance_company.0085": {
+            "mw.person.black_lance_company.0050": {
               "role": "pressure",
               "target_ref": "mw.person.house_tang.1037",
               "preferred_action": "attack",
-              "role_score": 1031,
-              "communication_delay_ms": 952,
+              "role_score": 1041,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [
+                "exploit"
+              ],
+              "requires_line_of_sight": false
+            },
+            "mw.person.black_lance_company.0048": {
+              "role": "intercept",
+              "target_ref": "pc_wei_tang",
+              "preferred_action": "attack",
+              "role_score": 1208,
+              "communication_delay_ms": 970,
               "setup_for_roles": [
                 "exploit"
               ],
               "requires_line_of_sight": false
             },
             "mw.person.black_lance_company.0037": {
+              "role": "reserve",
+              "target_ref": "pc_wei_tang",
+              "preferred_action": "hold",
+              "role_score": 1204,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [],
+              "requires_line_of_sight": false
+            },
+            "mw.person.black_lance_company.0085": {
+              "role": "exploit",
+              "target_ref": "mw.person.house_tang.1027",
+              "preferred_action": "attack",
+              "role_score": 1183,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [],
+              "requires_line_of_sight": false
+            },
+            "mw.person.black_lance_company.0026": {
+              "role": "pressure",
+              "target_ref": "mw.person.house_tang.1006",
+              "preferred_action": "attack",
+              "role_score": 972,
+              "communication_delay_ms": 970,
+              "setup_for_roles": [
+                "exploit"
+              ],
+              "requires_line_of_sight": false
+            },
+            "mw.person.black_lance_company.0029": {
               "role": "intercept",
               "target_ref": "mw.person.house_tang.1001",
               "preferred_action": "attack",
-              "role_score": 1144,
-              "communication_delay_ms": 952,
+              "role_score": 1127,
+              "communication_delay_ms": 970,
               "setup_for_roles": [
                 "exploit"
               ],
@@ -2424,36 +2412,25 @@
               "target_ref": "pc_wei_tang",
               "preferred_action": "hold",
               "role_score": 1188,
-              "communication_delay_ms": 952,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
               "requires_line_of_sight": false
             },
-            "mw.person.black_lance_company.0026": {
+            "mw.person.black_lance_company.0021": {
               "role": "exploit",
-              "target_ref": "mw.person.house_tang.1025",
+              "target_ref": "mw.person.house_tang.1001",
               "preferred_action": "attack",
-              "role_score": 1127,
-              "communication_delay_ms": 952,
+              "role_score": 1098,
+              "communication_delay_ms": 970,
               "setup_for_roles": [],
               "requires_line_of_sight": false
             },
             "mw.person.black_lance_company.0012": {
               "role": "pressure",
-              "target_ref": "mw.person.house_tang.1001",
+              "target_ref": "mw.person.house_tang.1025",
               "preferred_action": "attack",
               "role_score": 907,
-              "communication_delay_ms": 952,
-              "setup_for_roles": [
-                "exploit"
-              ],
-              "requires_line_of_sight": false
-            },
-            "mw.person.black_lance_company.0021": {
-              "role": "intercept",
-              "target_ref": "mw.person.house_tang.1017",
-              "preferred_action": "attack",
-              "role_score": 1114,
-              "communication_delay_ms": 952,
+              "communication_delay_ms": 970,
               "setup_for_roles": [
                 "exploit"
               ],
@@ -2461,7 +2438,7 @@
             }
           },
           "replan_reasons": [
-            "material_geometry_shift"
+            "assigned_member_unavailable"
           ]
         }
       },

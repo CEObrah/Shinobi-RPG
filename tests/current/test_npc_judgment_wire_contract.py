@@ -1,3 +1,7 @@
+import copy
+import json
+from pathlib import Path
+
 import shinobi_runtime.commands.planner as planner_module
 from shinobi_runtime.commands.combat_npc_judgment_contract import (
     ATTACK_JUDGMENT_WIRE_CONTRACT,
@@ -5,6 +9,10 @@ from shinobi_runtime.commands.combat_npc_judgment_contract import (
 )
 from shinobi_runtime.commands.envelope import CommandEnvelope
 from shinobi_runtime.commands.planner import RepositoryCommandPlanner
+from shinobi_runtime.martial_world import exact_combat as exact
+
+ROOT = Path(__file__).resolve().parents[2]
+BASE = json.loads((ROOT / "state/martial-world/people/house_tang.json").read_text())["people"][0]
 
 
 def _attack(**overrides):
@@ -19,6 +27,22 @@ def _attack(**overrides):
         "poison_ref": None,
     }
     row.update(overrides)
+    return row
+
+
+def _fighter(ref: str, faction: str, *, spear_skill: int = 75) -> dict:
+    row = copy.deepcopy(BASE)
+    row["person_id"] = ref
+    row["name"] = ref
+    row["faction_ref"] = faction
+    row["health"] = {"status": "ready", "injuries": [], "blood_lost_ml": 0, "shock": 0, "consciousness": 100}
+    row["fatigue_milli"] = 0
+    row["qi"] = 0
+    row["current_qi_milli"] = 0
+    row["attributes"] = {key: 75 for key in ("strength", "speed", "dexterity", "endurance", "perception", "intelligence", "willpower")}
+    row["martial_skills"] = {key: 0 for key in ("sword", "spear", "bow", "hidden_weapons", "unarmed", "stealth_scouting", "command")}
+    row["martial_skills"]["spear"] = spear_skill
+    row.pop("combat_doctrine_ref", None)
     return row
 
 
@@ -94,6 +118,61 @@ def test_planner_canonicalizes_aliases_before_the_combat_reducer(monkeypatch):
     assert attack["poison_ref"] is None
     assert command.payload["npc_judgments"]["npc.attacker"]["qi_allocation_milli"] == 0
     assert command.payload["npc_judgments"]["npc.attacker"]["poison_ref"] == "none"
+
+
+def test_canonicalized_live_style_attack_is_accepted_by_strict_exact_combat():
+    people = {"a": _fighter("a", "fa"), "b": _fighter("b", "fb")}
+    ledger = {
+        "schema": "jianghu-equipment-ledger-1.0",
+        "policy_assignments": {},
+        "person_loadouts": {
+            "a": {"items": {"weapon_jian": 1}},
+            "b": {"items": {"weapon_spear": 1}},
+        },
+    }
+    combat = exact.initialize_combat(
+        combat_ref="judgment.wire-compat",
+        side_a_refs=("a",),
+        side_b_refs=("b",),
+        people=people,
+        zone_ref="z",
+        started_at="x",
+        objective={"kind": "eliminate", "target_refs": ["b"]},
+        awareness_mode="mutual",
+        initial_range_band=0,
+        equipment_ledger=ledger,
+        initial_ready_weapons={"a": "weapon_jian", "b": "weapon_spear"},
+    )
+    raw_payload = {
+        "npc_judgments": {
+            "b": _attack(
+                target_ref="a",
+                qi_allocation_milli=0,
+                poison_ref="none",
+            )
+        }
+    }
+    judgments = normalize_jianghu_combat_payload(raw_payload)["npc_judgments"]
+
+    result = exact.resolve_exchange(
+        combat=combat,
+        people=people,
+        equipment_ledger=ledger,
+        doctrines={},
+        player_ref="a",
+        player_action_kind="hold",
+        player_target_ref="a",
+        player_weapon_ref="body_unarmed",
+        npc_judgments=judgments,
+        require_gm_npc_judgments=True,
+        compact_equipment_result=False,
+    )
+
+    npc_events = [row for row in result["events"] if row.get("actor_ref") == "b"]
+    assert any(
+        row.get("decision_origin") == "gm_npc_judgment" and row.get("action_kind") == "thrust"
+        for row in npc_events
+    )
 
 
 def test_none_poison_alias_is_case_and_whitespace_tolerant():

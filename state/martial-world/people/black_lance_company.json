@@ -1934,6 +1934,33 @@
         }
       },
       "fatigue_milli": 2,
+      "health": {
+        "status": "injured",
+        "injuries": [
+          {
+            "zone": "wrist",
+            "structure_ref": null,
+            "side": null,
+            "created_at": "42159",
+            "cut": 0,
+            "pierce": 15,
+            "blunt": 1,
+            "penetration": 6,
+            "severity": 15,
+            "bleeding_ml_per_min": 0,
+            "fracture": 0,
+            "tendon_damage": 8,
+            "nerve_damage": 9,
+            "organ_trauma": 0,
+            "structure_damage": 0,
+            "functional_effects": {},
+            "pain": 11,
+            "function_loss_pct": 8,
+            "treated": false,
+            "healing_progress_milli": 0
+          }
+        ]
+      },
       "training_carry_milli": "176,59,0,81,0,16,133,0,549,0,0,493,0,0,313,241"
     },
     {
@@ -2225,9 +2252,13 @@
             "pain": 95,
             "function_loss_pct": 68,
             "treated": false,
-            "healing_progress_milli": 0
+            "healing_progress_milli": 0,
+            "hemostasis_initial_bleeding_ml_per_min": 40,
+            "hemostasis_progress_units": 60,
+            "hemostasis_blood_remainder": 143995200000
           }
         ],
+        "blood_lost_ml": 1,
         "shock": 17
       },
       "training_carry_milli": "194,59,0,93,0,17,176,0,526,0,0,471,0,0,326,247"
@@ -2679,11 +2710,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 45,
-            "hemostasis_progress_units": 240,
-            "hemostasis_blood_remainder": 431913600000
+            "hemostasis_progress_units": 300,
+            "hemostasis_blood_remainder": 215865000000
           }
         ],
-        "blood_lost_ml": 5,
+        "blood_lost_ml": 7,
         "shock": 17
       },
       "fatigue_milli": 25,
@@ -2971,11 +3002,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 48,
-            "hemostasis_progress_units": 360,
-            "hemostasis_blood_remainder": 258992640000
+            "hemostasis_progress_units": 420,
+            "hemostasis_blood_remainder": 86117760000
           }
         ],
-        "blood_lost_ml": 9,
+        "blood_lost_ml": 11,
         "shock": 21
       },
       "fatigue_milli": 1,
@@ -3450,7 +3481,7 @@
           "spear": 1881
         }
       },
-      "fatigue_milli": 1,
+      "fatigue_milli": 2,
       "training_carry_milli": "153,58,0,68,0,15,136,0,837,0,0,593,0,0,357,269"
     },
     {

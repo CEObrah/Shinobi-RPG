@@ -909,7 +909,7 @@
           "attribute:perception": 56
         }
       },
-      "fatigue_milli": 2,
+      "fatigue_milli": 3,
       "training_carry_milli": "137,38,0,65,0,11,134,0,831,0,0,623,0,0,381,289"
     },
     {
@@ -1533,7 +1533,7 @@
           "attribute:perception": 148
         }
       },
-      "fatigue_milli": 2,
+      "fatigue_milli": 3,
       "training_carry_milli": "129,55,0,73,13,17,90,0,465,0,0,455,132,64,289,222"
     },
     {
@@ -1799,7 +1799,7 @@
           "attribute:perception": 31
         }
       },
-      "fatigue_milli": 2,
+      "fatigue_milli": 3,
       "training_carry_milli": "165,45,0,68,0,14,133,0,575,0,0,479,0,0,323,247"
     },
     {
@@ -1959,10 +1959,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 39,
-            "hemostasis_progress_units": 30,
-            "hemostasis_blood_remainder": 280798830000
+            "hemostasis_progress_units": 60,
+            "hemostasis_blood_remainder": 129595320000
           }
         ],
+        "blood_lost_ml": 1,
         "shock": 14
       },
       "training_carry_milli": "176,59,0,81,0,16,133,0,550,0,0,493,0,0,313,241"
@@ -2140,7 +2141,34 @@
           "attribute:perception": 305
         }
       },
-      "fatigue_milli": 94,
+      "fatigue_milli": 120,
+      "health": {
+        "status": "injured",
+        "injuries": [
+          {
+            "zone": "wrist",
+            "structure_ref": null,
+            "side": null,
+            "created_at": "50522",
+            "cut": 0,
+            "pierce": 16,
+            "blunt": 1,
+            "penetration": 7,
+            "severity": 16,
+            "bleeding_ml_per_min": 0,
+            "fracture": 0,
+            "tendon_damage": 8,
+            "nerve_damage": 9,
+            "organ_trauma": 0,
+            "structure_damage": 0,
+            "functional_effects": {},
+            "pain": 12,
+            "function_loss_pct": 8,
+            "treated": false,
+            "healing_progress_milli": 0
+          }
+        ]
+      },
       "training_carry_milli": "174,52,0,83,0,17,147,0,561,0,0,453,0,0,295,224"
     },
     {
@@ -2258,11 +2286,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 40,
-            "hemostasis_progress_units": 270,
-            "hemostasis_blood_remainder": 431902800000
+            "hemostasis_progress_units": 300,
+            "hemostasis_blood_remainder": 287880000000
           }
         ],
-        "blood_lost_ml": 5,
+        "blood_lost_ml": 6,
         "shock": 17
       },
       "training_carry_milli": "194,59,0,93,0,17,176,0,526,0,0,471,0,0,326,247"
@@ -2714,11 +2742,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 45,
-            "hemostasis_progress_units": 510,
-            "hemostasis_blood_remainder": 323609850000
+            "hemostasis_progress_units": 540,
+            "hemostasis_blood_remainder": 215562600000
           }
         ],
-        "blood_lost_ml": 12,
+        "blood_lost_ml": 13,
         "shock": 17
       },
       "fatigue_milli": 25,
@@ -3006,11 +3034,11 @@
             "treated": false,
             "healing_progress_milli": 0,
             "hemostasis_initial_bleeding_ml_per_min": 48,
-            "hemostasis_progress_units": 630,
-            "hemostasis_blood_remainder": 344964960000
+            "hemostasis_progress_units": 660,
+            "hemostasis_blood_remainder": 258503040000
           }
         ],
-        "blood_lost_ml": 16,
+        "blood_lost_ml": 17,
         "shock": 21
       },
       "fatigue_milli": 1,
